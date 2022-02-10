@@ -4,22 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-    <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <script src="{{ mix('js/app.js') }}"></script>
     @yield('datatable')
     @yield('datatable_css')
     @yield('third_party_stylesheets')
@@ -81,7 +73,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown user-menu">
                     @auth
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle logoutmenu" data-toggle="dropdown">
                         {{-- <img src="https://infyom.com/images/logo/blue_logo_150x150.jpg"
                             class="user-image img-circle elevation-2" alt="User Image"> --}}
                         <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
@@ -102,7 +94,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <a href="#" class="btn btn-default btn-flat">Profile</a>
-                            <a href="#" class="btn btn-default btn-flat float-right" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a href="#" class="btn btn-default btn-flat float-right signout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Sign out
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -135,11 +127,19 @@
             reserved.
         </footer>
     </div>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js" integrity="sha512-tVYBzEItJit9HXaWTPo8vveXlkK62LbA+wez9IgzjTmFNLMBO1BEYladBw2wnM3YURZSMUyhayPCoLtjGh84NQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.11.4/dataRender/intl.js"></script>
+    <script>
+        $(document).ready(function() {
+            // console.log('jquery is working');
+            $('.logoutmenu').click(function() {
+                $('.dropdown-menu').toggle();
+            });
+            $('.signout').click(function() {
+                $('.dropdown-menu').hide();
+            });
+        });
+    </script>
+
     @yield('third_party_scripts')
     @yield('script')
 
