@@ -51,6 +51,10 @@
         .dropdown-menu[data-bs-popper] {
             left: -146px !important;
         }
+
+        h3 {
+            margin-bottom: 0px;
+        }
     </style>
 </head>
 
