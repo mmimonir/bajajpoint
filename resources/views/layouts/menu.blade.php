@@ -1,4 +1,5 @@
-<div class="form-inline">
+<!-- Search Bar -->
+<!-- <div class="form-inline">
     <div class="input-group" data-widget="sidebar-search">
         <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
@@ -13,7 +14,7 @@
                 <div class="search-path"></div>
             </a></div>
     </div>
-</div>
+</div> -->
 <!-- need to remove -->
 
 
@@ -93,7 +94,7 @@
         <li class="nav-item">
             <a href="{{route('print.print_dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-print"></i>
-                <p>Print Dashboard</p>
+                <p>Dashboard</p>
             </a>
         </li>
         <li class="nav-item">

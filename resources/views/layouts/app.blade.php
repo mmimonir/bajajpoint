@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -55,6 +55,10 @@
         h3 {
             margin-bottom: 0px;
         }
+
+        #add {
+            margin-top: 5px;
+        }
     </style>
 </head>
 
@@ -97,7 +101,7 @@
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         @auth
-                        <li class="user-header bg-primary">
+                        <li class="user-header bg-dark">
                             {{-- <img src="https://infyom.com/images/logo/blue_logo_150x150.jpg"
                                 class="img-circle elevation-2" alt="User Image"> --}}
                             <p>
@@ -145,7 +149,21 @@
     <script src="https://cdn.datatables.net/plug-ins/1.11.4/dataRender/intl.js"></script>
     <script>
         $(document).ready(function() {
-            console.log('jquery is working');
+            // admin lte add active class to current link start
+            /** add active class and stay opened when selected */
+            var url = window.location;
+
+            // for sidebar menu entirely but not cover treeview
+            $('ul.nav-sidebar a').filter(function() {
+                return this.href == url;
+            }).addClass('active');
+
+            // for treeview
+            $('ul.nav-treeview a').filter(function() {
+                return this.href == url;
+            }).parentsUntil(".nav-sidebar > .nav-treeview").addClass('menu-open').prev('a').addClass(
+                'active');
+            // admin lte add active class to current link start
         });
     </script>
 

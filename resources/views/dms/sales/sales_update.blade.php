@@ -1,10 +1,11 @@
 @extends('layouts.app')
+@section('title', 'Sales Update')
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-11">
             <div class="card card-info mt-2" style="box-shadow:0 0 25px 0 lightgrey; transform:scaleY(.9);">
-                <div class="card-header" style="background-color:#343A40;">
+                <div class="card-header bg-dark" style="background-color:#343A40;">
                     <h3 class="card-title" style="margin-bottom:0;">Sales Update</h3>
                 </div>
                 <form class="form-horizontal" action="" method="POST" id="sale_update_form">

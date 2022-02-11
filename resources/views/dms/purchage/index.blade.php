@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Purchase')
 
 @section('datatable_css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
@@ -179,7 +180,7 @@
                         </tfoot>
                     </table>
                     <center style="padding:10px;">
-                        <button id="add" style="width:100px;" class="btn btn-success btn-sm">Add</button>
+                        <button id="add" style="width:100px; margin-top:0px;" class="btn btn-success btn-sm">Add</button>
                         <button id="remove" style="width:100px;" class="btn btn-danger btn-sm">Remove</button>
                     </center>
                     <center style="padding:10px;">

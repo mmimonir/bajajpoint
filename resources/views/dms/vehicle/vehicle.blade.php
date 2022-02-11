@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Motorcycle Details')
 @section('datatable_css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" />
@@ -8,10 +8,10 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-10">
-        <h3 class="bg-primary text-center p-2 text-white mt-2 rounded">Motorcycle Details</h3>
+        <h3 class="bg-dark text-center p-2 text-white mt-2 rounded">Motorcycle Details</h3>
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <a class="m-r-15 text-muted edit float-right btn btn-primary text-white mb-1" id="add" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fas fa-plus"></i>
+                <a class="m-r-15 text-muted edit float-right btn btn-dark text-white mb-1" id="add" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fas fa-plus"></i>
                 </a>
                 <div id="show_all_vehicle">
                     <h1 class="text-center text-secondary my-5">Loading...</h1>

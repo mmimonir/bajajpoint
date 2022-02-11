@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Laravel 8 Generate PDF From View</title>
+    <title>HForm Print</title>
     <!-- <link rel="stylesheet" href="{{ asset('css/pdf.css') }}"> -->
     <style>
         body {

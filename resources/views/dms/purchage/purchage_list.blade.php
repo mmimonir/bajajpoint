@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Purchase List')
 
 @section('datatable_css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
@@ -9,13 +10,13 @@
 <div class="row justify-content-center">
     <div class="col-md-10">
         <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
-            <div class="card-header">
+            <div class="card-header bg-dark">
                 <div class="row">
                     <div class="col-md-6">
                         <h4>Purchage</h4>
                     </div>
                     <div class="col-md-6">
-                        <a href="{{route('purchage.index')}}" class="m-r-15 text-muted edit float-right btn btn-primary text-white mb-1">Purchage Entry</i>
+                        <a href="{{route('purchage.index')}}" class="m-r-15 text-muted edit float-right btn btn-dark text-white mb-1">Purchage Entry</i>
                         </a>
                     </div>
                 </div>
