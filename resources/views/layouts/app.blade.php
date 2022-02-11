@@ -9,14 +9,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
+    <link href="http://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet">
     <script src="{{ mix('js/app.js') }}"></script>
     @yield('datatable')
     @yield('datatable_css')
     @yield('third_party_stylesheets')
     @stack('page_css')
     <style>
+        html,
+        body {
+            font-family: 'Helvetica 25 UltraLight', sans-serif;
+            /* font-weight: 400; */
+        }
+
         table.dataTable tbody th,
         table.dataTable tbody td {
             padding: 0px 10px;

@@ -5,7 +5,7 @@
         <div class="col-md-11">
             <div class="card card-info mt-2" style="box-shadow:0 0 25px 0 lightgrey; transform:scaleY(.9);">
                 <div class="card-header" style="background-color:#343A40;">
-                    <h3 class="card-title">Sales Update</h3>
+                    <h3 class="card-title" style="margin-bottom:0;">Sales Update</h3>
                 </div>
                 <form class="form-horizontal" action="" method="POST" id="sale_update_form">
                     @csrf
@@ -319,6 +319,12 @@
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="print_ref" class="col-sm-3 col-form-label form-control-sm">Print Ref</label>
                                     <div class="col-sm-9" style="padding:0px;">
+                                        <input value="{{$core_data->print_ref }}" type="text" name="print_ref" class="form-control form-control-sm" id="print_ref">
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group row" style="margin-bottom:0px;">
+                                    <label for="print_ref" class="col-sm-3 col-form-label form-control-sm">Print Ref</label>
+                                    <div class="col-sm-9" style="padding:0px;">
                                         <select name="print_ref" class="browser-default custom-select">
                                             <option>Open this select menu</option>
                                             @foreach ($print_ref as $ref)
@@ -326,7 +332,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="evl_invoice_no" class="col-sm-3 col-form-label form-control-sm">EVL Invoice</label>
                                     <div class="col-sm-9" style="padding:0px;">
@@ -379,7 +385,7 @@
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-center">
-                        <button type="submit" class="btn btn-info" style="width:350px;">Update</button>
+                        <button type="submit" class="btn btn-info" style="width:350px; color:white;">Update</button>
                     </div>
                 </form>
 
@@ -429,47 +435,99 @@
             var sale_profit = sale_price - purchage_price;
             $('#sale_profit').val(sale_profit);
         });
-        $("#original_sale_date").change(function() {
+
+        function getCurrentFinancialYear(sale_date) {
+            var financial_year = "";
+            var today = new Date(sale_date);
+            if ((today.getMonth() + 1) <= 3) {
+                financial_year = (today.getFullYear() - 1) + "-" + today.getFullYear()
+            } else {
+                financial_year = today.getFullYear() + "-" + (today.getFullYear() + 1)
+            }
+            return financial_year;
+        }
+
+        function print_ref(print_code, year) {
+            switch (print_code) {
+                case 2000:
+                    $('#print_ref').val(`BAJAJ POINT/DHAKA/${year}`);
+                    break;
+                case 2011:
+                    $('#print_ref').val(`BAJAJ HEAVEN/DHAKA/${year}`);
+                    break;
+                case 2030:
+                    $('#print_ref').val(`BAJAJ BLOOM/DHAKA/${year}`);
+                    break;
+                default:
+                    $('#print_ref').val('');
+                    break;
+            }
+        }
+
+        $("#print_code").change(function() {
+            var sale_date = $('#original_sale_date').val();
+            var year = getCurrentFinancialYear(sale_date)
+
+            var print_code = +$('#print_code').val();
+            print_ref(print_code, year);
+        });
+        $("#original_sale_date").on("change", function() {
             var sale_date = $('#original_sale_date').val();
             $('#vat_sale_date').val(sale_date);
             $('#sale_date').val(sale_date);
             $('#print_date').val(sale_date);
-        });
-        $("#original_sale_date").on("change", function() {
+
+            var year = getCurrentFinancialYear(sale_date)
+            var print_code = +$('#print_code').val();
+            print_ref(print_code, year);
+
             let csrf = '{{ csrf_token() }}';
             var vat_code = +$('#vat_code').val();
             var model_code = $('#model_code').val();
-            if (vat_code === 2000 || vat_code === 2011 || vat_code === 2030) {
-                const date = new Date($('#vat_sale_date').val());
-                const month = date.toLocaleString('default', {
-                    month: 'short'
-                }).toUpperCase();
-                const year = date.getFullYear();
 
-                $.ajax({
-                    url: "{{ route('utility.assessment_year') }}",
-                    method: 'post',
-                    data: {
-                        model_code: model_code,
-                        _token: csrf
-                    },
-                    success: function({
-                        assessment,
-                        vat_mrp
-                    }) {
-                        $('#vat_year_sale').val(assessment.vat_year_sale);
-                        $('#vat_month_sale').val(month + year);
+            const date = new Date($('#vat_sale_date').val());
+            const month = date.toLocaleString('default', {
+                month: 'short'
+            }).toUpperCase();
+
+            $.ajax({
+                url: "{{ route('utility.assessment_year') }}",
+                method: 'post',
+                data: {
+                    model_code: model_code,
+                    _token: csrf
+                },
+                success: function({
+                    assessment,
+                    vat_mrp
+                }) {
+                    if (vat_code == 2000 || vat_code == 2011 || vat_code == 2030) {
+                        const vat_sale_date = $('#vat_sale_date').val();
+                        const vat_month_year = new Date(vat_sale_date).getFullYear();
+                        const year = getCurrentFinancialYear(vat_sale_date);
+
+                        $('#vat_year_sale').val(year.replace('-', ''));
+                        $('#vat_month_sale').val(month + vat_month_year);
                         $('#unit_price_vat').val(vat_mrp[0].vat_mrp);
 
-                        var unit_price_vat = +vat_mrp[0].vat_mrp;
-                        var sale_vat = Math.round(unit_price_vat * 15 / 115);
-                        var basic_price_vat = Math.round(unit_price_vat - sale_vat);
+                        const unit_price_vat = +vat_mrp[0].vat_mrp;
+                        const sale_vat = Math.round(unit_price_vat * 15 / 115);
+                        const basic_price_vat = Math.round(unit_price_vat - sale_vat);
 
                         $('#sale_vat').val(sale_vat);
                         $('#basic_price_vat').val(basic_price_vat);
-                    },
-                });
-            }
+                    } else {
+                        $('#unit_price_vat').val(vat_mrp[0].vat_mrp);
+                        const unit_price_vat = +vat_mrp[0].vat_mrp;
+                        const sale_vat = Math.round(unit_price_vat * 15 / 115);
+                        const basic_price_vat = Math.round(unit_price_vat - sale_vat);
+
+                        $('#sale_vat').val(sale_vat);
+                        $('#basic_price_vat').val(basic_price_vat);
+                    }
+                },
+            });
+
         });
     });
 </script>

@@ -16,7 +16,7 @@ class PurchageController extends Controller
     public function index()
     {
         $suppliers = Supplier::select('supplier_name')->where('status', '1')->get();
-        $dealer_names = Supplier::select('dealer_name')->whereNotNull('dealer_name')->get();
+        $dealer_names = Supplier::select('dealer_name', 'supplier_code')->whereNotNull('dealer_name')->get();
         $mrps = Mrp::select('model_name', 'model_code')->whereNotNull('vat_purchage_mrp')->get();
         // dd($mrps);
         return view('dms.purchage.index')->with(['suppliers' => $suppliers, 'mrps' => $mrps, 'dealer_names' => $dealer_names]);
@@ -29,6 +29,7 @@ class PurchageController extends Controller
 
             $mc_purchage = new Purchage();
             $mc_purchage->factory_challan_no = $request['challan_no'];
+            $mc_purchage->dealer_code = $supplier_code;
             $mc_purchage->purchage_date = $request['purchage_date'];
             $mc_purchage->vendor = $request['vendor'];
             $mc_purchage->dealer_name = $request['dealer_name'];
