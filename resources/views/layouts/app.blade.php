@@ -40,6 +40,10 @@
         .dropdown {
             width: 100% !important;
         }
+
+        .dropdown-menu[data-bs-popper] {
+            left: -146px !important;
+        }
     </style>
 </head>
 
@@ -73,7 +77,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown user-menu">
                     @auth
-                    <a href="#" class="nav-link dropdown-toggle logoutmenu" data-toggle="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         {{-- <img src="https://infyom.com/images/logo/blue_logo_150x150.jpg"
                             class="user-image img-circle elevation-2" alt="User Image"> --}}
                         <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
@@ -121,22 +125,16 @@
         <!-- Main Footer -->
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.0.5
+                <b>Version</b> 3.2.0
             </div>
-            <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
             reserved.
         </footer>
     </div>
     <script src="https://cdn.datatables.net/plug-ins/1.11.4/dataRender/intl.js"></script>
     <script>
         $(document).ready(function() {
-            // console.log('jquery is working');
-            $('.logoutmenu').click(function() {
-                $('.dropdown-menu').toggle();
-            });
-            $('.signout').click(function() {
-                $('.dropdown-menu').hide();
-            });
+            console.log('jquery is working');
         });
     </script>
 

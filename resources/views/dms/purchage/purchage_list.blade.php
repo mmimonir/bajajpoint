@@ -101,7 +101,7 @@
                                     <a href="purchage_details/${data.id}" class="m-r-15 text-muted">
                                         <i class="fa fa-eye" style="color: #2196f3;font-size:16px;"></i>
                                     </a>
-                                    <a href="#" class="m-r-15 text-muted editIcon status" id="${data.id}" data-toggle="modal" data-idUpdate="${data.id}" data-target="#updateModal">
+                                    <a href="#" class="m-r-15 text-muted editIcon status" id="${data.id}" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#updateModal">
                                         <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
                                     </a>
                                     <a href="#" class="deleteIcon" id="${data.id}">

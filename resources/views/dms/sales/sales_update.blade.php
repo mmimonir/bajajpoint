@@ -69,7 +69,7 @@
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="father_name" class="col-sm-3 col-form-label form-control-sm">Father Name</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->relation}}" type="text" name="father_name" class="form-control form-control-sm" id="father_name">
+                                        <input value="{{$core_data->father_name}}" type="text" name="father_name" class="form-control form-control-sm" id="father_name">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
@@ -107,7 +107,7 @@
                                         <div class="form-group row" style="margin-bottom:0px;">
                                             <label for="dob" class="col-sm-6 col-form-label form-control-sm">DOB</label>
                                             <div class="col-sm-6" style="padding:0px;">
-                                                <input value="{{$core_data->dob}}" type="text" name="dob" class="form-control form-control-sm" id="dob">
+                                                <input value="{{$core_data->dob}}" type="date" name="dob" class="form-control form-control-sm" id="dob">
                                             </div>
                                         </div>
                                         <div class="form-group row" style="margin-bottom:0px;">

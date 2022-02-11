@@ -28778,7 +28778,7 @@ html.maximized-card {
   margin-top: -0.3rem;
 }
 
-.card-header > .card-tools [data-toggle="tooltip"] {
+.card-header > .card-tools [data-bs-toggle="tooltip"] {
   position: relative;
 }
 
