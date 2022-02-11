@@ -59,6 +59,10 @@
         #add {
             margin-top: 5px;
         }
+
+        .card-title {
+            margin-bottom: 0px !important;
+        }
     </style>
 </head>
 

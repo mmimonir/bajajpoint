@@ -37,14 +37,14 @@
                             <tr>
                                 <td class="">{{$loop->iteration}}</td>
                                 <td class="">{{$data->print_code}}</td>
-                                <td class="vendor_name">{{$data->vendor_name}}</td>
+                                <td class="vendor_name">{{$data->vendor ? $data->vendor : $data->vendor_name}}</td>
                                 <td class="">{{date('d-m-Y', strtotime($data->purchage_date))}}</td>
                                 <td class="">{{$data->original_sale_date ? date('d-m-Y', strtotime($data->original_sale_date)) : ''}}</td>
                                 <td class="">{{$data->vat_process}}</td>
                                 <td class="">{{$data->model}}</td>
                                 <td class="">{{$data->five_chassis}}</td>
                                 <td class="">{{$data->five_engine}}</td>
-                                <td class="" style="text-align:right;">{{$data->tr_amount}}</td>
+                                <td class="" style="text-align:right;">{{$data->tr}}</td>
                                 <td class="">{{$data->rg_number}}</td>
                                 <td class="">{{$data->evl_invoice_no}}</td>
                                 @endforeach

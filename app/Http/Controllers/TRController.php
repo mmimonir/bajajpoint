@@ -11,6 +11,7 @@ class TRController extends Controller
     {
         $tr_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
             ->rightJoin('purchages', 'purchages.id', '=', 'cores.store_id')
+            ->rightJoin('mrps', 'mrps.model_code', '=', 'cores.model_code')
             ->select(
                 'cores.id',
                 'cores.print_code',
@@ -18,9 +19,10 @@ class TRController extends Controller
                 'cores.vat_process',
                 'cores.five_chassis',
                 'cores.five_engine',
-                'cores.tr_amount',
+                'mrps.tr',
                 'vehicles.model',
                 'purchages.purchage_date',
+                'purchages.vendor',
                 'cores.original_sale_date',
                 'cores.rg_number',
                 'cores.evl_invoice_no',
