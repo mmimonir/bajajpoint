@@ -13,7 +13,7 @@
                 <div class="card-header" style="background-color:#343A40;">
                     <h3 class="card-title">Pending TR List</h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body d-flex justify-content-center">
                     <table id="example" class="table table-hover table-responsive table-striped table-sm text-sm table-light table-bordered" style="width:100%;">
                         <thead>
                             <tr>
