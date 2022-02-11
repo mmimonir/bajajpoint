@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', 'Bajaj Point - 3S Dealer Of Uttara Motors Ltd')
 
 @section('content')
 <div class="container">

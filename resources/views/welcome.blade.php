@@ -1,4 +1,6 @@
-@extends('layouts.app') @section('title', 'Page Title') @section('content')
+@extends('layouts.app')
+@section('title', 'Bajaj Point - 3S Dealer Of Uttara Motors Ltd')
+@section('content')
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">

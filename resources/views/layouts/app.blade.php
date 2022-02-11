@@ -20,8 +20,21 @@
     <style>
         html,
         body {
+
             font-family: 'Helvetica 25 UltraLight', sans-serif;
             /* font-weight: 400; */
+        }
+
+        .loginbody {
+            background-image: url("../images/05.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            /* background-size: auto; */
+            /* background-size: 300px 100px; */
+            /* background-size: cover; */
+            opacity: 0.6;
+
         }
 
         table.dataTable tbody th,
@@ -135,7 +148,7 @@
         @include('layouts.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper loginbody">
             <section class="content container-fluid">
                 @yield('content')
             </section>
