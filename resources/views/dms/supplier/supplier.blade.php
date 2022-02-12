@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Supplier List')
 @section('datatable_css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" />
@@ -10,8 +10,8 @@
     <div class="col-md-10">
         <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
             <div class="card-header">
-                <h3 class="bg-primary text-center p-2 text-white mt-2 rounded">Supplier Details</h3>
-                <a class="m-r-15 text-muted edit float-right btn btn-primary text-white mb-1" id="add" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i>
+                <h3 class="bg-dark text-center p-2 text-white mt-2 rounded">Supplier Details</h3>
+                <a class="m-r-15 text-muted edit float-right btn btn-dark text-white mb-1" id="add" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fas fa-plus"></i>
                 </a>
             </div>
             <div class="row justify-content-center">
@@ -28,12 +28,12 @@
 </div>
 
 <!-- Modal Update-->
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" style="z-index: 1050; display: none;" aria-hidden="true">
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header text-write">
                 <h4 class="modal-title p-1" id="title">Update</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fa fa-close"></i></span>
                 </button>
             </div>
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
                     <button type="submit" id="update_supplier" name="" class="btn btn-success btn-sm  waves-light">Update</button>
                 </div>
             </form>
@@ -101,12 +101,12 @@
 <!-- Modal Update End-->
 
 <!-- Modal Add-->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" style="z-index: 1050; display: none;" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header text-write">
                 <h4 class="modal-title p-1" id="title">Add</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fa fa-close"></i></span>
                 </button>
             </div>
@@ -164,7 +164,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
                     <button type="submit" id="add_supplier" name="" class="btn btn-success btn-sm  waves-light">Add</button>
                 </div>
             </form>
@@ -342,7 +342,7 @@
                                 <td class="status">${data.status}</td>                                
                                 <td hidden class="supplier_id">${data.id}</td>                                
                                 <td class="text-center">
-                                    <a href="#" class="m-r-15 text-muted editIcon status" id="${data.id}" data-toggle="modal" data-idUpdate="${data.id}" data-target="#updateModal">
+                                    <a href="#" class="m-r-15 text-muted editIcon status" id="${data.id}" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#updateModal">
                                         <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
                                     </a>
                                     <a href="#" class="deleteIcon" id="${data.id}">

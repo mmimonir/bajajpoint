@@ -1,4 +1,5 @@
-<div class="form-inline">
+<!-- Search Bar -->
+<!-- <div class="form-inline">
     <div class="input-group" data-widget="sidebar-search">
         <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
@@ -13,7 +14,7 @@
                 <div class="search-path"></div>
             </a></div>
     </div>
-</div>
+</div> -->
 <!-- need to remove -->
 
 
@@ -89,91 +90,11 @@
 
             </ul>
         </li>
-        <!-- <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-print"></i>
-                <p>
-                    Print
-                    <i class="fas fa-angle-left right"></i>
-                </p>
-            </a>
-            <ul class="nav nav-treeview" style="display: none;">
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-table"></i>
-                        <p>
-                            BRTA
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview" style="display: none;">
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-home"></i>
-                                <p>Stamp</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-table"></i>
-                        <p>
-                            File
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview" style="display: none;">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-home"></i>
-                                <p>Single File</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-home"></i>
-                                <p>File Print</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-table"></i>
-                        <p>
-                            VAT
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview" style="display: none;">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-home"></i>
-                                <p>File Print</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('print.file_print') }}" target="_blank" class="nav-link">
-                        <i class="nav-icon fas fa-home"></i>
-                        <p>PDF</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('excel.export') }}" class="nav-link">
-                        <i class="nav-icon fas fa-home"></i>
-                        <p>Export Excel</p>
-                    </a>
-                </li>
-            </ul>
-        </li> -->
         <li class="nav-item">
             <a href="{{route('print.print_dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-print"></i>
-                <p>Print Dashboard</p>
+                <p>Dashboard</p>
             </a>
         </li>
         <li class="nav-item">

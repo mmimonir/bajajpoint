@@ -1,4 +1,6 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app')
+@section('title', 'Print Dashboard')
+@section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -14,7 +16,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                        <div class="card-header">
+                        <div class="card-header bg-dark">
                             <h3 class="text-center rounded">File</h3>
                         </div>
                         <div class="row justify-content-center">
@@ -48,7 +50,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center">
                                                 <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-primary btn-block">Print</button>
+                                                    <button type="submit" class="btn btn-dark btn-block">Print</button>
                                                 </a>
                                             </div>
                                         </div>
@@ -60,7 +62,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                        <div class="card-header">
+                        <div class="card-header bg-dark">
                             <h3 class="text-center rounded">VAT Sale</h3>
                         </div>
                         <div class="row justify-content-center">
@@ -93,7 +95,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center">
-                                                <button type="submit" class="btn btn-primary btn-block">Print</button>
+                                                <button type="submit" class="btn btn-dark btn-block">Print</button>
                                             </div>
                                         </div>
                                     </form>
@@ -104,7 +106,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                        <div class="card-header">
+                        <div class="card-header bg-dark">
                             <h3 class="text-center rounded">Purchage</h3>
                         </div>
                         <div class="row justify-content-center">
@@ -138,7 +140,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center">
                                                 <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-primary btn-block">View</button>
+                                                    <button type="submit" class="btn btn-dark btn-block">View</button>
                                                 </a>
                                             </div>
                                         </div>
@@ -150,7 +152,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                        <div class="card-header">
+                        <div class="card-header bg-dark">
                             <h3 class="text-center rounded">Purchage By Month</h3>
                         </div>
                         <div class="row justify-content-center">
@@ -201,7 +203,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center">
                                                 <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-primary btn-block">View</button>
+                                                    <button type="submit" class="btn btn-dark btn-block">View</button>
                                                 </a>
                                             </div>
                                         </div>
@@ -213,7 +215,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                        <div class="card-header">
+                        <div class="card-header bg-dark">
                             <h3 class="text-center rounded">Sales Update, Hform, Stamp, Gate Pass, Single Print</h3>
                         </div>
                         <div class="card-body d-flex justify-content-center">
@@ -230,7 +232,7 @@
                                 <div class="form-group mx-sm-3 mb-2">
                                     <input type="text" name="five_engine" class="form-control" id="five_engine" placeholder="Last Five Digit Engine">
                                 </div>
-                                <button type="submit" class="btn btn-primary mb-2">View List</button>
+                                <button type="submit" class="btn btn-dark mb-2">View List</button>
                             </form>
                         </div>
                     </div>

@@ -4,9 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+<<<<<<< HEAD
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -14,18 +13,46 @@
     <script src="{{ mix('js/app.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
 
+=======
+    <title>@yield('title')</title>
+>>>>>>> afce81c18ceb41a800ef1fceae0b98f859a343e0
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-    <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+<<<<<<< HEAD
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+=======
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
+    <link href="http://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet">
+    <script src="{{ mix('js/app.js') }}"></script>
+>>>>>>> afce81c18ceb41a800ef1fceae0b98f859a343e0
     @yield('datatable')
     @yield('datatable_css')
     @yield('third_party_stylesheets')
     @stack('page_css')
     <style>
+        html,
+        body {
+
+            font-family: 'Helvetica 25 UltraLight', sans-serif;
+            /* font-weight: 400; */
+        }
+
+        .loginbody {
+            background-image: url("../images/05.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            /* background-size: auto; */
+            /* background-size: 300px 100px; */
+            /* background-size: cover; */
+            opacity: 0.6;
+
+        }
+
         table.dataTable tbody th,
         table.dataTable tbody td {
             padding: 0px 10px;
@@ -48,6 +75,22 @@
 
         .dropdown {
             width: 100% !important;
+        }
+
+        .dropdown-menu[data-bs-popper] {
+            left: -146px !important;
+        }
+
+        h3 {
+            margin-bottom: 0px;
+        }
+
+        #add {
+            margin-top: 5px;
+        }
+
+        .card-title {
+            margin-bottom: 0px !important;
         }
     </style>
 </head>
@@ -82,7 +125,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown user-menu">
                     @auth
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         {{-- <img src="https://infyom.com/images/logo/blue_logo_150x150.jpg"
                             class="user-image img-circle elevation-2" alt="User Image"> --}}
                         <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
@@ -91,7 +134,7 @@
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         @auth
-                        <li class="user-header bg-primary">
+                        <li class="user-header bg-dark">
                             {{-- <img src="https://infyom.com/images/logo/blue_logo_150x150.jpg"
                                 class="img-circle elevation-2" alt="User Image"> --}}
                             <p>
@@ -103,7 +146,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <a href="#" class="btn btn-default btn-flat">Profile</a>
-                            <a href="#" class="btn btn-default btn-flat float-right" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a href="#" class="btn btn-default btn-flat float-right signout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Sign out
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -120,7 +163,7 @@
         @include('layouts.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper loginbody">
             <section class="content container-fluid">
                 @yield('content')
             </section>
@@ -129,16 +172,39 @@
         <!-- Main Footer -->
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.0.5
+                <b>Version</b> 3.2.0
             </div>
-            <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
             reserved.
         </footer>
     </div>
+<<<<<<< HEAD
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js" integrity="sha512-tVYBzEItJit9HXaWTPo8vveXlkK62LbA+wez9IgzjTmFNLMBO1BEYladBw2wnM3YURZSMUyhayPCoLtjGh84NQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- <script src="https://cdn.datatables.net/plug-ins/1.11.4/dataRender/intl.js"></script> -->
+=======
+    <script src="https://cdn.datatables.net/plug-ins/1.11.4/dataRender/intl.js"></script>
+    <script>
+        $(document).ready(function() {
+            // admin lte add active class to current link start
+            /** add active class and stay opened when selected */
+            var url = window.location;
+
+            // for sidebar menu entirely but not cover treeview
+            $('ul.nav-sidebar a').filter(function() {
+                return this.href == url;
+            }).addClass('active');
+
+            // for treeview
+            $('ul.nav-treeview a').filter(function() {
+                return this.href == url;
+            }).parentsUntil(".nav-sidebar > .nav-treeview").addClass('menu-open').prev('a').addClass(
+                'active');
+            // admin lte add active class to current link start
+        });
+    </script>
+>>>>>>> afce81c18ceb41a800ef1fceae0b98f859a343e0
 
     @yield('third_party_scripts')
     @yield('script')

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Purchase')
 
 @section('datatable_css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
@@ -20,7 +21,7 @@
                     </div>
                     @endif
                     <div class="col-md-6">
-                        <a href="{{route('purchage_list.index')}}" class="m-r-15 text-muted edit float-right btn btn-primary text-white mb-1">Purchage List</i>
+                        <a href="{{route('purchage_list.index')}}" class="m-r-15 edit float-right btn btn-dark mb-1">Purchage List</i>
                         </a>
                     </div>
                 </div>
@@ -139,7 +140,7 @@
                                     <input type="text" class="form-control form-control-sm five_chassis text-center" id="five_chassis" name="five_chassis[]" placeholder="Chassis">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control form-control-sm text-center" id="five_engine" name="five_engine[]" placeholder="Engine">
+                                    <input type="text" class="form-control form-control-sm text-center five_engine" id="five_engine" name="five_engine[]" placeholder="Engine">
                                 </td>
                                 <td>
                                     <select name="color_code[]" class="form-control form-control-sm color" style="width:100px;">
@@ -179,11 +180,11 @@
                         </tfoot>
                     </table>
                     <center style="padding:10px;">
-                        <button id="add" style="width:100px;" class="btn btn-success btn-sm">Add</button>
+                        <button id="add" style="width:100px; margin-top:0px;" class="btn btn-success btn-sm">Add</button>
                         <button id="remove" style="width:100px;" class="btn btn-danger btn-sm">Remove</button>
                     </center>
                     <center style="padding:10px;">
-                        <button class="btn btn-info btn-sm" type="submit">Submit</button>
+                        <button class="btn btn-info btn-sm text-white" type="submit">Submit</button>
                     </center>
                 </form>
 
@@ -268,6 +269,8 @@
                 tr.find(".vat_year_purchage").val(20212022);
                 tr.find(".purchage_price").val(mrp[0].purchage_price);
                 tr.find(".color").empty();
+                tr.find(".five_chassis").val('');
+                tr.find(".five_engine").val('');
                 tr.find(".color").append(`<option value="">None</option>`);
                 color.forEach(function(item) {
                     tr.find(".color").append(`<option value="${item.color_code}">${item.color}</option>`);

@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <title>VAT Sale</title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;

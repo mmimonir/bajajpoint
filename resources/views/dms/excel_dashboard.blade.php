@@ -1,4 +1,6 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app')
+@section('title', 'Excel Dashboard')
+@section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -14,7 +16,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                        <div class="card-header">
+                        <div class="card-header bg-dark">
                             <h3 class="text-center rounded">Service Data</h3>
                         </div>
                         <div class="row justify-content-center">
@@ -48,7 +50,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center">
                                                 <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-primary btn-block">Download</button>
+                                                    <button type="submit" class="btn btn-dark btn-block">Download</button>
                                                 </a>
                                             </div>
                                         </div>
@@ -60,7 +62,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                        <div class="card-header">
+                        <div class="card-header bg-dark">
                             <h3 class="text-center rounded">Sale Report</h3>
                         </div>
                         <div class="row justify-content-center">
@@ -83,7 +85,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center">
                                                 <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-primary btn-block">View</button>
+                                                    <button type="submit" class="btn btn-dark btn-block">View</button>
                                                 </a>
                                             </div>
                                         </div>
@@ -95,7 +97,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                        <div class="card-header">
+                        <div class="card-header bg-dark">
                             <h3 class="text-center rounded">Customer Data</h3>
                         </div>
                         <div class="row justify-content-center">
@@ -139,7 +141,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center d-flex justify-content-center">
                                                 <a href="" target="_blank">
-                                                    <button style="width:150px;" type="submit" class="btn btn-primary btn-block">View</button>
+                                                    <button style="width:150px;" type="submit" class="btn btn-dark btn-block">View</button>
                                                 </a>
                                             </div>
                                         </div>
@@ -168,7 +170,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                        <div class="card-header">
+                        <div class="card-header bg-dark">
                             <h3 class="text-center rounded">CKD Pending</h3>
                         </div>
                         <div class="row justify-content-center">
@@ -179,7 +181,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center">
                                                 <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-primary btn-block">View List</button>
+                                                    <button type="submit" class="btn btn-dark btn-block">View List</button>
                                                 </a>
                                             </div>
                                         </div>
@@ -191,7 +193,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                        <div class="card-header">
+                        <div class="card-header bg-dark">
                             <h3 class="text-center rounded">TR Pending</h3>
                         </div>
                         <div class="row justify-content-center">
@@ -202,7 +204,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center">
                                                 <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-primary btn-block">View List</button>
+                                                    <button type="submit" class="btn btn-dark btn-block">View List</button>
                                                 </a>
                                             </div>
                                         </div>
@@ -214,7 +216,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                        <div class="card-header">
+                        <div class="card-header bg-dark">
                             <h3 class="text-center rounded">TR Status</h3>
                         </div>
                         <div class="row justify-content-center">
@@ -225,7 +227,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center">
                                                 <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-primary btn-block">View List</button>
+                                                    <button type="submit" class="btn btn-dark btn-block">View List</button>
                                                 </a>
                                             </div>
                                         </div>

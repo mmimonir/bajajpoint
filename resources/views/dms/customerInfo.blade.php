@@ -2,7 +2,7 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-10">
-        <h3 class="bg-primary text-center p-2 text-white mt-2 rounded">Customer Information</h3>
+        <h3 class="bg-dark text-center p-2 text-white mt-2 rounded">Customer Information</h3>
         <div class="row justify-content-center">
             <div class="col-md-11">
                 <form>
@@ -75,8 +75,7 @@
                         <label class="col-md-9 form-control col-form-label">{{ $core->FileStatus }}</label>
                     </div>
                     <div class="form-group row">
-                        <label
-                            class="bg-dark text-white font-weight-bold col-md-3 form-control col-form-label">Registraion
+                        <label class="bg-dark text-white font-weight-bold col-md-3 form-control col-form-label">Registraion
                             Number</label>
                         <label class="col-md-9 form-control col-form-label">{{ $core->RGNumber }}</label>
                     </div>

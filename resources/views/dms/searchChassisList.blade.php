@@ -12,8 +12,7 @@
                         <label class="bg-dark text-white font-weight-bold col-md-3 form-control col-form-label">Chassis
                             No</label>
                         <label class="col-md-7 form-control col-form-label">{{ $core->ChassisNo }}</label>
-                        <a href="{{ url('customerInfoFullChassis').'/'. $core->ChassisNo}}"
-                            class="col-md-2 form-control col-form-label btn btn-primary">View</a>
+                        <a href="{{ url('customerInfoFullChassis').'/'. $core->ChassisNo}}" class="col-md-2 form-control col-form-label btn btn-dark">View</a>
                     </div>
                     <div class="form-group row">
                         <label class="bg-dark text-white font-weight-bold col-md-3 form-control col-form-label">Engine

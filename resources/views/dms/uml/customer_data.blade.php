@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Customer Data')
 @section('datatable_css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" />
@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card card-info mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                <div class="card-header" style="background-color:#343A40;">
+                <div class="card-header bg-dark" style="background-color:#343A40;">
                     <h3 class="card-title">Customer Data</h3>
                 </div>
                 <div class="card-body">

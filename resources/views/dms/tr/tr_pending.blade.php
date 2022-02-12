@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'TR Pending')
 
 @section('datatable_css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
@@ -10,10 +11,10 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card card-info mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                <div class="card-header" style="background-color:#343A40;">
+                <div class="card-header bg-dark" style="background-color:#343A40;">
                     <h3 class="card-title">Pending TR List</h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body d-flex justify-content-center">
                     <table id="example" class="table table-hover table-responsive table-striped table-sm text-sm table-light table-bordered" style="width:100%;">
                         <thead>
                             <tr>
@@ -36,14 +37,14 @@
                             <tr>
                                 <td class="">{{$loop->iteration}}</td>
                                 <td class="">{{$data->print_code}}</td>
-                                <td class="vendor_name">{{$data->vendor_name}}</td>
+                                <td class="vendor_name">{{$data->vendor ? $data->vendor : $data->vendor_name}}</td>
                                 <td class="">{{date('d-m-Y', strtotime($data->purchage_date))}}</td>
                                 <td class="">{{$data->original_sale_date ? date('d-m-Y', strtotime($data->original_sale_date)) : ''}}</td>
                                 <td class="">{{$data->vat_process}}</td>
                                 <td class="">{{$data->model}}</td>
                                 <td class="">{{$data->five_chassis}}</td>
                                 <td class="">{{$data->five_engine}}</td>
-                                <td class="" style="text-align:right;">{{$data->tr_amount}}</td>
+                                <td class="" style="text-align:right;">{{$data->tr}}</td>
                                 <td class="">{{$data->rg_number}}</td>
                                 <td class="">{{$data->evl_invoice_no}}</td>
                                 @endforeach
