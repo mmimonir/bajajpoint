@@ -111,6 +111,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Utility
     Route::post('/assessment_year', [App\Http\Controllers\UtilityController::class, 'assessment_year'])->name('utility.assessment_year');
+
+    // Quotation
+    Route::get('/quotation_index', [App\Http\Controllers\QuotationController::class, 'index'])->name('quotation.index');
 });
 Auth::routes(['register' => false]);
 // Auth::routes();
