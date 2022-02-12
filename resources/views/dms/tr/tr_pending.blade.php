@@ -24,7 +24,7 @@
                                 <th class="align-middle">Pur Date</th>
                                 <th class="align-middle">Sale Date</th>
                                 <th class="align-middle">VAT Pro</th>
-                                <th class="align-middle" style="width:170px;">Model</th>
+                                <th class="align-middle" style="width:190px;">Model</th>
                                 <th class="align-middle">Chassis</th>
                                 <th class="align-middle">Engine</th>
                                 <th class="align-middle">TR Amt</th>
