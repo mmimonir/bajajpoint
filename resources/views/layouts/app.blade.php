@@ -5,30 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-<<<<<<< HEAD
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
+    <title>@yield('title')</title>
     <script src="{{ mix('js/app.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-
-=======
-    <title>@yield('title')</title>
->>>>>>> afce81c18ceb41a800ef1fceae0b98f859a343e0
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-<<<<<<< HEAD
-
-    <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-=======
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
     <link href="http://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet">
-    <script src="{{ mix('js/app.js') }}"></script>
->>>>>>> afce81c18ceb41a800ef1fceae0b98f859a343e0
+
     @yield('datatable')
     @yield('datatable_css')
     @yield('third_party_stylesheets')
@@ -41,17 +27,13 @@
             /* font-weight: 400; */
         }
 
-        .loginbody {
+        /* .loginbody {
             background-image: url("../images/05.png");
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-position: center;
-            /* background-size: auto; */
-            /* background-size: 300px 100px; */
-            /* background-size: cover; */
+            background-position: center;            
             opacity: 0.6;
-
-        }
+        } */
 
         table.dataTable tbody th,
         table.dataTable tbody td {
@@ -178,12 +160,11 @@
             reserved.
         </footer>
     </div>
-<<<<<<< HEAD
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js" integrity="sha512-tVYBzEItJit9HXaWTPo8vveXlkK62LbA+wez9IgzjTmFNLMBO1BEYladBw2wnM3YURZSMUyhayPCoLtjGh84NQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- <script src="https://cdn.datatables.net/plug-ins/1.11.4/dataRender/intl.js"></script> -->
-=======
+
     <script src="https://cdn.datatables.net/plug-ins/1.11.4/dataRender/intl.js"></script>
     <script>
         $(document).ready(function() {
@@ -204,11 +185,8 @@
             // admin lte add active class to current link start
         });
     </script>
->>>>>>> afce81c18ceb41a800ef1fceae0b98f859a343e0
-
     @yield('third_party_scripts')
     @yield('script')
-
     @stack('page_scripts')
 </body>
 
