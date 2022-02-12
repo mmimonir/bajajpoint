@@ -43,50 +43,50 @@
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Name</label>
                         <div class="col-sm-9">
-                            <input type="text" id="supplier_name" name="supplier_name" class="form-control" value="" />
-                            <input hidden type="text" id="supplier_id" name="id" class="form-control" value="" />
+                            <input required type="text" id="supplier_name" name="supplier_name" class="form-control" value="" />
+                            <input required hidden type="text" id="supplier_id" name="id" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Code</label>
                         <div class="col-sm-9">
-                            <input type="text" id="supplier_code" name="supplier_code" class="form-control" value="" />
+                            <input required type="text" id="supplier_code" name="supplier_code" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Print Ref</label>
                         <div class="col-sm-9">
-                            <input type="text" id="print_ref" name="print_ref" class="form-control" value="" />
+                            <input required type="text" id="print_ref" name="print_ref" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">YOM</label>
                         <div class="col-sm-9">
-                            <input type="text" id="year_of_manufacture" name="year_of_manufacture" class="form-control" value="" />
+                            <input required type="text" id="year_of_manufacture" name="year_of_manufacture" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">VYP</label>
                         <div class="col-sm-9">
-                            <input type="text" id="vat_year_purchage" name="vat_year_purchage" class="form-control" value="" />
+                            <input required type="text" id="vat_year_purchage" name="vat_year_purchage" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">VYS</label>
                         <div class="col-sm-9">
-                            <input type="text" id="vat_year_sale" name="vat_year_sale" class="form-control" value="" />
+                            <input required type="text" id="vat_year_sale" name="vat_year_sale" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Dealer</label>
                         <div class="col-sm-9">
-                            <input type="text" id="dealer_name" name="dealer_name" class="form-control" value="" />
+                            <input required type="text" id="dealer_name" name="dealer_name" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Status</label>
                         <div class="col-sm-9">
-                            <input type="text" id="status" name="status" class="form-control" value="" />
+                            <input required type="text" id="status" name="status" class="form-control" value="" />
                         </div>
                     </div>
                 </div>
@@ -116,49 +116,49 @@
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Name</label>
                         <div class="col-sm-9">
-                            <input type="text" id="supplier_name" name="supplier_name" class="form-control" value="" />
+                            <input required type="text" id="supplier_name" name="supplier_name" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Code</label>
                         <div class="col-sm-9">
-                            <input type="text" id="supplier_code" name="supplier_code" class="form-control" value="" />
+                            <input required type="text" id="supplier_code" name="supplier_code" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Print Ref</label>
                         <div class="col-sm-9">
-                            <input type="text" id="print_ref" name="print_ref" class="form-control" value="" />
+                            <input required type="text" id="print_ref" name="print_ref" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">YOM</label>
                         <div class="col-sm-9">
-                            <input type="text" id="year_of_manufacture" name="year_of_manufacture" class="form-control" value="" />
+                            <input required type="text" id="year_of_manufacture" name="year_of_manufacture" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">VYP</label>
                         <div class="col-sm-9">
-                            <input type="text" id="vat_year_purchage" name="vat_year_purchage" class="form-control" value="" />
+                            <input required type="text" id="vat_year_purchage" name="vat_year_purchage" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">VYS</label>
                         <div class="col-sm-9">
-                            <input type="text" id="vat_year_sale" name="vat_year_sale" class="form-control" value="" />
+                            <input required type="text" id="vat_year_sale" name="vat_year_sale" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Dealer</label>
                         <div class="col-sm-9">
-                            <input type="text" id="dealer_name" name="dealer_name" class="form-control" value="" />
+                            <input required type="text" id="dealer_name" name="dealer_name" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Status</label>
                         <div class="col-sm-9">
-                            <input type="text" id="status" name="status" class="form-control" value="" />
+                            <input required type="text" id="status" name="status" class="form-control" value="" />
                         </div>
                     </div>
 

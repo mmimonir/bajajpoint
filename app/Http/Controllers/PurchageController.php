@@ -178,26 +178,28 @@ class PurchageController extends Controller
     }
     public function purchage_by_month(Request $request)
     {
-        $month = $request->month;
-        $year = $request->year;
+        try {
+            $month = $request->month;
+            $year = $request->year;
 
-        $first_date = Carbon::create("{$month} {$year}")->firstOfMonth()->toDateString();
-        $last_date = Carbon::create("{$month} {$year}")->lastOfMonth()->toDateString();
+            $first_date = Carbon::create("{$month} {$year}")->firstOfMonth()->toDateString();
+            $last_date = Carbon::create("{$month} {$year}")->lastOfMonth()->toDateString();
 
-        $dealer_code = $request->print_code;
-        $start_date = $first_date;
-        $end_date = $last_date;
+            $dealer_code = $request->print_code;
+            $start_date = $first_date;
+            $end_date = $last_date;
 
-        $purchage_data = Purchage::select(
-            '*'
-        )
-            ->where('dealer_code', "=", $dealer_code)
-            ->whereBetween('purchage_date', [$start_date, $end_date])
-            ->orderBy('purchage_date', 'asc')
-            ->get();
+            $purchage_data = Purchage::select(
+                '*'
+            )
+                ->where('dealer_code', "=", $dealer_code)
+                ->whereBetween('purchage_date', [$start_date, $end_date])
+                ->orderBy('purchage_date', 'asc')
+                ->get();
 
-        // dd($purchage_data);
-
-        return view('dms.purchage.purchage_by_date')->with(['purchage_data' => $purchage_data]);
+            return view('dms.purchage.purchage_by_date')->with(['purchage_data' => $purchage_data]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
     }
 }

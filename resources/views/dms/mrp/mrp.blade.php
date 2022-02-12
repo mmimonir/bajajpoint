@@ -43,73 +43,73 @@
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Code</label>
                         <div class="col-sm-9">
-                            <input type="text" id="e_model_code" name="model_code" class="form-control" value="" />
+                            <input required type="text" id="e_model_code" name="model_code" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Model</label>
                         <div class="col-sm-9">
-                            <input type="text" id="e_model" name="model" class="form-control" value="" />
+                            <input required type="text" id="e_model" name="model" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">VAT Pur MRP</label>
                         <div class="col-sm-9">
-                            <input type="text" id="e_vat_purchage_mrp" name="vat_purchage_mrp" class="form-control" value="" />
+                            <input required type="text" id="e_vat_purchage_mrp" name="vat_purchage_mrp" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">MRP</label>
                         <div class="col-sm-9">
-                            <input type="text" id="e_mrp" name="mrp" class="form-control" value="" />
+                            <input required type="text" id="e_mrp" name="mrp" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">VAT MRP</label>
                         <div class="col-sm-9">
-                            <input type="text" id="e_vat_mrp" name="vat_mrp" class="form-control" value="" />
+                            <input required type="text" id="e_vat_mrp" name="vat_mrp" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Basic (VAT)</label>
                         <div class="col-sm-9">
-                            <input type="text" id="e_basic_vat" name="basic_vat" class="form-control" value="" />
+                            <input required type="text" id="e_basic_vat" name="basic_vat" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Sale Vat</label>
                         <div class="col-sm-9">
-                            <input type="text" id="e_sale_vat" name="sale_vat" class="form-control" value="" />
+                            <input required type="text" id="e_sale_vat" name="sale_vat" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Commission</label>
                         <div class="col-sm-9">
-                            <input type="text" id="e_commission" name="commission" class="form-control" value="" />
+                            <input required type="text" id="e_commission" name="commission" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">TR</label>
                         <div class="col-sm-9">
-                            <input type="text" id="e_tr" name="tr" class="form-control" value="" />
+                            <input required type="text" id="e_tr" name="tr" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Purchage Price</label>
                         <div class="col-sm-9">
-                            <input type="text" id="e_purchage_price" name="purchage_price" class="form-control" value="" />
+                            <input required type="text" id="e_purchage_price" name="purchage_price" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Reabate Basic</label>
                         <div class="col-sm-9">
-                            <input type="text" id="e_rebate_basic" name="rebate_basic" class="form-control" value="" />
+                            <input required type="text" id="e_rebate_basic" name="rebate_basic" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Reabate</label>
                         <div class="col-sm-9">
-                            <input type="text" id="e_rebate" name="rebate" class="form-control" value="" />
+                            <input required type="text" id="e_rebate" name="rebate" class="form-control" value="" />
                         </div>
                     </div>
 
@@ -140,73 +140,73 @@
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Code</label>
                         <div class="col-sm-9">
-                            <input type="text" id="a_model_code" name="model_code" class="form-control" value="" />
+                            <input required type="text" id="a_model_code" name="model_code" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Model</label>
                         <div class="col-sm-9">
-                            <input type="text" id="a_model" name="model" class="form-control" value="" />
+                            <input required type="text" id="a_model" name="model" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">VAT Pur MRP</label>
                         <div class="col-sm-9">
-                            <input type="text" id="a_vat_purchage_mrp" name="vat_purchage_mrp" class="form-control" value="" />
+                            <input required type="text" id="a_vat_purchage_mrp" name="vat_purchage_mrp" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">MRP</label>
                         <div class="col-sm-9">
-                            <input type="text" id="a_mrp" name="mrp" class="form-control" value="" />
+                            <input required type="text" id="a_mrp" name="mrp" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">VAT MRP</label>
                         <div class="col-sm-9">
-                            <input type="text" id="a_vat_mrp" name="vat_mrp" class="form-control" value="" />
+                            <input required type="text" id="a_vat_mrp" name="vat_mrp" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Basic (VAT)</label>
                         <div class="col-sm-9">
-                            <input type="text" id="a_basic_vat" name="basic_vat" class="form-control" value="" />
+                            <input required type="text" id="a_basic_vat" name="basic_vat" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Sale Vat</label>
                         <div class="col-sm-9">
-                            <input type="text" id="a_sale_vat" name="sale_vat" class="form-control" value="" />
+                            <input required type="text" id="a_sale_vat" name="sale_vat" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Commission</label>
                         <div class="col-sm-9">
-                            <input type="text" id="a_commission" name="commission" class="form-control" value="" />
+                            <input required type="text" id="a_commission" name="commission" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">TR</label>
                         <div class="col-sm-9">
-                            <input type="text" id="a_tr" name="tr" class="form-control" value="" />
+                            <input required type="text" id="a_tr" name="tr" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Purchage Price</label>
                         <div class="col-sm-9">
-                            <input type="text" id="a_purchage_price" name="purchage_price" class="form-control" value="" />
+                            <input required type="text" id="a_purchage_price" name="purchage_price" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Reabate Basic</label>
                         <div class="col-sm-9">
-                            <input type="text" id="a_rebate_basic" name="rebate_basic" class="form-control" value="" />
+                            <input required type="text" id="a_rebate_basic" name="rebate_basic" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Reabate</label>
                         <div class="col-sm-9">
-                            <input type="text" id="a_rebate" name="rebate" class="form-control" value="" />
+                            <input required type="text" id="a_rebate" name="rebate" class="form-control" value="" />
                         </div>
                     </div>
 

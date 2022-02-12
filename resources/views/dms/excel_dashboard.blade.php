@@ -38,13 +38,13 @@
                                         <div class="form-group row">
                                             <label for="start_date" class="col-sm-4 col-form-label">Start Date</label>
                                             <div class="col-sm-8">
-                                                <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Start Date">
+                                                <input required type="date" class="form-control" id="start_date" name="start_date" placeholder="Start Date">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="end_date" class="col-sm-4 col-form-label">End Date</label>
                                             <div class="col-sm-8">
-                                                <input type="date" class="form-control" id="end_date" name="end_date" placeholder="End Date">
+                                                <input required type="date" class="form-control" id="end_date" name="end_date" placeholder="End Date">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -73,13 +73,13 @@
                                         <div class="form-group row">
                                             <label for="start_date" class="col-sm-4 col-form-label">Start Date</label>
                                             <div class="col-sm-8">
-                                                <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Start Date">
+                                                <input required type="date" class="form-control" id="start_date" name="start_date" placeholder="Start Date">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="end_date" class="col-sm-4 col-form-label">End Date</label>
                                             <div class="col-sm-8">
-                                                <input type="date" class="form-control" id="end_date" name="end_date" placeholder="End Date">
+                                                <input required type="date" class="form-control" id="end_date" name="end_date" placeholder="End Date">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -110,7 +110,7 @@
                                                 <div class="form-group row">
                                                     <label for="start_date" class="col-sm-4 col-form-label">Start Date</label>
                                                     <div class="col-sm-8">
-                                                        <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Start Date">
+                                                        <input required type="date" class="form-control" id="start_date" name="start_date" placeholder="Start Date">
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,7 +118,7 @@
                                                 <div class="form-group row">
                                                     <label for="end_date" class="col-sm-4 col-form-label">End Date</label>
                                                     <div class="col-sm-8">
-                                                        <input type="date" class="form-control" id="end_date" name="end_date" placeholder="End Date">
+                                                        <input required type="date" class="form-control" id="end_date" name="end_date" placeholder="End Date">
                                                     </div>
                                                 </div>
                                             </div>

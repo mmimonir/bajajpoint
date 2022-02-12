@@ -43,38 +43,38 @@
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Combine</label>
                         <div class="col-sm-9">
-                            <input type="text" id="combine" name="combine" class="form-control" value="" />
-                            <input hidden type="text" id="color_code_id" name="id" class="form-control" value="" />
+                            <input required type="text" id="combine" name="combine" class="form-control" value="" />
+                            <input required hidden type="text" id="color_code_id" name="id" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Color Code</label>
                         <div class="col-sm-9">
-                            <input type="text" id="color_code" name="color_code" class="form-control" value="" />
+                            <input required type="text" id="color_code" name="color_code" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Model Code</label>
                         <div class="col-sm-9">
-                            <input type="text" id="model_code" name="model_code" class="form-control" value="" />
+                            <input required type="text" id="model_code" name="model_code" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Model Name</label>
                         <div class="col-sm-9">
-                            <input type="text" id="model_name" name="model_name" class="form-control" value="" />
+                            <input required type="text" id="model_name" name="model_name" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Color</label>
                         <div class="col-sm-9">
-                            <input type="text" id="color" name="color" class="form-control" value="" />
+                            <input required type="text" id="color" name="color" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Description</label>
                         <div class="col-sm-9">
-                            <input type="text" id="description" name="description" class="form-control" value="" />
+                            <input required type="text" id="description" name="description" class="form-control" value="" />
                         </div>
                     </div>
                 </div>
@@ -104,37 +104,37 @@
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Combine</label>
                         <div class="col-sm-9">
-                            <input type="text" id="combine" name="combine" class="form-control" value="" />
+                            <input required type="text" id="combine" name="combine" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Color Code</label>
                         <div class="col-sm-9">
-                            <input type="text" id="color_code" name="color_code" class="form-control" value="" />
+                            <input required type="text" id="color_code" name="color_code" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Model Code</label>
                         <div class="col-sm-9">
-                            <input type="text" id="model_code" name="model_code" class="form-control" value="" />
+                            <input required type="text" id="model_code" name="model_code" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Model Name</label>
                         <div class="col-sm-9">
-                            <input type="text" id="model_name" name="model_name" class="form-control" value="" />
+                            <input required type="text" id="model_name" name="model_name" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Color</label>
                         <div class="col-sm-9">
-                            <input type="text" id="color" name="color" class="form-control" value="" />
+                            <input required type="text" id="color" name="color" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Description</label>
                         <div class="col-sm-9">
-                            <input type="text" id="description" name="description" class="form-control" value="" />
+                            <input required type="text" id="description" name="description" class="form-control" value="" />
                         </div>
                     </div>
 

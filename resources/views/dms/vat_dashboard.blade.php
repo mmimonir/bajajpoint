@@ -37,7 +37,7 @@
                                         <div class="form-group row">
                                             <label for="end_date" class="col-sm-4 col-form-label">TR Number</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
+                                                <input required type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -66,13 +66,13 @@
                                         <div class="form-group row">
                                             <label for="end_date" class="col-sm-4 col-form-label">Last Code</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
+                                                <input required type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="end_date" class="col-sm-4 col-form-label">Code</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
+                                                <input required type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -112,7 +112,7 @@
                                         <div class="form-group row">
                                             <label for="end_date" class="col-sm-4 col-form-label">Dep Date</label>
                                             <div class="col-sm-8">
-                                                <input type="date" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
+                                                <input required type="date" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">

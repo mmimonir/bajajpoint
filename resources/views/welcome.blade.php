@@ -18,7 +18,7 @@
                 @csrf {{--
                 <label for="inputPassword2" class="sr-only">5 Digit Chassis</label>
                 --}}
-                <input type="text" class="form-control" style="width: 79%" name="chassis" placeholder="5 Digit Chassis" />
+                <input required type="text" class="form-control" style="width: 79%" name="chassis" placeholder="5 Digit Chassis" />
                 <button type="submit" class="btn btn-dark" style="width: 21%">
                     Search
                 </button>
@@ -29,7 +29,7 @@
                 @csrf {{--
                 <label for="inputPassword2" class="sr-only">Mobile No</label>
                 --}}
-                <input type="text" class="form-control" style="width: 79%" name="mobile" placeholder="Mobile No" />
+                <input required type="text" class="form-control" style="width: 79%" name="mobile" placeholder="Mobile No" />
                 <button type="submit" class="btn btn-dark" style="width: 21%">
                     Search
                 </button>
@@ -40,7 +40,7 @@
                 @csrf {{--
                 <label for="inputPassword2" class="sr-only">Engine No</label>
                 --}}
-                <input type="text" class="form-control" style="width: 79%" name="engine" placeholder="Engine No" />
+                <input required type="text" class="form-control" style="width: 79%" name="engine" placeholder="Engine No" />
                 <button type="submit" class="btn btn-dark" style="width: 21%">
                     Search
                 </button>
@@ -53,7 +53,7 @@
                 @csrf {{--
                 <label for="inputPassword2" class="sr-only">5 Digit Chassis</label>
                 --}}
-                <input type="text" class="form-control" style="width: 79%" name="chassis" placeholder="Chassis List" />
+                <input required type="text" class="form-control" style="width: 79%" name="chassis" placeholder="Chassis List" />
                 <button type="submit" class="btn btn-dark" style="width: 21%">
                     Search
                 </button>
@@ -64,7 +64,7 @@
                 @csrf {{--
                 <label for="inputPassword2" class="sr-only">5 Digit Chassis</label>
                 --}}
-                <input type="text" class="form-control" style="width: 79%" name="chassis" placeholder="Chassis List" />
+                <input required type="text" class="form-control" style="width: 79%" name="chassis" placeholder="Chassis List" />
                 <button type="submit" class="btn btn-dark" style="width: 21%">
                     Search
                 </button>

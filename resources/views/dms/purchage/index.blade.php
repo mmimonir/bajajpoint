@@ -34,7 +34,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="challan_no" class="col-sm-4 col-form-label">Challan No</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="challan_no" name="challan_no" placeholder="Challan No">
+                                    <input required type="text" class="form-control" id="challan_no" name="challan_no" placeholder="Challan No">
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="purchage_date" class="col-sm-4 col-form-label">Date</label>
                                 <div class="col-sm-8">
-                                    <input type="date" class="form-control" id="purchage_date" name="purchage_date" placeholder="Purchage Date">
+                                    <input required type="date" class="form-control" id="purchage_date" name="purchage_date" placeholder="Purchage Date">
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="purchage_value" class="col-sm-4 col-form-label">Quantity</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Quantity">
+                                    <input required type="text" class="form-control" id="quantity" name="quantity" placeholder="Quantity">
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="purchage_value" class="col-sm-4 col-form-label">Value</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="purchage_value" name="purchage_value" placeholder="Purchage Value">
+                                    <input required type="text" class="form-control" id="purchage_value" name="purchage_value" placeholder="Purchage Value">
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="uml_mushak_no" class="col-sm-4 col-form-label">Mushak No</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="uml_mushak_no" name="uml_mushak_no" placeholder="UML Mushak">
+                                    <input required type="text" class="form-control" id="uml_mushak_no" name="uml_mushak_no" placeholder="UML Mushak">
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="uml_mushak_date" class="col-sm-4 col-form-label">Mushak Date</label>
                                 <div class="col-sm-8">
-                                    <input type="date" class="form-control" id="uml_mushak_date" name="uml_mushak_date" placeholder="Purchage Value">
+                                    <input required type="date" class="form-control" id="uml_mushak_date" name="uml_mushak_date" placeholder="Purchage Value">
                                 </div>
                             </div>
                         </div>
@@ -137,10 +137,10 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control form-control-sm five_chassis text-center" id="five_chassis" name="five_chassis[]" placeholder="Chassis">
+                                    <input required type="text" class="form-control form-control-sm five_chassis text-center" id="five_chassis" name="five_chassis[]" placeholder="Chassis">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control form-control-sm text-center five_engine" id="five_engine" name="five_engine[]" placeholder="Engine">
+                                    <input required type="text" class="form-control form-control-sm text-center five_engine" id="five_engine" name="five_engine[]" placeholder="Engine">
                                 </td>
                                 <td>
                                     <select name="color_code[]" class="form-control form-control-sm color" style="width:100px;">
@@ -148,19 +148,19 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control form-control-sm unit_price text-right" id="unit_price" name="unit_price[]" placeholder="Unit Price">
+                                    <input required type="text" class="form-control form-control-sm unit_price text-right" id="unit_price" name="unit_price[]" placeholder="Unit Price">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control form-control-sm unit_price_vat text-right" id="unit_price_vat" name="unit_price_vat[]" placeholder="UP Vat">
+                                    <input required type="text" class="form-control form-control-sm unit_price_vat text-right" id="unit_price_vat" name="unit_price_vat[]" placeholder="UP Vat">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control form-control-sm vat_purchage_mrp text-right" id="vat_purchage_mrp" name="vat_purchage_mrp[]" placeholder="Vat Pur MRP">
+                                    <input required type="text" class="form-control form-control-sm vat_purchage_mrp text-right" id="vat_purchage_mrp" name="vat_purchage_mrp[]" placeholder="Vat Pur MRP">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control form-control-sm vat_year_purchage text-right" id="vat_year_purchage" name="vat_year_purchage[]" placeholder="Vat Year Purchage">
+                                    <input required type="text" class="form-control form-control-sm vat_year_purchage text-right" id="vat_year_purchage" name="vat_year_purchage[]" placeholder="Vat Year Purchage">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control form-control-sm purchage_price text-right sum" id="purchage_price" name="purchage_price[]" placeholder="Purchage Price">
+                                    <input required type="text" class="form-control form-control-sm purchage_price text-right sum" id="purchage_price" name="purchage_price[]" placeholder="Purchage Price">
                                 </td>
                             </tr>
                         </tbody>
@@ -175,7 +175,7 @@
                                 <td></td>
                                 <td></td>
                                 <td class="form-control form-control-sm text-center"><b>Total</b></td>
-                                <td><input type="text" class="form-control form-control-sm grant_total text-right text-bold" id="grant_total"></td>
+                                <td><input required type="text" class="form-control form-control-sm grant_total text-right text-bold" id="grant_total"></td>
                             </tr>
                         </tfoot>
                     </table>

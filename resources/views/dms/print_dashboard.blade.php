@@ -27,7 +27,7 @@
                                         <div class="form-group row">
                                             <label for="inputEmail3" class="col-sm-4 col-form-label">Dealer</label>
                                             <div class="col-sm-8">
-                                                <select name="print_code" class="browser-default custom-select">
+                                                <select name="print_code" class="browser-default custom-select" required>
                                                     <option selected>Select Dealer Name</option>
                                                     @foreach ($dealer as $data)
                                                     <option value="{{$data->supplier_code}}">{{$data->dealer_name}}</option>
@@ -38,13 +38,13 @@
                                         <div class="form-group row">
                                             <label for="start_date" class="col-sm-4 col-form-label">Start Date</label>
                                             <div class="col-sm-8">
-                                                <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Start Date">
+                                                <input required type="date" class="form-control" id="start_date" name="start_date" placeholder="Start Date">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="end_date" class="col-sm-4 col-form-label">End Date</label>
                                             <div class="col-sm-8">
-                                                <input type="date" class="form-control" id="end_date" name="end_date" placeholder="End Date">
+                                                <input required type="date" class="form-control" id="end_date" name="end_date" placeholder="End Date">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -73,7 +73,7 @@
                                         <div class="form-group row">
                                             <label for="inputEmail3" class="col-sm-4 col-form-label">Dealer</label>
                                             <div class="col-sm-8">
-                                                <select name="vat_code" class="browser-default custom-select">
+                                                <select name="vat_code" class="browser-default custom-select" required>
                                                     <option selected>Select Dealer Name</option>
                                                     @foreach ($dealer as $data)
                                                     <option value="{{$data->supplier_code}}">{{$data->dealer_name}}</option>
@@ -84,13 +84,13 @@
                                         <div class="form-group row">
                                             <label for="start_date" class="col-sm-4 col-form-label">Start Date</label>
                                             <div class="col-sm-8">
-                                                <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Start Date">
+                                                <input required type="date" class="form-control" id="start_date" name="start_date" placeholder="Start Date">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="end_date" class="col-sm-4 col-form-label">End Date</label>
                                             <div class="col-sm-8">
-                                                <input type="date" class="form-control" id="end_date" name="end_date" placeholder="End Date">
+                                                <input required type="date" class="form-control" id="end_date" name="end_date" placeholder="End Date">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -117,7 +117,7 @@
                                         <div class="form-group row">
                                             <label for="inputEmail3" class="col-sm-4 col-form-label">Dealer</label>
                                             <div class="col-sm-8">
-                                                <select name="print_code" class="browser-default custom-select">
+                                                <select name="print_code" class="browser-default custom-select" required>
                                                     <option selected>Select Dealer Name</option>
                                                     @foreach ($dealer as $data)
                                                     <option value="{{$data->supplier_code}}">{{$data->dealer_name}}</option>
@@ -128,13 +128,13 @@
                                         <div class="form-group row">
                                             <label for="start_date" class="col-sm-4 col-form-label">Start Date</label>
                                             <div class="col-sm-8">
-                                                <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Start Date">
+                                                <input required type="date" class="form-control" id="start_date" name="start_date" placeholder="Start Date">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="end_date" class="col-sm-4 col-form-label">End Date</label>
                                             <div class="col-sm-8">
-                                                <input type="date" class="form-control" id="end_date" name="end_date" placeholder="End Date">
+                                                <input required type="date" class="form-control" id="end_date" name="end_date" placeholder="End Date">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -163,7 +163,7 @@
                                         <div class="form-group row">
                                             <label for="inputEmail3" class="col-sm-4 col-form-label">Dealer</label>
                                             <div class="col-sm-8">
-                                                <select name="print_code" class="browser-default custom-select">
+                                                <select name="print_code" class="browser-default custom-select" required>
                                                     <option selected>Select Dealer Name</option>
                                                     @foreach ($dealer as $data)
                                                     <option value="{{$data->supplier_code}}">{{$data->dealer_name}}</option>
@@ -174,7 +174,7 @@
                                         <div class="form-group row">
                                             <label for="inputEmail3" class="col-sm-4 col-form-label">Month</label>
                                             <div class="col-sm-8">
-                                                <select name="month" class="browser-default custom-select">
+                                                <select name="month" class="browser-default custom-select" required>
                                                     <option selected>Select Month</option>
                                                     <option value='January'>January</option>
                                                     <option value='February'>February</option>
@@ -194,7 +194,7 @@
                                         <div class="form-group row">
                                             <label for="inputEmail3" class="col-sm-4 col-form-label">Year</label>
                                             <div class="col-sm-8">
-                                                <select name="year" id='date-dropdown' class="browser-default custom-select">
+                                                <select name="year" id='date-dropdown' class="browser-default custom-select" required>
                                                     <option selected>Select Year</option>
                                                 </select>
                                             </div>

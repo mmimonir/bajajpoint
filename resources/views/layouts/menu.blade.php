@@ -1,7 +1,7 @@
 <!-- Search Bar -->
 <!-- <div class="form-inline">
     <div class="input-group" data-widget="sidebar-search">
-        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+        <input required class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
             <button class="btn btn-sidebar">
                 <i class="fas fa-search fa-fw"></i>
@@ -20,13 +20,10 @@
 
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="tree-view" role="menu" data-accordion="true">
-        <!-- Add icons to the links using the .nav-icon class
-           with font-awesome or any other icon font library -->
-
         <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-user-tie"></i>
-                <p>
+                <p class="text-white">
                     Customer
                     <i class="right fas fa-angle-left"></i>
                 </p>
@@ -35,7 +32,7 @@
                 <li class="nav-item">
                     <a href="{{ url('/customerSearch') }}" class="nav-link">
                         <i class="nav-icon fas fa-search"></i>
-                        <p>Search</p>
+                        <p class="text-white">Search</p>
                     </a>
                 </li>
             </ul>
@@ -45,7 +42,7 @@
         <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-motorcycle"></i>
-                <p>
+                <p class="text-white">
                     Motorcycle
                     <i class="fas fa-angle-left right"></i>
                 </p>
@@ -54,37 +51,37 @@
                 <li class="nav-item">
                     <a href="{{ route('mrp.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-dollar-sign"></i>
-                        <p>Price</p>
+                        <p class="text-white">Price</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('vehicle.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-info"></i>
-                        <p>Details</p>
+                        <p class="text-white">Details</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('supplier.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-parachute-box"></i>
-                        <p>Supplier</p>
+                        <p class="text-white">Supplier</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('color_code.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tint"></i>
-                        <p>Color Code</p>
+                        <p class="text-white">Color Code</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('purchage.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-shopping-bag"></i>
-                        <p>Purchage</p>
+                        <p class="text-white">Purchage</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
-                        <p>Sale</p>
+                        <p class="text-white">Sale</p>
                     </a>
                 </li>
 
@@ -94,19 +91,19 @@
         <li class="nav-item">
             <a href="{{route('print.print_dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-print"></i>
-                <p>Dashboard</p>
+                <p class="text-white">Dashboard</p>
             </a>
         </li>
         <li class="nav-item">
             <a href="{{route('excel.dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Report Dashboard</p>
+                <p class="text-white">Report Dashboard</p>
             </a>
         </li>
         <li class="nav-item">
             <a href="{{route('vat.dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-percent"></i>
-                <p>VAT Dashboard</p>
+                <p class="text-white">VAT Dashboard</p>
             </a>
         </li>
     </ul>

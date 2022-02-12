@@ -32,8 +32,8 @@
                             <div class="form-group mb-0 row">
                                 <label for="challan_no" class="col-sm-4 col-form-label form-control-sm">Challan No</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="challan_no" name="challan_no" value="{{$purchages->factory_challan_no}}">
-                                    <input hidden type="text" name="id" value="{{$purchages->id}}">
+                                    <input required type="text" class="form-control form-control-sm" id="challan_no" name="challan_no" value="{{$purchages->factory_challan_no}}">
+                                    <input required hidden type="text" name="id" value="{{$purchages->id}}">
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="purchage_date" class="col-sm-4 col-form-label form-control-sm">Date</label>
                                 <div class="col-sm-8">
-                                    <input type="date" class="form-control form-control-sm" id="purchage_date" name="purchage_date" value="{{$purchages->purchage_date}}">
+                                    <input required type="date" class="form-control form-control-sm" id="purchage_date" name="purchage_date" value="{{$purchages->purchage_date}}">
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="vendor" class="col-sm-4 col-form-label form-control-sm">Vendor</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="vendor" name="vendor" value="{{$purchages->vendor}}">
+                                    <input required type="text" class="form-control form-control-sm" id="vendor" name="vendor" value="{{$purchages->vendor}}">
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="dealer_name" class="col-sm-4 col-form-label form-control-sm">Dealer</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="dealer_name" name="dealer_name" value="{{$purchages->dealer_name}}">
+                                    <input required type="text" class="form-control form-control-sm" id="dealer_name" name="dealer_name" value="{{$purchages->dealer_name}}">
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="quantity" class="col-sm-4 col-form-label form-control-sm">Quantity</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="quantity" name="quantity" value="{{$purchages->quantity}}">
+                                    <input required type="text" class="form-control form-control-sm" id="quantity" name="quantity" value="{{$purchages->quantity}}">
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="purchage_value" class="col-sm-4 col-form-label form-control-sm">Value</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="purchage_value" name="purchage_value" value="{{$purchages->purchage_value}}">
+                                    <input required type="text" class="form-control form-control-sm" id="purchage_value" name="purchage_value" value="{{$purchages->purchage_value}}">
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="uml_mushak_no" class="col-sm-4 col-form-label form-control-sm">Mushak No</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="uml_mushak_no" name="uml_mushak_no" value="{{$purchages->uml_mushak_no}}" placeholder="UML Mushak">
+                                    <input required type="text" class="form-control form-control-sm" id="uml_mushak_no" name="uml_mushak_no" value="{{$purchages->uml_mushak_no}}" placeholder="UML Mushak">
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="uml_mushak_date" class="col-sm-4 col-form-label form-control-sm">Mus Date</label>
                                 <div class="col-sm-8">
-                                    <input type="date" class="form-control form-control-sm" id="uml_mushak_date" name="uml_mushak_date" placeholder="Purchage Value" value="{{$purchages->uml_mushak_date}}">
+                                    <input required type="date" class="form-control form-control-sm" id="uml_mushak_date" name="uml_mushak_date" placeholder="Purchage Value" value="{{$purchages->uml_mushak_date}}">
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="purchage_rebate" class="col-sm-4 col-form-label form-control-sm">Rebate</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="purchage_rebate" name="purchage_rebate" value="{{$purchages->purchage_rebate}}">
+                                    <input required type="text" class="form-control form-control-sm" id="purchage_rebate" name="purchage_rebate" value="{{$purchages->purchage_rebate}}">
                                 </div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="vat_year_purchage" class="col-sm-4 col-form-label form-control-sm">VY Pur</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="vat_year_purchage" name="vat_year_purchage" value="{{$purchages->vat_year_purchage}}">
+                                    <input required type="text" class="form-control form-control-sm" id="vat_year_purchage" name="vat_year_purchage" value="{{$purchages->vat_year_purchage}}">
                                 </div>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="vat_month_purchage" class="col-sm-4 col-form-label form-control-sm">VM Pur</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="vat_month_purchage" name="vat_month_purchage" value="{{$purchages->vat_month_purchage}}" placeholder="UML Mushak">
+                                    <input required type="text" class="form-control form-control-sm" id="vat_month_purchage" name="vat_month_purchage" value="{{$purchages->vat_month_purchage}}" placeholder="UML Mushak">
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="whos_vat" class="col-sm-4 col-form-label form-control-sm">Whos VAT</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="whos_vat" name="whos_vat" value="{{$purchages->whos_vat}}" placeholder="Purchage Value">
+                                    <input required type="text" class="form-control form-control-sm" id="whos_vat" name="whos_vat" value="{{$purchages->whos_vat}}" placeholder="Purchage Value">
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="vat_process" class="col-sm-4 col-form-label form-control-sm">VAT Process</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="vat_process" name="vat_process" value="{{$purchages->vat_process}}">
+                                    <input required type="text" class="form-control form-control-sm" id="vat_process" name="vat_process" value="{{$purchages->vat_process}}">
                                 </div>
                             </div>
                         </div>
@@ -143,7 +143,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="tr_dep_date" class="col-sm-4 col-form-label form-control-sm">TR Date</label>
                                 <div class="col-sm-8">
-                                    <input type="date" class="form-control form-control-sm" id="tr_dep_date" name="tr_dep_date" value="{{$purchages->tr_dep_date}}">
+                                    <input required type="date" class="form-control form-control-sm" id="tr_dep_date" name="tr_dep_date" value="{{$purchages->tr_dep_date}}">
                                 </div>
                             </div>
                         </div>
@@ -151,7 +151,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="gate_pass" class="col-sm-4 col-form-label form-control-sm">Gate Pass</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="gate_pass" name="gate_pass" value="{{$purchages->gate_pass}}" placeholder="UML Mushak">
+                                    <input required type="text" class="form-control form-control-sm" id="gate_pass" name="gate_pass" value="{{$purchages->gate_pass}}" placeholder="UML Mushak">
                                 </div>
                             </div>
                         </div>
@@ -159,7 +159,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="tr_month_code" class="col-sm-4 col-form-label form-control-sm">TR Code</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="tr_month_code" name="tr_month_code" value="{{$purchages->tr_month_code}}" placeholder="Purchage Value">
+                                    <input required type="text" class="form-control form-control-sm" id="tr_month_code" name="tr_month_code" value="{{$purchages->tr_month_code}}" placeholder="Purchage Value">
                                 </div>
                             </div>
                         </div>

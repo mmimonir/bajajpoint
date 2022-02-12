@@ -39,21 +39,24 @@
                                 <td>{{\Illuminate\Support\Str::limit($data->customer_name, 20, $end='...')}}</td>
                                 <td>{{$data->mobile}}</td>
                                 <td>
-                                    <div class="d-flex justify-content-center padd">
-                                        <a href="{{route('print.hform', ['id' => $data->id])}}" target="_blank" class="btn-sm bg-info">
+                                    <div class="d-flex justify-content-center padd text-decoration">
+                                        <a href="{{route('print.hform', ['id' => $data->id])}}" target="_blank" class="btn-sm bg-dark">
                                             Hform
                                         </a>
-                                        <a href="#" class="btn-sm bg-success">
+                                        <a href="#" class="btn-sm bg-dark">
                                             Stamp
                                         </a>
-                                        <a href="{{route('pdf.gate_pass', ['id' => $data->id])}}" target="_blank" class="btn-sm bg-info">
+                                        <a href="{{route('pdf.gate_pass', ['id' => $data->id])}}" target="_blank" class="btn-sm bg-dark">
                                             Gate Pass
                                         </a>
-                                        <a href="{{route('print.single_file_print', ['id' => $data->id])}}" target="_blank" class="btn-sm bg-success">
+                                        <a href="{{route('print.single_file_print', ['id' => $data->id])}}" target="_blank" class="btn-sm bg-dark">
                                             File Print
                                         </a>
-                                        <a href="{{route('sale.sales_update', ['id' => $data->id])}}" target="_blank" class="btn-sm bg-info">
+                                        <a href="{{route('sale.sales_update', ['id' => $data->id])}}" target="_blank" class="btn-sm bg-dark">
                                             Edit
+                                        </a>
+                                        <a href="#" target="_blank" class="btn-sm bg-dark">
+                                            Bank Slip
                                         </a>
                                     </div>
                                 </td>
@@ -73,6 +76,7 @@
 @section('script')
 <script>
     $("#example").DataTable({
+        bPaginate: false,
         pageLength: 10,
         responsive: true,
         lengthChange: true,

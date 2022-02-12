@@ -24,6 +24,7 @@
         body {
 
             font-family: 'Helvetica 25 UltraLight', sans-serif;
+
             /* font-weight: 400; */
         }
 
@@ -73,6 +74,10 @@
 
         .card-title {
             margin-bottom: 0px !important;
+        }
+
+        .text-decoration>a {
+            text-decoration: none;
         }
     </style>
 </head>

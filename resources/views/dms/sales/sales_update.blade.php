@@ -16,85 +16,85 @@
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="id" class="col-sm-3 col-form-label form-control-sm">Id</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->id}}" readonly type="text" name="id" class="form-control form-control-sm" id="id">
+                                        <input required value="{{$core_data->id}}" readonly type="text" name="id" class="form-control form-control-sm" id="id">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="model_code" class="col-sm-3 col-form-label form-control-sm">Model Code</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->model_code}}" readonly type="text" name="model_code" class="form-control form-control-sm" id="model_code">
+                                        <input required value="{{$core_data->model_code}}" readonly type="text" name="model_code" class="form-control form-control-sm" id="model_code">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="model" class="col-sm-3 col-form-label form-control-sm">Model</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$vehicle_data ? $vehicle_data->model : ''}}" readonly type="text" name="model" class="form-control form-control-sm" id="model">
+                                        <input required value="{{$vehicle_data ? $vehicle_data->model : ''}}" readonly type="text" name="model" class="form-control form-control-sm" id="model">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="eight_chassis" class="col-sm-3 col-form-label form-control-sm">Chassis No</label>
                                     <div class="col-sm-3" style="padding:0px;">
-                                        <input value="{{$core_data->eight_chassis}}" type="text" name="eight_chassis" class="form-control form-control-sm" id="eight_chassis">
+                                        <input required value="{{$core_data->eight_chassis}}" type="text" name="eight_chassis" class="form-control form-control-sm" id="eight_chassis">
                                     </div>
                                     <div class="col-sm-1" style="padding:0px;">
-                                        <input value="{{$core_data->one_chassis}}" type="text" name="one_chassis" class="form-control form-control-sm" id="one_chassis">
+                                        <input required value="{{$core_data->one_chassis}}" type="text" name="one_chassis" class="form-control form-control-sm" id="one_chassis">
                                     </div>
                                     <div class="col-sm-2" style="padding:0px;">
-                                        <input value="{{$core_data->three_chassis}}" type="text" name="three_chassis" class="form-control form-control-sm" id="three_chassis">
+                                        <input required value="{{$core_data->three_chassis}}" type="text" name="three_chassis" class="form-control form-control-sm" id="three_chassis">
                                     </div>
                                     <div class="col-sm-3" style="padding:0px;">
-                                        <input value="{{$core_data->five_chassis}}" type="text" name="five_chassis" class="form-control form-control-sm" id="five_chassis">
+                                        <input required value="{{$core_data->five_chassis}}" type="text" name="five_chassis" class="form-control form-control-sm" id="five_chassis">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="inputPassword3" class="col-sm-3 col-form-label form-control-sm">Engine No</label>
                                     <div class="col-sm-5" style="padding:0px;">
-                                        <input value="{{$core_data->six_engine}}" type="text" name="six_engine" class="form-control form-control-sm" id="six_engine">
+                                        <input required value="{{$core_data->six_engine}}" type="text" name="six_engine" class="form-control form-control-sm" id="six_engine">
                                     </div>
                                     <div class="col-sm-4" style="padding:0px;">
-                                        <input value="{{$core_data->five_engine}}" type="text" name="five_engine" class="form-control form-control-sm" id="five_engine">
+                                        <input required value="{{$core_data->five_engine}}" type="text" name="five_engine" class="form-control form-control-sm" id="five_engine">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="customer_name" class="col-sm-3 col-form-label form-control-sm">Customer Name</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->customer_name}}" type="text" name="customer_name" class="form-control form-control-sm" id="customer_name">
+                                        <input required value="{{$core_data->customer_name}}" type="text" name="customer_name" class="form-control form-control-sm" id="customer_name">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="relation" class="col-sm-3 col-form-label form-control-sm">Relation</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->relation}}" type="text" name="relation" class="form-control form-control-sm" id="relation">
+                                        <input required value="{{$core_data->relation}}" type="text" name="relation" class="form-control form-control-sm" id="relation">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="father_name" class="col-sm-3 col-form-label form-control-sm">Father Name</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->father_name}}" type="text" name="father_name" class="form-control form-control-sm" id="father_name">
+                                        <input required value="{{$core_data->father_name}}" type="text" name="father_name" class="form-control form-control-sm" id="father_name">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="mother_name" class="col-sm-3 col-form-label form-control-sm">Mother Name</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->mother_name}}" type="text" name="mother_name" class="form-control form-control-sm" id="mother_name">
+                                        <input required value="{{$core_data->mother_name}}" type="text" name="mother_name" class="form-control form-control-sm" id="mother_name">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="address_one" class="col-sm-3 col-form-label form-control-sm">Address One</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->address_one}}" type="text" name="address_one" class="form-control form-control-sm" id="address_one">
+                                        <input required value="{{$core_data->address_one}}" type="text" name="address_one" class="form-control form-control-sm" id="address_one">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="address_two" class="col-sm-3 col-form-label form-control-sm">Address Two</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->address_two}}" type="text" name="address_two" class="form-control form-control-sm" id="address_two">
+                                        <input required value="{{$core_data->address_two}}" type="text" name="address_two" class="form-control form-control-sm" id="address_two">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="mobile" class="col-sm-3 col-form-label form-control-sm">Mobile</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->mobile}}" type="text" name="mobile" class="form-control form-control-sm" id="mobile">
+                                        <input required value="{{$core_data->mobile}}" type="text" name="mobile" class="form-control form-control-sm" id="mobile">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
@@ -132,32 +132,32 @@
                                         <div class="form-group row" style="margin-bottom:0px;">
                                             <label for="original_sale_date" class="col-sm-6 col-form-label form-control-sm">Ori Sale Date</label>
                                             <div class="col-sm-6" style="padding:0px;">
-                                                <input type="date" value="{{$core_data->original_sale_date}}" name="original_sale_date" class="form-control form-control-sm" id="original_sale_date">
+                                                <input required type="date" value="{{$core_data->original_sale_date}}" name="original_sale_date" class="form-control form-control-sm" id="original_sale_date">
                                             </div>
                                         </div>
                                         <div class="form-group row" style="margin-bottom:0px;">
                                             <label for="vat_sale_date" class="col-sm-6 col-form-label form-control-sm">VAT Sale Date</label>
                                             <div class="col-sm-6" style="padding:0px;">
-                                                <input type="date" value="{{$core_data->vat_sale_date}}" name="vat_sale_date" class="form-control form-control-sm" id="vat_sale_date">
+                                                <input required type="date" value="{{$core_data->vat_sale_date}}" name="vat_sale_date" class="form-control form-control-sm" id="vat_sale_date">
                                             </div>
                                         </div>
 
                                         <div class="form-group row" style="margin-bottom:0px;">
                                             <label for="sale_date" class="col-sm-6 col-form-label form-control-sm">Sale Date</label>
                                             <div class="col-sm-6" style="padding:0px;">
-                                                <input type="date" value="{{$core_data->sale_date}}" name="sale_date" class="form-control form-control-sm" id="sale_date">
+                                                <input required type="date" value="{{$core_data->sale_date}}" name="sale_date" class="form-control form-control-sm" id="sale_date">
                                             </div>
                                         </div>
                                         <div class="form-group row" style="margin-bottom:0px;">
                                             <label for="print_date" class="col-sm-6 col-form-label form-control-sm">Print Date</label>
                                             <div class="col-sm-6" style="padding:0px;">
-                                                <input type="date" value="{{$core_data->print_date}}" name="print_date" class="form-control form-control-sm" id="print_date">
+                                                <input required type="date" value="{{$core_data->print_date}}" name="print_date" class="form-control form-control-sm" id="print_date">
                                             </div>
                                         </div>
                                         <div class="form-group row" style="margin-bottom:0px;">
                                             <label for="purchage_price" class="col-sm-6 col-form-label form-control-sm">Buy Price</label>
                                             <div class="col-sm-6" style="padding:0px;">
-                                                <input type="text" value="{{$core_data->purchage_price}}" name="purchage_price" class="form-control form-control-sm" id="purchage_price">
+                                                <input required type="text" value="{{$core_data->purchage_price}}" name="purchage_price" class="form-control form-control-sm" id="purchage_price">
                                             </div>
                                         </div>
                                     </div>
@@ -236,7 +236,7 @@
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="vendor" class="col-sm-3 col-form-label form-control-sm">Vendor</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{ $purchage_data ? ($purchage_data->vendor ? $purchage_data->vendor : $core_data->vendor) : $core_data->vendor }}" type="text" name="vendor" class="form-control form-control-sm" id="vendor">
+                                        <input required value="{{ $purchage_data ? ($purchage_data->vendor ? $purchage_data->vendor : $core_data->vendor) : $core_data->vendor }}" type="text" name="vendor" class="form-control form-control-sm" id="vendor">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
@@ -248,19 +248,19 @@
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="unit_price_vat" class="col-sm-3 col-form-label form-control-sm">VAT MRP</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->unit_price_vat}}" type="text" name="unit_price_vat" class="form-control form-control-sm" id="unit_price_vat">
+                                        <input required value="{{$core_data->unit_price_vat}}" type="text" name="unit_price_vat" class="form-control form-control-sm" id="unit_price_vat">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="basic_price_vat" class="col-sm-3 col-form-label form-control-sm">VAT Basic</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->basic_price_vat}}" type="text" name="basic_price_vat" class="form-control form-control-sm" id="basic_price_vat">
+                                        <input required value="{{$core_data->basic_price_vat}}" type="text" name="basic_price_vat" class="form-control form-control-sm" id="basic_price_vat">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="sale_vat" class="col-sm-3 col-form-label form-control-sm">Sale VAT</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->sale_vat}}" type="text" name="sale_vat" class="form-control form-control-sm" id="sale_vat">
+                                        <input required value="{{$core_data->sale_vat}}" type="text" name="sale_vat" class="form-control form-control-sm" id="sale_vat">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
@@ -308,7 +308,7 @@
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="purchage_date" class="col-sm-3 col-form-label form-control-sm">Purchage Date</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{ $purchage_data ? ($purchage_data->purchage_date ? $purchage_data->purchage_date : $core_data->purchage_date) : $core_data->purchage_date }}" type="date" name="purchage_date" class="form-control form-control-sm" id="purchage_date">
+                                        <input required value="{{ $purchage_data ? ($purchage_data->purchage_date ? $purchage_data->purchage_date : $core_data->purchage_date) : $core_data->purchage_date }}" type="date" name="purchage_date" class="form-control form-control-sm" id="purchage_date">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
@@ -320,7 +320,7 @@
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="print_ref" class="col-sm-3 col-form-label form-control-sm">Print Ref</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->print_ref }}" type="text" name="print_ref" class="form-control form-control-sm" id="print_ref">
+                                        <input required value="{{$core_data->print_ref }}" type="text" name="print_ref" class="form-control form-control-sm" id="print_ref">
                                     </div>
                                 </div>
                                 <!-- <div class="form-group row" style="margin-bottom:0px;">
