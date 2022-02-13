@@ -13,20 +13,19 @@
             <div class="card-header bg-dark">
                 <div class="row">
                     <div class="col-md-6">
-                        <h4>Purchage Details</h4>
+                        <h4 style="margin-top:5px;">Purchage Details</h4>
                     </div>
-
                     <div class="col-md-6">
-                        <a href="{{ route('purchage.index') }}" class="m-r-15 text-muted edit float-right btn btn-dark text-white mb-1">Purchage Entry</i>
+                        <a href="{{ route('purchage.purchage_entry') }}" class="m-r-15 edit float-right btn btn-info mb-1" style="color:white!important;">Purchage Entry</i>
                         </a>
-                        <a href="{{ route('purchage_list.index') }}" class="m-r-15 text-muted edit float-right btn btn-dark text-white mb-1">Purchage List</i>
+                        <a href="{{ route('purchage_list.index') }}" class="m-r-15 edit float-right btn btn-info mb-1" style="color:white!important;">Purchage List</i>
                         </a>
                     </div>
                 </div>
             </div>
             <form action="{{route('purchage.purchage_detail_update')}}" method="POST">
                 @csrf
-                <div class="card-header bg-dark">
+                <div class="card-header">
                     <div class="form-row">
                         <div class="col-md-3">
                             <div class="form-group mb-0 row">
@@ -81,30 +80,22 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mb-0 row">
-                                <label for="uml_mushak_no" class="col-sm-4 col-form-label form-control-sm">Mushak No</label>
+                                <label for="whos_vat" class="col-sm-4 col-form-label form-control-sm">Whos VAT</label>
                                 <div class="col-sm-8">
-                                    <input required type="text" class="form-control form-control-sm" id="uml_mushak_no" name="uml_mushak_no" value="{{$purchages->uml_mushak_no}}" placeholder="UML Mushak">
+                                    <input required type="text" class="form-control form-control-sm" id="whos_vat" name="whos_vat" value="{{$purchages->whos_vat}}" placeholder="Purchage Value">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mb-0 row">
-                                <label for="uml_mushak_date" class="col-sm-4 col-form-label form-control-sm">Mus Date</label>
+                                <label for="tr_month_code" class="col-sm-4 col-form-label form-control-sm">TR Code</label>
                                 <div class="col-sm-8">
-                                    <input required type="date" class="form-control form-control-sm" id="uml_mushak_date" name="uml_mushak_date" placeholder="Purchage Value" value="{{$purchages->uml_mushak_date}}">
+                                    <input required type="text" class="form-control form-control-sm" id="tr_month_code" name="tr_month_code" value="{{$purchages->tr_month_code}}" placeholder="TR Code">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="purchage_rebate" class="col-sm-4 col-form-label form-control-sm">Rebate</label>
-                                <div class="col-sm-8">
-                                    <input required type="text" class="form-control form-control-sm" id="purchage_rebate" name="purchage_rebate" value="{{$purchages->purchage_rebate}}">
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-md-3">
                             <div class="form-group mb-0 row">
                                 <label for="vat_year_purchage" class="col-sm-4 col-form-label form-control-sm">VY Pur</label>
@@ -123,16 +114,6 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mb-0 row">
-                                <label for="whos_vat" class="col-sm-4 col-form-label form-control-sm">Whos VAT</label>
-                                <div class="col-sm-8">
-                                    <input required type="text" class="form-control form-control-sm" id="whos_vat" name="whos_vat" value="{{$purchages->whos_vat}}" placeholder="Purchage Value">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
                                 <label for="vat_process" class="col-sm-4 col-form-label form-control-sm">VAT Process</label>
                                 <div class="col-sm-8">
                                     <input required type="text" class="form-control form-control-sm" id="vat_process" name="vat_process" value="{{$purchages->vat_process}}">
@@ -147,25 +128,23 @@
                                 </div>
                             </div>
                         </div>
+
+                    </div>
+                    <div class="form-row">
+
+
                         <div class="col-md-3">
                             <div class="form-group mb-0 row">
                                 <label for="gate_pass" class="col-sm-4 col-form-label form-control-sm">Gate Pass</label>
                                 <div class="col-sm-8">
-                                    <input required type="text" class="form-control form-control-sm" id="gate_pass" name="gate_pass" value="{{$purchages->gate_pass}}" placeholder="UML Mushak">
+                                    <input required type="text" class="form-control form-control-sm" id="gate_pass" name="gate_pass" value="{{$purchages->gate_pass}}" placeholder="Gate Pass">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="tr_month_code" class="col-sm-4 col-form-label form-control-sm">TR Code</label>
-                                <div class="col-sm-8">
-                                    <input required type="text" class="form-control form-control-sm" id="tr_month_code" name="tr_month_code" value="{{$purchages->tr_month_code}}" placeholder="Purchage Value">
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-info" style="width:250px; margin-top:10px;">Update</button>
+                        <button type="submit" class="btn btn-info text-white" style="width:250px; margin-top:10px;">Update</button>
                     </div>
                 </div>
             </form>

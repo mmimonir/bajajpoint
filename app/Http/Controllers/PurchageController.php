@@ -156,8 +156,6 @@ class PurchageController extends Controller
             'dealer_name' => $request['dealer_name'],
             'quantity' => $request['quantity'],
             'purchage_value' => $request['purchage_value'],
-            'uml_mushak_no' => $request['uml_mushak_no'],
-            'uml_mushak_date' => $request['uml_mushak_date'],
             'purchage_rebate' => $request['purchage_rebate'],
             'vat_year_purchage' => $request['vat_year_purchage'],
             'vat_month_purchage' => $request['vat_month_purchage'],

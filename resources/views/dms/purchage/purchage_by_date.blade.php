@@ -13,7 +13,7 @@
                 <div class="card-header bg-dark" style="background-color:#343A40;">
                     <h3 class="card-title">Purchage By Date</h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body d-flex justify-content-center">
                     <table id="example" class="table table-hover table-responsive table-striped table-sm text-sm table-light table-bordered" style="width:100%;">
                         <thead>
                             <tr>
@@ -21,10 +21,8 @@
                                 <th class="align-middle" style="width:60px;">Date</th>
                                 <th class="align-middle" style="width:120px;">Vendor</th>
                                 <th class="align-middle">Value</th>
-                                <th class="align-middle">Uml Mush</th>
-                                <th class="align-middle">Date</th>
                                 <th class="align-middle">Qty</th>
-                                <th class="align-middle">Rebate</th>
+
                                 <th class="align-middle">VYear</th>
                                 <th class="align-middle">VMonth</th>
                                 <th class="align-middle">VAT Pro</th>
@@ -40,11 +38,8 @@
                                 <td class="">{{$data->factory_challan_no}}</td>
                                 <td class="">{{$data->purchage_date}}</td>
                                 <td class="">{{$data->vendor}}</td>
-                                <td class="">{{$data->purchage_value}}</td>
-                                <td class="">{{$data->uml_mushak_no}}</td>
-                                <td class="">{{$data->uml_mushak_date}}</td>
-                                <td class="">{{$data->quantity}}</td>
-                                <td class="">{{$data->purchage_rebate}}</td>
+                                <td class="" style="text-align:right;">{{$data->purchage_value}}</td>
+                                <td class="" style="text-align:center;">{{$data->quantity}}</td>
                                 <td class="">{{$data->vat_year_purchage}}</td>
                                 <td class="">{{$data->vat_month_purchage}}</td>
                                 <td class="">{{$data->vat_process}}</td>
@@ -69,9 +64,7 @@
                                 <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
-                                <th style="text-align:right; padding:2px 8px;"></th>
-                                <th style="text-align:right; padding:2px 8px;"></th>
-                                <th style="text-align:right; padding:2px 8px;"></th>
+
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
@@ -119,21 +112,7 @@
 
 
             var qty = api
-                .column(6)
-                .data()
-                .reduce(function(a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0);
-
-            var mrp_vat_pur = api
-                .column(7)
-                .data()
-                .reduce(function(a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0);
-
-            var buy_price = api
-                .column(9)
+                .column(4)
                 .data()
                 .reduce(function(a, b) {
                     return intVal(a) + intVal(b);
@@ -154,17 +133,16 @@
             // Update footer by showing the total with the reference of the column index
             $(api.column(0).footer()).html("Total");
             $(api.column(2).footer()).html(count);
-            $(api.column(3).footer()).html(value.toLocaleString('en-IN'));
-            $(api.column(6).footer()).html(qty);
-            $(api.column(7).footer()).html(mrp_vat_pur.toLocaleString('en-IN'));
-            $(api.column(9).footer()).html(buy_price.toLocaleString('en-IN'));
+            $(api.column(3).footer()).html(value);
+            $(api.column(4).footer()).html(qty);
+
         },
         columnDefs: [{
-            targets: [3, 5, 6, 7],
+            targets: [3],
             render: $.fn.dataTable.render.intlNumber('en-IN')
         }],
 
-        pageLength: 25,
+        pageLength: 10,
         responsive: true,
         lengthChange: true,
         dom: '<"html5buttons"B>lTfgitp',
