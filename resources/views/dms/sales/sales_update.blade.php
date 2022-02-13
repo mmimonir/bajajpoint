@@ -284,7 +284,7 @@
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="vat_process" class="col-sm-3 col-form-label form-control-sm">VAT Process</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->vat_process}}" type="text" name="vat_process" class="form-control form-control-sm" id="vat_process">
+                                        <input value="{{$core_data->vat_process ? $core_data->vat_process : $purchage_data->vat_process}}" type="text" name="vat_process" class="form-control form-control-sm" id="vat_process">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">

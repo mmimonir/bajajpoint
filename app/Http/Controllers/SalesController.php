@@ -49,7 +49,7 @@ class SalesController extends Controller
         $store_id = $core_data->store_id;
         $print_ref = Supplier::select('print_ref')->whereNotNull('dealer_name')->get();
         $vehicle_data = Vehicle::select('model')->where('model_code', $model_code)->first();
-        $purchage_data = Purchage::select('purchage_date', 'vendor', 'challan_no', 'uml_mushak_no', 'uml_mushak_date')->where('id', $store_id)->first();
+        $purchage_data = Purchage::select('purchage_date', 'vendor', 'challan_no', 'vat_process')->where('id', $store_id)->first();
         $color_data = ColorCode::select('color_code', 'color')->where('model_code', $model_code)->get();
         $pd_data = PriceDeclare::select('id', 'vat_mrp', 'submit_date')->where(['model_code' => $model_code, 'status' => '1'])->first();
 
