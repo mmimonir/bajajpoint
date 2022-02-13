@@ -1,44 +1,31 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <title>@yield('title')</title>
-        <script src="{{ mix('js/app.js') }}"></script>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-            integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-            crossorigin="anonymous"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"
-        />
-        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-        <link
-            href="https://fonts.googleapis.com/css?family=Nunito"
-            rel="stylesheet"
-        />
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
-        <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
-        <link
-            href="http://fonts.cdnfonts.com/css/helvetica-neue-9"
-            rel="stylesheet"
-        />
 
-        @yield('datatable') @yield('datatable_css')
-        @yield('third_party_stylesheets') @stack('page_css')
-        <style>
-            html,
-            body {
-                font-family: "Helvetica 25 UltraLight", sans-serif;
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <title>@yield('title')</title>
+    <script src="{{ mix('js/app.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
+    <link href="http://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet" />
 
-                /* font-weight: 400; */
-            }
+    @yield('datatable') @yield('datatable_css')
+    @yield('third_party_stylesheets') @stack('page_css')
+    <style>
+        html,
+        body {
+            font-family: "Helvetica 25 UltraLight", sans-serif;
 
-            /* .loginbody {
+            /* font-weight: 400; */
+        }
+
+        /* .loginbody {
             background-image: url("../images/05.png");
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -46,224 +33,179 @@
             opacity: 0.6;
         } */
 
-            table.dataTable tbody th,
-            table.dataTable tbody td {
-                padding: 0px 10px;
-                font-size: 12px;
-                vertical-align: middle;
-            }
+        table.dataTable tbody th,
+        table.dataTable tbody td {
+            padding: 0px 10px;
+            font-size: 12px;
+            vertical-align: middle;
+        }
 
-            .fas {
-                color: #dc3545;
-            }
+        .fas {
+            color: #dc3545;
+        }
 
-            .btn-info {
-                background: #343a40;
-                border-color: #343a40;
-            }
+        .btn-info {
+            background: #343a40;
+            border-color: #343a40;
+        }
 
-            .padd > a {
-                margin-right: 2px;
-            }
+        .padd>a {
+            margin-right: 2px;
+        }
 
-            .dropdown {
-                width: 100% !important;
-            }
+        .dropdown {
+            width: 100% !important;
+        }
 
-            .dropdown-menu[data-bs-popper] {
-                left: -146px !important;
-            }
+        .dropdown-menu[data-bs-popper] {
+            left: -146px !important;
+        }
 
-            h3 {
-                margin-bottom: 0px;
-            }
+        h3 {
+            margin-bottom: 0px;
+        }
 
-            #add {
-                margin-top: 5px;
-            }
+        #add {
+            margin-top: 5px;
+        }
 
-            .card-title {
-                margin-bottom: 0px !important;
-            }
+        .card-title {
+            margin-bottom: 0px !important;
+        }
 
-            .text-decoration > a {
-                text-decoration: none;
-            }
-        </style>
-    </head>
+        .text-decoration>a {
+            text-decoration: none;
+        }
+    </style>
+</head>
 
-    <body class="hold-transition sidebar-mini layout-fixed">
-        <div class="wrapper">
-            <!-- Main Header -->
-            <nav
-                class="main-header navbar navbar-expand navbar-white navbar-light"
-            >
-                <!-- Left navbar links -->
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a
-                            class="nav-link"
-                            data-widget="pushmenu"
-                            href="#"
-                            role="button"
-                            ><i class="fas fa-bars"></i
-                        ></a>
-                    </li>
-                </ul>
-                {{-- CUSTOM --}}
-                @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth {{--
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Main Header -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+            {{-- CUSTOM --}}
+            @if (Route::has('login'))
+            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                @auth {{--
                     <a
                         href="{{ url('/home') }}"
-                        class="text-sm text-gray-700 dark:text-gray-500 underline"
-                        >Home</a
-                    >
-                    --}} @else
-                    <a
-                        href="{{ route('login') }}"
-                        class="text-sm text-gray-700 dark:text-gray-500 underline"
-                        >Log in</a
-                    >
+                class="text-sm text-gray-700 dark:text-gray-500 underline"
+                >Home</a>
+                --}} @else
+                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-                    @if (Route::has('register'))
-                    <a
-                        href="{{ route('register') }}"
-                        class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline"
-                        >Register</a
-                    >
-                    @endif @endauth
-                </div>
-                @endif
-                {{-- CUSTOM END --}}
-                @if (Route::has('login'))
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown user-menu">
-                        @auth
-                        <a
-                            href="#"
-                            class="nav-link dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                        >
-                            {{--
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                @endif @endauth
+            </div>
+            @endif
+            {{-- CUSTOM END --}}
+            @if (Route::has('login'))
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown user-menu">
+                    @auth
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        {{--
                             <img
                                 src="https://infyom.com/images/logo/blue_logo_150x150.jpg"
                                 class="user-image img-circle elevation-2"
                                 alt="User Image"
                             />
                             --}}
-                            <span
-                                class="d-none d-md-inline"
-                                >{{ Auth::user()->name }}</span
-                            >
-                        </a>
-                        @endauth
-                        <ul
-                            class="dropdown-menu dropdown-menu-lg dropdown-menu-right"
-                        >
-                            <!-- User image -->
-                            @auth
-                            <li class="user-header bg-dark">
-                                {{--
+                        <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+                    </a>
+                    @endauth
+                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <!-- User image -->
+                        @auth
+                        <li class="user-header bg-dark">
+                            {{--
                                 <img
                                     src="https://infyom.com/images/logo/blue_logo_150x150.jpg"
                                     class="img-circle elevation-2"
                                     alt="User Image"
                                 />
                                 --}}
-                                <p>
-                                    {{ Auth::user()->name }}
-                                    <small
-                                        >Member since
-                                        {{ Auth::user()->created_at->format('M. Y') }}</small
-                                    >
-                                </p>
-                            </li>
-                            @endauth
-                            <!-- Menu Footer-->
-                            <li class="user-footer">
-                                <a href="#" class="btn btn-default btn-flat"
-                                    >Profile</a
-                                >
-                                <a
-                                    href="#"
-                                    class="btn btn-default btn-flat float-right signout"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                >
-                                    Sign out
-                                </a>
-                                <form
-                                    id="logout-form"
-                                    action="{{ route('logout') }}"
-                                    method="POST"
-                                    class="d-none"
-                                >
-                                    @csrf
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                @endif
-            </nav>
+                            <p>
+                                {{ Auth::user()->name }}
+                                <small>Member since
+                                    {{ Auth::user()->created_at->format('M. Y') }}</small>
+                            </p>
+                        </li>
+                        @endauth
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            <a href="#" class="btn btn-default btn-flat float-right signout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Sign out
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            @endif
+        </nav>
 
-            <!-- Left side column. contains the logo and sidebar -->
-            @include('layouts.sidebar')
+        <!-- Left side column. contains the logo and sidebar -->
+        @include('layouts.sidebar')
 
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper loginbody">
-                <section class="content container-fluid">
-                    @yield('content')
-                </section>
-            </div>
-
-            <!-- Main Footer -->
-            <footer class="main-footer">
-                <div class="float-right d-none d-sm-block">
-                    <b>Version</b> 3.2.0
-                </div>
-                <strong
-                    >Copyright &copy; 2014-2021
-                    <a href="https://adminlte.io">AdminLTE.io</a>.</strong
-                >
-                All rights reserved.
-            </footer>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper loginbody">
+            <section class="content">
+                @yield('content')
+            </section>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"
-            integrity="sha512-tVYBzEItJit9HXaWTPo8vveXlkK62LbA+wez9IgzjTmFNLMBO1BEYladBw2wnM3YURZSMUyhayPCoLtjGh84NQ=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        ></script>
-        <!-- <script src="https://cdn.datatables.net/plug-ins/1.11.4/dataRender/intl.js"></script> -->
 
-        <script src="https://cdn.datatables.net/plug-ins/1.11.4/dataRender/intl.js"></script>
-        <script>
-            $(document).ready(function () {
-                // admin lte add active class to current link start
-                /** add active class and stay opened when selected */
-                var url = window.location;
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 3.2.0
+            </div>
+            <strong>Copyright &copy; 2014-2021
+                <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+            All rights reserved.
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js" integrity="sha512-tVYBzEItJit9HXaWTPo8vveXlkK62LbA+wez9IgzjTmFNLMBO1BEYladBw2wnM3YURZSMUyhayPCoLtjGh84NQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://cdn.datatables.net/plug-ins/1.11.4/dataRender/intl.js"></script> -->
 
-                // for sidebar menu entirely but not cover treeview
-                $("ul.nav-sidebar a")
-                    .filter(function () {
-                        return this.href == url;
-                    })
-                    .addClass("active");
+    <script src="https://cdn.datatables.net/plug-ins/1.11.4/dataRender/intl.js"></script>
+    <script>
+        $(document).ready(function() {
+            // admin lte add active class to current link start
+            /** add active class and stay opened when selected */
+            var url = window.location;
 
-                // for treeview
-                $("ul.nav-treeview a")
-                    .filter(function () {
-                        return this.href == url;
-                    })
-                    .parentsUntil(".nav-sidebar > .nav-treeview")
-                    .addClass("menu-open")
-                    .prev("a")
-                    .addClass("active");
-                // admin lte add active class to current link start
-            });
-        </script>
-        @yield('third_party_scripts') @yield('script') @stack('page_scripts')
-    </body>
+            // for sidebar menu entirely but not cover treeview
+            $("ul.nav-sidebar a")
+                .filter(function() {
+                    return this.href == url;
+                })
+                .addClass("active");
+
+            // for treeview
+            $("ul.nav-treeview a")
+                .filter(function() {
+                    return this.href == url;
+                })
+                .parentsUntil(".nav-sidebar > .nav-treeview")
+                .addClass("menu-open")
+                .prev("a")
+                .addClass("active");
+            // admin lte add active class to current link start
+        });
+    </script>
+    @yield('third_party_scripts') @yield('script') @stack('page_scripts')
+</body>
+
 </html>

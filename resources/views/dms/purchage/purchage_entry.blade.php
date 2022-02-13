@@ -15,11 +15,6 @@
                     <div class="col-md-6">
                         <h4>Purchage</h4>
                     </div>
-                    @if(session()->has('message'))
-                    <div class="alert alert-success">
-                        {{ session()->get('message') }}
-                    </div>
-                    @endif
                     <div class="col-md-6">
                         <a href="{{route('purchage_list.index')}}" class="m-r-15 edit float-right btn btn-dark mb-1">Purchage List</i>
                         </a>
@@ -27,7 +22,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{route('purchage.create')}}" method="post">
+                <form action="#" method="post" id="purchage_entry_form">
                     @csrf
                     <div class="form-row">
                         <div class="col-md-3">
@@ -91,35 +86,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="uml_mushak_no" class="col-sm-4 col-form-label">Mushak No</label>
-                                <div class="col-sm-8">
-                                    <input required type="text" class="form-control" id="uml_mushak_no" name="uml_mushak_no" placeholder="UML Mushak">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="uml_mushak_date" class="col-sm-4 col-form-label">Mushak Date</label>
-                                <div class="col-sm-8">
-                                    <input required type="date" class="form-control" id="uml_mushak_date" name="uml_mushak_date" placeholder="Purchage Value">
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="card-header"></div>
                     <table align="center" style="width:100%;" id="tbl">
                         <thead>
                             <tr>
                                 <th style="text-align:center;">Sl</th>
-                                <th style="text-align:center;">Model Name</th>
-                                <th style="text-align:center;">Chassis No</th>
-                                <th style="text-align:center;">Engine No</th>
+                                <th style="text-align:center;">Model</th>
+                                <th style="text-align:center;">Chassis</th>
+                                <th style="text-align:center;">Engine</th>
                                 <th style="text-align:center;">Color</th>
                                 <th style="text-align:center;">Unit Price</th>
                                 <th style="text-align:center;">Unit Price VAT</th>
                                 <th style="text-align:center;">VAT Pur MRP</th>
+                                <th style="text-align:center;">VAT Month</th>
                                 <th style="text-align:center;">VAT Year</th>
                                 <th style="text-align:center;">Purchage Price</th>
                             </tr>
@@ -157,6 +137,9 @@
                                     <input required type="text" class="form-control form-control-sm vat_purchage_mrp text-right" id="vat_purchage_mrp" name="vat_purchage_mrp[]" placeholder="Vat Pur MRP">
                                 </td>
                                 <td>
+                                    <input required type="text" class="form-control form-control-sm vat_month_purchage text-right" id="vat_month_purchage" name="vat_month_purchage[]" placeholder="VAT Month">
+                                </td>
+                                <td>
                                     <input required type="text" class="form-control form-control-sm vat_year_purchage text-right" id="vat_year_purchage" name="vat_year_purchage[]" placeholder="Vat Year Purchage">
                                 </td>
                                 <td>
@@ -166,6 +149,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -198,21 +182,41 @@
 
 @endsection
 
-@section('datatable')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-@endsection
-
 @section('script')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    $("#purchage_entry_form").submit(function(e) {
+        e.preventDefault();
+        const FD = new FormData(this);
+        $.ajax({
+            url: "{{ route('purchage.create') }}",
+            method: 'post',
+            data: FD,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function(response) {
+                if (response.status == 200) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: response.message,
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    $('#purchage_entry_form').trigger("reset");
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: response.message,
+                        footer: '<a href="">Why do I have this issue?</a>'
+                    })
+
+                }
+            }
+        });
+    });
     $('#add').on('click', function(e) {
         e.preventDefault();
         var $tableBody = $('#tbl').find("tbody"),
@@ -248,7 +252,29 @@
         $("#quantity").val(qty);
     });
 
+    function getCurrentFinancialYear(date) {
+        var financial_year = "";
+        var today = new Date(date);
+        if ((today.getMonth() + 1) <= 3) {
+            financial_year = (today.getFullYear() - 1) + "-" + today.getFullYear()
+        } else {
+            financial_year = today.getFullYear() + "-" + (today.getFullYear() + 1)
+        }
+        return financial_year;
+    }
+
+    function get_vat_purchage_month(purchage_date) {
+        const date = new Date(purchage_date);
+        const month = date.toLocaleString('default', {
+            month: 'short'
+        }).toUpperCase();
+        const year = date.getFullYear();
+
+        return month + year;
+    }
+
     $(".add_more_model").on("change", ".all_model", function() {
+        var purchage_date = $('#purchage_date').val();
         var model_code = $(this).val();
         let csrf = '{{ csrf_token() }}';
         var tr = $(this).parent().parent();
@@ -266,7 +292,8 @@
                 tr.find(".unit_price").val(mrp[0].mrp);
                 tr.find(".unit_price_vat").val(mrp[0].vat_mrp);
                 tr.find(".vat_purchage_mrp").val(mrp[0].vat_purchage_mrp);
-                tr.find(".vat_year_purchage").val(20212022);
+                tr.find(".vat_year_purchage").val(getCurrentFinancialYear(purchage_date).replace('-', ''));
+                tr.find(".vat_month_purchage").val(get_vat_purchage_month(purchage_date));
                 tr.find(".purchage_price").val(mrp[0].purchage_price);
                 tr.find(".color").empty();
                 tr.find(".five_chassis").val('');

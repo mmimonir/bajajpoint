@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Purchage
     Route::controller(App\Http\Controllers\PurchageController::class)->group(function () {
-        Route::get('/purchage_index',  'index')->name('purchage.index');
+        Route::get('/purchage_entry',  'index')->name('purchage.purchage_entry');
         Route::get('/purchage_by_date',  'purchage_by_date')->name('purchage.purchage_by_date');
         Route::post('/purchage_by_month',  'purchage_by_month')->name('purchage.purchage_by_month');
         Route::post('/purchage_create',  'create')->name('purchage.create');

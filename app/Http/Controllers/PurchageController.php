@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ColorCode;
-use App\Models\Core;
+use Carbon\Carbon;
 use App\Models\Mrp;
+use App\Models\Core;
 use App\Models\Purchage;
 use App\Models\Supplier;
-use Carbon\Carbon;
+use App\Models\ColorCode;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,51 +19,60 @@ class PurchageController extends Controller
         $suppliers = Supplier::select('supplier_name')->where('status', '1')->get();
         $dealer_names = Supplier::select('dealer_name', 'supplier_code')->whereNotNull('dealer_name')->get();
         $mrps = Mrp::select('model_name', 'model_code')->whereNotNull('vat_purchage_mrp')->get();
-        // dd($mrps);
-        return view('dms.purchage.index')->with(['suppliers' => $suppliers, 'mrps' => $mrps, 'dealer_names' => $dealer_names]);
+
+        return view('dms.purchage.purchage_entry')->with(['suppliers' => $suppliers, 'mrps' => $mrps, 'dealer_names' => $dealer_names]);
     }
     public function create(Request $request)
     {
+        try {
+            DB::transaction(function () use ($request) {
+                $supplier_code = Supplier::select('supplier_code')->where('supplier_name', $request->vendor)->value('supplier_code');
 
-        DB::transaction(function () use ($request) {
-            $supplier_code = Supplier::select('supplier_code')->where('supplier_name', $request->vendor)->value('supplier_code');
+                $mc_purchage = new Purchage();
+                $mc_purchage->factory_challan_no = $request['challan_no'];
+                $mc_purchage->dealer_code = $supplier_code;
+                $mc_purchage->purchage_date = $request['purchage_date'];
+                $mc_purchage->vendor = $request['vendor'];
+                $mc_purchage->dealer_name = $request['dealer_name'];
+                $mc_purchage->purchage_value = $request['purchage_value'];
+                $mc_purchage->quantity = $request['quantity'];
+                $mc_purchage->save();
 
-            $mc_purchage = new Purchage();
-            $mc_purchage->factory_challan_no = $request['challan_no'];
-            $mc_purchage->dealer_code = $supplier_code;
-            $mc_purchage->purchage_date = $request['purchage_date'];
-            $mc_purchage->vendor = $request['vendor'];
-            $mc_purchage->dealer_name = $request['dealer_name'];
-            $mc_purchage->purchage_value = $request['purchage_value'];
-            $mc_purchage->quantity = $request['quantity'];
-            // $mc_purchage->uml_mushak_no = $request['uml_mushak_no'];
-            // $mc_purchage->uml_mushak_date = $request['uml_mushak_date'];
-            $mc_purchage->save();
+                $purchage_id = $mc_purchage->id;
 
-            $purchage_id = $mc_purchage->id;
-
-            foreach ($request->model_code as $key => $value) {
-                $vat_rebate = round($request->purchage_price[$key] * 15 / 115);
-                $save_record = [
-                    'store_id' => $purchage_id,
-                    'vat_code' => $supplier_code,
-                    'print_code' => $supplier_code,
-                    'report_code' => $supplier_code,
-                    'model_code' => $request->model_code[$key],
-                    'five_chassis' => $request->five_chassis[$key],
-                    'five_engine' => $request->five_engine[$key],
-                    'color_code' => $request->color_code[$key],
-                    'unit_price' => $request->unit_price[$key],
-                    'unit_price_vat' => $request->unit_price_vat[$key],
-                    'vat_purchage_mrp' => $request->vat_purchage_mrp[$key],
-                    'vat_year_purchage' => $request->vat_year_purchage[$key],
-                    'purchage_price' => $request->purchage_price[$key],
-                    'vat_rebate' => $vat_rebate,
-                ];
-                Core::insert($save_record);
-            }
-        });
-        return redirect()->route('purchage.index')->with('message', 'Purchage Added Successfully');
+                foreach ($request->model_code as $key => $value) {
+                    $vat_rebate = round($request->purchage_price[$key] * 15 / 115);
+                    $save_record = [
+                        'store_id' => $purchage_id,
+                        'vat_code' => $supplier_code,
+                        'print_code' => $supplier_code,
+                        'report_code' => $supplier_code,
+                        'model_code' => $request->model_code[$key],
+                        'five_chassis' => $request->five_chassis[$key],
+                        'five_engine' => $request->five_engine[$key],
+                        'color_code' => $request->color_code[$key],
+                        'unit_price' => $request->unit_price[$key],
+                        'unit_price_vat' => $request->unit_price_vat[$key],
+                        'vat_purchage_mrp' => $request->vat_purchage_mrp[$key],
+                        // 'vat_month_purchage' => $request->vat_month_purchage[$key],
+                        // 'vat_year_purchage' => $request->vat_year_purchage[$key],
+                        'purchage_price' => $request->purchage_price[$key],
+                        'vat_rebate' => $vat_rebate,
+                    ];
+                    if ($supplier_code == 2000 || $supplier_code == 2011 || $supplier_code == 2030) {
+                        $edited_array_one = Arr::add($save_record, 'vat_month_purchage', $request->vat_month_purchage[$key]);
+                        $edited_array_two = Arr::add($edited_array_one, 'vat_year_purchage', $request->vat_year_purchage[$key]);
+                        // $edited_array_two = Arr::collapse($save_record, ['vat_month_purchage' => $request->vat_month_purchage[$key], 'vat_year_purchage' => $request->vat_year_purchage[$key]]);
+                        Core::insert($edited_array_two);
+                    } else {
+                        Core::insert($save_record);
+                    };
+                }
+            });
+            return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 502]);
+        }
     }
     public function get_mrp(Request $request)
     {

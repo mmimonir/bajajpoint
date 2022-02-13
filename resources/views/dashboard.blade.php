@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Bajaj Point - 3S Dealer Of UttaraMotors Ltd')
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top:15px;">
     <div class="row">
         <div class="col-lg-3 col-6">
 
