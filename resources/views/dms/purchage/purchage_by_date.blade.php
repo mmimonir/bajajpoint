@@ -23,8 +23,6 @@
                                 <th style="width:120px;">Vendor</th>
                                 <th>Value</th>
                                 <th>Qty</th>
-                                <th>VYear</th>
-                                <th>VMonth</th>
                                 <th>VAT Pro</th>
                                 <th>TR Date</th>
                                 <th>GP</th>
@@ -35,14 +33,12 @@
                         <tbody>
                             @foreach($purchage_data as $data)
                             <tr>
-                                <td class="">{{$loop->iteration}}</td>
+                                <td style="text-align:center;">{{$loop->iteration}}</td>
                                 <td class="">{{$data->factory_challan_no}}</td>
                                 <td style="text-align:center;">{{date('d-m-Y', strtotime($data->purchage_date))}}</td>
                                 <td class="">{{$data->vendor}}</td>
                                 <td class="" style="text-align:right;">{{$data->purchage_value}}</td>
                                 <td class="" style="text-align:center;">{{$data->quantity}}</td>
-                                <td class="">{{$data->vat_year_purchage}}</td>
-                                <td style="text-align:center;">{{$data->vat_month_purchage}}</td>
                                 <td class="">{{$data->vat_process}}</td>
                                 <td class="">{{$data->tr_dep_date}}</td>
                                 <td class="">{{$data->gate_pass}}</td>
@@ -59,8 +55,6 @@
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
-                                <th style="text-align:center; padding:2px 8px;"></th>
-                                <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:center; padding:2px 8px;"></th>
@@ -140,7 +134,7 @@
             $(api.column(1).footer()).html(count);
             $(api.column(4, {
                 filter: "applied"
-            }).footer()).html(value);
+            }).footer()).html(value.toLocaleString('en-IN'));
             $(api.column(5, {
                 filter: "applied"
             }).footer()).html(qty);

@@ -131,6 +131,7 @@
                     <table id="example" class="table table-hover table-responsive table-striped table-bordered" style="width:100%;">
                         <thead class="text-sm">
                             <tr>
+                                <th class="align-middle">Sl</th>
                                 <th class="align-middle">Name</th>
                                 <th class="align-middle">Sale Date</th>
                                 <th class="align-middle">Print</th>
@@ -147,6 +148,7 @@
                         <tbody>
                             @foreach ( $purchage_details as $detail )
                             <tr>
+                                <td class="text-center">{{$loop->iteration}}</td>
                                 <td>{{$detail->model}}</td>
                                 <td>{{$detail->original_sale_date}}</td>
                                 <td>{{$detail->print_code}}</td>
@@ -174,6 +176,7 @@
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:center; padding:2px 8px;"></th>
+                                <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
@@ -254,28 +257,28 @@
 
             // computing column Total of the complete result
             var mrp = api
-                .column(5)
-                .data()
-                .reduce(function(a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0);
-
-            var mrp_vat = api
                 .column(6)
                 .data()
                 .reduce(function(a, b) {
                     return intVal(a) + intVal(b);
                 }, 0);
 
-            var mrp_vat_pur = api
+            var mrp_vat = api
                 .column(7)
                 .data()
                 .reduce(function(a, b) {
                     return intVal(a) + intVal(b);
                 }, 0);
 
+            var mrp_vat_pur = api
+                .column(8)
+                .data()
+                .reduce(function(a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
             var buy_price = api
-                .column(9)
+                .column(10)
                 .data()
                 .reduce(function(a, b) {
                     return intVal(a) + intVal(b);
@@ -289,14 +292,14 @@
 
             // Update footer by showing the total with the reference of the column index
             $(api.column(0).footer()).html("Total");
-            $(api.column(5).footer()).html(mrp.toLocaleString('en-IN'));
+            $(api.column(6).footer()).html(mrp.toLocaleString('en-IN'));
             $(api.column(3).footer()).html(count);
-            $(api.column(6).footer()).html(mrp_vat.toLocaleString('en-IN'));
-            $(api.column(7).footer()).html(mrp_vat_pur.toLocaleString('en-IN'));
-            $(api.column(9).footer()).html(buy_price.toLocaleString('en-IN'));
+            $(api.column(7).footer()).html(mrp_vat.toLocaleString('en-IN'));
+            $(api.column(8).footer()).html(mrp_vat_pur.toLocaleString('en-IN'));
+            $(api.column(10).footer()).html(buy_price.toLocaleString('en-IN'));
         },
         columnDefs: [{
-            targets: [5, 6, 7, 9],
+            targets: [5, 6, 7, 8, 10],
             render: $.fn.dataTable.render.intlNumber('en-IN')
         }],
 

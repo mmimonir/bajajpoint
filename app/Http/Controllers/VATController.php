@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Models\Core;
+use App\Models\Purchage;
 use Illuminate\Http\Request;
 
 class VATController extends Controller
@@ -74,5 +75,14 @@ class VATController extends Controller
         // $pdf = PDF::loadView('dms.pdf.vat.vat_sale_bp', ['date_data' => $data]);
         // $pdf->setPaper('A4', 'landscape');
         // return $pdf->stream('vat_sale_bp');
+    }
+    public function tr_update()
+    {
+        $tr_pending = Purchage::select('id')->where('tr_month_code', '=', 'FEB0222')->get();
+
+        foreach ($tr_pending as $key => $value) {
+            $update_record = ['tr_number' => 100];
+            Core::where(['store_id' => $value->id, 'model_code' => 1007])->update($update_record);
+        }
     }
 }
