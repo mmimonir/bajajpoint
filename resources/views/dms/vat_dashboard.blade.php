@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title', 'VAT Dashboard')
 @section('content')
+@push('page_css')
+
+@endpush
+
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -22,22 +26,28 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="#" method="post" target="_blank">
+                                    <form action="{{route('tr_update')}}" method="post" target="_blank">
                                         @csrf
                                         <div class="form-group row">
                                             <label for="inputEmail3" class="col-sm-4 col-form-label">Model</label>
                                             <div class="col-sm-8">
-                                                <select name="model_code[]" class="selectpicker" multiple data-live-search="true">
-                                                    <option selected>Select Model</option>
-                                                    <option value="1001">Pulsar</option>
-                                                    <option value="1001">Discover</option>
+                                                <select multiple name="model_code[]">
+                                                    @foreach ($models as $model)
+                                                    <option value="{{$model->model_code}}">{{$model->model}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="end_date" class="col-sm-4 col-form-label">TR Number</label>
+                                            <label for="tr_number" class="col-sm-4 col-form-label">TR Number</label>
                                             <div class="col-sm-8">
-                                                <input required type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
+                                                <input required type="text" class="form-control" id="tr_number" name="tr_number" placeholder="JAN0122">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="tr_month_code" class="col-sm-4 col-form-label">TR Code</label>
+                                            <div class="col-sm-8">
+                                                <input required type="text" class="form-control" id="tr_month_code" name="tr_month_code" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -196,13 +206,8 @@
         </div>
     </div>
 </div>
-
 @endsection
 @section('script')
-<script>
-    $('select').selectpicker();
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 <script>
     let dateDropdown = document.getElementById('date-dropdown');
 

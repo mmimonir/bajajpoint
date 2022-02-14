@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use DB;
 use App\Models\Core;
 use App\Models\Purchage;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
 class VATController extends Controller
 {
     public function index()
     {
-        return view('dms.vat_dashboard');
+        $models = Vehicle::select('model_code', 'model')->where('status', '=', 'Active')->get();
+        return view('dms.vat_dashboard')->with(['models' => $models]);
     }
     public function vat_index()
     {
@@ -76,13 +78,14 @@ class VATController extends Controller
         // $pdf->setPaper('A4', 'landscape');
         // return $pdf->stream('vat_sale_bp');
     }
-    public function tr_update()
+    public function tr_update(Request $request)
     {
-        $tr_pending = Purchage::select('id')->where('tr_month_code', '=', 'FEB0222')->get();
-
-        foreach ($tr_pending as $key => $value) {
-            $update_record = ['tr_number' => 100];
-            Core::where(['store_id' => $value->id, 'model_code' => 1007])->update($update_record);
+        $tr_pending = Purchage::select('id')->where('tr_month_code', '=', $request->tr_month_code)->get();
+        $update_record = ['tr_number' => $request->tr_number];
+        foreach ($tr_pending as $key => $tr_data) {
+            foreach ($request->model_code as $key => $value) {
+                Core::where(['store_id' => $tr_data->id, 'model_code' => $value])->update($update_record);
+            }
         }
     }
 }

@@ -15,8 +15,10 @@
     <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
     <link href="http://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet" />
 
-    @yield('datatable') @yield('datatable_css')
-    @yield('third_party_stylesheets') @stack('page_css')
+    @yield('datatable')
+    @yield('datatable_css')
+    @yield('third_party_stylesheets')
+    @stack('page_css')
     <style>
         html,
         body {
