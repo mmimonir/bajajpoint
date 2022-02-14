@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
                         <div class="card-header bg-dark">
                             <h3 class="text-center rounded">Assign TR Number</h3>
@@ -115,9 +115,68 @@
                                     <form action="{{route('vat.update_tr_status')}}" method="post">
                                         @csrf
                                         <div class="form-group row">
+                                            <label for="dealer_code" class="col-sm-4 col-form-label">Dealer Code</label>
+                                            <div class="col-sm-8">
+                                                <select name="dealer_code" class="browser-default custom-select" required="required">
+                                                    @foreach ($dealer_code as $data)
+                                                    <option value="{{$data->dealer_code}}">
+                                                        {{$data->dealer_code}}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label for="tr_code" class="col-sm-4 col-form-label">TR Code</label>
                                             <div class="col-sm-8">
                                                 <input value="{{$tr_code_vat_pending ? $tr_code_vat_pending->tr_month_code ? $tr_code_vat_pending->tr_month_code : '' : ''}}" required type="text" class="form-control" id="tr_code" name="tr_code" placeholder="JAN0122">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="tr_dep_date" class="col-sm-4 col-form-label">Dep Date</label>
+                                            <div class="col-sm-8">
+                                                <input required type="date" class="form-control" id="tr_dep_date" name="tr_dep_date" placeholder="JAN0122">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12 text-center d-flex justify-content-center">
+                                                <a href="" target="_blank">
+                                                    <button style="width:150px;" type="submit" class="btn btn-dark btn-block">Update</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
+                        <div class="card-header bg-dark">
+                            <h3 class="text-center rounded">TR Changer Update</h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <form action="{{route('vat.tr_changer_update')}}" method="post">
+                                        @csrf
+                                        <div class="form-group row">
+                                            <label for="dealer_code" class="col-sm-4 col-form-label">TR CH Code</label>
+                                            <div class="col-sm-8">
+                                                <select name="tr_changer" class="browser-default custom-select" required="required">
+                                                    @foreach ($tr_changer_code as $data)
+                                                    <option value="{{$data->tr_changer}}">
+                                                        {{$data->tr_changer}}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="tr_code" class="col-sm-4 col-form-label">TR Code</label>
+                                            <div class="col-sm-8">
+                                                <input readonly value="{{$tr_code_vat_pending ? $tr_code_vat_pending->tr_month_code ? $tr_code_vat_pending->tr_month_code : '' : ''}}" required type="text" class="form-control" id="tr_code" name="tr_code" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">

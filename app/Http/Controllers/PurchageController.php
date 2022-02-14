@@ -140,6 +140,7 @@ class PurchageController extends Controller
                 'vat_process' => $request['vat_process'],
                 'tr_dep_date' => $request['tr_dep_date'],
                 'gate_pass' => $request['gate_pass'],
+                'tr_changer' => $request['tr_changer'],
                 'tr_month_code' => $request['tr_month_code']
             ];
             Purchage::where('id', $request->id)->update($update_record);
@@ -190,5 +191,11 @@ class PurchageController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
         }
+    }
+    public function print_code_update(Request $request)
+    {
+        Core::where('store_id', $request->id)->update(['print_code' => $request->print_code]);
+
+        return redirect()->back()->with('success', 'Print Code Updated');
     }
 }

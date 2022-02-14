@@ -16,13 +16,17 @@ class VATController extends Controller
         $tr_code = Purchage::select('tr_month_code', 'vat_process')->where('vat_process', '=', 'PENDING')->first();
         $last_tr_code = Purchage::select('tr_month_code')->latest('updated_at')->first();
         $tr_code_vat_pending = Purchage::select('tr_month_code')->where('vat_process', '=', 'PENDING')->first();
+        $dealer_code = Purchage::select('dealer_code')->where('vat_process', '=', 'PENDING')->get()->unique('dealer_code');
+        $tr_changer_code = Purchage::select('tr_changer')->where('vat_process', '=', 'PENDING')->get();
         return view('dms.vat_dashboard')
             ->with(
                 [
                     'models' => $models,
                     'tr_code' => $tr_code,
                     'last_tr_code' => $last_tr_code,
-                    'tr_code_vat_pending' => $tr_code_vat_pending
+                    'tr_code_vat_pending' => $tr_code_vat_pending,
+                    'dealer_code' => $dealer_code,
+                    'tr_changer_code' => $tr_changer_code,
                 ]
             );
     }
@@ -91,6 +95,7 @@ class VATController extends Controller
     }
     public function tr_update(Request $request)
     {
+
         $tr_pending = Purchage::select('id')->where('tr_month_code', '=', $request->tr_month_code)->get();
         $update_record = ['tr_number' => $request->tr_number];
         foreach ($tr_pending as $key => $tr_data) {
@@ -108,12 +113,37 @@ class VATController extends Controller
 
     public function update_tr_status(Request $request)
     {
-        Purchage::where('tr_month_code', '=', $request->tr_code)
-            ->update([
-                'vat_process' => 'VAT OK',
-                'tr_dep_date' => $request->tr_dep_date
-            ]);
+        try {
+            $dealer_code = $request->dealer_code;
+            Purchage::where(['tr_month_code' => $request->tr_code, 'dealer_code' => $request->dealer_code])
+                ->whereNull('tr_changer')
+                ->update([
+                    'vat_process' => 'VAT OK',
+                    'whos_vat' => $dealer_code == 2000 ? 'BP VAT' : ($dealer_code == 2011 ? 'BH VAT' : ($dealer_code == 2030 ? 'BB VAT' : ('BP VAT'))),
+                    'tr_dep_date' => $request->tr_dep_date
+                ]);
 
-        return redirect()->back()->with('success', 'TR Status Updated Successfully');
+            return redirect()->back()->with('success', 'TR Status Updated Successfully');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->with('error', 'Something Went Wrong');
+        }
+    }
+    public function tr_changer_update(Request $request)
+    {
+        try {
+            $tr_changer = $request->tr_changer;
+            Purchage::where(['tr_changer' => $tr_changer, 'vat_process' => 'PENDING'])
+                ->update([
+                    'vat_process' => 'VAT OK',
+                    'whos_vat' => $tr_changer,
+                    'tr_dep_date' => $request->tr_dep_date
+                ]);
+
+            return redirect()->back()->with('success', 'TR Status Updated Successfully');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->with('error', 'Something Went Wrong');
+        }
     }
 }

@@ -66,7 +66,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="quantity" class="col-sm-4 col-form-label form-control-sm">Quantity</label>
                                 <div class="col-sm-8">
-                                    <input required type="text" class="form-control form-control-sm" id="quantity" name="quantity" value="{{$purchages->quantity}}">
+                                    <input type="text" class="form-control form-control-sm" id="quantity" name="quantity" value="{{$purchages->quantity}}">
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="whos_vat" class="col-sm-4 col-form-label form-control-sm">Whos VAT</label>
                                 <div class="col-sm-8">
-                                    <input required type="text" class="form-control form-control-sm" id="whos_vat" name="whos_vat" value="{{$purchages->whos_vat}}" placeholder="Purchage Value">
+                                    <input type="text" class="form-control form-control-sm" id="whos_vat" name="whos_vat" value="{{$purchages->whos_vat}}" placeholder="Purchage Value">
                                 </div>
                             </div>
                         </div>
@@ -117,6 +117,18 @@
                                 <label for="gate_pass" class="col-sm-4 col-form-label form-control-sm">Gate Pass</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control form-control-sm" id="gate_pass" name="gate_pass" value="{{$purchages->gate_pass}}" placeholder="Gate Pass">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group mb-0 row">
+                                <label for="tr_changer" class="col-sm-4 col-form-label form-control-sm">TR Changer</label>
+                                <div class="col-sm-8">
+                                    <select name="tr_changer" class="browser-default custom-select" required="required">
+                                        <option value="BP VAT">BP VAT</option>
+                                        <option value="BH VAT">BH VAT</option>
+                                        <option value="BB VAT">BB VAT</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -193,6 +205,37 @@
         </div>
     </div>
 </div>
+<div class="row justify-content-center">
+    <div class="col-md-11">
+        <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
+            <div class="card-header bg-dark">
+                <h4 style="margin-top:5px;">Print Code Update</h4>
+            </div>
+            <form action="{{route('purchage.print_code_update')}}" method="post" id="print_update_form">
+                @csrf
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <div class="form-group mb-0 row">
+                                <label for="print_code" class="col-sm-4 col-form-label form-control-sm">Print Code</label>
+                                <div class="col-sm-8">
+                                    <input required type="text" class="form-control form-control-sm" id="print_code" name="print_code">
+                                    <input hidden type="text" name="id" value="{{$purchages->id}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-info text-white" style="width:250px; margin-top:10px;">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
 @endsection
 @section('datatable')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>

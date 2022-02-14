@@ -27,6 +27,8 @@
                                 <th>TR Date</th>
                                 <th>GP</th>
                                 <th>TR Code</th>
+                                <th>Whos Vat</th>
+                                <th>Changer</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -43,6 +45,8 @@
                                 <td class="">{{$data->tr_dep_date}}</td>
                                 <td class="">{{$data->gate_pass}}</td>
                                 <td class="">{{$data->tr_month_code}}</td>
+                                <td style="text-align:center;">{{$data->whos_vat}}</td>
+                                <td style="text-align:center;">{{$data->tr_changer}}</td>
                                 <td class="" style="text-align:center;">
                                     <a href="{{route('purchage.purchage_details_id', ['id'=>$data->id])}}" target="_blank">
                                         <span class="bg-dark btn btn-sm">View</span>
@@ -63,6 +67,8 @@
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
+                                <th style="text-align:center; padding:2px 8px;"></th>
+                                <th style="text-align:center; padding:2px 8px;"></th>
                             </tr>
                         </tfoot>
                         </tbody>

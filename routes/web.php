@@ -64,6 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/purchage_list',  'purchage_list')->name('purchage.list');
         Route::get('/purchage_details/{id}',  'purchage_details')->name('purchage.purchage_details_id');
         Route::post('/purchage_detail_update',  'purchage_detail_update')->name('purchage.purchage_detail_update');
+        Route::post('/print_code_update',  'print_code_update')->name('purchage.print_code_update');
     });
 
 
@@ -102,6 +103,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/vat_sale', [App\Http\Controllers\VATController::class, 'vat_sale'])->name('vat.vat_sale');
     Route::post('/assign_tr_code', [App\Http\Controllers\VATController::class, 'assign_tr_code'])->name('vat.assign_tr_code');
     Route::post('/update_tr_status', [App\Http\Controllers\VATController::class, 'update_tr_status'])->name('vat.update_tr_status');
+    Route::post('/tr_changer_update', [App\Http\Controllers\VATController::class, 'tr_changer_update'])->name('vat.tr_changer_update');
 
     // CKD
     Route::get('/ckd_pending', [App\Http\Controllers\CKDController::class, 'ckd_pending'])->name('ckd.ckd_pending');
