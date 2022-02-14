@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <form action="{{route('purchage.purchage_detail_update')}}" method="POST">
+            <form action="#" method="POST" id="purchage_detail_update">
                 @csrf
                 <div class="card-header">
                     <div class="form-row">
@@ -90,28 +90,12 @@
                             <div class="form-group mb-0 row">
                                 <label for="tr_month_code" class="col-sm-4 col-form-label form-control-sm">TR Code</label>
                                 <div class="col-sm-8">
-                                    <input required type="text" class="form-control form-control-sm" id="tr_month_code" name="tr_month_code" value="{{$purchages->tr_month_code}}" placeholder="TR Code">
+                                    <input type="text" class="form-control form-control-sm" id="tr_month_code" name="tr_month_code" value="{{$purchages->tr_month_code}}" placeholder="TR Code">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="vat_year_purchage" class="col-sm-4 col-form-label form-control-sm">VY Pur</label>
-                                <div class="col-sm-8">
-                                    <input required type="text" class="form-control form-control-sm" id="vat_year_purchage" name="vat_year_purchage" value="{{$purchages->vat_year_purchage}}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="vat_month_purchage" class="col-sm-4 col-form-label form-control-sm">VM Pur</label>
-                                <div class="col-sm-8">
-                                    <input required type="text" class="form-control form-control-sm" id="vat_month_purchage" name="vat_month_purchage" value="{{$purchages->vat_month_purchage}}" placeholder="UML Mushak">
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-md-3">
                             <div class="form-group mb-0 row">
                                 <label for="vat_process" class="col-sm-4 col-form-label form-control-sm">VAT Process</label>
@@ -124,24 +108,18 @@
                             <div class="form-group mb-0 row">
                                 <label for="tr_dep_date" class="col-sm-4 col-form-label form-control-sm">TR Date</label>
                                 <div class="col-sm-8">
-                                    <input required type="date" class="form-control form-control-sm" id="tr_dep_date" name="tr_dep_date" value="{{$purchages->tr_dep_date}}">
+                                    <input type="date" class="form-control form-control-sm" id="tr_dep_date" name="tr_dep_date" value="{{$purchages->tr_dep_date}}">
                                 </div>
                             </div>
                         </div>
-
-                    </div>
-                    <div class="form-row">
-
-
                         <div class="col-md-3">
                             <div class="form-group mb-0 row">
                                 <label for="gate_pass" class="col-sm-4 col-form-label form-control-sm">Gate Pass</label>
                                 <div class="col-sm-8">
-                                    <input required type="text" class="form-control form-control-sm" id="gate_pass" name="gate_pass" value="{{$purchages->gate_pass}}" placeholder="Gate Pass">
+                                    <input type="text" class="form-control form-control-sm" id="gate_pass" name="gate_pass" value="{{$purchages->gate_pass}}" placeholder="Gate Pass">
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-info text-white" style="width:250px; margin-top:10px;">Update</button>
@@ -230,19 +208,36 @@
 
 @section('script')
 <script>
-    // $(document).ready(function() {
-    //     function purchageValue() {
-    //         var sum = 0;
-    //         $(".purchage_price").each(function() {
-    //             sum += +$(this).text().replace(/,/g, '');
-
-    //         });
-    //         $('.purchage_value').text(sum.toLocaleString("en-IN"));
-    //         console.log(sum);
-    //     }
-    //     purchageValue();
-    // });
-
+    $("#purchage_detail_update").submit(function(e) {
+        e.preventDefault();
+        const FD = new FormData(this);
+        $.ajax({
+            url: "{{ route('purchage.purchage_detail_update') }}",
+            method: 'post',
+            data: FD,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function(response) {
+                if (response.status == 200) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: response.message,
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: response.message,
+                        footer: '<a href="">Why do I have this issue?</a>'
+                    })
+                }
+            }
+        });
+    });
     $("#example").DataTable({
         footerCallback: function(row, data, start, end, display) {
             var api = this.api(),

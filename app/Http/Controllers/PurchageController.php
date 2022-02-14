@@ -105,24 +105,6 @@ class PurchageController extends Controller
     {
         $purchages = Purchage::select(
             '*'
-            // 'id',
-            // 'challan_no',
-            // 'purchage_date',
-            // 'vendor',
-            // 'purchage_value',
-            // 'dealer_name',
-            // 'quantity',
-            // 'purchage_rebate',
-            // 'vat_year_purchage',
-            // 'vat_month_purchage',
-            // 'uml_mushak_no',
-            // 'uml_mushak_date',
-            // 'whos_vat',
-            // 'vat_process',
-            // 'tr_dep_date',
-            // 'gate_pass',
-            // 'tr_month_code',
-            // 'tr_number'
         )->where('id', $id)->first();
 
         $purchage_details = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
@@ -140,33 +122,32 @@ class PurchageController extends Controller
                 'cores.original_sale_date',
                 'vehicles.model'
             )
-            ->where('store_id', "=", $id)
+            ->where('cores.store_id', "=", $id)
             ->get();
-
-        // $purchage_details = Core::select('id', 'model_code', 'five_chassis', 'five_engine', 'unit_price', 'unit_price_vat', 'vat_purchage_mrp', 'vat_year_purchage', 'purchage_price')->where('store_id', $id)->get();
-        // dd($purchage_details);
         return view('dms.purchage.purchage_details')->with(['purchages' => $purchages, 'purchage_details' => $purchage_details]);
     }
     public function purchage_detail_update(Request $request)
     {
-        $update_record = [
-            'factory_challan_no' => $request['challan_no'],
-            'purchage_date' => $request['purchage_date'],
-            'vendor' => $request['vendor'],
-            'dealer_name' => $request['dealer_name'],
-            'quantity' => $request['quantity'],
-            'purchage_value' => $request['purchage_value'],
-            'purchage_rebate' => $request['purchage_rebate'],
-            'vat_year_purchage' => $request['vat_year_purchage'],
-            'vat_month_purchage' => $request['vat_month_purchage'],
-            'whos_vat' => $request['whos_vat'],
-            'vat_process' => $request['vat_process'],
-            'tr_dep_date' => $request['tr_dep_date'],
-            'gate_pass' => $request['gate_pass'],
-            'tr_month_code' => $request['tr_month_code']
-        ];
-        Purchage::where('id', $request->id)->update($update_record);
-        return redirect()->route('purchage.list');
+        try {
+            $update_record = [
+                'factory_challan_no' => $request['challan_no'],
+                'purchage_date' => $request['purchage_date'],
+                'vendor' => $request['vendor'],
+                'dealer_name' => $request['dealer_name'],
+                'quantity' => $request['quantity'],
+                'purchage_value' => $request['purchage_value'],
+                'whos_vat' => $request['whos_vat'],
+                'vat_process' => $request['vat_process'],
+                'tr_dep_date' => $request['tr_dep_date'],
+                'gate_pass' => $request['gate_pass'],
+                'tr_month_code' => $request['tr_month_code']
+            ];
+            Purchage::where('id', $request->id)->update($update_record);
+            // return redirect()->route('purchage.list');
+            return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 502]);
+        }
     }
     public function purchage_by_date(Request $request)
     {

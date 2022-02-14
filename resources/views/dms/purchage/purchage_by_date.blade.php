@@ -16,32 +16,33 @@
                 <div class="card-body d-flex justify-content-center">
                     <table id="example" class="table table-hover table-responsive table-striped table-sm text-sm table-light table-bordered" style="width:100%;">
                         <thead>
-                            <tr>
-                                <th class="align-middle">Challan</th>
-                                <th class="align-middle" style="width:60px;">Date</th>
-                                <th class="align-middle" style="width:120px;">Vendor</th>
-                                <th class="align-middle">Value</th>
-                                <th class="align-middle">Qty</th>
-
-                                <th class="align-middle">VYear</th>
-                                <th class="align-middle">VMonth</th>
-                                <th class="align-middle">VAT Pro</th>
-                                <th class="align-middle">TR Date</th>
-                                <th class="align-middle">GP</th>
-                                <th class="align-middle">TR Code</th>
-                                <th class="align-middle">Action</th>
+                            <tr style="text-align:center;">
+                                <th>Sl</th>
+                                <th>Challan</th>
+                                <th style="width:60px;">Date</th>
+                                <th style="width:120px;">Vendor</th>
+                                <th>Value</th>
+                                <th>Qty</th>
+                                <th>VYear</th>
+                                <th>VMonth</th>
+                                <th>VAT Pro</th>
+                                <th>TR Date</th>
+                                <th>GP</th>
+                                <th>TR Code</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($purchage_data as $data)
                             <tr>
+                                <td class="">{{$loop->iteration}}</td>
                                 <td class="">{{$data->factory_challan_no}}</td>
-                                <td class="">{{$data->purchage_date}}</td>
+                                <td style="text-align:center;">{{date('d-m-Y', strtotime($data->purchage_date))}}</td>
                                 <td class="">{{$data->vendor}}</td>
                                 <td class="" style="text-align:right;">{{$data->purchage_value}}</td>
                                 <td class="" style="text-align:center;">{{$data->quantity}}</td>
                                 <td class="">{{$data->vat_year_purchage}}</td>
-                                <td class="">{{$data->vat_month_purchage}}</td>
+                                <td style="text-align:center;">{{$data->vat_month_purchage}}</td>
                                 <td class="">{{$data->vat_process}}</td>
                                 <td class="">{{$data->tr_dep_date}}</td>
                                 <td class="">{{$data->gate_pass}}</td>
@@ -56,15 +57,15 @@
                         <tfoot align="right" class="text-sm">
                             <tr>
                                 <th style="text-align:right; padding:2px 8px;"></th>
-                                <th style="text-align:right; padding:2px 8px;"></th>
-                                <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:center; padding:2px 8px;"></th>
+                                <th style="text-align:center; padding:2px 8px;"></th>
+                                <th style="text-align:center; padding:2px 8px;"></th>
+                                <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
-
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
@@ -112,19 +113,23 @@
 
 
             var qty = api
-                .column(4)
+                .column(5, {
+                    search: 'applied'
+                })
                 .data()
                 .reduce(function(a, b) {
                     return intVal(a) + intVal(b);
                 }, 0);
             var value = api
-                .column(3)
+                .column(4, {
+                    search: 'applied'
+                })
                 .data()
                 .reduce(function(a, b) {
                     return intVal(a) + intVal(b);
                 }, 0);
             var count = api
-                .column(2)
+                .column(1)
                 .data()
                 .reduce(function(a, b) {
                     return ++a;
@@ -132,13 +137,17 @@
 
             // Update footer by showing the total with the reference of the column index
             $(api.column(0).footer()).html("Total");
-            $(api.column(2).footer()).html(count);
-            $(api.column(3).footer()).html(value);
-            $(api.column(4).footer()).html(qty);
+            $(api.column(1).footer()).html(count);
+            $(api.column(4, {
+                filter: "applied"
+            }).footer()).html(value);
+            $(api.column(5, {
+                filter: "applied"
+            }).footer()).html(qty);
 
         },
         columnDefs: [{
-            targets: [3],
+            targets: [4],
             render: $.fn.dataTable.render.intlNumber('en-IN')
         }],
 
@@ -148,7 +157,27 @@
         dom: '<"html5buttons"B>lTfgitp',
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+        ],
+        initComplete: function() {
+            this.api().columns([2, 3]).every(function() {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo($(column.footer()))
+                    .on('change', function() {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+
+                        column
+                            .search(val ? '^' + val + '$' : '', true, false)
+                            .draw();
+                    });
+
+                column.data().unique().sort().each(function(d, j) {
+                    select.append('<option value="' + d + '">' + d + '</option>')
+                });
+            });
+        },
     });
 </script>
 @endsection
