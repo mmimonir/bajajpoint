@@ -2,9 +2,9 @@
 @section('title', 'VAT Dashboard')
 @section('content')
 @push('page_css')
-
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
 @endpush
-
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -31,7 +31,7 @@
                                         <div class="form-group row">
                                             <label for="inputEmail3" class="col-sm-4 col-form-label">Model</label>
                                             <div class="col-sm-8">
-                                                <select multiple name="model_code[]">
+                                                <select name="model_code[]" class="selectpicker" multiple data-live-search="true">
                                                     @foreach ($models as $model)
                                                     <option value="{{$model->model_code}}">{{$model->model}}</option>
                                                     @endforeach
@@ -41,13 +41,13 @@
                                         <div class="form-group row">
                                             <label for="tr_number" class="col-sm-4 col-form-label">TR Number</label>
                                             <div class="col-sm-8">
-                                                <input required type="text" class="form-control" id="tr_number" name="tr_number" placeholder="JAN0122">
+                                                <input required type="text" class="form-control" id="tr_number" name="tr_number" placeholder="58">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="tr_month_code" class="col-sm-4 col-form-label">TR Code</label>
                                             <div class="col-sm-8">
-                                                <input required type="text" class="form-control" id="tr_month_code" name="tr_month_code" placeholder="JAN0122">
+                                                <input value="{{$tr_code->tr_month_code}}" required type="text" class="form-control" id="tr_month_code" name="tr_month_code" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -76,11 +76,11 @@
                                         <div class="form-group row">
                                             <label for="end_date" class="col-sm-4 col-form-label">Last Code</label>
                                             <div class="col-sm-8">
-                                                <input required type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
+                                                <input value="{{$last_tr_code->tr_month_code}}" required type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="end_date" class="col-sm-4 col-form-label">Code</label>
+                                            <label for="end_date" class="col-sm-4 col-form-label">New Code</label>
                                             <div class="col-sm-8">
                                                 <input required type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
                                             </div>
@@ -208,6 +208,14 @@
 </div>
 @endsection
 @section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.selectpicker').selectpicker();
+    });
+</script>
 <script>
     let dateDropdown = document.getElementById('date-dropdown');
 

@@ -13,7 +13,9 @@ class VATController extends Controller
     public function index()
     {
         $models = Vehicle::select('model_code', 'model')->where('status', '=', 'Active')->get();
-        return view('dms.vat_dashboard')->with(['models' => $models]);
+        $tr_code = Purchage::select('tr_month_code')->where('vat_process', '=', 'PENDING')->first();
+        $last_tr_code = Purchage::select('tr_month_code')->latest('updated_at')->first();
+        return view('dms.vat_dashboard')->with(['models' => $models, 'tr_code' => $tr_code, 'last_tr_code' => $last_tr_code]);
     }
     public function vat_index()
     {
