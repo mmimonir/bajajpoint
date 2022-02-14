@@ -47,7 +47,7 @@
                                         <div class="form-group row">
                                             <label for="tr_month_code" class="col-sm-4 col-form-label">TR Code</label>
                                             <div class="col-sm-8">
-                                                <input value="{{$tr_code->tr_month_code}}" required type="text" class="form-control" id="tr_month_code" name="tr_month_code" placeholder="JAN0122">
+                                                <input value="{{$tr_code ? $tr_code->tr_month_code ? $tr_code->tr_month_code : '' : ''}}" required type="text" class="form-control" id="tr_month_code" name="tr_month_code" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -71,18 +71,18 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="#" method="post" target="_blank">
+                                    <form action="{{route('vat.assign_tr_code')}}" method="post">
                                         @csrf
                                         <div class="form-group row">
                                             <label for="end_date" class="col-sm-4 col-form-label">Last Code</label>
                                             <div class="col-sm-8">
-                                                <input value="{{$last_tr_code->tr_month_code}}" required type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
+                                                <input value="{{$last_tr_code->tr_month_code ? $last_tr_code->tr_month_code : ''}}" type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="end_date" class="col-sm-4 col-form-label">New Code</label>
+                                            <label for="tr_month_code" class="col-sm-4 col-form-label">New Code</label>
                                             <div class="col-sm-8">
-                                                <input required type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
+                                                <input required type="text" class="form-control" id="tr_month_code" name="tr_month_code" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -106,23 +106,18 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="#" method="post" target="_blank">
+                                    <form action="{{route('vat.update_tr_status')}}" method="post">
                                         @csrf
                                         <div class="form-group row">
-                                            <label for="inputEmail3" class="col-sm-4 col-form-label">TR Code</label>
+                                            <label for="tr_code" class="col-sm-4 col-form-label">TR Code</label>
                                             <div class="col-sm-8">
-                                                <select name="print_code" class="browser-default custom-select">
-                                                    <option selected>Select TR Code</option>
-
-                                                    <option value="#"></option>
-
-                                                </select>
+                                                <input value="{{$tr_code_vat_pending ? $tr_code_vat_pending->tr_month_code ? $tr_code_vat_pending->tr_month_code : '' : ''}}" required type="text" class="form-control" id="tr_code" name="tr_code" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="end_date" class="col-sm-4 col-form-label">Dep Date</label>
+                                            <label for="tr_dep_date" class="col-sm-4 col-form-label">Dep Date</label>
                                             <div class="col-sm-8">
-                                                <input required type="date" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
+                                                <input required type="date" class="form-control" id="tr_dep_date" name="tr_dep_date" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">

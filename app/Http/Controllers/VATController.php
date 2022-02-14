@@ -15,7 +15,16 @@ class VATController extends Controller
         $models = Vehicle::select('model_code', 'model')->where('status', '=', 'Active')->get();
         $tr_code = Purchage::select('tr_month_code')->where('vat_process', '=', 'PENDING')->first();
         $last_tr_code = Purchage::select('tr_month_code')->latest('updated_at')->first();
-        return view('dms.vat_dashboard')->with(['models' => $models, 'tr_code' => $tr_code, 'last_tr_code' => $last_tr_code]);
+        $tr_code_vat_pending = Purchage::select('tr_month_code')->where('vat_process', '=', 'PENDING')->first();
+        return view('dms.vat_dashboard')
+            ->with(
+                [
+                    'models' => $models,
+                    'tr_code' => $tr_code,
+                    'last_tr_code' => $last_tr_code,
+                    'tr_code_vat_pending' => $tr_code_vat_pending
+                ]
+            );
     }
     public function vat_index()
     {
@@ -89,5 +98,22 @@ class VATController extends Controller
                 Core::where(['store_id' => $tr_data->id, 'model_code' => $value])->update($update_record);
             }
         }
+    }
+
+    public function assign_tr_code(Request $request)
+    {
+        Purchage::where('vat_process', '=', 'PENDING')->update(['tr_month_code' => $request->tr_month_code]);
+        return redirect()->back()->with('success', 'TR Code Assigned Successfully');
+    }
+
+    public function update_tr_status(Request $request)
+    {
+        Purchage::where('tr_month_code', '=', $request->tr_code)
+            ->update([
+                'vat_process' => 'VAT OK',
+                'tr_dep_date' => $request->tr_dep_date
+            ]);
+
+        return redirect()->back()->with('success', 'TR Status Updated Successfully');
     }
 }
