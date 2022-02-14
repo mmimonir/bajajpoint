@@ -86,12 +86,18 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-sm-12 text-center d-flex justify-content-center">
-                                                <a href="" target="_blank">
-                                                    <button style="width:150px;" type="submit" class="btn btn-dark btn-block">Assign</button>
-                                                </a>
+                                            <label for="vat_process" class="col-sm-4 col-form-label">Process</label>
+                                            <div class="col-sm-8">
+                                                <input value="{{$tr_code ? $tr_code->vat_process : 'VAT is Uptodate' }}" type="text" class="form-control" id="vat_process" name="vat_process"">
                                             </div>
                                         </div>
+                                        <div class=" form-group row">
+                                                <div class="col-sm-12 text-center d-flex justify-content-center">
+                                                    <a href="" target="_blank">
+                                                        <button style="width:150px;" type="submit" class="btn btn-dark btn-block">Assign</button>
+                                                    </a>
+                                                </div>
+                                            </div>
                                     </form>
                                 </div>
                             </div>
