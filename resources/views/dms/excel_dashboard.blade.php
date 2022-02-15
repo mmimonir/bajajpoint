@@ -209,31 +209,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey">
-                        <div class="card-header bg-dark">
-                            <h3 class="text-center rounded">TR Pending</h3>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-md-12">
-                                <div class="card-body">
-                                    <form action="{{ route('tr.tr_pending') }}" method="get" target="_blank">
-                                        @csrf
-                                        <div class="form-group row">
-                                            <div class="col-sm-12 text-center">
-                                                <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-dark btn-block">
-                                                        View List
-                                                    </button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey">
                         <div class="card-header bg-dark">
