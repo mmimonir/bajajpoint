@@ -108,6 +108,15 @@ class VATController extends Controller
     public function assign_tr_code(Request $request)
     {
         Purchage::where('vat_process', '=', 'PENDING')->update(['tr_month_code' => $request->tr_month_code]);
+        $whos_vat = Purchage::select('dealer_code')->where('vat_process', '=', 'PENDING')->get();
+        foreach ($whos_vat as $key => $value) {
+            $dealer_code = $value->dealer_code;
+            $whos_vat_code = $dealer_code == 2000 ? 'BP VAT' : ($dealer_code == 2011 ? 'BH VAT' : ($dealer_code == 2030 ? 'BB VAT' : ('BP VAT')));
+
+            Purchage::where(
+                ['vat_process' => 'PENDING', 'tr_month_code' => $request->tr_month_code, 'dealer_code' => $dealer_code]
+            )->update(['whos_vat' => $whos_vat_code]);
+        }
         return redirect()->back()->with('success', 'TR Code Assigned Successfully');
     }
 
