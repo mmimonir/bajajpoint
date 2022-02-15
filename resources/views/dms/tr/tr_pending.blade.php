@@ -19,7 +19,7 @@
                         <thead>
                             <tr>
                                 <th class="align-middle">Sl</th>
-                                <th class="align-middle" style="width:35px;">Print Code</th>
+                                <th class="align-middle" style="width:35px;">Whos VAT</th>
                                 <th class="align-middle" style="width:120px;">Vendor</th>
                                 <th class="align-middle">Pur Date</th>
                                 <th class="align-middle">Sale Date</th>
@@ -36,7 +36,7 @@
                             @foreach($tr_data as $data)
                             <tr>
                                 <td class="">{{$loop->iteration}}</td>
-                                <td class="">{{$data->print_code}}</td>
+                                <td class="">{{$data->whos_vat}}</td>
                                 <td class="vendor_name">{{$data->vendor ? $data->vendor : $data->vendor_name}}</td>
                                 <td class="">{{date('d-m-Y', strtotime($data->purchage_date))}}</td>
                                 <td class="">{{$data->original_sale_date ? date('d-m-Y', strtotime($data->original_sale_date)) : ''}}</td>

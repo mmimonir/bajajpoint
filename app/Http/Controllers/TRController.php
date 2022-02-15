@@ -24,6 +24,7 @@ class TRController extends Controller
                 'vehicles.model',
                 'purchages.purchage_date',
                 'purchages.vendor',
+                'purchages.whos_vat',
                 'cores.original_sale_date',
                 'cores.rg_number',
                 'cores.evl_invoice_no',
