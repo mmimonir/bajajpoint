@@ -111,6 +111,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // CKD
     Route::get('/tr_pending', [App\Http\Controllers\TRController::class, 'tr_pending'])->name('tr.tr_pending');
+    Route::get('/tr_status', [App\Http\Controllers\TRController::class, 'tr_status'])->name('tr.tr_status');
     // Route::post('/ckd_update', [App\Http\Controllers\CKDController::class, 'ckd_update'])->name('ckd.update');
 
     // Utility

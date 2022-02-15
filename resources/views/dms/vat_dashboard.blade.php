@@ -174,11 +174,11 @@
                                         @csrf
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center">
-                                                <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-dark btn-block">
-                                                        View List
-                                                    </button>
-                                                </a>
+
+                                                <button type="submit" class="btn btn-dark btn-block">
+                                                    View List
+                                                </button>
+
                                             </div>
                                         </div>
                                     </form>
@@ -196,13 +196,13 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="{{route('excel.service_data')}}" method="post" target="_blank">
+                                    <form action="{{route('tr.tr_status')}}" method="get" target="_blank">
                                         @csrf
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center d-flex justify-content-center">
-                                                <a href="" target="_blank">
-                                                    <button style="width:150px;" type="submit" class="btn btn-dark btn-block">View</button>
-                                                </a>
+
+                                                <button style="width:150px;" type="submit" class="btn btn-dark btn-block">View</button>
+
                                             </div>
                                         </div>
                                     </form>

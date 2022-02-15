@@ -103,6 +103,7 @@ class PurchageController extends Controller
     }
     public function purchage_details($id)
     {
+        $uml_data = Core::select('uml_mushak_no', 'mushak_date')->where('store_id', $id)->first();
         $purchages = Purchage::select(
             '*'
         )->where('id', $id)->first();
@@ -120,11 +121,18 @@ class PurchageController extends Controller
                 'cores.purchage_price',
                 'cores.print_code',
                 'cores.original_sale_date',
+                'cores.uml_mushak_no',
+                'cores.mushak_date',
                 'vehicles.model'
             )
             ->where('cores.store_id', "=", $id)
             ->get();
-        return view('dms.purchage.purchage_details')->with(['purchages' => $purchages, 'purchage_details' => $purchage_details]);
+        return view('dms.purchage.purchage_details')
+            ->with([
+                'purchages' => $purchages,
+                'purchage_details' => $purchage_details,
+                'uml_data' => $uml_data
+            ]);
     }
     public function purchage_detail_update(Request $request)
     {
@@ -136,12 +144,7 @@ class PurchageController extends Controller
                 'dealer_name' => $request['dealer_name'],
                 'quantity' => $request['quantity'],
                 'purchage_value' => $request['purchage_value'],
-                'whos_vat' => $request['whos_vat'],
-                'vat_process' => $request['vat_process'],
-                'tr_dep_date' => $request['tr_dep_date'],
                 'gate_pass' => $request['gate_pass'],
-                'tr_changer' => $request['tr_changer'],
-                'tr_month_code' => $request['tr_month_code']
             ];
             Purchage::where('id', $request->id)->update($update_record);
             // return redirect()->route('purchage.list');
@@ -194,8 +197,12 @@ class PurchageController extends Controller
     }
     public function print_code_update(Request $request)
     {
-        Core::where('store_id', $request->id)->update(['print_code' => $request->print_code]);
-
+        Core::where('store_id', $request->id)
+            ->update([
+                'print_code' => $request->print_code,
+                'uml_mushak_no' => $request->uml_mushak_no,
+                'mushak_date' => $request->mushak_date
+            ]);
         return redirect()->back()->with('success', 'Print Code Updated');
     }
 }

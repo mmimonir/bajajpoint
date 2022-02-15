@@ -80,55 +80,9 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mb-0 row">
-                                <label for="whos_vat" class="col-sm-4 col-form-label form-control-sm">Whos VAT</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="whos_vat" name="whos_vat" value="{{$purchages->whos_vat}}" placeholder="Purchage Value">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="tr_month_code" class="col-sm-4 col-form-label form-control-sm">TR Code</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="tr_month_code" name="tr_month_code" value="{{$purchages->tr_month_code}}" placeholder="TR Code">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="vat_process" class="col-sm-4 col-form-label form-control-sm">VAT Process</label>
-                                <div class="col-sm-8">
-                                    <input required type="text" class="form-control form-control-sm" id="vat_process" name="vat_process" value="{{$purchages->vat_process}}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="tr_dep_date" class="col-sm-4 col-form-label form-control-sm">TR Date</label>
-                                <div class="col-sm-8">
-                                    <input type="date" class="form-control form-control-sm" id="tr_dep_date" name="tr_dep_date" value="{{$purchages->tr_dep_date}}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
                                 <label for="gate_pass" class="col-sm-4 col-form-label form-control-sm">Gate Pass</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control form-control-sm" id="gate_pass" name="gate_pass" value="{{$purchages->gate_pass}}" placeholder="Gate Pass">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="tr_changer" class="col-sm-4 col-form-label form-control-sm">TR Changer</label>
-                                <div class="col-sm-8">
-                                    <select name="tr_changer" class="browser-default custom-select" required="required">
-                                        <option value="BP VAT">BP VAT</option>
-                                        <option value="BH VAT">BH VAT</option>
-                                        <option value="BB VAT">BB VAT</option>
-                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -138,8 +92,8 @@
                     </div>
                 </div>
             </form>
-            <div class="card-body">
-                <div id="purchage_details_list" class="container h-100 d-flex justify-content-center">
+            <div class="card-body d-flex justify-content-center">
+                <div id="purchage_details_list">
                     <table id="example" class="table table-hover table-responsive table-striped table-bordered" style="width:100%;">
                         <thead class="text-sm">
                             <tr>
@@ -149,11 +103,11 @@
                                 <th class="align-middle">Print</th>
                                 <th class="align-middle">Chassis</th>
                                 <th class="align-middle">Engine</th>
-                                <th class="align-middle">MRP</th>
-                                <th class="align-middle">MRP VAT</th>
                                 <th class="align-middle">VAT Purc</th>
                                 <th class="align-middle">VY Purchage</th>
                                 <th class="align-middle">Buy Price</th>
+                                <th class="align-middle">UML Mushak</th>
+                                <th class="align-middle">Date</th>
                                 <th class="align-middle">Action</th>
                             </tr>
                         </thead>
@@ -166,11 +120,11 @@
                                 <td>{{$detail->print_code}}</td>
                                 <td class="text-center">{{$detail->five_chassis}}</td>
                                 <td class="text-center">{{$detail->five_engine}}</td>
-                                <td class="text-right comma">{{$detail->unit_price}}</td>
-                                <td class="text-right">{{$detail->unit_price_vat}}</td>
                                 <td class="text-right">{{$detail->vat_purchage_mrp}}</td>
                                 <td class="text-center">{{$detail->vat_year_purchage}}</td>
                                 <td class="purchage_price text-right">{{$detail->purchage_price}}</td>
+                                <td style="text-align:center;">{{$detail->uml_mushak_no}}</td>
+                                <td class="">{{$detail->mushak_date}}</td>
                                 <td class="text-center">
                                     <a href="#">
                                         <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
@@ -185,7 +139,7 @@
                         <tfoot align="right" class="text-sm">
                             <tr>
                                 <th style="text-align:right; padding:2px 8px;"></th>
-                                <th style="text-align:right; padding:2px 8px;"></th>
+                                <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
@@ -193,7 +147,7 @@
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
-                                <th style="text-align:right; padding:2px 8px;"></th>
+                                <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                             </tr>
@@ -209,18 +163,34 @@
     <div class="col-md-11">
         <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
             <div class="card-header bg-dark">
-                <h4 style="margin-top:5px;">Print Code Update</h4>
+                <h4 style="margin-top:5px;">Update</h4>
             </div>
             <form action="{{route('purchage.print_code_update')}}" method="post" id="print_update_form">
                 @csrf
                 <div class="card-body">
                     <div class="form-row">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group mb-0 row">
                                 <label for="print_code" class="col-sm-4 col-form-label form-control-sm">Print Code</label>
                                 <div class="col-sm-8">
-                                    <input required type="text" class="form-control form-control-sm" id="print_code" name="print_code">
+                                    <input type="text" class="form-control form-control-sm" id="print_code" name="print_code">
                                     <input hidden type="text" name="id" value="{{$purchages->id}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mb-0 row">
+                                <label for="uml_mushak_no" class="col-sm-4 col-form-label form-control-sm">UML Mushak</label>
+                                <div class="col-sm-8">
+                                    <input type="text" value="{{$uml_data ? $uml_data->uml_mushak_no : ''}}" class="form-control form-control-sm" id="uml_mushak_no" name="uml_mushak_no">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mb-0 row">
+                                <label for="mushak_date" class="col-sm-4 col-form-label form-control-sm">UML Mushak Date</label>
+                                <div class="col-sm-8">
+                                    <input type="date" value="{{$uml_data ? $uml_data->mushak_date : ''}}" class="form-control form-control-sm" id="mushak_date" name="mushak_date">
                                 </div>
                             </div>
                         </div>
@@ -298,7 +268,6 @@
                     0;
             };
 
-            // computing column Total of the complete result
             var mrp = api
                 .column(6)
                 .data()
@@ -306,28 +275,14 @@
                     return intVal(a) + intVal(b);
                 }, 0);
 
-            var mrp_vat = api
-                .column(7)
-                .data()
-                .reduce(function(a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0);
-
-            var mrp_vat_pur = api
+            var buy_price = api
                 .column(8)
                 .data()
                 .reduce(function(a, b) {
                     return intVal(a) + intVal(b);
                 }, 0);
-
-            var buy_price = api
-                .column(10)
-                .data()
-                .reduce(function(a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0);
             var count = api
-                .column(3)
+                .column(1)
                 .data()
                 .reduce(function(a, b) {
                     return ++a;
@@ -336,13 +291,11 @@
             // Update footer by showing the total with the reference of the column index
             $(api.column(0).footer()).html("Total");
             $(api.column(6).footer()).html(mrp.toLocaleString('en-IN'));
-            $(api.column(3).footer()).html(count);
-            $(api.column(7).footer()).html(mrp_vat.toLocaleString('en-IN'));
-            $(api.column(8).footer()).html(mrp_vat_pur.toLocaleString('en-IN'));
-            $(api.column(10).footer()).html(buy_price.toLocaleString('en-IN'));
+            $(api.column(1).footer()).html(count);
+            $(api.column(8).footer()).html(buy_price.toLocaleString('en-IN'));
         },
         columnDefs: [{
-            targets: [5, 6, 7, 8, 10],
+            targets: [6, 8],
             render: $.fn.dataTable.render.intlNumber('en-IN')
         }],
 
