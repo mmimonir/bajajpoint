@@ -39,17 +39,13 @@ class SalesController extends Controller
     // }
     public function sales_update($id)
     {
-        // if (!empty($print_ref)) {
-        //     array_push($sales_data, $print_ref);
-        // }
 
         $core_data = Core::select('*')->where('id', $id)->first();
-
         $model_code = $core_data->model_code;
         $store_id = $core_data->store_id;
         $print_ref = Supplier::select('print_ref')->whereNotNull('dealer_name')->get();
         $vehicle_data = Vehicle::select('model')->where('model_code', $model_code)->first();
-        $purchage_data = Purchage::select('purchage_date', 'vendor', 'challan_no', 'vat_process')->where('id', $store_id)->first();
+        $purchage_data = Purchage::select('purchage_date', 'vendor', 'factory_challan_no')->where('id', $store_id)->first();
         $color_data = ColorCode::select('color_code', 'color')->where('model_code', $model_code)->get();
         $pd_data = PriceDeclare::select('id', 'vat_mrp', 'submit_date')->where(['model_code' => $model_code, 'status' => '1'])->first();
 
@@ -116,15 +112,14 @@ class SalesController extends Controller
                     'sale_vat' => $request->sale_vat,
                     'basic_price_vat' => $request->basic_price_vat,
                     'price_declare_id' => $request->price_declare_id,
-                    'model' => $request->model
+                    'model' => $request->model,
+                    'uml_mushak_no' => $request->uml_mushak_no,
+                    'mushak_date' => $request->mushak_date
                 ]);
             return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
-
-        // return redirect()->route('print.print_dashboard')
-        //     ->with('success', 'Sales updated successfully.');
     }
     public function sales_report(Request $request)
     {

@@ -195,13 +195,13 @@
                                         <div class="form-group row" style="margin-bottom:0px;">
                                             <label for="uml_mushak_no" class="col-sm-5 col-form-label form-control-sm">UML Mus No</label>
                                             <div class="col-sm-7" style="padding:0px;">
-                                                <input value="{{ $purchage_data ? ($purchage_data->uml_mushak_no ? $purchage_data->uml_mushak_no : $core_data->uml_mushak_no) : $core_data->uml_mushak_no }}" type="text" name="uml_mushak_no" class="form-control form-control-sm" id="uml_mushak_no">
+                                                <input value="{{ $core_data ? $core_data->uml_mushak_no : '' }}" type="text" name="uml_mushak_no" class="form-control form-control-sm" id="uml_mushak_no">
                                             </div>
                                         </div>
                                         <div class="form-group row" style="margin-bottom:0px;">
                                             <label for="challan_no" class="col-sm-5 col-form-label form-control-sm">Tail Mus No</label>
                                             <div class="col-sm-7" style="padding:0px;">
-                                                <input value="{{ $purchage_data ? ($purchage_data->challan_no ? $purchage_data->challan_no : $core_data->challan_no) : $core_data->challan_no }}" type="text" name="challan_no" class="form-control form-control-sm" id="challan_no">
+                                                <input value="{{ $purchage_data ? $purchage_data->factory_challan_no : '' }}" type="text" name="challan_no" class="form-control form-control-sm" id="challan_no">
                                             </div>
                                         </div>
                                         <div class="form-group row" style="margin-bottom:0px;">
@@ -236,7 +236,7 @@
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="vendor" class="col-sm-3 col-form-label form-control-sm">Vendor</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input required value="{{ $purchage_data ? ($purchage_data->vendor ? $purchage_data->vendor : $core_data->vendor) : $core_data->vendor }}" type="text" name="vendor" class="form-control form-control-sm" id="vendor">
+                                        <input required value="{{ $purchage_data ? $purchage_data->vendor : '' }}" type="text" name="vendor" class="form-control form-control-sm" id="vendor">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
@@ -284,7 +284,7 @@
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="vat_process" class="col-sm-3 col-form-label form-control-sm">VAT Process</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{$core_data->vat_process ? $core_data->vat_process : $purchage_data->vat_process}}" type="text" name="vat_process" class="form-control form-control-sm" id="vat_process">
+                                        <input value="{{$core_data->vat_process }}" type="text" name="vat_process" class="form-control form-control-sm" id="vat_process">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
@@ -308,13 +308,13 @@
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="purchage_date" class="col-sm-3 col-form-label form-control-sm">Purchage Date</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input required value="{{ $purchage_data ? ($purchage_data->purchage_date ? $purchage_data->purchage_date : $core_data->purchage_date) : $core_data->purchage_date }}" type="date" name="purchage_date" class="form-control form-control-sm" id="purchage_date">
+                                        <input required value="{{ $purchage_data ? $purchage_data->purchage_date : '' }}" type="date" name="purchage_date" class="form-control form-control-sm" id="purchage_date">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="uml_mushak_date" class="col-sm-3 col-form-label form-control-sm">UML Mus Date</label>
                                     <div class="col-sm-9" style="padding:0px;">
-                                        <input value="{{ $purchage_data ? ($purchage_data->uml_mushak_date ? $purchage_data->uml_mushak_date : $core_data->mushak_date) : $core_data->mushak_date }}" type="date" name="uml_mushak_date" class="form-control form-control-sm" id="uml_mushak_date">
+                                        <input value="{{ $core_data ? $core_data->mushak_date : '' }}" type="date" name="mushak_date" class="form-control form-control-sm" id="mushak_date">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom:0px;">
@@ -323,17 +323,6 @@
                                         <input required value="{{$core_data->print_ref }}" type="text" name="print_ref" class="form-control form-control-sm" id="print_ref">
                                     </div>
                                 </div>
-                                <!-- <div class="form-group row" style="margin-bottom:0px;">
-                                    <label for="print_ref" class="col-sm-3 col-form-label form-control-sm">Print Ref</label>
-                                    <div class="col-sm-9" style="padding:0px;">
-                                        <select name="print_ref" class="browser-default custom-select">
-                                            <option>Open this select menu</option>
-                                            @foreach ($print_ref as $ref)
-                                            <option {{$ref->print_ref == $core_data->print_ref ? 'selected' : ''}} value="{{$ref->print_ref}}">{{$ref->print_ref}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div> -->
                                 <div class="form-group row" style="margin-bottom:0px;">
                                     <label for="evl_invoice_no" class="col-sm-3 col-form-label form-control-sm">EVL Invoice</label>
                                     <div class="col-sm-9" style="padding:0px;">
