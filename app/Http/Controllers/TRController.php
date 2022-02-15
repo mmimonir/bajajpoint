@@ -23,14 +23,14 @@ class TRController extends Controller
                 'vehicles.model',
                 'purchages.purchage_date',
                 'purchages.vendor',
-                'purchages.whos_vat',
-                'purchages.vat_process',
+                'cores.whos_vat',
+                'cores.vat_process',
                 'cores.original_sale_date',
                 'cores.rg_number',
                 'cores.evl_invoice_no',
             )
-            ->where('purchages.vat_process', '=', 'PENDING')->get();
-        // ->whereNull('cores.evl_invoice_no')->get();
+            ->where('cores.vat_process', '=', 'PENDING')->get();
+
 
         return view('dms.tr.tr_pending')->with(['tr_data' => $tr_data]);
     }

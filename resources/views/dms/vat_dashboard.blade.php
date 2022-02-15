@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
                         <div class="card-header bg-dark">
                             <h3 class="text-center rounded">Assign TR Number</h3>
@@ -26,12 +26,24 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="{{route('tr_update')}}" method="post" target="_blank">
+                                    <form action="{{route('assign_tr_number')}}" method="post">
                                         @csrf
                                         <div class="form-group row">
-                                            <label for="inputEmail3" class="col-sm-4 col-form-label">Model</label>
+                                            <label for="whos_vat" class="col-sm-4 col-form-label">Whos VAT</label>
                                             <div class="col-sm-8">
-                                                <select name="model_code[]" class="selectpicker" multiple data-live-search="true">
+                                                <select name="whos_vat" class="browser-default custom-select" required>
+                                                    @foreach ($whos_vat as $data)
+                                                    <option value="{{$data->whos_vat}}">
+                                                        {{$data->whos_vat}}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="model_code" class="col-sm-4 col-form-label">Model</label>
+                                            <div class="col-sm-8">
+                                                <select name="model_code[]" class="selectpicker" multiple data-live-search="true" required>
                                                     @foreach ($models as $model)
                                                     <option value="{{$model->model_code}}">{{$model->model}}</option>
                                                     @endforeach
@@ -41,20 +53,18 @@
                                         <div class="form-group row">
                                             <label for="tr_number" class="col-sm-4 col-form-label">TR Number</label>
                                             <div class="col-sm-8">
-                                                <input required type="text" class="form-control" id="tr_number" name="tr_number" placeholder="58">
+                                                <input required type="text" required class="form-control" id="tr_number" name="tr_number" placeholder="58">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="tr_month_code" class="col-sm-4 col-form-label">TR Code</label>
                                             <div class="col-sm-8">
-                                                <input value="{{$tr_code ? $tr_code->tr_month_code ? $tr_code->tr_month_code : '' : ''}}" required type="text" class="form-control" id="tr_month_code" name="tr_month_code" placeholder="JAN0122">
+                                                <input required value="{{$tr_code ? $tr_code->tr_month_code : 'No Code Assign'}}" required type="text" class="form-control" id="tr_month_code" name="tr_month_code" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center d-flex justify-content-center">
-                                                <a href="" target="_blank">
-                                                    <button style="width:150px;" type="submit" class="btn btn-dark btn-block">Assign</button>
-                                                </a>
+                                                <button style="width:150px;" type="submit" class="btn btn-dark btn-block">Assign</button>
                                             </div>
                                         </div>
                                     </form>
@@ -88,14 +98,12 @@
                                         <div class="form-group row">
                                             <label for="vat_process" class="col-sm-4 col-form-label">Process</label>
                                             <div class="col-sm-8">
-                                                <input value="{{$tr_code ? $tr_code->vat_process : 'VAT is Uptodate' }}" type="text" class="form-control" id="vat_process" name="vat_process"">
+                                                <input value="{{$tr_code ? $tr_code->vat_process : 'No Code Assign' }}" type="text" class="form-control" id="vat_process" name="vat_process"">
                                             </div>
                                         </div>
                                         <div class=" form-group row">
                                                 <div class="col-sm-12 text-center d-flex justify-content-center">
-                                                    <a href="" target="_blank">
-                                                        <button style="width:150px;" type="submit" class="btn btn-dark btn-block">Assign</button>
-                                                    </a>
+                                                    <button style="width:150px;" {{$tr_code ? '' : 'disabled'}} type="submit" class="btn btn-dark btn-block">Assign</button>
                                                 </div>
                                             </div>
                                     </form>
@@ -115,21 +123,9 @@
                                     <form action="{{route('vat.update_tr_status')}}" method="post">
                                         @csrf
                                         <div class="form-group row">
-                                            <label for="dealer_code" class="col-sm-4 col-form-label">Dealer Code</label>
-                                            <div class="col-sm-8">
-                                                <select name="dealer_code" class="browser-default custom-select" required="required">
-                                                    @foreach ($dealer_code as $data)
-                                                    <option value="{{$data->dealer_code}}">
-                                                        {{$data->dealer_code}}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
                                             <label for="tr_code" class="col-sm-4 col-form-label">TR Code</label>
                                             <div class="col-sm-8">
-                                                <input value="{{$tr_code_vat_pending ? $tr_code_vat_pending->tr_month_code ? $tr_code_vat_pending->tr_month_code : '' : ''}}" required type="text" class="form-control" id="tr_code" name="tr_code" placeholder="JAN0122">
+                                                <input value="{{$tr_code ? $tr_code->tr_month_code ? $tr_code->tr_month_code : '' : ''}}" required type="text" class="form-control" id="tr_code" name="tr_code" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -140,9 +136,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center d-flex justify-content-center">
-                                                <a href="" target="_blank">
-                                                    <button style="width:150px;" type="submit" class="btn btn-dark btn-block">Update</button>
-                                                </a>
+                                                <button style="width:150px;" type="submit" {{$tr_code ? '' : 'disabled'}} class="btn btn-dark btn-block">Update</button>
                                             </div>
                                         </div>
                                     </form>
@@ -151,54 +145,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                        <div class="card-header bg-dark">
-                            <h3 class="text-center rounded">TR Changer Update</h3>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-md-12">
-                                <div class="card-body">
-                                    <form action="{{route('vat.tr_changer_update')}}" method="post">
-                                        @csrf
-                                        <div class="form-group row">
-                                            <label for="dealer_code" class="col-sm-4 col-form-label">TR CH Code</label>
-                                            <div class="col-sm-8">
-                                                <select name="tr_changer" class="browser-default custom-select" required="required">
-                                                    @foreach ($tr_changer_code as $data)
-                                                    <option value="{{$data->tr_changer}}">
-                                                        {{$data->tr_changer}}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="tr_code" class="col-sm-4 col-form-label">TR Code</label>
-                                            <div class="col-sm-8">
-                                                <input readonly value="{{$tr_code_vat_pending ? $tr_code_vat_pending->tr_month_code ? $tr_code_vat_pending->tr_month_code : '' : ''}}" required type="text" class="form-control" id="tr_code" name="tr_code" placeholder="JAN0122">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="tr_dep_date" class="col-sm-4 col-form-label">Dep Date</label>
-                                            <div class="col-sm-8">
-                                                <input required type="date" class="form-control" id="tr_dep_date" name="tr_dep_date" placeholder="JAN0122">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-12 text-center d-flex justify-content-center">
-                                                <a href="" target="_blank">
-                                                    <button style="width:150px;" type="submit" class="btn btn-dark btn-block">Update</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>

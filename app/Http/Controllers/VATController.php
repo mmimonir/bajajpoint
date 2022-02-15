@@ -13,20 +13,17 @@ class VATController extends Controller
     public function index()
     {
         $models = Vehicle::select('model_code', 'model')->where('status', '=', 'Active')->get();
-        $tr_code = Purchage::select('tr_month_code', 'vat_process')->where('vat_process', '=', 'PENDING')->first();
-        $last_tr_code = Purchage::select('tr_month_code')->latest('updated_at')->first();
-        $tr_code_vat_pending = Purchage::select('tr_month_code')->where('vat_process', '=', 'PENDING')->first();
-        $dealer_code = Purchage::select('dealer_code')->where('vat_process', '=', 'PENDING')->get()->unique('dealer_code');
-        $tr_changer_code = Purchage::select('tr_changer')->where('vat_process', '=', 'PENDING')->get();
+        $tr_code = Core::select('tr_month_code', 'vat_process')->where('vat_process', '=', 'PENDING')->first();
+        $last_tr_code = Core::select('tr_month_code')->latest('store_id')->first();
+        $whos_vat = Core::select('whos_vat')->where('tr_month_code', '=', $last_tr_code->tr_month_code)->whereNull('tr_number')->get()->unique('whos_vat');
+
         return view('dms.vat_dashboard')
             ->with(
                 [
                     'models' => $models,
                     'tr_code' => $tr_code,
                     'last_tr_code' => $last_tr_code,
-                    'tr_code_vat_pending' => $tr_code_vat_pending,
-                    'dealer_code' => $dealer_code,
-                    'tr_changer_code' => $tr_changer_code,
+                    'whos_vat' => $whos_vat,
                 ]
             );
     }
@@ -93,28 +90,55 @@ class VATController extends Controller
         // $pdf->setPaper('A4', 'landscape');
         // return $pdf->stream('vat_sale_bp');
     }
-    public function tr_update(Request $request)
+    public function assign_tr_number(Request $request)
     {
+        $whos_vat = $request->whos_vat;
+        $tr_number = $request->tr_number;
+        $tr_month_code = $request->tr_month_code;
 
-        $tr_pending = Purchage::select('id')->where('tr_month_code', '=', $request->tr_month_code)->get();
-        $update_record = ['tr_number' => $request->tr_number];
+        $tr_pending = Core::select('id', 'print_code')
+            ->where([
+                'tr_month_code' => $tr_month_code,
+                'whos_vat' => $whos_vat,
+            ])->get();
+        $update_record = ['tr_number' => $tr_number];
         foreach ($tr_pending as $key => $tr_data) {
             foreach ($request->model_code as $key => $value) {
-                Core::where(['store_id' => $tr_data->id, 'model_code' => $value])->update($update_record);
+                Core::where([
+                    'whos_vat' => $whos_vat,
+                    'tr_month_code' => $tr_month_code,
+                    'model_code' => $value
+                ])->update($update_record);
             }
         }
+        return redirect()->back()->with('success', 'TR Number Assigned Successfully');
     }
 
+
+    // public function assign_tr_code(Request $request)
+    // {
+    //     Purchage::where('vat_process', '=', 'PENDING')->update(['tr_month_code' => $request->tr_month_code]);
+    //     $whos_vat = Purchage::select('dealer_code')->where('vat_process', '=', 'PENDING')->get();
+    //     foreach ($whos_vat as $key => $value) {
+    //         $dealer_code = $value->dealer_code;
+    //         $whos_vat_code = $dealer_code == 2000 ? 'BP VAT' : ($dealer_code == 2011 ? 'BH VAT' : ($dealer_code == 2030 ? 'BB VAT' : ('BP VAT')));
+
+    //         Purchage::where(
+    //             ['vat_process' => 'PENDING', 'tr_month_code' => $request->tr_month_code, 'dealer_code' => $dealer_code]
+    //         )->update(['whos_vat' => $whos_vat_code]);
+    //     }
+    //     return redirect()->back()->with('success', 'TR Code Assigned Successfully');
+    // }
     public function assign_tr_code(Request $request)
     {
-        Purchage::where('vat_process', '=', 'PENDING')->update(['tr_month_code' => $request->tr_month_code]);
-        $whos_vat = Purchage::select('dealer_code')->where('vat_process', '=', 'PENDING')->get();
+        Core::where('vat_process', '=', 'PENDING')->update(['tr_month_code' => $request->tr_month_code]);
+        $whos_vat = Core::select('print_code')->where('vat_process', '=', 'PENDING')->get();
         foreach ($whos_vat as $key => $value) {
-            $dealer_code = $value->dealer_code;
-            $whos_vat_code = $dealer_code == 2000 ? 'BP VAT' : ($dealer_code == 2011 ? 'BH VAT' : ($dealer_code == 2030 ? 'BB VAT' : ('BP VAT')));
+            $print_code = $value->print_code;
+            $whos_vat_code = $print_code == 2000 ? 'BP VAT' : ($print_code == 2011 ? 'BH VAT' : ($print_code == 2030 ? 'BB VAT' : ('BP VAT')));
 
-            Purchage::where(
-                ['vat_process' => 'PENDING', 'tr_month_code' => $request->tr_month_code, 'dealer_code' => $dealer_code]
+            Core::where(
+                ['vat_process' => 'PENDING', 'tr_month_code' => $request->tr_month_code, 'print_code' => $print_code]
             )->update(['whos_vat' => $whos_vat_code]);
         }
         return redirect()->back()->with('success', 'TR Code Assigned Successfully');
@@ -123,12 +147,9 @@ class VATController extends Controller
     public function update_tr_status(Request $request)
     {
         try {
-            $dealer_code = $request->dealer_code;
-            Purchage::where(['tr_month_code' => $request->tr_code, 'dealer_code' => $request->dealer_code])
-                ->whereNull('tr_changer')
+            Core::where(['tr_month_code' => $request->tr_code])
                 ->update([
                     'vat_process' => 'VAT OK',
-                    'whos_vat' => $dealer_code == 2000 ? 'BP VAT' : ($dealer_code == 2011 ? 'BH VAT' : ($dealer_code == 2030 ? 'BB VAT' : ('BP VAT'))),
                     'tr_dep_date' => $request->tr_dep_date
                 ]);
 

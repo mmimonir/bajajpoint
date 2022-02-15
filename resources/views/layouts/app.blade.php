@@ -80,7 +80,7 @@
         }
 
         .dropdown-menu {
-            height: 200px;
+            height: 500px;
             width: 100% !important;
             min-width: 0px !important;
             font-size: 12px !important;

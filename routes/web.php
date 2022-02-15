@@ -118,7 +118,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Quotation
     Route::get('/quotation_index', [App\Http\Controllers\QuotationController::class, 'index'])->name('quotation.index');
-    Route::post('/tr_update', [App\Http\Controllers\VATController::class, 'tr_update'])->name('tr_update');
+    Route::post('/assign_tr_number', [App\Http\Controllers\VATController::class, 'assign_tr_number'])->name('assign_tr_number');
 });
 Auth::routes(['register' => false]);
 // Auth::routes();
