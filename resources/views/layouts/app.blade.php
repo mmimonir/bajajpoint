@@ -79,12 +79,12 @@
             text-decoration: none;
         }
 
-        .dropdown-menu {
+        /* .dropdown-menu {
             height: 500px;
             width: 100% !important;
             min-width: 0px !important;
             font-size: 12px !important;
-        }
+        } */
     </style>
 </head>
 
