@@ -79,12 +79,17 @@
             text-decoration: none;
         }
 
-        /* .dropdown-menu {
+        .dropdown-menu {
             height: 500px;
             width: 100% !important;
             min-width: 0px !important;
             font-size: 12px !important;
-        } */
+        }
+
+        .custom_style {
+            width: 280px !important;
+            height: 233px;
+        }
     </style>
 </head>
 
@@ -130,7 +135,7 @@
                         <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                     </a>
                     @endauth
-                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right custom_style">
                         <!-- User image -->
                         @auth
                         <li class="user-header bg-dark">
