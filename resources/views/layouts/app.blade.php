@@ -16,6 +16,7 @@
     <link href="http://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet" />
 
     @yield('datatable')
+    @yield('css')
     @yield('datatable_css')
     @yield('third_party_stylesheets')
     @stack('page_css')
@@ -89,6 +90,11 @@
         .custom_style {
             width: 280px !important;
             height: 233px;
+        }
+
+        .ui-menu {
+            width: 19% !important;
+            background: white !important;
         }
     </style>
 </head>

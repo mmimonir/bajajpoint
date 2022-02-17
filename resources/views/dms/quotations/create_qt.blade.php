@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" />
 @endsection
-
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-8" style="margin-top:10px;">
@@ -18,7 +17,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{route('quotation.store')}}" method="post" id="quotation_create_form">
+                <form action="#" method="post" id="quotation_create_form">
                     @csrf
                     <div class="form-row">
                         <div class="col-md-6">
@@ -49,17 +48,17 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group form-group-sm mb-0 row">
-                                <label for="to" class="col-sm-2 col-form-label">Address 1</label>
+                                <label for="address_one" class="col-sm-2 col-form-label">Address 1</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm" id="to" name="to" placeholder="23/Ka New Eskaton Road">
+                                    <input type="text" class="form-control form-control-sm" id="address_one" name="address_one" placeholder="23/Ka New Eskaton Road">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group form-group-sm mb-0 row">
-                                <label for="to" class="col-sm-2 col-form-label">Address 2</label>
+                                <label for="address_two" class="col-sm-2 col-form-label">Address 2</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm" id="to" name="to" placeholder="Ramna, Dhaka-1212">
+                                    <input type="text" class="form-control form-control-sm" id="address_two" name="address_two" placeholder="Ramna, Dhaka-1212">
                                 </div>
                             </div>
                         </div>
@@ -98,13 +97,13 @@
                                     <input name="tb_description[]" class="form-control form-control-sm tb_description" id="tb_description" style="width:300px;">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control form-control-sm tb_unit text-center" id="tb_unit" name="tb_unit[]" placeholder="Chassis">
+                                    <input name="tb_unit[]" type="text" class="form-control form-control-sm tb_unit text-center" id="tb_unit" placeholder="Unit">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control form-control-sm text-center tb_unit_price" id="tb_unit_price" name="tb_unit_price[]" placeholder="Engine">
+                                    <input name="tb_unit_price[]" type="text" class="form-control form-control-sm text-center tb_unit_price" id="tb_unit_price" placeholder="Unit Price">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control form-control-sm tb_grand_total text-right" id="tb_grand_total" name="tb_grand_total[]" placeholder="Unit Price">
+                                    <input name="tb_grand_total[]" type="text" class="form-control form-control-sm tb_grand_total text-right" id="tb_grand_total" placeholder="Total">
                                 </td>
                             </tr>
                         </tbody>
@@ -122,17 +121,17 @@
                     <div class="form-row" style="margin-top:10px;">
                         <div class="col-md-12">
                             <div class="form-group form-group-sm mb-0 row">
-                                <label for="ref" class="col-sm-2 col-form-label">Validity:</label>
+                                <label for="validity" class="col-sm-2 col-form-label">Validity:</label>
                                 <div class="col-sm-10">
-                                    <input type="date" class="form-control form-control-sm" id="ref" name="ref" placeholder="Ref: Bajaj Point/Offer-">
+                                    <input type="date" class="form-control form-control-sm" id="validity" name="validity" placeholder="Ref: Bajaj Point/Offer-">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group form-group-sm mb-0 row">
-                                <label for="ref" class="col-sm-2 col-form-label">Note</label>
+                                <label for="note" class="col-sm-2 col-form-label">Note</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm" id="ref" name="ref" value="All price are without AIT">
+                                    <input type="text" class="form-control form-control-sm" id="note" name="note" value="All price are without AIT">
                                 </div>
                             </div>
                         </div>
@@ -154,52 +153,47 @@
                         <button class="btn btn-info btn-sm text-white" type="submit">Submit</button>
                     </center>
                 </form>
-
             </div>
-
         </div>
-
     </div>
 </div>
-
-
 @endsection
 
 @section('script')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <script>
-    $("#purchage_entry_form").submit(function(e) {
+    $("#quotation_create_form").submit(function(e) {
         e.preventDefault();
         const FD = new FormData(this);
-        // $.ajax({
-        //     url: "{{ route('purchage.create') }}",
-        //     method: 'post',
-        //     data: FD,
-        //     cache: false,
-        //     contentType: false,
-        //     processData: false,
-        //     dataType: 'json',
-        //     success: function(response) {
-        //         if (response.status == 200) {
-        //             Swal.fire({
-        //                 icon: 'success',
-        //                 title: response.message,
-        //                 showConfirmButton: false,
-        //                 timer: 2000
-        //             })
-        //             $('#purchage_entry_form').trigger("reset");
-        //         } else {
-        //             Swal.fire({
-        //                 icon: 'error',
-        //                 title: 'Oops...',
-        //                 text: response.message,
-        //                 footer: '<a href="">Why do I have this issue?</a>'
-        //             })
+        $.ajax({
+            url: "{{ route('quotation.store') }}",
+            method: 'post',
+            data: FD,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function(response) {
+                if (response.status == 200) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: response.message,
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    $('#quotation_create_form').trigger("reset");
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: response.message,
+                        footer: '<a href="">Why do I have this issue?</a>'
+                    })
 
-        //         }
-        //     }
-        // });
+                }
+            }
+        });
     });
     $('#add').on('click', function(e) {
         e.preventDefault();
@@ -224,79 +218,33 @@
             $('#remove').attr('disabled', true);
         }
     }
-    $(document).on("keyup", ".five_chassis", function() {
-        var sum = 0;
-        var qty = 0
-        $(".sum").each(function() {
-            sum += +$(this).val();
-            qty++;
-        });
-        $(".grant_total").val(sum);
-        $("#purchage_value").val(sum);
-        $("#quantity").val(qty);
-    });
-
-    function getCurrentFinancialYear(date) {
-        var financial_year = "";
-        var today = new Date(date);
-        if ((today.getMonth() + 1) <= 3) {
-            financial_year = (today.getFullYear() - 1) + "-" + today.getFullYear()
-        } else {
-            financial_year = today.getFullYear() + "-" + (today.getFullYear() + 1)
-        }
-        return financial_year;
-    }
-
-    function get_vat_purchage_month(purchage_date) {
-        const date = new Date(purchage_date);
-        const month = date.toLocaleString('default', {
-            month: 'short'
-        }).toUpperCase();
-        const year = date.getFullYear();
-
-        return month + year;
-    }
-
-    $(".add_more_model").on("change", ".all_model", function() {
-        var purchage_date = $('#purchage_date').val();
-        var model_code = $(this).val();
-        let csrf = '{{ csrf_token() }}';
+    $("#tbl").on("keyup", ".tb_description", function() {
         var tr = $(this).parent().parent();
-        $.ajax({
-            url: "{{ route('purchage.get_mrp') }}",
-            method: 'post',
-            data: {
-                model_code: model_code,
-                _token: csrf
-            },
-            success: function({
-                color,
-                mrp
-            }) {
-                tr.find(".unit_price").val(mrp[0].mrp);
-                tr.find(".unit_price_vat").val(mrp[0].vat_mrp);
-                tr.find(".vat_purchage_mrp").val(mrp[0].vat_purchage_mrp);
-                tr.find(".vat_year_purchage").val(getCurrentFinancialYear(purchage_date).replace('-', ''));
-                tr.find(".vat_month_purchage").val(get_vat_purchage_month(purchage_date));
-                tr.find(".purchage_price").val(mrp[0].purchage_price);
-                tr.find(".color").empty();
-                tr.find(".five_chassis").val('');
-                tr.find(".five_engine").val('');
-                tr.find(".color").append(`<option value="">None</option>`);
-                color.forEach(function(item) {
-                    tr.find(".color").append(`<option value="${item.color_code}">${item.color}</option>`);
-                });
-            },
+        tr.find(".tb_description").autocomplete({
+            source: [
+                "Bajaj Pulsar 160 NS ABS",
+                "Bajaj Pulsar 150 SD GLOSSY",
+                "Bajaj Pulsar 150 SD MATT",
+                "Bajaj Pulsar 150 TD MATT",
+                "Bajaj Pulsar 150 TD GLOSSY",
+                "Bajaj Pulsar 150 TD ABS",
+                "Bajaj Discover 125 Disc",
+                "Bajaj Discover 110 Disc",
+                "Bajaj Platina 110 Disc",
+                "Bajaj Platina 100 ES",
+                "Bajaj CT-100 ES",
+                "Bajaj Avenger 160 ABS TD",
+                "Registration (10 Years)",
+                "Registration (02 Years)",
+                "Other's",
+            ]
         });
     });
-</script>
-<script>
-    $('.tb_description').each(function() {
-        $(this).click(function() {
-            $(this).autocomplete({
-                source: ["PULSAR 150 SD GLOSSY", "PULSAR 150 SD MATT", ]
-            });
-        });
+    $("#tbl").on("blur", ".tb_unit_price", function() {
+        var tr = $(this).parent().parent();
+        var qty = +tr.find(".tb_unit").val();
+        var unit_price = +tr.find(".tb_unit_price").val();
+        tr.find(".tb_grand_total").val(qty * unit_price);
     });
 </script>
 @endsection
