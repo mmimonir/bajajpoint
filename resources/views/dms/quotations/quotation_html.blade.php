@@ -68,15 +68,15 @@
 <body>
     <div class="quotation">
         <div class="container">
-            <p>Ref: Bajaj Point/Offer/2021-2022/149</p>
-            <p>Date: 18.01.2022</p>
+            <p>{{$quotations->ref}}</p>
+            <p>Date: {{$quotations->qt_date}}</p>
         </div>
         <div style="clear:both;"></div>
         <div>
             <p class="line-spacing"">To,</p>
-            <p>SRA Trading</p>
-            <p>RK Mission Road</p>
-            <p>Dit Road, Malibagh, Dhaka-1205</p>
+            <p>{{$quotations->to}}</p>
+            <p>{{$quotations->address_one}}</p>
+            <p>{{$quotations->address_two}}</p>            
             <p class=" line-spacing">Sub: OFFER FOR SUPPLY OF BAJAJ MOTOR CYCLE.</p>
             <p class="line-spacing" style="text-align:justify;">
                 Thank you very much for your kind interest in Bajaj vehicles
@@ -96,13 +96,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($quotation_items as $data)
                     <tr>
-                        <td class="text-center">1</td>
-                        <td>Bajaj Discover 125 Disc</td>
-                        <td class="text-center unit">1</td>
-                        <td class="text-right unit_price">1,34,000/-</td>
-                        <td class="text-right grand_total">1,34,000/-</td>
+
+                        <td class="text-center">{{$loop->iteration}}</td>
+                        <td>{{$data->tb_description}}</td>
+                        <td class="text-center unit">{{$data->tb_unit}}</td>
+                        <td class="text-right unit_price">{{$data->tb_unit_price}}</td>
+                        <td class="text-right grand_total">{{$data->tb_grand_total}}</td>
+
                     </tr>
+                    @endforeach
                 </tbody>
                 <tfoot class="text-right">
                     <tr>

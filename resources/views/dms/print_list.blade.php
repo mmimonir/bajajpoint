@@ -16,10 +16,7 @@
             </div>
             <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey">
                 <div class="card-body">
-                    <table
-                        id="example"
-                        class="table table-hover table-sm table-bordered"
-                    >
+                    <table id="example" class="table table-hover table-sm table-bordered">
                         <thead class="text-center">
                             <tr class="text-sm">
                                 <th>Sl</th>
@@ -51,45 +48,23 @@
                                 </td>
                                 <td>{{$data->mobile}}</td>
                                 <td>
-                                    <div
-                                        class="d-flex justify-content-center padd text-decoration btn-group"
-                                    >
-                                        <a
-                                            href="{{route('print.hform', ['id' => $data->id])}}"
-                                            target="_blank"
-                                            class="btn-sm bg-dark"
-                                        >
+                                    <div class="d-flex justify-content-center padd text-decoration btn-group">
+                                        <a href="{{route('print.hform', ['id' => $data->id])}}" target="_blank" class="btn-sm bg-dark">
                                             Hform
                                         </a>
                                         <a href="#" class="btn-sm bg-dark">
                                             Stamp
                                         </a>
-                                        <a
-                                            href="{{route('pdf.gate_pass', ['id' => $data->id])}}"
-                                            target="_blank"
-                                            class="btn-sm bg-dark"
-                                        >
+                                        <a href="{{route('pdf.gate_pass', ['id' => $data->id])}}" target="_blank" class="btn-sm bg-dark">
                                             Gate Pass
                                         </a>
-                                        <a
-                                            href="{{route('print.single_file_print', ['id' => $data->id])}}"
-                                            target="_blank"
-                                            class="btn-sm bg-dark"
-                                        >
+                                        <a href="{{route('print.single_file_print', ['id' => $data->id])}}" target="_blank" class="btn-sm bg-dark">
                                             File Print
                                         </a>
-                                        <a
-                                            href="{{route('sale.sales_update', ['id' => $data->id])}}"
-                                            target="_blank"
-                                            class="btn-sm bg-dark"
-                                        >
+                                        <a href="{{route('sale.sales_update', ['id' => $data->id])}}" target="_blank" class="btn-sm bg-dark">
                                             Edit
                                         </a>
-                                        <a
-                                            href="#"
-                                            target="_blank"
-                                            class="btn-sm bg-dark"
-                                        >
+                                        <a href="#" target="_blank" class="btn-sm bg-dark">
                                             Bank Slip
                                         </a>
                                     </div>

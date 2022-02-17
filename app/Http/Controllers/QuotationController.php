@@ -14,6 +14,22 @@ class QuotationController extends Controller
         return view('dms.quotations.create_qt');
     }
 
+    public function quotation_list()
+    {
+        $quotations = Quotation::select(
+            'id',
+            'ref',
+            'qt_date',
+            'to',
+            'address_one',
+            'address_two',
+            'account',
+            'discount',
+            'validity',
+        )->get();
+        return view('dms.quotations.quotation_list')->with('quotations', $quotations);
+    }
+
     public function store(Request $request)
     {
 
@@ -29,10 +45,10 @@ class QuotationController extends Controller
                 $quotation->subject = $request['subject'];
                 $quotation->validity = $request['validity'];
                 $quotation->for = $request['for'];
+                $quotation->discount = $request['discount'];
                 $quotation->save();
 
                 $qt_id = $quotation->id;
-
 
                 foreach ($request->tb_description as $key => $value) {
                     $save_record = [
@@ -49,5 +65,30 @@ class QuotationController extends Controller
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
+    }
+    public function quotation_print_html($id)
+    {
+
+        $quotations = Quotation::select(
+            'id',
+            'ref',
+            'qt_date',
+            'to',
+            'address_one',
+            'address_two',
+            'account',
+            'discount',
+            'validity',
+        )->where('id', $id)->first();
+
+        $item_id = $quotations->id;
+
+        $quotation_items = QuotationItem::select('*')->where('quotation_id', $item_id)->get();
+
+        return view('dms.quotations.quotation_html')
+            ->with([
+                'quotations' => $quotations,
+                'quotation_items' => $quotation_items
+            ]);
     }
 }

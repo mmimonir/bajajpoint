@@ -24,7 +24,7 @@
                             <div class="form-group form-group-sm mb-0 row">
                                 <label for="ref" class="col-sm-4 col-form-label">Ref:</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="ref" name="ref" value="Ref: Bajaj Point/Offer-">
+                                    <input required type="text" class="form-control form-control-sm" id="ref" name="ref" value="Ref: Bajaj Point/Offer-">
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                             <div class="form-group form-group-sm mb-0 row">
                                 <label for="qt_date" class="col-sm-4 col-form-label">Date:</label>
                                 <div class="col-sm-8">
-                                    <input type="date" class="form-control form-control-sm" id="qt_date" name="qt_date" placeholder="Challan No">
+                                    <input required type="date" class="form-control form-control-sm" id="qt_date" name="qt_date" placeholder="Challan No">
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                             <div class="form-group form-group-sm mb-0 row">
                                 <label for="to" class="col-sm-2 col-form-label">To</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm" id="to" name="to" placeholder="XYZ Company Ltd">
+                                    <input required type="text" class="form-control form-control-sm" id="to" name="to" placeholder="XYZ Company Ltd">
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                             <div class="form-group form-group-sm mb-0 row">
                                 <label for="address_one" class="col-sm-2 col-form-label">Address 1</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm" id="address_one" name="address_one" placeholder="23/Ka New Eskaton Road">
+                                    <input required type="text" class="form-control form-control-sm" id="address_one" name="address_one" placeholder="23/Ka New Eskaton Road">
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                             <div class="form-group form-group-sm mb-0 row">
                                 <label for="subject" class="col-sm-2 col-form-label">Subject:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm" id="subject" name="subject" value="OFFER FOR SUPPLY OF BAJAJ MOTORCYCLE.">
+                                    <input required type="text" class="form-control form-control-sm" id="subject" name="subject" value="OFFER FOR SUPPLY OF BAJAJ MOTORCYCLE.">
                                 </div>
                             </div>
                         </div>
@@ -94,16 +94,16 @@
                             <tr>
                                 <td>#</td>
                                 <td>
-                                    <input name="tb_description[]" class="form-control form-control-sm tb_description" id="tb_description" style="width:300px;">
+                                    <input required name="tb_description[]" class="form-control form-control-sm tb_description" id="tb_description" style="width:300px;">
                                 </td>
                                 <td>
-                                    <input name="tb_unit[]" type="text" class="form-control form-control-sm tb_unit text-center" id="tb_unit" placeholder="Unit">
+                                    <input required name="tb_unit[]" type="text" class="form-control form-control-sm tb_unit text-center" id="tb_unit" placeholder="Unit">
                                 </td>
                                 <td>
-                                    <input name="tb_unit_price[]" type="text" class="form-control form-control-sm text-center tb_unit_price" id="tb_unit_price" placeholder="Unit Price">
+                                    <input required name="tb_unit_price[]" type="text" class="form-control form-control-sm text-center tb_unit_price" id="tb_unit_price" placeholder="Unit Price">
                                 </td>
                                 <td>
-                                    <input name="tb_grand_total[]" type="text" class="form-control form-control-sm tb_grand_total text-right" id="tb_grand_total" placeholder="Total">
+                                    <input required name="tb_grand_total[]" type="text" class="form-control form-control-sm tb_grand_total text-right" id="tb_grand_total" placeholder="Total">
                                 </td>
                             </tr>
                         </tbody>
@@ -117,33 +117,41 @@
                             </tr>
                         </tfoot>
                     </table>
-
-                    <div class="form-row" style="margin-top:10px;">
-                        <div class="col-md-12">
-                            <div class="form-group form-group-sm mb-0 row">
-                                <label for="validity" class="col-sm-2 col-form-label">Validity:</label>
-                                <div class="col-sm-10">
-                                    <input type="date" class="form-control form-control-sm" id="validity" name="validity" placeholder="Ref: Bajaj Point/Offer-">
+                    <div class="form-row d-flex justify-content-center" style="margin-top:10px;">
+                        <div class="col-md-6">
+                            <div class="col-md-12">
+                                <div class="form-group form-group-sm mb-0 row">
+                                    <label for="discount" class="col-sm-4 col-form-label">Discount</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control form-control-sm" id="discount" name="discount">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group form-group-sm mb-0 row">
+                                    <label for="validity" class="col-sm-4 col-form-label">Validity:</label>
+                                    <div class="col-sm-8">
+                                        <input required type="date" class="form-control form-control-sm" id="validity" name="validity" placeholder="Ref: Bajaj Point/Offer-">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group form-group-sm mb-0 row">
+                                    <label for="note" class="col-sm-4 col-form-label">Note</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control form-control-sm" id="note" name="note" value="All price are without AIT">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group form-group-sm mb-0 row">
+                                    <label for="for" class="col-sm-4 col-form-label">For</label>
+                                    <div class="col-sm-8">
+                                        <input required type="text" class="form-control form-control-sm" id="for" name="for" value="Bajaj Point">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-group form-group-sm mb-0 row">
-                                <label for="note" class="col-sm-2 col-form-label">Note</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm" id="note" name="note" value="All price are without AIT">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group form-group-sm mb-0 row">
-                                <label for="for" class="col-sm-2 col-form-label">For</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm" id="for" name="for" value="Bajaj Point">
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                     <center style="padding:10px;">
                         <button id="add" style="width:100px; margin-top:0px;" class="btn btn-success btn-sm">Add</button>
@@ -153,6 +161,15 @@
                         <button class="btn btn-info btn-sm text-white" type="submit">Submit</button>
                     </center>
                 </form>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-end">
+                        <a href="{{route('quotation.list')}}" target="_blank" rel="noopener noreferrer">
+                            <button class="btn btn-info btn-sm text-white">Quotation List</button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

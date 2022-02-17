@@ -120,7 +120,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Quotation
     Route::get('/quotation_index', [App\Http\Controllers\QuotationController::class, 'index'])->name('quotation.create');
+    Route::get('/quotation_list', [App\Http\Controllers\QuotationController::class, 'quotation_list'])->name('quotation.list');
     Route::post('/quotation_store', [App\Http\Controllers\QuotationController::class, 'store'])->name('quotation.store');
+    Route::get('/quotation_print_html/{id}', [App\Http\Controllers\QuotationController::class, 'quotation_print_html'])->name('quotation.print');
 });
 Auth::routes(['register' => false]);
 // Auth::routes();
