@@ -104,6 +104,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/assign_tr_code', [App\Http\Controllers\VATController::class, 'assign_tr_code'])->name('vat.assign_tr_code');
     Route::post('/update_tr_status', [App\Http\Controllers\VATController::class, 'update_tr_status'])->name('vat.update_tr_status');
     Route::post('/tr_changer_update', [App\Http\Controllers\VATController::class, 'tr_changer_update'])->name('vat.tr_changer_update');
+    Route::post('/assign_tr_number', [App\Http\Controllers\VATController::class, 'assign_tr_number'])->name('assign_tr_number');
 
     // CKD
     Route::get('/ckd_pending', [App\Http\Controllers\CKDController::class, 'ckd_pending'])->name('ckd.ckd_pending');
@@ -118,8 +119,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/assessment_year', [App\Http\Controllers\UtilityController::class, 'assessment_year'])->name('utility.assessment_year');
 
     // Quotation
-    Route::get('/quotation_index', [App\Http\Controllers\QuotationController::class, 'index'])->name('quotation.index');
-    Route::post('/assign_tr_number', [App\Http\Controllers\VATController::class, 'assign_tr_number'])->name('assign_tr_number');
+    Route::get('/quotation_index', [App\Http\Controllers\QuotationController::class, 'index'])->name('quotation.create');
+    Route::post('/quotation_store', [App\Http\Controllers\QuotationController::class, 'store'])->name('quotation.store');
 });
 Auth::routes(['register' => false]);
 // Auth::routes();

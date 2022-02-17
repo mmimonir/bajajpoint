@@ -245,7 +245,7 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="{{route('quotation.index')}}" method="get" target="_blank">
+                                    <form action="{{route('quotation.create')}}" method="get" target="_blank">
                                         @csrf
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center">

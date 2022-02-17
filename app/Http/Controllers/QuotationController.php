@@ -8,6 +8,11 @@ class QuotationController extends Controller
 {
     public function index()
     {
-        return view('dms.quotations.quotation');
+        return view('dms.quotations.create_qt');
+    }
+
+    public function store(Request $request)
+    {
+        dd($request->all());
     }
 }
