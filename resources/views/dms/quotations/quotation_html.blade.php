@@ -96,42 +96,45 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                    $sum = 0;
+                    @endphp
                     @foreach ($quotation_items as $data)
                     <tr>
-
                         <td class="text-center">{{$loop->iteration}}</td>
                         <td>{{$data->tb_description}}</td>
                         <td class="text-center unit">{{$data->tb_unit}}</td>
-                        <td class="text-right unit_price">{{$data->tb_unit_price}}</td>
-                        <td class="text-right grand_total">{{$data->tb_grand_total}}</td>
-
+                        <td class="text-right unit_price bd_taka">{{$data->tb_unit_price}}</td>
+                        <td class="text-right grand_total bd_taka">{{$data->tb_grand_total}}</td>
                     </tr>
+                    @php
+                    $sum += $data->tb_grand_total;
+                    @endphp
                     @endforeach
                 </tbody>
                 <tfoot class="text-right">
                     <tr>
                         <td colspan="4">Total</td>
-                        <td class="sum_total">2,98,900/-</td>
+                        <td class="sum_total"><b>{{preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $sum)}}</b></td>
                     </tr>
                     <tr>
                         <td colspan="4">Less Discount</td>
-                        <td class="less_discount">3,000/-</td>
+                        <td class="less_discount bd-taka">{{preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $quotations->discount)}}</td>
                     </tr>
                     <tr>
                         <td colspan="4">Grand Total</td>
-                        <td class="less_discount_total">2,98,900/-</td>
+                        <td class="less_discount_total"><b>{{preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", ($sum - $quotations->discount))}}</b></td>
                     </tr>
                 </tfoot>
             </table>
             <div style="line-height:1.3;">
                 <p class="line-spacing">
-                    <b class="in_words">In Words: Two Hundred and eighty nine thousand nine
-                        hundred only.</b>
+                <p>In Words: <b class="in_words"></b><b>Only</b></p>
                 </p>
                 <h4 class="line-spacing">TERMS & CONDITIONS</h4>
                 <p>
                     1. Validity: This offers wills Remain Valid up to
-                    February 10, 2022
+                    <b>{{date('M d, Y', strtotime($quotations->validity))}}</b>
                 </p>
                 <p>
                     2. Delivery: Delivery of vehicle will be made to you
@@ -163,5 +166,38 @@
         </div>
     </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.bd_taka').each(function() {
+            var monetary_value = $(this).text();
+            var i = new Intl.NumberFormat('en-IN', {
+                maximumFractionDigits: 0,
+            }).format(monetary_value);
+            $(this).text(i);
+        });
+
+        var number = +$('.less_discount_total').text().replace(/,/g, '');
+
+
+
+        var a = ['', 'One ', 'Two ', 'Three ', 'Four ', 'Five ', 'Six ', 'Seven ', 'Eight ', 'Nine ', 'Ten ', 'Eleven ', 'Twelve ', 'Thirteen ', 'Fourteen ', 'Fifteen ', 'Sixteen ', 'Seventeen ', 'Eighteen ', 'Nineteen '];
+        var b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+        function inWords(num) {
+            if ((num = num.toString()).length > 9) return 'overflow';
+            n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+            if (!n) return;
+            var str = '';
+            str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'Crore ' : '';
+            str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'Lakh ' : '';
+            str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'Thousand ' : '';
+            str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'Hundred ' : '';
+            str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'Only ' : '';
+            return str;
+        }
+        $('.in_words').text(inWords(number));
+    });
+</script>
 
 </html>

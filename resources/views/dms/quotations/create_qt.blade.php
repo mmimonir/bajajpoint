@@ -94,7 +94,7 @@
                             <tr>
                                 <td>#</td>
                                 <td>
-                                    <input required name="tb_description[]" class="form-control form-control-sm tb_description" id="tb_description" style="width:300px;">
+                                    <input style="width:100%;" required name="tb_description[]" class="form-control form-control-sm tb_description" id="tb_description" style="width:300px;">
                                 </td>
                                 <td>
                                     <input required name="tb_unit[]" type="text" class="form-control form-control-sm tb_unit text-center" id="tb_unit" placeholder="Unit">
