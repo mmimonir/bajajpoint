@@ -36,7 +36,6 @@
                     </a>
                 </li>
             </ul>
-
         </li>
 
         <li class="nav-item">
@@ -85,6 +84,29 @@
                     </a>
                 </li>
 
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fa-solid fa-hand-holding-dollar"></i>
+                <p class="text-white">
+                    Quotation
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: none;">
+                <li class="nav-item">
+                    <a href="{{ route('quotation.create') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-circle-plus"></i>
+                        <p class="text-white">Create New</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('quotation.list') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-list"></i>
+                        <p class="text-white">Quotation List</p>
+                    </a>
+                </li>
             </ul>
         </li>
 

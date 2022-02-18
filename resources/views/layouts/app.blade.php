@@ -43,7 +43,8 @@
             vertical-align: middle;
         }
 
-        .fas {
+        .fas,
+        .fa-solid {
             color: #dc3545;
         }
 
