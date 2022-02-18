@@ -96,6 +96,13 @@
             width: 19% !important;
             background: white !important;
         }
+
+        .ui-autocomplete {
+            height: 200px !important;
+            overflow-y: hidden !important;
+            overflow-x: hidden !important;
+            margin: 0 !important;
+        }
     </style>
 </head>
 
@@ -180,7 +187,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper loginbody">
-            <section class="content">
+            <section class="content" style="overflow:hidden;">
                 @yield('content')
             </section>
         </div>

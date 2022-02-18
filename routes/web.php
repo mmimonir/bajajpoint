@@ -123,6 +123,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/quotation_list', [App\Http\Controllers\QuotationController::class, 'quotation_list'])->name('quotation.list');
     Route::post('/quotation_store', [App\Http\Controllers\QuotationController::class, 'store'])->name('quotation.store');
     Route::get('/quotation_print_html/{id}', [App\Http\Controllers\QuotationController::class, 'quotation_print_html'])->name('quotation.print');
+    Route::get('/quotation_edit/{id}', [App\Http\Controllers\QuotationController::class, 'quotation_edit'])->name('quotation.edit');
+    Route::delete('/quotation_delete', [App\Http\Controllers\QuotationController::class, 'quotation_delete'])->name('quotation.delete');
+    Route::post('/quotation_update', [App\Http\Controllers\QuotationController::class, 'quotation_update'])->name('quotation.update');
 });
 Auth::routes(['register' => false]);
 // Auth::routes();

@@ -69,7 +69,7 @@
     <div class="quotation">
         <div class="container">
             <p>{{$quotations->ref}}</p>
-            <p>Date: {{$quotations->qt_date}}</p>
+            <p>Date: {{date('d-m-Y', strtotime($quotations->qt_date))}}</p>
         </div>
         <div style="clear:both;"></div>
         <div>
@@ -77,7 +77,7 @@
             <p>{{$quotations->to}}</p>
             <p>{{$quotations->address_one}}</p>
             <p>{{$quotations->address_two}}</p>            
-            <p class=" line-spacing">Sub: OFFER FOR SUPPLY OF BAJAJ MOTOR CYCLE.</p>
+            <p class=" line-spacing"><b>Sub: OFFER FOR SUPPLY OF BAJAJ MOTOR CYCLE.</b></p>
             <p class="line-spacing" style="text-align:justify;">
                 Thank you very much for your kind interest in Bajaj vehicles
                 produced in India by Bajaj Auto Ltd. India. we, being the
@@ -129,7 +129,7 @@
             </table>
             <div style="line-height:1.3;">
                 <p class="line-spacing">
-                <p>In Words: <b class="in_words"></b><b>Only</b></p>
+                <p><b>In Words: </b><b class="in_words"></b><b>Only</b></p>
                 </p>
                 <h4 class="line-spacing">TERMS & CONDITIONS</h4>
                 <p>
@@ -150,11 +150,11 @@
                     answer all of you queries.
                 </p>
                 <p class="line-spacing">
-                    Note: All Price is without AIT (15% Sale VAT Included)
+                    <b>{{$quotations->notes}}</b>
                 </p>
                 <p class="line-spacing">Thanking you.</p>
                 <p>Yours faithfully,</p>
-                <p class="line-spacing"><b>For Bajaj Point</b></p>
+                <p class="line-spacing"><b>For {{$quotations->for}}</b></p>
                 <p style="margin-top:25px;">___________________</p>
                 <p>
                     <b>Free Offer:</b>

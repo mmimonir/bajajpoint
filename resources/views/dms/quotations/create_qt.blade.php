@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Purchase')
+@section('title', 'Quotation')
 
 @section('datatable_css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
@@ -137,9 +137,9 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group form-group-sm mb-0 row">
-                                    <label for="note" class="col-sm-4 col-form-label">Note</label>
+                                    <label for="notes" class="col-sm-4 col-form-label">Note</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control form-control-sm" id="note" name="note" value="All price are without AIT">
+                                        <input type="text" class="form-control form-control-sm" id="notes" name="notes" value="All price are without AIT">
                                     </div>
                                 </div>
                             </div>
@@ -257,7 +257,7 @@
             ]
         });
     });
-    $("#tbl").on("blur", ".tb_unit_price", function() {
+    $("#tbl").on("blur", ".tb_unit_price, .tb_unit ", function() {
         var tr = $(this).parent().parent();
         var qty = +tr.find(".tb_unit").val();
         var unit_price = +tr.find(".tb_unit_price").val();
