@@ -12,7 +12,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6">
-                        <h4>Quatation</h4>
+                        <h4 style="margin-bottom:0px;">Quatation</h4>
                     </div>
                 </div>
             </div>
