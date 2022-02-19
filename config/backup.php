@@ -148,54 +148,55 @@ return [
      * You can also use your own notification classes, just make sure the class is named after one of
      * the `Spatie\Backup\Notifications\Notifications` classes.
      */
-    'notifications' => [
 
-        'notifications' => [
-            \Spatie\Backup\Notifications\Notifications\BackupHasFailedNotification::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFoundNotification::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\CleanupHasFailedNotification::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\BackupWasSuccessfulNotification::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFoundNotification::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessfulNotification::class => ['mail'],
-        ],
+    //  'notifications' => [
 
-        /*
-         * Here you can specify the notifiable to which the notifications should be sent. The default
-         * notifiable will use the variables specified in this config file.
-         */
-        'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
+    //     'notifications' => [
+    //         \Spatie\Backup\Notifications\Notifications\BackupHasFailedNotification::class => ['mail'],
+    //         \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFoundNotification::class => ['mail'],
+    //         \Spatie\Backup\Notifications\Notifications\CleanupHasFailedNotification::class => ['mail'],
+    //         \Spatie\Backup\Notifications\Notifications\BackupWasSuccessfulNotification::class => ['mail'],
+    //         \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFoundNotification::class => ['mail'],
+    //         \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessfulNotification::class => ['mail'],
+    //     ],
 
-        'mail' => [
-            'to' => 'mmimonir.ctg@gmail.com',
+    //     /*
+    //      * Here you can specify the notifiable to which the notifications should be sent. The default
+    //      * notifiable will use the variables specified in this config file.
+    //      */
+    //     'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
 
-            'from' => [
-                'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-                'name' => env('MAIL_FROM_NAME', 'Example'),
-            ],
-        ],
+    //     'mail' => [
+    //         'to' => 'mmimonir.ctg@gmail.com',
 
-        'slack' => [
-            'webhook_url' => '',
+    //         'from' => [
+    //             'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+    //             'name' => env('MAIL_FROM_NAME', 'Example'),
+    //         ],
+    //     ],
 
-            /*
-             * If this is set to null the default channel of the webhook will be used.
-             */
-            'channel' => null,
+    //     'slack' => [
+    //         'webhook_url' => '',
 
-            'username' => null,
+    //         /*
+    //          * If this is set to null the default channel of the webhook will be used.
+    //          */
+    //         'channel' => null,
 
-            'icon' => null,
+    //         'username' => null,
 
-        ],
+    //         'icon' => null,
 
-        'discord' => [
-            'webhook_url' => '',
+    //     ],
 
-            'username' => null,
+    //     'discord' => [
+    //         'webhook_url' => '',
 
-            'avatar_url' => null,
-        ],
-    ],
+    //         'username' => null,
+
+    //         'avatar_url' => null,
+    //     ],
+    // ],
 
     /*
      * Here you can specify which backups should be monitored.
