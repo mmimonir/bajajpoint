@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mrp;
 use Illuminate\Http\Request;
 use App\Models\AssessmentYear;
+use Illuminate\Support\Facades\Artisan;
 
 class UtilityController extends Controller
 {
@@ -14,5 +15,20 @@ class UtilityController extends Controller
         $assessment = AssessmentYear::select('*')->first();
 
         return response()->json(['assessment' => $assessment, 'vat_mrp' => $vat_mrp]);
+    }
+    public function download()
+    {
+        Artisan::call('backup:run --only-db');
+        $path = storage_path('app/Bajaj-Point/*');
+        $latest_ctime = 0;
+        $latest_filename = '';
+        $files = glob($path);
+        foreach ($files as $file) {
+            if (is_file($file) && filectime($file) > $latest_ctime) {
+                $latest_ctime = filectime($file);
+                $latest_filename = $file;
+            }
+        }
+        return response()->download($latest_filename);
     }
 }
