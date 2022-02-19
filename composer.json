@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "maatwebsite/excel": "^3.1",
-        "phpoffice/phpspreadsheet": "^1.21"
+        "phpoffice/phpspreadsheet": "^1.21",
+        "spatie/laravel-backup": "^8.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
