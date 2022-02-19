@@ -12,7 +12,7 @@
             display: table;
             margin: auto;
             line-height: 1.2;
-            font-size: 16px;
+            font-size: 20px;
 
         }
 
@@ -25,9 +25,9 @@
         .quotation {
             width: 20.5cm;
             height: 28.194cm;
-            margin-left: 1.6in;
+            margin-left: 1.8in;
             margin-top: 1.5in;
-            margin-right: .8in;
+            margin-right: .7in;
         }
 
         .line-spacing {
@@ -78,7 +78,8 @@
             <p>{{$quotations->address_one}}</p>
             <p>{{$quotations->address_two}}</p>            
             <p class=" line-spacing"><b>Sub: OFFER FOR SUPPLY OF BAJAJ MOTOR CYCLE.</b></p>
-            <p class="line-spacing" style="text-align:justify;">
+            <p class="line-spacing">Dear Sir,</p>
+            <p style="text-align:justify;">
                 Thank you very much for your kind interest in Bajaj vehicles
                 produced in India by Bajaj Auto Ltd. India. we, being the
                 authorized dealer of Uttara Motors Ltd. in Dhaka are pleased
