@@ -130,7 +130,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/quotation_update', [App\Http\Controllers\QuotationController::class, 'quotation_update'])->name('quotation.update');
 
     Route::get('backup-run', function () {
-        Artisan::call('backup:run');
+        Artisan::call('php artisan backup:run');
         return back();
     });
 });
