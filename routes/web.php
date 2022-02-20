@@ -129,10 +129,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/quotation_delete', [App\Http\Controllers\QuotationController::class, 'quotation_delete'])->name('quotation.delete');
     Route::post('/quotation_update', [App\Http\Controllers\QuotationController::class, 'quotation_update'])->name('quotation.update');
 
-//     Route::get('backup-run', function () {
-//         Artisan::call('backup:run --only-db');
-//         return back();
-//     });
-// });
+    //     Route::get('backup-run', function () {
+    //         Artisan::call('backup:run --only-db');
+    //         return back();
+    //     });
+});
 Auth::routes(['register' => false]);
 // Auth::routes();
