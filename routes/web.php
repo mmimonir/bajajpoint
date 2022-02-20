@@ -130,9 +130,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/quotation_update', [App\Http\Controllers\QuotationController::class, 'quotation_update'])->name('quotation.update');
 
     Route::get('/clear-cache', function () {
-        $output = new \Symfony\Component\Console\Output\BufferedOutput;
+        $output = [];
         Artisan::call('cache:clear', $output);
-        dd($output->fetch());
+        dd($output);
     });
 });
 Auth::routes(['register' => false]);
