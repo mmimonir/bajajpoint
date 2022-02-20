@@ -129,10 +129,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/quotation_delete', [App\Http\Controllers\QuotationController::class, 'quotation_delete'])->name('quotation.delete');
     Route::post('/quotation_update', [App\Http\Controllers\QuotationController::class, 'quotation_update'])->name('quotation.update');
 
-    Route::get('/clear-cache', function () {
-        $output = [];
-        Artisan::call('backup:run --only-db', $output);
-        dd($output);
+    Route::get('backup-run', function () {
+        Artisan::call('backup:run');
+        return back();
     });
 });
 Auth::routes(['register' => false]);
