@@ -131,7 +131,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/clear-cache', function () {
         $output = [];
-        Artisan::call('cache:clear', $output);
+        Artisan::call('backup:run --only-db', $output);
         dd($output);
     });
 });
