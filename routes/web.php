@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'login']);
@@ -127,6 +128,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/quotation_edit/{id}', [App\Http\Controllers\QuotationController::class, 'quotation_edit'])->name('quotation.edit');
     Route::delete('/quotation_delete', [App\Http\Controllers\QuotationController::class, 'quotation_delete'])->name('quotation.delete');
     Route::post('/quotation_update', [App\Http\Controllers\QuotationController::class, 'quotation_update'])->name('quotation.update');
+
+    Route::get('/clear-cache', function () {
+        $output = new \Symfony\Component\Console\Output\BufferedOutput;
+        Artisan::call('cache:clear', $output);
+        dd($output->fetch());
+    });
 });
 Auth::routes(['register' => false]);
 // Auth::routes();
