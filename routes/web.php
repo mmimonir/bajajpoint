@@ -9,15 +9,6 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'login']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/customerSearch', [App\Http\Controllers\HomeController::class, 'customerSearch']);
-    Route::get('core/{id}', [App\Http\Controllers\CoreController::class, 'show']);
-    Route::get('customerInfoFullChassis/{id}', [App\Http\Controllers\CoreController::class, 'customerInfoFullChassis']);
-    Route::resource('products', ProductController::class);
-    Route::post('/chassisSearch', [App\Http\Controllers\CoreController::class, 'chassisSearch']);
-    Route::post('/searchChassisList', [App\Http\Controllers\CoreController::class, 'searchChassisList']);
-    Route::post('/engineSearch', [App\Http\Controllers\CoreController::class, 'engineSearch']);
-    Route::post('/mobileSearch', [App\Http\Controllers\CoreController::class, 'mobileSearch']);
-
     // MRP Table
     Route::controller(App\Http\Controllers\MrpController::class)->group(function () {
         Route::get('/mrp_index',  'index')->name('mrp.index');

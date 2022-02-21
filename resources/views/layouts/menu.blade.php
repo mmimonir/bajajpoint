@@ -20,23 +20,6 @@
 
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="tree-view" role="menu" data-accordion="true">
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-user-tie"></i>
-                <p class="text-white">
-                    Customer
-                    <i class="right fas fa-angle-left"></i>
-                </p>
-            </a>
-            <ul class="nav nav-treeview" style="display: none;">
-                <li class="nav-item">
-                    <a href="{{ url('/customerSearch') }}" class="nav-link">
-                        <i class="nav-icon fas fa-search"></i>
-                        <p class="text-white">Search</p>
-                    </a>
-                </li>
-            </ul>
-        </li>
 
         <li class="nav-item">
             <a href="#" class="nav-link">
@@ -77,13 +60,6 @@
                         <p class="text-white">Purchage</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-shopping-cart"></i>
-                        <p class="text-white">Sale</p>
-                    </a>
-                </li>
-
             </ul>
         </li>
         <li class="nav-item">

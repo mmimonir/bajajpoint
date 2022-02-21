@@ -21,10 +21,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function customerSearch()
-    {
-        return view('welcome');
-    }
+
     public function index()
     {
         return view('dashboard');
