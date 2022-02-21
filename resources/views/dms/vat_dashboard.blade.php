@@ -64,7 +64,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center d-flex justify-content-center">
-                                                <button style="width:150px;" type="submit" class="btn btn-dark btn-block">Assign</button>
+                                                <button style="width:150px;" {{$tr_code ? 'disabled' : ''}} type="submit" class="btn btn-dark btn-block">Assign</button>
                                             </div>
                                         </div>
                                     </form>
@@ -103,7 +103,7 @@
                                         </div>
                                         <div class=" form-group row">
                                                 <div class="col-sm-12 text-center d-flex justify-content-center">
-                                                    <button style="width:150px;" {{$tr_code ? '' : 'disabled'}} type="submit" class="btn btn-dark btn-block">Assign</button>
+                                                    <button style="width:150px;" {{$tr_code ? 'disabled' : ''}} type="submit" class="btn btn-dark btn-block">Assign</button>
                                                 </div>
                                             </div>
                                     </form>
