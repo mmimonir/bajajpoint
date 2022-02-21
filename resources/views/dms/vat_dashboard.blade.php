@@ -86,19 +86,19 @@
                                         <div class="form-group row">
                                             <label for="end_date" class="col-sm-4 col-form-label">Last Code</label>
                                             <div class="col-sm-8">
-                                                <input value="{{$last_tr_code->tr_month_code ? $last_tr_code->tr_month_code : ''}}" type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
+                                                <input readonly value="{{$last_tr_code->tr_month_code ? $last_tr_code->tr_month_code : ''}}" type="text" class="form-control" id="end_date" name="end_date" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="tr_month_code" class="col-sm-4 col-form-label">New Code</label>
                                             <div class="col-sm-8">
-                                                <input required type="text" class="form-control" id="tr_month_code" name="tr_month_code" placeholder="JAN0122">
+                                                <input required type="text" class="form-control" id="tr_month_code" name="tr_month_code">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="vat_process" class="col-sm-4 col-form-label">Process</label>
                                             <div class="col-sm-8">
-                                                <input value="{{$tr_code ? $tr_code->vat_process : 'No Code Assign' }}" type="text" class="form-control" id="vat_process" name="vat_process"">
+                                                <input readonly value="{{$tr_code ? $tr_code->vat_process : 'No Code Assign' }}" type="text" class="form-control" id="vat_process" name="vat_process"">
                                             </div>
                                         </div>
                                         <div class=" form-group row">
@@ -125,7 +125,7 @@
                                         <div class="form-group row">
                                             <label for="tr_code" class="col-sm-4 col-form-label">TR Code</label>
                                             <div class="col-sm-8">
-                                                <input value="{{$tr_code ? $tr_code->tr_month_code ? $tr_code->tr_month_code : '' : ''}}" required type="text" class="form-control" id="tr_code" name="tr_code" placeholder="JAN0122">
+                                                <input readonly value="{{$tr_code ? $tr_code->tr_month_code ? $tr_code->tr_month_code : '' : ''}}" required type="text" class="form-control" id="tr_code" name="tr_code" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
