@@ -9,7 +9,7 @@
                         Customer Information
                     </h3>
                 </div>
-                <div class="row">
+                <div class="row" style="margin-bottom:15px;">
                     <div class="col-md-6">
                         <div class="card-body">
                             <div class="form-group row" style="margin-bottom:0px;">

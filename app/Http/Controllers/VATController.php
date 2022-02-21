@@ -15,6 +15,7 @@ class VATController extends Controller
         $models = Vehicle::select('model_code', 'model')->where('status', '=', 'Active')->get();
         $tr_code = Core::select('tr_month_code', 'vat_process')->where('vat_process', '=', 'PENDING')->first();
         // $last_tr_code = Core::select('tr_month_code')->latest('store_id')->first();
+
         $last_tr_code = Core::whereNotNull('tr_month_code')->get()->last();
         $whos_vat = Core::select('whos_vat')->where('tr_month_code', '=', $last_tr_code->tr_month_code)->whereNull('tr_number')->get()->unique('whos_vat');
 
