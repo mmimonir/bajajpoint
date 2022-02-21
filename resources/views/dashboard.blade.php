@@ -91,8 +91,8 @@
                         <tbody>`;
                     response.forEach(function(data, index) {
                         var sl = index + 1;
-                        var chassis = data.five_chassis ? data.five_chassis : '' + data.one_chassis ? data.one_chassis : '' + data.three_chassis ? data.three_chassis : '' + data.four_chassis ? data.four_chassis : '' + data.five_chassis ? data.five_chassis : '';
-                        var engine = data.six_engine ? data.six_engine : '' + data.five_engine ? data.five_engine : '';
+                        var chassis = (data.eight_chassis ? data.eight_chassis : '') + (data.one_chassis ? data.one_chassis : '') + (data.three_chassis ? data.three_chassis : '') + (data.five_chassis ? data.five_chassis : '');
+                        var engine = (data.six_engine ? data.six_engine : '') + (data.five_engine ? data.five_engine : '');
                         html +=
                             `<tr>                                
                                 <td>${sl}</td>
