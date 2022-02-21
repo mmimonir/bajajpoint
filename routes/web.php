@@ -83,7 +83,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/hform/{id}',  'hform')->name('print.hform');
     });
 
-
     // Sales
     Route::get('/sales_update/{id}', [App\Http\Controllers\SalesController::class, 'sales_update'])->name('sale.sales_update');
     Route::post('/sales_update_store', [App\Http\Controllers\SalesController::class, 'sales_update_store'])->name('sale.sales_update_store');
@@ -120,6 +119,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/quotation_edit/{id}', [App\Http\Controllers\QuotationController::class, 'quotation_edit'])->name('quotation.edit');
     Route::delete('/quotation_delete', [App\Http\Controllers\QuotationController::class, 'quotation_delete'])->name('quotation.delete');
     Route::post('/quotation_update', [App\Http\Controllers\QuotationController::class, 'quotation_update'])->name('quotation.update');
+
+    // Customer Info
+    Route::get('/customer_info/{id}', [App\Http\Controllers\CustomerController::class, 'customer_info'])->name('customer.customer_info');
 
     //     Route::get('backup-run', function () {
     //         Artisan::call('backup:run --only-db');

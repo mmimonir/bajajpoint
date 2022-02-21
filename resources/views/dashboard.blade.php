@@ -122,7 +122,7 @@
                                         <a href="#" target="_blank" class="btn-sm bg-dark">
                                             Bank Slip
                                         </a>
-                                        <a href="#" target="_blank" class="btn-sm bg-dark">
+                                        <a href="/customer_info/${data.id}" target="_blank" class="btn-sm bg-dark">
                                             Info
                                         </a>
                                     </div>
