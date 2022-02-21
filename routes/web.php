@@ -88,6 +88,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('file_print',  'file_print')->name('print.file_print');
         Route::get('single_file_print/{id}',  'single_file_print')->name('print.single_file_print');
         Route::get('print_list',  'print_list')->name('print.print_list');
+        Route::post('print_list_dashboard',  'print_list_dashboard')->name('print.print_list_dashboard');
         Route::get('/hform/{id}',  'hform')->name('print.hform');
     });
 

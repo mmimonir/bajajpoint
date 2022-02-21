@@ -248,4 +248,66 @@ class PrintController extends Controller
 
         return view('dms.pdf.file.print_file_html')->with(['print_data' => $print_data]);
     }
+    function print_list_dashboard(Request $request)
+    {
+        $term = $request;
+        $builder = [];
+        if (!empty($term['five_chassis']) || !empty($term['five_engine'])) {
+            $builder = Core::select(
+                'cores.id',
+                'cores.original_sale_date',
+                'cores.eight_chassis',
+                'cores.one_chassis',
+                'cores.three_chassis',
+                'cores.five_chassis',
+                'cores.six_engine',
+                'cores.five_engine',
+                'cores.customer_name',
+                'cores.mobile',
+                'cores.model',
+            )
+                ->where([
+                    ['cores.five_chassis', '=', $term['five_chassis']],
+                    ['cores.five_engine', '=', $term['five_engine']],
+                ])
+                ->get();
+        }
+        if (!empty($term['five_chassis'])) {
+            $builder = Core::select(
+                'cores.id',
+                'cores.original_sale_date',
+                'cores.eight_chassis',
+                'cores.one_chassis',
+                'cores.three_chassis',
+                'cores.five_chassis',
+                'cores.six_engine',
+                'cores.five_engine',
+                'cores.customer_name',
+                'cores.mobile',
+                'cores.model',
+            )
+                ->where('cores.five_chassis', "=", $term['five_chassis'])
+                ->get();
+        }
+        if (!empty($term['five_engine'])) {
+            $builder = Core::select(
+                'cores.id',
+                'cores.original_sale_date',
+                'cores.eight_chassis',
+                'cores.one_chassis',
+                'cores.three_chassis',
+                'cores.five_chassis',
+                'cores.six_engine',
+                'cores.five_engine',
+                'cores.customer_name',
+                'cores.mobile',
+                'cores.model',
+            )
+                ->where('cores.five_engine', "=", $term['five_engine'])
+                ->get();
+        }
+        return response()->json($builder);
+        // dd($builder);
+        // return view('dms.print_list', ['print_lists' => $builder]);
+    }
 }

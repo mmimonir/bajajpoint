@@ -1,4 +1,6 @@
-@extends('layouts.app') @section('title', 'Print List') @section('content')
+@extends('layouts.app')
+@section('title', 'Print List')
+@section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -78,9 +80,11 @@
         </div>
     </div>
 </div>
-@endsection @section('datatable')
+@endsection
+@section('datatable')
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-@endsection @section('script')
+@endsection
+@section('script')
 <script>
     $("#example").DataTable({
         bPaginate: false,
