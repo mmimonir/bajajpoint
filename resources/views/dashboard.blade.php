@@ -8,9 +8,6 @@
                 <div class="card-header bg-dark">
                     <h3 class="card-title">Search Together</h3>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="widgets.html" data-source-selector="#card-refresh-content" data-load-on-init="false">
-                            <i class="fas fa-sync-alt"></i>
-                        </button>
                         <button type="button" class="btn btn-tool" data-card-widget="maximize">
                             <i class="fas fa-expand"></i>
                         </button>
@@ -23,7 +20,7 @@
                     </div>
                 </div>
                 <div class="card-body" style="display: block; padding:0px;">
-                    <div class="card mt-1" style="box-shadow: 0 0 25px 0 lightgrey">
+                    <div class="card mt-1" style="box-shadow: 0 0 5px 0 lightgrey">
                         <div class="card-header bg-dark d-flex justify-content-center">
                             <h3 class="card-title">
                                 Sales Update, Hform, Stamp, Gate Pass, Single
@@ -60,15 +57,11 @@
 
             </div>
         </div>
-
         <div class="col-md-12">
             <div class="card card-success">
                 <div class="card-header bg-dark">
                     <h3 class="card-title">Reports</h3>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="widgets.html" data-source-selector="#card-refresh-content" data-load-on-init="false">
-                            <i class="fas fa-sync-alt"></i>
-                        </button>
                         <button type="button" class="btn btn-tool" data-card-widget="maximize">
                             <i class="fas fa-expand"></i>
                         </button>
@@ -189,6 +182,7 @@
                 </div>
             </div>
         </div> -->
+
     </div>
 
 </div>
