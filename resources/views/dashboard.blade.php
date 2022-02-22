@@ -1029,9 +1029,9 @@
                     model_data,
                     purchage_data
                 }) {
-                    $('#vendor').val(purchage_data.vendor);
-                    $('#factory_challan_no').val(purchage_data.factory_challan_no);
-                    $('#purchage_date').val(new Intl.DateTimeFormat('en-IN').format(new Date(purchage_data.purchage_date)).split("/").join("-"));
+                    $('#vendor').val(purchage_data ? purchage_data.vendor : core_data.vendor_name);
+                    $('#factory_challan_no').val(purchage_data ? purchage_data.factory_challan_no : core_data.challan_no);
+                    $('#purchage_date').val(purchage_data ? new Intl.DateTimeFormat('en-IN').format(new Date(purchage_data.purchage_date)).split("/").join("-") : new Intl.DateTimeFormat('en-IN').format(new Date(core_data.purchage_date)).split("/").join("-"));
                     $('#model').val(model_data.model);
                     $('#ckd_process').val(core_data.ckd_process);
                     $('#approval_no').val(core_data.approval_no);
@@ -1045,7 +1045,7 @@
                     $('#engine_no').val((core_data.six_engine || '') + (core_data.five_engine || ''));
                     $('#note').val(core_data.note);
                     $('#size_of_tyre').val(model_data.size_of_tyre);
-                    $('#color').val(color_data.color);
+                    $('#color').val(color_data ? color_data.color : core_data.color);
                     $('#original_sale_date').val(new Intl.DateTimeFormat('en-IN').format(new Date(core_data.original_sale_date)).split("/").join("-"));
                     $('#dealer').val(core_data.dealer);
                     $('#rg_number').val(core_data.rg_number);
