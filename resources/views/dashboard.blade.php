@@ -4,48 +4,193 @@
 <div class="container-fluid" style="margin-top:15px; padding:0;">
     <div class="row">
         <div class="col-md-12">
-            <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey">
+            <div class="card card-success">
                 <div class="card-header bg-dark">
-                    <h3 class="text-center rounded">
-                        Sales Update, Hform, Stamp, Gate Pass, Single
-                        Print
-                    </h3>
-                </div>
-                <div class="card-body d-flex justify-content-center">
-                    <form class="form-inline" action="#" method="post" id="search_form">
-                        @csrf
-                        <div class="form-group mb-2">
-                            <label for="five_chassis">Chassis No</label>
-                        </div>
-                        <div class="form-group mx-sm-3 mb-2">
-                            <input type="text" name="five_chassis" class="form-control" id="five_chassis" placeholder="Last Five Digit Chassis">
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="five_engine">Engine No</label>
-                        </div>
-                        <div class="form-group mx-sm-3 mb-2">
-                            <input type="text" name="five_engine" class="form-control" id="five_engine" placeholder="Last Five Digit Engine">
-                        </div>
-                        <button type="submit" class="btn btn-dark mb-2">
-                            Search
+                    <h3 class="card-title">Search Together</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="widgets.html" data-source-selector="#card-refresh-content" data-load-on-init="false">
+                            <i class="fas fa-sync-alt"></i>
                         </button>
-                    </form>
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-12" style="margin-top:-25px;">
-            <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey" id="show_search_result">
+                <div class="card-body" style="display: block; padding:0px;">
+                    <div class="card mt-1" style="box-shadow: 0 0 25px 0 lightgrey">
+                        <div class="card-header bg-dark d-flex justify-content-center">
+                            <h3 class="card-title">
+                                Sales Update, Hform, Stamp, Gate Pass, Single
+                                Print
+                            </h3>
+                        </div>
+                        <div class="card-body d-flex justify-content-center">
+                            <form class="form-inline" action="#" method="post" id="search_form">
+                                @csrf
+                                <div class="form-group mb-2">
+                                    <label for="five_chassis">Chassis No</label>
+                                </div>
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <input type="text" name="five_chassis" class="form-control" id="five_chassis" placeholder="Last Five Digit Chassis">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="five_engine">Engine No</label>
+                                </div>
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <input type="text" name="five_engine" class="form-control" id="five_engine" placeholder="Last Five Digit Engine">
+                                </div>
+                                <button type="submit" class="btn btn-dark mb-2">
+                                    Search
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-top:-15px; padding:0px;">
+                        <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey; margin-bottom:0px;" id="show_search_result">
+
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-danger">
-                <div class="inner d-flex justify-content-center">
-                    <a style="font-size:20px;" href="{{ route('utility.download') }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-download" style="color:black; margin-right:5px;"></i>Download Backup</a>
+
+        <div class="col-md-12">
+            <div class="card card-success">
+                <div class="card-header bg-dark">
+                    <h3 class="card-title">Reports</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="widgets.html" data-source-selector="#card-refresh-content" data-load-on-init="false">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body" style="display: block;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey">
+                                <div class="card-header bg-dark d-flex justify-content-center">
+                                    <h3 class="card-title">CKD Pending</h3>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12">
+                                        <div class="card-body">
+                                            <form action="{{ route('ckd.ckd_pending') }}" method="get" target="_blank">
+                                                @csrf
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12 text-center">
+                                                        <a href="" target="_blank">
+                                                            <button type="submit" class="btn btn-dark btn-block">
+                                                                View List
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey">
+                                <div class="card-header bg-dark d-flex justify-content-center">
+                                    <h3 class="card-title">TR Status</h3>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12">
+                                        <div class="card-body">
+                                            <form action="{{
+                                            route('excel.service_data')
+                                        }}" method="post" target="_blank">
+                                                @csrf
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12 text-center">
+                                                        <a href="" target="_blank">
+                                                            <button type="submit" class="btn btn-dark btn-block">
+                                                                View List
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey">
+                                <div class="card-header bg-dark d-flex justify-content-center">
+                                    <h3 class="card-title">Quotation</h3>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12">
+                                        <div class="card-body">
+                                            <form action="{{route('quotation.create')}}" method="get" target="_blank">
+                                                @csrf
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12 text-center">
+                                                        <a href="" target="_blank">
+                                                            <button type="submit" class="btn btn-dark btn-block">
+                                                                Create
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey">
+                                <div class="card-header bg-dark d-flex justify-content-center">
+                                    <h3 class="card-title">Quotation List</h3>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12">
+                                        <div class="card-body">
+                                            <a href="{{route('quotation.list')}}" target="_blank">
+                                                <button type="submit" class="btn btn-dark btn-block">
+                                                    List
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- <div class="col-md-12">
+            <div class="small-box bg-dark">
+                <div class="inner d-flex justify-content-center">
+                    <a style="font-size:20px;" href="{{ route('utility.download') }}" class="btn btn-sm btn-primary text-white"><i class="fa-solid fa-download text-white" style="color:black; margin-right:5px;"></i>Download Backup</a>
+                </div>
+            </div>
+        </div> -->
     </div>
+
 </div>
 <!-- Modal Info-->
 <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -788,12 +933,12 @@
                 success: function(response) {
                     if (response.length > 0) {
                         var html = `
-                <div class="card-header bg-dark">
-                    <h3 class="text-center rounded">
+                <div class="card-header bg-dark">                
+                    <h3 class="card-title">
                         Search Result
                     </h3>
                 </div>
-                <div style="padding:0px 5px;">                
+                <div>                
                     <table id="search_result" class="table table-hover table-sm table-bordered">
                         <thead class="text-center">
                             <tr class="text-sm">
@@ -869,6 +1014,7 @@
                         responsive: true,
                         lengthChange: true,
                         searching: false,
+                        "bInfo": false,
                     });
                 }
             });
