@@ -809,14 +809,15 @@
                         </thead>
                         <tbody>`;
                         response.forEach(function(data, index) {
+                            var saleDate = new Intl.DateTimeFormat('en-IN').format(new Date(data.original_sale_date)).split("/").join("-")
                             var sl = index + 1;
-                            var chassis = (data.eight_chassis ? data.eight_chassis : '') + (data.one_chassis ? data.one_chassis : '') + (data.three_chassis ? data.three_chassis : '') + (data.five_chassis ? data.five_chassis : '');
-                            var engine = (data.six_engine ? data.six_engine : '') + (data.five_engine ? data.five_engine : '');
+                            var chassis = (data.eight_chassis || '') + (data.one_chassis || '') + (data.three_chassis || '') + (data.five_chassis || '');
+                            var engine = (data.six_engine || '') + (data.five_engine || '');
                             html +=
                                 `<tr>                                
                                 <td>${sl}</td>
                                 <td>${data.model ? data.model :''}</td>
-                                <td>${data.original_sale_date ? data.original_sale_date : ''}</td>
+                                <td>${saleDate ? saleDate : ''}</td>
                                 <td>${chassis}</td>
                                 <td>${engine}</td>
                                 <td>${data.customer_name ? data.customer_name.length > 15 ? data.customer_name.substring(0,15) + '.' : data.customer_name : ''}</td>
@@ -980,7 +981,7 @@
                     $('#mushak_date2').val(core_data.mushak_date);
                     $('#print_ref2').val(core_data.print_ref);
                     $('#evl_invoice_no2').val(core_data.evl_invoice_no);
-                    $('#price_declare_id2').val(pd_data.price_declare_id);
+                    $('#price_declare_id2').val((pd_data.id) + ', Date ' + (pd_data.submit_date));
                     $('#unit_price_vat2').val(core_data.unit_price_vat);
                     $('#sale_vat2').val(core_data.sale_vat);
                     $('#vat_year_sale2').val(core_data.vat_year_sale);
