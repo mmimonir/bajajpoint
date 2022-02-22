@@ -85,6 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Sales
     Route::get('/sales_update/{id}', [App\Http\Controllers\SalesController::class, 'sales_update'])->name('sale.sales_update');
+    Route::get('/sales_update_modal', [App\Http\Controllers\SalesController::class, 'sales_update_modal'])->name('sale.sales_update_modal');
     Route::post('/sales_update_store', [App\Http\Controllers\SalesController::class, 'sales_update_store'])->name('sale.sales_update_store');
     Route::post('/sales_report', [App\Http\Controllers\SalesController::class, 'sales_report'])->name('sale.sales_report');
 
