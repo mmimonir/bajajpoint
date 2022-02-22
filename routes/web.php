@@ -121,7 +121,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/quotation_update', [App\Http\Controllers\QuotationController::class, 'quotation_update'])->name('quotation.update');
 
     // Customer Info
-    Route::get('/customer_info/{id}', [App\Http\Controllers\CustomerController::class, 'customer_info'])->name('customer.customer_info');
+    Route::get('/customer_info/', [App\Http\Controllers\CustomerController::class, 'customer_info'])->name('customer.customer_info');
 
     //     Route::get('backup-run', function () {
     //         Artisan::call('backup:run --only-db');
