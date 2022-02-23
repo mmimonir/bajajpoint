@@ -78,29 +78,73 @@
                 <th>VAT</th>
                 <th>MRP</th>
             </tr>
+            @php
+            $total_basic = 0;
+            $total_vat = 0;
+            $total_mrp = 0;
+            $sl=1;
+            @endphp
             @foreach ($vat_data as $key=> $data)
-
-
-            @foreach ($data as $item)
+            @foreach ($data as $key => $item)
+            @php
+            $count = 0;
+            $basic = 0;
+            $vat = 0;
+            $mrp = 0;
+            @endphp
             <tr>
-                <td class="center">{{1}}</td>
-                <td>{{$item->model}}</td>
-                <td class="center">{{date('d-m-Y', strtotime($item->vat_sale_date))}}</td>
-                <td class="center">{{$item->five_chassis}}</td>
-                <td class="center">{{$item->five_engine}}</td>
-                <td class="center">{{$item->sale_mushak_no}}</td>
-                <td style="font-size:10px;">{{substr($item->customer_name, 0, 30)}}</td>
-                <td style="font-size:10px;">{{substr($item->full_address, -30)}}</td>
-                <td class="right bd_taka">{{$item->basic_price_vat}}</td>
-                <td class="right bd_taka">{{$item->sale_vat}}</td>
-                <td class="right bd_taka">{{$item->unit_price_vat}}</td>
+                <td colspan="11" style="font-weight:bold; text-align:center;">
+                    {{date('F', mktime(0, 0, 0, $key, 10))}}
+                </td>
             </tr>
+            @foreach ($item as $itm)
+            <tr>
+                <td class="center">{{$sl++}}</td>
+                </td>
+                <td>{{$itm->model}}</td>
+                <td class="center">{{date('d-m-Y', strtotime($itm->vat_sale_date))}}</td>
+                <td class="center">{{$itm->five_chassis}}</td>
+                <td class="center">{{$itm->five_engine}}</td>
+                <td class="center">{{$itm->sale_mushak_no}}</td>
+                <td style="font-size:10px;">{{substr($itm->customer_name, 0, 30)}}</td>
+                <td style="font-size:10px;">{{substr($itm->full_address, -30)}}</td>
+                <td class="right bd_taka">{{$itm->basic_price_vat}}</td>
+                <td class="right bd_taka">{{$itm->sale_vat}}</td>
+                <td class="right bd_taka">{{$itm->unit_price_vat}}</td>
+            </tr>
+            @php
+            $count++;
+            $basic += $itm->basic_price_vat;
+            $vat += $itm->sale_vat;
+            $mrp += $itm->unit_price_vat;
+            @endphp
             @endforeach
             <tr>
                 <td style="text-align:center; font-weight:bold;">Total</td>
+                <td style="text-align:center; font-weight:bold;">{{$count}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="right bd_taka bold">{{$basic}}</td>
+                <td class="right bd_taka bold">{{$vat}}</td>
+                <td class="right bd_taka bold">{{$mrp}}</td>
             </tr>
+            @php
+            $total_basic += $basic;
+            $total_vat += $vat;
+            $total_mrp += $mrp;
+            @endphp
+            @endforeach
             <tr>
-                <td colspan="11" style="text-align:center; font-weight:bold;">{{$key}}</td>
+                <td colspan="8" style="font-weight:bold; text-align:center;">
+                    Grand Total
+                </td>
+                <td class="right bd_taka bold">{{$total_basic}}</td>
+                <td class="right bd_taka bold">{{$total_vat}}</td>
+                <td class="right bd_taka bold">{{$total_mrp}}</td>
             </tr>
             @endforeach
         </table>

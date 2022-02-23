@@ -121,7 +121,11 @@ class VATController extends Controller
             // ->orderBy('month')
             ->orderBy('cores.sale_mushak_no')
             ->get()
-            ->groupBy('model');
+            ->groupBy(['model', 'month']);
+        // echo '<pre>';
+        // echo $data;
+        // echo '</pre>';
+        // return;
         // ->groupBy('vat_sale_date');
         // ->groupBy('month');
         // ->groupBy('month');
