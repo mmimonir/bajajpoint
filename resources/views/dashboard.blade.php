@@ -966,7 +966,7 @@
                                         <a href="/hform/${data.id}" target="_blank" class="btn-sm bg-dark">
                                             Hform
                                         </a>
-                                        <a href="#" class="btn-sm bg-dark">
+                                        <a href="/brta_stamp/${data.id}" class="btn-sm bg-dark">
                                             Stamp
                                         </a>
                                         <a href="/gate_pass/${data.id}" target="_blank" class="btn-sm bg-dark">
@@ -978,7 +978,7 @@
                                         <a href="#" class="btn-sm bg-dark salesUpdate" id="${data.id}" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#salesUpdateModal">
                                             Edit
                                         </a>
-                                        <a href="#" target="_blank" class="btn-sm bg-dark">
+                                        <a href="/brta_assessment_form/${data.id}" target="_blank" class="btn-sm bg-dark">
                                             Bank Slip
                                         </a>
                                         <a href="#" class="btn-sm bg-dark cusInfo" id="${data.id}" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#showModal">

@@ -81,6 +81,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('print_list',  'print_list')->name('print.print_list');
         Route::post('print_list_dashboard',  'print_list_dashboard')->name('print.print_list_dashboard');
         Route::get('/hform/{id}',  'hform')->name('print.hform');
+        Route::get('/brta_assessment_form/{id}',  'brta_assessment_form')->name('print.brta_assessment_form');
+        Route::get('/brta_stamp/{id}',  'brta_stamp')->name('print.brta_stamp');
     });
 
     // Sales
