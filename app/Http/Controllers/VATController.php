@@ -86,7 +86,48 @@ class VATController extends Controller
             ->get()
             ->groupBy('vat_sale_date');
 
-        return view('dms.html_print.vat.vat_sale')->with(['date_data' => $data, 'vat_code' => $vat_code]);
+        return view('dms.html_print.vat.vat_sale')->with(['vat_data' => $data, 'vat_code' => $vat_code]);
+
+        // $pdf = PDF::loadView('dms.pdf.vat.vat_sale_bp', ['date_data' => $data]);
+        // $pdf->setPaper('A4', 'landscape');
+        // return $pdf->stream('vat_sale_bp');
+    }
+    public function vat_sale_by_model(Request $request)
+    {
+        $vat_code = $request->vat_code;
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+
+        $data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+            ->select(
+                'cores.customer_name',
+                'cores.model_code',
+                'cores.full_address',
+                'cores.vat_code',
+                'cores.five_chassis',
+                'cores.five_engine',
+                'cores.vat_sale_date',
+                'cores.sale_mushak_no',
+                'cores.basic_price_vat',
+                'cores.sale_vat',
+                'cores.unit_price_vat',
+                'vehicles.model',
+                DB::raw('MONTH(cores.vat_sale_date) as month'),
+            )
+            ->where('cores.vat_code', "=", $vat_code)
+            ->whereNotNull('cores.sale_mushak_no')
+            ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
+            // ->orderBy('vehicles.model')
+            // ->orderBy('month')
+            ->orderBy('cores.sale_mushak_no')
+            ->get()
+            ->groupBy('model');
+        // ->groupBy('vat_sale_date');
+        // ->groupBy('month');
+        // ->groupBy('month');
+        // dd($data);
+
+        return view('dms.html_print.vat.vat_sale_by_model')->with(['vat_data' => $data, 'vat_code' => $vat_code]);
 
         // $pdf = PDF::loadView('dms.pdf.vat.vat_sale_bp', ['date_data' => $data]);
         // $pdf->setPaper('A4', 'landscape');

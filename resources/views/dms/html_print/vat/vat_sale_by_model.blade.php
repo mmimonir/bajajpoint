@@ -78,27 +78,12 @@
                 <th>VAT</th>
                 <th>MRP</th>
             </tr>
-            @php
-            $sl = 0;
-
-            $vat_basic_grand = 0;
-            $vat_sale_grand = 0;
-            $vat_unit_grand = 0;
-            @endphp
-
             @foreach ($vat_data as $key=> $data)
-            <tr>
-                <td colspan="11" class="center bold">Date: {{date('d-m-Y', strtotime($key))}}</td>
-            </tr>
-            @php
-            $vat_basic_sum = 0;
-            $vat_sale_sum = 0;
-            $vat_unit_sum = 0;
 
-            @endphp
+
             @foreach ($data as $item)
             <tr>
-                <td class="center">{{$sl+1}}</td>
+                <td class="center">{{1}}</td>
                 <td>{{$item->model}}</td>
                 <td class="center">{{date('d-m-Y', strtotime($item->vat_sale_date))}}</td>
                 <td class="center">{{$item->five_chassis}}</td>
@@ -110,32 +95,14 @@
                 <td class="right bd_taka">{{$item->sale_vat}}</td>
                 <td class="right bd_taka">{{$item->unit_price_vat}}</td>
             </tr>
-            @php
-            $sl++;
-            $vat_basic_sum += $item->basic_price_vat;
-            $vat_sale_sum += $item->sale_vat;
-            $vat_unit_sum += $item->unit_price_vat;
-            @endphp
-            @endforeach
-            @php
-            $vat_basic_grand += $vat_basic_sum;
-            $vat_sale_grand += $vat_sale_sum;
-            $vat_unit_grand += $vat_unit_sum;
-            @endphp
-            <tr>
-                <td colspan="8"></td>
-                <td class="right bd_taka bold">{{$vat_basic_sum}}</td>
-                <td class="right bd_taka bold">{{$vat_sale_sum}}</td>
-                <td class="right bd_taka bold">{{$vat_unit_sum}}</td>
-            </tr>
             @endforeach
             <tr>
-                <td colspan="8">Grand Total</td>
-                <td class="right bd_taka bold">{{$vat_basic_grand}}</td>
-                <td class="right bd_taka bold">{{$vat_sale_grand}}</td>
-                <td class="right bd_taka bold">{{$vat_unit_grand}}</td>
+                <td style="text-align:center; font-weight:bold;">Total</td>
             </tr>
-
+            <tr>
+                <td colspan="11" style="text-align:center; font-weight:bold;">{{$key}}</td>
+            </tr>
+            @endforeach
         </table>
     </div>
 </body>

@@ -96,6 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/vat_index', [App\Http\Controllers\VATController::class, 'vat_index'])->name('vat.index');
     // Route::get('vat_sale_bp', [App\Http\Controllers\PDFController::class, 'vat_sale_bp']);
     Route::post('/vat_sale', [App\Http\Controllers\VATController::class, 'vat_sale'])->name('vat.vat_sale');
+    Route::post('/vat_sale_by_model', [App\Http\Controllers\VATController::class, 'vat_sale_by_model'])->name('vat.vat_sale_by_model');
     Route::post('/assign_tr_code', [App\Http\Controllers\VATController::class, 'assign_tr_code'])->name('vat.assign_tr_code');
     Route::post('/update_tr_status', [App\Http\Controllers\VATController::class, 'update_tr_status'])->name('vat.update_tr_status');
     Route::post('/tr_changer_update', [App\Http\Controllers\VATController::class, 'tr_changer_update'])->name('vat.tr_changer_update');
