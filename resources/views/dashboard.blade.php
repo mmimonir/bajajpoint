@@ -558,7 +558,7 @@
                                     <div class="form-group row" style="margin-bottom:0px;">
                                         <label for="vendor" class="col-sm-3 col-form-label form-control-sm">Vendor</label>
                                         <div class="col-sm-9" style="padding:0px;">
-                                            <input required type="text" name="vendor" class="form-control form-control-sm" id="vendor2">
+                                            <input readonly type="text" name="vendor" class="form-control form-control-sm" id="vendor2">
                                         </div>
                                     </div>
                                     <div class="form-group row" style="margin-bottom:0px;">
@@ -653,7 +653,7 @@
                                             <div class="form-group row" style="margin-bottom:0px;">
                                                 <label for="price_declare_id" class="col-sm-6 col-form-label form-control-sm">Price Dec Id</label>
                                                 <div class="col-sm-6" style="padding:0px;">
-                                                    <input type="text" name="price_declare_id" class="form-control form-control-sm" id="price_declare_id2">
+                                                    <input readonly type="text" name="price_declare_id" class="form-control form-control-sm" id="price_declare_id2">
                                                 </div>
                                             </div>
                                         </div>
@@ -691,7 +691,7 @@
                                             <div class="form-group row" style="margin-bottom:0px;">
                                                 <label for="purchage_date" class="col-sm-5 col-form-label form-control-sm">Purchage Date</label>
                                                 <div class="col-sm-7" style="padding:0px;">
-                                                    <input required type="date" name="purchage_date" class="form-control form-control-sm" id="purchage_date2">
+                                                    <input readonly type="date" name="purchage_date" class="form-control form-control-sm" id="purchage_date2">
                                                 </div>
                                             </div>
                                             <div class="form-group row" style="margin-bottom:0px;">
@@ -740,7 +740,7 @@
                                             <div class="form-group row" style="margin-bottom:0px;">
                                                 <label for="vat_mrp" class="col-sm-5 col-form-label form-control-sm">PD Price</label>
                                                 <div class="col-sm-7" style="padding:0px;">
-                                                    <input type="text" name="vat_mrp" class="form-control form-control-sm" id="vat_mrp2">
+                                                    <input readonly type="text" name="vat_mrp" class="form-control form-control-sm" id="vat_mrp2">
                                                 </div>
                                             </div>
                                         </div>
@@ -1103,7 +1103,7 @@
                     $('#ckd_process2').val(core_data.ckd_process);
                     $('#approval_no2').val(core_data.approval_no);
                     $('#invoice_no2').val(core_data.invoice_no);
-                    $('#vendor2').val(purchage_data.vendor);
+                    $('#vendor2').val(purchage_data ? purchage_data.vendor : core_data.vendor_name);
                     color_data.forEach(function(item) {
                         $(".color_code").append(`<option ${item.color_code === core_data.color_code ? 'selected' : ''} value="${item.color_code}">${item.color}</option>`);
                     });
@@ -1127,10 +1127,10 @@
                     $('#vat_year_sale2').val(core_data.vat_year_sale);
                     $('#sale_price2').val(core_data.sale_price);
                     $('#dealer2').val(core_data.dealer);
-                    $('#purchage_date2').val(purchage_data.purchage_date);
+                    $('#purchage_date2').val(purchage_data ? purchage_data.purchage_date : core_data.purchage_date);
                     $('#sale_mushak_no2').val(core_data.sale_mushak_no);
                     $('#uml_mushak_no2').val(core_data.uml_mushak_no);
-                    $('#factory_challan_no2').val(purchage_data.factory_challan_no);
+                    $('#factory_challan_no2').val(purchage_data ? purchage_data.factory_challan_no : core_data.challan_no);
                     $('#whos_vat2').val(core_data.whos_vat);
                     $('#sale_profit2').val(core_data.sale_profit);
                     $('#note2').val(core_data.note);
