@@ -101,6 +101,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/update_tr_status', [App\Http\Controllers\VATController::class, 'update_tr_status'])->name('vat.update_tr_status');
     Route::post('/tr_changer_update', [App\Http\Controllers\VATController::class, 'tr_changer_update'])->name('vat.tr_changer_update');
     Route::post('/assign_tr_number', [App\Http\Controllers\VATController::class, 'assign_tr_number'])->name('assign_tr_number');
+    Route::post('/assign_sale_mushak_no', [App\Http\Controllers\VATController::class, 'assign_sale_mushak_no'])->name('vat.assign_sale_mushak_no');
+    Route::post('/assign_sale_mushak_no_store', [App\Http\Controllers\VATController::class, 'assign_sale_mushak_no_store'])->name('vat.assign_sale_mushak_no_store');
 
     // CKD
     Route::get('/ckd_pending', [App\Http\Controllers\CKDController::class, 'ckd_pending'])->name('ckd.ckd_pending');

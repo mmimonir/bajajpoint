@@ -4,17 +4,20 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Models\Core;
-use App\Models\Purchage;
 use App\Models\Vehicle;
+use App\Models\Purchage;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+
 
 class VATController extends Controller
 {
     public function index()
     {
+        $dealer = Supplier::select('dealer_name', 'supplier_code')->whereNotNull('dealer_name')->get();
         $models = Vehicle::select('model_code', 'model')->where('status', '=', 'Active')->get();
         $tr_code = Core::select('tr_month_code', 'vat_process')->where('vat_process', '=', 'PENDING')->first();
-        // $last_tr_code = Core::select('tr_month_code')->latest('store_id')->first();
 
         $last_tr_code = Core::whereNotNull('tr_month_code')->get()->last();
         $whos_vat = Core::select('whos_vat')->where('tr_month_code', '=', $last_tr_code->tr_month_code)->whereNull('tr_number')->get()->unique('whos_vat');
@@ -26,6 +29,7 @@ class VATController extends Controller
                     'tr_code' => $tr_code,
                     'last_tr_code' => $last_tr_code,
                     'whos_vat' => $whos_vat,
+                    'dealer' => $dealer,
                 ]
             );
     }
@@ -87,10 +91,6 @@ class VATController extends Controller
             ->groupBy('vat_sale_date');
 
         return view('dms.html_print.vat.vat_sale')->with(['vat_data' => $data, 'vat_code' => $vat_code]);
-
-        // $pdf = PDF::loadView('dms.pdf.vat.vat_sale_bp', ['date_data' => $data]);
-        // $pdf->setPaper('A4', 'landscape');
-        // return $pdf->stream('vat_sale_bp');
     }
     public function vat_sale_by_model(Request $request)
     {
@@ -117,25 +117,11 @@ class VATController extends Controller
             ->where('cores.vat_code', "=", $vat_code)
             ->whereNotNull('cores.sale_mushak_no')
             ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
-            // ->orderBy('vehicles.model')
-            // ->orderBy('month')
             ->orderBy('cores.sale_mushak_no')
             ->get()
             ->groupBy(['model', 'month']);
-        // echo '<pre>';
-        // echo $data;
-        // echo '</pre>';
-        // return;
-        // ->groupBy('vat_sale_date');
-        // ->groupBy('month');
-        // ->groupBy('month');
-        // dd($data);
 
         return view('dms.html_print.vat.vat_sale_by_model')->with(['vat_data' => $data, 'vat_code' => $vat_code]);
-
-        // $pdf = PDF::loadView('dms.pdf.vat.vat_sale_bp', ['date_data' => $data]);
-        // $pdf->setPaper('A4', 'landscape');
-        // return $pdf->stream('vat_sale_bp');
     }
     public function assign_tr_number(Request $request)
     {
@@ -162,20 +148,6 @@ class VATController extends Controller
     }
 
 
-    // public function assign_tr_code(Request $request)
-    // {
-    //     Purchage::where('vat_process', '=', 'PENDING')->update(['tr_month_code' => $request->tr_month_code]);
-    //     $whos_vat = Purchage::select('dealer_code')->where('vat_process', '=', 'PENDING')->get();
-    //     foreach ($whos_vat as $key => $value) {
-    //         $dealer_code = $value->dealer_code;
-    //         $whos_vat_code = $dealer_code == 2000 ? 'BP VAT' : ($dealer_code == 2011 ? 'BH VAT' : ($dealer_code == 2030 ? 'BB VAT' : ('BP VAT')));
-
-    //         Purchage::where(
-    //             ['vat_process' => 'PENDING', 'tr_month_code' => $request->tr_month_code, 'dealer_code' => $dealer_code]
-    //         )->update(['whos_vat' => $whos_vat_code]);
-    //     }
-    //     return redirect()->back()->with('success', 'TR Code Assigned Successfully');
-    // }
     public function assign_tr_code(Request $request)
     {
         Core::where('vat_process', '=', 'PENDING')->update(['tr_month_code' => $request->tr_month_code]);
@@ -221,6 +193,46 @@ class VATController extends Controller
         } catch (\Exception $e) {
 
             return redirect()->back()->with('error', 'Something Went Wrong');
+        }
+    }
+    public function assign_sale_mushak_no(Request $request)
+    {
+        $vat_code = $request->vat_code;
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+
+        $mushak_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+            ->rightJoin('purchages', 'purchages.id', '=', 'cores.store_id')
+            ->select(
+                'cores.id',
+                'cores.sale_mushak_no',
+                'cores.vat_code',
+                'cores.five_chassis',
+                'cores.five_engine',
+                'cores.vat_sale_date',
+                'cores.mushak_date',
+                'cores.vat_process',
+                'cores.original_sale_date',
+                'vehicles.model',
+                'purchages.purchage_date',
+            )->where('cores.vat_code', "=", $vat_code)
+            ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
+            ->orderBy('cores.sale_mushak_no')
+            ->get();
+
+        return view('dms.vat.sale_mushak_sl_gen')->with(['mushak_data' => $mushak_data]);
+    }
+    public function assign_sale_mushak_no_store(Request $request)
+    {
+        $vat_sale_date = Carbon::parse($request->vat_sale_date);
+        try {
+            $mushak_data = Core::find($request->id);
+            $mushak_data->sale_mushak_no = $request->sale_mushak_no;
+            $mushak_data->vat_sale_date = $vat_sale_date;
+            $mushak_data->save();
+            return response()->json(['success' => 'Data is successfully updated', 'status' => 200, 'id' => $request->id]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
     }
 }
