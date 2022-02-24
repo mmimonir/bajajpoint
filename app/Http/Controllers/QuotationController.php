@@ -62,7 +62,11 @@ class QuotationController extends Controller
                     QuotationItem::insert($save_record);
                 }
             });
-            return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
+            $last_data = Quotation::latest()->first();
+            return response()->json([
+                'status' => 200,
+                'last_data' => $last_data
+            ]);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }

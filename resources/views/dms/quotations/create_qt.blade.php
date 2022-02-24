@@ -14,6 +14,11 @@
                     <div class="col-md-6">
                         <h4 style="margin-bottom:0px;">Quatation</h4>
                     </div>
+                    <div class="col-md-6 d-flex justify-content-end">
+                        <a href="{{route('quotation.list')}}" target="_blank" rel="noopener noreferrer">
+                            <button class="btn btn-info btn-sm text-white">Quotation List</button>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="card-body">
@@ -163,11 +168,10 @@
                 </form>
             </div>
             <div class="card-footer">
+
                 <div class="row">
-                    <div class="col-md-12 d-flex justify-content-end">
-                        <a href="{{route('quotation.list')}}" target="_blank" rel="noopener noreferrer">
-                            <button class="btn btn-info btn-sm text-white">Quotation List</button>
-                        </a>
+                    <div class="col-md-12 d-flex justify-content-end" id="qt-list">
+
                     </div>
                 </div>
             </div>
@@ -191,24 +195,60 @@
             contentType: false,
             processData: false,
             dataType: 'json',
-            success: function(response) {
-                if (response.status == 200) {
+            success: function({
+                status,
+                last_data
+            }) {
+                console.log(last_data);
+                if (status == 200) {
+                    var html = `<table id="example" class="table table-hover table-sm table-bordered">
+                        <thead class="text-center">
+                            <tr class="text-sm">
+                                <th>Sl</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>QT Date</th>
+                                <th>Validity</th>
+                                <th>Action (Print)</th>
+                            </tr>
+                        </thead>
+                        <tbody>                    
+                            <tr>
+                                <td>${1}</td>
+                                <td>${last_data.to}</td>
+                                <td>${last_data.address_one}</td>
+                                <td>
+                                    ${last_data.qt_date}
+                                </td>
+                                <td>
+                                    ${last_data.validity}
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center text-decoration btn-group">
+                                        <a href="quotation_print_html/${last_data.id}" target="_blank" class="btn-sm">
+                                            <i class="fa fa-print" style="color: #2196f3;font-size:16px;"></i>
+                                        </a>                                        
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody></table>`;
                     Swal.fire({
                         icon: 'success',
-                        title: response.message,
+                        title: "Created Successfully",
                         showConfirmButton: false,
                         timer: 2000
                     })
-                    $('#quotation_create_form').trigger("reset");
                 } else {
+                    html = `<h3 class="text-center">No Data Found</h3>`;
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
                         text: response.message,
                         footer: '<a href="">Why do I have this issue?</a>'
                     })
-
                 }
+                $("#qt-list").html(html);
+                $('#quotation_create_form').trigger("reset");
             }
         });
     });
