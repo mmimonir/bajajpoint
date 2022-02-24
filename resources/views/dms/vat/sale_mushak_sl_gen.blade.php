@@ -41,7 +41,7 @@
                                 <td style="text-align:center;" class="">{{$data->five_engine}}</td>
                                 <td style="text-align:center;" class="sale_mushak_no" contenteditable="true">{{$data->sale_mushak_no}}</td>
                                 <td style="text-align:center;" class="">{{date('d-m-Y', strtotime($data->original_sale_date))}}</td>
-                                <td style="text-align:center;" class="vat_sale_date" contenteditable="true">{{date('d-m-Y', strtotime($data->vat_sale_date))}}</td>
+                                <td><input class="vat_sale_date" type="date" name="vat_sale_date" value="{{$data->vat_sale_date}}" /></td>
                                 <td style="text-align:center;" class="">{{date('d-m-Y', strtotime($data->mushak_date))}}</td>
                                 <td style="text-align:center;" class="">{{date('d-m-Y', strtotime($data->purchage_date))}}</td>
                                 <td style="text-align:center;" class="">{{$data->vat_process}}</td>
@@ -90,7 +90,7 @@
         var _this = $(this).parents('tr');
         var cus_id = _this.find('.five_chassis').attr('cus_id');
         var sale_mushak_no = _this.find('.sale_mushak_no').text();
-        var vat_sale_date = _this.find('.vat_sale_date').text();
+        var vat_sale_date = _this.find('.vat_sale_date').val();
 
         var formData = new FormData();
         formData.append("id", cus_id);

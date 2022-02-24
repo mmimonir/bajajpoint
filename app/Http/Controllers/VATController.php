@@ -224,11 +224,11 @@ class VATController extends Controller
     }
     public function assign_sale_mushak_no_store(Request $request)
     {
-        $vat_sale_date = Carbon::parse($request->vat_sale_date);
+        // $vat_sale_date = Carbon::parse($request->vat_sale_date);
         try {
             $mushak_data = Core::find($request->id);
             $mushak_data->sale_mushak_no = $request->sale_mushak_no;
-            $mushak_data->vat_sale_date = $vat_sale_date;
+            $mushak_data->vat_sale_date = $request->vat_sale_date;
             $mushak_data->save();
             return response()->json(['success' => 'Data is successfully updated', 'status' => 200, 'id' => $request->id]);
         } catch (\Exception $e) {
