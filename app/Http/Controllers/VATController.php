@@ -112,7 +112,7 @@ class VATController extends Controller
                 'cores.sale_vat',
                 'cores.unit_price_vat',
                 'vehicles.model',
-                DB::raw('MONTH(cores.vat_sale_date) as month'),
+                DB::raw('MONTH(cores.vat_sale_date) as month')
             )
             ->where('cores.vat_code', "=", $vat_code)
             ->whereNotNull('cores.sale_mushak_no')
