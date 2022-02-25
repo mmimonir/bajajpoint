@@ -162,7 +162,7 @@
                 </div>
             </div>
             <div class="row">
-                <!-- <div class="col-md-3">
+                <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey">
                         <div class="card-header bg-dark">
                             <h3 class="text-center rounded">Gen. Sale Mushak No</h3>
@@ -211,7 +211,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey">
                         <div class="card-header bg-dark">
