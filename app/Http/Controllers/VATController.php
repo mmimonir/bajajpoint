@@ -81,7 +81,7 @@ class VATController extends Controller
                 'cores.basic_price_vat',
                 'cores.sale_vat',
                 'cores.unit_price_vat',
-                'vehicles.model',
+                'vehicles.model'
             )
             ->where('cores.vat_code', "=", $vat_code)
             ->whereNotNull('cores.sale_mushak_no')
