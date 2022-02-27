@@ -26,7 +26,7 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="{{route('assign_tr_number')}}" method="post">
+                                    <form action="" method="post" id="assign_tr_number">
                                         @csrf
                                         <div class="form-group row">
                                             <label for="whos_vat" class="col-sm-4 col-form-label">Whos VAT</label>
@@ -59,7 +59,7 @@
                                         <div class="form-group row">
                                             <label for="tr_month_code" class="col-sm-4 col-form-label">TR Code</label>
                                             <div class="col-sm-8">
-                                                <input required value="{{$tr_code ? $tr_code->tr_month_code : 'No Code Assign'}}" required type="text" class="form-control" id="tr_month_code" name="tr_month_code" placeholder="JAN0122">
+                                                <input required value="{{$helper_tr ? $helper_tr->tr_month_code : 'No Code Assign'}}" required type="text" class="form-control" id="tr_month_code" name="tr_month_code" placeholder="JAN0122">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -81,7 +81,7 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="{{route('vat.assign_tr_code')}}" method="post">
+                                    <form action="" method="post" id="assign_tr_code">
                                         @csrf
                                         <div class="form-group row">
                                             <label for="end_date" class="col-sm-4 col-form-label">Last Code</label>
@@ -120,7 +120,7 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="{{route('vat.update_tr_status')}}" method="post">
+                                    <form action="" method="post" id="update_tr_status">
                                         @csrf
                                         <div class="form-group row">
                                             <label for="tr_code" class="col-sm-4 col-form-label">TR Code</label>
@@ -270,22 +270,109 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('.selectpicker').selectpicker();
     });
 </script>
-<script>
-    let dateDropdown = document.getElementById('date-dropdown');
 
-    let currentYear = new Date().getFullYear();
-    let earliestYear = 2010;
-    while (currentYear >= earliestYear) {
-        let dateOption = document.createElement('option');
-        dateOption.text = currentYear;
-        dateOption.value = currentYear;
-        dateDropdown.add(dateOption);
-        currentYear -= 1;
-    }
+<script>
+    $(document).ready(function() {
+        $("#assign_tr_number").submit(function(e) {
+            e.preventDefault();
+            const FD = new FormData(this);
+            $.ajax({
+                url: "{{ route('assign_tr_number') }}",
+                method: 'post',
+                data: FD,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status == 200) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                        $("#assign_tr_number").trigger('reset');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message,
+                            footer: '<a href="">Why do I have this issue?</a>'
+                        })
+                    }
+                }
+            });
+        });
+        $("#assign_tr_code").submit(function(e) {
+            e.preventDefault();
+            const FD = new FormData(this);
+            $.ajax({
+                url: "{{ route('vat.assign_tr_code') }}",
+                method: 'post',
+                data: FD,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status == 200) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                        $("#assign_tr_code").trigger("reset");
+                    } else {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message,
+                            footer: '<a href="">Why do I have this issue?</a>'
+                        })
+                    }
+                }
+            });
+        });
+        $("#update_tr_status").submit(function(e) {
+            e.preventDefault();
+            const FD = new FormData(this);
+            $.ajax({
+                url: "{{ route('vat.update_tr_status') }}",
+                method: 'post',
+                data: FD,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status == 200) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                        $("#update_tr_status").trigger("reset");
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message,
+                            footer: '<a href="">Why do I have this issue?</a>'
+                        })
+                    }
+                }
+            });
+        });
+    })
 </script>
 @endsection

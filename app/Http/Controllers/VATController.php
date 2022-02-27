@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use DB;
+
 use App\Models\Core;
+use App\Models\Helper;
 use App\Models\Vehicle;
 use App\Models\Purchage;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 
 class VATController extends Controller
@@ -19,8 +21,18 @@ class VATController extends Controller
         $models = Vehicle::select('model_code', 'model')->where('status', '=', 'Active')->get();
         $tr_code = Core::select('tr_month_code', 'vat_process')->where('vat_process', '=', 'PENDING')->first();
 
-        $last_tr_code = Core::whereNotNull('tr_month_code')->get()->last();
-        $whos_vat = Core::select('whos_vat')->where('tr_month_code', '=', $last_tr_code->tr_month_code)->whereNull('tr_number')->get()->unique('whos_vat');
+
+        // $last_tr_code = Core::select('tr_month_code')->whereNotNull('tr_month_code')->get()->last();
+        $last_tr_code = Helper::select('last_tr_code as tr_month_code')->first();
+        // $last_tr_code = Core::select('tr_month_code')
+        //     ->where("mushak_date", ">", Carbon::now()->subMonths(3))
+        //     ->get()
+        //     ->last();
+        $whos_vat = Core::select('whos_vat')
+            ->where('tr_month_code', '=', $last_tr_code->tr_month_code)
+            ->whereNull('tr_number')
+            ->get()
+            ->unique('whos_vat');
 
         return view('dms.vat_dashboard')
             ->with(
@@ -30,6 +42,7 @@ class VATController extends Controller
                     'last_tr_code' => $last_tr_code,
                     'whos_vat' => $whos_vat,
                     'dealer' => $dealer,
+                    'helper_tr' => $last_tr_code,
                 ]
             );
     }
@@ -125,42 +138,54 @@ class VATController extends Controller
     }
     public function assign_tr_number(Request $request)
     {
-        $whos_vat = $request->whos_vat;
-        $tr_number = $request->tr_number;
-        $tr_month_code = $request->tr_month_code;
+        try {
+            $whos_vat = $request->whos_vat;
+            $tr_number = $request->tr_number;
+            $tr_month_code = $request->tr_month_code;
 
-        $tr_pending = Core::select('id', 'print_code')
-            ->where([
-                'tr_month_code' => $tr_month_code,
-                'whos_vat' => $whos_vat,
-            ])->get();
-        $update_record = ['tr_number' => $tr_number];
-        foreach ($tr_pending as $key => $tr_data) {
-            foreach ($request->model_code as $key => $value) {
-                Core::where([
-                    'whos_vat' => $whos_vat,
+            $tr_pending = Core::select('id', 'print_code')
+                ->where([
                     'tr_month_code' => $tr_month_code,
-                    'model_code' => $value
-                ])->update($update_record);
+                    'whos_vat' => $whos_vat,
+                ])->get();
+            $update_record = ['tr_number' => $tr_number];
+            foreach ($tr_pending as $key => $tr_data) {
+                foreach ($request->model_code as $key => $value) {
+                    Core::where([
+                        'whos_vat' => $whos_vat,
+                        'tr_month_code' => $tr_month_code,
+                        'model_code' => $value
+                    ])->update($update_record);
+                }
             }
+            return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
-        return redirect()->back()->with('success', 'TR Number Assigned Successfully');
     }
 
 
     public function assign_tr_code(Request $request)
     {
-        Core::where('vat_process', '=', 'PENDING')->update(['tr_month_code' => $request->tr_month_code]);
-        $whos_vat = Core::select('print_code')->where('vat_process', '=', 'PENDING')->get();
-        foreach ($whos_vat as $key => $value) {
-            $print_code = $value->print_code;
-            $whos_vat_code = $print_code == 2000 ? 'BP VAT' : ($print_code == 2011 ? 'BH VAT' : ($print_code == 2030 ? 'BB VAT' : ('BP VAT')));
+        try {
+            DB::transaction(function () use ($request) {
+                Helper::where('id', 1)->update(['last_tr_code' => $request->tr_month_code]);
 
-            Core::where(
-                ['vat_process' => 'PENDING', 'tr_month_code' => $request->tr_month_code, 'print_code' => $print_code]
-            )->update(['whos_vat' => $whos_vat_code]);
+                Core::where('vat_process', '=', 'PENDING')->update(['tr_month_code' => $request->tr_month_code]);
+                $whos_vat = Core::select('print_code')->where('vat_process', '=', 'PENDING')->get();
+                foreach ($whos_vat as $key => $value) {
+                    $print_code = $value->print_code;
+                    $whos_vat_code = $print_code == 2000 ? 'BP VAT' : ($print_code == 2011 ? 'BH VAT' : ($print_code == 2030 ? 'BB VAT' : ('BP VAT')));
+
+                    Core::where(
+                        ['vat_process' => 'PENDING', 'tr_month_code' => $request->tr_month_code, 'print_code' => $print_code]
+                    )->update(['whos_vat' => $whos_vat_code]);
+                }
+            });
+            return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
-        return redirect()->back()->with('success', 'TR Code Assigned Successfully');
     }
 
     public function update_tr_status(Request $request)
@@ -172,10 +197,9 @@ class VATController extends Controller
                     'tr_dep_date' => $request->tr_dep_date
                 ]);
 
-            return redirect()->back()->with('success', 'TR Status Updated Successfully');
+            return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
         } catch (\Exception $e) {
-
-            return redirect()->back()->with('error', 'Something Went Wrong');
+            return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
     }
     public function tr_changer_update(Request $request)
@@ -191,7 +215,6 @@ class VATController extends Controller
 
             return redirect()->back()->with('success', 'TR Status Updated Successfully');
         } catch (\Exception $e) {
-
             return redirect()->back()->with('error', 'Something Went Wrong');
         }
     }
