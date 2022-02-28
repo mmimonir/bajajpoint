@@ -16,17 +16,27 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $total_lifting = $this->total_lifting(2000);
-        $lifting_previous_month = $this->lifting_previous_month(2000);
-        $lifting_this_month = $this->lifting_this_month(2000);
-        $tr_pending_data = $this->tr_pending_data();
 
         return view('dashboard')
             ->with([
-                'total_lifting' => $total_lifting,
-                'lifting_previous_month' => $lifting_previous_month,
-                'lifting_this_month' => $lifting_this_month,
-                'tr_pending_data' => $tr_pending_data,
+                'bp' => [
+                    'total_lifting' => $this->total_lifting(2000),
+                    'lifting_previous_month' => $this->lifting_previous_month(2000),
+                    'lifting_this_month' => $this->lifting_this_month(2000),
+                    'tr_pending_data' => $this->tr_pending_data(2000),
+                ],
+                'bh' => [
+                    'total_lifting' => $this->total_lifting(2011),
+                    'lifting_previous_month' => $this->lifting_previous_month(2011),
+                    'lifting_this_month' => $this->lifting_this_month(2011),
+                    'tr_pending_data' => $this->tr_pending_data(2011),
+                ],
+                'bb' => [
+                    'total_lifting' => $this->total_lifting(2030),
+                    'lifting_previous_month' => $this->lifting_previous_month(2030),
+                    'lifting_this_month' => $this->lifting_this_month(2030),
+                    'tr_pending_data' => $this->tr_pending_data(2030),
+                ]
             ]);
     }
 
@@ -44,7 +54,6 @@ class DashboardController extends Controller
     }
     public function lifting_previous_month($report_code)
     {
-
         $first_day = Carbon::now()->startOfMonth()->subMonthsNoOverflow()->toDateString();
         $last_day = Carbon::now()->subMonthNoOverflow()->endOfMonth()->toDateString();
 
@@ -69,12 +78,16 @@ class DashboardController extends Controller
 
         return $lifting_this_month;
     }
-    public function tr_pending_data()
+    public function tr_pending_data($report_code)
     {
-        $tr_pending_qty = count(Core::select('model_code')->where('vat_process', '=', 'PENDING')->get());
+        $tr_pending_qty = count(Core::select('model_code')
+            ->where('vat_process', '=', 'PENDING')
+            ->where('report_code', $report_code)
+            ->get());
         $tr_pending_amount = Core::rightJoin('mrps', 'mrps.model_code', '=', 'cores.model_code')
             ->select('mrps.tr')
             ->where('cores.vat_process', 'PENDING')
+            ->where('cores.report_code', $report_code)
             ->sum('mrps.tr');
         return ['amount' => $tr_pending_amount, 'qty' => $tr_pending_qty];
     }
