@@ -1169,7 +1169,7 @@
                                         <a href="/hform/${data.id}" target="_blank" class="btn-sm bg-dark">
                                             Hform
                                         </a>
-                                        <a href="/brta_stamp/${data.id}" class="btn-sm bg-dark">
+                                        <a href="/brta_stamp/${data.id}" target="_blank" class="btn-sm bg-dark">
                                             Stamp
                                         </a>
                                         <a href="/gate_pass/${data.id}" target="_blank" class="btn-sm bg-dark">
