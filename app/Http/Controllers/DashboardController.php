@@ -16,9 +16,9 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $total_lifting = $this->total_lifting();
-        $lifting_previous_month = $this->lifting_previous_month();
-        $lifting_this_month = $this->lifting_this_month();
+        $total_lifting = $this->total_lifting(2000);
+        $lifting_previous_month = $this->lifting_previous_month(2000);
+        $lifting_this_month = $this->lifting_this_month(2000);
         $tr_pending_data = $this->tr_pending_data();
 
         return view('dashboard')
@@ -30,21 +30,21 @@ class DashboardController extends Controller
             ]);
     }
 
-    public function total_lifting()
+    public function total_lifting($report_code)
     {
         $first_day_of_year = Carbon::createFromFormat('Y-m-d H:s:i', date('Y') . '-07-01 00:00:00')->subYear()->toDateString();
         $today = Carbon::now()->toDateString();
         $lifting = Core::select('model_code')
             ->whereBetween('purchage_date', [$first_day_of_year, $today])
-            ->where('report_code', '=', 2000)
+            ->where('report_code', '=', $report_code)
             ->get();
         $total_lifting = count($lifting);
 
         return $total_lifting;
     }
-    public function lifting_previous_month()
+    public function lifting_previous_month($report_code)
     {
-        $report_code = 2000;
+
         $first_day = Carbon::now()->startOfMonth()->subMonthsNoOverflow()->toDateString();
         $last_day = Carbon::now()->subMonthNoOverflow()->endOfMonth()->toDateString();
 
@@ -56,9 +56,8 @@ class DashboardController extends Controller
 
         return $lifting_prev_month;
     }
-    public function lifting_this_month()
+    public function lifting_this_month($report_code)
     {
-        $report_code = 2000;
         $first_day = Carbon::now()->startOfMonth()->toDateString();
         $today = Carbon::now()->toDateString();
 
