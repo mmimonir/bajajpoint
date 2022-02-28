@@ -3,6 +3,55 @@
 @section('content')
 <div class="container-fluid" style="margin-top:15px; padding:0;">
     <div class="row">
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-dark">
+                <div class="inner">
+                    <h4>Total Lifting</h4>
+                    <h5>{{$total_lifting}}</h5>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-dark">
+                <div class="inner">
+                    <h4>Lifting: Last Month</h4>
+                    <h5>{{$lifting_previous_month}}</h5>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-dark">
+                <div class="inner">
+                    <h4>Lifting: This Month</h4>
+                    <h5>{{$lifting_this_month}}</h5>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-dark">
+                <div class="inner">
+                    <h4>TR Pending</h4>
+                    <div class="d-flex">
+                        <h5 style="margin-right: 5px;">Quantity: {{$tr_pending_data['qty']}}</h5>
+                        <h5>Tk: <b class="amount">{{$tr_pending_data['amount']}}</b></h5>
+                    </div>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
             <div class="card card-success">
                 <div class="card-header bg-dark">
@@ -1142,5 +1191,6 @@
             });
         });
     });
+    $('.amount').text(new Intl.NumberFormat('en-IN').format(+$('.amount').text()))
 </script>
 @endsection

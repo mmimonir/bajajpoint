@@ -56,7 +56,7 @@ class TRController extends Controller
                 'cores.rg_number',
                 'cores.evl_invoice_no',
             )
-            ->where('cores.tr_month_code', '!=', NULL)->get();
+            ->where('cores.tr_month_code', '!=', 'NOCODE')->get();
         return view('dms.tr.tr_status')->with(['tr_data' => $tr_data]);
     }
 }
