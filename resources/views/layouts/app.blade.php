@@ -195,13 +195,16 @@
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
+            <div class="float-right d-none d-sm-block" style="margin-right:40px;">
                 <b>Version</b> 3.2.0
             </div>
             <strong>Copyright &copy; 2014-2021
                 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
             All rights reserved.
         </footer>
+        <a id="back-to-top" href="#" class="btn btn-dark back-to-top" role="button" aria-label="Scroll to top" style="margin-right: -11px; margin-bottom: -11px;">
+            <i class="fas fa-chevron-up"></i>
+        </a>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js" integrity="sha512-tVYBzEItJit9HXaWTPo8vveXlkK62LbA+wez9IgzjTmFNLMBO1BEYladBw2wnM3YURZSMUyhayPCoLtjGh84NQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
