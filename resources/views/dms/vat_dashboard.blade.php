@@ -64,7 +64,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center d-flex justify-content-center">
-                                                <button style="width:150px;" {{$tr_code ? 'disabled' : ''}} type="submit" class="btn btn-dark btn-block">Assign</button>
+                                                <button id="assign_tr_number_btn" style="width:150px;" {{$tr_code ? 'disabled' : ''}} type="submit" class="btn btn-dark btn-block">Assign</button>
                                             </div>
                                         </div>
                                     </form>
@@ -103,7 +103,7 @@
                                         </div>
                                         <div class=" form-group row">
                                                 <div class="col-sm-12 text-center d-flex justify-content-center">
-                                                    <button style="width:150px;" {{$tr_code ? '' : 'disabled'}} type="submit" class="btn btn-dark btn-block">Assign</button>
+                                                    <button id="assign_tr_code_btn" style="width:150px;" {{$tr_code_status ? '' : 'disabled'}} type="submit" class="btn btn-dark btn-block">Assign</button>
                                                 </div>
                                             </div>
                                     </form>
@@ -136,7 +136,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center d-flex justify-content-center">
-                                                <button style="width:150px;" type="submit" {{$tr_code ? '' : 'disabled'}} class="btn btn-dark btn-block">Update</button>
+                                                <button id="update_tr_status_btn" style="width:150px;" type="submit" {{$tr_code ? '' : 'disabled'}} class="btn btn-dark btn-block">Update</button>
                                             </div>
                                         </div>
                                     </form>
@@ -280,6 +280,7 @@
 <script>
     $(document).ready(function() {
         $("#assign_tr_number").submit(function(e) {
+            $('#assign_tr_number_btn').attr('disabled', true);
             e.preventDefault();
             const FD = new FormData(this);
             $.ajax({
@@ -298,6 +299,7 @@
                             showConfirmButton: false,
                             timer: 2000
                         })
+                        $('#assign_tr_number_btn').attr('disabled', false);
                         $("#assign_tr_number").trigger('reset');
                     } else {
                         Swal.fire({
@@ -311,6 +313,7 @@
             });
         });
         $("#assign_tr_code").submit(function(e) {
+            $('#assign_tr_code_btn').attr('disabled', true);
             e.preventDefault();
             const FD = new FormData(this);
             $.ajax({
@@ -329,6 +332,7 @@
                             showConfirmButton: false,
                             timer: 2000
                         })
+                        $('#assign_tr_code_btn').attr('disabled', false);
                         $("#assign_tr_code").trigger("reset");
                     } else {
 
@@ -343,6 +347,7 @@
             });
         });
         $("#update_tr_status").submit(function(e) {
+            $('#update_tr_status_btn').attr('disabled', true);
             e.preventDefault();
             const FD = new FormData(this);
             $.ajax({
@@ -361,6 +366,7 @@
                             showConfirmButton: false,
                             timer: 2000
                         })
+                        $('#update_tr_status_btn').attr('disabled', false);
                         $("#update_tr_status").trigger("reset");
                     } else {
                         Swal.fire({
