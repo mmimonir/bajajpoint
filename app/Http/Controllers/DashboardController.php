@@ -17,23 +17,25 @@ class DashboardController extends Controller
     {
         return view('dashboard')
             ->with([
-                'bp' => [
-                    'total_lifting' => $this->total_lifting(2000),
-                    'lifting_previous_month' => $this->lifting_previous_month(2000),
-                    'lifting_this_month' => $this->lifting_this_month(2000),
-                    'tr_pending_data' => $this->tr_pending_data(2000),
-                ],
-                'bh' => [
-                    'total_lifting' => $this->total_lifting(2011),
-                    'lifting_previous_month' => $this->lifting_previous_month(2011),
-                    'lifting_this_month' => $this->lifting_this_month(2011),
-                    'tr_pending_data' => $this->tr_pending_data(2011),
-                ],
-                'bb' => [
-                    'total_lifting' => $this->total_lifting(2030),
-                    'lifting_previous_month' => $this->lifting_previous_month(2030),
-                    'lifting_this_month' => $this->lifting_this_month(2030),
-                    'tr_pending_data' => $this->tr_pending_data(2030),
+                'data' => [
+                    'bp' => [
+                        'total_lifting' => $this->total_lifting(2000),
+                        'lifting_previous_month' => $this->lifting_previous_month(2000),
+                        'lifting_this_month' => $this->lifting_this_month(2000),
+                        'tr_pending_data' => $this->tr_pending_data(2000),
+                    ],
+                    'bh' => [
+                        'total_lifting' => $this->total_lifting(2011),
+                        'lifting_previous_month' => $this->lifting_previous_month(2011),
+                        'lifting_this_month' => $this->lifting_this_month(2011),
+                        'tr_pending_data' => $this->tr_pending_data(2011),
+                    ],
+                    'bb' => [
+                        'total_lifting' => $this->total_lifting(2030),
+                        'lifting_previous_month' => $this->lifting_previous_month(2030),
+                        'lifting_this_month' => $this->lifting_this_month(2030),
+                        'tr_pending_data' => $this->tr_pending_data(2030),
+                    ]
                 ]
             ]);
     }

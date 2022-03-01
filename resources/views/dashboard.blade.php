@@ -175,11 +175,12 @@
             </div>
         </div>
     </div>
+    @foreach ($data as $key => $dt)
     <div class="row">
         <div class="col-md-12">
             <div class="card card-success collapsed-card">
                 <div class="card-header bg-dark">
-                    <h3 class="card-title">Bajaj Point</h3>
+                    <h3 class="card-title">{{$key =='bp' ? "Bajaj Point" : '' }} {{$key =='bh' ? "Bajaj Heaven" : '' }} {{$key =='bb' ? "Bajaj Bloom" : '' }}</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="maximize">
                             <i class="fas fa-expand"></i>
@@ -198,7 +199,7 @@
                             <div class="small-box bg-dark">
                                 <div class="inner">
                                     <h4>Total Lifting</h4>
-                                    <h5>{{$bp['total_lifting']}}</h5>
+                                    <h5>{{$dt['total_lifting']}}</h5>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
@@ -209,7 +210,7 @@
                             <div class="small-box bg-dark">
                                 <div class="inner">
                                     <h4>Lifting: Last Month</h4>
-                                    <h5>{{$bp['lifting_previous_month']}}</h5>
+                                    <h5>{{$dt['lifting_previous_month']}}</h5>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
@@ -220,7 +221,7 @@
                             <div class="small-box bg-dark">
                                 <div class="inner">
                                     <h4>Lifting: This Month</h4>
-                                    <h5>{{$bp['lifting_this_month']}}</h5>
+                                    <h5>{{$dt['lifting_this_month']}}</h5>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
@@ -232,8 +233,8 @@
                                 <div class="inner">
                                     <h4>TR Pending</h4>
                                     <div class="d-flex">
-                                        <h5 style="margin-right: 5px;">Quantity: {{$bp['tr_pending_data']['qty']}}</h5>
-                                        <h5>Tk: <b class="amount">{{$bp['tr_pending_data']['amount']}}</b></h5>
+                                        <h5 style="margin-right: 5px;">Quantity: {{$dt['tr_pending_data']['qty']}}</h5>
+                                        <h5>Tk: <b class="amount">{{$dt['tr_pending_data']['amount']}}</b></h5>
                                     </div>
                                 </div>
                                 <div class="icon">
@@ -246,148 +247,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-success collapsed-card">
-                <div class="card-header bg-dark">
-                    <h3 class="card-title">Bajaj Heaven</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="maximize">
-                            <i class="fas fa-expand"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="small-box bg-dark">
-                                <div class="inner">
-                                    <h4>Total Lifting</h4>
-                                    <h5>{{$bh['total_lifting']}}</h5>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-bag"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="small-box bg-dark">
-                                <div class="inner">
-                                    <h4>Lifting: Last Month</h4>
-                                    <h5>{{$bh['lifting_previous_month']}}</h5>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-bag"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="small-box bg-dark">
-                                <div class="inner">
-                                    <h4>Lifting: This Month</h4>
-                                    <h5>{{$bh['lifting_this_month']}}</h5>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-bag"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="small-box bg-dark">
-                                <div class="inner">
-                                    <h4>TR Pending</h4>
-                                    <div class="d-flex">
-                                        <h5 style="margin-right: 5px;">Quantity: {{$bh['tr_pending_data']['qty']}}</h5>
-                                        <h5>Tk: <b class="amount">{{$bh['tr_pending_data']['amount']}}</b></h5>
-                                    </div>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-bag"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-success collapsed-card">
-                <div class="card-header bg-dark">
-                    <h3 class="card-title">Bajaj Bloom</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="maximize">
-                            <i class="fas fa-expand"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="small-box bg-dark">
-                                <div class="inner">
-                                    <h4>Total Lifting</h4>
-                                    <h5>{{$bb['total_lifting']}}</h5>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-bag"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="small-box bg-dark">
-                                <div class="inner">
-                                    <h4>Lifting: Last Month</h4>
-                                    <h5>{{$bb['lifting_previous_month']}}</h5>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-bag"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="small-box bg-dark">
-                                <div class="inner">
-                                    <h4>Lifting: This Month</h4>
-                                    <h5>{{$bb['lifting_this_month']}}</h5>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-bag"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="small-box bg-dark">
-                                <div class="inner">
-                                    <h4>TR Pending</h4>
-                                    <div class="d-flex">
-                                        <h5 style="margin-right: 5px;">Quantity: {{$bb['tr_pending_data']['qty']}}</h5>
-                                        <h5>Tk: <b class="amount">{{$bb['tr_pending_data']['amount']}}</b></h5>
-                                    </div>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-bag"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @endforeach
 </div>
 <!-- Modal Info-->
 <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-hidden="true">
