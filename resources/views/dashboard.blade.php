@@ -54,6 +54,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="overlay" id="search_overlay">
+                    <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                </div>
             </div>
         </div>
         <div class="col-md-12">
@@ -843,6 +846,7 @@
 @section('script')
 <script>
     $(document).ready(function() {
+        $("#search_overlay").css("visibility", "hidden");
         $("#sale_update_form").submit(function(e) {
             e.preventDefault();
             const FD = new FormData(this);
@@ -977,6 +981,7 @@
             });
         });
         $("#search_form").submit(function(e) {
+            $("#search_overlay").css("visibility", "visible");
             e.preventDefault();
             const FD = new FormData(this);
             $.ajax({
@@ -1065,6 +1070,7 @@
                     `;
                     }
                     $("#show_search_result").html(html);
+                    $("#search_overlay").css("visibility", "hidden");
                     $("#search_result").DataTable({
                         bPaginate: false,
                         pageLength: 10,
@@ -1184,7 +1190,7 @@
                     $('#mushak_date2').val(core_data.mushak_date);
                     $('#print_ref2').val(core_data.print_ref);
                     $('#evl_invoice_no2').val(core_data.evl_invoice_no);
-                    $('#price_declare_id2').val((pd_data.id) + ', Date ' + (pd_data.submit_date));
+                    $('#price_declare_id2').val((pd_data ? pd_data.id : '') + ', Date ' + (pd_data ? pd_data.submit_date : ''));
                     $('#unit_price_vat2').val(core_data.unit_price_vat);
                     $('#sale_vat2').val(core_data.sale_vat);
                     $('#vat_year_sale2').val(core_data.vat_year_sale);
