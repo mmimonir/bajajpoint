@@ -177,7 +177,7 @@
     </div>
     @foreach ($data as $key => $dt)
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="card card-success collapsed-card">
                 <div class="card-header bg-dark">
                     <h3 class="card-title">{{$key =='bp' ? "Bajaj Point" : '' }} {{$key =='bh' ? "Bajaj Heaven" : '' }} {{$key =='bb' ? "Bajaj Bloom" : '' }}</h3>
@@ -195,7 +195,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="small-box bg-dark">
                                 <div class="inner">
                                     <h4>Total Lifting</h4>
@@ -206,7 +206,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="small-box bg-dark">
                                 <div class="inner">
                                     <h4>Lifting: Last Month</h4>
@@ -217,7 +217,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="small-box bg-dark">
                                 <div class="inner">
                                     <h4>Lifting: This Month</h4>
@@ -228,7 +228,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="small-box bg-dark">
                                 <div class="inner">
                                     <h4>TR Pending</h4>
