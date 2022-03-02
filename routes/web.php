@@ -52,7 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/purchage_by_month',  'purchage_by_month')->name('purchage.purchage_by_month');
         Route::post('/purchage_create',  'create')->name('purchage.create');
         Route::post('/purchage_get_mrp',  'get_mrp')->name('purchage.get_mrp');
-        Route::get('/purchage_list_index',  'purchage_list_index')->name('purchage_list.index');
+        Route::get('/purchage_list_index',  'purchage_list_index')->name('purchage.index');
         Route::get('/purchage_list',  'purchage_list')->name('purchage.list');
         Route::get('/purchage_details/{id}',  'purchage_details')->name('purchage.purchage_details_id');
         Route::post('/purchage_detail_update',  'purchage_detail_update')->name('purchage.purchage_detail_update');

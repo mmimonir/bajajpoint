@@ -16,7 +16,7 @@
                         <h4>Purchage</h4>
                     </div>
                     <div class="col-md-6">
-                        <a href="{{route('purchage_list.index')}}" class="m-r-15 edit float-right btn btn-dark mb-1">Purchage List</i>
+                        <a href="{{route('purchage.index')}}" class="m-r-15 edit float-right btn btn-dark mb-1">Purchage List</i>
                         </a>
                     </div>
                 </div>

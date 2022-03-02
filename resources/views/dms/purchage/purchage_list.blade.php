@@ -91,7 +91,7 @@
                                 `<tr>                                
                                 <td class="challan_no">${data.id}</td>                                
                                 <td class="challan_no">${data.factory_challan_no}</td>                                
-                                <td class="purchage_date">${date_format(date, 'dd-MM-yyyy')}</td>
+                                <td class="purchage_date">${data.date}</td>
                                 <td class="vendor">${data.vendor}</td>
                                 <td class="vendor">${data.quantity}</td>
                                 <td class="purchage_value">${data.purchage_value}</td>
