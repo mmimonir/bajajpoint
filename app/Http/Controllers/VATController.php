@@ -18,12 +18,19 @@ class VATController extends Controller
     public function index()
     {
         $dealer = Supplier::select('dealer_name', 'supplier_code')->whereNotNull('dealer_name')->get();
-        $models = Vehicle::select('model_code', 'model')->where('status', '=', 'Active')->get();
+        // $models = Vehicle::select('model_code', 'model')->where('status', '=', 'Active')->get();
+
         $tr_code = Core::select('tr_month_code', 'vat_process')->where('vat_process', '=', 'PENDING')->first();
         $tr_code_status = Core::select('tr_month_code')->where('tr_month_code', 'PENDING')->first();
 
         // $last_tr_code = Core::select('tr_month_code')->whereNotNull('tr_month_code')->get()->last();
         $last_tr_code = Helper::select('last_tr_code as tr_month_code')->first();
+        $models = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+            ->select('cores.model_code', 'vehicles.model')
+            ->where('cores.tr_month_code', '=', $last_tr_code->tr_month_code)
+            ->whereNull('cores.tr_number')
+            ->distinct()
+            ->get();
         // $last_tr_code = Core::select('tr_month_code')
         //     ->where("mushak_date", ">", Carbon::now()->subMonths(3))
         //     ->get()

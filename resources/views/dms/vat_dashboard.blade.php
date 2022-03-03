@@ -44,9 +44,11 @@
                                             <label for="model_code" class="col-sm-4 col-form-label">Model</label>
                                             <div class="col-sm-8">
                                                 <select name="model_code[]" class="selectpicker" multiple data-live-search="true" required>
+                                                    @if ($models)
                                                     @foreach ($models as $model)
                                                     <option value="{{$model->model_code}}">{{$model->model}}</option>
                                                     @endforeach
+                                                    @endif
                                                 </select>
                                             </div>
                                         </div>
@@ -237,7 +239,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
                         <div class="card-header bg-dark">
