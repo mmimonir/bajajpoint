@@ -73,6 +73,9 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="overlay search_overlay assign_tr_number" id="search_overlay">
+                            <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -112,6 +115,9 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="overlay search_overlay assign_tr_code" id="search_overlay">
+                            <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -144,6 +150,9 @@
                                     </form>
                                 </div>
                             </div>
+                        </div>
+                        <div class="overlay search_overlay update_tr_code" id="search_overlay">
+                            <i class="fas fa-2x fa-sync-alt fa-spin"></i>
                         </div>
                     </div>
                 </div>
@@ -264,9 +273,7 @@
         </div>
     </div>
 </div>
-<div class="overlay" id="search_overlay">
-    <i class="fas fa-2x fa-sync-alt fa-spin"></i>
-</div>
+
 @endsection
 @section('script')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -275,7 +282,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#search_overlay").css("visibility", "hidden");
+        $(".search_overlay").css("visibility", "hidden");
         $('.selectpicker').selectpicker();
     });
 </script>
@@ -283,7 +290,7 @@
 <script>
     $(document).ready(function() {
         $("#assign_tr_number").submit(function(e) {
-            $("#search_overlay").css("visibility", "visible");
+            $(".assign_tr_number").css("visibility", "visible");
             $('#assign_tr_number_btn').attr('disabled', true);
             e.preventDefault();
             const FD = new FormData(this);
@@ -303,7 +310,7 @@
                             showConfirmButton: false,
                             timer: 2000
                         })
-                        $("#search_overlay").css("visibility", "hidden");
+                        $(".assign_tr_number").css("visibility", "hidden");
                         $('#assign_tr_number_btn').attr('disabled', false);
                         $("#assign_tr_number").trigger('reset');
                         location.reload();
@@ -319,7 +326,7 @@
             });
         });
         $("#assign_tr_code").submit(function(e) {
-            $("#search_overlay").css("visibility", "visible");
+            $(".assign_tr_code").css("visibility", "visible");
             $('#assign_tr_code_btn').attr('disabled', true);
             e.preventDefault();
             const FD = new FormData(this);
@@ -339,7 +346,7 @@
                             showConfirmButton: false,
                             timer: 2000
                         })
-                        $("#search_overlay").css("visibility", "hidden");
+                        $(".assign_tr_code").css("visibility", "hidden");
                         $('#assign_tr_code_btn').attr('disabled', false);
                         $("#assign_tr_code").trigger("reset");
                     } else {
@@ -355,7 +362,7 @@
             });
         });
         $("#update_tr_status").submit(function(e) {
-            $("#search_overlay").css("visibility", "visible");
+            $(".update_tr_code").css("visibility", "visible");
             $('#update_tr_status_btn').attr('disabled', true);
             e.preventDefault();
             const FD = new FormData(this);
@@ -375,7 +382,7 @@
                             showConfirmButton: false,
                             timer: 2000
                         })
-                        $("#search_overlay").css("visibility", "hidden");
+                        $(".update_tr_code").css("visibility", "hidden");
                         $('#update_tr_status_btn').attr('disabled', false);
                         $("#update_tr_status").trigger("reset");
                     } else {
