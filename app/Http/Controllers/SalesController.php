@@ -113,7 +113,9 @@ class SalesController extends Controller
                     'price_declare_id' => $request->price_declare_id,
                     'model' => $request->model,
                     'uml_mushak_no' => $request->uml_mushak_no,
-                    'mushak_date' => $request->mushak_date
+                    'mushak_date' => $request->mushak_date,
+                    'tr_number' => $request->tr_number,
+                    'tr_dep_date' => $request->tr_dep_date
                 ]);
             return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
         } catch (\Exception $e) {

@@ -111,9 +111,7 @@
                                 <div class="row justify-content-center">
                                     <div class="col-md-12">
                                         <div class="card-body">
-                                            <form action="{{
-                                            route('excel.service_data')
-                                        }}" method="post" target="_blank">
+                                            <form action="{{route('tr.tr_status')}}" method="get" target="_blank">
                                                 @csrf
                                                 <div class="form-group row">
                                                     <div class="col-sm-12 text-center">
@@ -549,12 +547,7 @@
                                             <input required type="text" name="mobile" class="form-control form-control-sm" id="mobile2">
                                         </div>
                                     </div>
-                                    <div class="form-group row" style="margin-bottom:0px;">
-                                        <label for="email" class="col-sm-3 col-form-label form-control-sm">Email</label>
-                                        <div class="col-sm-9" style="padding:0px;">
-                                            <input type="email" name="email" class="form-control form-control-sm" id="email2">
-                                        </div>
-                                    </div>
+
                                     <div class="form-group row" style="margin-bottom:0px;">
                                         <label for="print_ref" class="col-sm-3 col-form-label form-control-sm">Print Ref</label>
                                         <div class="col-sm-9" style="padding:0px;">
@@ -563,6 +556,18 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
+                                            <div class="form-group row" style="margin-bottom:0px;">
+                                                <label for="tr_dep_date" class="col-sm-6 col-form-label form-control-sm">TR Date</label>
+                                                <div class="col-sm-6" style="padding:0px;">
+                                                    <input type="date" name="tr_dep_date" class="form-control form-control-sm" id="tr_dep_date2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" style="margin-bottom:0px;">
+                                                <label for="email" class="col-sm-6 col-form-label form-control-sm">Email</label>
+                                                <div class="col-sm-6" style="padding:0px;">
+                                                    <input type="email" name="email" class="form-control form-control-sm" id="email2">
+                                                </div>
+                                            </div>
                                             <div class="form-group row" style="margin-bottom:0px;">
                                                 <label for="dob" class="col-sm-6 col-form-label form-control-sm">DOB</label>
                                                 <div class="col-sm-6" style="padding:0px;">
@@ -590,6 +595,12 @@
 
                                         </div>
                                         <div class="col-md-6">
+                                            <div class="form-group row" style="margin-bottom:0px;">
+                                                <label for="tr_number" class="col-sm-5 col-form-label form-control-sm">TR Number</label>
+                                                <div class="col-sm-7" style="padding:0px;">
+                                                    <input type="text" name="tr_number" class="form-control form-control-sm" id="tr_number2">
+                                                </div>
+                                            </div>
                                             <div class="form-group row" style="margin-bottom:0px;">
                                                 <label for="nid_no" class="col-sm-5 col-form-label form-control-sm">NID No</label>
                                                 <div class="col-sm-7" style="padding:0px;">
@@ -1207,6 +1218,8 @@
                     $('#updated_at2').val(core_data.updated_at);
                     $('#vat_mrp2').val(pd_data.vat_mrp);
                     $('#fake_sale_date2').val(core_data.fake_sale_date);
+                    $('#tr_number2').val(core_data.tr_number);
+                    $('#tr_dep_date2').val(core_data.tr_dep_date);
                 }
             });
         });

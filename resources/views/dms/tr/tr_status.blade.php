@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'TR Pending')
+@section('title', 'TR Status')
 
 @section('datatable_css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
