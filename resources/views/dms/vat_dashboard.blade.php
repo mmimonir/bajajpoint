@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-12 text-center d-flex justify-content-center">
-                                                <button id="assign_tr_number_btn" style="width:150px;" {{$tr_code ? 'disabled' : ''}} type="submit" class="btn btn-dark btn-block">Assign</button>
+                                                <button id="assign_tr_number_btn" {{count($models) > 0 ? '' : 'disabled'}} style="width:150px;" type="submit" class="btn btn-dark btn-block">Assign</button>
                                             </div>
                                         </div>
                                     </form>
