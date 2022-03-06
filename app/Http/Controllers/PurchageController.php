@@ -104,7 +104,7 @@ class PurchageController extends Controller
     }
     public function purchage_details($id)
     {
-        $uml_data = Core::select('uml_mushak_no', 'mushak_date')->where('store_id', $id)->first();
+        $uml_data = Core::select('uml_mushak_no', 'mushak_date', 'print_code')->where('store_id', $id)->first();
         $purchages = Purchage::select(
             '*'
         )->where('id', $id)->first();

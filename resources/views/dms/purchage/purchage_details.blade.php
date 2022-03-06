@@ -104,11 +104,11 @@
                                 <th class="align-middle">Chassis</th>
                                 <th class="align-middle">Engine</th>
                                 <th class="align-middle">VAT Purc</th>
-                                <th class="align-middle">VY Purchage</th>
+                                <th class="align-middle">VY Pur</th>
                                 <th class="align-middle">Buy Price</th>
-                                <th class="align-middle">UML Mushak</th>
+                                <th class="align-middle">Mushak</th>
                                 <th class="align-middle">Date</th>
-                                <th class="align-middle">Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -125,15 +125,6 @@
                                 <td class="purchage_price text-right">{{$detail->purchage_price}}</td>
                                 <td style="text-align:center;">{{$detail->uml_mushak_no}}</td>
                                 <td class="">{{$detail->mushak_date}}</td>
-                                <td class="text-center">
-                                    <a href="#">
-                                        <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
-                                    </a>
-                                    <a href="#">
-                                        <i class="fa fa-trash" aria-hidden="true" style="color: red;font-size:16px;">
-                                        </i>
-                                    </a>
-                                </td>
                             </tr>
                             @endforeach
                         <tfoot align="right" class="text-sm">
@@ -149,7 +140,7 @@
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
-                                <th style="text-align:right; padding:2px 8px;"></th>
+
                             </tr>
                         </tfoot>
                         </tbody>
@@ -173,7 +164,7 @@
                             <div class="form-group mb-0 row">
                                 <label for="print_code" class="col-sm-4 col-form-label form-control-sm">Print Code</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" id="print_code" name="print_code">
+                                    <input type="text" value="{{$uml_data ? $uml_data->print_code : ''}}" class="form-control form-control-sm" id="print_code" name="print_code">
                                     <input hidden type="text" name="id" value="{{$purchages->id}}">
                                 </div>
                             </div>
@@ -252,6 +243,7 @@
         });
     });
     $("#example").DataTable({
+        "bPaginate": false,
         footerCallback: function(row, data, start, end, display) {
             var api = this.api(),
                 data;

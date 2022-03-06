@@ -169,7 +169,7 @@
                     return intVal(a) + intVal(b);
                 }, 0);
             var count = api
-                .column(5, {
+                .column(3, {
                     search: 'applied'
                 })
                 .data()
@@ -180,7 +180,7 @@
             // Update footer by showing the total with the reference of the column index
             $(api.column(0).footer()).html("Total");
             $(api.column(10).footer()).html(vat_mrp.toLocaleString('en-IN'));
-            $(api.column(4).footer()).html(count);
+            $(api.column(3).footer()).html(count);
             $(api.column(11).footer()).html(rebate.toLocaleString('en-IN'));
         },
         columnDefs: [{
@@ -189,7 +189,7 @@
 
         }],
         initComplete: function() {
-            this.api().columns([1, 2, 8]).every(function() {
+            this.api().columns([1, 2, 4, 5, 8]).every(function() {
                 var column = this;
                 var select = $('<select><option value=""></option></select>')
                     .appendTo($(column.footer()))
