@@ -541,12 +541,6 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row" style="margin-bottom:0px;">
-                                                <label for="tr_dep_date" class="col-sm-6 col-form-label form-control-sm">TR Date</label>
-                                                <div class="col-sm-6" style="padding:0px;">
-                                                    <input type="date" name="tr_dep_date" class="form-control form-control-sm" id="tr_dep_date2">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row" style="margin-bottom:0px;">
                                                 <label for="email" class="col-sm-6 col-form-label form-control-sm">Email</label>
                                                 <div class="col-sm-6" style="padding:0px;">
                                                     <input type="email" name="email" class="form-control form-control-sm" id="email2">
@@ -583,6 +577,12 @@
                                                 <label for="tr_number" class="col-sm-5 col-form-label form-control-sm">TR Number</label>
                                                 <div class="col-sm-7" style="padding:0px;">
                                                     <input type="text" name="tr_number" class="form-control form-control-sm" id="tr_number2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" style="margin-bottom:0px;">
+                                                <label for="tr_dep_date" class="col-sm-5 col-form-label form-control-sm">TR Date</label>
+                                                <div class="col-sm-7" style="padding:0px;">
+                                                    <input type="date" name="tr_dep_date" class="form-control form-control-sm" id="tr_dep_date2">
                                                 </div>
                                             </div>
                                             <div class="form-group row" style="margin-bottom:0px;">
@@ -699,16 +699,15 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row" style="margin-bottom:0px;">
+                                                <label for="uml_mushak_no" class="col-sm-6 col-form-label form-control-sm">UML Mus No</label>
+                                                <div class="col-sm-6" style="padding:0px;">
+                                                    <input type="text" name="uml_mushak_no" class="form-control form-control-sm" id="uml_mushak_no2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" style="margin-bottom:0px;">
                                                 <label for="uml_mushak_date" class="col-sm-6 col-form-label form-control-sm">UML Mus Date</label>
                                                 <div class="col-sm-6" style="padding:0px;">
                                                     <input type="date" name="mushak_date" class="form-control form-control-sm" id="mushak_date2">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row" style="margin-bottom:0px;">
-                                                <label for="evl_invoice_no" class="col-sm-6 col-form-label form-control-sm">EVL Invoice</label>
-                                                <div class="col-sm-6" style="padding:0px;">
-                                                    <input type="text" name="evl_invoice_no" class="form-control form-control-sm" id="evl_invoice_no2">
                                                 </div>
                                             </div>
                                             <div class="form-group row" style="margin-bottom:0px;">
@@ -761,12 +760,7 @@
                                                     <input type="text" name="sale_mushak_no" class="form-control form-control-sm" id="sale_mushak_no2">
                                                 </div>
                                             </div>
-                                            <div class="form-group row" style="margin-bottom:0px;">
-                                                <label for="uml_mushak_no" class="col-sm-5 col-form-label form-control-sm">UML Mus No</label>
-                                                <div class="col-sm-7" style="padding:0px;">
-                                                    <input type="text" name="uml_mushak_no" class="form-control form-control-sm" id="uml_mushak_no2">
-                                                </div>
-                                            </div>
+
                                             <div class="form-group row" style="margin-bottom:0px;">
                                                 <label for="challan_no" class="col-sm-5 col-form-label form-control-sm">Tail Mus No</label>
                                                 <div class="col-sm-7" style="padding:0px;">
@@ -789,6 +783,12 @@
                                                 <label for="note" class="col-sm-5 col-form-label form-control-sm">Note</label>
                                                 <div class="col-sm-7" style="padding:0px;">
                                                     <input type="text" name="note" class="form-control form-control-sm" id="note2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" style="margin-bottom:0px;">
+                                                <label for="evl_invoice_no" class="col-sm-5 col-form-label form-control-sm">EVL Invoice</label>
+                                                <div class="col-sm-7" style="padding:0px;">
+                                                    <input type="text" name="evl_invoice_no" class="form-control form-control-sm" id="evl_invoice_no2">
                                                 </div>
                                             </div>
 

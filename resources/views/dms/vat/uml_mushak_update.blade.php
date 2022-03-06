@@ -209,7 +209,7 @@
             });
         },
 
-        pageLength: 50,
+        pageLength: 200,
         responsive: true,
         lengthChange: true,
         dom: '<"html5buttons"B>lTfgitp',
