@@ -276,7 +276,6 @@ class VATController extends Controller
             ->rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
             ->select(
                 'purchages.vendor',
-                'purchages.id',
                 'purchages.factory_challan_no',
                 'cores.id',
                 'cores.report_code',

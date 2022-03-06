@@ -49,8 +49,8 @@
                                 <td style="text-align: left;">{{$data->model}}</td>
                                 <td style="text-align: center;">{{$data->five_chassis}}</td>
                                 <td style="text-align: center;">{{$data->five_engine}}</td>
-                                <td style="text-align: center;">{{$data->uml_mushak_no}}</td>
-                                <td style="text-align: center;">{{$data->mushak_date}}</td>
+                                <td class="uml_mushak_no" cus_id="{{$data->id}}" style="text-align: center;">{{$data->uml_mushak_no}}</td>
+                                <td class="mushak_date" style="text-align: center;" contenteditable="true">{{$data->mushak_date}}</td>
                                 <td style="text-align: right;">{{$data->vat_purchage_mrp}}</td>
                                 <td style="text-align: right;">{{$data->vat_rebate}}</td>
                                 <td style="text-align: right;">{{$data->vat_year_purchage}}</td>
@@ -98,35 +98,45 @@
 
 @section('script')
 <script>
-    $("#purchage_detail_update").submit(function(e) {
-        e.preventDefault();
-        const FD = new FormData(this);
-        $.ajax({
-            url: "{{ route('purchage.purchage_detail_update') }}",
-            method: 'post',
-            data: FD,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: 'json',
-            success: function(response) {
-                if (response.status == 200) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: response.message,
-                        showConfirmButton: false,
-                        timer: 2000
-                    })
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: response.message,
-                        footer: '<a href="">Why do I have this issue?</a>'
-                    })
+    $(".mushak_date").on("blur", function(e) {
+
+        let csrf = '{{ csrf_token() }}';
+        var _this = $(this).parents('tr');
+
+        var cus_id = _this.find('.uml_mushak_no').attr('cus_id');
+        var uml_mushak_no = _this.find('.uml_mushak_no').text();
+        var mushak_date = new Date($(this).text()).toISOString().slice(0, 10);
+
+        var formData = new FormData();
+        formData.append("id", cus_id);
+        formData.append("approval_no", approval_no);
+        formData.append("invoice_no", invoice_no);
+        formData.append("_token", csrf);
+
+        if (invoice_no !== '' && approval_no !== '') {
+            $.ajax({
+                url: "{{ route('ckd.update') }}",
+                method: 'post',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status == 200) {
+                        console.log(response);
+                        // $('#example').find("td[cus_id='" + response.id + "']").text('OK');
+                    } else if (response.status == 502) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message,
+                            footer: '<a href="">Why do I have this issue?</a>'
+                        })
+                    }
                 }
-            }
-        });
+            });
+        }
     });
     $("#example").DataTable({
         footerCallback: function(row, data, start, end, display) {
