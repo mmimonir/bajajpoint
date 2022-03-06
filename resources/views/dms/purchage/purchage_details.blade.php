@@ -18,7 +18,7 @@
                     <div class="col-md-6">
                         <a href="{{ route('purchage.purchage_entry') }}" class="m-r-15 edit float-right btn btn-info mb-1" style="color:white!important;">Purchage Entry</i>
                         </a>
-                        <a href="{{ route('purchage_list.index') }}" class="m-r-15 edit float-right btn btn-info mb-1" style="color:white!important;">Purchage List</i>
+                        <a href="{{ route('purchage.index') }}" class="m-r-15 edit float-right btn btn-info mb-1" style="color:white!important;">Purchage List</i>
                         </a>
                     </div>
                 </div>
@@ -203,9 +203,6 @@
         </div>
     </div>
 </div>
-
-
-
 @endsection
 @section('datatable')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>

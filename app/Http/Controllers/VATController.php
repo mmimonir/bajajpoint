@@ -266,4 +266,38 @@ class VATController extends Controller
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
     }
+
+    public function uml_mushak_update(Request $request)
+    {
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+
+        $purchage_data = Core::rightJoin('purchages', 'purchages.id', '=', 'cores.store_id')
+            ->rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+            ->select(
+                'purchages.vendor',
+                'purchages.id',
+                'purchages.factory_challan_no',
+                'cores.id',
+                'cores.report_code',
+                'cores.five_chassis',
+                'cores.five_engine',
+                'cores.vat_purchage_mrp',
+                'cores.vat_rebate',
+                'cores.purchage_price',
+                'cores.uml_mushak_no',
+                'cores.mushak_date',
+                'cores.purchage_date',
+                'cores.vat_year_purchage',
+                'cores.vat_month_purchage',
+                'vehicles.model',
+            )
+            ->whereBetween('cores.purchage_date', [$start_date, $end_date])
+            ->orderBy('cores.purchage_date')
+            ->get();
+        return view('dms.vat.uml_mushak_update')
+            ->with([
+                'purchage_data' => $purchage_data
+            ]);
+    }
 }

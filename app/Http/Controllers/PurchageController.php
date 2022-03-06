@@ -47,6 +47,7 @@ class PurchageController extends Controller
                         'vat_code' => $supplier_code,
                         'print_code' => $supplier_code,
                         'report_code' => $supplier_code,
+                        'purchage_date' => $request['purchage_date'],
                         'model_code' => $request->model_code[$key],
                         'five_chassis' => $request->five_chassis[$key],
                         'five_engine' => $request->five_engine[$key],

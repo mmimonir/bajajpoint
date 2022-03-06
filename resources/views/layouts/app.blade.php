@@ -104,6 +104,10 @@
             overflow-x: hidden !important;
             margin: 0 !important;
         }
+
+        table.table-uml-mushak td {
+            font-size: 11px !important;
+        }
     </style>
 </head>
 
