@@ -299,4 +299,16 @@ class VATController extends Controller
                 'purchage_data' => $purchage_data
             ]);
     }
+    public function uml_mushak_update_store(Request $request)
+    {
+        try {
+            $mushak_data = Core::find($request->id);
+            $mushak_data->uml_mushak_no = $request->uml_mushak_no;
+            $mushak_data->mushak_date = $request->mushak_date;
+            $mushak_data->save();
+            return response()->json(['success' => 'Data is successfully updated', 'status' => 200, 'id' => $request->id]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 502]);
+        }
+    }
 }

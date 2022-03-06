@@ -49,7 +49,7 @@
                                 <td style="text-align: left;">{{$data->model}}</td>
                                 <td style="text-align: center;">{{$data->five_chassis}}</td>
                                 <td style="text-align: center;">{{$data->five_engine}}</td>
-                                <td class="uml_mushak_no" cus_id="{{$data->id}}" style="text-align: center;">{{$data->uml_mushak_no}}</td>
+                                <td class="uml_mushak_no" cus_id="{{$data->id}}" style="text-align: center;" contenteditable="true">{{$data->uml_mushak_no}}</td>
                                 <td class="mushak_date" style="text-align: center;" contenteditable="true">{{$data->mushak_date}}</td>
                                 <td style="text-align: right;">{{$data->vat_purchage_mrp}}</td>
                                 <td style="text-align: right;">{{$data->vat_rebate}}</td>
@@ -99,7 +99,6 @@
 @section('script')
 <script>
     $(".mushak_date").on("blur", function(e) {
-
         let csrf = '{{ csrf_token() }}';
         var _this = $(this).parents('tr');
 
@@ -109,13 +108,13 @@
 
         var formData = new FormData();
         formData.append("id", cus_id);
-        formData.append("approval_no", approval_no);
-        formData.append("invoice_no", invoice_no);
+        formData.append("uml_mushak_no", uml_mushak_no);
+        formData.append("mushak_date", mushak_date);
         formData.append("_token", csrf);
 
-        if (invoice_no !== '' && approval_no !== '') {
+        if (uml_mushak_no !== '' && mushak_date !== '') {
             $.ajax({
-                url: "{{ route('ckd.update') }}",
+                url: "{{ route('vat.uml_mushak_update_store') }}",
                 method: 'post',
                 data: formData,
                 cache: false,
@@ -190,7 +189,7 @@
 
         }],
         initComplete: function() {
-            this.api().columns([1, 2]).every(function() {
+            this.api().columns([1, 2, 8]).every(function() {
                 var column = this;
                 var select = $('<select><option value=""></option></select>')
                     .appendTo($(column.footer()))
