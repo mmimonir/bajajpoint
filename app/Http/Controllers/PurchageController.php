@@ -99,7 +99,15 @@ class PurchageController extends Controller
     }
     public function purchage_list()
     {
-        $purchages = Purchage::select('id', 'factory_challan_no', 'purchage_date', 'vendor', 'purchage_value', 'dealer_name', 'quantity')->whereYear('purchage_date', '>', '2020')->orderBy('id', 'desc')->get();
+        $purchages = Purchage::select(
+            'id',
+            'factory_challan_no',
+            'purchage_date',
+            'vendor',
+            'purchage_value',
+            'dealer_name',
+            'quantity'
+        )->whereYear('purchage_date', '>', '2020')->orderBy('id', 'desc')->get();
         return response()->json($purchages);
     }
     public function purchage_details($id)
@@ -196,13 +204,20 @@ class PurchageController extends Controller
             return response()->json(['error' => $e->getMessage()]);
         }
     }
+    public function uml_mushak_bulk_update(Request $request)
+    {
+        Core::where('store_id', $request->id)
+            ->update([
+                'uml_mushak_no' => $request->uml_mushak_no,
+                'mushak_date' => $request->mushak_date
+            ]);
+        return redirect()->back()->with('success', 'Print Code Updated');
+    }
     public function print_code_update(Request $request)
     {
         Core::where('store_id', $request->id)
             ->update([
-                'print_code' => $request->print_code,
-                'uml_mushak_no' => $request->uml_mushak_no,
-                'mushak_date' => $request->mushak_date
+                'print_code' => $request->print_code
             ]);
         return redirect()->back()->with('success', 'Print Code Updated');
     }

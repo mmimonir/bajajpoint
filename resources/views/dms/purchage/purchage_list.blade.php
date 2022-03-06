@@ -51,7 +51,6 @@
 @section('script')
 <script>
     $(function() {
-
         fetchAll();
 
         function fetchAll() {
@@ -69,34 +68,20 @@
                                 <th class="align-middle">Vendor Name</th>
                                 <th class="align-middle">Quantity</th>
                                 <th class="align-middle">Purchage Value</th>
-                                <th class="align-middle">UML Mushak No</th>
-                                <th class="align-middle">UML Mushak Date</th>                                
                                 <th class="align-middle">Dealer Name</th>                                
                                 <th class="align-middle">Action</th>
                             </tr>
                         </thead>
                         <tbody>`;
                         response.forEach(function(data, index) {
-                            var date = new Date(data.purchage_date);
-
-                            // date.toLocalDateString('en-GB');
-
-                            // var date = new Date(data.purchage_date);
-                            // var d = date.getDate();
-                            // var m = date.getMonth() + 1;
-                            // var y = date.getFullYear();
-                            // var dateString = (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m) + '-' + y;
-                            // console.log(data);
                             html +=
                                 `<tr>                                
                                 <td class="challan_no">${data.id}</td>                                
                                 <td class="challan_no">${data.factory_challan_no}</td>                                
-                                <td class="purchage_date">${data.date}</td>
+                                <td class="purchage_date">${data.purchage_date}</td>
                                 <td class="vendor">${data.vendor}</td>
                                 <td class="vendor">${data.quantity}</td>
-                                <td class="purchage_value">${data.purchage_value}</td>
-                                <td class="uml_mushak_no">${data.uml_mushak_no}</td>
-                                <td class="uml_mushak_date">${data.uml_mushak_date}</td>                                
+                                <td class="purchage_value">${data.purchage_value}</td>                                
                                 <td class="dealer_name">${data.dealer_name}</td>                                
                                 <td class="text-center">                                
                                     <a href="purchage_details/${data.id}" class="m-r-15 text-muted">

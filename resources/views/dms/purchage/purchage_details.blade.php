@@ -140,7 +140,6 @@
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
-
                             </tr>
                         </tfoot>
                         </tbody>
@@ -151,37 +150,55 @@
     </div>
 </div>
 <div class="row justify-content-center">
-    <div class="col-md-11">
+    <div class="col-md-5">
         <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
             <div class="card-header bg-dark">
-                <h4 style="margin-top:5px;">Update</h4>
+                <h4 style="margin-top:5px;">UML Mushak Update</h4>
             </div>
-            <form action="{{route('purchage.print_code_update')}}" method="post" id="print_update_form">
+            <form action="{{route('purchage.uml_mushak_bulk_update')}}" method="post" id="print_update_form">
                 @csrf
                 <div class="card-body">
-                    <div class="form-row">
-                        <div class="col-md-4">
-                            <div class="form-group mb-0 row">
-                                <label for="print_code" class="col-sm-4 col-form-label form-control-sm">Print Code</label>
-                                <div class="col-sm-8">
-                                    <input type="text" value="{{$uml_data ? $uml_data->print_code : ''}}" class="form-control form-control-sm" id="print_code" name="print_code">
-                                    <input hidden type="text" name="id" value="{{$purchages->id}}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
+                    <div class="form-row d-flex justify-content-center">
+                        <div class="col-md-12">
                             <div class="form-group mb-0 row">
                                 <label for="uml_mushak_no" class="col-sm-4 col-form-label form-control-sm">UML Mushak</label>
                                 <div class="col-sm-8">
+                                    <input hidden type="text" name="id" value="{{$purchages->id}}">
                                     <input type="text" value="{{$uml_data ? $uml_data->uml_mushak_no : ''}}" class="form-control form-control-sm" id="uml_mushak_no" name="uml_mushak_no">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <div class="form-group mb-0 row">
                                 <label for="mushak_date" class="col-sm-4 col-form-label form-control-sm">UML Mushak Date</label>
                                 <div class="col-sm-8">
                                     <input type="date" value="{{$uml_data ? $uml_data->mushak_date : ''}}" class="form-control form-control-sm" id="mushak_date" name="mushak_date">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-info text-white" style="width:250px; margin-top:10px;">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
+            <div class="card-header bg-dark">
+                <h4 style="margin-top:5px;">Print Code Update</h4>
+            </div>
+            <form action="{{route('purchage.print_code_update')}}" method="post" id="print_update_form">
+                @csrf
+                <div class="card-body">
+                    <div class="form-row d-flex justify-content-center">
+                        <div class="col-md-12">
+                            <div class="form-group mb-0 row">
+                                <label for="uml_mushak_no" class="col-sm-4 col-form-label form-control-sm">Print Code</label>
+                                <div class="col-sm-8">
+                                    <input hidden type="text" name="id" value="{{$purchages->id}}">
+                                    <input type="text" value="{{$uml_data ? $uml_data->print_code : ''}}" class="form-control form-control-sm" id="print_code" name="print_code">
                                 </div>
                             </div>
                         </div>
@@ -291,6 +308,7 @@
         pageLength: 10,
         responsive: true,
         lengthChange: true,
+        bInfo: false,
         dom: '<"html5buttons"B>lTfgitp',
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'

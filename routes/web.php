@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/purchage_list',  'purchage_list')->name('purchage.list');
         Route::get('/purchage_details/{id}',  'purchage_details')->name('purchage.purchage_details_id');
         Route::post('/purchage_detail_update',  'purchage_detail_update')->name('purchage.purchage_detail_update');
+        Route::post('/uml_mushak_bulk_update',  'uml_mushak_bulk_update')->name('purchage.uml_mushak_bulk_update');
         Route::post('/print_code_update',  'print_code_update')->name('purchage.print_code_update');
     });
 
