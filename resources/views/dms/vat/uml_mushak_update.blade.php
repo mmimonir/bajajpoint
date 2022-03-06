@@ -128,7 +128,7 @@
             }
         });
     });
-    var exampleDataTable = $("#example").DataTable({
+    $("#example").DataTable({
         footerCallback: function(row, data, start, end, display) {
             var api = this.api(),
                 data;
