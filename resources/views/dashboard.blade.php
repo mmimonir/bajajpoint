@@ -85,12 +85,10 @@
                                 <div class="row justify-content-center">
                                     <div class="col-md-12">
                                         <div class="card-body">
-                                            <a action="{{ route('ckd.ckd_pending') }}" target="_blank">
-                                                <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-dark btn-block">
-                                                        View List
-                                                    </button>
-                                                </a>
+                                            <a href="{{ route('ckd.ckd_pending') }}" target="_blank">
+                                                <button type="submit" class="btn btn-dark btn-block">
+                                                    View List
+                                                </button>
                                             </a>
                                         </div>
                                     </div>
@@ -106,11 +104,11 @@
                                     <div class="col-md-12">
                                         <div class="card-body">
                                             <a href="{{route('tr.tr_status')}}" target="_blank">
-                                                <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-dark btn-block">
-                                                        View List
-                                                    </button>
-                                                </a>
+
+                                                <button type="submit" class="btn btn-dark btn-block">
+                                                    View List
+                                                </button>
+
                                             </a>
                                         </div>
                                     </div>
@@ -126,11 +124,11 @@
                                     <div class="col-md-12">
                                         <div class="card-body">
                                             <a href="{{route('quotation.create')}}" target="_blank">
-                                                <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-dark btn-block">
-                                                        Create
-                                                    </button>
-                                                </a>
+
+                                                <button type="submit" class="btn btn-dark btn-block">
+                                                    Create
+                                                </button>
+
                                             </a>
                                         </div>
                                     </div>
