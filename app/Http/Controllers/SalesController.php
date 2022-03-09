@@ -110,7 +110,6 @@ class SalesController extends Controller
                     'fake_sale_date' => $request->fake_sale_date,
                     'sale_vat' => $request->sale_vat,
                     'basic_price_vat' => $request->basic_price_vat,
-                    'price_declare_id' => $request->price_declare_id,
                     'model' => $request->model,
                     'uml_mushak_no' => $request->uml_mushak_no,
                     'mushak_date' => $request->mushak_date,
