@@ -132,6 +132,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Customer Info
     Route::get('/customer_info/', [App\Http\Controllers\CustomerController::class, 'customer_info'])->name('customer.customer_info');
 
+    // Price Declare
+    Route::get('/pd_index/', [App\Http\Controllers\PriceDeclareController::class, 'index'])->name('pd.index');
+
     //     Route::get('backup-run', function () {
     //         Artisan::call('backup:run --only-db');
     //         return back();

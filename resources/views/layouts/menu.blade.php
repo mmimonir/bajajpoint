@@ -60,6 +60,12 @@
                         <p class="text-white">Purchage</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('pd.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-bag"></i>
+                        <p class="text-white">Price Declare</p>
+                    </a>
+                </li>
             </ul>
         </li>
         <li class="nav-item">

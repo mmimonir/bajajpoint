@@ -10,6 +10,11 @@
                         <div class="col-sm-6">
                             <h1 class="m-0">Quotation List</h1>
                         </div>
+                        <div class="col-md-6 d-flex justify-content-end">
+                            <a href="{{route('quotation.create')}}" target="_blank" rel="noopener noreferrer">
+                                <button class="btn btn-info btn-sm text-white">Create New</button>
+                            </a>
+                        </div>
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
