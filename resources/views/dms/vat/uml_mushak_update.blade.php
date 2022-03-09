@@ -50,7 +50,7 @@
                                 <td style="text-align: center;">{{$data->five_chassis}}</td>
                                 <td style="text-align: center;">{{$data->five_engine}}</td>
                                 <td class="uml_mushak_no" cus_id="{{$data->id}}" style="text-align: center;" contenteditable="true">{{$data->uml_mushak_no}}</td>
-                                <td class="mushak_date" style="text-align: center;" contenteditable="true">{{$data->mushak_date}}</td>
+                                <td class="mushak_date" style="text-align: center;" contenteditable="true">{{date('d-m-Y', strtotime($data->mushak_date))}}</td>
                                 <td style="text-align: right;">{{$data->vat_purchage_mrp}}</td>
                                 <td style="text-align: right;">{{$data->vat_rebate}}</td>
                                 <td style="text-align: right;">{{$data->vat_year_purchage}}</td>
@@ -104,7 +104,7 @@
 
         var cus_id = _this.find('.uml_mushak_no').attr('cus_id');
         var uml_mushak_no = _this.find('.uml_mushak_no').text();
-        var mushak_date = new Date($(this).text()).toISOString().slice(0, 10);
+        var mushak_date = new Date($(this).text().split("-").reverse().join("-")).toISOString().slice(0, 10);
 
         var formData = new FormData();
         formData.append("id", cus_id);
