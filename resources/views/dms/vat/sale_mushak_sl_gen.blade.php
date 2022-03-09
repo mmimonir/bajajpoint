@@ -41,7 +41,7 @@
                                 <td style="text-align:center;" class="">{{$data->five_engine}}</td>
                                 <td style="text-align:center;" class="sale_mushak_no" contenteditable="true">{{$data->sale_mushak_no}}</td>
                                 <td style="text-align:center;" class="">{{date('d-m-Y', strtotime($data->original_sale_date))}}</td>
-                                <td style="text-align:center;" class="vat_sale_date" contenteditable="true">{{$data->vat_sale_date}}</td>
+                                <td style="text-align:center;" class="vat_sale_date" contenteditable="true">{{date('d-m-Y', strtotime($data->vat_sale_date))}}</td>
                                 <td style="text-align:center;" class="">{{date('d-m-Y', strtotime($data->mushak_date))}}</td>
                                 <td style="text-align:center;" class="">{{date('d-m-Y', strtotime($data->purchage_date))}}</td>
                                 <td style="text-align:center;" class="">{{$data->vat_process}}</td>
@@ -89,9 +89,9 @@
         let csrf = '{{ csrf_token() }}';
         var _this = $(this).parents('tr');
         var cus_id = _this.find('.five_chassis').attr('cus_id');
-        var sale_mushak_no = _this.find('.sale_mushak_no').text();
+        var sale_mushak_no = _this.find('.sale_mushak_no').text() ? _this.find('.sale_mushak_no').text() : '';
         // var vat_sale_date = _this.find('.vat_sale_date').val();
-        var vat_sale_date = new Date($(this).text()).toISOString().slice(0, 10);
+        var vat_sale_date = new Date(_this.find('.vat_sale_date').text().split("-").reverse().join("-")).toISOString().slice(0, 10);
 
 
         var formData = new FormData();
@@ -100,30 +100,30 @@
         formData.append("vat_sale_date", vat_sale_date);
         formData.append("_token", csrf);
 
-        if (sale_mushak_no !== '' && vat_sale_date !== '') {
-            $.ajax({
-                url: "{{ route('vat.assign_sale_mushak_no_store') }}",
-                method: 'post',
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: 'json',
-                success: function(response) {
-                    if (response.status == 200) {
-                        console.log(response);
-                        // $('#example').find("td[cus_id='" + response.id + "']").text('OK');
-                    } else if (response.status == 502) {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: response.message,
-                            footer: '<a href="">Why do I have this issue?</a>'
-                        })
-                    }
+
+        $.ajax({
+            url: "{{ route('vat.assign_sale_mushak_no_store') }}",
+            method: 'post',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function(response) {
+                if (response.status == 200) {
+                    console.log(response);
+                    // $('#example').find("td[cus_id='" + response.id + "']").text('OK');
+                } else if (response.status == 502) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: response.message,
+                        footer: '<a href="">Why do I have this issue?</a>'
+                    })
                 }
-            });
-        }
+            }
+        });
+
     });
     $("#example").DataTable({
         exportOptions: {
