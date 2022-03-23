@@ -8,6 +8,7 @@ use App\Models\Core;
 use App\Models\Purchage;
 use App\Models\Supplier;
 use App\Models\ColorCode;
+use App\Models\Helper;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,6 +28,7 @@ class PurchageController extends Controller
         try {
             DB::transaction(function () use ($request) {
                 $supplier_code = Supplier::select('supplier_code')->where('supplier_name', $request->vendor)->value('supplier_code');
+                $year_of_manufacture = Helper::select('year_of_manufacture')->where('id', 1)->value('year_of_manufacture');
 
                 $mc_purchage = new Purchage();
                 $mc_purchage->factory_challan_no = $request['challan_no'];
@@ -55,6 +57,7 @@ class PurchageController extends Controller
                         'unit_price' => $request->unit_price[$key],
                         'unit_price_vat' => $request->unit_price_vat[$key],
                         'vat_purchage_mrp' => $request->vat_purchage_mrp[$key],
+                        'year_of_manufacture' => $year_of_manufacture,
                         // 'vat_month_purchage' => $request->vat_month_purchage[$key],
                         // 'vat_year_purchage' => $request->vat_year_purchage[$key],
                         'purchage_price' => $request->purchage_price[$key],
@@ -79,19 +82,8 @@ class PurchageController extends Controller
     {
         $color = ColorCode::select('model_name', 'color', 'color_code')->where('model_code', $request->model_code)->get();
         $mrp = Mrp::select('mrp', 'vat_mrp', 'vat_purchage_mrp', 'purchage_price')->where('model_code', $request->model_code)->get();
-        // $mrp = Mrp::rightJoin('color_codes', 'color_codes.model_code', '=', 'mrps.model_code')
-        //     ->select(
-        //         'mrps.mrp',
-        //         'mrps.vat_mrp',
-        //         'mrps.vat_purchage_mrp',
-        //         'mrps.purchage_price',
-        //         'color_codes.color',
-        //         'color_codes.color_code'
-        //     )->where('model_code', "=", $request->model_code)
-        //     ->get();
+
         return response()->json(['mrp' => $mrp, 'color' => $color]);
-        // dd($mrp);
-        // return response()->json($mrp);
     }
     public function purchage_list_index()
     {
