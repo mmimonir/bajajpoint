@@ -603,6 +603,7 @@
                     $('#fake_sale_date2').val(core_data.fake_sale_date);
                     $('#tr_number2').val(core_data.tr_number);
                     $('#tr_dep_date2').val(core_data.tr_dep_date);
+                    $('#year_of_manufacture2').val(core_data.year_of_manufacture);
                 }
             });
         });

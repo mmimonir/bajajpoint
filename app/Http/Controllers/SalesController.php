@@ -114,7 +114,8 @@ class SalesController extends Controller
                     'uml_mushak_no' => $request->uml_mushak_no,
                     'mushak_date' => $request->mushak_date,
                     'tr_number' => $request->tr_number,
-                    'tr_dep_date' => $request->tr_dep_date
+                    'tr_dep_date' => $request->tr_dep_date,
+                    'year_of_manufacture' => $request->year_of_manufacture
                 ]);
             return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
         } catch (\Exception $e) {

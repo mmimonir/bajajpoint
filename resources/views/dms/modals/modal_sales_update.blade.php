@@ -138,6 +138,12 @@
                                                     <input type="text" name="report_code" class="form-control form-control-sm" id="report_code2">
                                                 </div>
                                             </div>
+                                            <div class="form-group row" style="margin-bottom:0px;">
+                                                <label for="year_of_manufacture" class="col-sm-6 col-form-label form-control-sm">Man. Year</label>
+                                                <div class="col-sm-6" style="padding:0px;">
+                                                    <input type="text" name="year_of_manufacture" class="form-control form-control-sm" id="year_of_manufacture2">
+                                                </div>
+                                            </div>
 
                                         </div>
                                         <div class="col-md-6">
