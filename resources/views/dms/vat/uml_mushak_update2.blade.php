@@ -26,8 +26,8 @@
                                 <th style="text-align:center;">Code</th>
                                 <th style="text-align:center;">Challan</th>
                                 <th style="text-align:center;">Factory</th>
-                                <th style="text-align:center; width:54px;">P. Dt</th>
-                                <th style="text-align:center; width:117px;">Model</th>
+                                <th style="text-align:center;">P. Dt</th>
+                                <th style="text-align:center;">Model</th>
                                 <th style="text-align:center;">Chassis</th>
                                 <th style="text-align:center;">Engine</th>
                                 <th style="text-align:center;">Mus</th>
@@ -36,22 +36,6 @@
                                 <th style="text-align:center;">Rebate</th>
                                 <th style="text-align:center;">VYear</th>
                                 <th style="text-align:center;">VMonth</th>
-                            </tr>
-                            <tr>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -62,7 +46,7 @@
                                 <td style="text-align: center;">{{$data->factory_challan_no}}</td>
                                 <td style="text-align: left;">{{$data->vendor}}</td>
                                 <td style="text-align: center;">{{$data->purchage_date}}</td>
-                                <td style="text-align: left;">{{strlen($data->model) > 20 ? substr($data->model,0,20): $data->model; }}</td>
+                                <td style="text-align: left;">{{$data->model}}</td>
                                 <td style="text-align: center;">{{$data->five_chassis}}</td>
                                 <td style="text-align: center;">{{$data->five_engine}}</td>
                                 <td class="uml_mushak_no" cus_id="{{$data->id}}" style="text-align: center;" contenteditable="true">{{$data->uml_mushak_no}}</td>
@@ -90,7 +74,6 @@
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                             </tr>
-
                         </tfoot>
                         </tbody>
                     </table>
@@ -111,7 +94,6 @@
 <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
 @endsection
 
 @section('script')
@@ -155,111 +137,86 @@
             });
         }
     });
-    $.fn.dataTable.Api.register('column().searchable()', function() {
-        var ctx = this.context[0];
-        return ctx.aoColumns[this[0]].bSearchable;
-    });
+    $("#example").DataTable({
+        footerCallback: function(row, data, start, end, display) {
+            var api = this.api(),
+                data;
 
-    function createDropdowns(api) {
-        api.columns().every(function() {
-            if (this.searchable()) {
-                var that = this;
-                var col = this.index();
+            // converting to interger to find total
+            var intVal = function(i) {
+                return typeof i === "string" ?
+                    i.replace(/[\$,]/g, "") * 1 :
+                    typeof i === "number" ?
+                    i :
+                    0;
+            };
 
-                // Only create if not there or blank
-                var selected = $('thead tr:eq(1) td:eq(' + col + ') select').val();
-                if (selected === undefined || selected === '') {
-                    // Create the `select` element
-                    $('thead tr:eq(1) td')
-                        .eq(col)
-                        .empty();
-                    var select = $('<select><option value=""></option></select>')
-                        .appendTo($('thead tr:eq(1) td').eq(col))
-                        .on('change', function() {
-                            that.search($(this).val()).draw();
-                            createDropdowns(api);
-                        });
+            var vat_mrp = api
+                .column(10, {
+                    search: 'applied'
+                })
+                .data()
+                .reduce(function(a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
 
-                    api
-                        .cells(null, col, {
-                            search: 'applied'
-                        })
-                        .data()
-                        .sort()
-                        .unique()
-                        .each(function(d) {
-                            select.append($('<option>' + d + '</option>'));
-                        });
-                }
-            }
-        });
-    }
-    $(document).ready(function() {
-        var table = $("#example").DataTable({
+            var rebate = api
+                .column(11, {
+                    search: 'applied'
+                })
+                .data()
+                .reduce(function(a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+            var count = api
+                .column(3, {
+                    search: 'applied'
+                })
+                .data()
+                .reduce(function(a, b) {
+                    return ++a;
+                }, 0);
 
-            footerCallback: function(row, data, start, end, display) {
-                var api = this.api(),
-                    data;
+            // Update footer by showing the total with the reference of the column index
+            $(api.column(0).footer()).html("Total");
+            $(api.column(10).footer()).html(vat_mrp.toLocaleString('en-IN'));
+            $(api.column(3).footer()).html(count);
+            $(api.column(11).footer()).html(rebate.toLocaleString('en-IN'));
+        },
+        columnDefs: [{
+            targets: [10, 11],
+            render: $.fn.dataTable.render.intlNumber('en-IN'),
 
-                // converting to interger to find total
-                var intVal = function(i) {
-                    return typeof i === "string" ?
-                        i.replace(/[\$,]/g, "") * 1 :
-                        typeof i === "number" ?
-                        i :
-                        0;
-                };
+        }],
+        initComplete: function() {
+            this.api().columns([1, 2, 4, 5, 8]).every(function() {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo($(column.footer()))
+                    .on('change', function() {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
 
-                var vat_mrp = api
-                    .column(10, {
-                        search: 'applied'
-                    })
-                    .data()
-                    .reduce(function(a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0);
+                        column
+                            .search(val ? '^' + val + '$' : '', true, false)
+                            .draw();
+                    });
 
-                var rebate = api
-                    .column(11, {
-                        search: 'applied'
-                    })
-                    .data()
-                    .reduce(function(a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0);
-                var count = api
-                    .column(3, {
-                        search: 'applied'
-                    })
-                    .data()
-                    .reduce(function(a, b) {
-                        return ++a;
-                    }, 0);
+                column.data().unique().sort().each(function(d, j) {
+                    select.append('<option value="' + d + '">' + d + '</option>')
+                });
+            });
+        },
 
-                // Update footer by showing the total with the reference of the column index
-                $(api.column(0).footer()).html("Total");
-                $(api.column(10).footer()).html(vat_mrp.toLocaleString('en-IN'));
-                $(api.column(3).footer()).html(count);
-                $(api.column(11).footer()).html(rebate.toLocaleString('en-IN'));
-            },
-            pageLength: 50,
-            ordering: false,
-            responsive: true,
-            lengthChange: true,
-            dom: '<"html5buttons"B>lTfgitp',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ],
-            fixedHeader: true,
-            orderCellsTop: true,
-            columnDefs: [{
-                searchable: false,
-                targets: [0, 3, 5, 6, 7, 10, 11, 12, 13]
-            }],
-            initComplete: function() {
-                createDropdowns(this.api());
-            }
-        });
+        pageLength: 200,
+        responsive: true,
+        lengthChange: true,
+        dom: '<"html5buttons"B>lTfgitp',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+
     });
 </script>
 @endsection
