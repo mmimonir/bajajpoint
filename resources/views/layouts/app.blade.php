@@ -108,6 +108,10 @@
         table.table-uml-mushak td {
             font-size: 11px !important;
         }
+
+        .dt-border select {
+            border: 0;
+        }
     </style>
 </head>
 

@@ -26,32 +26,32 @@
                                 <th style="text-align:center;">Code</th>
                                 <th style="text-align:center;">Challan</th>
                                 <th style="text-align:center;">Factory</th>
-                                <th style="text-align:center; width:54px;">P. Dt</th>
+                                <th style="text-align:center; width:54px;">Pur. Date</th>
                                 <th style="text-align:center; width:117px;">Model</th>
                                 <th style="text-align:center;">Chassis</th>
                                 <th style="text-align:center;">Engine</th>
-                                <th style="text-align:center;">Mus</th>
+                                <th style="text-align:center;">Mushak</th>
                                 <th style="text-align:center;">Date</th>
                                 <th style="text-align:center;">VAT MRP</th>
                                 <th style="text-align:center;">Rebate</th>
                                 <th style="text-align:center;">VYear</th>
                                 <th style="text-align:center;">VMonth</th>
                             </tr>
-                            <tr>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
-                                <td style="padding: 1px;"></td>
+                            <tr class="dt-border">
+                                <td style="padding:1px; text-align:center;"></td>
+                                <td style="padding:1px; text-align:center;"></td>
+                                <td style="padding:1px; text-align:center;"></td>
+                                <td style="padding:1px; text-align:center;"></td>
+                                <td style="padding:1px; text-align:center;"></td>
+                                <td style="padding:1px; text-align:center;"></td>
+                                <td style="padding:1px; text-align:center;"></td>
+                                <td style="padding:1px; text-align:center;"></td>
+                                <td style="padding:1px; text-align:center;"></td>
+                                <td style="padding:1px; text-align:center;"></td>
+                                <td style="padding:1px; text-align:center;"></td>
+                                <td style="padding:1px; text-align:center;"></td>
+                                <td style="padding:1px; text-align:center;"></td>
+                                <td style="padding:1px; text-align:center;"></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -161,7 +161,7 @@
     });
 
     function createDropdowns(api) {
-        api.columns().every(function() {
+        api.columns([1, 2, 4, 5, 8]).every(function() {
             if (this.searchable()) {
                 var that = this;
                 var col = this.index();
@@ -253,9 +253,14 @@
             fixedHeader: true,
             orderCellsTop: true,
             columnDefs: [{
-                searchable: false,
-                targets: [0, 3, 5, 6, 7, 10, 11, 12, 13]
+                targets: [10, 11],
+                render: $.fn.dataTable.render.intlNumber('en-IN'),
+
             }],
+            // columnDefs: [{
+            //     searchable: false,
+            //     targets: [0, 3, 5, 6, 7, 10, 11, 12, 13]
+            // }],
             initComplete: function() {
                 createDropdowns(this.api());
             }
