@@ -23,7 +23,7 @@ class SalesController extends Controller
         $vehicle_data = Vehicle::select('model')->where('model_code', $model_code)->first();
         $purchage_data = Purchage::select('purchage_date', 'vendor', 'factory_challan_no')->where('id', $store_id)->first();
         $color_data = ColorCode::select('color_code', 'color')->where('model_code', $model_code)->get();
-        $pd_data = PriceDeclare::select('id', 'vat_mrp', 'submit_date')->where(['model_code' => $model_code, 'status' => '1'])->first();
+        $pd_data = PriceDeclare::select('id', 'vat_mrp', 'submit_date')->where(['model_code' => $model_code, 'status' => '1', 'dealer_code' => $core_data->vat_code])->first();
 
         return response()->json(
             [
