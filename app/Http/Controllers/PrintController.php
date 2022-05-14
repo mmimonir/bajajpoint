@@ -214,6 +214,7 @@ class PrintController extends Controller
     }
     public function single_file_print(Request $request)
     {
+
         $print_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
             ->rightJoin('purchages', 'purchages.id', '=', 'cores.store_id')
             ->select(
