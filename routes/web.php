@@ -133,7 +133,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/customer_info/', [App\Http\Controllers\CustomerController::class, 'customer_info'])->name('customer.customer_info');
 
     // Price Declare
-    Route::get('/pd_index/', [App\Http\Controllers\PriceDeclareController::class, 'index'])->name('pd.index');
+    Route::get('/pd_index', [App\Http\Controllers\PriceDeclareController::class, 'index'])->name('pd.index');
+    Route::get('/pd_get', [App\Http\Controllers\PriceDeclareController::class, 'pd_get'])->name('pd.get');
+    Route::post('/pd_add', [App\Http\Controllers\PriceDeclareController::class, 'pd_add'])->name('pd.add');
+    Route::post('/pd_update', [App\Http\Controllers\PriceDeclareController::class, 'pd_update'])->name('pd.update');
+    Route::delete('/pd_delete', [App\Http\Controllers\PriceDeclareController::class, 'pd_delete'])->name('pd.delete');
 
     //     Route::get('backup-run', function () {
     //         Artisan::call('backup:run --only-db');
