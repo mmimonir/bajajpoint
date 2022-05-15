@@ -62,15 +62,15 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     // PDF
-    Route::get('/pdf_file_print', [App\Http\Controllers\PDFController::class, 'pdf_file_print'])->name('pdf.file_print');
-    Route::get('/hform/{id}', [App\Http\Controllers\PDFController::class, 'hform'])->name('pdf.hform');
-    // Route::get('/vat_sale', [App\Http\Controllers\PDFController::class, 'vat_sale'])->name('pdf.vat_sale');
-    Route::get('/gate_pass/{id}', [App\Http\Controllers\PDFController::class, 'gate_pass'])->name('pdf.gate_pass');
+    Route::controller(App\Http\Controllers\PdfController::class)->group(function () {
+        Route::get('/pdf_file_print',  'pdf_file_print')->name('pdf.file_print');
+        Route::get('/hform/{id}',  'hform')->name('pdf.hform');
+        Route::get('gate_pass/{id}',  'gate_pass')->name('pdf.gate_pass');
+    });
 
     // Excel
     Route::get('excel_export', [App\Http\Controllers\UsersController::class, 'export'])->name('excel.export');
     Route::post('service_data', [App\Http\Controllers\CoreController::class, 'service_data'])->name('excel.service_data');
-    // Route::get('excel_dashboard', [App\Http\Controllers\CoreController::class, 'excel_dashboard'])->name('excel.dashboard');
 
     // Print & Excel Dashboard
     Route::controller(App\Http\Controllers\PrintController::class)->group(function () {
@@ -87,25 +87,28 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     // Sales
-    Route::get('/sales_update/{id}', [App\Http\Controllers\SalesController::class, 'sales_update'])->name('sale.sales_update');
-    Route::get('/sales_update_modal', [App\Http\Controllers\SalesController::class, 'sales_update_modal'])->name('sale.sales_update_modal');
-    Route::post('/sales_update_store', [App\Http\Controllers\SalesController::class, 'sales_update_store'])->name('sale.sales_update_store');
-    Route::post('/sales_report', [App\Http\Controllers\SalesController::class, 'sales_report'])->name('sale.sales_report');
+    Route::controller(App\Http\Controllers\SalesController::class)->group(function () {
+        Route::get('/sales_update/{id}',  'sales_update')->name('sale.sales_update');
+        Route::get('/sales_update_modal',  'sales_update_modal')->name('sale.sales_update_modal');
+        Route::post('/sales_update_store',  'sales_update_store')->name('sale.sales_update_store');
+        Route::post('/sales_report',  'sales_report')->name('sale.sales_report');
+    });
 
     // VAT
-    Route::get('/vat_dashboard', [App\Http\Controllers\VATController::class, 'index'])->name('vat.dashboard');
-    Route::get('/vat_index', [App\Http\Controllers\VATController::class, 'vat_index'])->name('vat.index');
-    // Route::get('vat_sale_bp', [App\Http\Controllers\PDFController::class, 'vat_sale_bp']);
-    Route::post('/vat_sale', [App\Http\Controllers\VATController::class, 'vat_sale'])->name('vat.vat_sale');
-    Route::post('/vat_sale_by_model', [App\Http\Controllers\VATController::class, 'vat_sale_by_model'])->name('vat.vat_sale_by_model');
-    Route::post('/assign_tr_code', [App\Http\Controllers\VATController::class, 'assign_tr_code'])->name('vat.assign_tr_code');
-    Route::post('/update_tr_status', [App\Http\Controllers\VATController::class, 'update_tr_status'])->name('vat.update_tr_status');
-    Route::post('/tr_changer_update', [App\Http\Controllers\VATController::class, 'tr_changer_update'])->name('vat.tr_changer_update');
-    Route::post('/assign_tr_number', [App\Http\Controllers\VATController::class, 'assign_tr_number'])->name('assign_tr_number');
-    Route::post('/assign_sale_mushak_no', [App\Http\Controllers\VATController::class, 'assign_sale_mushak_no'])->name('vat.assign_sale_mushak_no');
-    Route::post('/assign_sale_mushak_no_store', [App\Http\Controllers\VATController::class, 'assign_sale_mushak_no_store'])->name('vat.assign_sale_mushak_no_store');
-    Route::post('/uml_mushak_update', [App\Http\Controllers\VATController::class, 'uml_mushak_update'])->name('vat.uml_mushak_update');
-    Route::post('/uml_mushak_update_store', [App\Http\Controllers\VATController::class, 'uml_mushak_update_store'])->name('vat.uml_mushak_update_store');
+    Route::controller(App\Http\Controllers\VatController::class)->group(function () {
+        Route::get('/vat_dashboard',  'index')->name('vat.dashboard');
+        Route::get('/vat_index',  'vat_index')->name('vat.index');
+        Route::post('/vat_sale',  'vat_sale')->name('vat.vat_sale');
+        Route::post('/vat_sale_by_model',  'vat_sale_by_model')->name('vat.vat_sale_by_model');
+        Route::post('/assign_tr_code',  'assign_tr_code')->name('vat.assign_tr_code');
+        Route::post('/update_tr_status',  'update_tr_status')->name('vat.update_tr_status');
+        Route::post('/tr_changer_update',  'tr_changer_update')->name('vat.tr_changer_update');
+        Route::post('/assign_tr_number',  'assign_tr_number')->name('assign_tr_number');
+        Route::post('/assign_sale_mushak_no',  'assign_sale_mushak_no')->name('vat.assign_sale_mushak_no');
+        Route::post('/assign_sale_mushak_no_store',  'assign_sale_mushak_no_store')->name('vat.assign_sale_mushak_no_store');
+        Route::post('/uml_mushak_update',  'uml_mushak_update')->name('vat.uml_mushak_update');
+        Route::post('/uml_mushak_update_store',  'uml_mushak_update_store')->name('vat.uml_mushak_update_store');
+    });
 
     // CKD
     Route::get('/ckd_pending', [App\Http\Controllers\CKDController::class, 'ckd_pending'])->name('ckd.ckd_pending');
@@ -121,23 +124,27 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/download', [App\Http\Controllers\UtilityController::class, 'download'])->name('utility.download');
 
     // Quotation
-    Route::get('/quotation_index', [App\Http\Controllers\QuotationController::class, 'index'])->name('quotation.create');
-    Route::get('/quotation_list', [App\Http\Controllers\QuotationController::class, 'quotation_list'])->name('quotation.list');
-    Route::post('/quotation_store', [App\Http\Controllers\QuotationController::class, 'store'])->name('quotation.store');
-    Route::get('/quotation_print_html/{id}', [App\Http\Controllers\QuotationController::class, 'quotation_print_html'])->name('quotation.print');
-    Route::get('/quotation_edit/{id}', [App\Http\Controllers\QuotationController::class, 'quotation_edit'])->name('quotation.edit');
-    Route::delete('/quotation_delete', [App\Http\Controllers\QuotationController::class, 'quotation_delete'])->name('quotation.delete');
-    Route::post('/quotation_update', [App\Http\Controllers\QuotationController::class, 'quotation_update'])->name('quotation.update');
+    Route::controller(App\Http\Controllers\QuotationController::class)->group(function () {
+        Route::get('/quotation_index',  'index')->name('quotation.create');
+        Route::get('/quotation_list',  'quotation_list')->name('quotation.list');
+        Route::post('/quotation_store',  'store')->name('quotation.store');
+        Route::get('/quotation_print_html/{id}',  'quotation_print_html')->name('quotation.print');
+        Route::get('/quotation_edit/{id}',  'quotation_edit')->name('quotation.edit');
+        Route::delete('/quotation_delete',  'quotation_delete')->name('quotation.delete');
+        Route::post('/quotation_update',  'quotation_update')->name('quotation.update');
+    });
 
     // Customer Info
     Route::get('/customer_info/', [App\Http\Controllers\CustomerController::class, 'customer_info'])->name('customer.customer_info');
 
     // Price Declare
-    Route::get('/pd_index', [App\Http\Controllers\PriceDeclareController::class, 'index'])->name('pd.index');
-    Route::get('/pd_get', [App\Http\Controllers\PriceDeclareController::class, 'pd_get'])->name('pd.get');
-    Route::post('/pd_add', [App\Http\Controllers\PriceDeclareController::class, 'pd_add'])->name('pd.add');
-    Route::post('/pd_update', [App\Http\Controllers\PriceDeclareController::class, 'pd_update'])->name('pd.update');
-    Route::delete('/pd_delete', [App\Http\Controllers\PriceDeclareController::class, 'pd_delete'])->name('pd.delete');
+    Route::controller(App\Http\Controllers\PriceDeclareController::class)->group(function () {
+        Route::get('/pd_index',  'index')->name('pd.index');
+        Route::get('/pd_get',  'pd_get')->name('pd.get');
+        Route::post('/pd_add',  'pd_add')->name('pd.add');
+        Route::post('/pd_update',  'pd_update')->name('pd.update');
+        Route::delete('/pd_delete',  'pd_delete')->name('pd.delete');
+    });
 
     //     Route::get('backup-run', function () {
     //         Artisan::call('backup:run --only-db');
