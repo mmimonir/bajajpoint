@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
 
+
 Route::group(['middleware' => 'auth'], function () {
     // MRP Table
     Route::controller(App\Http\Controllers\MrpController::class)->group(function () {
@@ -59,7 +60,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/uml_mushak_bulk_update',  'uml_mushak_bulk_update')->name('purchage.uml_mushak_bulk_update');
         Route::post('/print_code_update',  'print_code_update')->name('purchage.print_code_update');
     });
-
 
     // PDF
     Route::get('/pdf_file_print', [App\Http\Controllers\PDFController::class, 'pdf_file_print'])->name('pdf.file_print');
