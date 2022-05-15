@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Showroom;
 
 use App\Models\Core;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CKDController extends Controller
 {

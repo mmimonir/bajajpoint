@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Showroom;
 
-use Illuminate\Http\Request;
-use App\Models\Mrp;
 use DB;
+use App\Models\Mrp;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class MrpController extends Controller
 {

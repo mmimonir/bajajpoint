@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Showroom;
 
 use App\Models\Core;
 use App\Models\Supplier;
 use App\Exports\CoreExport;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CoreController extends Controller

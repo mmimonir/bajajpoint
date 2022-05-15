@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Showroom;
 
 use App\Models\Mrp;
 use App\Models\PriceDeclare;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PriceDeclareController extends Controller
 {

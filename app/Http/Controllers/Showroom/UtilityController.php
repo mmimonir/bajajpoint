@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Showroom;
 
 use App\Models\Mrp;
 use Illuminate\Http\Request;
 use App\Models\AssessmentYear;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
 
 class UtilityController extends Controller

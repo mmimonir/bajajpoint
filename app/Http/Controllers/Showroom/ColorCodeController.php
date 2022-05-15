@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Showroom;
 
 use App\Models\ColorCode;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ColorCodeController extends Controller
 {

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Showroom;
 
 use App\Models\Core;
 use App\Models\Purchage;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TRController extends Controller
 {

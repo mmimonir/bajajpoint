@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Showroom;
 
 use PDF;
 use App\Models\Core;
-use App\Models\Supplier;
 use App\Models\Vehicle;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PrintController extends Controller
 {

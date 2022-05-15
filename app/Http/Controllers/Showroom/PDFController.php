@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Showroom;
 
+use DB;
 use PDF;
 use App\Models\Core;
-
 use Illuminate\Http\Request;
-use DB;
+use App\Http\Controllers\Controller;
 
 class PDFController extends Controller
 {

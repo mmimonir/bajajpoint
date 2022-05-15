@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Showroom;
 
 use App\Models\Quotation;
-use App\Models\QuotationItem;
 use Illuminate\Http\Request;
+use App\Models\QuotationItem;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class QuotationController extends Controller
 {

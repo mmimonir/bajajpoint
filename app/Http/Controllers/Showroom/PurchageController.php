@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Showroom;
 
 use Carbon\Carbon;
 use App\Models\Mrp;
 use App\Models\Core;
+use App\Models\Helper;
 use App\Models\Purchage;
 use App\Models\Supplier;
 use App\Models\ColorCode;
-use App\Models\Helper;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class PurchageController extends Controller
 {

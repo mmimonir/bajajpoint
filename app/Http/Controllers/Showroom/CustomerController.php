@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Showroom;
 
-use App\Models\ColorCode;
 use App\Models\Core;
-use App\Models\Purchage;
 use App\Models\Vehicle;
+use App\Models\Purchage;
+use App\Models\ColorCode;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CustomerController extends Controller
 {
