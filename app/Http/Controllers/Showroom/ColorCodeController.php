@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\ColorCode;
+use App\Models\Showroom\ColorCode;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

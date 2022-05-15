@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\Core;
+use App\Models\Showroom\Core;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller

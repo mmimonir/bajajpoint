@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\Core;
+use App\Models\Showroom\Core;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

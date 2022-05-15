@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Showroom;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Purchage extends Model
+class Supplier extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 }

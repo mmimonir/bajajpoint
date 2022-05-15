@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Showroom;
 
 use PDF;
-use App\Models\Core;
-use App\Models\Vehicle;
-use App\Models\Supplier;
+use App\Models\Showroom\Core;
+use App\Models\Showroom\Vehicle;
+use App\Models\Showroom\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

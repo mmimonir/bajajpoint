@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\Mrp;
-use App\Models\PriceDeclare;
+use App\Models\Showroom\Mrp;
+use App\Models\Showroom\PriceDeclare;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

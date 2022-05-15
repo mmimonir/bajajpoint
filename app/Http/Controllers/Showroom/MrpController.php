@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Showroom;
 
 use DB;
-use App\Models\Mrp;
+use App\Models\Showroom\Mrp;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 

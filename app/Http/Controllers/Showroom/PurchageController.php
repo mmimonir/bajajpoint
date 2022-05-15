@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Showroom;
 
 use Carbon\Carbon;
-use App\Models\Mrp;
-use App\Models\Core;
-use App\Models\Helper;
-use App\Models\Purchage;
-use App\Models\Supplier;
-use App\Models\ColorCode;
+use App\Models\Showroom\Mrp;
+use App\Models\Showroom\Core;
+use App\Models\Showroom\Helper;
+use App\Models\Showroom\Purchage;
+use App\Models\Showroom\Supplier;
+use App\Models\Showroom\ColorCode;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\Core;
-use App\Models\Purchage;
+use App\Models\Showroom\Showroom\Core;
+use App\Models\Showroom\Purchage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

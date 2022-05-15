@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\StoreNoGen;
+use App\Models\Showroom\StoreNoGen;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

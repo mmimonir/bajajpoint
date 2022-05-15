@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Core;
+use App\Models\Showroom\Core;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\Supplier;
+use App\Models\Showroom\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\Core;
-use App\Models\Supplier;
+use App\Models\Showroom\Showroom\Core;
+use App\Models\Showroom\Supplier;
 use App\Exports\CoreExport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

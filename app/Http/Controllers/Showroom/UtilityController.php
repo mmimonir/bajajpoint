@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\Mrp;
+use App\Models\Showroom\Mrp;
 use Illuminate\Http\Request;
-use App\Models\AssessmentYear;
+use App\Models\Showroom\AssessmentYear;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
 

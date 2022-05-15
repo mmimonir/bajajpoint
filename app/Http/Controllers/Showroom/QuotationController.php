@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\Quotation;
+use App\Models\Showroom\Quotation;
 use Illuminate\Http\Request;
-use App\Models\QuotationItem;
+use App\Models\Showroom\QuotationItem;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
