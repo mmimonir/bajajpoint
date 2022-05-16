@@ -110,5 +110,11 @@
                 <p class="text-white">VAT Dashboard</p>
             </a>
         </li>
+        <li class="nav-item bg-danger rounded">
+            <a href="{{route('service.dashboard')}}" class="nav-link">
+                <i class="nav-icon fas fa-user-cog text-white"></i>
+                <p class="text-white">Service Dashboard</p>
+            </a>
+        </li>
     </ul>
 </nav>
