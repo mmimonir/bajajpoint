@@ -9,7 +9,7 @@ Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware', 'prefix' => 'showroom'], function () {
     // MRP Table
     Route::controller(App\Http\Controllers\Showroom\MrpController::class)->group(function () {
         Route::get('/mrp_index',  'index')->name('mrp.index');
