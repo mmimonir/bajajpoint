@@ -18,5 +18,13 @@
                 </li>
             </ul>
         </li>
+        @if(Auth::user()->roles == 'admin')
+        <li class="nav-item bg-danger rounded">
+            <a href="{{route('home')}}" class="nav-link">
+                <i class="nav-icon fas fa-user-cog text-white"></i>
+                <p class="text-white">Showroom Dashboard</p>
+            </a>
+        </li>
+        @endif
     </ul>
 </nav>
