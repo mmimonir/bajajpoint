@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\Showroom\Core;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Showroom\Core;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -15,29 +17,39 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('dashboard')
-            ->with([
-                'data' => [
-                    'bp' => [
-                        'total_lifting' => $this->total_lifting(2000),
-                        'lifting_previous_month' => $this->lifting_previous_month(2000),
-                        'lifting_this_month' => $this->lifting_this_month(2000),
-                        'tr_pending_data' => $this->tr_pending_data(2000),
-                    ],
-                    'bh' => [
-                        'total_lifting' => $this->total_lifting(2011),
-                        'lifting_previous_month' => $this->lifting_previous_month(2011),
-                        'lifting_this_month' => $this->lifting_this_month(2011),
-                        'tr_pending_data' => $this->tr_pending_data(2011),
-                    ],
-                    'bb' => [
-                        'total_lifting' => $this->total_lifting(2030),
-                        'lifting_previous_month' => $this->lifting_previous_month(2030),
-                        'lifting_this_month' => $this->lifting_this_month(2030),
-                        'tr_pending_data' => $this->tr_pending_data(2030),
+        define("SERVICE", "service");
+        define("SHOWROOM", "showroom");
+
+        $user_details = User::find(Auth::user()->id);
+        $section = explode(',', $user_details['section']);
+
+        if (in_array(SHOWROOM, $section)) {
+            return view('dashboard')
+                ->with([
+                    'data' => [
+                        'bp' => [
+                            'total_lifting' => $this->total_lifting(2000),
+                            'lifting_previous_month' => $this->lifting_previous_month(2000),
+                            'lifting_this_month' => $this->lifting_this_month(2000),
+                            'tr_pending_data' => $this->tr_pending_data(2000),
+                        ],
+                        'bh' => [
+                            'total_lifting' => $this->total_lifting(2011),
+                            'lifting_previous_month' => $this->lifting_previous_month(2011),
+                            'lifting_this_month' => $this->lifting_this_month(2011),
+                            'tr_pending_data' => $this->tr_pending_data(2011),
+                        ],
+                        'bb' => [
+                            'total_lifting' => $this->total_lifting(2030),
+                            'lifting_previous_month' => $this->lifting_previous_month(2030),
+                            'lifting_this_month' => $this->lifting_this_month(2030),
+                            'tr_pending_data' => $this->tr_pending_data(2030),
+                        ]
                     ]
-                ]
-            ]);
+                ]);
+        } elseif (in_array(SERVICE, $section)) {
+            return view('service_dashboard');
+        }
     }
 
     public function total_lifting($report_code)
