@@ -30,7 +30,7 @@
                         <a class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">
                             Add Mechanics
                         </a>
-                        <a class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">
+                        <a href="{{route('service.job_card')}}" class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">
                             Create Job Card
                         </a>
                         <a class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">

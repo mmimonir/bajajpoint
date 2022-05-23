@@ -14,6 +14,8 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
     <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
     <link href="http://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap" rel="stylesheet">
 
     @yield('datatable')
     @yield('css')
@@ -112,6 +114,15 @@
         .dt-border select {
             border: 0;
         }
+
+        .bangla_font {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-weight: 800;
+        }
+
+        .bangla_font_light {
+            font-weight: 500;
+        }
     </style>
 </head>
 
@@ -130,7 +141,7 @@
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                 @auth {{--
                     <a
-                        href="{{ url('/home') }}"
+                        href="{{ route('service.dashboard') }}"
                 class="text-sm text-gray-700 dark:text-gray-500 underline"
                 >Home</a>
                 --}} @else
