@@ -8,7 +8,7 @@
     }
 
     .custom-img {
-        width: 100px;
+        width: 80px;
         margin-right: -50px;
     }
 </style>
@@ -29,7 +29,7 @@
                     <tr>
                         <td class="align-middle">
                             <div class="custom-img">
-                                <img src="{{URL('/images/uml_logo.png')}}" style="width:100%;">
+                                <img src="{{URL('/images/uml_logo.png')}}" style="width:75%;">
                             </div>
                         </td>
                         <td class="text-center">
@@ -43,7 +43,7 @@
                         </td>
                         <td class="align-middle">
                             <div class="custom-img">
-                                <img src="{{URL('/images/bajaj_logo.png')}}" style="width:100%;">
+                                <img src="{{URL('/images/bajaj_logo.png')}}" style="width:75%;">
                             </div>
                         </td>
                     </tr>
@@ -53,9 +53,16 @@
                                 <div class="col-md-4 pr-0">
                                     <div>
                                         <p class="p-1 border m-0 font-weight-bold">গাড়ির বিবরণ</p>
-                                        <p class="p-1 border m-0">গাড়ির রেজিঃ নম্বর:<input class="ml-1" style="width:300px; height:21px; border:0px;" type="text"></p>
-                                        <p class="p-1 border m-0">গাড়ির মডেল:<input class="ml-1" style="width:300px; height:21px; border:0px;" type="text"></p>
-                                        <p class="p-1 border m-0"><span style="margin-right:150px;">বিক্রয় তারিখ:</span><span>মাইলেজ:</span></p>
+                                        <p class="p-1 border m-0">গাড়ির রেজিঃ নম্বর:<input class="ml-1" style="width:69%; height:21px; border:0px;" type="text"></p>
+                                        <p class="p-1 border m-0">গাড়ির মডেল:<input class="ml-1" style="width:77%; height:21px; border:0px;" type="text"></p>
+                                        <p class="p-1 border m-0">
+                                            <span>বিক্রয় তারিখ:
+                                                <input style="width:30%; height:21px; border:0px;" type="date">
+                                            </span>
+                                            <span>মাইলেজ:
+                                                <input style="width:30%; height:21px; border:0px;" type="text">
+                                            </span>
+                                        </p>
                                         <p class="p-1 border m-0"><span style="margin-right:150px;">ইঞ্জিন নং:</span><span>চেসিস নং:</span></p>
                                         <p class="p-1 border m-0">
                                             <span style="margin-right:50px;">সার্ভিসের ধরণ:</span>
@@ -69,8 +76,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 pl-0">
-                                    <p class="p-1 border m-0 font-weight-bold">গ্রাহকের নাম:</p>
-                                    <p class="p-1 border m-0">ঠিকানা:</p>
+                                    <p class="p-1 border m-0 font-weight-bold">গ্রাহকের নাম:<input class="ml-1" style="width:89%; height:21px; border:0px;" type="text"></p>
+                                    <p class="p-1 border m-0">ঠিকানা:<input class="ml-1" style="width:93%; height:21px; border:0px;" type="text"></p>
                                     <p class="p-1 border m-0">-</p>
                                     <p class="p-1 border m-0">টেলিফোন নম্বর:</p>
                                     <p class="p-1 border m-0 font-weight-bold">গাড়ি পর্যবেক্ষণের বিবরণ:</p>
