@@ -146,6 +146,8 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware', 'prefix' =>
         Route::delete('/pd_delete',  'pd_delete')->name('pd.delete');
     });
 
+    Route::get('/filemanager', [App\Http\Controllers\FileManagerController::class, 'index'])->name('file.manager');
+
     //     Route::get('backup-run', function () {
     //         Artisan::call('backup:run --only-db');
     //         return back();

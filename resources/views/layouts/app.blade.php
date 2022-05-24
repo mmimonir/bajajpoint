@@ -26,6 +26,7 @@
         html,
         body {
             font-family: "Helvetica 25 UltraLight", sans-serif;
+            font-size: .93rem;
 
             /* font-weight: 400; */
         }

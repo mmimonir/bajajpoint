@@ -110,6 +110,12 @@
                 <p class="text-white">VAT Dashboard</p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{route('file.manager')}}" class="nav-link">
+                <i class="nav-icon fas fa-file"></i>
+                <p class="text-white">File Manager</p>
+            </a>
+        </li>
         <li class="nav-item bg-danger rounded">
             <a href="{{route('service.dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-user-cog text-white"></i>
