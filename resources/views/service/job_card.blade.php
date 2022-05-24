@@ -87,9 +87,9 @@
                                         <p class="border_custom m-0"><span style="margin-right:50px;">ইঞ্জিন ওভারহোলিং</span><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></p>
                                         <p class="border_custom m-0"><span style="margin-right:50px;">দূর্ঘটনাজনিত মেরামত</span><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></p>
                                         <p class="border_custom m-0">গ্রাহকের অভিযোগ</p>
-                                        <textarea class="border_custom" style="border-right:0; height:96px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
+                                        <textarea class="border_custom" style="border-right:0; height:120px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
                                         <p class="border_custom m-0">মেরামতের বিবরণ</p>
-                                        <textarea class="border_custom" style="border-right:0; height:105px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
+                                        <textarea class="border_custom" style="border-right:0; height:145px; width:100%; margin-bottom:-7px; border-bottom-width:1px;" value="" id="flexCheckDefault"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-8 pl-0">
@@ -127,6 +127,62 @@
                                         <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;">পার্টস আইডি</span>
                                         <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;">পরিমাণ</span>
                                         <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;">মূল্য (টাকা)</span>
+                                    </p>
+                                    <p class="m-0">
+                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                    </p>
+                                    <p class="m-0">
+                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                    </p>
+                                    <p class="m-0">
+                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                    </p>
+                                    <p class="m-0">
+                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                    </p>
+                                    <p class="m-0">
+                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                    </p>
+                                    <p class="m-0">
+                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                    </p>
+                                    <p class="m-0">
+                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                    </p>
+                                    <p class="m-0">
+                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
                                     </p>
                                     <p class="m-0">
                                         <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
