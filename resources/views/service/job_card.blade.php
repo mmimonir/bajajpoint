@@ -143,11 +143,11 @@
                             </p>
 
                             @for($i=0; $i<=26; $i++) <p class="m-0" style="padding:0;">
-                                <span class="text-center border_bottom border_right" style="display:inline-block; width:10%;"><input name="" id="" style="width:100%; height:19px;" type="text"></span>
-                                <span class="text-center border_bottom border_right" style="display:inline-block; width:30%;"><input name="" id="" style="width:100%; height:19px;" type="text"></span>
-                                <span class="text-center border_bottom border_right" style="display:inline-block; width:34%;"><input name="" id="" style="width:100%; height:19px;" type="text"></span>
-                                <span class="text-center border_bottom border_right" style="display:inline-block; width:10%;"><input name="" id="" style="width:100%; height:19px;" type="text"></span>
-                                <span class="text-center border_bottom" style="display:inline-block; width:14%;"><input name="" id="" style="width:100%; height:19px;" type="text"></span>
+                                <span class="text-center border_bottom border_right" style="display:inline-block; width:10%;"><input name="" id="" style="width:100%; height:19px; text-align:center;" type="text" value="{{$i+1}}"></span>
+                                <span class="text-center border_bottom border_right" style="display:inline-block; width:30%;"><input name="" id="" style="width:100%; height:19px;" type="text" value="DJ1252145"></span>
+                                <span class="text-center border_bottom border_right" style="display:inline-block; width:34%;"><input name="" id="" style="width:100%; height:19px;" type="text" value="CLUTCH PLATE, DIS"></span>
+                                <span class="text-center border_bottom border_right" style="display:inline-block; width:10%;"><input class="text-center" name="" id="" style="width:100%; height:19px;" type="text" value="1"></span>
+                                <span class="text-center border_bottom" style="display:inline-block; width:14%;"><input class="text-right" name="" id="" style="width:100%; height:19px;" type="text" value="200"></span>
                                 </p>
                                 @endfor
 
