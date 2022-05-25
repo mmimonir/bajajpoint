@@ -211,16 +211,24 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div colspan="4" style="padding:0;">
-                        <p class="m-0" style="padding-left:11px;">
-                            <span>গাড়ির রেজিঃ নং:</span>
-                            <span>গাড়ির মডেল:</span>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="m-0 border_bottom" style="padding-left:11px;">
+                            <span style="display:inline-block; width:375px;">গাড়ির রেজিঃ নং:</span>
+                            <span class="border_right" style="display:inline-block; width:327px;">গাড়ির মডেল:</span>
                             <span>অগ্রিম:</span>
+                        </p>
+                        <p class="m-0" style="padding-left:11px;">
+                            <span style="display:inline-block; width:375px;">ইঞ্জিন নং:</span>
+                            <span class="border_right" style="display:inline-block; width:327px; height:40px;">চেসিস নং:</span>
+                            <span class="border_bottom" style="display:inline-block; width:382px; height:40px;">ওয়ার্কশপ ইরচার্জ:</span>
+                        </p>
+                        <p class="m-0" style="padding-left:11px;">
+                            <span class="border_right" style="display:inline-block; width:705px; text-align:right; height:40px; padding-right:10px;">গাড়িটি ডেলিভারীর অনুমতি দেওয়া হল।</span>
+                            <span style="display:inline-block; width:382px; height:40px;">ক্যাশিয়ারের স্বাক্ষর:</span>
                         </p>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
