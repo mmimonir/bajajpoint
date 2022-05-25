@@ -132,209 +132,30 @@
                                     </p>
                                     <p class="m-0 font-weight-bold">
                                         <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;">ক্রমিক</span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;">পার্টস এবং সেবার বিবরণ</span>
                                         <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;">পার্টস আইডি</span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px;">পার্টস এবং সেবার বিবরণ</span>
                                         <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;">পরিমাণ</span>
                                         <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;">মূল্য (টাকা)</span>
                                     </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0" style="border-bottom:1px solid;">
-                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px; border-right:0;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
-                                    </p>
-                                    <p class="m-0 font-weight-bold" style="border-right:1px solid; border-left:1px solid; border-bottom:1px solid;">
-                                        মেকানিকের নামঃ
-                                    </p>
-                                    <p class="m-0" style="height:125px; border-bottom:0; border-right:1px solid; border-left:1px solid;">আমি গাড়ি মেরামতের কাজে সন্তুষ্ট এবং গাড়ি ভালভাবে বুঝে ডেলিভারী নিলাম।
-                                    </p>
-                                    <p class="m-0" style="padding-left:11px; border-bottom:1px solid; border-top:0; border-left:1px solid; border-right:1px solid; width:100%;">
-                                        <span>তারিখ:</span>
-                                        <span style="margin-left:400px;">গ্রাহকের স্বাক্ষর:</span>
-                                    </p>
+
+                                    @for($i=0; $i<=26; $i++) <p class="m-0">
+                                        <span class="border_custom text-center" style="display:inline-block; width:10%; margin-left:-11px;"><input name="" id="" class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:30%; margin-left:-4px;"><input name="" id="" class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="border_custom text-center" style="display:inline-block; width:36%; margin-left:-4px;"><input name="" id="" class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span class="text-center" style="border-top:solid; border-top-width:thin; display:inline-block; width:10%; margin-left:-4px; margin-right:3px;"><input name="" id="" class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                        <span‍ class="border_custom text-center" style="display:inline-block; width:15.75%; margin-left:-5px;"><input name="" id="" class="ml-1" style="width:97%; height:21px; border:0px;" type="text"></span>
+                                            </p>
+                                            @endfor
+
+                                            <p class="m-0 font-weight-bold" style="border:1px solid;">
+                                                মেকানিকের নামঃ
+                                            </p>
+                                            <p class="m-0" style="height:125px; border-bottom:0; border-right:1px solid; border-left:1px solid;">আমি গাড়ি মেরামতের কাজে সন্তুষ্ট এবং গাড়ি ভালভাবে বুঝে ডেলিভারী নিলাম।
+                                            </p>
+                                            <p class="m-0" style="padding-left:11px; border-bottom:1px solid; border-top:0; border-left:1px solid; border-right:1px solid; width:100%;">
+                                                <span>তারিখ:</span>
+                                                <span style="margin-left:400px;">গ্রাহকের স্বাক্ষর:</span>
+                                            </p>
                                 </div>
                             </div>
                         </td>
