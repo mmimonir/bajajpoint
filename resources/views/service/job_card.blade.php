@@ -160,7 +160,57 @@
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="4" style="padding:0;">
+                            <p class="m-0 font-weight-bold text-center" style="border:1px solid; padding-left:11px;">
+                                কাস্টমার ফিডব্যাক (সি এস আই ইনডেক্স) ফরম
+                            </p>
+                            <p class="m-0" style="border:1px solid; padding-left:11px; border-top:0;">
+                                <span style="border-right:1px solid; display: inline-block; width: 330px;">1. আমাদের সার্ভিস স্টাফদের থেকে কেমন ব্যবহার পেলেন?</span>
+                                <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;">দারুন/খুব ভাল/ভাল/মোটামুটি</span>
+                                <span style="border-right:1px solid; display: inline-block; width: 467px;">4. মোটর সাইকেলের সমস্যাগুলো সমাধান হয়েছে কি?</span>
+                                <span style="padding-left:15px;">হ্যাঁ/না</span>
+                            </p>
+                            <p class="m-0" style="border:1px solid; padding-left:11px; border-top:0;">
+                                <span style="border-right:1px solid; display: inline-block; width: 330px;">2. সার্ভিস সেন্টারের পরিস্কার পরিচ্ছন্নতা কেমন দেখতে পেলেন?</span>
+                                <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;">দারুন/খুব ভাল/ভাল/মোটামুটি</span>
+                                <span style="border-right:1px solid; display: inline-block; width: 467px;">5. সঠিক সময়ে গাড়িটি ডেলিভারী পেয়েছেন কি?</span>
+                                <span style="padding-left:15px;">হ্যাঁ/না</span>
+                            </p>
+                            <p class="m-0" style="border:1px solid; padding-left:11px; border-top:0;">
+                                <span style="border-right:1px solid; display: inline-block; width: 330px;">3. গাড়ির সম্পাদিত কাজ সম্পর্কে আপনি অবহিত আছেন কি?</span>
+                                <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;">হ্যাঁ/না</span>
+                                <span style="border-right:1px solid; display: inline-block; width: 467px;">6. আপনার বন্ধু/আত্নীয়কে আমাদের সার্ভিস সেন্টারে আসতে সুপারিশ করবেন কি?</span>
+                                <span style="padding-left:15px;">হ্যাঁ/না</span>
+                            </p>
+                            <p class="m-0" style="border:1px solid; padding-left:11px; border-top:0;">
+                                <span style="border-right:0; display: inline-block; width: 100%;">7. আপনার মূল্যবান পরামর্শ/মন্তব্য থাকলে লিখুন।</span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle border_custom" style="border:solid; border-width:thin; border-bottom:0;">
+                            <div class="custom-img">
+                                <img src="{{URL('/images/uml_logo.png')}}" style="width:75%;">
+                            </div>
+                        </td>
+                        <td class="text-center border_custom" style="border:solid; border-width:thin; border-bottom:0;">
+                            <p class="m-0 font-weight-bold h3"><span class="fs-4">ডিলারের নাম: </span>বাজাজ পয়েন্ট (বাজাজ সার্ভিস সেন্টার)</p>
+                            <p class="m-0 font-weight-bold">400/বি, মালিবাগ চৌধুরী পাড়া, ঢাকা-1219</p>
+                            <p class="m-0 font-weight-bold">মোবাইল: 01680 365 200, 01813 551 621</p>
+                        </td>
+                        <td class="align-middle border_custom" style="border:solid; border-width:thin; border-bottom:0;">
+                            <p class="m-0 font-weight-bold">জব কার্ড নং:</p>
+                            <p class="m-0 font-weight-bold">জব কার্ড তারিখ:</p>
+                        </td>
+                        <td class="align-middle border_custom" style="border:solid; border-width:thin; border-bottom:0;">
+                            <div class="custom-img">
+                                <img src="{{URL('/images/bajaj_logo.png')}}" style="width:75%;">
+                            </div>
+                        </td>
+                    </tr>
                 </table>
+
             </div>
         </div>
     </div>
