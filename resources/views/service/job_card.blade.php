@@ -55,12 +55,12 @@
                             <img src="{{URL('/images/uml_logo.png')}}" class="img-fluid p-1">
                         </div>
                         <div class="text-center p-1" style="width:50%; border-right:1px solid;">
-                            <p class="m-0 font-weight-bold h3"><span class="fs-4">ডিলারের নাম: </span>বাজাজ পয়েন্ট (বাজাজ সার্ভিস সেন্টার)</p>
+                            <p class="m-0 font-weight-bold h3 border_bottom"><span class="fs-4">ডিলারের নাম: </span>বাজাজ পয়েন্ট (বাজাজ সার্ভিস সেন্টার)</p>
                             <p class="m-0 font-weight-bold">400/বি, মালিবাগ চৌধুরী পাড়া, ঢাকা-1219</p>
                             <p class="m-0 font-weight-bold">মোবাইল: 01680 365 200, 01813 551 621</p>
                         </div>
                         <div class="align-middle p-1" style="width:20%; border-right:1px solid;">
-                            <p class="m-0 font-weight-bold">জব কার্ড নং:</p>
+                            <p class="m-0 font-weight-bold border_bottom">জব কার্ড নং:</p>
                             <p class="m-0 font-weight-bold">জব কার্ড তারিখ:</p>
                         </div>
                         <div class="d-flex align-items-center p-1" style="width:15%;">
@@ -198,12 +198,12 @@
                             <img src="{{URL('/images/uml_logo.png')}}" class="img-fluid p-1">
                         </div>
                         <div class="text-center p-1 border_right border_bottom" style="width:50%;">
-                            <p class="m-0 font-weight-bold h3"><span class="fs-4">ডিলারের নাম: </span>বাজাজ পয়েন্ট (বাজাজ সার্ভিস সেন্টার)</p>
+                            <p class="m-0 font-weight-bold h3 border_bottom"><span class="fs-4">ডিলারের নাম: </span>বাজাজ পয়েন্ট (বাজাজ সার্ভিস সেন্টার)</p>
                             <p class="m-0 font-weight-bold">400/বি, মালিবাগ চৌধুরী পাড়া, ঢাকা-1219</p>
                             <p class="m-0 font-weight-bold">মোবাইল: 01680 365 200, 01813 551 621</p>
                         </div>
                         <div class="align-middle p-1 border_right border_bottom" style="width:20%;">
-                            <p class="m-0 font-weight-bold">জব কার্ড নং:</p>
+                            <p class="m-0 font-weight-bold border_bottom">জব কার্ড নং:</p>
                             <p class="m-0 font-weight-bold">জব কার্ড তারিখ:</p>
                         </div>
                         <div class="d-flex align-items-center p-1 border_bottom" style="width:15%;">
