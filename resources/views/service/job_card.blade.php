@@ -180,19 +180,19 @@
                                 <input class="text-right border_bottom" name="" id="" style="width:105px; height:24px;" type="text" value="">
                             </div>
                             <div class="m-0" style="padding:0;">
-                                <span class="text-right border_bottom border_right" style="display:inline-block; width:630px; height:24px;">মোট = </span>
+                                <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">মোট = </span>
                                 <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;">1200</span>
                             </div>
                             <div class="m-0" style="padding:0;">
-                                <span class="text-right border_bottom border_right" style="display:inline-block; width:630px; height:24px;">ভ্যাট = </span>
+                                <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">ভ্যাট = </span>
                                 <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;">1200</span>
                             </div>
                             <div class="m-0" style="padding:0;">
-                                <span class="text-right border_bottom border_right" style="display:inline-block; width:630px; height:24px;">সর্বমোট = </span>
+                                <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">সর্বমোট = </span>
                                 <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;">1200</span>
                             </div>
                             <div class="m-0" style="padding:0;">
-                                <span class="text-right border_bottom border_right" style="display:inline-block; width:630px; height:24px;">বর্তমান পাওনা = </span>
+                                <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">বর্তমান পাওনা = </span>
                                 <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;">1200</span>
                             </div>
 
