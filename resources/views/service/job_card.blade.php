@@ -38,6 +38,13 @@
             display: none !important;
         }
     }
+
+    .custom_dropdown {
+        height: 24px;
+        width: 225px;
+        border: 0px;
+        font-weight: bold;
+    }
 </style>
 @endpush
 @push('page_scripts')
@@ -107,7 +114,12 @@
                                 <textarea class="" style="height:192px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">পরবর্তী কাজের বিবরণ<span class="font-weight-bold" style="margin-left:20px; margin-right:10px;">তারিখ</span><input style="width:30%; height:19px; border:0px;" type="date"></p>
                                 <textarea class="" style="height:167px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
-                                <p class="pl-1 m-0 border_bottom border_top font-weight-bold">সার্ভিস ইঞ্জিনিয়ারের নামঃ</p>
+                                <!-- <p class="pl-1 m-0 border_bottom border_top font-weight-bold">সার্ভিস ইঞ্জিনিয়ারের নামঃ <input class="ml-1" style="width:221px; height:19px; border:0px;" type="text"></p> -->
+                                <p class="pl-1 m-0 border_bottom border_top font-weight-bold">সার্ভিস ইঞ্জিনিয়ারের নামঃ
+                                    <select class="custom_dropdown" name="">
+                                        <option id="">Mollika Akter</option>
+                                    </select>
+                                </p>
                                 <p style="height:90px;" class="m-0 pl-1">গাড়ি মেরামতের সকল খরচ আমি নিজে বহন করব। গাড়ি মেরামতকালীন সময়ে সংরক্ষন ও টেস্ট ড্রাইভের সকল দায়িত্ব আমার।</p>
                                 <p class="m-0 border_bottom" style="padding-left:11px;">
                                     <span>তারিখ:</span>
@@ -188,6 +200,9 @@
 
                             <p class="m-0 font-weight-bold border_bottom pl-1">
                                 মেকানিকের নামঃ
+                                <select class="custom_dropdown" name="" style="width:200px;">
+                                    <option id="">Mollika Akter</option>
+                                </select>
                             </p>
                             <p class="m-0 pl-1" style="height:90px;">আমি গাড়ি মেরামতের কাজে সন্তুষ্ট এবং গাড়ি ভালভাবে বুঝে ডেলিভারী নিলাম।
                             </p>
@@ -203,32 +218,32 @@
                     <p class="m-0 font-weight-bold text-center border_top border_bottom">
                         কাস্টমার ফিডব্যাক (সি এস আই ইনডেক্স) ফরম
                     </p>
-                    <p class="m-0 border_bottom pl-1" style="border-top:0;">
+                    <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">1. আমাদের সার্ভিস স্টাফদের থেকে কেমন ব্যবহার পেলেন?</span>
                         <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;">
-                            <span class="stuff_behavior darun">দারুন/</span>
-                            <span class="stuff_behavior khub_valo">খুব ভাল/</span>
-                            <span class="stuff_behavior valo">ভাল/</span>
-                            <span class="stuff_behavior motamoti">মোটামুটি</span>
+                            <span behavior_feedback="darun" class="stuff_behavior">দারুন/</span>
+                            <span behavior_feedback="khub_valo" class="stuff_behavior">খুব ভাল/</span>
+                            <span behavior_feedback="valo" class="stuff_behavior">ভাল/</span>
+                            <span behavior_feedback="motamoti" class="stuff_behavior">মোটামুটি</span>
                         </span>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">4. মোটর সাইকেলের সমস্যাগুলো সমাধান হয়েছে কি?</span>
                         <span style="padding-left:15px;"><span>হ্যাঁ/</span><span>না</span></span>
-                    </p>
-                    <p class="m-0 border_bottom pl-1" style="border-top:0;">
+                    </div>
+                    <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">2. সার্ভিস সেন্টারের পরিস্কার পরিচ্ছন্নতা কেমন দেখতে পেলেন?</span>
                         <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;"><span>দারুন/</span><span>খুব ভাল/</span><span>ভাল/</span><span>মোটামুটি</span></span>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">5. সঠিক সময়ে গাড়িটি ডেলিভারী পেয়েছেন কি?</span>
                         <span style="padding-left:15px;"><span>হ্যাঁ/</span><span>না</span></span>
-                    </p>
-                    <p class="m-0 border_bottom pl-1" style="border-top:0;">
+                    </div>
+                    <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">3. গাড়ির সম্পাদিত কাজ সম্পর্কে আপনি অবহিত আছেন কি?</span>
                         <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;"><span>হ্যাঁ/</span><span>না</span></span>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">6. আপনার বন্ধু/আত্নীয়কে আমাদের সার্ভিস সেন্টারে আসতে সুপারিশ করবেন কি?</span>
                         <span style="padding-left:15px;"><span>হ্যাঁ/</span><span>না</span></span>
-                    </p>
-                    <p class="m-0 border_bottom pl-1" style="border-top:0;">
+                    </div>
+                    <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:0; display: inline-block; width: 100%;">7. আপনার মূল্যবান পরামর্শ/মন্তব্য থাকলে লিখুন।</span>
-                    </p>
+                    </div>
                 </div>
             </form>
             <div class="row">
@@ -252,20 +267,20 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p class="m-0 border_bottom" style="padding-left:11px;">
+                    <div class="m-0 border_bottom" style="padding-left:11px;">
                         <span style="display:inline-block; width:375px;">গাড়ির রেজিঃ নং:</span>
                         <span class="border_right" style="display:inline-block; width:327px;">গাড়ির মডেল:</span>
                         <span>অগ্রিম:</span>
-                    </p>
-                    <p class="m-0" style="padding-left:11px;">
+                    </div>
+                    <div class="m-0" style="padding-left:11px;">
                         <span style="display:inline-block; width:375px;">ইঞ্জিন নং:</span>
                         <span class="border_right" style="display:inline-block; width:327px; height:40px;">চেসিস নং:</span>
                         <span class="border_bottom" style="display:inline-block; width:382px; height:40px;">ওয়ার্কশপ ইরচার্জ:</span>
-                    </p>
-                    <p class="m-0" style="padding-left:11px;">
+                    </div>
+                    <div class="m-0" style="padding-left:11px;">
                         <span class="border_right" style="display:inline-block; width:705px; text-align:right; height:40px; padding-right:10px;">গাড়িটি ডেলিভারীর অনুমতি দেওয়া হল।</span>
                         <span style="display:inline-block; width:382px; height:40px;">ক্যাশিয়ারের স্বাক্ষর:</span>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -286,8 +301,15 @@
         $('.service_type').on('change', function() {
             $('.service_type').not(this).prop('checked', false);
         });
+
         $('.stuff_behavior').on('click', function() {
-            $(this).toggleClass('font-weight-bold text-primary');
+            if ($('.stuff_behavior').hasClass('font-weight-bold text-primary selected_value')) {
+                $('.stuff_behavior').removeClass('font-weight-bold text-primary selected_value')
+            } else {
+                $(this).addClass('font-weight-bold text-primary selected_value');
+            }
+
+            console.log($('.selected_value').attr('behavior_feedback'));
         });
 
         $('.work_type').on('change', function() {
