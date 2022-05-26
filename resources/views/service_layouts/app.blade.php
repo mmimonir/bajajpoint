@@ -213,7 +213,7 @@
         </div>
 
         <!-- Main Footer -->
-        <footer class="main-footer">
+        <footer class="main-footer no-print">
             <div class="float-right d-none d-sm-block" style="margin-right:40px;">
                 <b>Version</b> 3.2.0
             </div>
@@ -221,7 +221,7 @@
                 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
             All rights reserved.
         </footer>
-        <a id="back-to-top" href="#" class="btn btn-dark back-to-top" role="button" aria-label="Scroll to top" style="margin-right: -11px; margin-bottom: -11px;">
+        <a id="back-to-top" href="#" class="btn btn-dark back-to-top no-print" role="button" aria-label="Scroll to top" style="margin-right: -11px; margin-bottom: -11px;">
             <i class="fas fa-chevron-up"></i>
         </a>
     </div>
