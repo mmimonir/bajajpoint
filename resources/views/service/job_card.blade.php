@@ -40,6 +40,10 @@
     }
 </style>
 @endpush
+@push('page_scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+@endpush
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-12">
@@ -77,7 +81,7 @@
                         <div class="row">
                             <div class="col-md-4 pr-0 border_right">
                                 <p class="m-0 font-weight-bold border_bottom border_top pl-1">গাড়ির বিবরণ</p>
-                                <p class="m-0 border_bottom pl-1">গাড়ির রেজিঃ নম্বর:<input class="ml-1" style="width:69%; height:19px;" type="text"></p>
+                                <p class="m-0 border_bottom pl-1">গাড়ির রেজিঃ নম্বর:<input class="ml-1 rg_number" style="width:69%; height:19px;" type="text"></p>
                                 <p class="m-0 border_bottom pl-1">গাড়ির মডেল:<input class="ml-1" style="width:77%; height:19px;" type="text"></p>
                                 <div class="m-0 border_bottom pl-1">
                                     <span>বিক্রয় তারিখ:
@@ -87,16 +91,16 @@
                                         <input style="width:30%; height:19px;" type="text">
                                     </span>
                                 </div>
-                                <p class="m-0 border_bottom pl-1"><span>ইঞ্জিন নং: <input class="ml-1" style="width:30%; height:19px;" type="text"></span><span>চেসিস নং:<input class="ml-1" style="width:30%; height:19px; border:0px;" type="text"></span></p>
+                                <p class="m-0 border_bottom pl-1"><span>ইঞ্জিন নং: <input class="ml-1 engine_no" style="width:30%; height:19px;" type="text"></span><span>চেসিস নং:<input class="ml-1 chassis_no" style="width:30%; height:19px; border:0px;" type="text"></span></p>
                                 <div class="m-0 border_bottom pl-1">
                                     <span style="margin-right:50px;">সার্ভিসের ধরণ:</span>
-                                    <span style="margin-right:25px;">পেইড সার্ভিস </span><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <span style="margin-right:25px;">ফ্রি সার্ভিস</span><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <span style="margin-right:25px;">পেইড সার্ভিস </span><input class="form-check-input service_type" type="checkbox" value="" id="flexCheckDefault">
+                                    <span style="margin-right:25px;">ফ্রি সার্ভিস</span><input class="form-check-input service_type" type="checkbox" value="" id="flexCheckDefault">
                                 </div>
-                                <p class="m-0 border_bottom pl-1"><span style="margin-right:50px;">মাইনর মেরামত</span><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></p>
-                                <p class="m-0 border_bottom pl-1"><span style="margin-right:50px;">মেজর মেরামত</span><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></p>
-                                <p class="m-0 border_bottom pl-1"><span style="margin-right:50px;">ইঞ্জিন ওভারহোলিং</span><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></p>
-                                <p class="m-0 border_bottom pl-1"><span style="margin-right:50px;">দূর্ঘটনাজনিত মেরামত</span><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></p>
+                                <p class="m-0 border_bottom pl-1"><span style="margin-right:50px;">মাইনর মেরামত</span><input class="form-check-input work_type" type="checkbox" value="" id="flexCheckDefault"></p>
+                                <p class="m-0 border_bottom pl-1"><span style="margin-right:50px;">মেজর মেরামত</span><input class="form-check-input work_type" type="checkbox" value="" id="flexCheckDefault"></p>
+                                <p class="m-0 border_bottom pl-1"><span style="margin-right:50px;">ইঞ্জিন ওভারহোলিং</span><input class="form-check-input work_type" type="checkbox" value="" id="flexCheckDefault"></p>
+                                <p class="m-0 border_bottom pl-1"><span style="margin-right:50px;">দূর্ঘটনাজনিত মেরামত</span><input class="form-check-input work_type" type="checkbox" value="" id="flexCheckDefault"></p>
                                 <p class="m-0 border_bottom pl-1 font-weight-bold">গ্রাহকের অভিযোগ</p>
                                 <textarea class="" style="height:167px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">মেরামতের বিবরণ</p>
@@ -114,7 +118,7 @@
                                 <p class="pl-1 border_bottom border_top m-0 font-weight-bold">গ্রাহকের নাম:<input class="ml-1" style="width:89%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0">ঠিকানা:<input class="ml-1" style="width:93%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0">-</p>
-                                <p class="pl-1 border_bottom m-0">টেলিফোন নম্বর:<input class="ml-1" style="width:30%; height:19px; border:0px;" type="text"></p>
+                                <p class="pl-1 border_bottom m-0">টেলিফোন নম্বর:<input class="ml-1 mobile" style="width:30%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0 font-weight-bold">গাড়ি পর্যবেক্ষণের বিবরণ:</p>
                                 <p class="pl-1 border_bottom m-0">
                                     <span>ফুয়েলের পরিমাণ:
@@ -201,7 +205,12 @@
                     </p>
                     <p class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">1. আমাদের সার্ভিস স্টাফদের থেকে কেমন ব্যবহার পেলেন?</span>
-                        <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;"><span>দারুন/</span><span>খুব ভাল/</span><span>ভাল/</span><span>মোটামুটি</span></span>
+                        <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;">
+                            <span class="stuff_behavior darun">দারুন/</span>
+                            <span class="stuff_behavior khub_valo">খুব ভাল/</span>
+                            <span class="stuff_behavior valo">ভাল/</span>
+                            <span class="stuff_behavior motamoti">মোটামুটি</span>
+                        </span>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">4. মোটর সাইকেলের সমস্যাগুলো সমাধান হয়েছে কি?</span>
                         <span style="padding-left:15px;"><span>হ্যাঁ/</span><span>না</span></span>
                     </p>
@@ -268,6 +277,22 @@
 @section('script')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    $(document).ready(function() {
+        $('.mobile').inputmask('99999-99-99-99');
+        $('.rg_number').inputmask('99-9999');
+        $('.engine_no').inputmask('99999');
+        $('.chassis_no').inputmask('99999');
 
+        $('.service_type').on('change', function() {
+            $('.service_type').not(this).prop('checked', false);
+        });
+        $('.stuff_behavior').on('click', function() {
+            $(this).toggleClass('font-weight-bold text-primary');
+        });
+
+        $('.work_type').on('change', function() {
+            $('.work_type').not(this).prop('checked', false);
+        });
+    });
 </script>
 @endsection
