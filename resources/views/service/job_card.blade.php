@@ -113,7 +113,7 @@
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">মেরামতের বিবরণ</p>
                                 <textarea class="" style="height:192px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">পরবর্তী কাজের বিবরণ<span class="font-weight-bold" style="margin-left:20px; margin-right:10px;">তারিখ</span><input style="width:30%; height:19px; border:0px;" type="date"></p>
-                                <textarea class="" style="height:167px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
+                                <textarea class="" style="height:191px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
                                 <!-- <p class="pl-1 m-0 border_bottom border_top font-weight-bold">সার্ভিস ইঞ্জিনিয়ারের নামঃ <input class="ml-1" style="width:221px; height:19px; border:0px;" type="text"></p> -->
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">সার্ভিস ইঞ্জিনিয়ারের নামঃ
                                     <select class="custom_dropdown" name="">
@@ -134,7 +134,7 @@
                                 <p class="pl-1 border_bottom m-0 font-weight-bold">গাড়ি পর্যবেক্ষণের বিবরণ:</p>
                                 <p class="pl-1 border_bottom m-0">
                                     <span>ফুয়েলের পরিমাণ:
-                                        <input class="ml-1" style="width:45px; height:20px; margin-right:150px;" type="text">
+                                        <input class="ml-1" style="width:145px; height:20px; margin-right:50px;" type="text">
                                     </span>
                                     <span style="margin-right:20px;">ফুয়েল ট্যাংকে দাগ আছে কিনা?</span>
                                     <span style="margin-right:30px;">হ্যাঁ</span>
@@ -164,40 +164,43 @@
                                 </p>
 
                                 @for($i=0; $i<=20; $i++) <div class="m-0" style="padding:0;">
-                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input name="" id="" style="width:100%; height:19px; text-align:center;" type="text" value="{{$i+1}}"></span>
+                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;">{{$i+1}}</span>
                                     <span class="text-center border_bottom border_right" style="display:inline-block; width:221px;"><input name="" id="" style="width:100%; height:19px;" type="text" value="DJ1252145"></span>
                                     <span class="text-center border_bottom border_right" style="display:inline-block; width:252px;"><input name="" id="" style="width:100%; height:19px;" type="text" value="CLUTCH PLATE, DIS"></span>
                                     <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input class="text-center" name="" id="" style="width:100%; height:19px;" type="text" value="1"></span>
-                                    <span class="text-center border_bottom" style="display:inline-block; width:104px;"><input class="text-right" name="" id="" style="width:100%; height:19px;" type="text" value="200"></span>
+                                    <span class="text-center border_bottom" style="display:inline-block; width:104px;"><input class="text-right total_right sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
                             @endfor
                             <div class="m-0" style="padding:0;">
                                 <span class="pl-1 text-left border_bottom border_right" style="display:inline-block; width:630px; height:24px;">পেইড সার্ভিস</span>
-                                <input class="text-right border_bottom" name="" id="" style="width:105px; height:24px;" type="text" value="">
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input class="text-right total_right sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
                             <div class="m-0" style="padding:0;">
                                 <span class="pl-1 text-left border_bottom border_right" style="display:inline-block; width:630px; height:24px;">মোবিল</span>
-                                <input class="text-right border_bottom" name="" id="" style="width:105px; height:24px;" type="text" value="">
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input class="text-right total_right sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
                             <div class="m-0" style="padding:0;">
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">মোট = </span>
-                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;">1200</span>
+                                <span class="text-right border_bottom total_bottom" style="display:inline-block; width:105px; height:24px;"></span>
+                            </div>
+                            <div class="m-0" style="padding:0;">
+                                <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">ডিসকাউন্ট =</span>
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input class="text-right discount sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                            </div>
+
+                            <div class="m-0" style="padding:0;">
+                                <span class="pl-1 text-right pr-1 border_bottom border_right" style="display:inline-block; width:630px; height:24px;">সর্বমোট =</span>
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input readonly class="text-right grand_total" id="" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
                             <div class="m-0" style="padding:0;">
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">ভ্যাট = </span>
-                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;">1200</span>
+                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input class="text-right vat sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
                             <div class="m-0" style="padding:0;">
-                                <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">সর্বমোট = </span>
-                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;">1200</span>
+                                <span class="border_bottom pl-1" style="display:inline-block; width:250px;">অগ্রীম = <input class="text-right" id="" style="height:19px;" type="text" value=""></span>
+                                <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:377px; height:24px;">বর্তমান পাওনা = </span>
+                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input readonly class="text-right total_payable" id="" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
-                            <div class="m-0" style="padding:0;">
-                                <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">বর্তমান পাওনা = </span>
-                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;">1200</span>
-                            </div>
-
-
-
                             <p class="m-0 font-weight-bold border_bottom pl-1">
                                 মেকানিকের নামঃ
                                 <select class="custom_dropdown" name="" style="width:200px;">
@@ -242,7 +245,7 @@
                         <span style="padding-left:15px;"><span>হ্যাঁ/</span><span>না</span></span>
                     </div>
                     <div class="m-0 border_bottom pl-1" style="border-top:0;">
-                        <span style="border-right:0; display: inline-block; width: 100%;">7. আপনার মূল্যবান পরামর্শ/মন্তব্য থাকলে লিখুন।</span>
+                        <span style="border-right:0; display: inline-block; height:19px;">7. আপনার মূল্যবান পরামর্শ/মন্তব্য থাকলে লিখুন।</span><textarea style="height:19px; width:840px; margin-bottom:-3px;"></textarea>
                     </div>
                 </div>
             </form>
@@ -315,6 +318,24 @@
         $('.work_type').on('change', function() {
             $('.work_type').not(this).prop('checked', false);
         });
+
+        function sum_right() {
+            var sum = 0;
+            $('.total_right').each(function() {
+                if ($(this).val() != '') {
+                    sum += parseFloat($(this).val());
+                }
+            });
+            $('.total_bottom').text(sum);
+            let discount = +$('.discount').val();
+            $('.grand_total').val(sum - discount);
+            let vat = +$('.vat').val();
+            $('.total_payable').val((sum - discount) + vat);
+        }
+        $('.sum_right').on('keyup', function() {
+            sum_right();
+        });
+        sum_right();
     });
 </script>
 @endsection
