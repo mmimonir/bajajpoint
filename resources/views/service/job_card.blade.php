@@ -258,7 +258,7 @@
                             <span behavior_feedback="motamoti" class="stuff_behavior">মোটামুটি</span>
                         </span>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">4. মোটর সাইকেলের সমস্যাগুলো সমাধান হয়েছে কি?</span>
-                        <span style="padding-left:15px;">
+                        <span style="padding-left:34px;">
                             <span mc_problem_solved="yes" class="mc_problem_solved">হ্যাঁ/</span>
                             <span mc_problem_solved="no" class="mc_problem_solved">না</span>
                         </span>
@@ -271,7 +271,7 @@
                             <span service_center_clean="valo" class="service_center_is_clean">ভাল/</span>
                             <span service_center_clean="motamoti" class="service_center_is_clean">মোটামুটি</span></span>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">5. সঠিক সময়ে গাড়িটি ডেলিভারী পেয়েছেন কি?</span>
-                        <span style="padding-left:15px;">
+                        <span style="padding-left:34px;">
                             <span mc_delivery_done="yes" class="mc_delivery_done">হ্যাঁ/</span>
                             <span mc_delivery_done="no" class="mc_delivery_done">না</span>
                         </span>
@@ -283,7 +283,7 @@
                             <span garir_sompadito_kaj="no" class="garir_sompadito_kaj">না</span>
                         </span>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">6. আপনার বন্ধু/আত্নীয়কে আমাদের সার্ভিস সেন্টারে আসতে সুপারিশ করবেন কি?</span>
-                        <span style="padding-left:15px;">
+                        <span style="padding-left:34px;">
                             <span recomend_our_service_center="yes" class="recomend_our_service_center">হ্যাঁ/</span>
                             <span recomend_our_service_center="no" class="recomend_our_service_center">না</span>
                         </span>
