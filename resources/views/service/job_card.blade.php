@@ -76,8 +76,8 @@
                                 <p class="m-0 font-weight-bold">মোবাইল: 01680 365 200, 01813 551 621</p>
                             </div>
                             <div class="align-middle p-1" style="width:20%; border-right:1px solid;">
-                                <p class="m-0 font-weight-bold border_bottom">জব কার্ড নং:</p>
-                                <p class="m-0 font-weight-bold">জব কার্ড তারিখ:</p>
+                                <p class="m-0 font-weight-bold border_bottom" style="height:30px;">জব কার্ড নং:<input class="job_card_no_top" name="" style="display:inline-block; height:24px; width:100px; font-weight:bold; font-size:16px; padding-left:8px;" type="text" /></p>
+                                <p class="m-0 font-weight-bold">জব কার্ড তারিখ:<input class="pl-2 job_card_date_top font-weight-bold" style="display:inline-block; height:24px; width:100px;" type="date" /></p>
                             </div>
                             <div class="d-flex align-items-center p-1" style="width:15%;">
                                 <img src="{{URL('/images/bajaj_logo.png')}}" class="img-fluid p-1">
@@ -138,22 +138,22 @@
                                     </span>
                                     <span style="margin-right:20px;">ফুয়েল ট্যাংকে দাগ আছে কিনা?</span>
                                     <span style="margin-right:30px;">হ্যাঁ</span>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <input class="form-check-input fuel_tank_scratch" type="checkbox" value="" id="flexCheckDefault">
                                     <span style="margin-right:30px;">না</span>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <input class="form-check-input fuel_tank_scratch" type="checkbox" value="" id="flexCheckDefault">
                                 </p>
                                 <p class="m-0 border_bottom pl-1">
                                     <span style="margin-right:20px;">ইন্ডিকেটরের লেন্স ভাঙ্গা কিনা?</span>
                                     <span style="margin-right:30px;">হ্যাঁ</span>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <input class="form-check-input indicator_lence" type="checkbox" value="" id="flexCheckDefault">
                                     <span style="margin-right:30px;">না</span>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <input class="form-check-input indicator_lence" type="checkbox" value="" id="flexCheckDefault">
 
                                     <span style="margin-right:20px; margin-left:25px;">হেডলাইটে দাগ আছে কিনা?</span>
                                     <span style="margin-right:30px;">হ্যাঁ</span>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <input class="form-check-input headlight_scratch" type="checkbox" value="" id="flexCheckDefault">
                                     <span style="margin-right:30px;">না</span>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <input class="form-check-input headlight_scratch" type="checkbox" value="" id="flexCheckDefault">
                                 </p>
                                 <p class="m-0 border_bottom font-weight-bold" style="width:100%; padding:0;">
                                     <span class="text-center border_right" style="display:inline-block; width:74px;">ক্রমিক</span>
@@ -230,19 +230,35 @@
                             <span behavior_feedback="motamoti" class="stuff_behavior">মোটামুটি</span>
                         </span>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">4. মোটর সাইকেলের সমস্যাগুলো সমাধান হয়েছে কি?</span>
-                        <span style="padding-left:15px;"><span>হ্যাঁ/</span><span>না</span></span>
+                        <span style="padding-left:15px;">
+                            <span mc_problem_solved="yes" class="mc_problem_solved">হ্যাঁ/</span>
+                            <span mc_problem_solved="no" class="mc_problem_solved">না</span>
+                        </span>
                     </div>
                     <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">2. সার্ভিস সেন্টারের পরিস্কার পরিচ্ছন্নতা কেমন দেখতে পেলেন?</span>
-                        <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;"><span>দারুন/</span><span>খুব ভাল/</span><span>ভাল/</span><span>মোটামুটি</span></span>
+                        <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;">
+                            <span service_center_clean="darun" class="service_center_is_clean">দারুন/</span>
+                            <span service_center_clean="khub_valo" class="service_center_is_clean">খুব ভাল/</span>
+                            <span service_center_clean="valo" class="service_center_is_clean">ভাল/</span>
+                            <span service_center_clean="motamoti" class="service_center_is_clean">মোটামুটি</span></span>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">5. সঠিক সময়ে গাড়িটি ডেলিভারী পেয়েছেন কি?</span>
-                        <span style="padding-left:15px;"><span>হ্যাঁ/</span><span>না</span></span>
+                        <span style="padding-left:15px;">
+                            <span mc_delivery_done="yes" class="mc_delivery_done">হ্যাঁ/</span>
+                            <span mc_delivery_done="no" class="mc_delivery_done">না</span>
+                        </span>
                     </div>
                     <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">3. গাড়ির সম্পাদিত কাজ সম্পর্কে আপনি অবহিত আছেন কি?</span>
-                        <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;"><span>হ্যাঁ/</span><span>না</span></span>
+                        <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;">
+                            <span garir_sompadito_kaj="yes" class="garir_sompadito_kaj">হ্যাঁ/</span>
+                            <span garir_sompadito_kaj="no" class="garir_sompadito_kaj">না</span>
+                        </span>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">6. আপনার বন্ধু/আত্নীয়কে আমাদের সার্ভিস সেন্টারে আসতে সুপারিশ করবেন কি?</span>
-                        <span style="padding-left:15px;"><span>হ্যাঁ/</span><span>না</span></span>
+                        <span style="padding-left:15px;">
+                            <span recomend_our_service_center="yes" class="recomend_our_service_center">হ্যাঁ/</span>
+                            <span recomend_our_service_center="no" class="recomend_our_service_center">না</span>
+                        </span>
                     </div>
                     <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:0; display: inline-block; height:19px;">7. আপনার মূল্যবান পরামর্শ/মন্তব্য থাকলে লিখুন।</span><textarea style="height:19px; width:840px; margin-bottom:-3px;"></textarea>
@@ -251,17 +267,17 @@
             </form>
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-center">
-                    <div class="d-flex align-items-center p-1 border_right border_bottom" style="width:15%;">
+                    <div class="d-flex align-items-center p-1 border_bottom" style="width:15%; border-right:1px solid;">
                         <img src="{{URL('/images/uml_logo.png')}}" class="img-fluid p-1">
                     </div>
-                    <div class="text-center p-1 border_right border_bottom" style="width:50%;">
+                    <div class="text-center p-1 border_bottom" style="width:50%; border-right:1px solid;">
                         <p class="m-0 font-weight-bold h3 border_bottom"><span class="fs-4">ডিলারের নাম: </span>বাজাজ পয়েন্ট (বাজাজ সার্ভিস সেন্টার)</p>
                         <p class="m-0 font-weight-bold">400/বি, মালিবাগ চৌধুরী পাড়া, ঢাকা-1219</p>
                         <p class="m-0 font-weight-bold">মোবাইল: 01680 365 200, 01813 551 621</p>
                     </div>
-                    <div class="align-middle p-1 border_right border_bottom" style="width:20%;">
-                        <p class="m-0 font-weight-bold border_bottom">জব কার্ড নং:</p>
-                        <p class="m-0 font-weight-bold">জব কার্ড তারিখ:</p>
+                    <div class="align-middle p-1 border_bottom" style="width:20%; border-right:1px solid;">
+                        <p class="m-0 font-weight-bold border_bottom" style="height:30px;">জব কার্ড নং:<input class="job_card_no_bottom" name="" style="display:inline-block; height:24px; width:100px; font-weight:bold; font-size:16px; padding-left:8px;" type="text" /></p>
+                        <p class="m-0 font-weight-bold">জব কার্ড তারিখ:<input class="pl-2 job_card_date_bottom font-weight-bold" style="display:inline-block; height:24px; width:100px;" type="date" /></p>
                     </div>
                     <div class="d-flex align-items-center p-1 border_bottom" style="width:15%;">
                         <img src="{{URL('/images/bajaj_logo.png')}}" class="img-fluid p-1">
@@ -296,29 +312,92 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function() {
+        // Input Mask Js Start
         $('.mobile').inputmask('99999-99-99-99');
         $('.rg_number').inputmask('99-9999');
         $('.engine_no').inputmask('99999');
         $('.chassis_no').inputmask('99999');
+        // Input Mask Js End
 
+        // Checkbox Js Start
         $('.service_type').on('change', function() {
             $('.service_type').not(this).prop('checked', false);
         });
+        $('.indicator_lence').on('change', function() {
+            $('.indicator_lence').not(this).prop('checked', false);
+        });
+        $('.headlight_scratch').on('change', function() {
+            $('.headlight_scratch').not(this).prop('checked', false);
+        });
+        $('.fuel_tank_scratch').on('change', function() {
+            $('.fuel_tank_scratch').not(this).prop('checked', false);
+        });
+        $('.work_type').on('change', function() {
+            $('.work_type').not(this).prop('checked', false);
+        });
+        // Checkbox Js End
 
+        // Customer CSI Form Start - Stuff Behaviour
         $('.stuff_behavior').on('click', function() {
             if ($('.stuff_behavior').hasClass('font-weight-bold text-primary selected_value')) {
                 $('.stuff_behavior').removeClass('font-weight-bold text-primary selected_value')
             } else {
                 $(this).addClass('font-weight-bold text-primary selected_value');
             }
-
-            console.log($('.selected_value').attr('behavior_feedback'));
         });
+        // Customer CSI Form End  - Stuff Behaviour
 
-        $('.work_type').on('change', function() {
-            $('.work_type').not(this).prop('checked', false);
+        // Customer CSI Form Start - Service Center is Clean
+        $('.service_center_is_clean').on('click', function() {
+            if ($('.service_center_is_clean').hasClass('font-weight-bold text-primary selected_value')) {
+                $('.service_center_is_clean').removeClass('font-weight-bold text-primary selected_value')
+            } else {
+                $(this).addClass('font-weight-bold text-primary selected_value');
+            }
         });
+        // Customer CSI Form End  - Service Center is Clean
 
+        // Customer CSI Form Start - garir_sompadito_kaj
+        $('.garir_sompadito_kaj').on('click', function() {
+            if ($('.garir_sompadito_kaj').hasClass('font-weight-bold text-primary selected_value')) {
+                $('.garir_sompadito_kaj').removeClass('font-weight-bold text-primary selected_value')
+            } else {
+                $(this).addClass('font-weight-bold text-primary selected_value');
+            }
+        });
+        // Customer CSI Form End  - garir_sompadito_kaj
+
+        // Customer CSI Form Start - mc_problem_solved
+        $('.mc_problem_solved').on('click', function() {
+            if ($('.mc_problem_solved').hasClass('font-weight-bold text-primary selected_value')) {
+                $('.mc_problem_solved').removeClass('font-weight-bold text-primary selected_value')
+            } else {
+                $(this).addClass('font-weight-bold text-primary selected_value');
+            }
+        });
+        // Customer CSI Form End  - mc_problem_solved
+
+        // Customer CSI Form Start - mc_delivery_done
+        $('.mc_delivery_done').on('click', function() {
+            if ($('.mc_delivery_done').hasClass('font-weight-bold text-primary selected_value')) {
+                $('.mc_delivery_done').removeClass('font-weight-bold text-primary selected_value')
+            } else {
+                $(this).addClass('font-weight-bold text-primary selected_value');
+            }
+        });
+        // Customer CSI Form End  - mc_delivery_done
+
+        // Customer CSI Form Start - recomend_our_service_center
+        $('.recomend_our_service_center').on('click', function() {
+            if ($('.recomend_our_service_center').hasClass('font-weight-bold text-primary selected_value')) {
+                $('.recomend_our_service_center').removeClass('font-weight-bold text-primary selected_value')
+            } else {
+                $(this).addClass('font-weight-bold text-primary selected_value');
+            }
+        });
+        // Customer CSI Form End  - recomend_our_service_center
+
+        // Summation Start
         function sum_right() {
             var sum = 0;
             $('.total_right').each(function() {
@@ -336,6 +415,16 @@
             sum_right();
         });
         sum_right();
+        // Summation End
+
+        $('.job_card_no_top').on('keyup', function() {
+            $('.job_card_no_bottom').val($(this).val());
+        });
+        $('.job_card_date_top').on('change', function() {
+            $('.job_card_date_bottom').val($(this).val());
+        });
+
+
     });
 </script>
 @endsection
