@@ -196,46 +196,51 @@
                             @endfor
                             <div class="m-0" style="padding:0;">
                                 <span class="pl-1 text-left border_bottom border_right" style="display:inline-block; width:630px; height:24px;">পেইড সার্ভিস</span>
-                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="" class="text-right total_right sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="paid_service_charge" class="text-right total_right sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
-                            <div class="m-0" style="padding:0;">
+                            <!-- <div class="m-0" style="padding:0;">
                                 <span class="pl-1 text-left border_bottom border_right" style="display:inline-block; width:630px; height:24px;">মোবিল</span>
                                 <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="" class="text-right total_right sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
-                            </div>
+                            </div> -->
                             <div class="m-0" style="padding:0;">
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">মোট = </span>
                                 <span class="text-right border_bottom total_bottom" style="display:inline-block; width:105px; height:24px;"></span>
                             </div>
                             <div class="m-0" style="padding:0;">
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">ডিসকাউন্ট =</span>
-                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="" class="text-right discount sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="discount" class="text-right discount sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
 
                             <div class="m-0" style="padding:0;">
                                 <span class="pl-1 text-right pr-1 border_bottom border_right" style="display:inline-block; width:630px; height:24px;">সর্বমোট =</span>
-                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="" readonly class="text-right grand_total" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input readonly class="text-right grand_total" id="" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
                             <div class="m-0" style="padding:0;">
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">ভ্যাট = </span>
-                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="" class="text-right vat sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="vat" class="text-right vat sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
                             <div class="m-0" style="padding:0;">
-                                <span class="border_bottom pl-1" style="display:inline-block; width:250px;">অগ্রীম = <input name="" class="text-left text-bold advance_top" id="" style="height:19px;" type="text" value=""></span>
+                                <span class="border_bottom pl-1" style="display:inline-block; width:250px;">অগ্রীম = <input class="text-left text-bold advance_top" id="" style="height:19px;" type="text" value=""></span>
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:377px; height:24px;">বর্তমান পাওনা = </span>
-                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="" readonly class="text-right total_payable" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input readonly class="text-right total_payable" id="" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
-                            <p class="m-0 font-weight-bold border_bottom pl-1">
+                            <div class="m-0" style="padding:0;">
+                                <span class="border_bottom pl-1" style="display:inline-block; width:250px;">পরিশোধ = <input class="text-left text-bold paid_amount sum_right" id="" style="height:19px;" type="text" value=""></span>
+                                <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:377px; height:24px;">বাকী = </span>
+                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="due_amount" readonly class="text-right due_amount" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                            </div>
+                            <div class="m-0 font-weight-bold border_bottom pl-1">
                                 মেকানিকের নামঃ
-                                <select class="custom_dropdown" name="" style="width:200px;">
-                                    <option id="">Mollika Akter</option>
+                                <select class="custom_dropdown" name="mechanic_id" style="width:200px;">
+                                    <option value="">Mollika Akter</option>
                                 </select>
-                            </p>
+                            </div>
                             <p class="m-0 pl-1" style="height:90px;">আমি গাড়ি মেরামতের কাজে সন্তুষ্ট এবং গাড়ি ভালভাবে বুঝে ডেলিভারী নিলাম।
                             </p>
-                            <p class="m-0 border_bottom" style="padding-left:11px; width:100%;">
+                            <div class="m-0 border_bottom" style="padding-left:11px; width:100%;">
                                 <span>তারিখ:</span>
                                 <span style="margin-left:400px;">গ্রাহকের স্বাক্ষর:</span>
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -283,8 +288,12 @@
                             <span recomend_our_service_center="no" class="recomend_our_service_center">না</span>
                         </span>
                     </div>
-                    <div class="m-0 border_bottom pl-1" style="border-top:0;">
+                    <div class="m-0 pl-1" style="border-top:0;">
                         <span style="border-right:0; display: inline-block; height:19px;">7. আপনার মূল্যবান পরামর্শ/মন্তব্য থাকলে লিখুন।</span><textarea style="height:19px; width:840px; margin-bottom:-3px;"></textarea>
+                    </div>
+                    <div class="m-0 border_bottom" style="padding-left:375px; width:100%; padding-top:30px;">
+                        <span>তারিখ:</span>
+                        <span style="margin-left:400px;">গ্রাহকের স্বাক্ষর:</span>
                     </div>
                 </div>
             </form>
@@ -451,8 +460,10 @@
             $('.total_bottom').text(sum);
             let discount = +$('.discount').val();
             $('.grand_total').val(sum - discount);
+            // $('.paid_amount').val($('.grand_total').val());
             let vat = +$('.vat').val();
             $('.total_payable').val((sum - discount) + vat);
+            $('.due_amount').val($('.grand_total').val() - $('.paid_amount').val());
         }
         $('.sum_right').on('keyup', function() {
             sum_right();
