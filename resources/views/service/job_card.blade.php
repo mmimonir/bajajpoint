@@ -133,14 +133,14 @@
                                     <input name="repair_type[]" class="form-check-input work_type" type="checkbox" value="accident" id="flexCheckDefault">
                                 </p>
                                 <p class="m-0 border_bottom pl-1 font-weight-bold">গ্রাহকের অভিযোগ</p>
-                                <textarea class="" style="height:167px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
+                                <textarea name="customer_complain" class="" style="height:167px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">মেরামতের বিবরণ</p>
-                                <textarea class="" style="height:192px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
+                                <textarea name="repair_description" class="" style="height:192px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">পরবর্তী কাজের বিবরণ<span class="font-weight-bold" style="margin-left:20px; margin-right:10px;">তারিখ</span><input name="" style="width:30%; height:19px; border:0px;" type="date"></p>
-                                <textarea class="" style="height:191px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
+                                <textarea name="next_work_description" class="" style="height:191px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">সার্ভিস ইঞ্জিনিয়ারের নামঃ
-                                    <select class="custom_dropdown" name="">
-                                        <option id="">Mollika Akter</option>
+                                    <select class="custom_dropdown" name="service_engineer_id">
+                                        <option value="">Mollika Akter</option>
                                     </select>
                                 </p>
                                 <p style="height:90px;" class="m-0 pl-1">গাড়ি মেরামতের সকল খরচ আমি নিজে বহন করব। গাড়ি মেরামতকালীন সময়ে সংরক্ষন ও টেস্ট ড্রাইভের সকল দায়িত্ব আমার।</p>
@@ -150,10 +150,10 @@
                                 </p>
                             </div>
                             <div class="col-md-8 pl-0">
-                                <p class="pl-1 border_bottom border_top m-0 font-weight-bold">গ্রাহকের নাম:<input name="" class="ml-1 text-bold" style="width:89%; height:19px; border:0px;" type="text"></p>
-                                <p class="pl-1 border_bottom m-0">ঠিকানা:<input name="" class="ml-1 text-bold" style="width:93%; height:19px; border:0px;" type="text"></p>
+                                <p class="pl-1 border_bottom border_top m-0 font-weight-bold">গ্রাহকের নাম:<input name="client_name" class="ml-1 text-bold" style="width:89%; height:19px; border:0px;" type="text"></p>
+                                <p class="pl-1 border_bottom m-0">ঠিকানা:<input name="address" class="ml-1 text-bold" style="width:93%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0">-</p>
-                                <p class="pl-1 border_bottom m-0">টেলিফোন নম্বর:<input name="" class="ml-1 mobile text-bold" style="width:30%; height:19px; border:0px;" type="text"></p>
+                                <p class="pl-1 border_bottom m-0">টেলিফোন নম্বর:<input name="mobile" class="ml-1 mobile text-bold" style="width:30%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0 font-weight-bold">গাড়ি পর্যবেক্ষণের বিবরণ:</p>
                                 <p class="pl-1 border_bottom m-0">
                                     <span>ফুয়েলের পরিমাণ:
@@ -161,22 +161,22 @@
                                     </span>
                                     <span style="margin-right:20px;">ফুয়েল ট্যাংকে দাগ আছে কিনা?</span>
                                     <span style="margin-right:30px;">হ্যাঁ</span>
-                                    <input name="" class="form-check-input fuel_tank_scratch" type="checkbox" value="" id="flexCheckDefault">
+                                    <input name="any_scratch_in_tank[]" class="form-check-input fuel_tank_scratch" type="checkbox" value="yes" id="flexCheckDefault">
                                     <span style="margin-right:30px;">না</span>
-                                    <input name="" class="form-check-input fuel_tank_scratch" type="checkbox" value="" id="flexCheckDefault">
+                                    <input name="any_scratch_in_tank[]" class="form-check-input fuel_tank_scratch" type="checkbox" value="no" id="flexCheckDefault">
                                 </p>
                                 <p class="m-0 border_bottom pl-1">
                                     <span style="margin-right:20px;">ইন্ডিকেটরের লেন্স ভাঙ্গা কিনা?</span>
                                     <span style="margin-right:30px;">হ্যাঁ</span>
-                                    <input name="" class="form-check-input indicator_lence" type="checkbox" value="" id="flexCheckDefault">
+                                    <input name="indicator_is_broken[]" class="form-check-input indicator_lence" type="checkbox" value="yes" id="flexCheckDefault">
                                     <span style="margin-right:30px;">না</span>
-                                    <input name="" class="form-check-input indicator_lence" type="checkbox" value="" id="flexCheckDefault">
+                                    <input name="indicator_is_broken[]" class="form-check-input indicator_lence" type="checkbox" value="no" id="flexCheckDefault">
 
                                     <span style="margin-right:20px; margin-left:25px;">হেডলাইটে দাগ আছে কিনা?</span>
                                     <span style="margin-right:30px;">হ্যাঁ</span>
-                                    <input name="" class="form-check-input headlight_scratch" type="checkbox" value="" id="flexCheckDefault">
+                                    <input name="any_scratch_in_headlight[]" class="form-check-input headlight_scratch" type="checkbox" value="yes" id="flexCheckDefault">
                                     <span style="margin-right:30px;">না</span>
-                                    <input name="" class="form-check-input headlight_scratch" type="checkbox" value="" id="flexCheckDefault">
+                                    <input name="any_scratch_in_headlight[]" class="form-check-input headlight_scratch" type="checkbox" value="no" id="flexCheckDefault">
                                 </p>
                                 <p class="m-0 border_bottom font-weight-bold" style="width:100%; padding:0;">
                                     <span class="text-center border_right" style="display:inline-block; width:74px;">ক্রমিক</span>
@@ -188,10 +188,10 @@
 
                                 @for($i=0; $i<=20; $i++) <div class="m-0" style="padding:0;">
                                     <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;">{{$i+1}}</span>
-                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:221px;"><input name="" name="" id="" style="width:100%; height:19px;" type="text" value=""></span>
-                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:252px;"><input name="" name="" id="" style="width:100%; height:19px;" type="text" value=""></span>
-                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input name="" class="text-center" name="" id="" style="width:100%; height:19px;" type="text" value="1"></span>
-                                    <span class="text-center border_bottom" style="display:inline-block; width:104px;"><input name="" class="text-right total_right sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:221px;"><input name="part_id[]" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:252px;"><input id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input name="quantity[]" class="text-center" id="" style="width:100%; height:19px;" type="text" value="1"></span>
+                                    <span class="text-center border_bottom" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
                             @endfor
                             <div class="m-0" style="padding:0;">
