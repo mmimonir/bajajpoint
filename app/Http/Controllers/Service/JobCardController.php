@@ -11,4 +11,8 @@ class JobCardController extends Controller
     {
         return view('service.job_card');
     }
+    public function create_job_card(Request $request)
+    {
+        return response()->json(['data' => $request->all()]);
+    }
 }

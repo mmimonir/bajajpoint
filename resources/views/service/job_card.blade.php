@@ -54,26 +54,27 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
-            <div class="card-header no-print">
-                <div class="row">
-                    <div class="col-md-12" style="height:32px;">
-                        <h4 class="bangla_font" style="display:inline-block; width:73px;">জব কার্ড</h4>
-                        <nav aria-label="Page navigation example" style="display:inline-block; width:295px;">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item active"><a class="page-link" href="#">First</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Last</a></li>
-                                <li class="page-item"><a class="page-link" href="#">New</a></li>
-                            </ul>
-                        </nav>
+        <form action="#" method="POST" id="job_card_create">
+            @csrf
+            <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
+                <div class="card-header no-print">
+                    <div class="row">
+                        <div class="col-md-12" style="height:32px;">
+                            <h4 class="bangla_font" style="display:inline-block; width:73px;">জব কার্ড</h4>
+                            <nav aria-label="Page navigation example" style="display:inline-block; width:366px;">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item active"><a class="page-link" href="#">First</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">New</a></li>
+                                    <input class="page-item page-link bg-dark" type="submit" value="Submit" />
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <form action="#" method="POST" id="job_card_form">
-                @csrf
-                <div id="print_area" class="card-body bangla_font bangla_font_light" style="width:11.5in; margin:auto; border:1px solid; padding:0;">
+                <div id="print_area" class="card-body bangla_font bangla_font_light" style="width:11.5in; margin:auto; border:1px solid; padding:0; margin-top:22px; margin-bottom:22px;">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center">
                             <div class="d-flex align-items-center p-1" style="width:15%; border-right:1px solid;">
@@ -244,7 +245,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div style="margin-top:20px;">
                     <p class="m-0 font-weight-bold text-center border_top border_bottom">
                         কাস্টমার ফিডব্যাক (সি এস আই ইনডেক্স) ফরম
@@ -296,65 +296,66 @@
                         <span style="margin-left:400px;">গ্রাহকের স্বাক্ষর:</span>
                     </div>
                 </div>
-            </form>
-            <div class="row">
-                <div class="col-md-12 d-flex justify-content-center">
-                    <div class="d-flex align-items-center p-1 border_bottom" style="width:15%; border-right:1px solid;">
-                        <img src="{{URL('/images/uml_logo.png')}}" class="img-fluid p-1">
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <div class="d-flex align-items-center p-1 border_bottom" style="width:15%; border-right:1px solid;">
+                            <img src="{{URL('/images/uml_logo.png')}}" class="img-fluid p-1">
+                        </div>
+                        <div class="text-center p-1 border_bottom" style="width:50%; border-right:1px solid;">
+                            <p class="m-0 font-weight-bold h3 border_bottom"><span class="fs-4">ডিলারের নাম: </span>বাজাজ পয়েন্ট (বাজাজ সার্ভিস সেন্টার)</p>
+                            <p class="m-0 font-weight-bold">400/বি, মালিবাগ চৌধুরী পাড়া, ঢাকা-1219</p>
+                            <p class="m-0 font-weight-bold">মোবাইল: 01680 365 200, 01813 551 621</p>
+                        </div>
+                        <div class="align-middle p-1 border_bottom" style="width:20%; border-right:1px solid;">
+                            <p class="m-0 font-weight-bold border_bottom" style="height:30px;">জব কার্ড নং:<input name="" class="job_card_no_bottom" name="" style="display:inline-block; height:24px; width:100px; font-weight:bold; font-size:16px; padding-left:8px;" type="text" /></p>
+                            <p class="m-0 font-weight-bold">জব কার্ড তারিখ:<input name="" class="pl-2 job_card_date_bottom font-weight-bold" style="display:inline-block; height:24px; width:100px;" type="date" /></p>
+                        </div>
+                        <div class="d-flex align-items-center p-1 border_bottom" style="width:15%;">
+                            <img src="{{URL('/images/bajaj_logo.png')}}" class="img-fluid p-1">
+                        </div>
                     </div>
-                    <div class="text-center p-1 border_bottom" style="width:50%; border-right:1px solid;">
-                        <p class="m-0 font-weight-bold h3 border_bottom"><span class="fs-4">ডিলারের নাম: </span>বাজাজ পয়েন্ট (বাজাজ সার্ভিস সেন্টার)</p>
-                        <p class="m-0 font-weight-bold">400/বি, মালিবাগ চৌধুরী পাড়া, ঢাকা-1219</p>
-                        <p class="m-0 font-weight-bold">মোবাইল: 01680 365 200, 01813 551 621</p>
-                    </div>
-                    <div class="align-middle p-1 border_bottom" style="width:20%; border-right:1px solid;">
-                        <p class="m-0 font-weight-bold border_bottom" style="height:30px;">জব কার্ড নং:<input name="" class="job_card_no_bottom" name="" style="display:inline-block; height:24px; width:100px; font-weight:bold; font-size:16px; padding-left:8px;" type="text" /></p>
-                        <p class="m-0 font-weight-bold">জব কার্ড তারিখ:<input name="" class="pl-2 job_card_date_bottom font-weight-bold" style="display:inline-block; height:24px; width:100px;" type="date" /></p>
-                    </div>
-                    <div class="d-flex align-items-center p-1 border_bottom" style="width:15%;">
-                        <img src="{{URL('/images/bajaj_logo.png')}}" class="img-fluid p-1">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="m-0 border_bottom" style="padding-left:11px;">
+                            <span style="display:inline-block; width:375px;">গাড়ির রেজিঃ নং:<span style="margin-left:10px;" class="rg_number_bottom text-bold"></span></span>
+                            <span class="border_right" style="display:inline-block; width:327px;">গাড়ির মডেল:</span>
+                            <span>অগ্রিম:<span class="advance_bottom text-bold"></span></span>
+                        </div>
+                        <div class="m-0" style="padding-left:11px;">
+                            <span style="display:inline-block; width:375px;">ইঞ্জিন নং:
+                                <span class="engine_no_bottom text-bold"></span>
+                            </span>
+                            <span class="border_right" style="display:inline-block; width:327px; height:40px;">চেসিস নং:
+                                <span class="chassis_no_bottom text-bold"></span>
+                            </span>
+                            <span class="border_bottom" style="display:inline-block; width:382px; height:40px;">ওয়ার্কশপ ইরচার্জ:</span>
+                        </div>
+                        <div class="m-0" style="padding-left:11px;">
+                            <span class="border_right" style="display:inline-block; width:705px; text-align:right; height:40px; padding-right:10px;">গাড়িটি ডেলিভারীর অনুমতি দেওয়া হল।</span>
+                            <span style="display:inline-block; width:382px; height:40px;">ক্যাশিয়ারের স্বাক্ষর:</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="m-0 border_bottom" style="padding-left:11px;">
-                        <span style="display:inline-block; width:375px;">গাড়ির রেজিঃ নং:<span style="margin-left:10px;" class="rg_number_bottom text-bold"></span></span>
-                        <span class="border_right" style="display:inline-block; width:327px;">গাড়ির মডেল:</span>
-                        <span>অগ্রিম:<span class="advance_bottom text-bold"></span></span>
-                    </div>
-                    <div class="m-0" style="padding-left:11px;">
-                        <span style="display:inline-block; width:375px;">ইঞ্জিন নং:
-                            <span class="engine_no_bottom text-bold"></span>
-                        </span>
-                        <span class="border_right" style="display:inline-block; width:327px; height:40px;">চেসিস নং:
-                            <span class="chassis_no_bottom text-bold"></span>
-                        </span>
-                        <span class="border_bottom" style="display:inline-block; width:382px; height:40px;">ওয়ার্কশপ ইরচার্জ:</span>
-                    </div>
-                    <div class="m-0" style="padding-left:11px;">
-                        <span class="border_right" style="display:inline-block; width:705px; text-align:right; height:40px; padding-right:10px;">গাড়িটি ডেলিভারীর অনুমতি দেওয়া হল।</span>
-                        <span style="display:inline-block; width:382px; height:40px;">ক্যাশিয়ারের স্বাক্ষর:</span>
+            <div class="card-header no-print">
+                <div class="row">
+                    <div class="col-md-12" style="height:32px;">
+                        <h4 class="bangla_font" style="display:inline-block; width:73px;">জব কার্ড</h4>
+                        <nav aria-label="Page navigation example" style="display:inline-block; width:366px;">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item active"><a class="page-link" href="#">First</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                                <li class="page-item"><a class="page-link" href="#">New</a></li>
+                                <input class="page-item page-link bg-dark" type="submit" value="Submit" />
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card-header no-print">
-            <div class="row">
-                <div class="col-md-12" style="height:32px;">
-                    <h4 class="bangla_font" style="display:inline-block; width:73px;">জব কার্ড</h4>
-                    <nav aria-label="Page navigation example" style="display:inline-block; width:295px;">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item active"><a class="page-link" href="#">First</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
-                            <li class="page-item"><a class="page-link" href="#">New</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 </div>
@@ -491,7 +492,41 @@
             $('.advance_bottom').text($(this).val());
         });
         // Repeate Data End
+        $("#job_card_create").submit(function(e) {
+            e.preventDefault();
+            const FD = new FormData(this);
+            FD.append('MYNAME', 'MONIR');
+            $.ajax({
+                url: "{{ route('job_card.create') }}",
+                method: 'post',
+                data: FD,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response);
+                    if (response.status == 200) {
 
+                        // Swal.fire({
+                        //     icon: 'success',
+                        //     title: response.message,
+                        //     showConfirmButton: false,
+                        //     timer: 2000
+                        // })
+                        // $('#job_card_create').trigger("reset");
+                    } else {
+                        // Swal.fire({
+                        //     icon: 'error',
+                        //     title: 'Oops...',
+                        //     text: response.message,
+                        //     footer: '<a href="">Why do I have this issue?</a>'
+                        // })
+
+                    }
+                }
+            });
+        });
 
     });
 </script>
