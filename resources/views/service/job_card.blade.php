@@ -59,8 +59,8 @@
             <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
                 <div class="card-header no-print">
                     <div class="row">
-                        <div class="col-md-12" style="height:32px;">
-                            <h4 class="bangla_font" style="display:inline-block; width:73px;">জব কার্ড</h4>
+                        <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
+                            <h4 class="bangla_font" style="display:inline-block; width:73px; margin-top:5px;">জব কার্ড</h4>
                             <nav aria-label="Page navigation example" style="display:inline-block; width:366px;">
                                 <ul class="pagination justify-content-center">
                                     <li class="page-item active"><a class="page-link" href="#">First</a></li>
@@ -347,8 +347,8 @@
             </div>
             <div class="card-header no-print">
                 <div class="row">
-                    <div class="col-md-12" style="height:32px;">
-                        <h4 class="bangla_font" style="display:inline-block; width:73px;">জব কার্ড</h4>
+                    <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
+                        <h4 class="bangla_font" style="display:inline-block; width:73px; margin-top:5px;">জব কার্ড</h4>
                         <nav aria-label="Page navigation example" style="display:inline-block; width:366px;">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item active"><a class="page-link" href="#">First</a></li>
@@ -584,6 +584,18 @@
             });
         });
         // Submit Create Job Card End
+
+        // if ($(window).width() > 1400) {
+        //     $('body').addClass('sidebar-collapse');
+        // }
+        // console.log($(window).innerWidth());
+
+
+        // if ($(window).width() > 1000) {
+        //     $('body').addClass('sidebar-collapse');
+        // }
+
+
 
     });
 </script>
