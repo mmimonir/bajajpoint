@@ -68,7 +68,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-row">
                         <div class="col-md-3">
                             <div class="form-group mb-0 row">
@@ -171,11 +170,8 @@
                         <button class="btn btn-info btn-sm text-white" type="submit">Submit</button>
                     </center>
                 </form>
-
             </div>
-
         </div>
-
     </div>
 </div>
 

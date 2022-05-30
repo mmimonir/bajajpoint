@@ -99,7 +99,14 @@
                             <div class="col-md-4 pr-0 border_right">
                                 <p class="m-0 font-weight-bold border_bottom border_top pl-1">গাড়ির বিবরণ</p>
                                 <p class="m-0 border_bottom pl-1">গাড়ির রেজিঃ নম্বর:<input name="rg_number" class="ml-1 rg_number_top text-bold" style="width:69%; height:19px;" type="text"></p>
-                                <p class="m-0 border_bottom pl-1">গাড়ির মডেল:<input name="mc_model_name" class="ml-1 text-bold" style="width:77%; height:19px;" type="text"></p>
+                                <div class="pl-1 m-0 border_bottom font-weight-bold">গাড়ির মডেল:
+                                    <select class="custom_dropdown" name="model_code" style="width:284px;" id="mc_model_name">
+
+                                    </select>
+                                </div>
+                                <!-- <p class="m-0 border_bottom pl-1">গাড়ির মডেল:
+                                    <input name="mc_model_name" class="ml-1 text-bold" style="width:77%; height:19px;" type="text">
+                                </p> -->
                                 <div class="m-0 border_bottom pl-1">
                                     <span>বিক্রয় তারিখ:
                                         <input name="mc_sale_date" class="text-bold" style="width:30%; height:19px;" type="date">
@@ -139,11 +146,11 @@
                                 <textarea name="repair_description" class="" style="height:192px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">পরবর্তী কাজের বিবরণ<span class="font-weight-bold" style="margin-left:20px; margin-right:10px;">তারিখ</span><input name="" style="width:30%; height:19px; border:0px;" type="date"></p>
                                 <textarea name="next_work_description" class="" style="height:191px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
-                                <p class="pl-1 m-0 border_bottom border_top font-weight-bold">সার্ভিস ইঞ্জিনিয়ারের নামঃ
+                                <div class="pl-1 m-0 border_bottom border_top font-weight-bold">সার্ভিস ইঞ্জিনিয়ারের নামঃ
                                     <select class="custom_dropdown" name="service_engineer_id">
                                         <option value="">Mollika Akter</option>
                                     </select>
-                                </p>
+                                </div>
                                 <p style="height:90px;" class="m-0 pl-1">গাড়ি মেরামতের সকল খরচ আমি নিজে বহন করব। গাড়ি মেরামতকালীন সময়ে সংরক্ষন ও টেস্ট ড্রাইভের সকল দায়িত্ব আমার।</p>
                                 <p class="m-0 border_bottom" style="padding-left:11px;">
                                     <span>তারিখ:</span>
@@ -251,45 +258,45 @@
                     </p>
                     <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">1. আমাদের সার্ভিস স্টাফদের থেকে কেমন ব্যবহার পেলেন?</span>
-                        <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;">
-                            <span behavior_feedback="darun" class="stuff_behavior">দারুন/</span>
-                            <span behavior_feedback="khub_valo" class="stuff_behavior">খুব ভাল/</span>
-                            <span behavior_feedback="valo" class="stuff_behavior">ভাল/</span>
-                            <span behavior_feedback="motamoti" class="stuff_behavior">মোটামুটি</span>
+                        <span class="text-center stuff_behavior_parent" style="border-right:1px solid; display: inline-block; width: 179px;">
+                            <span stuff_behavior="darun" class="darun stuff_behavior">দারুন/</span>
+                            <span stuff_behavior="khub_valo" class="khub_valo stuff_behavior">খুব ভাল/</span>
+                            <span stuff_behavior="valo" class="valo stuff_behavior">ভাল/</span>
+                            <span stuff_behavior="motamoti" class="motamoti stuff_behavior">মোটামুটি</span>
                         </span>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">4. মোটর সাইকেলের সমস্যাগুলো সমাধান হয়েছে কি?</span>
-                        <span style="padding-left:34px;">
-                            <span mc_problem_solved="yes" class="mc_problem_solved">হ্যাঁ/</span>
-                            <span mc_problem_solved="no" class="mc_problem_solved">না</span>
+                        <span style="padding-left:34px;" class="mc_problem_solved_parent">
+                            <span mc_problem_solved="yes" class="yes mc_problem_solved">হ্যাঁ/</span>
+                            <span mc_problem_solved="no" class="no mc_problem_solved">না</span>
                         </span>
                     </div>
                     <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">2. সার্ভিস সেন্টারের পরিস্কার পরিচ্ছন্নতা কেমন দেখতে পেলেন?</span>
-                        <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;">
-                            <span service_center_clean="darun" class="service_center_is_clean">দারুন/</span>
-                            <span service_center_clean="khub_valo" class="service_center_is_clean">খুব ভাল/</span>
-                            <span service_center_clean="valo" class="service_center_is_clean">ভাল/</span>
-                            <span service_center_clean="motamoti" class="service_center_is_clean">মোটামুটি</span></span>
+                        <span class="text-center service_center_is_clean_parent" style="border-right:1px solid; display: inline-block; width: 179px;">
+                            <span service_center_is_clean="darun" class="darun service_center_is_clean">দারুন/</span>
+                            <span service_center_is_clean="khub_valo" class="khub_valo service_center_is_clean">খুব ভাল/</span>
+                            <span service_center_is_clean="valo" class="valo service_center_is_clean">ভাল/</span>
+                            <span service_center_is_clean="motamoti" class="motamoti service_center_is_clean">মোটামুটি</span></span>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">5. সঠিক সময়ে গাড়িটি ডেলিভারী পেয়েছেন কি?</span>
-                        <span style="padding-left:34px;">
-                            <span mc_delivery_done="yes" class="mc_delivery_done">হ্যাঁ/</span>
-                            <span mc_delivery_done="no" class="mc_delivery_done">না</span>
+                        <span style="padding-left:34px;" class="mc_delivery_done_parent">
+                            <span mc_delivery_done="yes" class="yes mc_delivery_done">হ্যাঁ/</span>
+                            <span mc_delivery_done="no" class="no mc_delivery_done">না</span>
                         </span>
                     </div>
                     <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">3. গাড়ির সম্পাদিত কাজ সম্পর্কে আপনি অবহিত আছেন কি?</span>
-                        <span class="text-center" style="border-right:1px solid; display: inline-block; width: 179px;">
-                            <span garir_sompadito_kaj="yes" class="garir_sompadito_kaj">হ্যাঁ/</span>
-                            <span garir_sompadito_kaj="no" class="garir_sompadito_kaj">না</span>
+                        <span class="text-center garir_sompadito_kaj_parent" style="border-right:1px solid; display: inline-block; width: 179px;">
+                            <span garir_sompadito_kaj="yes" class="yes garir_sompadito_kaj">হ্যাঁ/</span>
+                            <span garir_sompadito_kaj="no" class="no garir_sompadito_kaj">না</span>
                         </span>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">6. আপনার বন্ধু/আত্নীয়কে আমাদের সার্ভিস সেন্টারে আসতে সুপারিশ করবেন কি?</span>
-                        <span style="padding-left:34px;">
-                            <span recomend_our_service_center="yes" class="recomend_our_service_center">হ্যাঁ/</span>
-                            <span recomend_our_service_center="no" class="recomend_our_service_center">না</span>
+                        <span style="padding-left:34px;" class="recomend_our_service_center_parent">
+                            <span recomend_our_service_center="yes" class="yes recomend_our_service_center">হ্যাঁ/</span>
+                            <span recomend_our_service_center="no" class="no recomend_our_service_center">না</span>
                         </span>
                     </div>
                     <div class="m-0 pl-1" style="border-top:0;">
-                        <span style="border-right:0; display: inline-block; height:19px;">7. আপনার মূল্যবান পরামর্শ/মন্তব্য থাকলে লিখুন।</span><textarea style="height:19px; width:840px; margin-bottom:-3px;"></textarea>
+                        <span style="border-right:0; display: inline-block; height:19px;">7. আপনার মূল্যবান পরামর্শ/মন্তব্য থাকলে লিখুন।</span><textarea name="customer_suggestion" style="height:19px; width:840px; margin-bottom:-3px;"></textarea>
                     </div>
                     <div class="m-0 border_bottom" style="padding-left:375px; width:100%; padding-top:30px;">
                         <span>তারিখ:</span>
@@ -389,6 +396,7 @@
             $('.work_type').not(this).prop('checked', false);
         });
         // Checkbox Js End
+
 
         // Customer CSI Form Start - Stuff Behaviour
         $('.stuff_behavior').on('click', function() {
@@ -492,10 +500,58 @@
             $('.advance_bottom').text($(this).val());
         });
         // Repeate Data End
+
+        // Preload Default Select Option Start
+        $('.stuff_behavior_parent').find('.khub_valo').addClass('font-weight-bold text-primary selected_value');
+        $('.service_center_is_clean_parent').find('.khub_valo').addClass('font-weight-bold text-primary selected_value');
+        $('.garir_sompadito_kaj_parent').find('.yes').addClass('font-weight-bold text-primary selected_value');
+        $('.mc_problem_solved_parent').find('.yes').addClass('font-weight-bold text-primary selected_value');
+        $('.mc_delivery_done_parent').find('.yes').addClass('font-weight-bold text-primary selected_value');
+        $('.recomend_our_service_center_parent').find('.yes').addClass('font-weight-bold text-primary selected_value');
+        // Preload Default Select Option End
+
+        // Preload Dafault Value Start
+        function load_basic_data() {
+            $.ajax({
+                url: "{{ route('job_card.load_basic_data') }}",
+                method: 'get',
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function({
+                    vehicle
+                }) {
+                    if (vehicle.length > 0) {
+                        vehicle.forEach(function(item) {
+                            $("#mc_model_name").append(`<option value="${item.model_code}">${item.model}</option>`);
+                        });
+                    } else {
+
+                    }
+                }
+            });
+        }
+        load_basic_data();
+        // Preload Dafault Value End
+
+        // Submit Create Job Card Start
         $("#job_card_create").submit(function(e) {
             e.preventDefault();
             const FD = new FormData(this);
-            FD.append('MYNAME', 'MONIR');
+            let stuff_behavior = $('.stuff_behavior_parent').find('.selected_value').attr('stuff_behavior');
+            let service_center_is_clean = $('.service_center_is_clean_parent').find('.selected_value').attr('service_center_is_clean');
+            let garir_sompadito_kaj = $('.garir_sompadito_kaj_parent').find('.selected_value').attr('garir_sompadito_kaj');
+            let mc_problem_solved = $('.mc_problem_solved_parent').find('.selected_value').attr('mc_problem_solved');
+            let mc_delivery_done = $('.mc_delivery_done_parent').find('.selected_value').attr('mc_delivery_done');
+            let recomend_our_service_center = $('.recomend_our_service_center_parent').find('.selected_value').attr('recomend_our_service_center');
+            FD.append('stuff_behavior', stuff_behavior);
+            FD.append('service_center_is_clean', service_center_is_clean);
+            FD.append('garir_sompadito_kaj', garir_sompadito_kaj);
+            FD.append('mc_problem_solved', mc_problem_solved);
+            FD.append('mc_delivery_done', mc_delivery_done);
+            FD.append('recomend_our_service_center', recomend_our_service_center);
+
             $.ajax({
                 url: "{{ route('job_card.create') }}",
                 method: 'post',
@@ -527,6 +583,7 @@
                 }
             });
         });
+        // Submit Create Job Card End
 
     });
 </script>
