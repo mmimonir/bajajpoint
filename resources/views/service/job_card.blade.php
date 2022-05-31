@@ -585,10 +585,13 @@
         });
         // Submit Create Job Card End
 
-        // if ($(window).width() > 1400) {
-        //     $('body').addClass('sidebar-collapse');
-        // }
-        // console.log($(window).innerWidth());
+        if ($(window).innerWidth() < 1367) {
+            $('body').addClass('sidebar-collapse');
+        } else {
+            $('body').hasClass('sidebar-collapse');
+            $('body').removeClass('sidebar-collapse');
+        }
+
 
 
         // if ($(window).width() > 1000) {
