@@ -596,6 +596,7 @@
         // Search by part id start
         $('.part_id').on("focus", function() {
             $(this).autocomplete({
+                minLength: 4,
                 source: function(request, response) {
                     $.ajax({
                         url: "{{ route('job_card.search_by_part_id') }}",
@@ -612,7 +613,7 @@
                     });
                 },
                 select: function(event, ui) {
-                    $(this).val(ui.item.label);
+                    $('.part_id').val(ui.item.label);
                     console.log(ui.item);
                     return false;
                 }
