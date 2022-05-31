@@ -195,12 +195,12 @@
                                     <span‍ class="text-center" style="display:inline-block; width:104px; ">মূল্য (টাকা)</span>
                                 </p>
 
-                                @for($i=0; $i<=20; $i++) <div class="m-0" style="padding:0;">
+                                @for($i=0; $i<=20; $i++) <div class="m-0 parts_item" style="padding:0;">
                                     <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;">{{$i+1}}</span>
                                     <span class="text-center border_bottom border_right" style="display:inline-block; width:221px;"><input name="part_id[]" id="part_id" class="part_id" style="width:100%; height:19px;" type="text" value=""></span>
-                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:252px;"><input style="width:100%; height:19px;" type="text" value=""></span>
+                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:252px;"><input class="description" style="width:100%; height:19px;" type="text" value=""></span>
                                     <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input name="quantity[]" class="text-center" style="width:100%; height:19px;" type="text" value="1"></span>
-                                    <span class="text-center border_bottom" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right" style="width:100%; height:19px;" type="text" value=""></span>
+                                    <span class="text-center border_bottom" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right sale_rate" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
                             @endfor
                             <div class="m-0" style="padding:0;">
@@ -475,7 +475,7 @@
             $('.total_payable').val((sum - discount) + vat);
             $('.due_amount').val($('.grand_total').val() - $('.paid_amount').val());
         }
-        $('.sum_right').on('keyup', function() {
+        $('.sum_right').on('change', function() {
             sum_right();
         });
         sum_right();
@@ -595,27 +595,43 @@
 
         // Search by part id start
         $('.part_id').on("focus", function() {
+            var tags = ["1100112", "1100113", "1100114"];
             $(this).autocomplete({
                 minLength: 4,
-                source: function(request, response) {
-                    $.ajax({
-                        url: "{{ route('job_card.search_by_part_id') }}",
-                        type: 'GET',
-                        dataType: "json",
-                        data: {
-                            part_id: request.term
-                        },
-                        success: function({
-                            part_id
-                        }) {
-                            response(part_id);
-                        }
-                    });
-                },
+                source: tags,
+
+                // source: function(request, response) {
+                //     $.ajax({
+                //         url: "{{ route('job_card.search_by_part_id') }}",
+                //         type: 'GET',
+                //         dataType: "json",
+                //         data: {
+                //             part_id: request.term
+                //         },
+                //         success: function({
+                //             part_id
+                //         }) {
+                //             response(part_id);
+                //         }
+                //     });
+                // },
                 select: function(event, ui) {
-                    $('.part_id').val(ui.item.label);
+                    $(this).val(ui.item.label);
                     console.log(ui.item);
                     return false;
+                },
+                change: function() {
+                    _this = $(this).parent().parent();
+                    var part_id = $(this).val();
+                    _this.find('.description').val(part_id)
+                    _this.find('.sale_rate').val(200).trigger("change")
+                    // $.ajax({
+                    //     url: 'ajout_contact.php',
+                    //     data: "serv=" + servi + "&hopit=" + hop + "&contact=" + contact + "",
+                    //     success: function() {
+                    //         $("#search_ct").val('');
+                    //     }
+                    // });
                 }
             });
         });
