@@ -16,7 +16,7 @@
     <link href="http://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     @yield('datatable')
     @yield('css')
     @yield('datatable_css')

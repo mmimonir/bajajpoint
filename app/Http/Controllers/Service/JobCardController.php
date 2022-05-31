@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Service;
 
 use App\Http\Controllers\Controller;
 use App\Models\Showroom\Vehicle;
+use App\Models\SparePartsStock;
 use Illuminate\Http\Request;
 
 class JobCardController extends Controller
@@ -20,5 +21,11 @@ class JobCardController extends Controller
     {
         $all_vehicle = Vehicle::select('model', 'model_code')->get();
         return response()->json(['vehicle' => $all_vehicle]);
+    }
+    public function search_by_part_id(Request $request)
+    {
+        $part_id = $request->part_id;
+        $data = SparePartsStock::select('part_id')->where('part_id', 'LIKE', '%' . $part_id . '%')->get();
+        return response()->json(['part_id' => $data]);
     }
 }

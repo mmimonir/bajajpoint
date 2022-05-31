@@ -50,6 +50,7 @@
 @push('page_scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 @endpush
 @section('content')
 <div class="row justify-content-center">
@@ -196,10 +197,10 @@
 
                                 @for($i=0; $i<=20; $i++) <div class="m-0" style="padding:0;">
                                     <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;">{{$i+1}}</span>
-                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:221px;"><input name="part_id[]" id="" style="width:100%; height:19px;" type="text" value=""></span>
-                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:252px;"><input id="" style="width:100%; height:19px;" type="text" value=""></span>
-                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input name="quantity[]" class="text-center" id="" style="width:100%; height:19px;" type="text" value="1"></span>
-                                    <span class="text-center border_bottom" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:221px;"><input name="part_id[]" id="part_id" class="part_id" style="width:100%; height:19px;" type="text" value=""></span>
+                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:252px;"><input style="width:100%; height:19px;" type="text" value=""></span>
+                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input name="quantity[]" class="text-center" style="width:100%; height:19px;" type="text" value="1"></span>
+                                    <span class="text-center border_bottom" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
                             @endfor
                             <div class="m-0" style="padding:0;">
@@ -592,11 +593,32 @@
             $('body').removeClass('sidebar-collapse');
         }
 
-
-
-        // if ($(window).width() > 1000) {
-        //     $('body').addClass('sidebar-collapse');
-        // }
+        // Search by part id start
+        $('.part_id').on("focus", function() {
+            $(this).autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: "{{ route('job_card.search_by_part_id') }}",
+                        type: 'GET',
+                        dataType: "json",
+                        data: {
+                            part_id: request.term
+                        },
+                        success: function({
+                            part_id
+                        }) {
+                            response(part_id);
+                        }
+                    });
+                },
+                select: function(event, ui) {
+                    $(this).val(ui.item.label);
+                    console.log(ui.item);
+                    return false;
+                }
+            });
+        });
+        // Search by part id end
 
 
 
