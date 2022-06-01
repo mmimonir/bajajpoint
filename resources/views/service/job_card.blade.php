@@ -199,7 +199,7 @@
                                     <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;">{{$i+1}}</span>
                                     <span class="text-center border_bottom border_right" style="display:inline-block; width:221px;"><input name="part_id[]" id="part_id" class="part_id" style="width:100%; height:19px;" type="text" value=""></span>
                                     <span class="text-center border_bottom border_right" style="display:inline-block; width:252px;"><input class="description" style="width:100%; height:19px;" type="text" value=""></span>
-                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input name="quantity[]" class="text-center" style="width:100%; height:19px;" type="text" value="1"></span>
+                                    <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input name="quantity[]" class="text-center quantity" style="width:100%; height:19px;" type="text" value=""></span>
                                     <span class="text-center border_bottom" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right sale_rate" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
                             @endfor
@@ -478,6 +478,9 @@
         $('.sum_right').on('change', function() {
             sum_right();
         });
+        $('.paid_amount').on('change', function() {
+            sum_right();
+        });
         sum_right();
         // Summation End
 
@@ -595,50 +598,60 @@
 
         // Search by part id start
         $('.part_id').on("focus", function() {
-            var tags = ["1100112", "1100113", "1100114"];
             $(this).autocomplete({
                 minLength: 4,
-                source: tags,
-
-                // source: function(request, response) {
-                //     $.ajax({
-                //         url: "{{ route('job_card.search_by_part_id') }}",
-                //         type: 'GET',
-                //         dataType: "json",
-                //         data: {
-                //             part_id: request.term
-                //         },
-                //         success: function({
-                //             part_id
-                //         }) {
-                //             response(part_id);
-                //         }
-                //     });
-                // },
+                source: function(request, response) {
+                    $.ajax({
+                        url: "{{ route('job_card.search_by_part_id') }}",
+                        type: 'GET',
+                        dataType: "json",
+                        data: {
+                            part_id: request.term
+                        },
+                        success: function(data) {
+                            response(data);
+                        }
+                    });
+                },
                 select: function(event, ui) {
                     $(this).val(ui.item.label);
-                    console.log(ui.item);
                     return false;
                 },
                 change: function() {
                     _this = $(this).parent().parent();
                     var part_id = $(this).val();
-                    _this.find('.description').val(part_id)
-                    _this.find('.sale_rate').val(200).trigger("change")
-                    // $.ajax({
-                    //     url: 'ajout_contact.php',
-                    //     data: "serv=" + servi + "&hopit=" + hop + "&contact=" + contact + "",
-                    //     success: function() {
-                    //         $("#search_ct").val('');
-                    //     }
-                    // });
+                    $.ajax({
+                        url: "{{ route('job_card.search_by_full_part_id') }}",
+                        type: 'GET',
+                        dataType: "json",
+                        data: {
+                            part_id: part_id
+                        },
+                        success: function(data) {
+                            _this.find('.description').val(data.part_name)
+                            _this.find('.quantity').val(1)
+                            _this.find('.sale_rate').val(data.rate).trigger("change")
+                            $('.paid_amount').val($('.grand_total').val()).trigger("change");
+                        }
+                    });
                 }
             });
         });
         // Search by part id end
 
-
-
+        // change parts sale quantiry start
+        $('.quantity').on('focus', function() {
+            $(this).on('change', function() {
+                console.log($(this).val());
+                _this = $(this).parent().parent();
+                var quantity = _this.find('.quantity').val();
+                var sale_rate = _this.find('.sale_rate').val();
+                var total = quantity * sale_rate;
+                _this.find('.sale_rate').val(total).trigger("change");
+                $('.paid_amount').val($('.grand_total').val()).trigger("change");
+            });
+        });
+        // change parts sale quantiry end
     });
 </script>
 @endsection

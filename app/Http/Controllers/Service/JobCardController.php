@@ -25,7 +25,13 @@ class JobCardController extends Controller
     public function search_by_part_id(Request $request)
     {
         $part_id = $request->part_id;
-        $data = SparePartsStock::select('part_id')->where('part_id', 'LIKE', '%' . $part_id . '%')->get();
-        return response()->json(['part_id' => $data]);
+        $data = SparePartsStock::select('part_id as value', 'id')->where('part_id', 'LIKE', '%' . $part_id . '%')->get();
+        return response()->json($data);
+    }
+    public function search_by_full_part_id(Request $request)
+    {
+        $part_id = $request->part_id;
+        $data = SparePartsStock::select('part_id', 'id', 'part_name', 'rate')->where(['part_id' => $part_id])->first();
+        return response()->json($data);
     }
 }
