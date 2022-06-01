@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Service;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SparePartsStock extends Model
+class JobCard extends Model
 {
     use HasFactory;
 }

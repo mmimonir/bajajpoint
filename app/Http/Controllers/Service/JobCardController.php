@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Service;
 
-use App\Http\Controllers\Controller;
-use App\Models\Showroom\Vehicle;
-use App\Models\SparePartsStock;
 use Illuminate\Http\Request;
+use App\Models\Service\SparePartsStock;
+
+use App\Models\Showroom\Vehicle;
+use App\Http\Controllers\Controller;
+use App\Models\Service\JobCard;
+use Carbon\Carbon;
 
 class JobCardController extends Controller
 {
@@ -33,5 +36,23 @@ class JobCardController extends Controller
         $part_id = $request->part_id;
         $data = SparePartsStock::select('part_id', 'id', 'part_name', 'rate')->where(['part_id' => $part_id])->first();
         return response()->json($data);
+    }
+    public function assign_job_card_sl_no(Request $request)
+    {
+        // $last_job_caard_no = JobCard::select('job_card_no')->where('job_card_date', Carbon::now()->toDateString())->first();
+        $last_job_caard_no = JobCard::select('job_card_no')
+            ->where('job_card_date', Carbon::now()->toDateString())
+            ->orderBy('job_card_no', 'desc')
+            ->first();
+        // dd($last_job_caard_no->job_card_no);
+
+        $new_job_card_no = 0;
+        if ($last_job_caard_no) {
+            $new_job_card_no = 'JB-' . ($last_job_caard_no->job_card_no + 1);
+        } else {
+            $new_job_card_no = "JB-" . 1;
+        }
+        // dd($new_job_card_no);
+        return response()->json($new_job_card_no);
     }
 }

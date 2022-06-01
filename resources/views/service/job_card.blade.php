@@ -55,6 +55,7 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-12">
+        <!-- <form action="{{route('job_card.assign_job_card_sl_no')}}" method="get" id="job_card_create"> -->
         <form action="#" method="POST" id="job_card_create">
             @csrf
             <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
@@ -327,7 +328,7 @@
                     <div class="col-md-12">
                         <div class="m-0 border_bottom" style="padding-left:11px;">
                             <span style="display:inline-block; width:375px;">গাড়ির রেজিঃ নং:<span style="margin-left:10px;" class="rg_number_bottom text-bold"></span></span>
-                            <span class="border_right" style="display:inline-block; width:327px;">গাড়ির মডেল:</span>
+                            <span class="border_right" style="display:inline-block; width:327px;">গাড়ির মডেল: <span class="mc_model_bottom text-bold"></span></span>
                             <span>অগ্রিম:<span class="advance_bottom text-bold"></span></span>
                         </div>
                         <div class="m-0" style="padding-left:11px;">
@@ -505,16 +506,16 @@
         });
         // Repeate Data End
 
-        // Preload Default Select Option Start
+        // Preload Default Select Option for Customer CSI Form Start
         $('.stuff_behavior_parent').find('.khub_valo').addClass('font-weight-bold text-primary selected_value');
         $('.service_center_is_clean_parent').find('.khub_valo').addClass('font-weight-bold text-primary selected_value');
         $('.garir_sompadito_kaj_parent').find('.yes').addClass('font-weight-bold text-primary selected_value');
         $('.mc_problem_solved_parent').find('.yes').addClass('font-weight-bold text-primary selected_value');
         $('.mc_delivery_done_parent').find('.yes').addClass('font-weight-bold text-primary selected_value');
         $('.recomend_our_service_center_parent').find('.yes').addClass('font-weight-bold text-primary selected_value');
-        // Preload Default Select Option End
+        // Preload Default Select Option for Customer CSI Form End
 
-        // Preload Dafault Value Start
+        // Preload Dafault Value for Vehicle Model Name Start
         function load_basic_data() {
             $.ajax({
                 url: "{{ route('job_card.load_basic_data') }}",
@@ -537,7 +538,32 @@
             });
         }
         load_basic_data();
-        // Preload Dafault Value End
+        // Preload Dafault Value for Vehicle Model Name End
+
+        // Assign Job Card Sl No Start
+        function assign_job_card_sl_no() {
+            $.ajax({
+                url: "{{ route('job_card.assign_job_card_sl_no') }}",
+                method: 'get',
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function(new_job_card_no) {
+                    console.log(new_job_card_no);
+                    if (new_job_card_no.length > 0) {
+                        $('.job_card_no_top').val(new_job_card_no);
+                        $('.job_card_date_top').val(new Date().toISOString().substr(0, 10));
+                        $('.job_card_date_bottom').val(new Date().toISOString().substr(0, 10));
+                        $('.job_card_no_bottom').val(new_job_card_no);
+                    } else {
+
+                    }
+                }
+            });
+        }
+        assign_job_card_sl_no();
+        // Assign Job Card Sl No End
 
         // Submit Create Job Card Start
         $("#job_card_create").submit(function(e) {
@@ -652,6 +678,10 @@
             });
         });
         // change parts sale quantiry end
+        $('#mc_model_name').on('change', function() {
+            let model_name = $("#mc_model_name option:selected").text();
+            $('.mc_model_bottom').text(model_name);
+        })
     });
 </script>
 @endsection

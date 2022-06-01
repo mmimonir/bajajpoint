@@ -12,5 +12,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         Route::get('/load_basic_data',  'load_basic_data')->name('job_card.load_basic_data');
         Route::get('/search_by_part_id',  'search_by_part_id')->name('job_card.search_by_part_id');
         Route::get('/search_by_full_part_id',  'search_by_full_part_id')->name('job_card.search_by_full_part_id');
+        Route::get('/assign_job_card_sl_no',  'assign_job_card_sl_no')->name('job_card.assign_job_card_sl_no');
     });
 });
