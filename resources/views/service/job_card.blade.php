@@ -150,8 +150,8 @@
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">পরবর্তী কাজের বিবরণ<span class="font-weight-bold" style="margin-left:20px; margin-right:10px;">তারিখ</span><input name="" style="width:30%; height:19px; border:0px;" type="date"></p>
                                 <textarea name="next_work_description" class="" style="height:191px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
                                 <div class="pl-1 m-0 border_bottom border_top font-weight-bold">সার্ভিস ইঞ্জিনিয়ারের নামঃ
-                                    <select class="custom_dropdown" name="service_engineer_id">
-                                        <option value="">Mollika Akter</option>
+                                    <select class="custom_dropdown load_employee" name="service_engineer_id">
+
                                     </select>
                                 </div>
                                 <p style="height:90px;" class="m-0 pl-1">গাড়ি মেরামতের সকল খরচ আমি নিজে বহন করব। গাড়ি মেরামতকালীন সময়ে সংরক্ষন ও টেস্ট ড্রাইভের সকল দায়িত্ব আমার।</p>
@@ -207,7 +207,7 @@
                             @endfor
                             <div class="m-0" style="padding:0;">
                                 <span class="pl-1 text-left border_bottom border_right" style="display:inline-block; width:630px; height:24px;">পেইড সার্ভিস</span>
-                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="paid_service_charge" class="text-right total_right sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="paid_service_charge" class="text-right total_right sum_right" id="paid_service" style="width:100%; height:19px;" type="text" value=""></span>
                             </div>
                             <!-- <div class="m-0" style="padding:0;">
                                 <span class="pl-1 text-left border_bottom border_right" style="display:inline-block; width:630px; height:24px;">মোবিল</span>
@@ -242,8 +242,8 @@
                             </div>
                             <div class="m-0 font-weight-bold border_bottom pl-1">
                                 মেকানিকের নামঃ
-                                <select class="custom_dropdown" name="mechanic_id" style="width:200px;">
-                                    <option value="">Mollika Akter</option>
+                                <select class="custom_dropdown load_employee" name="mechanic_id" style="width:200px;">
+
                                 </select>
                             </div>
                             <p class="m-0 pl-1" style="height:90px;">আমি গাড়ি মেরামতের কাজে সন্তুষ্ট এবং গাড়ি ভালভাবে বুঝে ডেলিভারী নিলাম।
@@ -472,11 +472,12 @@
             });
             $('.total_bottom').text(sum);
             let discount = +$('.discount').val();
-            $('.grand_total').val(sum - discount);
+
+            $('.grand_total').val((sum - discount));
             // $('.paid_amount').val($('.grand_total').val());
             let vat = +$('.vat').val();
             $('.total_payable').val((sum - discount) + vat);
-            $('.due_amount').val($('.grand_total').val() - $('.paid_amount').val());
+            $('.due_amount').val($('.total_payable').val() - $('.paid_amount').val());
         }
         $('.sum_right').on('change', function() {
             sum_right();
@@ -659,7 +660,7 @@
                             _this.find('.description').val(data.part_name)
                             _this.find('.quantity').val(1)
                             _this.find('.sale_rate').val(data.rate).trigger("change")
-                            $('.paid_amount').val($('.grand_total').val()).trigger("change");
+                            $('.paid_amount').val($('.total_payable').val()).trigger("change");
                         }
                     });
                 }
@@ -676,10 +677,22 @@
                 var sale_rate = _this.find('.sale_rate').val();
                 var total = quantity * sale_rate;
                 _this.find('.sale_rate').val(total).trigger("change");
-                $('.paid_amount').val($('.grand_total').val()).trigger("change");
+                $('.paid_amount').val($('.total_payable').val()).trigger("change");
             });
         });
+        $('#paid_service').on('change', function() {
+            $('.paid_amount').val($('.grand_total').val()).trigger("change");
+        });
+        $('.discount').on('change', function() {
+            $('.paid_amount').val($('.grand_total').val()).trigger("change");
+        });
+        $('.vat').on('change', function() {
+            $('.paid_amount').val($('.total_payable').val()).trigger("change");
+            $('.due_amount').val($('.total_payable').val() - $('.paid_amount').val());
+        });
         // change parts sale quantiry end
+
+        // Bottom Model Name Update Start
         $('#mc_model_name').on('change', function() {
             let model_name = $("#mc_model_name option:selected").text();
             $('.mc_model_bottom').text(model_name);
@@ -687,6 +700,29 @@
         $('.print').click(function() {
             window.print();
         });
+        // Bottom Model Name Update End
+
+        // Load employee Data Start
+        function load_employee_data() {
+            $.ajax({
+                url: "{{ route('job_card.load_employee_data') }}",
+                method: 'get',
+                dataType: 'json',
+                success: function({
+                    employee
+                }) {
+                    if (employee.length > 0) {
+                        employee.forEach(function(item) {
+                            $(".load_employee").append(`<option value="${item.id}">${item.name}</option>`);
+                        });
+                    } else {
+
+                    }
+                }
+            });
+        }
+        load_employee_data();
+        // Load employee Data End
     });
 </script>
 @endsection

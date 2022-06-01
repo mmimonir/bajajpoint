@@ -13,5 +13,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         Route::get('/search_by_part_id',  'search_by_part_id')->name('job_card.search_by_part_id');
         Route::get('/search_by_full_part_id',  'search_by_full_part_id')->name('job_card.search_by_full_part_id');
         Route::get('/assign_job_card_sl_no',  'assign_job_card_sl_no')->name('job_card.assign_job_card_sl_no');
+        Route::get('/load_employee_data',  'load_employee_data')->name('job_card.load_employee_data');
     });
 });

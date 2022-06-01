@@ -8,6 +8,7 @@ use App\Models\Service\SparePartsStock;
 use App\Models\Showroom\Vehicle;
 use App\Http\Controllers\Controller;
 use App\Models\Service\JobCard;
+use App\Models\Service\Mechanic;
 use Carbon\Carbon;
 
 class JobCardController extends Controller
@@ -54,5 +55,10 @@ class JobCardController extends Controller
         }
         // dd($new_job_card_no);
         return response()->json($new_job_card_no);
+    }
+    public function load_employee_data()
+    {
+        $all_employee = Mechanic::select('id', 'name')->get();
+        return response()->json(['employee' => $all_employee]);
     }
 }
