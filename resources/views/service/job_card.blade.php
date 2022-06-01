@@ -62,7 +62,7 @@
                 <div class="card-header no-print">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
-                            <h4 class="bangla_font" style="display:inline-block; width:73px; margin-top:5px;">জব কার্ড</h4>
+                            <h4 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px;">জব কার্ড</h4>
                             <nav aria-label="Page navigation example" style="display:inline-block; width:366px;">
                                 <ul class="pagination justify-content-center">
                                     <li class="page-item active"><a class="page-link" href="#">First</a></li>
@@ -70,6 +70,7 @@
                                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                                     <li class="page-item"><a class="page-link" href="#">Last</a></li>
                                     <li class="page-item"><a class="page-link" href="#">New</a></li>
+                                    <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                     <input class="page-item page-link bg-dark" type="submit" value="Submit" />
                                 </ul>
                             </nav>
@@ -101,15 +102,15 @@
                             <div class="col-md-4 pr-0 border_right">
                                 <p class="m-0 font-weight-bold border_bottom border_top pl-1">গাড়ির বিবরণ</p>
                                 <p class="m-0 border_bottom pl-1">গাড়ির রেজিঃ নম্বর:<input name="rg_number" class="ml-1 rg_number_top text-bold" style="width:69%; height:19px;" type="text"></p>
-                                <div class="pl-1 m-0 border_bottom font-weight-bold">গাড়ির মডেল:
-                                    <select class="custom_dropdown" name="model_code" style="width:284px;" id="mc_model_name">
-
+                                <div class="pl-1 m-0 border_bottom font-weight-bold" style="height:24px;">গাড়ির মডেল:
+                                    <select class="custom_dropdown" name="model_code" style="width:284px; height:21px;" id="mc_model_name">
+                                        <option>Please Select A Model</option>
                                     </select>
                                 </div>
                                 <!-- <p class="m-0 border_bottom pl-1">গাড়ির মডেল:
                                     <input name="mc_model_name" class="ml-1 text-bold" style="width:77%; height:19px;" type="text">
                                 </p> -->
-                                <div class="m-0 border_bottom pl-1">
+                                <div class="m-0 border_bottom pl-1" style="height:25px;">
                                     <span>বিক্রয় তারিখ:
                                         <input name="mc_sale_date" class="text-bold" style="width:30%; height:19px;" type="date">
                                     </span>
@@ -121,29 +122,29 @@
                                     <span>ইঞ্জিন নং: <input name="engine_no" class="ml-1 engine_no_top text-bold" style="width:30%; height:19px;" type="text"></span>
                                     <span>চেসিস নং:<input name="chassis_no" class="ml-1 chassis_no_top text-bold" style="width:30%; height:19px; border:0px;" type="text"></span>
                                 </p>
-                                <div class="m-0 border_bottom pl-1">
+                                <div class="m-0 border_bottom pl-1" style="height:24px;">
                                     <span style="margin-right:50px;">সার্ভিসের ধরণ:</span>
                                     <span style="margin-right:25px;">পেইড সার্ভিস </span><input name="service_type[]" class="form-check-input service_type" type="checkbox" value="paid" id="flexCheckDefault">
                                     <span style="margin-right:25px;">ফ্রি সার্ভিস</span><input name="service_type[]" class="form-check-input service_type" type="checkbox" value="free" id="flexCheckDefault">
                                 </div>
-                                <p class="m-0 border_bottom pl-1">
+                                <div class="m-0 border_bottom pl-1" style="height:24px;">
                                     <span style="margin-right:50px;">মাইনর মেরামত</span>
                                     <input name="repair_type[]" class="form-check-input work_type" type="checkbox" value="minor" id="flexCheckDefault">
-                                </p>
-                                <p class="m-0 border_bottom pl-1">
+                                </div>
+                                <div class="m-0 border_bottom pl-1" style="height:24px;">
                                     <span style="margin-right:50px;">মেজর মেরামত</span>
                                     <input name="repair_type[]" class="form-check-input work_type" type="checkbox" value="major" id="flexCheckDefault">
-                                </p>
-                                <p class="m-0 border_bottom pl-1">
+                                </div>
+                                <div class="m-0 border_bottom pl-1" style="height:24px;">
                                     <span style="margin-right:50px;">ইঞ্জিন ওভারহোলিং</span>
                                     <input name="repair_type[]" class="form-check-input work_type" type="checkbox" value="engine_overhauling" id="flexCheckDefault">
-                                </p>
-                                <p class="m-0 border_bottom pl-1">
+                                </div>
+                                <div class="m-0 border_bottom pl-1" style="height:24px;">
                                     <span style="margin-right:50px;">দূর্ঘটনাজনিত মেরামত</span>
                                     <input name="repair_type[]" class="form-check-input work_type" type="checkbox" value="accident" id="flexCheckDefault">
-                                </p>
-                                <p class="m-0 border_bottom pl-1 font-weight-bold">গ্রাহকের অভিযোগ</p>
-                                <textarea name="customer_complain" class="" style="height:167px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
+                                </div>
+                                <p class="m-0 border_bottom pl-1 font-weight-bold" style="height:24px;">গ্রাহকের অভিযোগ</p>
+                                <textarea name="customer_complain" class="" style="height:166px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">মেরামতের বিবরণ</p>
                                 <textarea name="repair_description" class="" style="height:192px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">পরবর্তী কাজের বিবরণ<span class="font-weight-bold" style="margin-left:20px; margin-right:10px;">তারিখ</span><input name="" style="width:30%; height:19px; border:0px;" type="date"></p>
@@ -350,7 +351,7 @@
             <div class="card-header no-print">
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
-                        <h4 class="bangla_font" style="display:inline-block; width:73px; margin-top:5px;">জব কার্ড</h4>
+                        <h4 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px;">জব কার্ড</h4>
                         <nav aria-label="Page navigation example" style="display:inline-block; width:366px;">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item active"><a class="page-link" href="#">First</a></li>
@@ -358,6 +359,7 @@
                                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
                                 <li class="page-item"><a class="page-link" href="#">Last</a></li>
                                 <li class="page-item"><a class="page-link" href="#">New</a></li>
+                                <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                 <input class="page-item page-link bg-dark" type="submit" value="Submit" />
                             </ul>
                         </nav>
@@ -682,6 +684,9 @@
             let model_name = $("#mc_model_name option:selected").text();
             $('.mc_model_bottom').text(model_name);
         })
+        $('.print').click(function() {
+            window.print();
+        });
     });
 </script>
 @endsection
