@@ -161,8 +161,8 @@
                                 </p>
                             </div>
                             <div class="col-md-8 pl-0">
-                                <p class="pl-1 border_bottom border_top m-0 font-weight-bold">গ্রাহকের নাম:<input name="client_name" class="ml-1 text-bold" style="width:89%; height:19px; border:0px;" type="text"></p>
-                                <p class="pl-1 border_bottom m-0">ঠিকানা:<input name="address" class="ml-1 text-bold" style="width:93%; height:19px; border:0px;" type="text"></p>
+                                <p class="pl-1 border_bottom border_top m-0 font-weight-bold">গ্রাহকের নাম:<input name="client_name" class="ml-1 text-bold client_name" style="width:89%; height:19px; border:0px;" type="text"></p>
+                                <p class="pl-1 border_bottom m-0">ঠিকানা:<input name="address" class="ml-1 text-bold address" style="width:93%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0">-</p>
                                 <p class="pl-1 border_bottom m-0">টেলিফোন নম্বর:<input name="mobile" class="ml-1 mobile text-bold" style="width:30%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0 font-weight-bold">গাড়ি পর্যবেক্ষণের বিবরণ:</p>
@@ -377,7 +377,7 @@
 <script>
     $(document).ready(function() {
         // Input Mask Js Start
-        $('.mobile').inputmask('99999-99-99-99');
+        $('.mobile').inputmask('99999999999');
         $('.rg_number_top').inputmask('99-9999');
         $('.engine_no_top').inputmask('99999');
         $('.chassis_no_top').inputmask('99999');
@@ -400,6 +400,33 @@
             $('.work_type').not(this).prop('checked', false);
         });
         // Checkbox Js End
+
+        // Check cusomer is already exist or not start
+        $('.mobile').on('blur', function() {
+            var mobile = $(this).val();
+            $.ajax({
+                url: "{{route('job_card.check_customer')}}",
+                type: "GET",
+                data: {
+                    mobile: mobile,
+                },
+                success: function(response) {
+                    if (response.status == 'success') {
+                        Swal.fire({
+                            title: 'দুঃখিত!',
+                            text: 'এই মোবাইল নম্বরটি ইতিমধ্যে নিবন্ধিত হয়েছে।',
+                            type: 'error',
+                            confirmButtonText: 'ঠিক আছে'
+                        });
+                        console.log(response.data.client_name);
+                        $('.client_name').val(response.data.client_name);
+                        $('.mobile').val(response.data.mobile);
+                        $('.address').val(response.data.address);
+                    }
+                }
+            });
+        });
+        // Check cusomer is already exist or not end
 
 
         // Customer CSI Form Start - Stuff Behaviour
@@ -657,10 +684,19 @@
                             part_id: part_id
                         },
                         success: function(data) {
-                            _this.find('.description').val(data.part_name)
-                            _this.find('.quantity').val(1)
-                            _this.find('.sale_rate').val(data.rate).trigger("change")
-                            $('.paid_amount').val($('.total_payable').val()).trigger("change");
+                            if (data.stock_quantity > 0) {
+                                _this.find('.description').val(data.part_name)
+                                _this.find('.quantity').val(1)
+                                _this.find('.sale_rate').val(data.rate).trigger("change")
+                                $('.paid_amount').val($('.total_payable').val()).trigger("change");
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Not enough stock, please update stock first',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
+                            }
                         }
                     });
                 }
