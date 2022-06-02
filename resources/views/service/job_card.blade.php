@@ -501,7 +501,6 @@
             let discount = +$('.discount').val();
 
             $('.grand_total').val((sum - discount));
-            // $('.paid_amount').val($('.grand_total').val());
             let vat = +$('.vat').val();
             $('.total_payable').val((sum - discount) + vat);
             $('.due_amount').val($('.total_payable').val() - $('.paid_amount').val());
@@ -514,6 +513,30 @@
         });
         sum_right();
         // Summation End
+
+        // change parts sale quantiry start
+        $('.quantity').on('focus', function() {
+            $(this).on('change', function() {
+                console.log($(this).val());
+                _this = $(this).parent().parent();
+                var quantity = _this.find('.quantity').val();
+                var sale_rate = _this.find('.sale_rate').val();
+                var total = quantity * sale_rate;
+                _this.find('.sale_rate').val(total).trigger("change");
+                $('.paid_amount').val($('.total_payable').val()).trigger("change");
+            });
+        });
+        $('#paid_service').on('change', function() {
+            $('.paid_amount').val($('.grand_total').val()).trigger("change");
+        });
+        $('.discount').on('change', function() {
+            $('.paid_amount').val($('.grand_total').val()).trigger("change");
+        });
+        $('.vat').on('change', function() {
+            $('.paid_amount').val($('.total_payable').val()).trigger("change");
+            $('.due_amount').val($('.total_payable').val() - $('.paid_amount').val());
+        });
+        // change parts sale quantiry end
 
         // Repeate Data Start
         $('.job_card_no_top').on('keyup', function() {
@@ -595,62 +618,14 @@
         assign_job_card_sl_no();
         // Assign Job Card Sl No End
 
-        // Submit Create Job Card Start
-        $("#job_card_create").submit(function(e) {
-            e.preventDefault();
-            const FD = new FormData(this);
-            let stuff_behavior = $('.stuff_behavior_parent').find('.selected_value').attr('stuff_behavior');
-            let service_center_is_clean = $('.service_center_is_clean_parent').find('.selected_value').attr('service_center_is_clean');
-            let garir_sompadito_kaj = $('.garir_sompadito_kaj_parent').find('.selected_value').attr('garir_sompadito_kaj');
-            let mc_problem_solved = $('.mc_problem_solved_parent').find('.selected_value').attr('mc_problem_solved');
-            let mc_delivery_done = $('.mc_delivery_done_parent').find('.selected_value').attr('mc_delivery_done');
-            let recomend_our_service_center = $('.recomend_our_service_center_parent').find('.selected_value').attr('recomend_our_service_center');
-            FD.append('stuff_behavior', stuff_behavior);
-            FD.append('service_center_is_clean', service_center_is_clean);
-            FD.append('garir_sompadito_kaj', garir_sompadito_kaj);
-            FD.append('mc_problem_solved', mc_problem_solved);
-            FD.append('mc_delivery_done', mc_delivery_done);
-            FD.append('recomend_our_service_center', recomend_our_service_center);
-
-            $.ajax({
-                url: "{{ route('job_card.create') }}",
-                method: 'post',
-                data: FD,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: 'json',
-                success: function(response) {
-                    console.log(response);
-                    if (response.status == 200) {
-
-                        // Swal.fire({
-                        //     icon: 'success',
-                        //     title: response.message,
-                        //     showConfirmButton: false,
-                        //     timer: 2000
-                        // })
-                        // $('#job_card_create').trigger("reset");
-                    } else {
-                        // Swal.fire({
-                        //     icon: 'error',
-                        //     title: 'Oops...',
-                        //     text: response.message,
-                        //     footer: '<a href="">Why do I have this issue?</a>'
-                        // })
-
-                    }
-                }
-            });
-        });
-        // Submit Create Job Card End
-
+        // Detect pc window screen and add class sidebar-collapse to body Start
         if ($(window).innerWidth() < 1367) {
             $('body').addClass('sidebar-collapse');
         } else {
             $('body').hasClass('sidebar-collapse');
             $('body').removeClass('sidebar-collapse');
         }
+        // Detect pc window screen and add class sidebar-collapse to body End
 
         // Search by part id start
         $('.part_id').on("focus", function() {
@@ -704,30 +679,6 @@
         });
         // Search by part id end
 
-        // change parts sale quantiry start
-        $('.quantity').on('focus', function() {
-            $(this).on('change', function() {
-                console.log($(this).val());
-                _this = $(this).parent().parent();
-                var quantity = _this.find('.quantity').val();
-                var sale_rate = _this.find('.sale_rate').val();
-                var total = quantity * sale_rate;
-                _this.find('.sale_rate').val(total).trigger("change");
-                $('.paid_amount').val($('.total_payable').val()).trigger("change");
-            });
-        });
-        $('#paid_service').on('change', function() {
-            $('.paid_amount').val($('.grand_total').val()).trigger("change");
-        });
-        $('.discount').on('change', function() {
-            $('.paid_amount').val($('.grand_total').val()).trigger("change");
-        });
-        $('.vat').on('change', function() {
-            $('.paid_amount').val($('.total_payable').val()).trigger("change");
-            $('.due_amount').val($('.total_payable').val() - $('.paid_amount').val());
-        });
-        // change parts sale quantiry end
-
         // Bottom Model Name Update Start
         $('#mc_model_name').on('change', function() {
             let model_name = $("#mc_model_name option:selected").text();
@@ -759,6 +710,53 @@
         }
         load_employee_data();
         // Load employee Data End
+
+        // Submit Create Job Card Start
+        $("#job_card_create").submit(function(e) {
+            e.preventDefault();
+            const FD = new FormData(this);
+            let stuff_behavior = $('.stuff_behavior_parent').find('.selected_value').attr('stuff_behavior');
+            let service_center_is_clean = $('.service_center_is_clean_parent').find('.selected_value').attr('service_center_is_clean');
+            let garir_sompadito_kaj = $('.garir_sompadito_kaj_parent').find('.selected_value').attr('garir_sompadito_kaj');
+            let mc_problem_solved = $('.mc_problem_solved_parent').find('.selected_value').attr('mc_problem_solved');
+            let mc_delivery_done = $('.mc_delivery_done_parent').find('.selected_value').attr('mc_delivery_done');
+            let recomend_our_service_center = $('.recomend_our_service_center_parent').find('.selected_value').attr('recomend_our_service_center');
+            FD.append('stuff_behavior', stuff_behavior);
+            FD.append('service_center_is_clean', service_center_is_clean);
+            FD.append('garir_sompadito_kaj', garir_sompadito_kaj);
+            FD.append('mc_problem_solved', mc_problem_solved);
+            FD.append('mc_delivery_done', mc_delivery_done);
+            FD.append('recomend_our_service_center', recomend_our_service_center);
+
+            $.ajax({
+                url: "{{ route('job_card.create') }}",
+                method: 'post',
+                data: FD,
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response);
+                    if (response.status == 200) {
+
+                        // Swal.fire({
+                        //     icon: 'success',
+                        //     title: response.message,
+                        //     showConfirmButton: false,
+                        //     timer: 2000
+                        // })
+                        // $('#job_card_create').trigger("reset");
+                    } else {
+                        // Swal.fire({
+                        //     icon: 'error',
+                        //     title: 'Oops...',
+                        //     text: response.message,
+                        //     footer: '<a href="">Why do I have this issue?</a>'
+                        // })
+
+                    }
+                }
+            });
+        });
+        // Submit Create Job Card End
     });
 </script>
 @endsection
