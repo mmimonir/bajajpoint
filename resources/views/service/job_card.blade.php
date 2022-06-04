@@ -733,6 +733,9 @@
                 method: 'post',
                 data: FD,
                 dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
                 success: function(response) {
                     console.log(response);
                     if (response.status == 200) {
