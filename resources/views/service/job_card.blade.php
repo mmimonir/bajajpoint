@@ -55,8 +55,8 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <!-- <form action="{{route('job_card.assign_job_card_sl_no')}}" method="get" id="job_card_create"> -->
-        <form action="#" method="POST" id="job_card_create">
+        <form action="{{route('job_card.create')}}" method="post" id="">
+            <!-- <form action="#" method="POST" id="job_card_create"> -->
             @csrf
             <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
                 <div class="card-header no-print">

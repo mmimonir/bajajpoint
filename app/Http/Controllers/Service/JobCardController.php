@@ -19,11 +19,17 @@ class JobCardController extends Controller
         return view('service.job_card');
     }
 
-    public function customer_name_already_exists(Request $request)
+    public function customer_name_already_exists(Request $request, $mobile = null)
     {
         $customer_mobile = $request->mobile;
+        if ($mobile != null) {
+            $customer_mobile = $mobile;
+        }
         $customer_data = ServiceCustomer::select('*')
             ->where('mobile', $customer_mobile)->first();
+        if ($mobile && $customer_data) {
+            return $customer_data->id;
+        }
         if ($customer_data) {
             return response()
                 ->json(
@@ -38,12 +44,16 @@ class JobCardController extends Controller
 
     public function create_job_card(Request $request)
     {
-        // ServiceCustomer::create([
-        //     'client_name' => $request->client_name,
-        //     'mobile' => $request->mobile,
-        //     'address' => $request->address,
-        //     'email' => $request->email,
-        // ]);
+        $customer_id = $this->customer_name_already_exists($request, $request->mobile);
+        if (!$customer_id) {
+            $id = ServiceCustomer::create([
+                'client_name' => $request->client_name,
+                'mobile' => $request->mobile,
+                'address' => $request->address,
+                'email' => $request->email,
+            ])->id;
+            dd($id);
+        }
         return response()->json(['data' => $request->all()]);
     }
 
