@@ -61,8 +61,8 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <form action="{{route('job_card.create')}}" method="post" id="job_card_create">
-            <!-- <form action="#" method="POST" id="job_card_create"> -->
+        <!-- <form action="{{route('job_card.create')}}" method="post" id="job_card_create"> -->
+        <form action="#" method="POST" id="job_card_create">
             @csrf
             <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
                 <div class="card-header no-print">
@@ -78,7 +78,9 @@
                                     <li class="page-item"><a class="page-link" href="#">New</a></li>
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                     <i class="page-link fa fa-refresh" aria-hidden="true"></i>
-                                    <input class="page-item page-link bg-dark" type="submit" value="Submit" />
+                                    <input class="page-item page-link bg-dark" type="submit" value="Create JB" />
+                                    <a href="#" class="page-item page-link bg-dark" id="delivery_done">Delivery Done</a>
+                                    <a href="#" class="page-item page-link bg-dark" id="create_bill">Create Bill</a>
                                 </ul>
                             </nav>
                         </div>
@@ -379,6 +381,8 @@
                                 <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                 <i class="page-link fa fa-refresh" aria-hidden="true"></i>
                                 <input class="page-item page-link bg-dark" type="submit" value="Submit" />
+                                <a href="#" class="page-item page-link bg-dark" id="delivery_done">Delivery Done</a>
+                                <a href="#" class="page-item page-link bg-dark" id="create_bill">Create Bill</a>
                             </ul>
                         </nav>
                     </div>
@@ -400,24 +404,6 @@
         $('.engine_no_top').inputmask('99999');
         $('.chassis_no_top').inputmask('99999');
         // Input Mask Js End
-
-        // Checkbox Js Start
-        $('.service_type').on('change', function() {
-            $('.service_type').not(this).prop('checked', false);
-        });
-        $('.indicator_lence').on('change', function() {
-            $('.indicator_lence').not(this).prop('checked', false);
-        });
-        $('.headlight_scratch').on('change', function() {
-            $('.headlight_scratch').not(this).prop('checked', false);
-        });
-        $('.fuel_tank_scratch').on('change', function() {
-            $('.fuel_tank_scratch').not(this).prop('checked', false);
-        });
-        $('.work_type').on('change', function() {
-            $('.work_type').not(this).prop('checked', false);
-        });
-        // Checkbox Js End
 
         // Check cusomer is already exist or not start
         $('.mobile').on('blur', function() {
@@ -444,68 +430,7 @@
                 }
             });
         });
-        // Check cusomer is already exist or not end
-
-
-        // Customer CSI Form Start - Stuff Behaviour
-        $('.stuff_behavior').on('click', function() {
-            if ($('.stuff_behavior').hasClass('font-weight-bold text-primary selected_value')) {
-                $('.stuff_behavior').removeClass('font-weight-bold text-primary selected_value')
-            } else {
-                $(this).addClass('font-weight-bold text-primary selected_value');
-            }
-        });
-        // Customer CSI Form End  - Stuff Behaviour
-
-        // Customer CSI Form Start - Service Center is Clean
-        $('.service_center_is_clean').on('click', function() {
-            if ($('.service_center_is_clean').hasClass('font-weight-bold text-primary selected_value')) {
-                $('.service_center_is_clean').removeClass('font-weight-bold text-primary selected_value')
-            } else {
-                $(this).addClass('font-weight-bold text-primary selected_value');
-            }
-        });
-        // Customer CSI Form End  - Service Center is Clean
-
-        // Customer CSI Form Start - garir_sompadito_kaj
-        $('.garir_sompadito_kaj').on('click', function() {
-            if ($('.garir_sompadito_kaj').hasClass('font-weight-bold text-primary selected_value')) {
-                $('.garir_sompadito_kaj').removeClass('font-weight-bold text-primary selected_value')
-            } else {
-                $(this).addClass('font-weight-bold text-primary selected_value');
-            }
-        });
-        // Customer CSI Form End  - garir_sompadito_kaj
-
-        // Customer CSI Form Start - mc_problem_solved
-        $('.mc_problem_solved').on('click', function() {
-            if ($('.mc_problem_solved').hasClass('font-weight-bold text-primary selected_value')) {
-                $('.mc_problem_solved').removeClass('font-weight-bold text-primary selected_value')
-            } else {
-                $(this).addClass('font-weight-bold text-primary selected_value');
-            }
-        });
-        // Customer CSI Form End  - mc_problem_solved
-
-        // Customer CSI Form Start - mc_delivery_done
-        $('.mc_delivery_done').on('click', function() {
-            if ($('.mc_delivery_done').hasClass('font-weight-bold text-primary selected_value')) {
-                $('.mc_delivery_done').removeClass('font-weight-bold text-primary selected_value')
-            } else {
-                $(this).addClass('font-weight-bold text-primary selected_value');
-            }
-        });
-        // Customer CSI Form End  - mc_delivery_done
-
-        // Customer CSI Form Start - recomend_our_service_center
-        $('.recomend_our_service_center').on('click', function() {
-            if ($('.recomend_our_service_center').hasClass('font-weight-bold text-primary selected_value')) {
-                $('.recomend_our_service_center').removeClass('font-weight-bold text-primary selected_value')
-            } else {
-                $(this).addClass('font-weight-bold text-primary selected_value');
-            }
-        });
-        // Customer CSI Form End  - recomend_our_service_center
+        // Check cusomer is already exist or not end        
 
         // Summation Start
         function sum_right() {
@@ -575,16 +500,7 @@
         $('.advance_top').on('keyup', function() {
             $('.advance_bottom').text($(this).val());
         });
-        // Repeate Data End
-
-        // Preload Default Select Option for Customer CSI Form Start
-        $('.stuff_behavior_parent').find('.khub_valo').addClass('font-weight-bold text-primary selected_value');
-        $('.service_center_is_clean_parent').find('.khub_valo').addClass('font-weight-bold text-primary selected_value');
-        $('.garir_sompadito_kaj_parent').find('.yes').addClass('font-weight-bold text-primary selected_value');
-        $('.mc_problem_solved_parent').find('.yes').addClass('font-weight-bold text-primary selected_value');
-        $('.mc_delivery_done_parent').find('.yes').addClass('font-weight-bold text-primary selected_value');
-        $('.recomend_our_service_center_parent').find('.yes').addClass('font-weight-bold text-primary selected_value');
-        // Preload Default Select Option for Customer CSI Form End
+        // Repeate Data End        
 
         // Preload Dafault Value for Vehicle Model Name Start
         function load_basic_data() {
@@ -726,53 +642,39 @@
         // Load employee Data End
 
         // Submit Create Job Card Start
-        // $("#job_card_create").submit(function(e) {
-        //     e.preventDefault();
-        //     const FD = new FormData(this);
-        //     let stuff_behavior = $('.stuff_behavior_parent').find('.selected_value').attr('stuff_behavior');
-        //     let service_center_is_clean = $('.service_center_is_clean_parent').find('.selected_value').attr('service_center_is_clean');
-        //     let garir_sompadito_kaj = $('.garir_sompadito_kaj_parent').find('.selected_value').attr('garir_sompadito_kaj');
-        //     let mc_problem_solved = $('.mc_problem_solved_parent').find('.selected_value').attr('mc_problem_solved');
-        //     let mc_delivery_done = $('.mc_delivery_done_parent').find('.selected_value').attr('mc_delivery_done');
-        //     let recomend_our_service_center = $('.recomend_our_service_center_parent').find('.selected_value').attr('recomend_our_service_center');
-        //     FD.append('stuff_behavior', stuff_behavior);
-        //     FD.append('service_center_is_clean', service_center_is_clean);
-        //     FD.append('garir_sompadito_kaj', garir_sompadito_kaj);
-        //     FD.append('mc_problem_solved', mc_problem_solved);
-        //     FD.append('mc_delivery_done', mc_delivery_done);
-        //     FD.append('recomend_our_service_center', recomend_our_service_center);
+        $("#job_card_create").submit(function(e) {
+            e.preventDefault();
+            const FD = new FormData(this);
+            $.ajax({
+                url: "{{ route('job_card.create') }}",
+                method: 'post',
+                data: FD,
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    console.log(response);
+                    if (response.status == 200) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                        $('#job_card_create').trigger("reset");
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message,
+                            footer: '<a href="">Why do I have this issue?</a>'
+                        })
 
-        //     $.ajax({
-        //         url: "{{ route('job_card.create') }}",
-        //         method: 'post',
-        //         data: FD,
-        //         dataType: 'json',
-        //         cache: false,
-        //         contentType: false,
-        //         processData: false,
-        //         success: function(response) {
-        //             console.log(response);
-        //             if (response.status == 200) {
-
-        //                 // Swal.fire({
-        //                 //     icon: 'success',
-        //                 //     title: response.message,
-        //                 //     showConfirmButton: false,
-        //                 //     timer: 2000
-        //                 // })
-        //                 // $('#job_card_create').trigger("reset");
-        //             } else {
-        //                 // Swal.fire({
-        //                 //     icon: 'error',
-        //                 //     title: 'Oops...',
-        //                 //     text: response.message,
-        //                 //     footer: '<a href="">Why do I have this issue?</a>'
-        //                 // })
-
-        //             }
-        //         }
-        //     });
-        // });
+                    }
+                }
+            });
+        });
         // Submit Create Job Card End
 
         // Reset Form Start
@@ -781,6 +683,13 @@
             // $('#job_card_create').trigger("reset");
         });
         // Reset Form End
+        $('#create_bill').on('click', function(e) {
+            alert('ok');
+            e.preventDefault();
+        });
+        $('#delivery_done').on('click', function(e) {
+
+        });
     });
 </script>
 @endsection

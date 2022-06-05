@@ -136,8 +136,7 @@ class JobCardController extends Controller
         //     'service_customer_id' => $customer_id,
         // ])->id;
 
-
-        return response()->json(['data' => $jb_id]);
+        return response()->json(['message' => 'Job card created successfully.', 'status' => 200]);
     }
 
     public function load_basic_data()
