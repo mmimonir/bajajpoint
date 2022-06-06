@@ -86,6 +86,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div id="print_area" class="card-body bangla_font bangla_font_light" style="width:11.5in; margin:auto; border:1px solid; padding:0; margin-top:22px; margin-bottom:22px;">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center">
@@ -206,7 +207,7 @@
                                     <span class="text-center border_right" style="display:inline-block; width:74px;">পরিমাণ</span>
                                     <span‍ class="text-center" style="display:inline-block; width:104px; ">মূল্য (টাকা)</span>
                                 </p>
-                                <form id="spare_parts" action="">
+                                <div id="spare_parts">
 
                                     @for($i=0; $i<=20; $i++) <div class="m-0 parts_item" style="padding:0;">
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;">{{$i+1}}</span>
@@ -214,187 +215,187 @@
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:252px;"><input class="description" style="width:100%; height:19px;" type="text" value=""></span>
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input name="quantity[]" class="text-center quantity" style="width:100%; height:19px;" type="text" value=""></span>
                                         <span class="text-center border_bottom" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right sale_rate" style="width:100%; height:19px;" type="text" value=""></span>
+                                </div>
+                                @endfor
                             </div>
-                            @endfor
+                            <div class="m-0" style="padding:0;">
+                                <span class="pl-1 text-left border_bottom border_right" style="display:inline-block; width:630px; height:24px;">পেইড সার্ভিস</span>
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="paid_service_charge" class="text-right total_right sum_right" id="paid_service" style="width:100%; height:19px;" type="text" value=""></span>
+                            </div>
+                            <div class="m-0" style="padding:0;">
+                                <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">মোট = </span>
+                                <span class="text-right border_bottom total_bottom" style="display:inline-block; width:105px; height:24px;"></span>
+                            </div>
+                            <div class="m-0" style="padding:0;">
+                                <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">ডিসকাউন্ট =</span>
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="discount" class="text-right discount sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                            </div>
+
+                            <div class="m-0" style="padding:0;">
+                                <span class="pl-1 text-right pr-1 border_bottom border_right" style="display:inline-block; width:630px; height:24px;">সর্বমোট =</span>
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input readonly class="text-right grand_total" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                            </div>
+                            <div class="m-0" style="padding:0;">
+                                <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">ভ্যাট = </span>
+                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="vat" class="text-right vat sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                            </div>
+                            <div class="m-0" style="padding:0;">
+                                <span class="border_bottom pl-1" style="display:inline-block; width:250px;">অগ্রীম = <input class="text-left text-bold advance_top" id="" style="height:19px;" type="text" value=""></span>
+                                <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:377px; height:24px;">বর্তমান পাওনা = </span>
+                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input readonly class="text-right total_payable" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                            </div>
+                            <div class="m-0" style="padding:0;">
+                                <span class="border_bottom pl-1" style="display:inline-block; width:250px;">পরিশোধ = <input class="text-left text-bold paid_amount sum_right" id="" style="height:19px;" type="text" value=""></span>
+                                <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:377px; height:24px;">বাকী = </span>
+                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="due_amount" readonly class="text-right due_amount" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                            </div>
+                            <div class="m-0 font-weight-bold border_bottom pl-1">
+                                মেকানিকের নামঃ
+                                <select class="custom_dropdown load_employee" name="mechanic_id" style="width:200px;">
+
+                                </select>
+                            </div>
+                            <p class="m-0 pl-1" style="height:90px;">আমি গাড়ি মেরামতের কাজে সন্তুষ্ট এবং গাড়ি ভালভাবে বুঝে ডেলিভারী নিলাম।
+                            </p>
+                            <div class="m-0 border_bottom" style="padding-left:11px; width:100%;">
+                                <span>তারিখ:</span>
+                                <span style="margin-left:400px;">গ্রাহকের স্বাক্ষর:</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top:20px;">
+                    <p class="m-0 font-weight-bold text-center border_top border_bottom">
+                        কাস্টমার ফিডব্যাক (সি এস আই ইনডেক্স) ফরম
+                    </p>
+                    <div class="m-0 border_bottom pl-1" style="border-top:0;">
+                        <span style="border-right:1px solid; display: inline-block; width: 330px;">1. আমাদের সার্ভিস স্টাফদের থেকে কেমন ব্যবহার পেলেন?</span>
+                        <div style="display:inline-block; width: 179px;" class="text-center border_right">
+                            <select class="custom_dropdown required" name="stuff_behavior" style="width:72px; height:21px;" id="service_type">
+                                <option value="khub_valo">খুব ভাল</option>
+                                <option value="darun">দারুন</option>
+                                <option value="valo">ভাল</option>
+                                <option value="motamoti">মোটামুটি</option>
+                            </select>
+                        </div>
+                        <span style="border-right:1px solid; display: inline-block; width: 467px;">4. মোটর সাইকেলের সমস্যাগুলো সমাধান হয়েছে কি?</span>
+                        <div style="display:inline-block; width: 112px;" class="text-center">
+                            <select class="custom_dropdown required" name="mc_problem_solved" style="width:37px; height:21px;" id="service_type">
+                                <option value="yes">হ্যাঁ</option>
+                                <option value="no">না</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="m-0 border_bottom pl-1" style="border-top:0;">
+                        <span style="border-right:1px solid; display: inline-block; width: 330px;">2. সার্ভিস সেন্টারের পরিস্কার পরিচ্ছন্নতা কেমন দেখতে পেলেন?</span>
+                        <div style="display:inline-block; width: 179px;" class="text-center border_right">
+                            <select class="custom_dropdown required" name="service_center_is_clean" style="width:72px; height:21px;" id="service_type">
+                                <option value="khub_valo">খুব ভাল</option>
+                                <option value="darun">দারুন</option>
+                                <option value="valo">ভাল</option>
+                                <option value="motamoti">মোটামুটি</option>
+                            </select>
+                        </div>
+                        <span style="border-right:1px solid; display: inline-block; width: 467px;">5. সঠিক সময়ে গাড়িটি ডেলিভারী পেয়েছেন কি?</span>
+                        <div style="display:inline-block; width: 112px;" class="text-center">
+                            <select class="custom_dropdown required" name="mc_delivery_done" style="width:37px; height:21px;" id="service_type">
+                                <option value="yes">হ্যাঁ</option>
+                                <option value="no">না</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="m-0 border_bottom pl-1" style="border-top:0;">
+                        <span style="border-right:1px solid; display: inline-block; width: 330px;">3. গাড়ির সম্পাদিত কাজ সম্পর্কে আপনি অবহিত আছেন কি?</span>
+                        <div style="display:inline-block; width: 179px;" class="text-center border_right">
+                            <select class="custom_dropdown required" name="garir_sompadito_kaj" style="width:72px; height:21px;" id="service_type">
+                                <option value="yes">হ্যাঁ</option>
+                                <option value="no">না</option>
+                            </select>
+                        </div>
+                        <span style="border-right:1px solid; display: inline-block; width: 467px;">6. আপনার বন্ধু/আত্নীয়কে আমাদের সার্ভিস সেন্টারে আসতে সুপারিশ করবেন কি?</span>
+                        <div style="display:inline-block; width: 112px;" class="text-center">
+                            <select class="custom_dropdown required" name="recomend_our_service_center" style="width:37px; height:21px;" id="service_type">
+                                <option value="yes">হ্যাঁ</option>
+                                <option value="no">না</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="m-0 pl-1" style="border-top:0;">
+                        <span style="border-right:0; display: inline-block; height:19px;">7. আপনার মূল্যবান পরামর্শ/মন্তব্য থাকলে লিখুন।</span><textarea name="customer_suggestion" style="height:19px; width:840px; margin-bottom:-3px;"></textarea>
+                    </div>
+                    <div class="m-0 border_bottom" style="padding-left:375px; width:100%; padding-top:30px;">
+                        <span>তারিখ:</span>
+                        <span style="margin-left:400px;">গ্রাহকের স্বাক্ষর:</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <div class="d-flex align-items-center p-1 border_bottom" style="width:15%; border-right:1px solid;">
+                            <img src="{{URL('/images/uml_logo.png')}}" class="img-fluid p-1">
+                        </div>
+                        <div class="text-center p-1 border_bottom" style="width:50%; border-right:1px solid;">
+                            <p class="m-0 font-weight-bold h3 border_bottom"><span class="fs-4">ডিলারের নাম: </span>বাজাজ পয়েন্ট (বাজাজ সার্ভিস সেন্টার)</p>
+                            <p class="m-0 font-weight-bold">400/বি, মালিবাগ চৌধুরী পাড়া, ঢাকা-1219</p>
+                            <p class="m-0 font-weight-bold">মোবাইল: 01680 365 200, 01813 551 621</p>
+                        </div>
+                        <div class="align-middle p-1 border_bottom" style="width:20%; border-right:1px solid;">
+                            <p class="m-0 font-weight-bold border_bottom" style="height:30px;">জব কার্ড নং:<input name="" class="job_card_no_bottom" name="" style="display:inline-block; height:24px; width:100px; font-weight:bold; font-size:16px; padding-left:8px;" type="text" /></p>
+                            <p class="m-0 font-weight-bold">জব কার্ড তারিখ:<input name="" class="pl-2 job_card_date_bottom font-weight-bold" style="display:inline-block; height:24px; width:100px;" type="date" /></p>
+                        </div>
+                        <div class="d-flex align-items-center p-1 border_bottom" style="width:15%;">
+                            <img src="{{URL('/images/bajaj_logo.png')}}" class="img-fluid p-1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="m-0 border_bottom" style="padding-left:11px;">
+                            <span style="display:inline-block; width:375px;">গাড়ির রেজিঃ নং:<span style="margin-left:10px;" class="rg_number_bottom text-bold"></span></span>
+                            <span class="border_right" style="display:inline-block; width:327px;">গাড়ির মডেল: <span class="mc_model_bottom text-bold"></span></span>
+                            <span>অগ্রিম:<span class="advance_bottom text-bold"></span></span>
+                        </div>
+                        <div class="m-0" style="padding-left:11px;">
+                            <span style="display:inline-block; width:375px;">ইঞ্জিন নং:
+                                <span class="engine_no_bottom text-bold"></span>
+                            </span>
+                            <span class="border_right" style="display:inline-block; width:327px; height:40px;">চেসিস নং:
+                                <span class="chassis_no_bottom text-bold"></span>
+                            </span>
+                            <span class="border_bottom" style="display:inline-block; width:382px; height:40px;">ওয়ার্কশপ ইরচার্জ:</span>
+                        </div>
+                        <div class="m-0" style="padding-left:11px;">
+                            <span class="border_right" style="display:inline-block; width:705px; text-align:right; height:40px; padding-right:10px;">গাড়িটি ডেলিভারীর অনুমতি দেওয়া হল।</span>
+                            <span style="display:inline-block; width:382px; height:40px;">ক্যাশিয়ারের স্বাক্ষর:</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-header no-print">
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
+                        <h4 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px;">জব কার্ড</h4>
+                        <nav aria-label="Page navigation example" style="display:inline-block; width:100%;">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item active"><a class="page-link" href="#">First</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                                <li class="page-item"><a class="page-link" href="#">New</a></li>
+                                <li class="page-item print"><a class="page-link" href="#">Print</a></li>
+                                <i class="page-link fa fa-refresh" aria-hidden="true"></i>
+                                <input class="page-item page-link bg-dark" type="submit" value="Submit" />
+                                <a href="#" class="page-item page-link bg-dark" id="delivery_done">Delivery Done</a>
+                                <a href="#" class="page-item page-link bg-dark" id="create_bill">Create Bill</a>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
         </form>
-        <div class="m-0" style="padding:0;">
-            <span class="pl-1 text-left border_bottom border_right" style="display:inline-block; width:630px; height:24px;">পেইড সার্ভিস</span>
-            <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="paid_service_charge" class="text-right total_right sum_right" id="paid_service" style="width:100%; height:19px;" type="text" value=""></span>
-        </div>
-        <div class="m-0" style="padding:0;">
-            <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">মোট = </span>
-            <span class="text-right border_bottom total_bottom" style="display:inline-block; width:105px; height:24px;"></span>
-        </div>
-        <div class="m-0" style="padding:0;">
-            <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">ডিসকাউন্ট =</span>
-            <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="discount" class="text-right discount sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
-        </div>
-
-        <div class="m-0" style="padding:0;">
-            <span class="pl-1 text-right pr-1 border_bottom border_right" style="display:inline-block; width:630px; height:24px;">সর্বমোট =</span>
-            <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input readonly class="text-right grand_total" id="" style="width:100%; height:19px;" type="text" value=""></span>
-        </div>
-        <div class="m-0" style="padding:0;">
-            <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">ভ্যাট = </span>
-            <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="vat" class="text-right vat sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
-        </div>
-        <div class="m-0" style="padding:0;">
-            <span class="border_bottom pl-1" style="display:inline-block; width:250px;">অগ্রীম = <input class="text-left text-bold advance_top" id="" style="height:19px;" type="text" value=""></span>
-            <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:377px; height:24px;">বর্তমান পাওনা = </span>
-            <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input readonly class="text-right total_payable" id="" style="width:100%; height:19px;" type="text" value=""></span>
-        </div>
-        <div class="m-0" style="padding:0;">
-            <span class="border_bottom pl-1" style="display:inline-block; width:250px;">পরিশোধ = <input class="text-left text-bold paid_amount sum_right" id="" style="height:19px;" type="text" value=""></span>
-            <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:377px; height:24px;">বাকী = </span>
-            <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="due_amount" readonly class="text-right due_amount" id="" style="width:100%; height:19px;" type="text" value=""></span>
-        </div>
-        <div class="m-0 font-weight-bold border_bottom pl-1">
-            মেকানিকের নামঃ
-            <select class="custom_dropdown load_employee" name="mechanic_id" style="width:200px;">
-
-            </select>
-        </div>
-        <p class="m-0 pl-1" style="height:90px;">আমি গাড়ি মেরামতের কাজে সন্তুষ্ট এবং গাড়ি ভালভাবে বুঝে ডেলিভারী নিলাম।
-        </p>
-        <div class="m-0 border_bottom" style="padding-left:11px; width:100%;">
-            <span>তারিখ:</span>
-            <span style="margin-left:400px;">গ্রাহকের স্বাক্ষর:</span>
-        </div>
     </div>
 </div>
 </div>
-<div style="margin-top:20px;">
-    <p class="m-0 font-weight-bold text-center border_top border_bottom">
-        কাস্টমার ফিডব্যাক (সি এস আই ইনডেক্স) ফরম
-    </p>
-    <div class="m-0 border_bottom pl-1" style="border-top:0;">
-        <span style="border-right:1px solid; display: inline-block; width: 330px;">1. আমাদের সার্ভিস স্টাফদের থেকে কেমন ব্যবহার পেলেন?</span>
-        <div style="display:inline-block; width: 179px;" class="text-center border_right">
-            <select class="custom_dropdown required" name="stuff_behavior" style="width:72px; height:21px;" id="service_type">
-                <option value="khub_valo">খুব ভাল</option>
-                <option value="darun">দারুন</option>
-                <option value="valo">ভাল</option>
-                <option value="motamoti">মোটামুটি</option>
-            </select>
-        </div>
-        <span style="border-right:1px solid; display: inline-block; width: 467px;">4. মোটর সাইকেলের সমস্যাগুলো সমাধান হয়েছে কি?</span>
-        <div style="display:inline-block; width: 112px;" class="text-center">
-            <select class="custom_dropdown required" name="mc_problem_solved" style="width:37px; height:21px;" id="service_type">
-                <option value="yes">হ্যাঁ</option>
-                <option value="no">না</option>
-            </select>
-        </div>
-    </div>
-    <div class="m-0 border_bottom pl-1" style="border-top:0;">
-        <span style="border-right:1px solid; display: inline-block; width: 330px;">2. সার্ভিস সেন্টারের পরিস্কার পরিচ্ছন্নতা কেমন দেখতে পেলেন?</span>
-        <div style="display:inline-block; width: 179px;" class="text-center border_right">
-            <select class="custom_dropdown required" name="service_center_is_clean" style="width:72px; height:21px;" id="service_type">
-                <option value="khub_valo">খুব ভাল</option>
-                <option value="darun">দারুন</option>
-                <option value="valo">ভাল</option>
-                <option value="motamoti">মোটামুটি</option>
-            </select>
-        </div>
-        <span style="border-right:1px solid; display: inline-block; width: 467px;">5. সঠিক সময়ে গাড়িটি ডেলিভারী পেয়েছেন কি?</span>
-        <div style="display:inline-block; width: 112px;" class="text-center">
-            <select class="custom_dropdown required" name="mc_delivery_done" style="width:37px; height:21px;" id="service_type">
-                <option value="yes">হ্যাঁ</option>
-                <option value="no">না</option>
-            </select>
-        </div>
-    </div>
-    <div class="m-0 border_bottom pl-1" style="border-top:0;">
-        <span style="border-right:1px solid; display: inline-block; width: 330px;">3. গাড়ির সম্পাদিত কাজ সম্পর্কে আপনি অবহিত আছেন কি?</span>
-        <div style="display:inline-block; width: 179px;" class="text-center border_right">
-            <select class="custom_dropdown required" name="garir_sompadito_kaj" style="width:72px; height:21px;" id="service_type">
-                <option value="yes">হ্যাঁ</option>
-                <option value="no">না</option>
-            </select>
-        </div>
-        <span style="border-right:1px solid; display: inline-block; width: 467px;">6. আপনার বন্ধু/আত্নীয়কে আমাদের সার্ভিস সেন্টারে আসতে সুপারিশ করবেন কি?</span>
-        <div style="display:inline-block; width: 112px;" class="text-center">
-            <select class="custom_dropdown required" name="recomend_our_service_center" style="width:37px; height:21px;" id="service_type">
-                <option value="yes">হ্যাঁ</option>
-                <option value="no">না</option>
-            </select>
-        </div>
-    </div>
-    <div class="m-0 pl-1" style="border-top:0;">
-        <span style="border-right:0; display: inline-block; height:19px;">7. আপনার মূল্যবান পরামর্শ/মন্তব্য থাকলে লিখুন।</span><textarea name="customer_suggestion" style="height:19px; width:840px; margin-bottom:-3px;"></textarea>
-    </div>
-    <div class="m-0 border_bottom" style="padding-left:375px; width:100%; padding-top:30px;">
-        <span>তারিখ:</span>
-        <span style="margin-left:400px;">গ্রাহকের স্বাক্ষর:</span>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12 d-flex justify-content-center">
-        <div class="d-flex align-items-center p-1 border_bottom" style="width:15%; border-right:1px solid;">
-            <img src="{{URL('/images/uml_logo.png')}}" class="img-fluid p-1">
-        </div>
-        <div class="text-center p-1 border_bottom" style="width:50%; border-right:1px solid;">
-            <p class="m-0 font-weight-bold h3 border_bottom"><span class="fs-4">ডিলারের নাম: </span>বাজাজ পয়েন্ট (বাজাজ সার্ভিস সেন্টার)</p>
-            <p class="m-0 font-weight-bold">400/বি, মালিবাগ চৌধুরী পাড়া, ঢাকা-1219</p>
-            <p class="m-0 font-weight-bold">মোবাইল: 01680 365 200, 01813 551 621</p>
-        </div>
-        <div class="align-middle p-1 border_bottom" style="width:20%; border-right:1px solid;">
-            <p class="m-0 font-weight-bold border_bottom" style="height:30px;">জব কার্ড নং:<input name="" class="job_card_no_bottom" name="" style="display:inline-block; height:24px; width:100px; font-weight:bold; font-size:16px; padding-left:8px;" type="text" /></p>
-            <p class="m-0 font-weight-bold">জব কার্ড তারিখ:<input name="" class="pl-2 job_card_date_bottom font-weight-bold" style="display:inline-block; height:24px; width:100px;" type="date" /></p>
-        </div>
-        <div class="d-flex align-items-center p-1 border_bottom" style="width:15%;">
-            <img src="{{URL('/images/bajaj_logo.png')}}" class="img-fluid p-1">
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="m-0 border_bottom" style="padding-left:11px;">
-            <span style="display:inline-block; width:375px;">গাড়ির রেজিঃ নং:<span style="margin-left:10px;" class="rg_number_bottom text-bold"></span></span>
-            <span class="border_right" style="display:inline-block; width:327px;">গাড়ির মডেল: <span class="mc_model_bottom text-bold"></span></span>
-            <span>অগ্রিম:<span class="advance_bottom text-bold"></span></span>
-        </div>
-        <div class="m-0" style="padding-left:11px;">
-            <span style="display:inline-block; width:375px;">ইঞ্জিন নং:
-                <span class="engine_no_bottom text-bold"></span>
-            </span>
-            <span class="border_right" style="display:inline-block; width:327px; height:40px;">চেসিস নং:
-                <span class="chassis_no_bottom text-bold"></span>
-            </span>
-            <span class="border_bottom" style="display:inline-block; width:382px; height:40px;">ওয়ার্কশপ ইরচার্জ:</span>
-        </div>
-        <div class="m-0" style="padding-left:11px;">
-            <span class="border_right" style="display:inline-block; width:705px; text-align:right; height:40px; padding-right:10px;">গাড়িটি ডেলিভারীর অনুমতি দেওয়া হল।</span>
-            <span style="display:inline-block; width:382px; height:40px;">ক্যাশিয়ারের স্বাক্ষর:</span>
-        </div>
-    </div>
-</div>
-</div>
-<div class="card-header no-print">
-    <div class="row">
-        <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
-            <h4 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px;">জব কার্ড</h4>
-            <nav aria-label="Page navigation example" style="display:inline-block; width:100%;">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item active"><a class="page-link" href="#">First</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Last</a></li>
-                    <li class="page-item"><a class="page-link" href="#">New</a></li>
-                    <li class="page-item print"><a class="page-link" href="#">Print</a></li>
-                    <i class="page-link fa fa-refresh" aria-hidden="true"></i>
-                    <input class="page-item page-link bg-dark" type="submit" value="Submit" />
-                    <a href="#" class="page-item page-link bg-dark" id="delivery_done">Delivery Done</a>
-                    <a href="#" class="page-item page-link bg-dark" id="create_bill">Create Bill</a>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</div>
-</form>
-</div>
-</div>
-</div>
-
 @endsection
 @section('script')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -689,14 +690,67 @@
             alert('ok');
             e.preventDefault();
         });
-        $('#delivery_done').click(function(e) {
-            e.preventDefault();
-            $('#spare_parts').submit();
-        });
+
         $('#spare_parts').submit(function(e) {
             e.preventDefault();
             const FD = new FormData(this);
             console.log(FD);
+
+        });
+
+        $("#delivery_done").click(function(ev) {
+            let part_id = [];
+            let quantity = [];
+            let sale_rate = [];
+
+            $("input[name='part_id[]']").each(function() {
+                if ($(this).val() != '') {
+                    part_id.push($(this).val());
+                }
+            });
+            $("input[name='quantity[]']").each(function() {
+                if ($(this).val() != '') {
+                    quantity.push($(this).val());
+                }
+            });
+            $("input[name='sale_rate[]']").each(function() {
+                if ($(this).val() != '') {
+                    sale_rate.push($(this).val());
+                }
+            });
+
+            $.ajax({
+                url: "{{ route('job_card.create') }}",
+                method: 'post',
+                data: {
+                    part_id: part_id,
+                    quantity: quantity,
+                    sale_rate: sale_rate,
+                    _token: "{{ csrf_token() }}"
+                },
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response);
+                    return;
+                    if (response.status == 200) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                        $('#job_card_create').trigger("reset");
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message,
+                            footer: '<a href="">Why do I have this issue?</a>'
+                        })
+
+                    }
+                }
+            });
 
         });
     });

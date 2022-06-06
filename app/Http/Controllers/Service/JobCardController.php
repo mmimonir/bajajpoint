@@ -57,6 +57,10 @@ class JobCardController extends Controller
 
     public function create_job_card(Request $request)
     {
+        return response()
+            ->json(
+                $request->all()
+            );
         // dd($request->all());
         // check if customer already exists, if exists then return customer id
         $customer_id = $this->customer_name_already_exists($request, $request->mobile);
