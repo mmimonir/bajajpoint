@@ -61,8 +61,8 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <form action="{{route('job_card.create')}}" method="post" id="job_card_create">
-            <!-- <form action="#" method="POST" id="job_card_create"> -->
+        <!-- <form action="{{route('job_card.create')}}" method="post" id="job_card_create"> -->
+        <form action="#" method="POST" id="job_card_create">
             @csrf
             <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
                 <div class="card-header no-print">
@@ -122,7 +122,7 @@
                                 </p> -->
                                 <div class="m-0 border_bottom pl-1" style="height:25px;">
                                     <span>বিক্রয় তারিখ:
-                                        <input name="mc_sale_date" class="text-bold" style="width:30%; height:19px;" type="date">
+                                        <input name="mc_sale_date" class="text-bold mc_sale_date" style="width:30%; height:19px;" type="date">
                                     </span>
                                     <span>মাইলেজ:
                                         <input name="mileage" class="text-bold" style="width:30%; height:19px;" type="text">
@@ -419,17 +419,28 @@
                     mobile: mobile,
                 },
                 success: function(response) {
-                    if (response.status == 'success') {
-                        Swal.fire({
-                            title: 'Success',
-                            text: 'এই মোবাইল নম্বরটি ইতিমধ্যে নিবন্ধিত হয়েছে।',
-                            type: 'success',
-                            confirmButtonText: 'ঠিক আছে'
-                        });
-                        console.log(response.data.client_name);
-                        $('.client_name').val(response.data.client_name);
-                        $('.mobile').val(response.data.mobile);
-                        $('.address').val(response.data.address);
+                    console.log(response);
+                    if (response.status == 'service') {
+                        console.log(response.service_data.client_name);
+                        $('.client_name').val(response.service_data.client_name);
+                        $('.mobile').val(response.service_data.mobile);
+                        $('.address').val(response.service_data.address);
+                        $('.engine_no_top').val(response.service_data.engine_no).trigger('change');
+                        $('.chassis_no_top').val(response.service_data.chassis_no).trigger('change');
+                        $('.mc_sale_date').val(response.service_data.mc_sale_date);
+                        $('.rg_number_top').val(response.service_data.rg_number).trigger('change');
+                        $('#mc_model_name').val(response.service_data.model_code).trigger('change');
+                    }
+                    if (response.status == 'showroom') {
+                        console.log(response.showroom_data.client_name);
+                        $('.client_name').val(response.showroom_data.customer_name);
+                        $('.mobile').val(response.showroom_data.mobile);
+                        $('.address').val(response.showroom_data.address_two);
+                        $('.engine_no_top').val(response.showroom_data.five_engine).trigger('change');
+                        $('.chassis_no_top').val(response.showroom_data.five_chassis).trigger('change');
+                        $('.mc_sale_date').val(response.showroom_data.original_sale_date);
+                        $('.rg_number_top').val(response.showroom_data.rg_number).trigger('change');
+                        $('#mc_model_name').val(response.showroom_data.model_code).trigger('change');
                     }
                 }
             });
@@ -489,13 +500,13 @@
         $('.job_card_no_top').on('keyup', function() {
             $('.job_card_no_bottom').val($(this).val());
         });
-        $('.rg_number_top').on('keyup', function() {
+        $('.rg_number_top').on('change', function() {
             $('.rg_number_bottom').text($(this).val());
         });
-        $('.engine_no_top').on('keyup', function() {
+        $('.engine_no_top').on('change', function() {
             $('.engine_no_bottom').text($(this).val());
         });
-        $('.chassis_no_top').on('keyup', function() {
+        $('.chassis_no_top').on('change', function() {
             $('.chassis_no_bottom').text($(this).val());
         });
         $('.job_card_date_top').on('change', function() {
@@ -646,7 +657,7 @@
         // Load employee Data End
 
         // Submit Create Job Card Start        
-        $("#job_card_creat").submit(function(e) {
+        $("#job_card_create").submit(function(e) {
             e.preventDefault();
             const FD = new FormData(this);
 

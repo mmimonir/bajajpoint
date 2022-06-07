@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Service\SparePartsSale;
 use App\Models\Service\ServiceCustomer;
 use App\Models\Service\SparePartsStock;
+use App\Models\Showroom\Core;
 
 class JobCardController extends Controller
 {
@@ -34,24 +35,66 @@ class JobCardController extends Controller
 
     public function customer_name_already_exists(Request $request)
     {
-        $customer_data = ServiceCustomer::select('*')->where('mobile', $request->mobile)->first();
-        if ($customer_data) {
+        // return response()->json($showroom_customer_data);
+        $service_customer_data = ServiceCustomer::rightJoin('job_cards', 'job_cards.customer_id', '=', 'service_customers.id')
+            ->rightJoin('vehicles', 'vehicles.model_code', '=', 'job_cards.model_code')
+            ->select(
+                'job_cards.model_code',
+                'job_cards.chassis_no',
+                'job_cards.engine_no',
+                'job_cards.rg_number',
+                'job_cards.mc_sale_date',
+                'service_customers.client_name',
+                'service_customers.mobile',
+                'service_customers.address',
+                'vehicles.model',
+            )
+            ->where('mobile', $request->mobile)
+            ->first();
+
+        $showroom_customer_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+            ->select(
+                'cores.customer_name',
+                'cores.five_chassis',
+                'cores.five_engine',
+                'cores.mobile',
+                'cores.original_sale_date',
+                'cores.rg_number',
+                'cores.address_two',
+                'vehicles.model',
+                'vehicles.model_code'
+            )
+            ->where('cores.mobile', "=", $request->mobile)
+            ->first();
+
+        if ($service_customer_data) {
             return response()
                 ->json(
                     [
                         'message' => 'Customer already exists.',
-                        'data' => $customer_data,
-                        'status' => 'success'
+                        'service_data' => $service_customer_data,
+                        'status' => 'service'
                     ]
                 );
         } else {
-            return response()
-                ->json(
-                    [
-                        'message' => 'Customer does not exists.',
-                        'status' => 'error'
-                    ]
-                );
+            if ($showroom_customer_data) {
+                return response()
+                    ->json(
+                        [
+                            'message' => 'Customer already exists.',
+                            'showroom_data' => $showroom_customer_data,
+                            'status' => 'showroom'
+                        ]
+                    );
+            } else {
+                return response()
+                    ->json(
+                        [
+                            'message' => 'Customer does not exists.',
+                            'status' => 404
+                        ]
+                    );
+            }
         }
     }
 
@@ -63,7 +106,6 @@ class JobCardController extends Controller
         if ($customer_data) {
             $customer_id = $customer_data->id;
         }
-        // dd($customer_data);
 
         // create customer if not exists and reassign customer id to variable
         if (!$customer_data) {
@@ -76,7 +118,7 @@ class JobCardController extends Controller
             $customer_id = $id;
         }
 
-        return response()->json($customer_data);
+        // return response()->json($customer_id);
         // create job card TODO: added bill id later, Our Customer?
         $jb_id = JobCard::create([
             'job_card_no' => $request->job_card_no,
@@ -111,6 +153,8 @@ class JobCardController extends Controller
             'paid_service_charge' => $request->paid_service_charge,
             'vat' => $request->vat,
         ])->id;
+        ServiceCustomer::where('id', $customer_id)->update(['completed_last_service_type' => $request->service_type]);
+        return response()->json($jb_id);
         // if job card has parts sale then create spare parts sale #TODO add bill id later
         // foreach ($request->part_id as $key => $value) {
         //     if ($request->part_id[$key] != null) {
