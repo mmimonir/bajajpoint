@@ -78,7 +78,7 @@
                                     <li class="page-item"><a class="page-link" href="#">New</a></li>
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                     <i class="page-link fa fa-refresh" aria-hidden="true"></i>
-                                    <input class="page-item page-link bg-dark" type="submit" value="Create JB" />
+                                    <input id="submit" class="page-item page-link bg-dark" type="submit" value="Create JB" />
                                     <a href="#" class="page-item page-link bg-dark" id="delivery_done">Delivery Done</a>
                                     <a href="#" class="page-item page-link bg-dark" id="create_bill">Create Bill</a>
                                 </ul>
@@ -99,7 +99,7 @@
                                 <p class="m-0 font-weight-bold">মোবাইল: 01680 365 200, 01813 551 621</p>
                             </div>
                             <div class="align-middle p-1" style="width:20%; border-right:1px solid;">
-                                <p class="m-0 font-weight-bold border_bottom" style="height:30px;">জব কার্ড নং:<input name="job_card_no" class="job_card_no_top required" style="display:inline-block; height:24px; width:100px; font-weight:bold; font-size:16px; padding-left:8px;" type="text" /></p>
+                                <p class="m-0 font-weight-bold border_bottom" style="height:30px;">জব কার্ড নং:<input name="job_card_no" class="job_card_no_top" style="display:inline-block; height:24px; width:100px; font-weight:bold; font-size:16px; padding-left:8px;" type="text" /></p>
                                 <p class="m-0 font-weight-bold">জব কার্ড তারিখ:<input name="job_card_date" class="pl-2 job_card_date_top font-weight-bold" style="display:inline-block; height:24px; width:100px;" type="date" /></p>
                             </div>
                             <div class="d-flex align-items-center p-1" style="width:15%;">
@@ -113,7 +113,7 @@
                                 <p class="m-0 font-weight-bold border_bottom border_top pl-1">গাড়ির বিবরণ</p>
                                 <p class="m-0 border_bottom pl-1">গাড়ির রেজিঃ নম্বর:<input name="rg_number" class="ml-1 rg_number_top text-bold" style="width:69%; height:19px;" type="text"></p>
                                 <div class="pl-1 m-0 border_bottom font-weight-bold" style="height:24px;">গাড়ির মডেল:
-                                    <select class="custom_dropdown required" name="model_code" style="width:284px; height:21px;" id="mc_model_name">
+                                    <select class="custom_dropdown" name="model_code" style="width:284px; height:21px;" id="mc_model_name">
                                         <option value="">Please Select A Model</option>
                                     </select>
                                 </div>
@@ -122,10 +122,10 @@
                                 </p> -->
                                 <div class="m-0 border_bottom pl-1" style="height:25px;">
                                     <span>বিক্রয় তারিখ:
-                                        <input name="mc_sale_date" class="text-bold required" style="width:30%; height:19px;" type="date">
+                                        <input name="mc_sale_date" class="text-bold" style="width:30%; height:19px;" type="date">
                                     </span>
                                     <span>মাইলেজ:
-                                        <input name="mileage" class="text-bold required" style="width:30%; height:19px;" type="text">
+                                        <input name="mileage" class="text-bold" style="width:30%; height:19px;" type="text">
                                     </span>
                                 </div>
                                 <p class="m-0 border_bottom pl-1">
@@ -134,7 +134,7 @@
                                 </p>
                                 <div class="m-0 border_bottom pl-1" style="height:24px;">
                                     <span style="margin-right:25px;">সার্ভিসের ধরণ:</span>
-                                    <select class="custom_dropdown required" name="service_type" style="width:255px; height:21px;" id="service_type">
+                                    <select class="custom_dropdown" name="service_type" style="width:255px; height:21px;" id="service_type">
                                         <option value="">Please Select A Service Type</option>
                                         <option value="paid">Paid Service</option>
                                         <option value="first_free">1st Free Service</option>
@@ -145,7 +145,7 @@
                                 </div>
                                 <div class="m-0 border_bottom pl-1" style="height:24px;">
                                     <span style="margin-right:25px;">কাজের ধরণ:</span>
-                                    <select class="custom_dropdown required" name="work_type" style="width:262px; height:21px;" id="service_type">
+                                    <select class="custom_dropdown" name="work_type" style="width:262px; height:21px;" id="service_type">
                                         <option value="">Please Select A Service Type</option>
                                         <option value="minor">মাইনর মেরামত</option>
                                         <option value="major">মেজর মেরামত</option>
@@ -173,29 +173,29 @@
                                 </p>
                             </div>
                             <div class="col-md-8 pl-0">
-                                <p class="pl-1 border_bottom border_top m-0 font-weight-bold">গ্রাহকের নাম:<input name="client_name" class="ml-1 text-bold client_name required" style="width:89%; height:19px; border:0px;" type="text"></p>
+                                <p class="pl-1 border_bottom border_top m-0 font-weight-bold">গ্রাহকের নাম:<input name="client_name" class="ml-1 text-bold client_name" style="width:89%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0">ঠিকানা:<input name="address" class="ml-1 text-bold address" style="width:93%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0">-</p>
                                 <p class="pl-1 border_bottom m-0">টেলিফোন নম্বর:<input name="mobile" class="ml-1 mobile text-bold" style="width:30%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0 font-weight-bold">গাড়ি পর্যবেক্ষণের বিবরণ:</p>
                                 <div class="pl-1 border_bottom m-0" style="height:24px;">
                                     <span>ফুয়েলের পরিমাণ:
-                                        <input name="amount_of_fuel" class="ml-1 required" style="width:145px; height:20px; margin-right:50px;" type="text">
+                                        <input name="amount_of_fuel" class="ml-1" style="width:145px; height:20px; margin-right:50px;" type="text">
                                     </span>
                                     <span style="margin-right:25px;">ফুয়েল ট্যাংকে দাগ আছে কিনা?</span>
-                                    <select class="custom_dropdown required" name="any_scratch_in_tank" style="width:36px; height:21px;" id="service_type">
+                                    <select class="custom_dropdown" name="any_scratch_in_tank" style="width:36px; height:21px;" id="service_type">
                                         <option value="no">না</option>
                                         <option value="yes">হ্যাঁ</option>
                                     </select>
                                 </div>
                                 <div class="m-0 border_bottom pl-1" style="height:24px;">
                                     <span style="margin-right:20px;">ইন্ডিকেটরের লেন্স ভাঙ্গা কিনা?</span>
-                                    <select class="custom_dropdown required" name="indicator_is_broken" style="width:36px; height:21px;" id="service_type">
+                                    <select class="custom_dropdown" name="indicator_is_broken" style="width:36px; height:21px;" id="service_type">
                                         <option value="no">না</option>
                                         <option value="yes">হ্যাঁ</option>
                                     </select>
                                     <span style="margin-right:20px; margin-left:25px;">হেডলাইটে দাগ আছে কিনা?</span>
-                                    <select class="custom_dropdown required" name="any_scratch_in_headlight" style="width:36px; height:21px;" id="service_type">
+                                    <select class="custom_dropdown" name="any_scratch_in_headlight" style="width:36px; height:21px;" id="service_type">
                                         <option value="no">না</option>
                                         <option value="yes">হ্যাঁ</option>
                                     </select>
@@ -271,7 +271,7 @@
                     <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">1. আমাদের সার্ভিস স্টাফদের থেকে কেমন ব্যবহার পেলেন?</span>
                         <div style="display:inline-block; width: 179px;" class="text-center border_right">
-                            <select class="custom_dropdown required" name="stuff_behavior" style="width:72px; height:21px;" id="service_type">
+                            <select class="custom_dropdown" name="stuff_behavior" style="width:72px; height:21px;" id="service_type">
                                 <option value="khub_valo">খুব ভাল</option>
                                 <option value="darun">দারুন</option>
                                 <option value="valo">ভাল</option>
@@ -280,7 +280,7 @@
                         </div>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">4. মোটর সাইকেলের সমস্যাগুলো সমাধান হয়েছে কি?</span>
                         <div style="display:inline-block; width: 112px;" class="text-center">
-                            <select class="custom_dropdown required" name="mc_problem_solved" style="width:37px; height:21px;" id="service_type">
+                            <select class="custom_dropdown" name="mc_problem_solved" style="width:37px; height:21px;" id="service_type">
                                 <option value="yes">হ্যাঁ</option>
                                 <option value="no">না</option>
                             </select>
@@ -289,7 +289,7 @@
                     <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">2. সার্ভিস সেন্টারের পরিস্কার পরিচ্ছন্নতা কেমন দেখতে পেলেন?</span>
                         <div style="display:inline-block; width: 179px;" class="text-center border_right">
-                            <select class="custom_dropdown required" name="service_center_is_clean" style="width:72px; height:21px;" id="service_type">
+                            <select class="custom_dropdown" name="service_center_is_clean" style="width:72px; height:21px;" id="service_type">
                                 <option value="khub_valo">খুব ভাল</option>
                                 <option value="darun">দারুন</option>
                                 <option value="valo">ভাল</option>
@@ -298,7 +298,7 @@
                         </div>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">5. সঠিক সময়ে গাড়িটি ডেলিভারী পেয়েছেন কি?</span>
                         <div style="display:inline-block; width: 112px;" class="text-center">
-                            <select class="custom_dropdown required" name="mc_delivery_done" style="width:37px; height:21px;" id="service_type">
+                            <select class="custom_dropdown" name="mc_delivery_done" style="width:37px; height:21px;" id="service_type">
                                 <option value="yes">হ্যাঁ</option>
                                 <option value="no">না</option>
                             </select>
@@ -307,14 +307,14 @@
                     <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">3. গাড়ির সম্পাদিত কাজ সম্পর্কে আপনি অবহিত আছেন কি?</span>
                         <div style="display:inline-block; width: 179px;" class="text-center border_right">
-                            <select class="custom_dropdown required" name="garir_sompadito_kaj" style="width:72px; height:21px;" id="service_type">
+                            <select class="custom_dropdown" name="garir_sompadito_kaj" style="width:72px; height:21px;" id="service_type">
                                 <option value="yes">হ্যাঁ</option>
                                 <option value="no">না</option>
                             </select>
                         </div>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">6. আপনার বন্ধু/আত্নীয়কে আমাদের সার্ভিস সেন্টারে আসতে সুপারিশ করবেন কি?</span>
                         <div style="display:inline-block; width: 112px;" class="text-center">
-                            <select class="custom_dropdown required" name="recomend_our_service_center" style="width:37px; height:21px;" id="service_type">
+                            <select class="custom_dropdown" name="recomend_our_service_center" style="width:37px; height:21px;" id="service_type">
                                 <option value="yes">হ্যাঁ</option>
                                 <option value="no">না</option>
                             </select>
@@ -644,39 +644,53 @@
         load_employee_data();
         // Load employee Data End
 
-        // Submit Create Job Card Start
+        // Submit Create Job Card Start        
         $("#job_card_create").submit(function(e) {
             e.preventDefault();
             const FD = new FormData(this);
-            $.ajax({
-                url: "{{ route('job_card.create') }}",
-                method: 'post',
-                data: FD,
-                dataType: 'json',
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    console.log(response);
-                    if (response.status == 200) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: response.message,
-                            showConfirmButton: false,
-                            timer: 2000
-                        })
-                        $('#job_card_create').trigger("reset");
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: response.message,
-                            footer: '<a href="">Why do I have this issue?</a>'
-                        })
-
+            $(this).validate({
+                rules: {
+                    client_name: {
+                        required: true
+                    },
+                },
+                messages: {
+                    client_name: {
+                        required: "Please enter client name"
                     }
                 }
-            });
+            })
+            if ($("#job_card_create").valid()) {
+                $.ajax({
+                    url: "{{ route('job_card.create') }}",
+                    method: 'post',
+                    data: FD,
+                    dataType: 'json',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        console.log(response);
+                        if (response.status == 200) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: response.message,
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
+                            $('#job_card_create').trigger("reset");
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: response.message,
+                                footer: '<a href="">Why do I have this issue?</a>'
+                            })
+
+                        }
+                    }
+                });
+            }
         });
         // Submit Create Job Card End
 
@@ -718,40 +732,42 @@
                     sale_rate.push($(this).val());
                 }
             });
+            if (part_id.length > 0) {
+                $.ajax({
+                    url: "{{ route('job_card.create') }}",
+                    method: 'post',
+                    data: {
+                        part_id: part_id,
+                        quantity: quantity,
+                        sale_rate: sale_rate,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        return;
+                        if (response.status == 200) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: response.message,
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
+                            $('#job_card_create').trigger("reset");
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: response.message,
+                                footer: '<a href="">Why do I have this issue?</a>'
+                            })
 
-            $.ajax({
-                url: "{{ route('job_card.create') }}",
-                method: 'post',
-                data: {
-                    part_id: part_id,
-                    quantity: quantity,
-                    sale_rate: sale_rate,
-                    _token: "{{ csrf_token() }}"
-                },
-                dataType: 'json',
-                success: function(response) {
-                    console.log(response);
-                    return;
-                    if (response.status == 200) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: response.message,
-                            showConfirmButton: false,
-                            timer: 2000
-                        })
-                        $('#job_card_create').trigger("reset");
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: response.message,
-                            footer: '<a href="">Why do I have this issue?</a>'
-                        })
-
+                        }
                     }
-                }
-            });
-
+                });
+            } else {
+                alert('Please select atleast one part');
+            }
         });
     });
 </script>
