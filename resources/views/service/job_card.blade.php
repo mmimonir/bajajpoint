@@ -61,8 +61,8 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <!-- <form action="{{route('job_card.create')}}" method="post" id="job_card_create"> -->
-        <form action="#" method="POST" id="job_card_create">
+        <form action="{{route('job_card.create')}}" method="post" id="job_card_create">
+            <!-- <form action="#" method="POST" id="job_card_create"> -->
             @csrf
             <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
                 <div class="card-header no-print">
@@ -78,7 +78,7 @@
                                     <li class="page-item"><a class="page-link" href="#">New</a></li>
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                     <i class="page-link fa fa-refresh" aria-hidden="true"></i>
-                                    <input id="submit" class="page-item page-link bg-dark" type="submit" value="Create JB" />
+                                    <button class="page-item page-link bg-dark" type="submit">Create JB</button>
                                     <a href="#" class="page-item page-link bg-dark" id="delivery_done">Delivery Done</a>
                                     <a href="#" class="page-item page-link bg-dark" id="create_bill">Create Bill</a>
                                 </ul>
@@ -173,10 +173,11 @@
                                 </p>
                             </div>
                             <div class="col-md-8 pl-0">
-                                <p class="pl-1 border_bottom border_top m-0 font-weight-bold">গ্রাহকের নাম:<input name="client_name" class="ml-1 text-bold client_name" style="width:89%; height:19px; border:0px;" type="text"></p>
+                                <p class="pl-1 border_bottom border_top m-0 font-weight-bold">টেলিফোন নম্বর:<input name="mobile" class="ml-1 text-bold mobile required" style="width:81px; height:19px; border:0px;" type="text"></p>
+                                <p class="pl-1 border_bottom m-0 font-weight-bold">গ্রাহকের নাম:<input name="client_name" class="ml-1 text-bold client_name required" style="width:89%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0">ঠিকানা:<input name="address" class="ml-1 text-bold address" style="width:93%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0">-</p>
-                                <p class="pl-1 border_bottom m-0">টেলিফোন নম্বর:<input name="mobile" class="ml-1 mobile text-bold" style="width:30%; height:19px; border:0px;" type="text"></p>
+                                <!-- <p class="pl-1 border_bottom m-0">টেলিফোন নম্বর:<input name="mobile" class="ml-1 mobile text-bold" style="width:30%; height:19px; border:0px;" type="text"></p> -->
                                 <p class="pl-1 border_bottom m-0 font-weight-bold">গাড়ি পর্যবেক্ষণের বিবরণ:</p>
                                 <div class="pl-1 border_bottom m-0" style="height:24px;">
                                     <span>ফুয়েলের পরিমাণ:
@@ -384,7 +385,7 @@
                                 <li class="page-item"><a class="page-link" href="#">New</a></li>
                                 <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                 <i class="page-link fa fa-refresh" aria-hidden="true"></i>
-                                <input class="page-item page-link bg-dark" type="submit" value="Submit" />
+                                <button class="page-item page-link bg-dark" type="submit">Create JB</button>
                                 <a href="#" class="page-item page-link bg-dark" id="delivery_done">Delivery Done</a>
                                 <a href="#" class="page-item page-link bg-dark" id="create_bill">Create Bill</a>
                             </ul>
@@ -409,7 +410,7 @@
         // Input Mask Js End
 
         // Check cusomer is already exist or not start
-        $('.mobile').on('blur', function() {
+        $('.mobile').on('change', function() {
             var mobile = $(this).val();
             $.ajax({
                 url: "{{route('job_card.check_customer')}}",
@@ -420,9 +421,9 @@
                 success: function(response) {
                     if (response.status == 'success') {
                         Swal.fire({
-                            title: 'দুঃখিত!',
+                            title: 'Success',
                             text: 'এই মোবাইল নম্বরটি ইতিমধ্যে নিবন্ধিত হয়েছে।',
-                            type: 'error',
+                            type: 'success',
                             confirmButtonText: 'ঠিক আছে'
                         });
                         console.log(response.data.client_name);
@@ -645,21 +646,10 @@
         // Load employee Data End
 
         // Submit Create Job Card Start        
-        $("#job_card_create").submit(function(e) {
+        $("#job_card_creat").submit(function(e) {
             e.preventDefault();
             const FD = new FormData(this);
-            $(this).validate({
-                rules: {
-                    client_name: {
-                        required: true
-                    },
-                },
-                messages: {
-                    client_name: {
-                        required: "Please enter client name"
-                    }
-                }
-            })
+
             if ($("#job_card_create").valid()) {
                 $.ajax({
                     url: "{{ route('job_card.create') }}",
@@ -700,75 +690,65 @@
             // $('#job_card_create').trigger("reset");
         });
         // Reset Form End
-        $('#create_bill').on('click', function(e) {
-            alert('ok');
-            e.preventDefault();
-        });
 
-        $('#spare_parts').submit(function(e) {
-            e.preventDefault();
-            const FD = new FormData(this);
-            console.log(FD);
 
-        });
+        // $("#delivery_done").click(function(ev) {
+        //     let part_id = [];
+        //     let quantity = [];
+        //     let sale_rate = [];
 
-        $("#delivery_done").click(function(ev) {
-            let part_id = [];
-            let quantity = [];
-            let sale_rate = [];
+        //     $("input[name='part_id[]']").each(function() {
+        //         if ($(this).val() != '') {
+        //             part_id.push($(this).val());
+        //         }
+        //     });
+        //     $("input[name='quantity[]']").each(function() {
+        //         if ($(this).val() != '') {
+        //             quantity.push($(this).val());
+        //         }
+        //     });
+        //     $("input[name='sale_rate[]']").each(function() {
+        //         if ($(this).val() != '') {
+        //             sale_rate.push($(this).val());
+        //         }
+        //     });
+        //     if (part_id.length > 0) {
+        //         $.ajax({
+        //             url: "{{ route('job_card.create') }}",
+        //             method: 'post',
+        //             data: {
+        //                 part_id: part_id,
+        //                 quantity: quantity,
+        //                 sale_rate: sale_rate,
+        //                 _token: "{{ csrf_token() }}"
+        //             },
+        //             dataType: 'json',
+        //             success: function(response) {
+        //                 console.log(response);
+        //                 return;
+        //                 if (response.status == 200) {
+        //                     Swal.fire({
+        //                         icon: 'success',
+        //                         title: response.message,
+        //                         showConfirmButton: false,
+        //                         timer: 2000
+        //                     })
+        //                     $('#job_card_create').trigger("reset");
+        //                 } else {
+        //                     Swal.fire({
+        //                         icon: 'error',
+        //                         title: 'Oops...',
+        //                         text: response.message,
+        //                         footer: '<a href="">Why do I have this issue?</a>'
+        //                     })
 
-            $("input[name='part_id[]']").each(function() {
-                if ($(this).val() != '') {
-                    part_id.push($(this).val());
-                }
-            });
-            $("input[name='quantity[]']").each(function() {
-                if ($(this).val() != '') {
-                    quantity.push($(this).val());
-                }
-            });
-            $("input[name='sale_rate[]']").each(function() {
-                if ($(this).val() != '') {
-                    sale_rate.push($(this).val());
-                }
-            });
-            if (part_id.length > 0) {
-                $.ajax({
-                    url: "{{ route('job_card.create') }}",
-                    method: 'post',
-                    data: {
-                        part_id: part_id,
-                        quantity: quantity,
-                        sale_rate: sale_rate,
-                        _token: "{{ csrf_token() }}"
-                    },
-                    dataType: 'json',
-                    success: function(response) {
-                        console.log(response);
-                        return;
-                        if (response.status == 200) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: response.message,
-                                showConfirmButton: false,
-                                timer: 2000
-                            })
-                            $('#job_card_create').trigger("reset");
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: response.message,
-                                footer: '<a href="">Why do I have this issue?</a>'
-                            })
-
-                        }
-                    }
-                });
-            } else {
-                alert('Please select atleast one part');
-            }
-        });
+        //                 }
+        //             }
+        //         });
+        //     } else {
+        //         alert('Please select atleast one part');
+        //     }
+        // });
     });
 </script>
 @endsection

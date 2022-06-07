@@ -32,17 +32,9 @@ class JobCardController extends Controller
         return $bill_no;
     }
 
-    public function customer_name_already_exists(Request $request, $mobile = null)
+    public function customer_name_already_exists(Request $request)
     {
-        $customer_mobile = $request->mobile;
-        if ($mobile != null) {
-            $customer_mobile = $mobile;
-        }
-        $customer_data = ServiceCustomer::select('*')
-            ->where('mobile', $customer_mobile)->first();
-        if ($mobile && $customer_data) {
-            return $customer_data->id;
-        }
+        $customer_data = ServiceCustomer::select('*')->where('mobile', $request->mobile)->first();
         if ($customer_data) {
             return response()
                 ->json(
@@ -52,20 +44,29 @@ class JobCardController extends Controller
                         'status' => 'success'
                     ]
                 );
+        } else {
+            return response()
+                ->json(
+                    [
+                        'message' => 'Customer does not exists.',
+                        'status' => 'error'
+                    ]
+                );
         }
     }
 
     public function create_job_card(Request $request)
     {
-        return response()
-            ->json(
-                $request->all()
-            );
-        // dd($request->all());
+        $customer_id = 0;
         // check if customer already exists, if exists then return customer id
-        $customer_id = $this->customer_name_already_exists($request, $request->mobile);
+        $customer_data = ServiceCustomer::select('*')->where('mobile', $request->mobile)->first();
+        if ($customer_data) {
+            $customer_id = $customer_data->id;
+        }
+        // dd($customer_data);
+
         // create customer if not exists and reassign customer id to variable
-        if (!$customer_id) {
+        if (!$customer_data) {
             $id = ServiceCustomer::create([
                 'client_name' => $request->client_name,
                 'mobile' => $request->mobile,
@@ -74,6 +75,8 @@ class JobCardController extends Controller
             ])->id;
             $customer_id = $id;
         }
+
+        return response()->json($customer_data);
         // create job card TODO: added bill id later, Our Customer?
         $jb_id = JobCard::create([
             'job_card_no' => $request->job_card_no,
