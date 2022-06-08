@@ -63,6 +63,8 @@ class PurchageController extends Controller
                         // 'vat_year_purchage' => $request->vat_year_purchage[$key],
                         'purchage_price' => $request->purchage_price[$key],
                         'vat_rebate' => $vat_rebate,
+                        'in_stock' => 'yes',
+                        'mc_location' => $request['mc_location'],
                     ];
                     if ($supplier_code == 2000 || $supplier_code == 2011 || $supplier_code == 2030) {
                         $edited_array_one = Arr::add($save_record, 'vat_month_purchage', $request->vat_month_purchage[$key]);
