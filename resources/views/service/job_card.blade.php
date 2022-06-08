@@ -697,8 +697,9 @@
 
         // Reset Form Start
         $('.fa-refresh').on('click', function() {
-            location.reload();
-            // $('#job_card_create').trigger("reset");
+            // location.reload();
+            $('#job_card_create').trigger("reset");
+            assign_job_card_sl_no();
         });
         // Reset Form End
 

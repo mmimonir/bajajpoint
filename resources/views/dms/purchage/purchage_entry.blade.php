@@ -85,6 +85,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="form-group mb-0 row">
+                                <label for="mc_location" class="col-sm-4 col-form-label">Location</label>
+                                <div class="col-sm-8">
+                                    <select name="mc_location" class="browser-default custom-select">
+                                        <option selected>Open this select menu</option>
+                                        <option value="BP">Bajaj Point</option>
+                                        <option value="BH">Bajaj Heaven</option>
+                                        <option value="BB">Bajaj Bloom</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-header"></div>
                     <table align="center" style="width:100%;" id="tbl">

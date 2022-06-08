@@ -392,6 +392,12 @@
                                             <input type="date" name="fake_sale_date" class="form-control form-control-sm" id="fake_sale_date2">
                                         </div>
                                     </div>
+                                    <div class="form-group row" style="margin-bottom:0px;">
+                                        <label for="in_stock" class="col-sm-3 col-form-label form-control-sm">In Stock</label>
+                                        <div class="col-sm-9" style="padding:0px;">
+                                            <input type="text" name="in_stock" class="form-control form-control-sm" id="in_stock">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer d-flex justify-content-center">

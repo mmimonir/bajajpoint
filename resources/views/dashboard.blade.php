@@ -322,6 +322,7 @@
             $('#vat_sale_date2').val(sale_date);
             $('#sale_date2').val(sale_date);
             $('#print_date2').val(sale_date);
+            $('#in_stock').val('no');
 
             var year = getCurrentFinancialYear(sale_date)
             var print_code = +$('#print_code2').val();
@@ -599,8 +600,9 @@
                     $('#note2').val(core_data.note);
                     $('#file_status2').val(core_data.file_status);
                     $('#updated_at2').val(core_data.updated_at);
-                    $('#vat_mrp2').val(pd_data.vat_mrp);
+                    $('#vat_mrp2').val(pd_data ? pd_data.vat_mrp : '');
                     $('#fake_sale_date2').val(core_data.fake_sale_date);
+                    $('#in_stock').val(core_data.in_stock);
                     $('#tr_number2').val(core_data.tr_number);
                     $('#tr_dep_date2').val(core_data.tr_dep_date);
                     $('#year_of_manufacture2').val(core_data.year_of_manufacture);
