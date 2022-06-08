@@ -426,22 +426,22 @@
                                 <td>${data.mobile ? data.mobile : ''}</td>
                                 <td>
                                     <div class="d-flex justify-content-center padd text-decoration btn-group">
-                                        <a href="/hform/${data.id}" target="_blank" class="btn-sm bg-dark">
+                                        <a href="showroom/hform/${data.id}" target="_blank" class="btn-sm bg-dark">
                                             Hform
                                         </a>
-                                        <a href="/brta_stamp/${data.id}" target="_blank" class="btn-sm bg-dark">
+                                        <a href="showroom/brta_stamp/${data.id}" target="_blank" class="btn-sm bg-dark">
                                             Stamp
                                         </a>
-                                        <a href="/gate_pass/${data.id}" target="_blank" class="btn-sm bg-dark">
+                                        <a href="showroom/gate_pass/${data.id}" target="_blank" class="btn-sm bg-dark">
                                             Gate Pass
                                         </a>
-                                        <a href="/single_file_print/${data.id}" target="_blank" class="btn-sm bg-dark">
+                                        <a href="showroom/single_file_print/${data.id}" target="_blank" class="btn-sm bg-dark">
                                             File Print
                                         </a>
                                         <a href="#" class="btn-sm bg-dark salesUpdate" id="${data.id}" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#salesUpdateModal">
                                             Edit
                                         </a>
-                                        <a href="/brta_assessment_form/${data.id}" target="_blank" class="btn-sm bg-dark">
+                                        <a href="showroom/brta_assessment_form/${data.id}" target="_blank" class="btn-sm bg-dark">
                                             Bank Slip
                                         </a>
                                         <a href="#" class="btn-sm bg-dark cusInfo" id="${data.id}" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#showModal">
