@@ -55,7 +55,7 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware', 'prefix' =>
     });
 
     // PDF
-    Route::controller(App\Http\Controllers\Showroom\PdfController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Showroom\PDFController::class)->group(function () {
         Route::get('/pdf_file_print',  'pdf_file_print')->name('pdf.file_print');
         Route::get('/hform/{id}',  'hform')->name('pdf.hform');
         Route::get('gate_pass/{id}',  'gate_pass')->name('pdf.gate_pass');
