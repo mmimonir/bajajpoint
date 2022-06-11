@@ -3,11 +3,7 @@
 namespace App\Http\Controllers\Showroom;
 
 
-use App\Models\Showroom\Core;
-use App\Models\Showroom\Helper;
-use App\Models\Showroom\Vehicle;
-use App\Models\Showroom\Purchage;
-use App\Models\Showroom\Supplier;
+use App\Models\Showroom\{Core, Helper, Purchage, Supplier};
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;

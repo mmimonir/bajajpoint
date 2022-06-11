@@ -14,13 +14,11 @@ class PrintController extends Controller
     public function print_dashboard()
     {
         $dealer = Supplier::select('dealer_name', 'supplier_code')->whereNotNull('dealer_name')->get();
-        // dd($dealer);
         return view('dms.print_dashboard')->with(['dealer' => $dealer]);
     }
     public function excel_dashboard()
     {
         $dealer = Supplier::select('dealer_name', 'supplier_code')->whereNotNull('dealer_name')->get();
-        // dd($dealer);
         return view('dms.excel_dashboard')->with(['dealer' => $dealer]);
     }
     public function customer_data(Request $request)
@@ -46,7 +44,6 @@ class PrintController extends Controller
             ->whereBetween('cores.original_sale_date', [$start_date, $end_date])
             ->orderBy('original_sale_date', 'asc')
             ->get();
-        // dd($customer_data);
 
         return view('dms.uml.customer_data')->with(['customer_data' => $customer_data]);
     }
@@ -92,9 +89,6 @@ class PrintController extends Controller
             ->get();
 
         return view('dms.pdf.file.print_file_html')->with(['print_data' => $print_data]);
-        // $pdf = PDF::loadView('dms.pdf.file.print_file', ['print_data' => $print_data]);
-        // $pdf->setPaper('A4', 'portrait');
-        // return $pdf->stream('bajaj_point.pdf');
     }
 
     function print_list(Request $request)
@@ -122,7 +116,7 @@ class PrintController extends Controller
                 ->get();
         }
         if (!empty($term['five_chassis'])) {
-            // $builder = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+
             $builder = Core::select(
                 'cores.id',
                 'cores.original_sale_date',
@@ -138,13 +132,6 @@ class PrintController extends Controller
             )
                 ->where('cores.five_chassis', "=", $term['five_chassis'])
                 ->get();
-
-            // $model_code = $builder->model_code;
-            // $model = Vehicle::select('model')->where('model_code', $model_code);
-            // dd($model_code);
-            // if ($model) {
-            //     array_push($builder, $model);
-            // }
         }
         if (!empty($term['five_engine'])) {
             $builder = Core::select(
@@ -163,25 +150,6 @@ class PrintController extends Controller
                 ->where('cores.five_engine', "=", $term['five_engine'])
                 ->get();
         }
-
-        // $five_chassis = $request->five_chassis;
-        // $five_engine = $request->five_engine;
-        // $print_lists = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
-
-        //     ->select(
-        //         'cores.id',
-        //         'cores.eight_chassis',
-        //         'cores.one_chassis',
-        //         'cores.three_chassis',
-        //         'cores.five_chassis',
-        //         'cores.six_engine',
-        //         'cores.five_engine',
-        //         'cores.customer_name',
-        //         'cores.mobile',
-        //         'vehicles.model'
-        //     )
-        //     ->where('cores.five_chassis', "=", $five_chassis)            
-        //     ->get();
 
         return view('dms.print_list', ['print_lists' => $builder]);
     }
@@ -207,7 +175,6 @@ class PrintController extends Controller
             )
             ->where('cores.id', "=", $request->id)
             ->get();
-        // return view('dms.html_print.brta.hform', ['print_data' => $print_data]);
 
         $pdf = PDF::loadView('dms.pdf.brta.hform', ['print_data' => $print_data]);
         $pdf->setPaper('A4', 'portrait');
@@ -309,8 +276,6 @@ class PrintController extends Controller
                 ->get();
         }
         return response()->json($builder);
-        // dd($builder);
-        // return view('dms.print_list', ['print_lists' => $builder]);
     }
     public function brta_assessment_form($id)
     {
@@ -331,7 +296,7 @@ class PrintController extends Controller
                 'vehicles.ladan_weight',
                 'vehicles.cubic_capacity',
             )->where('cores.id', $id)->first();
-        // dd($core_data);
+
         return view('dms.html_print.brta.assessment_form')->with(['data' => $core_data]);
     }
     public function brta_stamp($id)

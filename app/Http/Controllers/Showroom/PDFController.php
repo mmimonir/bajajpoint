@@ -114,29 +114,6 @@ class PDFController extends Controller
         $start_date = '2022-01-01';
         $end_date = '2022-01-20';
 
-        // $data = DB::table('cores')
-        //     ->rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
-        //     ->select(
-        //         'cores.customer_name',
-        //         'cores.address_two',
-        //         'cores.five_chassis',
-        //         'cores.five_engine',
-        //         'cores.vat_sale_date',
-        //         'cores.sale_mushak_no',
-        //         'cores.basic_price_vat',
-        //         'cores.sale_vat',
-        //         'cores.unit_price_vat',
-        //         'vehicles.model',
-        //         // DB::raw('COUNT(*) AS total')
-        //     )
-        //     ->where('cores.vat_code', "=", $print_code)
-        //     // ->whereNotNull('cores.sale_mushak_no')
-        //     ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
-        //     // ->groupBy('vehicles.model')
-        //     ->get()
-        //     ->groupBy('model');
-
-        // ->sortBy('sale_mushak_no');
         $data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
             ->select(
                 'cores.customer_name',
@@ -157,7 +134,6 @@ class PDFController extends Controller
             ->get()
             ->groupBy('vat_sale_date');
 
-        // dd($data);
         return response()->json($data);
     }
     public function gate_pass(Request $request)
