@@ -167,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        \InfyOm\RoutesExplorer\RoutesExplorerServiceProvider::class,
 
         /*
          * Application Service Providers...
