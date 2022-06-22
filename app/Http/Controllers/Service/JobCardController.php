@@ -120,6 +120,7 @@ class JobCardController extends Controller
             'paid_service_charge' => $request->paid_service_charge,
             'vat' => $request->vat,
         ])->id;
+        // Update service customer table for last completed service
         ServiceCustomer::where('id', $customer_id)->update(['completed_last_service_type' => $request->service_type]);
         return response()->json($jb_id);
         // if job card has parts sale then create spare parts sale #TODO add bill id later
@@ -159,21 +160,19 @@ class JobCardController extends Controller
 
     public function load_basic_data()
     {
-        $all_vehicle = Vehicle::select('model', 'model_code')->get();
+        $all_vehicle = $this->job_card_service->load_basic_data();
         return response()->json(['vehicle' => $all_vehicle]);
     }
 
     public function search_by_part_id(Request $request)
     {
-        $part_id = $request->part_id;
-        $data = SparePartsStock::select('part_id as value', 'id')->where('part_id', 'LIKE', '%' . $part_id . '%')->get();
+        $data = $this->job_card_service->search_by_part_id($request);
         return response()->json($data);
     }
 
     public function search_by_full_part_id(Request $request)
     {
-        $part_id = $request->part_id;
-        $data = SparePartsStock::select('part_id', 'id', 'part_name', 'rate', 'stock_quantity')->where(['part_id' => $part_id])->first();
+        $data = $this->job_card_service->search_by_full_part_id($request);
         return response()->json($data);
     }
 
