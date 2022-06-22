@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Service;
 
-use App\Models\Service\{Bill, JobCard, Mechanic, ServiceCustomer, SparePartsStock, SparePartsSale};
+use App\Models\Service\{JobCard, ServiceCustomer};
 use Illuminate\Http\Request;
-use App\Models\Showroom\{Vehicle, Core};
 use App\Http\Controllers\Controller;
 use App\Services\Service\JobCardService;
 
