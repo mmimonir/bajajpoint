@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware', 'prefix' => 'showroom'], function () {
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], function () {
     // MRP Table
     Route::controller(App\Http\Controllers\Showroom\MrpController::class)->group(function () {
         Route::get('/mrp_index',  'index')->name('mrp.index');
