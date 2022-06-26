@@ -15,7 +15,7 @@ class JobCardController extends Controller
     {
         $this->job_card_service = new JobCardService;
     }
-
+//this is comment
     public function load_job_card_view()
     {
         return view('service.job_card');
