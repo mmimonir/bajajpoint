@@ -13,6 +13,11 @@
         cursor: pointer;
     }
 
+    a.disabled {
+        pointer-events: none;
+        cursor: default;
+    }
+
     .border_custom {
         border: solid black;
         border-width: thin;
@@ -221,7 +226,7 @@
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:249px;"><input class="description" style="width:100%; height:19px;" type="text" value=""></span>
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input name="quantity[]" class="text-center quantity" style="width:100%; height:19px;" type="text" value=""></span>
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right sale_rate" style="width:100%; height:19px;" type="text" value=""></span>
-                                        <span class="text-center border_bottom delete_icon" disabled style="display:inline-block; width:41px;"></span>
+                                        <span class="text-center border_bottom delete_icon" style="display:inline-block; width:41px;"><a href="#" class="disabled delete_parts_item"><i class="fa fa-trash delete_icon text-secondary"></i></a></span>
                                 </div>
                                 @endfor
                             </div>
@@ -615,7 +620,9 @@
                                 _this.find('.quantity').val(1)
                                 _this.find('.sale_rate').val(data.rate).trigger("change")
                                 $('.paid_amount').val($('.total_payable').val()).trigger("change");
-                                _this.find('.delete_icon').append('<i class="fa fa-trash text-danger pointer delete_parts_item" aria-hidden="true"></i>');
+                                _this.find('.delete_parts_item').removeClass('disabled');
+                                _this.find('.delete_icon').addClass('text-danger');
+                                // _this.find('.delete_icon').append('<i class="fa fa-trash text-danger pointer delete_parts_item" aria-hidden="true"></i>');
                             } else {
                                 Swal.fire({
                                     icon: 'error',
@@ -826,6 +833,9 @@
                         success: function(response) {
                             console.log(response);
                             if (response.status == 200) {
+                                _this.find('.delete_parts_item').addClass('disabled');
+                                _this.find('.delete_icon').removeClass('text-danger');
+                                _this.find('.delete_icon').addClass('text-secondary');
                                 Swal.fire({
                                     icon: 'success',
                                     title: response.message,
@@ -854,9 +864,6 @@
             })
 
         });
-        // $('.delete_parts_item').each(function() {
-        //     $(this).attr('disabled', true)
-        // })
         // <i class="fa fa-trash text-danger pointer delete_parts_item" aria-hidden="true"></i>
     });
 </script>
