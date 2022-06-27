@@ -18,5 +18,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         // Create or update item on spare parts sale table based on job card id and jb date
         Route::get('/create_or_update',  'create_or_update')->name('job_card.create_or_update');
         Route::get('/delete_parts_item',  'delete_parts_item')->name('job_card.delete_parts_item');
+        Route::get('/load_job_card_list',  'load_job_card_list')->name('job_card.load_job_card_list');
     });
 });

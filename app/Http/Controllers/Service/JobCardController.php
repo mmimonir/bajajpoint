@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Service;
 
-use App\Models\Service\{JobCard, ServiceCustomer, SparePartsSale};
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Service\JobCardService;
+use App\Models\Service\{JobCard, ServiceCustomer, SparePartsSale};
 
 class JobCardController extends Controller
 {
@@ -14,6 +15,15 @@ class JobCardController extends Controller
     public function __construct()
     {
         $this->job_card_service = new JobCardService;
+    }
+
+    public function load_job_card_list()
+    {
+        $job_card_list = JobCard::select('job_card_no')
+            ->where('job_card_date', Carbon::now()->toDateString())
+            ->orderBy('job_card_no', 'asc')
+            ->get();
+        return response()->json(['job_card_list' => $job_card_list]);
     }
 
     // Create or update item on spare parts sale table based on job card id and jb date
@@ -146,7 +156,7 @@ class JobCardController extends Controller
         ])->id;
         // Update service customer table for last completed service
         ServiceCustomer::where('id', $customer_id)->update(['completed_last_service_type' => $request->service_type]);
-        return response()->json($jb_id);
+        return response()->json(['message' => 'Job card created successfully.', 'status' => 200]);
         // if job card has parts sale then create spare parts sale #TODO add bill id later
         // foreach ($request->part_id as $key => $value) {
         //     if ($request->part_id[$key] != null) {

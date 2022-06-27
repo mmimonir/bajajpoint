@@ -73,18 +73,22 @@
         <!-- <form action="{{route('job_card.create')}}" method="post" id="job_card_create"> -->
         <form action="#" method="POST" id="job_card_create">
             @csrf
+            <input type="hidden" name="job_card_id" id="job_card_id" value="">
             <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
                 <div class="card-header no-print">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
                             <h4 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px;">জব কার্ড</h4>
-                            <nav aria-label="Page navigation example" style="display:inline-block; width:100%;">
+                            <select name="job_card_list" style="font-weight: bold;" id="job_card_list">
+                                <option style="font-weight:bold;" value="">Job Card List</option>
+                            </select>
+                            <nav aria-label="Page navigation example" style="padding-left:15px;">
                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item active"><a class="page-link" href="#">First</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Last</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">New</a></li>
+                                    <li class="page-item active"><a class="page-link first_jb_record" href="#">First</a></li>
+                                    <li class="page-item"><a class="page-link previous_jb_record" href="#">Prev</a></li>
+                                    <li class="page-item"><a class="page-link next_jb_record" href="#">Next</a></li>
+                                    <li class="page-item"><a class="page-link last_jb_record" href="#">Last</a></li>
+                                    <li class="page-item"><a class="page-link new_jb_record" href="#">New</a></li>
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                     <i class="page-link fa fa-refresh" aria-hidden="true"></i>
                                     <button class="page-item page-link bg-dark" type="submit">Create JB</button>
@@ -389,11 +393,11 @@
                         <h4 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px;">জব কার্ড</h4>
                         <nav aria-label="Page navigation example" style="display:inline-block; width:100%;">
                             <ul class="pagination justify-content-center">
-                                <li class="page-item active"><a class="page-link" href="#">First</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Last</a></li>
-                                <li class="page-item"><a class="page-link" href="#">New</a></li>
+                                <li class="page-item active"><a class="page-link first_jb_record" href="#">First</a></li>
+                                <li class="page-item"><a class="page-link previous_jb_record" href="#">Prev</a></li>
+                                <li class="page-item"><a class="page-link next_jb_record" href="#">Next</a></li>
+                                <li class="page-item"><a class="page-link last_jb_record" href="#">Last</a></li>
+                                <li class="page-item"><a class="page-link new_jb_record" href="#">New</a></li>
                                 <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                 <i class="page-link fa fa-refresh" aria-hidden="true"></i>
                                 <button class="page-item page-link bg-dark" type="submit">Create JB</button>
@@ -725,6 +729,7 @@
                                 timer: 2000
                             })
                             $('#job_card_create').trigger("reset");
+                            assign_job_card_sl_no();
                         } else {
                             Swal.fire({
                                 icon: 'error',
@@ -864,6 +869,40 @@
             })
 
         });
+        $('.first_jb_record').on('click', function() {
+            alert('I am Working.')
+        });
+        $('.previous_jb_record').on('click', function() {
+            alert('I am Working.')
+        });
+        $('.next_jb_record').on('click', function() {
+            alert('I am Working.')
+        });
+        $('.last_jb_record').on('click', function() {
+            alert('I am Working.')
+        });
+        $('.new_jb_record').on('click', function() {
+            alert('I am Working.')
+        });
+
+        function load_job_card_list() {
+            $.ajax({
+                url: "{{ route('job_card.load_job_card_list') }}",
+                method: 'get',
+                dataType: 'json',
+                success: function({
+                    job_card_list
+                }) {
+                    if (job_card_list) {
+                        job_card_list.forEach(function(item) {
+                            $("#job_card_list").append(`<option style="font-weight:bold;" value="${item.job_card_no}">JB-${item.job_card_no}</option>`);
+                        });
+                    }
+                }
+            });
+
+        }
+        load_job_card_list();
         // <i class="fa fa-trash text-danger pointer delete_parts_item" aria-hidden="true"></i>
     });
 </script>
