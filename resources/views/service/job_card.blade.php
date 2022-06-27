@@ -9,6 +9,10 @@
         padding: 0;
     }
 
+    .pointer {
+        cursor: pointer;
+    }
+
     .border_custom {
         border: solid black;
         border-width: thin;
@@ -201,21 +205,23 @@
                                         <option value="yes">হ্যাঁ</option>
                                     </select>
                                 </div>
-                                <p class="m-0 border_bottom font-weight-bold" style="width:100%; padding:0;">
+                                <div class="m-0 border_bottom font-weight-bold" style="width:100%; padding:0;">
                                     <span class="text-center border_right" style="display:inline-block; width:74px;">ক্রমিক</span>
-                                    <span class="text-center border_right" style="display:inline-block; width:221px;">পার্টস আইডি</span>
-                                    <span class="text-center border_right" style="display:inline-block; width:252px;">পার্টস এবং সেবার বিবরণ</span>
+                                    <span class="text-center border_right" style="display:inline-block; width:180px;">পার্টস আইডি</span>
+                                    <span class="text-center border_right" style="display:inline-block; width:249px;">পার্টস এবং সেবার বিবরণ</span>
                                     <span class="text-center border_right" style="display:inline-block; width:74px;">পরিমাণ</span>
-                                    <span‍ class="text-center" style="display:inline-block; width:104px; ">মূল্য (টাকা)</span>
-                                </p>
+                                    <span class="text-center border_right" style="display:inline-block; width:104px;">মূল্য (টাকা)</span>
+                                    <span‍ class="text-center" style="display:inline-block; width:41px;">Action</span>
+                                </div>
                                 <div id="spare_parts">
 
                                     @for($i=0; $i<=20; $i++) <div class="m-0 parts_item" style="padding:0;">
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;">{{$i+1}}</span>
-                                        <span class="text-center border_bottom border_right" style="display:inline-block; width:221px;"><input name="part_id[]" id="part_id" class="part_id" style="width:100%; height:19px;" type="text" value=""></span>
-                                        <span class="text-center border_bottom border_right" style="display:inline-block; width:252px;"><input class="description" style="width:100%; height:19px;" type="text" value=""></span>
+                                        <span class="text-center border_bottom border_right" style="display:inline-block; width:180px;"><input name="part_id[]" id="part_id" class="part_id" style="width:100%; height:19px;" type="text" value=""></span>
+                                        <span class="text-center border_bottom border_right" style="display:inline-block; width:249px;"><input class="description" style="width:100%; height:19px;" type="text" value=""></span>
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input name="quantity[]" class="text-center quantity" style="width:100%; height:19px;" type="text" value=""></span>
-                                        <span class="text-center border_bottom" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right sale_rate" style="width:100%; height:19px;" type="text" value=""></span>
+                                        <span class="text-center border_bottom border_right" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right sale_rate" style="width:100%; height:19px;" type="text" value=""></span>
+                                        <span class="text-center border_bottom delete_icon" disabled style="display:inline-block; width:41px;"></span>
                                 </div>
                                 @endfor
                             </div>
@@ -609,6 +615,7 @@
                                 _this.find('.quantity').val(1)
                                 _this.find('.sale_rate').val(data.rate).trigger("change")
                                 $('.paid_amount').val($('.total_payable').val()).trigger("change");
+                                _this.find('.delete_icon').append('<i class="fa fa-trash text-danger pointer delete_parts_item" aria-hidden="true"></i>');
                             } else {
                                 Swal.fire({
                                     icon: 'error',
@@ -623,6 +630,37 @@
             });
         });
         // Search by part id end
+
+        // Update spare parts table in front end start
+        $('.sale_rate').on('change', function() {
+            _this = $(this).parent().parent();
+            var part_id = _this.find('.part_id').val();
+            var job_card_date = $('.job_card_date_top').val();
+            var quantity = _this.find('.quantity').val();
+            var sale_rate = _this.find('.sale_rate').val();
+            // console.log(part_id, job_card_date, quantity, sale_rate);
+            // return;
+            if (part_id != '' && job_card_date != '' && quantity != '' && sale_rate != '') {
+                $.ajax({
+                    url: "{{ route('job_card.create_or_update') }}",
+                    type: 'GET',
+                    dataType: "json",
+                    data: {
+                        part_id,
+                        job_card_date,
+                        quantity,
+                        sale_rate
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        // _this.find('.description').val(data.part_name)
+
+                    }
+                });
+            }
+
+        });
+        // Update spare parts table in front end end
 
         // Bottom Model Name Update Start
         $('#mc_model_name').on('change', function() {
@@ -703,64 +741,123 @@
         });
         // Reset Form End
 
+        // Delivery Done Start
+        $("").click(function(ev) {
+            let part_id = [];
+            let quantity = [];
+            let sale_rate = [];
 
-        // $("#delivery_done").click(function(ev) {
-        //     let part_id = [];
-        //     let quantity = [];
-        //     let sale_rate = [];
+            $("input[name='part_id[]']").each(function() {
+                if ($(this).val() != '') {
+                    part_id.push($(this).val());
+                }
+            });
+            $("input[name='quantity[]']").each(function() {
+                if ($(this).val() != '') {
+                    quantity.push($(this).val());
+                }
+            });
+            $("input[name='sale_rate[]']").each(function() {
+                if ($(this).val() != '') {
+                    sale_rate.push($(this).val());
+                }
+            });
+            if (part_id.length > 0) {
+                $.ajax({
+                    url: "{{ route('job_card.create') }}",
+                    method: 'post',
+                    data: {
+                        part_id: part_id,
+                        quantity: quantity,
+                        sale_rate: sale_rate,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        return;
+                        if (response.status == 200) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: response.message,
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
+                            $('#job_card_create').trigger("reset");
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: response.message,
+                                footer: '<a href="">Why do I have this issue?</a>'
+                            })
 
-        //     $("input[name='part_id[]']").each(function() {
-        //         if ($(this).val() != '') {
-        //             part_id.push($(this).val());
-        //         }
-        //     });
-        //     $("input[name='quantity[]']").each(function() {
-        //         if ($(this).val() != '') {
-        //             quantity.push($(this).val());
-        //         }
-        //     });
-        //     $("input[name='sale_rate[]']").each(function() {
-        //         if ($(this).val() != '') {
-        //             sale_rate.push($(this).val());
-        //         }
-        //     });
-        //     if (part_id.length > 0) {
-        //         $.ajax({
-        //             url: "{{ route('job_card.create') }}",
-        //             method: 'post',
-        //             data: {
-        //                 part_id: part_id,
-        //                 quantity: quantity,
-        //                 sale_rate: sale_rate,
-        //                 _token: "{{ csrf_token() }}"
-        //             },
-        //             dataType: 'json',
-        //             success: function(response) {
-        //                 console.log(response);
-        //                 return;
-        //                 if (response.status == 200) {
-        //                     Swal.fire({
-        //                         icon: 'success',
-        //                         title: response.message,
-        //                         showConfirmButton: false,
-        //                         timer: 2000
-        //                     })
-        //                     $('#job_card_create').trigger("reset");
-        //                 } else {
-        //                     Swal.fire({
-        //                         icon: 'error',
-        //                         title: 'Oops...',
-        //                         text: response.message,
-        //                         footer: '<a href="">Why do I have this issue?</a>'
-        //                     })
+                        }
+                    }
+                });
+            } else {
+                alert('Please select atleast one parts');
+            }
+        });
+        // Delivery Done End
+        // delete_parts_item_start
+        $('.delete_parts_item').on('click', function() {
+            _this = $(this).parent().parent();
+            var part_id = _this.find('.part_id').val();
+            var sale_date = $('.job_card_date_top').val();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "{{ route('job_card.delete_parts_item') }}",
+                        method: 'get',
+                        dataType: 'json',
+                        data: {
+                            part_id,
+                            sale_date
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            if (response.status == 200) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: response.message,
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                })
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: response.message,
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
 
-        //                 }
-        //             }
-        //         });
-        //     } else {
-        //         alert('Please select atleast one part');
-        //     }
-        // });
+                            }
+                        }
+                    });
+                    _this = $(this).parent().parent();
+                    _this.find('.part_id').val('');
+                    _this.find('.quantity').val('');
+                    _this.find('.description').val('');
+                    _this.find('.sale_rate').val('').trigger('change');
+                    $('.paid_amount').val($('.total_payable').val()).trigger("change");
+
+                }
+            })
+
+        });
+        // $('.delete_parts_item').each(function() {
+        //     $(this).attr('disabled', true)
+        // })
+        // <i class="fa fa-trash text-danger pointer delete_parts_item" aria-hidden="true"></i>
     });
 </script>
 @endsection

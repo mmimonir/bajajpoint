@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Service;
 
-use App\Models\Service\{JobCard, ServiceCustomer};
+use App\Models\Service\{JobCard, ServiceCustomer, SparePartsSale};
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Service\JobCardService;
@@ -15,7 +15,32 @@ class JobCardController extends Controller
     {
         $this->job_card_service = new JobCardService;
     }
-//this is comment
+
+    // Create or update item on spare parts sale table based on job card id and jb date
+    public function create_or_update(Request $request)
+    {
+        $data = SparePartsSale::updateOrCreate([
+            'part_id' => $request->part_id,
+            'sale_date' => $request->job_card_date,
+        ], [
+            // 'job_card_id' => $request->job_card_id,
+            'part_id' => $request->part_id,
+            'sale_date' => $request->job_card_date,
+            'quantity' => $request->quantity,
+            'sale_rate' => $request->sale_rate
+        ]);
+        return response()->json($data);
+    }
+
+    public function delete_parts_item(Request $request)
+    {
+        SparePartsSale::where('part_id', $request->part_id)->where('sale_date', $request->sale_date)->delete();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Deleted successfully'
+        ]);
+    }
+
     public function load_job_card_view()
     {
         return view('service.job_card');
