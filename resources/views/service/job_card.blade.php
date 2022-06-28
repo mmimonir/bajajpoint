@@ -166,6 +166,7 @@
                                         <option value="accident">দূর্ঘটনাজনিত মেরামত</option>
                                     </select>
                                 </div>
+
                                 <p class="m-0 border_bottom pl-1 font-weight-bold" style="height:24px;">গ্রাহকের অভিযোগ</p>
                                 <textarea name="customer_complain" class="" style="height:238px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">মেরামতের বিবরণ</p>
@@ -884,7 +885,7 @@
         $('.new_jb_record').on('click', function() {
             alert('I am Working.')
         });
-
+        // Load job card list on same day start
         function load_job_card_list() {
             $.ajax({
                 url: "{{ route('job_card.load_job_card_list') }}",
@@ -903,6 +904,35 @@
 
         }
         load_job_card_list();
+        // Load job card list on same day end
+
+        // After select job card start
+        $('#job_card_list').on('change', function() {
+            let job_card_no = $(this).val();
+            $.ajax({
+                url: "{{ route('job_card.load_single_job_card') }}",
+                method: 'get',
+                dataType: 'json',
+                data: {
+                    job_card_no
+                },
+                success: function({
+                    single_jb_details: jb_details
+                }) {
+                    if (jb_details) {
+                        $('.amount_of_fuel').val(jb_details.amount_of_fuel || '');
+                        $('.chassis_no_top').val(jb_details.chassis_no);
+                        $('.engine_no_top').val(jb_details.engine_no);
+                        $('.chassis_no_bottom').text(jb_details.chassis_no);
+                        $('.engine_no_bottom').text(jb_details.engine_no);
+                        $('.mc_sale_date').val(jb_details.mc_sale_date);
+                        $('.mileage').val(jb_details.mileage || '');
+                        $('#job_card_id').val(jb_details.id);
+                    }
+                }
+            });
+        })
+        // After select job card end
         // <i class="fa fa-trash text-danger pointer delete_parts_item" aria-hidden="true"></i>
     });
 </script>

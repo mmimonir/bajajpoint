@@ -17,6 +17,17 @@ class JobCardController extends Controller
         $this->job_card_service = new JobCardService;
     }
 
+    public function load_single_job_card(Request $request)
+    {
+        $single_jb_details = JobCard::select('*')
+            ->where([
+                'job_card_no' => $request->job_card_no,
+                'job_card_date' => Carbon::now()->toDateString()
+            ])
+            ->first();
+        return response()->json(['single_jb_details' => $single_jb_details]);
+    }
+
     public function load_job_card_list()
     {
         $job_card_list = JobCard::select('job_card_no')
@@ -100,7 +111,13 @@ class JobCardController extends Controller
     }
 
     public function create_job_card(Request $request)
-    {
+    {   // check the customer is buy mc from our showroom or not
+        $our_customer = $this->job_card_service->showroom_customer_data($request);
+        if ($our_customer) {
+            $our_customer = 'yes';
+        } else {
+            $our_customer = 'no';
+        }
         $customer_id = 0;
         // check if customer already exists, if exists then return customer id
         $customer_data = ServiceCustomer::select('*')->where('mobile', $request->mobile)->first();
@@ -152,6 +169,7 @@ class JobCardController extends Controller
             'customer_suggestion' => $request->customer_suggestion,
             'completed_last_service_type' => $request->service_type,
             'paid_service_charge' => $request->paid_service_charge,
+            'our_customer' => $our_customer,
             'vat' => $request->vat,
         ])->id;
         // Update service customer table for last completed service

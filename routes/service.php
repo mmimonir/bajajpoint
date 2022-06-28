@@ -19,5 +19,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         Route::get('/create_or_update',  'create_or_update')->name('job_card.create_or_update');
         Route::get('/delete_parts_item',  'delete_parts_item')->name('job_card.delete_parts_item');
         Route::get('/load_job_card_list',  'load_job_card_list')->name('job_card.load_job_card_list');
+        Route::get('/load_single_job_card',  'load_single_job_card')->name('job_card.load_single_job_card');
     });
 });
