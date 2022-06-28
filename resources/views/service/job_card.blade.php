@@ -933,7 +933,7 @@
             });
         })
         // After select job card end
-        // this is commit
+        // comment remove from github
         // <i class="fa fa-trash text-danger pointer delete_parts_item" aria-hidden="true"></i>
     });
 </script>
