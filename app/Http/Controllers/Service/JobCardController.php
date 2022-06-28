@@ -28,7 +28,7 @@ class JobCardController extends Controller
         return response()->json(['single_jb_details' => $single_jb_details]);
     }
 
-    public function load_job_card_list()
+    public function load_job_card_list(): \Illuminate\Http\JsonResponse
     {
         $job_card_list = JobCard::select('job_card_no')
             ->where('job_card_date', Carbon::now()->toDateString())
@@ -38,7 +38,7 @@ class JobCardController extends Controller
     }
 
     // Create or update item on spare parts sale table based on job card id and jb date
-    public function create_or_update(Request $request)
+    public function create_or_update(Request $request): \Illuminate\Http\JsonResponse
     {
         $data = SparePartsSale::updateOrCreate([
             'part_id' => $request->part_id,
