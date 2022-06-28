@@ -412,7 +412,7 @@
         </form>
     </div>
 </div>
-</div>
+
 @endsection
 @section('script')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -436,7 +436,7 @@
                 },
                 success: function(response) {
                     console.log(response);
-                    if (response.status == 'service') {
+                    if (response.status === 'service') {
                         console.log(response.service_data.client_name);
                         $('.client_name').val(response.service_data.client_name);
                         $('.mobile').val(response.service_data.mobile);
@@ -447,7 +447,7 @@
                         $('.rg_number_top').val(response.service_data.rg_number).trigger('change');
                         $('#mc_model_name').val(response.service_data.model_code).trigger('change');
                     }
-                    if (response.status == 'showroom') {
+                    if (response.status === 'showroom') {
                         console.log(response.showroom_data.client_name);
                         $('.client_name').val(response.showroom_data.customer_name);
                         $('.mobile').val(response.showroom_data.mobile);
@@ -531,9 +531,9 @@
         $('.advance_top').on('keyup', function() {
             $('.advance_bottom').text($(this).val());
         });
-        // Repeate Data End
+        // Repeat Data End
 
-        // Preload Dafault Value for Vehicle Model Name Start
+        // Preload Default Value for Vehicle Model Name Start
         function load_basic_data() {
             $.ajax({
                 url: "{{ route('job_card.load_basic_data') }}",
@@ -556,7 +556,7 @@
             });
         }
         load_basic_data();
-        // Preload Dafault Value for Vehicle Model Name End
+        // Preload Default Value for Vehicle Model Name End
 
         // Assign Job Card Sl No Start
         function assign_job_card_sl_no() {
@@ -643,7 +643,7 @@
         });
         // Search by part id end
 
-        // Update spare parts table in front end start
+        // Update spare parts' table in front end start
         $('.sale_rate').on('change', function() {
             _this = $(this).parent().parent();
             var part_id = _this.find('.part_id').val();
@@ -652,7 +652,7 @@
             var sale_rate = _this.find('.sale_rate').val();
             // console.log(part_id, job_card_date, quantity, sale_rate);
             // return;
-            if (part_id != '' && job_card_date != '' && quantity != '' && sale_rate != '') {
+            if (part_id !== '' && job_card_date !== '' && quantity !== '' && sale_rate !== '') {
                 $.ajax({
                     url: "{{ route('job_card.create_or_update') }}",
                     type: 'GET',
@@ -672,7 +672,7 @@
             }
 
         });
-        // Update spare parts table in front end end
+        // Update spare parts' table in frontend end
 
         // Bottom Model Name Update Start
         $('#mc_model_name').on('change', function() {
@@ -722,7 +722,7 @@
                     processData: false,
                     success: function(response) {
                         console.log(response);
-                        if (response.status == 200) {
+                        if (response.status === 200) {
                             Swal.fire({
                                 icon: 'success',
                                 title: response.message,
@@ -761,17 +761,17 @@
             let sale_rate = [];
 
             $("input[name='part_id[]']").each(function() {
-                if ($(this).val() != '') {
+                if ($(this).val() !== '') {
                     part_id.push($(this).val());
                 }
             });
             $("input[name='quantity[]']").each(function() {
-                if ($(this).val() != '') {
+                if ($(this).val() !== '') {
                     quantity.push($(this).val());
                 }
             });
             $("input[name='sale_rate[]']").each(function() {
-                if ($(this).val() != '') {
+                if ($(this).val() !== '') {
                     sale_rate.push($(this).val());
                 }
             });
@@ -789,7 +789,7 @@
                     success: function(response) {
                         console.log(response);
                         return;
-                        if (response.status == 200) {
+                        if (response.status === 200) {
                             Swal.fire({
                                 icon: 'success',
                                 title: response.message,
@@ -838,7 +838,7 @@
                         },
                         success: function(response) {
                             console.log(response);
-                            if (response.status == 200) {
+                            if (response.status === 200) {
                                 _this.find('.delete_parts_item').addClass('disabled');
                                 _this.find('.delete_icon').removeClass('text-danger');
                                 _this.find('.delete_icon').addClass('text-secondary');
