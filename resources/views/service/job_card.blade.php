@@ -461,7 +461,7 @@
                 }
             });
         });
-        // Check cusomer is already exist or not end        
+        // Check cusomer is already exist or not end
 
         // Summation Start
         function sum_right() {
@@ -531,7 +531,7 @@
         $('.advance_top').on('keyup', function() {
             $('.advance_bottom').text($(this).val());
         });
-        // Repeate Data End        
+        // Repeate Data End
 
         // Preload Dafault Value for Vehicle Model Name Start
         function load_basic_data() {
@@ -706,7 +706,7 @@
         load_employee_data();
         // Load employee Data End
 
-        // Submit Create Job Card Start        
+        // Submit Create Job Card Start
         $("#job_card_create").submit(function(e) {
             e.preventDefault();
             const FD = new FormData(this);
@@ -933,6 +933,7 @@
             });
         })
         // After select job card end
+        // this is commit
         // <i class="fa fa-trash text-danger pointer delete_parts_item" aria-hidden="true"></i>
     });
 </script>
