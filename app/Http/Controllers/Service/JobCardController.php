@@ -30,10 +30,15 @@ class JobCardController extends Controller
         $service_customer_details = ServiceCustomer::select('*')
             ->where('id', $service_customer_id)
             ->first();
+        // fetch spare parts sale details based on job card no
+        $spare_parts_sale_details = SparePartsSale::select('*')
+            ->where(['job_card_no' => $request->job_card_no, 'sale_date' => Carbon::now()->toDateString()])
+            ->get();
 
         return response()->json([
             'single_jb_details' => $single_jb_details,
             'service_customer_details' => $service_customer_details,
+            'spare_parts_sale_details' => $spare_parts_sale_details,
         ]);
     }
 
@@ -57,7 +62,9 @@ class JobCardController extends Controller
             'part_id' => $request->part_id,
             'sale_date' => $request->job_card_date,
             'quantity' => $request->quantity,
-            'sale_rate' => $request->sale_rate
+            'sale_rate' => $request->sale_rate,
+            'job_card_no' => $request->job_card_no,
+            'part_name' => $request->part_name
         ]);
         return response()->json($data);
     }

@@ -648,8 +648,10 @@
             _this = $(this).parent().parent();
             var part_id = _this.find('.part_id').val();
             var job_card_date = $('.job_card_date_top').val();
+            var job_card_no = $('.job_card_no_top').val();
             var quantity = _this.find('.quantity').val();
             var sale_rate = _this.find('.sale_rate').val();
+            var part_name = _this.find('.description').val();
             // console.log(part_id, job_card_date, quantity, sale_rate);
             // return;
             if (part_id !== '' && job_card_date !== '' && quantity !== '' && sale_rate !== '') {
@@ -661,7 +663,9 @@
                         part_id,
                         job_card_date,
                         quantity,
-                        sale_rate
+                        sale_rate,
+                        job_card_no,
+                        part_name
                     },
                     success: function(data) {
                         console.log(data);
@@ -731,6 +735,7 @@
                             })
                             $('#job_card_create').trigger("reset");
                             assign_job_card_sl_no();
+                            load_job_card_list();
                         } else {
                             Swal.fire({
                                 icon: 'error',
@@ -919,9 +924,24 @@
                 success: function({
                     single_jb_details: jb_details,
                     service_customer_details: service_customer,
+                    spare_parts_sale_details: spare_parts_sale,
                 }) {
                     if (jb_details) {
-                        console.log(jb_details.service_type);
+                        let spare_parts_sale_details_length = spare_parts_sale.length;
+
+                        let index = 0;
+                        $('.part_id').each(function() {
+                            if (index < 3) {
+                                $('.part_id').val(spare_parts_sale[index].part_id);
+                            } else {
+                                return false;
+                            }
+
+                            index++;
+                            console.log(`Index is ${index}`);
+                        });
+
+                        // $('.part_id').val(spare_parts_sale[0].part_id);
                         $('.amount_of_fuel').val(jb_details.amount_of_fuel || '');
                         $('.chassis_no_top').val(jb_details.chassis_no);
                         $('.engine_no_top').val(jb_details.engine_no);
