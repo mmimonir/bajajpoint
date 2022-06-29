@@ -735,6 +735,8 @@
                             })
                             $('#job_card_create').trigger("reset");
                             assign_job_card_sl_no();
+                            $("#job_card_list").empty();
+                            $("#job_card_list").append(`<option style="font-weight:bold;" value="">Job Card List</option>`);
                             load_job_card_list();
                         } else {
                             Swal.fire({
