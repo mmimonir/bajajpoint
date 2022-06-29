@@ -25,7 +25,16 @@ class JobCardController extends Controller
                 'job_card_date' => Carbon::now()->toDateString()
             ])
             ->first();
-        return response()->json(['single_jb_details' => $single_jb_details]);
+        // fetch service customer details based on job card customer id
+        $service_customer_id = $single_jb_details->customer_id;
+        $service_customer_details = ServiceCustomer::select('*')
+            ->where('id', $service_customer_id)
+            ->first();
+
+        return response()->json([
+            'single_jb_details' => $single_jb_details,
+            'service_customer_details' => $service_customer_details,
+        ]);
     }
 
     public function load_job_card_list(): \Illuminate\Http\JsonResponse
@@ -111,7 +120,12 @@ class JobCardController extends Controller
     }
 
     public function create_job_card(Request $request)
-    {   // check the customer is buy mc from our showroom or not
+    {
+        $rg_number = $request->rg_number;
+        if ($rg_number == null) {
+            $rg_number = 'On-Test';
+        }
+        // check the customer is buy mc from our showroom or not
         $our_customer = $this->job_card_service->showroom_customer_data($request);
         if ($our_customer) {
             $our_customer = 'yes';
@@ -144,7 +158,7 @@ class JobCardController extends Controller
             'customer_id' => $customer_id,
             'service_engineer_id' => $request->service_engineer_id,
             'mechanic_id' => $request->mechanic_id,
-            'rg_number' => $request->rg_number,
+            'rg_number' => $rg_number,
             'model_code' => $request->model_code,
             'mc_sale_date' => $request->mc_sale_date,
             'mileage' => $request->mileage,

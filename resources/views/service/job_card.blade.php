@@ -158,7 +158,7 @@
                                 </div>
                                 <div class="m-0 border_bottom pl-1" style="height:24px;">
                                     <span style="margin-right:25px;">কাজের ধরণ:</span>
-                                    <select class="custom_dropdown" name="work_type" style="width:262px; height:21px;" id="service_type">
+                                    <select class="custom_dropdown" name="work_type" style="width:262px; height:21px;" id="work_type">
                                         <option value="">Please Select A Service Type</option>
                                         <option value="minor">মাইনর মেরামত</option>
                                         <option value="major">মেজর মেরামত</option>
@@ -168,15 +168,15 @@
                                 </div>
 
                                 <p class="m-0 border_bottom pl-1 font-weight-bold" style="height:24px;">গ্রাহকের অভিযোগ</p>
-                                <textarea name="customer_complain" class="" style="height:238px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
+                                <textarea name="customer_complain" class="" style="height:238px; width:100%; margin-bottom:-7px; padding:4px;" value="" id="customer_complain"></textarea>
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">মেরামতের বিবরণ</p>
-                                <textarea name="repair_description" class="" style="height:192px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
+                                <textarea name="repair_description" class="" style="height:192px; width:100%; margin-bottom:-7px; padding:4px;" value="" id="repair_description"></textarea>
                                 <p class="pl-1 m-0 border_bottom border_top font-weight-bold">পরবর্তী কাজের বিবরণ<span class="font-weight-bold" style="margin-left:20px; margin-right:10px;">তারিখ</span>
-                                    <input name="next_work_date" style="width:30%; height:19px; border:0px;" type="date">
+                                    <input name="next_work_date" id="next_work_date" style="width:30%; height:19px; border:0px;" type="date">
                                 </p>
-                                <textarea name="next_work_description" class="" style="height:191px; width:100%; margin-bottom:-7px;" value="" id="flexCheckDefault"></textarea>
+                                <textarea name="next_work_description" class="" style="height:191px; width:100%; margin-bottom:-7px; padding:4px;" value="" id="next_work_description"></textarea>
                                 <div class="pl-1 m-0 border_bottom border_top font-weight-bold">সার্ভিস ইঞ্জিনিয়ারের নামঃ
-                                    <select class="custom_dropdown load_employee" name="service_engineer_id">
+                                    <select class="custom_dropdown load_employee" name="service_engineer_id" id="service_engineer_id">
 
                                     </select>
                                 </div>
@@ -187,7 +187,7 @@
                                 </p>
                             </div>
                             <div class="col-md-8 pl-0">
-                                <p class="pl-1 border_bottom border_top m-0 font-weight-bold">টেলিফোন নম্বর:<input name="mobile" class="ml-1 text-bold mobile required" style="width:81px; height:19px; border:0px;" type="text"></p>
+                                <p class="pl-1 border_bottom border_top m-0 font-weight-bold">টেলিফোন নম্বর:<input name="mobile" id="mobile" class="ml-1 text-bold mobile required" style="width:81px; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0 font-weight-bold">গ্রাহকের নাম:<input name="client_name" class="ml-1 text-bold client_name required" style="width:89%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0">ঠিকানা:<input name="address" class="ml-1 text-bold address" style="width:93%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0">-</p>
@@ -195,22 +195,22 @@
                                 <p class="pl-1 border_bottom m-0 font-weight-bold">গাড়ি পর্যবেক্ষণের বিবরণ:</p>
                                 <div class="pl-1 border_bottom m-0" style="height:24px;">
                                     <span>ফুয়েলের পরিমাণ:
-                                        <input name="amount_of_fuel" class="ml-1" style="width:145px; height:20px; margin-right:50px;" type="text">
+                                        <input name="amount_of_fuel" class="ml-1 amount_of_fuel" style="width:145px; height:20px; margin-right:50px;" type="text">
                                     </span>
                                     <span style="margin-right:25px;">ফুয়েল ট্যাংকে দাগ আছে কিনা?</span>
-                                    <select class="custom_dropdown" name="any_scratch_in_tank" style="width:36px; height:21px;" id="service_type">
+                                    <select class="custom_dropdown" name="any_scratch_in_tank" style="width:36px; height:21px;" id="any_scratch_in_tank">
                                         <option value="no">না</option>
                                         <option value="yes">হ্যাঁ</option>
                                     </select>
                                 </div>
                                 <div class="m-0 border_bottom pl-1" style="height:24px;">
                                     <span style="margin-right:20px;">ইন্ডিকেটরের লেন্স ভাঙ্গা কিনা?</span>
-                                    <select class="custom_dropdown" name="indicator_is_broken" style="width:36px; height:21px;" id="service_type">
+                                    <select class="custom_dropdown" name="indicator_is_broken" style="width:36px; height:21px;" id="indicator_is_broken">
                                         <option value="no">না</option>
                                         <option value="yes">হ্যাঁ</option>
                                     </select>
                                     <span style="margin-right:20px; margin-left:25px;">হেডলাইটে দাগ আছে কিনা?</span>
-                                    <select class="custom_dropdown" name="any_scratch_in_headlight" style="width:36px; height:21px;" id="service_type">
+                                    <select class="custom_dropdown" name="any_scratch_in_headlight" style="width:36px; height:21px;" id="any_scratch_in_headlight">
                                         <option value="no">না</option>
                                         <option value="yes">হ্যাঁ</option>
                                     </select>
@@ -268,7 +268,7 @@
                             </div>
                             <div class="m-0 font-weight-bold border_bottom pl-1">
                                 মেকানিকের নামঃ
-                                <select class="custom_dropdown load_employee" name="mechanic_id" style="width:200px;">
+                                <select class="custom_dropdown load_employee" name="mechanic_id" id="mechanic_id" style="width:200px;">
 
                                 </select>
                             </div>
@@ -288,7 +288,7 @@
                     <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">1. আমাদের সার্ভিস স্টাফদের থেকে কেমন ব্যবহার পেলেন?</span>
                         <div style="display:inline-block; width: 179px;" class="text-center border_right">
-                            <select class="custom_dropdown" name="stuff_behavior" style="width:72px; height:21px;" id="service_type">
+                            <select class="custom_dropdown" name="stuff_behavior" style="width:72px; height:21px;" id="stuff_behavior">
                                 <option value="khub_valo">খুব ভাল</option>
                                 <option value="darun">দারুন</option>
                                 <option value="valo">ভাল</option>
@@ -297,7 +297,7 @@
                         </div>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">4. মোটর সাইকেলের সমস্যাগুলো সমাধান হয়েছে কি?</span>
                         <div style="display:inline-block; width: 112px;" class="text-center">
-                            <select class="custom_dropdown" name="mc_problem_solved" style="width:37px; height:21px;" id="service_type">
+                            <select class="custom_dropdown" name="mc_problem_solved" style="width:37px; height:21px;" id="mc_problem_solved">
                                 <option value="yes">হ্যাঁ</option>
                                 <option value="no">না</option>
                             </select>
@@ -306,7 +306,7 @@
                     <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">2. সার্ভিস সেন্টারের পরিস্কার পরিচ্ছন্নতা কেমন দেখতে পেলেন?</span>
                         <div style="display:inline-block; width: 179px;" class="text-center border_right">
-                            <select class="custom_dropdown" name="service_center_is_clean" style="width:72px; height:21px;" id="service_type">
+                            <select class="custom_dropdown" name="service_center_is_clean" style="width:72px; height:21px;" id="service_center_is_clean">
                                 <option value="khub_valo">খুব ভাল</option>
                                 <option value="darun">দারুন</option>
                                 <option value="valo">ভাল</option>
@@ -315,7 +315,7 @@
                         </div>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">5. সঠিক সময়ে গাড়িটি ডেলিভারী পেয়েছেন কি?</span>
                         <div style="display:inline-block; width: 112px;" class="text-center">
-                            <select class="custom_dropdown" name="mc_delivery_done" style="width:37px; height:21px;" id="service_type">
+                            <select class="custom_dropdown" name="mc_delivery_done" style="width:37px; height:21px;" id="mc_delivery_done">
                                 <option value="yes">হ্যাঁ</option>
                                 <option value="no">না</option>
                             </select>
@@ -324,14 +324,14 @@
                     <div class="m-0 border_bottom pl-1" style="border-top:0;">
                         <span style="border-right:1px solid; display: inline-block; width: 330px;">3. গাড়ির সম্পাদিত কাজ সম্পর্কে আপনি অবহিত আছেন কি?</span>
                         <div style="display:inline-block; width: 179px;" class="text-center border_right">
-                            <select class="custom_dropdown" name="garir_sompadito_kaj" style="width:72px; height:21px;" id="service_type">
+                            <select class="custom_dropdown" name="garir_sompadito_kaj" style="width:72px; height:21px;" id="garir_sompadito_kaj">
                                 <option value="yes">হ্যাঁ</option>
                                 <option value="no">না</option>
                             </select>
                         </div>
                         <span style="border-right:1px solid; display: inline-block; width: 467px;">6. আপনার বন্ধু/আত্নীয়কে আমাদের সার্ভিস সেন্টারে আসতে সুপারিশ করবেন কি?</span>
                         <div style="display:inline-block; width: 112px;" class="text-center">
-                            <select class="custom_dropdown" name="recomend_our_service_center" style="width:37px; height:21px;" id="service_type">
+                            <select class="custom_dropdown" name="recomend_our_service_center" style="width:37px; height:21px;" id="recomend_our_service_center">
                                 <option value="yes">হ্যাঁ</option>
                                 <option value="no">না</option>
                             </select>
@@ -420,7 +420,7 @@
     $(document).ready(function() {
         // Input Mask Js Start
         $('.mobile').inputmask('99999999999');
-        $('.rg_number_top').inputmask('99-9999');
+        // $('.rg_number_top').inputmask('99-9999');
         $('.engine_no_top').inputmask('99999');
         $('.chassis_no_top').inputmask('99999');
         // Input Mask Js End
@@ -917,9 +917,11 @@
                     job_card_no
                 },
                 success: function({
-                    single_jb_details: jb_details
+                    single_jb_details: jb_details,
+                    service_customer_details: service_customer,
                 }) {
                     if (jb_details) {
+                        console.log(jb_details.service_type);
                         $('.amount_of_fuel').val(jb_details.amount_of_fuel || '');
                         $('.chassis_no_top').val(jb_details.chassis_no);
                         $('.engine_no_top').val(jb_details.engine_no);
@@ -928,6 +930,34 @@
                         $('.mc_sale_date').val(jb_details.mc_sale_date);
                         $('.mileage').val(jb_details.mileage || '');
                         $('#job_card_id').val(jb_details.id);
+                        $('#mc_model_name').val(jb_details.model_code).trigger('change');
+                        $('#service_type').val(jb_details.service_type);
+                        $('#work_type').val(jb_details.work_type);
+                        $('#customer_complain').val(jb_details.customer_complain);
+                        $('#repair_description').val(jb_details.repair_description);
+                        $('#next_work_description').val(jb_details.next_work_description);
+                        $('#next_work_date').val(jb_details.next_work_date);
+                        $('.rg_number_top').val(jb_details.rg_number).trigger('change');
+                        $('.job_card_no_top').val(jb_details.job_card_no);
+                        $('.job_card_date_top').val(jb_details.job_card_date);
+                        $('.job_card_no_bottom').val(jb_details.job_card_no);
+                        $('.job_card_date_bottom').val(jb_details.job_card_date);
+                        $('#service_engineer_id').val(jb_details.service_engineer_id);
+                        $('#mechanic_id').val(jb_details.mechanic_id);
+                        $('#mobile').val(service_customer.mobile);
+                        $('.client_name').val(service_customer.client_name);
+                        $('.address').val(service_customer.address);
+                        $('.amount_of_fuel').val(jb_details.amount_of_fuel);
+                        $('#any_scratch_in_tank').val(jb_details.any_scratch_in_tank);
+                        $('#indicator_is_broken').val(jb_details.indicator_is_broken);
+                        $('#any_scratch_in_headlight').val(jb_details.any_scratch_in_headlight);
+                        $('#stuff_behavior').val(jb_details.stuff_behavior);
+                        $('#service_center_is_clean').val(jb_details.service_center_is_clean);
+                        $('#garir_sompadito_kaj').val(jb_details.garir_sompadito_kaj);
+                        $('#mc_problem_solved').val(jb_details.mc_problem_solved);
+                        $('#mc_delivery_done').val(jb_details.mc_delivery_done);
+                        $('#recomend_our_service_center').val(jb_details.recomend_our_service_center);
+                        $('.advance_top').val(jb_details.advance).trigger('keyup');
                     }
                 }
             });
