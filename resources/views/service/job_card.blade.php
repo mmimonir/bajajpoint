@@ -927,21 +927,8 @@
                     spare_parts_sale_details: spare_parts_sale,
                 }) {
                     if (jb_details) {
-                        let spare_parts_sale_details_length = spare_parts_sale.length;
+                        $('#job_card_create').trigger("reset");
 
-                        let index = 0;
-                        $('.part_id').each(function() {
-                            if (index < 3) {
-                                $('.part_id').val(spare_parts_sale[index].part_id);
-                            } else {
-                                return false;
-                            }
-
-                            index++;
-                            console.log(`Index is ${index}`);
-                        });
-
-                        // $('.part_id').val(spare_parts_sale[0].part_id);
                         $('.amount_of_fuel').val(jb_details.amount_of_fuel || '');
                         $('.chassis_no_top').val(jb_details.chassis_no);
                         $('.engine_no_top').val(jb_details.engine_no);
@@ -978,6 +965,25 @@
                         $('#mc_delivery_done').val(jb_details.mc_delivery_done);
                         $('#recomend_our_service_center').val(jb_details.recomend_our_service_center);
                         $('.advance_top').val(jb_details.advance).trigger('keyup');
+
+                        // populate spare parts sale data
+                        let length = spare_parts_sale.length;
+                        let index = 0;
+                        $('.part_id').each(function() {
+                            _this = $(this).parent().parent();
+                            if (index < length) {
+                                _this.find('.part_id').val(spare_parts_sale[index].part_id);
+                                _this.find('.description').val(spare_parts_sale[index].part_name);
+                                _this.find('.quantity').val(spare_parts_sale[index].quantity);
+                                _this.find('.sale_rate').val(spare_parts_sale[index].sale_rate);
+                                _this.find('.delete_parts_item').removeClass('disabled');
+                                _this.find('.delete_icon').addClass('text-danger');
+                            } else {
+                                return false;
+                            }
+                            index++;
+                        });
+                        sum_right();
                     }
                 }
             });
