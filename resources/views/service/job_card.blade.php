@@ -74,6 +74,7 @@
         <form action="#" method="POST" id="job_card_create">
             @csrf
             <input type="hidden" name="job_card_id" id="job_card_id" value="">
+            <input type="hidden" name="service_customer_id" id="service_customer_id" value="">
             <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
                 <div class="card-header no-print">
                     <div class="row">
@@ -230,41 +231,41 @@
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:180px;"><input name="part_id[]" id="part_id" class="part_id" style="width:100%; height:19px;" type="text" value=""></span>
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:249px;"><input class="description" style="width:100%; height:19px;" type="text" value=""></span>
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input name="quantity[]" class="text-center quantity" style="width:100%; height:19px;" type="text" value=""></span>
-                                        <span class="text-center border_bottom border_right" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right sale_rate" style="width:100%; height:19px;" type="text" value=""></span>
+                                        <span class="text-center border_bottom border_right" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right sale_rate" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
                                         <span class="text-center border_bottom delete_icon" style="display:inline-block; width:41px;"><a href="#" class="disabled delete_parts_item"><i class="fa fa-trash delete_icon text-secondary"></i></a></span>
                                 </div>
                                 @endfor
                             </div>
                             <div class="m-0" style="padding:0;">
                                 <span class="pl-1 text-left border_bottom border_right" style="display:inline-block; width:630px; height:24px;">পেইড সার্ভিস</span>
-                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="paid_service_charge" class="text-right total_right sum_right" id="paid_service" style="width:100%; height:19px;" type="text" value=""></span>
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="paid_service_charge" class="text-right total_right sum_right" id="paid_service" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
                             </div>
                             <div class="m-0" style="padding:0;">
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">মোট = </span>
-                                <span class="text-right border_bottom total_bottom" style="display:inline-block; width:105px; height:24px;"></span>
+                                <span class="text-right border_bottom total_bottom" style="display:inline-block; width:105px; height:24px; padding-right:3px;"></span>
                             </div>
                             <div class="m-0" style="padding:0;">
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">ডিসকাউন্ট =</span>
-                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="discount" class="text-right discount sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="discount" class="text-right discount sum_right" id="" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
                             </div>
 
                             <div class="m-0" style="padding:0;">
                                 <span class="pl-1 text-right pr-1 border_bottom border_right" style="display:inline-block; width:630px; height:24px;">সর্বমোট =</span>
-                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input readonly class="text-right grand_total" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input readonly class="text-right grand_total" id="" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
                             </div>
                             <div class="m-0" style="padding:0;">
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">ভ্যাট = </span>
-                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="vat" class="text-right vat sum_right" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="vat" class="text-right vat sum_right" id="" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
                             </div>
                             <div class="m-0" style="padding:0;">
                                 <span class="border_bottom pl-1" style="display:inline-block; width:250px;">অগ্রীম = <input class="text-left text-bold advance_top" id="" style="height:19px;" type="text" value=""></span>
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:377px; height:24px;">বর্তমান পাওনা = </span>
-                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input readonly class="text-right total_payable" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input readonly class="text-right total_payable" id="" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
                             </div>
                             <div class="m-0" style="padding:0;">
                                 <span class="border_bottom pl-1" style="display:inline-block; width:250px;">পরিশোধ = <input class="text-left text-bold paid_amount sum_right" id="" style="height:19px;" type="text" value=""></span>
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:377px; height:24px;">বাকী = </span>
-                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="due_amount" readonly class="text-right due_amount" id="" style="width:100%; height:19px;" type="text" value=""></span>
+                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="due_amount" readonly class="text-right due_amount" id="" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
                             </div>
                             <div class="m-0 font-weight-bold border_bottom pl-1">
                                 মেকানিকের নামঃ
@@ -651,7 +652,7 @@
             var job_card_no = $('.job_card_no_top').val();
             var quantity = _this.find('.quantity').val();
             var sale_rate = _this.find('.sale_rate').val();
-            var part_name = _this.find('.description').val();
+            // var part_name = _this.find('.description').val();
             // console.log(part_id, job_card_date, quantity, sale_rate);
             // return;
             if (part_id !== '' && job_card_date !== '' && quantity !== '' && sale_rate !== '') {
@@ -664,8 +665,7 @@
                         job_card_date,
                         quantity,
                         sale_rate,
-                        job_card_no,
-                        part_name
+                        job_card_no
                     },
                     success: function(data) {
                         console.log(data);
@@ -965,6 +965,7 @@
                         $('#mc_delivery_done').val(jb_details.mc_delivery_done);
                         $('#recomend_our_service_center').val(jb_details.recomend_our_service_center);
                         $('.advance_top').val(jb_details.advance).trigger('keyup');
+                        $('#service_customer_id').val(service_customer.id);
 
                         // populate spare parts sale data
                         let length = spare_parts_sale.length;
@@ -988,9 +989,7 @@
                 }
             });
         })
-        // After select job card end
-        // comment remove from github
-        // <i class="fa fa-trash text-danger pointer delete_parts_item" aria-hidden="true"></i>
+        // After select job card end        
     });
 </script>
 @endsection
