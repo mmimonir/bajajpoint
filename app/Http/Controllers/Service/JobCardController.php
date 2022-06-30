@@ -97,8 +97,10 @@ class JobCardController extends Controller
     }
 
     public function customer_name_already_exists(Request $request)
-    {
+    {   // check if customer name already exists in service customer table with id
         $service_customer_data = $this->job_card_service->service_customer_data($request);
+
+        // check if customer name already exists in showroom core table without id
         $showroom_customer_data = $this->job_card_service->showroom_customer_data($request);
 
         if ($service_customer_data) {
@@ -133,12 +135,13 @@ class JobCardController extends Controller
     }
 
     public function create_job_card(Request $request)
-    {
+    {   // check rg number is provided, otherwise is set to on test automatically
         $rg_number = $request->rg_number;
         if ($rg_number == null) {
             $rg_number = 'On-Test';
         }
-        // check the customer is buy mc from our showroom or not
+
+        // check the customer is buy mc from our showroom or not, if yes our_customer set to yes.
         $our_customer = $this->job_card_service->showroom_customer_data($request);
         if ($our_customer) {
             $our_customer = 'yes';
@@ -146,26 +149,28 @@ class JobCardController extends Controller
             $our_customer = 'no';
         }
         $customer_id = 0;
-        // check if customer already exists, if exists then return customer id
-        // $customer_data = ServiceCustomer::select('*')->where('mobile', $request->mobile)->first();
-        // if ($customer_data) {
-        //     $customer_id = $customer_data->id;
-        // }
 
-        // create customer if not exists and reassign customer id to variable
+        // create customer if not exists and assign customer id to variable
+        if ($request->service_customer_id == null) {
+            $customer_data = ServiceCustomer::create([
+                'client_name' => $request->client_name,
+                'mobile' => $request->mobile,
+                'address' => $request->address,
+                'email' => $request->email,
+            ]);
+            $customer_id = $customer_data->id;
+        } else {
+            $id = ServiceCustomer::updateOrCreate([
+                'id' => $request->service_customer_id
+            ], [
+                'client_name' => $request->client_name,
+                'mobile' => $request->mobile,
+                'address' => $request->address,
+                'email' => $request->email,
+            ])->id;
+            $customer_id = $id;
+        }
 
-        $id = ServiceCustomer::updateOrCreate([
-            'id' => $request->service_customer_id
-        ], [
-            'client_name' => $request->client_name,
-            'mobile' => $request->mobile,
-            'address' => $request->address,
-            'email' => $request->email,
-        ])->id;
-        $customer_id = $id;
-
-
-        // return response()->json($customer_id);
         // create job card TODO: added bill id later, Our Customer?
         $jb_id = JobCard::updateOrCreate([
             'job_card_no' => $request->job_card_no,
@@ -204,40 +209,7 @@ class JobCardController extends Controller
             'our_customer' => $our_customer,
             'vat' => $request->vat,
         ])->id;
-        // $jb_id = JobCard::create([
-        //     'job_card_no' => $request->job_card_no,
-        //     'job_card_date' => $request->job_card_date,
-        //     'customer_id' => $customer_id,
-        //     'service_engineer_id' => $request->service_engineer_id,
-        //     'mechanic_id' => $request->mechanic_id,
-        //     'rg_number' => $rg_number,
-        //     'model_code' => $request->model_code,
-        //     'mc_sale_date' => $request->mc_sale_date,
-        //     'mileage' => $request->mileage,
-        //     'chassis_no' => $request->chassis_no,
-        //     'engine_no' => $request->engine_no,
-        //     'service_type' => $request->service_type,
-        //     'work_type' => $request->work_type,
-        //     'customer_complain' => $request->customer_complain,
-        //     'repair_description' => $request->repair_description,
-        //     'next_work_description' => $request->next_work_description,
-        //     'next_work_date' => $request->next_work_date,
-        //     'amount_of_fuel' => $request->amount_of_fuel,
-        //     'any_scratch_in_tank' => $request->any_scratch_in_tank,
-        //     'indicator_is_broken' => $request->indicator_is_broken,
-        //     'any_scratch_in_headlight' => $request->any_scratch_in_headlight,
-        //     'stuff_behavior' => $request->stuff_behavior,
-        //     'service_center_is_clean' => $request->service_center_is_clean,
-        //     'garir_sompadito_kaj' => $request->garir_sompadito_kaj,
-        //     'mc_problem_solved' => $request->mc_problem_solved,
-        //     'mc_delivery_done' => $request->mc_delivery_done,
-        //     'recomend_our_service_center' => $request->recomend_our_service_center,
-        //     'customer_suggestion' => $request->customer_suggestion,
-        //     'completed_last_service_type' => $request->service_type,
-        //     'paid_service_charge' => $request->paid_service_charge,
-        //     'our_customer' => $our_customer,
-        //     'vat' => $request->vat,
-        // ])->id;
+
         // Update service customer table for last completed service
         ServiceCustomer::where('id', $customer_id)->update(['completed_last_service_type' => $request->service_type]);
         return response()->json(['message' => 'Job card created successfully.', 'status' => 200]);

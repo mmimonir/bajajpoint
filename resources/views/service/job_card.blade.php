@@ -445,6 +445,7 @@
                         $('.engine_no_top').val(response.service_data.engine_no).trigger('change');
                         $('.chassis_no_top').val(response.service_data.chassis_no).trigger('change');
                         $('.mc_sale_date').val(response.service_data.mc_sale_date);
+                        $('#service_customer_id').val(response.service_data.id);
                         $('.rg_number_top').val(response.service_data.rg_number).trigger('change');
                         $('#mc_model_name').val(response.service_data.model_code).trigger('change');
                     }

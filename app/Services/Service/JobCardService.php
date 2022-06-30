@@ -50,6 +50,7 @@ class JobCardService
                 'service_customers.client_name',
                 'service_customers.mobile',
                 'service_customers.address',
+                'service_customers.id',
                 'vehicles.model',
             )
             ->where('mobile', $request->mobile)
