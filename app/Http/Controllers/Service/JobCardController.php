@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Service\JobCardService;
-use App\Models\Service\{JobCard, ServiceCustomer, SparePartsSale};
+use App\Models\Service\{JobCard, ServiceCustomer, SparePartsSale, SparePartsStock};
 
 class JobCardController extends Controller
 {
@@ -72,15 +72,33 @@ class JobCardController extends Controller
             'sale_rate' => $request->sale_rate,
             'job_card_no' => $request->job_card_no,
         ]);
-        return response()->json($data);
+        // Stock adjustment when spare parts sale is created or updated
+        $single_parts = SparePartsStock::select('*')
+            ->where('part_id', $request->part_id)->first();
+
+        if ($single_parts->stock_quantity > 0) {
+            $single_parts->decrement('stock_quantity', $request->quantity);
+        } else {
+            $single_parts->increment('stock_quantity', $request->quantity);
+        }
+        return response()->json($single_parts);
     }
 
     public function delete_parts_item(Request $request)
     {
         SparePartsSale::where('part_id', $request->part_id)->where('sale_date', $request->sale_date)->delete();
+
+        // Stock adjustment when spare parts deleted from jb card frontend
+        $single_parts = SparePartsStock::select('*')
+            ->where('part_id', $request->part_id)->first();
+
+        if ($single_parts->stock_quantity > 0) {
+            $single_parts->increment('stock_quantity', $request->quantity);
+        }
         return response()->json([
             'status' => 200,
-            'message' => 'Deleted successfully'
+            'message' => 'Deleted successfully',
+            'data' => $single_parts
         ]);
     }
 

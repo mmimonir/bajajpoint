@@ -825,6 +825,7 @@
         $('.delete_parts_item').on('click', function() {
             var _this = $(this).parent().parent();
             const part_id = _this.find('.part_id').val();
+            const quantity = _this.find('.quantity').val();
             const sale_date = $('.job_card_date_top').val();
             Swal.fire({
                 title: 'Are you sure?',
@@ -842,14 +843,15 @@
                         dataType: 'json',
                         data: {
                             part_id,
-                            sale_date
+                            sale_date,
+                            quantity
                         },
                         success: function(response) {
-                            console.log(response);
                             if (response.status === 200) {
                                 _this.find('.delete_parts_item').addClass('disabled');
                                 _this.find('.delete_icon').removeClass('text-danger');
                                 _this.find('.delete_icon').addClass('text-secondary');
+                                console.log(response.data);
                                 Swal.fire({
                                     icon: 'success',
                                     title: response.message,
