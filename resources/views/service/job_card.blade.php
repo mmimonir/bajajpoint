@@ -823,9 +823,9 @@
         // Delivery Done End
         // delete_parts_item_start
         $('.delete_parts_item').on('click', function() {
-            _this = $(this).parent().parent();
-            var part_id = _this.find('.part_id').val();
-            var sale_date = $('.job_card_date_top').val();
+            var _this = $(this).parent().parent();
+            const part_id = _this.find('.part_id').val();
+            const sale_date = $('.job_card_date_top').val();
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -957,7 +957,6 @@
                         $('#mobile').val(service_customer.mobile);
                         $('.client_name').val(service_customer.client_name);
                         $('.address').val(service_customer.address);
-                        $('.amount_of_fuel').val(jb_details.amount_of_fuel);
                         $('#any_scratch_in_tank').val(jb_details.any_scratch_in_tank);
                         $('#indicator_is_broken').val(jb_details.indicator_is_broken);
                         $('#any_scratch_in_headlight').val(jb_details.any_scratch_in_headlight);
@@ -992,7 +991,7 @@
                 }
             });
         })
-        // After select job card end        
+        // After select job card end
     });
 </script>
 @endsection
