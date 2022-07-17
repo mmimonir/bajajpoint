@@ -219,7 +219,7 @@ class JobCardController extends Controller
             'service_center_is_clean' => $request->service_center_is_clean,
             'garir_sompadito_kaj' => $request->garir_sompadito_kaj,
             'mc_problem_solved' => $request->mc_problem_solved,
-            'mc_delivery_done' => $request->mc_delivery_done,
+            'mc_delivery_done' => 'pending',
             'recomend_our_service_center' => $request->recomend_our_service_center,
             'customer_suggestion' => $request->customer_suggestion,
             'completed_last_service_type' => $request->service_type,

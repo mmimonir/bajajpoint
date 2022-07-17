@@ -9,6 +9,21 @@
         padding: 0;
     }
 
+    .disable {
+        pointer-events: none;
+    }
+
+    .pending {
+        position: absolute;
+        top: 389px;
+        left: 523px;
+        opacity: 0.2;
+        filter: alpha(opacity=50);
+        width: 48%;
+        z-index: 1;
+        transform: rotate(-7deg);
+    }
+
     .pointer {
         cursor: pointer;
     }
@@ -92,8 +107,8 @@
                                     <li class="page-item"><a class="page-link new_jb_record" href="#">New</a></li>
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                     <i class="page-link fa fa-refresh" aria-hidden="true"></i>
-                                    <button class="page-item page-link bg-dark" type="submit">Create JB</button>
-                                    <a href="#" class="page-item page-link bg-dark" id="delivery_done">Delivery Done</a>
+                                    <button class="page-item page-link bg-dark" type="submit" id="create_jb_top">Create JB</button>
+                                    <a href="#" class="page-item page-link bg-dark" id="delivery_done_top">Delivery Done</a>
                                     <a href="#" class="page-item page-link bg-dark" id="create_bill">Create Bill</a>
                                 </ul>
                             </nav>
@@ -102,6 +117,12 @@
                 </div>
 
                 <div id="print_area" class="card-body bangla_font bangla_font_light" style="width:11.5in; margin:auto; border:1px solid; padding:0; margin-top:22px; margin-bottom:22px;">
+                    <div id="pending_png">
+
+                    </div>
+                    <div id="delivered_png">
+
+                    </div>
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center">
                             <div class="d-flex align-items-center p-1" style="width:15%; border-right:1px solid;">
@@ -402,8 +423,8 @@
                                 <li class="page-item"><a class="page-link new_jb_record" href="#">New</a></li>
                                 <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                 <i class="page-link fa fa-refresh" aria-hidden="true"></i>
-                                <button class="page-item page-link bg-dark" type="submit">Create JB</button>
-                                <a href="#" class="page-item page-link bg-dark" id="delivery_done">Delivery Done</a>
+                                <button class="page-item page-link bg-dark" type="submit" id="create_jb_bottom">Create JB</button>
+                                <a href="#" class="page-item page-link bg-dark" id="delivery_done_bottom">Delivery Done</a>
                                 <a href="#" class="page-item page-link bg-dark" id="create_bill">Create Bill</a>
                             </ul>
                         </nav>
@@ -763,7 +784,9 @@
         // Reset Form End
 
         // Delivery Done Start
-        $("").click(function(ev) {
+        $("#delivery_done_top, #delivery_done_bottom").click(function(ev) {
+            alert('hello');
+            return;
             let part_id = [];
             let quantity = [];
             let sale_rate = [];
@@ -933,7 +956,6 @@
                 }) {
                     if (jb_details) {
                         $('#job_card_create').trigger("reset");
-
                         $('.amount_of_fuel').val(jb_details.amount_of_fuel || '');
                         $('.chassis_no_top').val(jb_details.chassis_no);
                         $('.engine_no_top').val(jb_details.engine_no);
@@ -974,6 +996,18 @@
                         // populate spare parts sale data
                         let length = spare_parts_sale.length;
                         let index = 0;
+                        let text_danger = $('.text-danger').length;
+                        // console.log('text_danger', text_danger);
+                        if (text_danger > 0) {
+                            $('.text-danger').each(function() {
+                                let text_danger = $(this).parent().parent();
+                                text_danger.find('.delete_parts_item').addClass('disabled');
+                                text_danger.find('.delete_icon').removeClass('text-danger');
+
+                            })
+                            text_danger--;
+                        };
+
                         $('.part_id').each(function() {
                             _this = $(this).parent().parent();
                             if (index < length) {
@@ -988,6 +1022,24 @@
                             }
                             index++;
                         });
+                        // populate spare parts sale data end
+                        // delivery done button color changes start
+                        if (jb_details.mc_delivery_done == 'yes') {
+                            $('#delivered_png').empty();
+                            $('#pending_png').empty();
+                            $('#delivery_done_top, #delivery_done_bottom').removeClass('bg-danger');
+                            $('#delivery_done_top, #delivery_done_bottom').addClass('bg-dark disabled');
+                            $('#create_jb_bottom, #create_jb_top').attr("disabled", true);
+                            $('#delivered_png').append('<img src="{{ asset("images/delivered.png") }}" alt="pending" class="img-fluid p-1 pending">');
+                        } else {
+                            $('#delivered_png').empty();
+                            $('#pending_png').empty();
+                            $('#delivery_done_top, #delivery_done_bottom').removeClass('bg-dark');
+                            $('#delivery_done_top, #delivery_done_bottom').addClass('bg-danger disabled');
+                            $('#create_jb_bottom, #create_jb_top').attr("disabled", true);
+                            $('#delivery_done_top, #delivery_done_bottom').removeClass('disabled');
+                            $('#pending_png').append('<img src="{{ asset("images/pending.png") }}" alt="pending" class="img-fluid p-1 pending">');
+                        }
                         sum_right();
                     }
                 }
