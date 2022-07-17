@@ -15,13 +15,24 @@
 
     .pending {
         position: absolute;
-        top: 389px;
-        left: 523px;
+        top: 142px;
+        left: 685px;
         opacity: 0.2;
         filter: alpha(opacity=50);
-        width: 48%;
+        width: 28%;
         z-index: 1;
-        transform: rotate(-7deg);
+        transform: rotate(-4deg);
+    }
+
+    .delivered {
+        position: absolute;
+        left: 685px;
+        opacity: 0.2;
+        filter: alpha(opacity=50);
+        width: 26%;
+        z-index: 1;
+        top: 114px;
+        transform: rotate(7deg);
     }
 
     .pointer {
@@ -108,8 +119,8 @@
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                     <i class="page-link fa fa-refresh" aria-hidden="true"></i>
                                     <button class="page-item page-link bg-dark" type="submit" id="create_jb_top">Create JB</button>
-                                    <a href="#" class="page-item page-link bg-dark" id="delivery_done_top">Delivery Done</a>
-                                    <a href="#" class="page-item page-link bg-dark" id="create_bill">Create Bill</a>
+                                    <a href="#" class="page-item page-link bg-secondary disable" id="delivery_done_top">Delivery Done</a>
+                                    <a href="#" class="page-item page-link bg-secondary disable" id="create_bill">Create Bill</a>
                                 </ul>
                             </nav>
                         </div>
@@ -424,8 +435,8 @@
                                 <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                 <i class="page-link fa fa-refresh" aria-hidden="true"></i>
                                 <button class="page-item page-link bg-dark" type="submit" id="create_jb_bottom">Create JB</button>
-                                <a href="#" class="page-item page-link bg-dark" id="delivery_done_bottom">Delivery Done</a>
-                                <a href="#" class="page-item page-link bg-dark" id="create_bill">Create Bill</a>
+                                <a href="#" class="page-item page-link bg-secondary disable" id="delivery_done_bottom">Delivery Done</a>
+                                <a href="#" class="page-item page-link bg-secondary disable" id="create_bill">Create Bill</a>
                             </ul>
                         </nav>
                     </div>
@@ -755,8 +766,11 @@
                                 showConfirmButton: false,
                                 timer: 2000
                             })
-                            $('#job_card_create').trigger("reset");
-                            assign_job_card_sl_no();
+                            // $('#job_card_create').trigger("reset");
+                            // assign_job_card_sl_no();
+                            $("#create_jb_top").html('Update JB');
+                            $('#pending_png').append('<img src="{{ asset("images/pending.png") }}" alt="pending" class="img-fluid p-1 pending">');
+                            $("#service_customer_id").val(response.service_customer_id);
                             $("#job_card_list").empty();
                             $("#job_card_list").append(`<option style="font-weight:bold;" value="">Job Card List</option>`);
                             load_job_card_list();
@@ -779,6 +793,8 @@
         $('.fa-refresh').on('click', function() {
             // location.reload();
             $('#job_card_create').trigger("reset");
+            // $('#create_jb_bottom, #create_jb_top').attr("disable", false);
+            $('#delivery_done_top, #delivery_done_bottom').addClass('disable');
             assign_job_card_sl_no();
         });
         // Reset Form End
@@ -916,7 +932,7 @@
             alert('I am Working.')
         });
         $('.new_jb_record').on('click', function() {
-            alert('I am Working.')
+            $('#job_card_create').trigger("reset");
         });
         // Load job card list on same day start
         function load_job_card_list() {
@@ -993,6 +1009,8 @@
                         $('.advance_top').val(jb_details.advance).trigger('keyup');
                         $('#service_customer_id').val(service_customer.id);
 
+                        // $('#delivery_done_top, #delivery_done_bottom').removeClass('disabled');
+
                         // populate spare parts sale data
                         let length = spare_parts_sale.length;
                         let index = 0;
@@ -1027,17 +1045,26 @@
                         if (jb_details.mc_delivery_done == 'yes') {
                             $('#delivered_png').empty();
                             $('#pending_png').empty();
-                            $('#delivery_done_top, #delivery_done_bottom').removeClass('bg-danger');
-                            $('#delivery_done_top, #delivery_done_bottom').addClass('bg-dark disabled');
-                            $('#create_jb_bottom, #create_jb_top').attr("disabled", true);
-                            $('#delivered_png').append('<img src="{{ asset("images/delivered.png") }}" alt="pending" class="img-fluid p-1 pending">');
+
+                            $('#delivery_done_top, #delivery_done_bottom').removeClass('bg-danger bg-dark');
+                            $('#delivery_done_top, #delivery_done_bottom').addClass('bg-secondary disable');
+
+                            // $('#create_jb_bottom, #create_jb_top').removeClass('bg-dark');
+                            // $('#create_jb_bottom, #create_jb_top').addClass('bg-secondary');
+                            // $('#create_jb_bottom, #create_jb_top').attr("disabled", true);
+
+                            $('#delivered_png').append('<img src="{{ asset("images/delivered.png") }}" alt="pending" class="img-fluid p-1 delivered">');
                         } else {
                             $('#delivered_png').empty();
                             $('#pending_png').empty();
-                            $('#delivery_done_top, #delivery_done_bottom').removeClass('bg-dark');
-                            $('#delivery_done_top, #delivery_done_bottom').addClass('bg-danger disabled');
-                            $('#create_jb_bottom, #create_jb_top').attr("disabled", true);
-                            $('#delivery_done_top, #delivery_done_bottom').removeClass('disabled');
+
+                            $('#delivery_done_top, #delivery_done_bottom').removeClass('bg-dark disable');
+                            $('#delivery_done_top, #delivery_done_bottom').addClass('bg-danger');
+
+                            // $('#create_jb_bottom, #create_jb_top').attr("disabled", true);
+                            // $('#create_jb_bottom, #create_jb_top').removeClass('bg-dark');
+                            // $('#create_jb_bottom, #create_jb_top').addClass('disable bg-secondary');
+
                             $('#pending_png').append('<img src="{{ asset("images/pending.png") }}" alt="pending" class="img-fluid p-1 pending">');
                         }
                         sum_right();

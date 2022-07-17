@@ -230,7 +230,11 @@ class JobCardController extends Controller
 
         // Update service customer table for last completed service
         ServiceCustomer::where('id', $customer_id)->update(['completed_last_service_type' => $request->service_type]);
-        return response()->json(['message' => 'Job card created successfully.', 'status' => 200]);
+        return response()->json([
+            'message' => 'Job card created successfully.',
+            'status' => 200,
+            'service_customer_id' => $customer_id,
+        ]);
         // if job card has parts sale then create spare parts sale #TODO add bill id later
         // foreach ($request->part_id as $key => $value) {
         //     if ($request->part_id[$key] != null) {
@@ -263,7 +267,11 @@ class JobCardController extends Controller
         //     'service_customer_id' => $customer_id,
         // ])->id;
 
-        return response()->json(['message' => 'Job card created successfully.', 'status' => 200]);
+        return response()->json([
+            'message' => 'Job card created successfully.',
+            'status' => 200,
+            'service_customer_id' => $customer_id,
+        ]);
     }
 
     public function load_basic_data()
