@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Service;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Services\Service\JobCardService;
 use App\Models\Service\{JobCard, ServiceCustomer, SparePartsSale, SparePartsStock};
+use Maatwebsite\Excel\Transactions\TransactionHandler;
 
 class JobCardController extends Controller
 {
@@ -65,40 +67,25 @@ class JobCardController extends Controller
             'part_id' => $request->part_id,
             'sale_date' => $request->job_card_date,
         ], [
-            // 'job_card_id' => $request->job_card_id,
+            'job_card_id' => $request->job_card_id,
+            'customer_id' => $request->customer_id,
             'part_id' => $request->part_id,
             'sale_date' => $request->job_card_date,
             'quantity' => $request->quantity,
             'sale_rate' => $request->sale_rate,
             'job_card_no' => $request->job_card_no,
         ]);
-        // Stock adjustment when spare parts sale is created or updated
-        $single_parts = SparePartsStock::select('*')
-            ->where('part_id', $request->part_id)->first();
 
-        if ($single_parts->stock_quantity > 0) {
-            $single_parts->decrement('stock_quantity', $request->quantity);
-        } else {
-            $single_parts->increment('stock_quantity', $request->quantity);
-        }
-        return response()->json($single_parts);
+        return response()->json($data);
     }
 
     public function delete_parts_item(Request $request)
     {
         SparePartsSale::where('part_id', $request->part_id)->where('sale_date', $request->sale_date)->delete();
 
-        // Stock adjustment when spare parts deleted from jb card frontend
-        $single_parts = SparePartsStock::select('*')
-            ->where('part_id', $request->part_id)->first();
-
-        if ($single_parts->stock_quantity > 0) {
-            $single_parts->increment('stock_quantity', $request->quantity);
-        }
         return response()->json([
             'status' => 200,
             'message' => 'Deleted successfully',
-            'data' => $single_parts
         ]);
     }
 
@@ -324,5 +311,30 @@ class JobCardController extends Controller
     {
         $all_employee = $this->job_card_service->load_employee_data();
         return response()->json(['employee' => $all_employee]);
+    }
+    public function delivery_done(Request $request)
+    {
+        try {
+            DB::transaction(function () use ($request) {
+                JobCard::where('id', $request->job_card_id)->update(['mc_delivery_done' => 'yes']);
+
+                foreach ($request->part_id as $key => $value) {
+                    if ($request->part_id[$key] != null) {
+                        SparePartsStock::where(
+                            'part_id',
+                            $request->part_id[$key]
+                        )->decrement('stock_quantity', $request->quantity[$key]);
+                    }
+                }
+            });
+            return response()->json([
+                'message' => 'Job card updated.',
+                'status' => 200,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 502]);
+        }
+
+        // return response()->json(['data' => $request->all()]);
     }
 }

@@ -690,6 +690,8 @@
             var job_card_no = $('.job_card_no_top').val();
             var quantity = _this.find('.quantity').val();
             var sale_rate = _this.find('.sale_rate').val();
+            let customer_id = $('#service_customer_id').val();
+            let job_card_id = $('#job_card_id').val();
             // var part_name = _this.find('.description').val();
             // console.log(part_id, job_card_date, quantity, sale_rate);
             // return;
@@ -703,7 +705,9 @@
                         job_card_date,
                         quantity,
                         sale_rate,
-                        job_card_no
+                        job_card_no,
+                        customer_id,
+                        job_card_id
                     },
                     success: function(data) {
                         console.log(data);
@@ -799,11 +803,10 @@
 
         // Delivery Done Start
         $("#delivery_done_top, #delivery_done_bottom").click(function(ev) {
-            alert('hello');
-            return;
             let part_id = [];
             let quantity = [];
             let sale_rate = [];
+            let job_card_id = $('#job_card_id').val();
 
             $("input[name='part_id[]']").each(function() {
                 if ($(this).val() !== '') {
@@ -822,26 +825,29 @@
             });
             if (part_id.length > 0) {
                 $.ajax({
-                    url: "{{ route('job_card.create') }}",
+                    url: "{{ route('job_card.delivery_done') }}",
                     method: 'post',
                     data: {
-                        part_id: part_id,
-                        quantity: quantity,
-                        sale_rate: sale_rate,
+                        part_id,
+                        quantity,
+                        sale_rate,
+                        job_card_id,
                         _token: "{{ csrf_token() }}"
                     },
                     dataType: 'json',
                     success: function(response) {
-                        console.log(response);
-                        return;
                         if (response.status === 200) {
+                            $('#delivery_done_top, #delivery_done_bottom').addClass('disable');
+                            $('#delivery_done_top, #delivery_done_bottom').removeClass('bg-danger');
+                            text_danger_remove();
                             Swal.fire({
                                 icon: 'success',
                                 title: response.message,
                                 showConfirmButton: false,
                                 timer: 2000
                             })
-                            $('#job_card_create').trigger("reset");
+                            new_jb_record()
+                            // $('#job_card_create').trigger("reset");
                         } else {
                             Swal.fire({
                                 icon: 'error',
@@ -943,6 +949,11 @@
             $('#pending_png').empty();
             $("#create_jb_top").html('Create JB');
             $("#create_jb_bottom").html('Create JB');
+            text_danger_remove();
+            $("#job_card_create :input").prop("disabled", false);
+
+            $('#create_jb_top, #create_jb_bottom').removeClass('bg-secondary disable');
+            $('#create_jb_top, #create_jb_bottom').addClass('bg-dark');
         }
 
         // Load job card list on same day start
@@ -966,7 +977,22 @@
         }
         load_job_card_list();
         // Load job card list on same day end
+        function text_danger_remove() {
+            let text_danger = $('.text-danger').length;
+            if (text_danger > 0) {
+                $('.text-danger').each(function() {
+                    let text_danger = $(this).parent().parent();
+                    text_danger.find('.delete_parts_item').addClass('disabled');
+                    text_danger.find('.delete_icon').removeClass('text-danger');
 
+                })
+                text_danger--;
+            };
+        };
+
+        function disable_all_input() {
+            $("#job_card_create :input").prop("disabled", true);
+        };
         // After select job card start
         $('#job_card_list').on('change', function() {
             let job_card_no = $(this).val();
@@ -1025,22 +1051,10 @@
                         $("#create_jb_top").html('Update JB');
                         $("#create_jb_bottom").html('Update JB');
 
-                        // $('#delivery_done_top, #delivery_done_bottom').removeClass('disabled');
-
                         // populate spare parts sale data
                         let length = spare_parts_sale.length;
                         let index = 0;
-                        let text_danger = $('.text-danger').length;
-                        // console.log('text_danger', text_danger);
-                        if (text_danger > 0) {
-                            $('.text-danger').each(function() {
-                                let text_danger = $(this).parent().parent();
-                                text_danger.find('.delete_parts_item').addClass('disabled');
-                                text_danger.find('.delete_icon').removeClass('text-danger');
-
-                            })
-                            text_danger--;
-                        };
+                        text_danger_remove();
 
                         $('.part_id').each(function() {
                             _this = $(this).parent().parent();
@@ -1065,10 +1079,12 @@
                             $('#delivery_done_top, #delivery_done_bottom').removeClass('bg-danger bg-dark');
                             $('#delivery_done_top, #delivery_done_bottom').addClass('bg-secondary disable');
 
-                            // $('#create_jb_bottom, #create_jb_top').removeClass('bg-dark');
-                            // $('#create_jb_bottom, #create_jb_top').addClass('bg-secondary');
-                            // $('#create_jb_bottom, #create_jb_top').attr("disabled", true);
+                            $('#create_jb_top, #create_jb_bottom').removeClass('bg-dark');
+                            $('#create_jb_top, #create_jb_bottom').addClass('bg-secondary disable');
 
+                            text_danger_remove();
+                            disable_all_input();
+                            $('#job_card_list').prop('disabled', false);
                             $('#delivered_png').append('<img src="{{ asset("images/delivered.png") }}" alt="pending" class="img-fluid p-1 delivered">');
                         } else {
                             $('#delivered_png').empty();
