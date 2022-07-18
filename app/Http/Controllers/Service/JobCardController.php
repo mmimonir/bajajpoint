@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Services\Service\JobCardService;
-use App\Models\Service\{JobCard, ServiceCustomer, SparePartsSale, SparePartsStock};
+use App\Models\Service\{Bill, JobCard, ServiceCustomer, SparePartsSale, SparePartsStock};
 use Maatwebsite\Excel\Transactions\TransactionHandler;
 
 class JobCardController extends Controller
@@ -235,18 +235,7 @@ class JobCardController extends Controller
             'status' => 200,
             'service_customer_id' => $customer_id,
         ]);
-        // if job card has parts sale then create spare parts sale #TODO add bill id later
-        // foreach ($request->part_id as $key => $value) {
-        //     if ($request->part_id[$key] != null) {
-        //         SparePartsSale::create([
-        //             'part_id' => $request->part_id[$key],
-        //             'customer_id' => $customer_id,
-        //             'quantity' => $request->quantity[$key],
-        //             'sale_rate' => $request->sale_rate[$key],
-        //             'sale_date' => $request->job_card_date,
-        //         ]);
-        //     }
-        // }
+
         // generate bill no
         // $bill_no = $this->create_bill_no();
         // if jb has parts or mobil then create bill #TODO add job card id later
@@ -317,13 +306,41 @@ class JobCardController extends Controller
         try {
             DB::transaction(function () use ($request) {
                 JobCard::where('id', $request->job_card_id)->update(['mc_delivery_done' => 'yes']);
+                if ($request->part_id) {
+                    foreach ($request->part_id as $key => $value) {
+                        if ($request->part_id[$key] != null) {
+                            SparePartsStock::where(
+                                'part_id',
+                                $request->part_id[$key]
+                            )->decrement('stock_quantity', $request->quantity[$key]);
+                        }
+                    }
 
-                foreach ($request->part_id as $key => $value) {
-                    if ($request->part_id[$key] != null) {
-                        SparePartsStock::where(
-                            'part_id',
-                            $request->part_id[$key]
-                        )->decrement('stock_quantity', $request->quantity[$key]);
+                    // generate bill no
+                    $bill_no = $this->create_bill_no();
+
+                    $total_bill = 0;
+                    foreach ($request->part_id as $key => $value) {
+                        if ($request->part_id[$key] != null) {
+                            $total_bill += $request->quantity[$key] * $request->sale_rate[$key];
+                        }
+                    }
+                    $profit = ($total_bill * 0.2) - $request->discount;
+                    $bill_id = Bill::create([
+                        'bill_no' => $bill_no,
+                        'bill_amount' => $total_bill + $request->paid_service_charge,
+                        'discount' => $request->discount,
+                        'due_amount' => $request->due_amount,
+                        'profit' => $profit + $request->paid_service_charge,
+                        'vat' => $request->vat,
+                        'service_customer_id' => $request->service_customer_id,
+                        'job_card_id' => $request->job_card_id,
+                    ])->id;
+
+                    // update bill id in job card table
+                    if ($bill_id) {
+                        JobCard::where('id', $request->job_card_id)->update(['bill_id' => $bill_id]);
+                        SparePartsSale::where('job_card_id', $request->job_card_id)->update(['bill_id' => $bill_id]);
                     }
                 }
             });

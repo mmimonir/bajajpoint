@@ -277,7 +277,7 @@
                             </div>
                             <div class="m-0" style="padding:0;">
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:630px; height:24px;">ডিসকাউন্ট =</span>
-                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="discount" class="text-right discount sum_right" id="" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
+                                <span class="text-center border_bottom" style="display:inline-block; width:105px;"><input name="discount" class="text-right discount sum_right" id="discount" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
                             </div>
 
                             <div class="m-0" style="padding:0;">
@@ -296,7 +296,7 @@
                             <div class="m-0" style="padding:0;">
                                 <span class="border_bottom pl-1" style="display:inline-block; width:250px;">পরিশোধ = <input class="text-left text-bold paid_amount sum_right" id="" style="height:19px;" type="text" value=""></span>
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:377px; height:24px;">বাকী = </span>
-                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="due_amount" readonly class="text-right due_amount" id="" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
+                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="due_amount" readonly class="text-right due_amount" id="due_amount" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
                             </div>
                             <div class="m-0 font-weight-bold border_bottom pl-1">
                                 মেকানিকের নামঃ
@@ -807,6 +807,10 @@
             let quantity = [];
             let sale_rate = [];
             let job_card_id = $('#job_card_id').val();
+            let discount = $('#discount').val();
+            let paid_service_charge = $('#paid_service').val();
+            let due_amount = $('#due_amount').val();
+            let service_customer_id = $('#service_customer_id').val();
 
             $("input[name='part_id[]']").each(function() {
                 if ($(this).val() !== '') {
@@ -823,45 +827,44 @@
                     sale_rate.push($(this).val());
                 }
             });
-            if (part_id.length > 0) {
-                $.ajax({
-                    url: "{{ route('job_card.delivery_done') }}",
-                    method: 'post',
-                    data: {
-                        part_id,
-                        quantity,
-                        sale_rate,
-                        job_card_id,
-                        _token: "{{ csrf_token() }}"
-                    },
-                    dataType: 'json',
-                    success: function(response) {
-                        if (response.status === 200) {
-                            $('#delivery_done_top, #delivery_done_bottom').addClass('disable');
-                            $('#delivery_done_top, #delivery_done_bottom').removeClass('bg-danger');
-                            text_danger_remove();
-                            Swal.fire({
-                                icon: 'success',
-                                title: response.message,
-                                showConfirmButton: false,
-                                timer: 2000
-                            })
-                            new_jb_record()
-                            // $('#job_card_create').trigger("reset");
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: response.message,
-                                footer: '<a href="">Why do I have this issue?</a>'
-                            })
-
-                        }
+            $.ajax({
+                url: "{{ route('job_card.delivery_done') }}",
+                method: 'post',
+                data: {
+                    part_id,
+                    quantity,
+                    sale_rate,
+                    job_card_id,
+                    discount,
+                    paid_service_charge,
+                    due_amount,
+                    service_customer_id,
+                    _token: "{{ csrf_token() }}"
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 200) {
+                        $('#delivery_done_top, #delivery_done_bottom').addClass('disable');
+                        $('#delivery_done_top, #delivery_done_bottom').removeClass('bg-danger');
+                        text_danger_remove();
+                        Swal.fire({
+                            icon: 'success',
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                        new_jb_record()
+                        // $('#job_card_create').trigger("reset");
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message,
+                            footer: '<a href="">Why do I have this issue?</a>'
+                        })
                     }
-                });
-            } else {
-                alert('Please select atleast one parts');
-            }
+                }
+            });
         });
         // Delivery Done End
         // delete_parts_item_start
