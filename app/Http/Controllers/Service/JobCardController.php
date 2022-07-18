@@ -113,6 +113,15 @@ class JobCardController extends Controller
 
         return $bill_no;
     }
+    public function check_jb_is_exists($jb_date, $customer_id)
+    {
+        $jb_data = JobCard::where(['job_card_date' => $jb_date, 'customer_id' => $customer_id])->first();
+        if ($jb_data) {
+            return $jb_data->job_card_no;
+        } else {
+            return false;
+        }
+    }
 
     public function customer_name_already_exists(Request $request)
     {   // check if customer name already exists in service customer table with id
@@ -120,6 +129,7 @@ class JobCardController extends Controller
 
         // check if customer name already exists in showroom core table without id
         $showroom_customer_data = $this->job_card_service->showroom_customer_data($request);
+        $exists_jb_no = $this->check_jb_is_exists(Carbon::now()->toDateString(), $service_customer_data->id ?? '');
 
         if ($service_customer_data) {
             return response()
@@ -127,7 +137,8 @@ class JobCardController extends Controller
                     [
                         'message' => 'Customer already exists.',
                         'service_data' => $service_customer_data,
-                        'status' => 'service'
+                        'status' => 'service',
+                        'job_card_no' => $exists_jb_no ?? '',
                     ]
                 );
         } else {
@@ -137,7 +148,8 @@ class JobCardController extends Controller
                         [
                             'message' => 'Customer already exists.',
                             'showroom_data' => $showroom_customer_data,
-                            'status' => 'showroom'
+                            'status' => 'showroom',
+                            'job_card_no' => $exists_jb_no ?? '',
                         ]
                     );
             } else {
@@ -188,10 +200,11 @@ class JobCardController extends Controller
             ])->id;
             $customer_id = $id;
         }
-
+        // check jb is created or not, if yes then update jb else create jb
         // create job card TODO: added bill id later, Our Customer?
         $jb_id = JobCard::updateOrCreate([
-            'job_card_no' => $request->job_card_no,
+            'customer_id' => $customer_id,
+            // 'job_card_no' => $request->job_card_no,
             'job_card_date' => $request->job_card_date,
         ], [
             'job_card_no' => $request->job_card_no,

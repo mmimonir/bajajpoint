@@ -115,9 +115,8 @@
                                     <li class="page-item"><a class="page-link previous_jb_record" href="#">Prev</a></li>
                                     <li class="page-item"><a class="page-link next_jb_record" href="#">Next</a></li>
                                     <li class="page-item"><a class="page-link last_jb_record" href="#">Last</a></li>
-                                    <li class="page-item"><a class="page-link new_jb_record" href="#">New</a></li>
+                                    <li class="page-item"><a class="page-link new_jb_record bg-success" href="#">New</a></li>
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
-                                    <i class="page-link fa fa-refresh" aria-hidden="true"></i>
                                     <button class="page-item page-link bg-dark" type="submit" id="create_jb_top">Create JB</button>
                                     <a href="#" class="page-item page-link bg-secondary disable" id="delivery_done_top">Delivery Done</a>
                                     <a href="#" class="page-item page-link bg-secondary disable" id="create_bill">Create Bill</a>
@@ -171,7 +170,7 @@
                                         <input name="mc_sale_date" class="text-bold mc_sale_date" style="width:30%; height:19px;" type="date">
                                     </span>
                                     <span>মাইলেজ:
-                                        <input name="mileage" class="text-bold" style="width:30%; height:19px;" type="text">
+                                        <input name="mileage" class="text-bold mileage" id="mileage" style="width:30%; height:19px;" type="text">
                                     </span>
                                 </div>
                                 <p class="m-0 border_bottom pl-1">
@@ -431,9 +430,8 @@
                                 <li class="page-item"><a class="page-link previous_jb_record" href="#">Prev</a></li>
                                 <li class="page-item"><a class="page-link next_jb_record" href="#">Next</a></li>
                                 <li class="page-item"><a class="page-link last_jb_record" href="#">Last</a></li>
-                                <li class="page-item"><a class="page-link new_jb_record" href="#">New</a></li>
+                                <li class="page-item"><a class="page-link new_jb_record bg-success" href="#">New</a></li>
                                 <li class="page-item print"><a class="page-link" href="#">Print</a></li>
-                                <i class="page-link fa fa-refresh" aria-hidden="true"></i>
                                 <button class="page-item page-link bg-dark" type="submit" id="create_jb_bottom">Create JB</button>
                                 <a href="#" class="page-item page-link bg-secondary disable" id="delivery_done_bottom">Delivery Done</a>
                                 <a href="#" class="page-item page-link bg-secondary disable" id="create_bill">Create Bill</a>
@@ -468,6 +466,13 @@
                     mobile: mobile,
                 },
                 success: function(response) {
+                    if (response.job_card_no) {
+                        // console.log('JOB No' + response.job_card_no);
+                        $('.job_card_no_top').val(response.job_card_no).trigger('change');
+                        $('.job_card_no_bottom').val(response.job_card_no).trigger('change');
+                        $('#create_jb_bottom').html('Update JB');
+                        $('#create_jb_top').html('Update JB');
+                    }
                     console.log(response);
                     if (response.status === 'service') {
                         console.log(response.service_data.client_name);
@@ -769,6 +774,8 @@
                             // $('#job_card_create').trigger("reset");
                             // assign_job_card_sl_no();
                             $("#create_jb_top").html('Update JB');
+                            $("#create_jb_bottom").html('Update JB');
+                            $('#pending_png').empty();
                             $('#pending_png').append('<img src="{{ asset("images/pending.png") }}" alt="pending" class="img-fluid p-1 pending">');
                             $("#service_customer_id").val(response.service_customer_id);
                             $("#job_card_list").empty();
@@ -789,15 +796,6 @@
         });
         // Submit Create Job Card End
 
-        // Reset Form Start
-        $('.fa-refresh').on('click', function() {
-            // location.reload();
-            $('#job_card_create').trigger("reset");
-            // $('#create_jb_bottom, #create_jb_top').attr("disable", false);
-            $('#delivery_done_top, #delivery_done_bottom').addClass('disable');
-            assign_job_card_sl_no();
-        });
-        // Reset Form End
 
         // Delivery Done Start
         $("#delivery_done_top, #delivery_done_bottom").click(function(ev) {
@@ -932,9 +930,23 @@
             alert('I am Working.')
         });
         $('.new_jb_record').on('click', function() {
-            $('#job_card_create').trigger("reset");
+            new_jb_record();
         });
+
+        function new_jb_record() {
+            $("#job_card_list").empty();
+            $("#job_card_list").append(`<option style="font-weight:bold;" value="">Job Card List</option>`);
+            $('#job_card_create').trigger("reset");
+            assign_job_card_sl_no();
+            load_job_card_list();
+            $('#delivered_png').empty();
+            $('#pending_png').empty();
+            $("#create_jb_top").html('Create JB');
+            $("#create_jb_bottom").html('Create JB');
+        }
+
         // Load job card list on same day start
+
         function load_job_card_list() {
             $.ajax({
                 url: "{{ route('job_card.load_job_card_list') }}",
@@ -998,6 +1010,7 @@
                         $('.client_name').val(service_customer.client_name);
                         $('.address').val(service_customer.address);
                         $('#any_scratch_in_tank').val(jb_details.any_scratch_in_tank);
+                        $('#mileage').val(jb_details.mileage);
                         $('#indicator_is_broken').val(jb_details.indicator_is_broken);
                         $('#any_scratch_in_headlight').val(jb_details.any_scratch_in_headlight);
                         $('#stuff_behavior').val(jb_details.stuff_behavior);
@@ -1008,6 +1021,9 @@
                         $('#recomend_our_service_center').val(jb_details.recomend_our_service_center);
                         $('.advance_top').val(jb_details.advance).trigger('keyup');
                         $('#service_customer_id').val(service_customer.id);
+
+                        $("#create_jb_top").html('Update JB');
+                        $("#create_jb_bottom").html('Update JB');
 
                         // $('#delivery_done_top, #delivery_done_bottom').removeClass('disabled');
 
