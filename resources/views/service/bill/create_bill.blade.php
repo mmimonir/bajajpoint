@@ -16,7 +16,7 @@
     }
 
     .bill_page {
-        height: 70rem;
+        height: 73rem;
         width: 59rem;
         border: 1px solid black;
         margin: auto;
@@ -74,12 +74,21 @@
             </div>
             <div class="bill_body">
                 <div class="row">
-                    <div class="col-md-3 offset-md-9">
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3" style="width: 160px;">
+                            <span class="input-group-text" id="basic-addon1" style="height:25px; border-radius: 0;">Bill No:</span>
+                            <input type="text" class="form-control" style="height:25px; border-radius: 0;">
+                        </div>
+                    </div>
+                    <div class="col-md-3 offset-md-3" style="padding-right: 0px;">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1" style="height:25px;">Date:</span>
                             <input type="date" class="form-control" style="height:25px;">
                         </div>
                     </div>
+                    </div>
+
                     <div class="col-md-12">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1" style="background-color:#F4F6F9; height:25px; border:0px; border-radius: 0;">Name :</span>
@@ -129,7 +138,9 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td rowspan="3" colspan="4"></td>
+                                    <td rowspan="3" colspan="4" style="vertical-align: top;">
+                                        <p><strong>In Words:</strong></p>
+                                    </td>
                                     <td>Total Amount</td>
                                     <td><input required type="text" class="input_style text-center" id="" name="" placeholder=""></td>
                                 </tr>
@@ -144,12 +155,10 @@
                             </tfoot>
                         </table>
                     </div>
-                    <div class="row d-flex align-items-center">
+                    <div class="row d-flex align-items-center" style="margin-top: 20px;">
                         <div class="col-md-12" style="padding-left:0px;">
                             <img src="{{asset('/images/for_bajajpoint.png')}}" class="img-fluid p-1" style="width:100%;">
                         </div>
-
-
                     </div>
                 </div>
             </div>
