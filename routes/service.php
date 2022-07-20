@@ -22,4 +22,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         Route::get('/load_single_job_card',  'load_single_job_card')->name('job_card.load_single_job_card');
         Route::post('/delivery_done',  'delivery_done')->name('job_card.delivery_done');
     });
+
+    Route::controller(App\Http\Controllers\Service\ServiceBillController::class)->group(function () {
+        Route::get('/create_bill',  'create_bill')->name('service.create_bill');
+    });
 });
