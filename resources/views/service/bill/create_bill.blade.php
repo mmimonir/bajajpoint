@@ -157,7 +157,7 @@
                                                 <input type="text" name="sl" style="width:38px;" class="input_style text-center">
                                             </td>
                                             <td>
-                                                <input disabled type="text" name="part_name[]" style="width:250px;" class="input_style text-center part_name">
+                                                <input readOnly type="text" name="part_name[]" style="width:250px;" class="input_style text-center part_name">
                                             </td>
                                             <td>
                                                 <input type="text" name="part_id[]" class="input_style text-center part_id">
@@ -169,7 +169,7 @@
                                                 <input type="text" name="sale_rate[]" style="width:115px;" class="input_style text-right sale_rate">
                                             </td>
                                             <td>
-                                                <input disabled type="text" name="total_amount[]" class="input_style text-right total_amount">
+                                                <input readOnly type="text" name="total_amount[]" class="input_style text-right total_amount">
                                             </td>
                                             <td class="text-center">
                                                 <a href="#" class="disabled delete_parts_item"><i class="fa fa-trash delete_icon text-secondary"></i></a>
@@ -183,7 +183,7 @@
                                                 <p><strong>In Words:</strong></p>
                                             </td>
                                             <td>Total Amount</td>
-                                            <td><input disabled type="text" name="grand_total" id="grand_total" class="input_style text-right grand_total"></td>
+                                            <td><input readOnly type="text" name="grand_total" id="grand_total" class="input_style text-right grand_total"></td>
                                             <td></td>
                                         </tr>
                                         <tr>
@@ -193,7 +193,7 @@
                                         </tr>
                                         <tr>
                                             <td>Balance</td>
-                                            <td><input disabled type="text" name="balance" id="balance" class="input_style text-right balance"></td>
+                                            <td><input readOnly type="text" name="balance" id="balance" class="input_style text-right balance"></td>
                                             <td></td>
                                         </tr>
                                         <tr>
@@ -203,7 +203,7 @@
                                         </tr>
                                         <tr>
                                             <td>Grand Total</td>
-                                            <td><input disabled type="text" name="bill_amount" id="bill_amount" class="input_style text-right bill_amount"></td>
+                                            <td><input readOnly type="text" name="bill_amount" id="bill_amount" class="input_style text-right bill_amount"></td>
                                             <td></td>
                                         </tr>
                                         <tr>
@@ -213,7 +213,7 @@
                                         </tr>
                                         <tr>
                                             <td>Due</td>
-                                            <td><input disabled type="text" name="due_amount" id="due_amount" class="input_style text-right due_amount"></td>
+                                            <td><input readOnly type="text" name="due_amount" id="due_amount" class="input_style text-right due_amount"></td>
                                             <td></td>
                                         </tr>
                                     </tfoot>
