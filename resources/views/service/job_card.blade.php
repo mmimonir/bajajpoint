@@ -145,7 +145,7 @@
                             </div>
                             <div class="align-middle p-1" style="width:20%; border-right:1px solid;">
                                 <p class="m-0 font-weight-bold border_bottom" style="height:30px;">জব কার্ড নং:<input name="job_card_no" class="job_card_no_top" style="display:inline-block; height:24px; width:100px; font-weight:bold; font-size:16px; padding-left:8px;" type="text" /></p>
-                                <p class="m-0 font-weight-bold">জব কার্ড তারিখ:<input name="job_card_date" class="pl-2 job_card_date_top font-weight-bold" style="display:inline-block; height:24px; width:100px;" type="date" /></p>
+                                <p class="m-0 font-weight-bold">জব কার্ড তারিখ:<input name="job_card_date" id="job_card_date" class="pl-2 job_card_date_top font-weight-bold" style="display:inline-block; height:24px; width:100px;" type="date" /></p>
                             </div>
                             <div class="d-flex align-items-center p-1" style="width:15%;">
                                 <img src="{{URL('/images/bajaj_logo.png')}}" class="img-fluid p-1">
@@ -530,7 +530,6 @@
         // change parts sale quantiry start
         $('.quantity').on('focus', function() {
             $(this).on('change', function() {
-                console.log($(this).val());
                 _this = $(this).parent().parent();
                 var quantity = _this.find('.quantity').val();
                 var sale_rate = _this.find('.sale_rate').val();
@@ -692,9 +691,7 @@
             var sale_rate = _this.find('.sale_rate').val();
             let customer_id = $('#service_customer_id').val();
             let job_card_id = $('#job_card_id').val();
-            // var part_name = _this.find('.description').val();
-            // console.log(part_id, job_card_date, quantity, sale_rate);
-            // return;
+
             if (part_id !== '' && job_card_date !== '' && quantity !== '' && sale_rate !== '') {
                 $.ajax({
                     url: "{{ route('job_card.create_or_update') }}",
@@ -811,6 +808,7 @@
             let paid_service_charge = $('#paid_service').val();
             let due_amount = $('#due_amount').val();
             let service_customer_id = $('#service_customer_id').val();
+            let bill_date = $('#job_card_date').val();
 
             $("input[name='part_id[]']").each(function() {
                 if ($(this).val() !== '') {
@@ -839,6 +837,7 @@
                     paid_service_charge,
                     due_amount,
                     service_customer_id,
+                    bill_date,
                     _token: "{{ csrf_token() }}"
                 },
                 dataType: 'json',

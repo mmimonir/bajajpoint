@@ -67,13 +67,13 @@ class JobCardController extends Controller
             'part_id' => $request->part_id,
             'sale_date' => $request->job_card_date,
         ], [
-            'job_card_id' => $request->job_card_id,
-            'customer_id' => $request->customer_id,
+            'job_card_id' => $request->job_card_id ?? 0,
+            'customer_id' => $request->customer_id ?? 0,
             'part_id' => $request->part_id,
             'sale_date' => $request->job_card_date,
             'quantity' => $request->quantity,
             'sale_rate' => $request->sale_rate,
-            'job_card_no' => $request->job_card_no,
+            'job_card_no' => $request->job_card_no ?? 0,
         ]);
 
         return response()->json($data);
@@ -236,26 +236,6 @@ class JobCardController extends Controller
             'service_customer_id' => $customer_id,
         ]);
 
-        // generate bill no
-        // $bill_no = $this->create_bill_no();
-        // if jb has parts or mobil then create bill #TODO add job card id later
-        // $total_bill = 0;
-        // foreach ($request->part_id as $key => $value) {
-        //     if ($request->part_id[$key] != null) {
-        //         $total_bill += $request->quantity[$key] * $request->sale_rate[$key];
-        //     }
-        // }
-        // $profit = ($total_bill * 0.2) - $request->discount;
-        // $bill_id = Bill::create([
-        //     'bill_no' => $bill_no,
-        //     'bill_amount' => $total_bill + $request->paid_service_charge,
-        //     'discount' => $request->discount,
-        //     'due_amount' => $request->due_amount,
-        //     'profit' => $profit + $request->paid_service_charge,
-        //     'vat' => $request->vat,
-        //     'service_customer_id' => $customer_id,
-        // ])->id;
-
         return response()->json([
             'message' => 'Job card created successfully.',
             'status' => 200,
@@ -295,6 +275,11 @@ class JobCardController extends Controller
         $this->job_card_no = $new_job_card_no;
         return response()->json($new_job_card_no);
     }
+    public function assign_bill_no()
+    {
+        $bill_no = $this->job_card_service->create_bill_no();
+        return response()->json($bill_no);
+    }
 
     public function load_employee_data()
     {
@@ -303,9 +288,12 @@ class JobCardController extends Controller
     }
     public function delivery_done(Request $request)
     {
+        return response()->json($request->all());
         try {
             DB::transaction(function () use ($request) {
-                JobCard::where('id', $request->job_card_id)->update(['mc_delivery_done' => 'yes']);
+                if ($request->job_card_id) {
+                    JobCard::where('id', $request->job_card_id)->update(['mc_delivery_done' => 'yes']);
+                }
                 if ($request->part_id) {
                     foreach ($request->part_id as $key => $value) {
                         if ($request->part_id[$key] != null) {
@@ -325,16 +313,17 @@ class JobCardController extends Controller
                             $total_bill += $request->quantity[$key] * $request->sale_rate[$key];
                         }
                     }
-                    $profit = ($total_bill * 0.2) - $request->discount;
+                    $profit = ($total_bill * 0.2) - $request->discount ?? 0;
                     $bill_id = Bill::create([
                         'bill_no' => $bill_no,
-                        'bill_amount' => $total_bill + $request->paid_service_charge,
+                        'bill_date' => $request->bill_date,
+                        'bill_amount' => $total_bill + $request->paid_service_charge ?? 0,
                         'discount' => $request->discount,
                         'due_amount' => $request->due_amount,
-                        'profit' => $profit + $request->paid_service_charge,
-                        'vat' => $request->vat,
-                        'service_customer_id' => $request->service_customer_id,
-                        'job_card_id' => $request->job_card_id,
+                        'profit' => $profit + $request->paid_service_charge ?? 0,
+                        'vat' => $request->vat ?? 0,
+                        'service_customer_id' => $request->service_customer_id ?? 0,
+                        'job_card_id' => $request->job_card_id ?? 0,
                     ])->id;
 
                     // update bill id in job card table

@@ -21,6 +21,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         Route::get('/load_job_card_list',  'load_job_card_list')->name('job_card.load_job_card_list');
         Route::get('/load_single_job_card',  'load_single_job_card')->name('job_card.load_single_job_card');
         Route::post('/delivery_done',  'delivery_done')->name('job_card.delivery_done');
+        Route::post('/create_bill',  'delivery_done')->name('bill.create_bill');
+        Route::get('/assign_bill_no',  'assign_bill_no')->name('bill.assign_bill_no');
     });
 
     Route::controller(App\Http\Controllers\Service\ServiceBillController::class)->group(function () {
