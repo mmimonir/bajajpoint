@@ -959,7 +959,6 @@
         }
 
         // Load job card list on same day start
-
         function load_job_card_list() {
             $.ajax({
                 url: "{{ route('job_card.load_job_card_list') }}",
@@ -975,10 +974,10 @@
                     }
                 }
             });
-
         }
         load_job_card_list();
         // Load job card list on same day end
+
         function text_danger_remove() {
             let text_danger = $('.text-danger').length;
             if (text_danger > 0) {

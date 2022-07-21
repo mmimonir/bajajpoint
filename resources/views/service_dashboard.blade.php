@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-body">
                     <div class="col-md-12 col-sm-6 d-flex justify-content-center">
-                        <a href="{{route('service.create_bill')}}" class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">
+                        <a href="{{route('bill.create_bill')}}" class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">
                             Create Bill/Invoice
                         </a>
                         <a class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">

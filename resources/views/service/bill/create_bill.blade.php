@@ -68,7 +68,7 @@
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
                             <h4 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px;">Bill Area</h4>
-                            <select name="job_card_list" style="font-weight: bold;" id="job_card_list">
+                            <select name="bill_list" style="font-weight: bold;" id="bill_list">
                                 <option style="font-weight:bold;" value="">Bill List</option>
                             </select>
                             <nav aria-label="Page navigation example" style="padding-left:15px;">
@@ -221,7 +221,7 @@
                             </div>
                             <div class="row d-flex align-items-center" style="margin-top: 20px;">
                                 <div class="col-md-12" style="padding-left:0px;">
-                                    <img src="{{asset('/images/for_bajajpoint.png')}}" class="img-fluid p-1" style="width:100%;">
+                                    <img src="{{asset('/images/for_bajajpoint_two.png')}}" class="img-fluid p-1" style="width:100%;">
                                 </div>
                             </div>
                         </div>
@@ -491,6 +491,26 @@
             }
         });
         // Submit Create Job Card End
+
+        // Load job card list on same day start
+        function load_bill_list() {
+            $.ajax({
+                url: "{{ route('bill.bill_list') }}",
+                method: 'get',
+                dataType: 'json',
+                success: function({
+                    bill_list
+                }) {
+                    if (bill_list) {
+                        bill_list.forEach(function(item) {
+                            $("#bill_list").append(`<option style="font-weight:bold;" value="${item.bill_no}">Bill-${item.bill_no}</option>`);
+                        });
+                    }
+                }
+            });
+        }
+        load_bill_list();
+        // Load job card list on same day end
     })
 </script>
 @endsection

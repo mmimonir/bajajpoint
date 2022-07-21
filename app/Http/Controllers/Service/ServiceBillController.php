@@ -2,13 +2,24 @@
 
 namespace App\Http\Controllers\Service;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use App\Models\Service\Bill;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ServiceBillController extends Controller
 {
     public function create_bill()
     {
         return view('service.bill.create_bill');
+    }
+
+    public function load_bill_list()
+    {
+        $bill_list = Bill::select('bill_no')
+            ->where('bill_date', Carbon::now()->toDateString())
+            ->orderBy('bill_no', 'asc')
+            ->get();
+        return response()->json(['bill_list' => $bill_list]);
     }
 }

@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
     });
 
     Route::controller(App\Http\Controllers\Service\ServiceBillController::class)->group(function () {
-        Route::get('/create_bill',  'create_bill')->name('service.create_bill');
+        Route::get('/create_bill',  'create_bill')->name('bill.create_bill');
+        Route::get('/load_bill_list',  'load_bill_list')->name('bill.bill_list');
     });
 });
