@@ -66,11 +66,14 @@ class JobCardController extends Controller
         $bill_no = $request->bill_no;
         if ($request->request_from == 'job_card_page') {
             $bill_no = JobCardService::create_bill_no();
+        } elseif ($request->bill_no) {
+            $bill_no = $request->bill_no;
         }
         $data = SparePartsSale::updateOrCreate([
             'part_id' => $request->part_id,
             'sale_date' => $request->job_card_date,
             'request_from' => $request->request_from,
+            'bill_no' => $bill_no,
         ], [
             'job_card_id' => $request->job_card_id ?? 0,
             'customer_id' => $request->customer_id ?? 0,

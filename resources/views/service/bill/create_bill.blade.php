@@ -535,7 +535,6 @@
                     spare_parts_sale_details
                 }) {
                     if (bill_details) {
-
                         $('#bill_no').val(bill_details.bill_no);
                         $('#bill_date').val(bill_details.bill_date);
                         $('#client_name').val(bill_details.client_name);
