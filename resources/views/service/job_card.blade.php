@@ -100,6 +100,7 @@
         <form action="#" method="POST" id="job_card_create">
             @csrf
             <input type="hidden" name="job_card_id" id="job_card_id" value="">
+            <input type="hidden" name="request_from" id="request_from" value="">
             <input type="hidden" name="service_customer_id" id="service_customer_id" value="">
             <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
                 <div class="card-header no-print">
@@ -289,12 +290,12 @@
                                 <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="vat" class="text-right vat sum_right" id="" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
                             </div>
                             <div class="m-0" style="padding:0;">
-                                <span class="border_bottom pl-1" style="display:inline-block; width:250px;">অগ্রীম = <input class="text-left text-bold advance_top" id="" style="height:19px;" type="text" value=""></span>
+                                <span class="border_bottom pl-1" style="display:inline-block; width:250px;">অগ্রীম = <input class="text-left text-bold advance_top" id="advance_top" name="advance_top" style="height:19px;" type="text" value=""></span>
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:377px; height:24px;">বর্তমান পাওনা = </span>
-                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input readonly class="text-right total_payable" id="" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
+                                <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input readonly class="text-right total_payable" id="total_payable" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
                             </div>
                             <div class="m-0" style="padding:0;">
-                                <span class="border_bottom pl-1" style="display:inline-block; width:250px;">পরিশোধ = <input class="text-left text-bold paid_amount sum_right" id="" style="height:19px;" type="text" value=""></span>
+                                <span class="border_bottom pl-1" style="display:inline-block; width:250px;">পরিশোধ = <input class="text-left text-bold paid_amount sum_right" id="paid_amount" style="height:19px;" type="text" value=""></span>
                                 <span class="text-right border_bottom pr-1 border_right" style="display:inline-block; width:377px; height:24px;">বাকী = </span>
                                 <span class="text-right border_bottom" style="display:inline-block; width:105px; height:24px;"><input name="due_amount" readonly class="text-right due_amount" id="due_amount" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
                             </div>
@@ -449,6 +450,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function() {
+        $('#request_from').val('job_card_page');
         // Input Mask Js Start
         $('.mobile').inputmask('99999999999');
         // $('.rg_number_top').inputmask('99-9999');
@@ -516,6 +518,7 @@
             $('.grand_total').val((sum - discount));
             let vat = +$('.vat').val();
             $('.total_payable').val((sum - discount) + vat);
+            $('.paid_amount').val((sum - discount) + vat);
             $('.due_amount').val($('.total_payable').val() - $('.paid_amount').val());
         }
         $('.sum_right').on('change', function() {
@@ -704,7 +707,8 @@
                         sale_rate,
                         job_card_no,
                         customer_id,
-                        job_card_id
+                        job_card_id,
+                        request_from: 'job_card_page'
                     },
                     success: function(data) {
                         console.log(data);
@@ -809,6 +813,7 @@
             let due_amount = $('#due_amount').val();
             let service_customer_id = $('#service_customer_id').val();
             let bill_date = $('#job_card_date').val();
+            let request_from = $('#request_from').val();
 
             $("input[name='part_id[]']").each(function() {
                 if ($(this).val() !== '') {
@@ -838,6 +843,7 @@
                     due_amount,
                     service_customer_id,
                     bill_date,
+                    request_from,
                     _token: "{{ csrf_token() }}"
                 },
                 dataType: 'json',
@@ -1051,6 +1057,9 @@
 
                         $("#create_jb_top").html('Update JB');
                         $("#create_jb_bottom").html('Update JB');
+                        $("#advance_top").val(jb_details.advance).trigger('change');
+
+                        // $('.paid_amount').val(0);
 
                         // populate spare parts sale data
                         let length = spare_parts_sale.length;

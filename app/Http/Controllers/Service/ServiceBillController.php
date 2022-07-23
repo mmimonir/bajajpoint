@@ -22,4 +22,10 @@ class ServiceBillController extends Controller
             ->get();
         return response()->json(['bill_list' => $bill_list]);
     }
+
+    public function store_bill(Request $request)
+    {
+        $store_bill  = JobCardController::delivery_done($request);
+        return response()->json(['store_bill' => $store_bill->original]);
+    }
 }

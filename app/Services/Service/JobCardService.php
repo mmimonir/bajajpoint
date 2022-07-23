@@ -9,9 +9,12 @@ use App\Models\Service\{Bill, JobCard, Mechanic, ServiceCustomer, SparePartsStoc
 
 class JobCardService
 {
-    public function create_bill_no()
+    public static function create_bill_no()
     {
-        $bill_no = Bill::select('bill_no')->orderBy('id', 'desc')->first();
+        $bill_no = Bill::select('bill_no')
+            ->where('bill_date', Carbon::now()->toDateString())
+            ->orderBy('id', 'desc')
+            ->first();
         if ($bill_no) {
             $bill_no = $bill_no->bill_no;
             $bill_no++;

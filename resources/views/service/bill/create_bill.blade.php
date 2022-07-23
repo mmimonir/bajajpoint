@@ -62,6 +62,7 @@
 <div class="row justify-content-center">
     <div class="col-md-12" style="margin:10px 0;">
         <form action="#" method="POST" id="create_bill">
+            <input type="hidden" name="request_from" id="request_from" value="">
             @csrf
             <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
                 <div class="card-header no-print">
@@ -107,7 +108,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group mb-3" style="width: 160px;">
                                         <span class="input-group-text" id="basic-addon1" style="height:25px; border-radius: 0;">Bill No:</span>
-                                        <input disabled type="text" name="bill_no" id="bill_no" class="form-control bill_no" style="height:25px; border-radius: 0;">
+                                        <input readonly type="text" name="bill_no" id="bill_no" class="form-control bill_no" style="height:25px; border-radius: 0;">
                                     </div>
                                 </div>
                                 <div class="col-md-3 offset-md-3" style="padding-right: 0px;">
@@ -169,7 +170,7 @@
                                                 <input type="text" name="sale_rate[]" style="width:115px;" class="input_style text-right sale_rate">
                                             </td>
                                             <td>
-                                                <input readOnly type="text" name="total_amount[]" class="input_style text-right total_amount">
+                                                <input type="text" name="total_amount[]" class="input_style text-right total_amount">
                                             </td>
                                             <td class="text-center">
                                                 <a href="#" class="disabled delete_parts_item"><i class="fa fa-trash delete_icon text-secondary"></i></a>
@@ -237,6 +238,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function() {
+        $('#request_from').val('bill_page');
         $('.print').click(function() {
             window.print();
         });
@@ -274,7 +276,8 @@
             $('.grand_total').val((sum));
             $('#balance').val((sum - discount));
             $('#bill_amount').val((sum - discount) + vat);
-            $('#due_amount').val((sum - discount) + vat - paid_amount);
+            $('#paid_amount').val($('#bill_amount').val());
+            $('#due_amount').val(0);
         }
 
         // change parts sale quantiry start
@@ -298,9 +301,12 @@
             });
         });
 
-        $('.total_amount, .quantity, .sale_rate, .discount, .vat, .paid_amount').on('change', function() {
+        $('.total_amount, .quantity, .sale_rate, .discount, .vat').on('change', function() {
             calculate_sum();
         });
+        $('#paid_amount').on('change', function() {
+            $('#due_amount').val($('#bill_amount').val() - $('#paid_amount').val());
+        })
 
         // Search by part id start
         $('.part_id').on("focus", function() {
@@ -368,6 +374,7 @@
             var sale_date = $('.bill_date').val();
             var quantity = _this.find('.quantity').val();
             var sale_rate = _this.find('.sale_rate').val();
+            var bill_no = $('#bill_no').val();
 
             if (part_id !== '' && sale_date !== '' && quantity !== '' && sale_rate !== '') {
                 $.ajax({
@@ -378,7 +385,9 @@
                         part_id,
                         job_card_date: sale_date,
                         quantity,
-                        sale_rate
+                        sale_rate,
+                        bill_no,
+                        request_from: 'bill_page'
                     },
                     success: function(data) {
                         console.log(data);
@@ -450,7 +459,7 @@
             const FD = new FormData(this);
             if ($("#create_bill").valid()) {
                 $.ajax({
-                    url: "{{ route('bill.create_bill') }}",
+                    url: "{{ route('bill.store_bill') }}",
                     method: 'post',
                     data: FD,
                     dataType: 'json',
@@ -458,7 +467,7 @@
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        console.log(response);
+                        console.log('store bill', response.store_bill);
                         return;
                         if (response.status === 200) {
                             Swal.fire({

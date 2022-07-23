@@ -63,9 +63,14 @@ class JobCardController extends Controller
     // Create or update item on spare parts sale table based on job card id and jb date
     public function create_or_update(Request $request): \Illuminate\Http\JsonResponse
     {
+        $bill_no = $request->bill_no;
+        if ($request->request_from == 'job_card_page') {
+            $bill_no = JobCardService::create_bill_no();
+        }
         $data = SparePartsSale::updateOrCreate([
             'part_id' => $request->part_id,
             'sale_date' => $request->job_card_date,
+            'request_from' => $request->request_from,
         ], [
             'job_card_id' => $request->job_card_id ?? 0,
             'customer_id' => $request->customer_id ?? 0,
@@ -74,6 +79,8 @@ class JobCardController extends Controller
             'quantity' => $request->quantity,
             'sale_rate' => $request->sale_rate,
             'job_card_no' => $request->job_card_no ?? 0,
+            'bill_no' => $bill_no ?? 0,
+            'request_from' => $request->request_from ?? 'none',
         ]);
 
         return response()->json($data);
@@ -226,6 +233,7 @@ class JobCardController extends Controller
             'paid_service_charge' => $request->paid_service_charge,
             'our_customer' => $our_customer,
             'vat' => $request->vat,
+            'advance' => $request->advance_top,
         ])->id;
 
         // Update service customer table for last completed service
@@ -286,14 +294,16 @@ class JobCardController extends Controller
         $all_employee = $this->job_card_service->load_employee_data();
         return response()->json(['employee' => $all_employee]);
     }
-    public function delivery_done(Request $request)
+    public static function delivery_done(Request $request)
     {
-        return response()->json($request->all());
+        // return response()->json($request->all());
         try {
             DB::transaction(function () use ($request) {
+                // Update JobCard Table when request from Create Job Card Page
                 if ($request->job_card_id) {
                     JobCard::where('id', $request->job_card_id)->update(['mc_delivery_done' => 'yes']);
                 }
+                // Update SparePartsStock Table when request from Create Job Card, Create Bill Page.
                 if ($request->part_id) {
                     foreach ($request->part_id as $key => $value) {
                         if ($request->part_id[$key] != null) {
@@ -303,44 +313,57 @@ class JobCardController extends Controller
                             )->decrement('stock_quantity', $request->quantity[$key]);
                         }
                     }
+                    // Generate bill no
+                    // $bill_no = $this->create_bill_no();
+                    $bill_no = JobCardService::create_bill_no();
 
-                    // generate bill no
-                    $bill_no = $this->create_bill_no();
-
+                    // Cacluate total bill amount
                     $total_bill = 0;
                     foreach ($request->part_id as $key => $value) {
                         if ($request->part_id[$key] != null) {
                             $total_bill += $request->quantity[$key] * $request->sale_rate[$key];
                         }
                     }
+                    // Calculate profit amount
                     $profit = ($total_bill * 0.2) - $request->discount ?? 0;
+
+                    // Create Bill when request from Create Job Card, Create Bill Page and return bill_id.
                     $bill_id = Bill::create([
                         'bill_no' => $bill_no,
                         'bill_date' => $request->bill_date,
                         'bill_amount' => $total_bill + $request->paid_service_charge ?? 0,
-                        'discount' => $request->discount,
-                        'due_amount' => $request->due_amount,
+                        'discount' => $request->discount ?? 0,
+                        'due_amount' => $request->due_amount ?? 0,
                         'profit' => $profit + $request->paid_service_charge ?? 0,
                         'vat' => $request->vat ?? 0,
                         'service_customer_id' => $request->service_customer_id ?? 0,
                         'job_card_id' => $request->job_card_id ?? 0,
+                        'request_from' => $request->request_from ?? 0,
                     ])->id;
 
-                    // update bill id in job card table
+                    // Update bill id in Other Table
                     if ($bill_id) {
-                        JobCard::where('id', $request->job_card_id)->update(['bill_id' => $bill_id]);
-                        SparePartsSale::where('job_card_id', $request->job_card_id)->update(['bill_id' => $bill_id]);
+                        // Update bill id in JobCard, Spare Parts Table when request from Create JobCard Page.
+                        if ($request->job_card_id) {
+                            JobCard::where('id', $request->job_card_id)->update(['bill_id' => $bill_id]);
+                            SparePartsSale::where('job_card_id', $request->job_card_id)->update(['bill_id' => $bill_id]);
+                        }
+                        // Update bill id in Spare Parts Table when request from Create Bill Page.
+                        if ($request->bill_no) {
+                            SparePartsSale::where([
+                                'bill_no' => $request->bill_no,
+                                'sale_date' => $request->bill_date,
+                            ])->update(['bill_id' => $bill_id]);
+                        }
                     }
                 }
             });
             return response()->json([
-                'message' => 'Job card updated.',
+                'message' => 'Operation completed successfully.',
                 'status' => 200,
             ]);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
-
-        // return response()->json(['data' => $request->all()]);
     }
 }

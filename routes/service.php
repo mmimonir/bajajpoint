@@ -21,12 +21,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         Route::get('/load_job_card_list',  'load_job_card_list')->name('job_card.load_job_card_list');
         Route::get('/load_single_job_card',  'load_single_job_card')->name('job_card.load_single_job_card');
         Route::post('/delivery_done',  'delivery_done')->name('job_card.delivery_done');
-        Route::post('/create_bill',  'delivery_done')->name('bill.create_bill');
+        // Route::post('/create_bill',  'delivery_done')->name('bill.create_bill');
         Route::get('/assign_bill_no',  'assign_bill_no')->name('bill.assign_bill_no');
     });
 
     Route::controller(App\Http\Controllers\Service\ServiceBillController::class)->group(function () {
         Route::get('/create_bill',  'create_bill')->name('bill.create_bill');
         Route::get('/load_bill_list',  'load_bill_list')->name('bill.bill_list');
+        Route::post('/create_bill',  'store_bill')->name('bill.store_bill');
     });
 });
