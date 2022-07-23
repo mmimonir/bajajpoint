@@ -991,7 +991,6 @@
                     let text_danger = $(this).parent().parent();
                     text_danger.find('.delete_parts_item').addClass('disabled');
                     text_danger.find('.delete_icon').removeClass('text-danger');
-
                 })
                 text_danger--;
             };

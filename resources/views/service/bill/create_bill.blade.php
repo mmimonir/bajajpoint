@@ -63,6 +63,7 @@
     <div class="col-md-12" style="margin:10px 0;">
         <form action="#" method="POST" id="create_bill">
             <input type="hidden" name="request_from" id="request_from" value="">
+            <input type="hidden" name="update" id="update" value="true">
             @csrf
             <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
                 <div class="card-header no-print">
@@ -467,25 +468,23 @@
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        console.log('store bill', response.store_bill);
-                        return;
+                        console.log(response);
                         if (response.status === 200) {
+                            $('#create_bill').trigger("reset");
                             Swal.fire({
                                 icon: 'success',
                                 title: response.message,
                                 showConfirmButton: false,
                                 timer: 2000
                             })
-                            // $('#job_card_create').trigger("reset");
-                            // assign_job_card_sl_no();
-                            $("#create_jb_top").html('Update JB');
-                            $("#create_jb_bottom").html('Update JB');
-                            $('#pending_png').empty();
-                            $('#pending_png').append('<img src="{{ asset("images/pending.png") }}" alt="pending" class="img-fluid p-1 pending">');
-                            $("#service_customer_id").val(response.service_customer_id);
-                            $("#job_card_list").empty();
-                            $("#job_card_list").append(`<option style="font-weight:bold;" value="">Job Card List</option>`);
-                            load_job_card_list();
+                            // $("#create_jb_top").html('Update JB');
+                            // $("#create_jb_bottom").html('Update JB');
+                            // $('#pending_png').empty();
+                            // $('#pending_png').append('<img src="{{ asset("images/pending.png") }}" alt="pending" class="img-fluid p-1 pending">');
+                            // $("#service_customer_id").val(response.service_customer_id);
+                            // $("#job_card_list").empty();
+                            // $("#job_card_list").append(`<option style="font-weight:bold;" value="">Job Card List</option>`);
+                            load_bill_list();
                         } else {
                             Swal.fire({
                                 icon: 'error',
@@ -520,6 +519,55 @@
         }
         load_bill_list();
         // Load job card list on same day end
+
+        // After select job card start
+        $('#bill_list').on('change', function() {
+            let bill_no = $(this).val();
+            $.ajax({
+                url: "{{ route('bill.load_single_bill') }}",
+                method: 'get',
+                dataType: 'json',
+                data: {
+                    bill_no
+                },
+                success: function({
+                    bill_details,
+                    spare_parts_sale_details
+                }) {
+                    if (bill_details) {
+
+                        $('#bill_no').val(bill_details.bill_no);
+                        $('#bill_date').val(bill_details.bill_date);
+                        $('#client_name').val(bill_details.client_name);
+                        $('#client_address').val(bill_details.client_address);
+                        $('#client_mobile').val(bill_details.client_mobile);
+                        $('#update').val('false');
+                        // populate spare parts sale data
+                        let length = spare_parts_sale_details.length;
+                        let index = 0;
+
+                        $('.part_id').each(function() {
+                            _this = $(this).parent().parent();
+                            if (index < length) {
+                                _this.find('.part_id').val(spare_parts_sale_details[index].part_id);
+                                _this.find('.part_name').val(spare_parts_sale_details[index].part_name);
+                                _this.find('.quantity').val(spare_parts_sale_details[index].quantity);
+                                _this.find('.sale_rate').val(spare_parts_sale_details[index].sale_rate);
+                                _this.find('.total_amount').val(spare_parts_sale_details[index].quantity * spare_parts_sale_details[index].sale_rate);
+                                _this.find('.delete_parts_item').removeClass('disabled');
+                                _this.find('.delete_icon').addClass('text-danger');
+                            } else {
+                                return false;
+                            }
+                            index++;
+                        });
+                        // populate spare parts sale data end
+                        calculate_sum();
+                    }
+                }
+            });
+        })
+        // After select job card end
     })
 </script>
 @endsection

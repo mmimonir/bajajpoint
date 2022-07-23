@@ -294,17 +294,14 @@ class JobCardController extends Controller
         $all_employee = $this->job_card_service->load_employee_data();
         return response()->json(['employee' => $all_employee]);
     }
+
     public static function delivery_done(Request $request)
     {
-        // return response()->json($request->all());
+        // return response()->json($request->client_name);
         try {
             DB::transaction(function () use ($request) {
-                // Update JobCard Table when request from Create Job Card Page
-                if ($request->job_card_id) {
-                    JobCard::where('id', $request->job_card_id)->update(['mc_delivery_done' => 'yes']);
-                }
-                // Update SparePartsStock Table when request from Create Job Card, Create Bill Page.
-                if ($request->part_id) {
+                function stock_adjust($request)
+                {
                     foreach ($request->part_id as $key => $value) {
                         if ($request->part_id[$key] != null) {
                             SparePartsStock::where(
@@ -313,9 +310,27 @@ class JobCardController extends Controller
                             )->decrement('stock_quantity', $request->quantity[$key]);
                         }
                     }
+                }
+                // Update JobCard Table when request from Create Job Card Page
+                if ($request->job_card_id) {
+                    JobCard::where('id', $request->job_card_id)->update(['mc_delivery_done' => 'yes']);
+                };
+
+                // Update SparePartsStock Table when request from Create Job Card, Create Bill Page.
+                if ($request->part_id && $request->request_from == 'job_card_page') {
+                    stock_adjust($request);
+                }
+                if ($request->part_id && $request->request_from == 'bill_page' && $request->update == 'true') {
+                    stock_adjust($request);
+                }
+                if ($request->part_id) {
                     // Generate bill no
-                    // $bill_no = $this->create_bill_no();
-                    $bill_no = JobCardService::create_bill_no();
+                    $bill_no = 0;
+                    if ($request->bill_no) {
+                        $bill_no = $request->bill_no;
+                    } else {
+                        $bill_no = JobCardService::create_bill_no();
+                    }
 
                     // Cacluate total bill amount
                     $total_bill = 0;
@@ -328,18 +343,28 @@ class JobCardController extends Controller
                     $profit = ($total_bill * 0.2) - $request->discount ?? 0;
 
                     // Create Bill when request from Create Job Card, Create Bill Page and return bill_id.
-                    $bill_id = Bill::create([
-                        'bill_no' => $bill_no,
-                        'bill_date' => $request->bill_date,
-                        'bill_amount' => $total_bill + $request->paid_service_charge ?? 0,
-                        'discount' => $request->discount ?? 0,
-                        'due_amount' => $request->due_amount ?? 0,
-                        'profit' => $profit + $request->paid_service_charge ?? 0,
-                        'vat' => $request->vat ?? 0,
-                        'service_customer_id' => $request->service_customer_id ?? 0,
-                        'job_card_id' => $request->job_card_id ?? 0,
-                        'request_from' => $request->request_from ?? 0,
-                    ])->id;
+                    // $bill_id = Bill::create([
+                    $bill_id = Bill::updateOrCreate(
+                        [
+                            'bill_no' => $request->bill_no,
+                            'bill_date' => $request->bill_date
+                        ],
+                        [
+                            'bill_no' => $bill_no,
+                            'bill_date' => $request->bill_date,
+                            'bill_amount' => $total_bill + $request->paid_service_charge ?? 0,
+                            'discount' => $request->discount ?? 0,
+                            'due_amount' => $request->due_amount ?? 0,
+                            'profit' => $profit + $request->paid_service_charge ?? 0,
+                            'vat' => $request->vat ?? 0,
+                            'service_customer_id' => $request->service_customer_id ?? 0,
+                            'job_card_id' => $request->job_card_id ?? 0,
+                            'request_from' => $request->request_from ?? 0,
+                            'client_name' => $request->client_name ?? 0,
+                            'client_address' => $request->client_address ?? 0,
+                            'client_mobile' => $request->client_mobile ?? 0,
+                        ]
+                    )->id;
 
                     // Update bill id in Other Table
                     if ($bill_id) {
