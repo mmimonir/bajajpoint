@@ -553,8 +553,8 @@
                                 _this.find('.quantity').val(spare_parts_sale_details[index].quantity);
                                 _this.find('.sale_rate').val(spare_parts_sale_details[index].sale_rate);
                                 _this.find('.total_amount').val(spare_parts_sale_details[index].quantity * spare_parts_sale_details[index].sale_rate);
-                                _this.find('.delete_parts_item').removeClass('disabled');
-                                _this.find('.delete_icon').addClass('text-danger');
+                                // _this.find('.delete_parts_item').removeClass('disabled');
+                                // _this.find('.delete_icon').addClass('text-danger');
                             } else {
                                 return false;
                             }
