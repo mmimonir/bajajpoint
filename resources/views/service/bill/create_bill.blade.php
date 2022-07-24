@@ -163,6 +163,7 @@
                                             </td>
                                             <td>
                                                 <input type="text" name="part_id[]" class="input_style text-center part_id">
+                                                <input type="hidden" name="id" class="input_style text-center id">
                                             </td>
                                             <td>
                                                 <input type="text" name="quantity[]" style="width:78px;" class="input_style text-center quantity">
@@ -349,7 +350,6 @@
                                 _this.find('.delete_parts_item').removeClass('disabled');
                                 _this.find('.delete_icon').removeClass('text-secondary');
                                 _this.find('.delete_icon').addClass('text-danger');
-
                                 _this.find('.quantity').trigger("change");
                                 _this.find('.sale_rate').trigger("change");
                                 _this.find('.total_amount').trigger("change");
@@ -391,6 +391,7 @@
                         request_from: 'bill_page'
                     },
                     success: function(data) {
+                        _this.find('.id').val(data.id);
                         console.log(data);
                     }
                 });
@@ -401,9 +402,8 @@
         // delete_parts_item_start
         $('.delete_parts_item').on('click', function() {
             var _this = $(this).parent().parent();
-            const part_id = _this.find('.part_id').val();
-            const quantity = _this.find('.quantity').val();
-            const sale_date = $('.bill_date').val();
+            const id = _this.find('.id').val();
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -419,9 +419,7 @@
                         method: 'get',
                         dataType: 'json',
                         data: {
-                            part_id,
-                            sale_date,
-                            quantity
+                            id
                         },
                         success: function(response) {
                             if (response.status === 200) {
@@ -450,6 +448,7 @@
                     _this.find('.quantity').val('');
                     _this.find('.part_name').val('');
                     _this.find('.sale_rate').val('');
+                    _this.find('.id').val('');
                     _this.find('.total_amount').val('').trigger('change');
                 }
             })
@@ -553,6 +552,7 @@
                                 _this.find('.quantity').val(spare_parts_sale_details[index].quantity);
                                 _this.find('.sale_rate').val(spare_parts_sale_details[index].sale_rate);
                                 _this.find('.total_amount').val(spare_parts_sale_details[index].quantity * spare_parts_sale_details[index].sale_rate);
+                                _this.find('.id').val(spare_parts_sale_details[index].id);
                                 // _this.find('.delete_parts_item').removeClass('disabled');
                                 // _this.find('.delete_icon').addClass('text-danger');
                             } else {

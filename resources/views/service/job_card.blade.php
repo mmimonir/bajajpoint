@@ -120,7 +120,7 @@
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                     <button class="page-item page-link bg-dark" type="submit" id="create_jb_top">Create JB</button>
                                     <a href="#" class="page-item page-link bg-secondary disable" id="delivery_done_top">Delivery Done</a>
-                                    <a href="#" class="page-item page-link bg-secondary disable" id="create_bill">Create Bill</a>
+                                    <a href="#" class="print_bill page-item page-link bg-secondary disable" id="print_bill">Print Bill</a>
                                 </ul>
                             </nav>
                         </div>
@@ -265,6 +265,7 @@
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input name="quantity[]" class="text-center quantity" style="width:100%; height:19px;" type="text" value=""></span>
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right sale_rate" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
                                         <span class="text-center border_bottom delete_icon" style="display:inline-block; width:41px;"><a href="#" class="disabled delete_parts_item"><i class="fa fa-trash delete_icon text-secondary"></i></a></span>
+                                        <input type="hidden" name="id" class="id" value="">
                                 </div>
                                 @endfor
                             </div>
@@ -435,7 +436,7 @@
                                 <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                 <button class="page-item page-link bg-dark" type="submit" id="create_jb_bottom">Create JB</button>
                                 <a href="#" class="page-item page-link bg-secondary disable" id="delivery_done_bottom">Delivery Done</a>
-                                <a href="#" class="page-item page-link bg-secondary disable" id="create_bill">Create Bill</a>
+                                <a href="#" class="print_bill page-item page-link bg-secondary disable" id="print_bill">Print Bill</a>
                             </ul>
                         </nav>
                     </div>
@@ -711,6 +712,7 @@
                         request_from: 'job_card_page'
                     },
                     success: function(data) {
+                        _this.find('.id').val(data.id);
                         console.log(data);
                         // _this.find('.description').val(data.part_name)
 
@@ -875,9 +877,7 @@
         // delete_parts_item_start
         $('.delete_parts_item').on('click', function() {
             var _this = $(this).parent().parent();
-            const part_id = _this.find('.part_id').val();
-            const quantity = _this.find('.quantity').val();
-            const sale_date = $('.job_card_date_top').val();
+            const id = _this.find('.id').val();
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -893,9 +893,7 @@
                         method: 'get',
                         dataType: 'json',
                         data: {
-                            part_id,
-                            sale_date,
-                            quantity
+                            id,
                         },
                         success: function(response) {
                             if (response.status === 200) {
@@ -924,6 +922,7 @@
                     _this.find('.part_id').val('');
                     _this.find('.quantity').val('');
                     _this.find('.description').val('');
+                    _this.find('.id').val('');
                     _this.find('.sale_rate').val('').trigger('change');
                     $('.paid_amount').val($('.total_payable').val()).trigger("change");
 
@@ -962,6 +961,9 @@
 
             $('#create_jb_top, #create_jb_bottom').removeClass('bg-secondary disable');
             $('#create_jb_top, #create_jb_bottom').addClass('bg-dark');
+
+            $('.print_bill').removeClass('bg-dark');
+            $('.print_bill').addClass('disable bg-secondary');
         }
 
         // Load job card list on same day start
@@ -997,7 +999,7 @@
         };
 
         function disable_all_input() {
-            $("#job_card_create :input").prop("disabled", true);
+            $("#job_card_create :input").prop("readOnly", true);
         };
         // After select job card start
         $('#job_card_list').on('change', function() {
@@ -1053,6 +1055,7 @@
                         $('#recomend_our_service_center').val(jb_details.recomend_our_service_center);
                         $('.advance_top').val(jb_details.advance).trigger('keyup');
                         $('#service_customer_id').val(service_customer.id);
+                        // $('#print_bill').val(spare_parts_sale.bill_id);
 
                         $("#create_jb_top").html('Update JB');
                         $("#create_jb_bottom").html('Update JB');
@@ -1072,6 +1075,7 @@
                                 _this.find('.description').val(spare_parts_sale[index].part_name);
                                 _this.find('.quantity').val(spare_parts_sale[index].quantity);
                                 _this.find('.sale_rate').val(spare_parts_sale[index].sale_rate);
+                                _this.find('.id').val(spare_parts_sale[index].id);
                                 _this.find('.delete_parts_item').removeClass('disabled');
                                 _this.find('.delete_icon').addClass('text-danger');
                             } else {
@@ -1089,6 +1093,8 @@
                             $('#delivery_done_top, #delivery_done_bottom').addClass('bg-secondary disable');
 
                             $('#create_jb_top, #create_jb_bottom').removeClass('bg-dark');
+                            $('.print_bill').removeClass('disable bg-secondary');
+                            $('.print_bill').addClass('bg-dark');
                             $('#create_jb_top, #create_jb_bottom').addClass('bg-secondary disable');
 
                             text_danger_remove();

@@ -91,7 +91,7 @@ class JobCardController extends Controller
 
     public function delete_parts_item(Request $request)
     {
-        SparePartsSale::where('part_id', $request->part_id)->where('sale_date', $request->sale_date)->delete();
+        SparePartsSale::where('id', $request->id)->delete();
 
         return response()->json([
             'status' => 200,
