@@ -111,7 +111,7 @@
                                 <option style="font-weight:bold;" value="">Job Card List</option>
                             </select>
                             <nav aria-label="Page navigation example" style="padding-left:15px;">
-                                <ul class="pagination justify-content-center">
+                                <ul class="pagination justify-content-center" id="top_navbar">
                                     <li class="page-item active"><a class="page-link first_jb_record" href="#">First</a></li>
                                     <li class="page-item"><a class="page-link previous_jb_record" href="#">Prev</a></li>
                                     <li class="page-item"><a class="page-link next_jb_record" href="#">Next</a></li>
@@ -120,7 +120,7 @@
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                     <button class="page-item page-link bg-dark" type="submit" id="create_jb_top">Create JB</button>
                                     <a href="#" class="page-item page-link bg-secondary disable" id="delivery_done_top">Delivery Done</a>
-                                    <a href="#" class="print_bill page-item page-link bg-secondary disable" id="print_bill">Print Bill</a>
+                                    <!-- <a href="#" class="print_bill page-item page-link bg-secondary disable" id="print_bill">Print Bill</a> -->
                                 </ul>
                             </nav>
                         </div>
@@ -427,7 +427,7 @@
                     <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
                         <h4 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px;">জব কার্ড</h4>
                         <nav aria-label="Page navigation example" style="display:inline-block; width:100%;">
-                            <ul class="pagination justify-content-center">
+                            <ul class="pagination justify-content-center" id="bottom_navbar">
                                 <li class="page-item active"><a class="page-link first_jb_record" href="#">First</a></li>
                                 <li class="page-item"><a class="page-link previous_jb_record" href="#">Prev</a></li>
                                 <li class="page-item"><a class="page-link next_jb_record" href="#">Next</a></li>
@@ -436,7 +436,7 @@
                                 <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                 <button class="page-item page-link bg-dark" type="submit" id="create_jb_bottom">Create JB</button>
                                 <a href="#" class="page-item page-link bg-secondary disable" id="delivery_done_bottom">Delivery Done</a>
-                                <a href="#" class="print_bill page-item page-link bg-secondary disable" id="print_bill">Print Bill</a>
+                                <!-- <a href="#" class="print_bill page-item page-link bg-secondary disable" id="print_bill">Print Bill</a> -->
                             </ul>
                         </nav>
                     </div>
@@ -853,6 +853,7 @@
                     if (response.status === 200) {
                         $('#delivery_done_top, #delivery_done_bottom').addClass('disable');
                         $('#delivery_done_top, #delivery_done_bottom').removeClass('bg-danger');
+                        new_jb_record();
                         text_danger_remove();
                         Swal.fire({
                             icon: 'success',
@@ -860,7 +861,7 @@
                             showConfirmButton: false,
                             timer: 2000
                         })
-                        new_jb_record()
+
                         // $('#job_card_create').trigger("reset");
                     } else {
                         Swal.fire({
@@ -1055,8 +1056,6 @@
                         $('#recomend_our_service_center').val(jb_details.recomend_our_service_center);
                         $('.advance_top').val(jb_details.advance).trigger('keyup');
                         $('#service_customer_id').val(service_customer.id);
-                        // $('#print_bill').val(spare_parts_sale.bill_id);
-
                         $("#create_jb_top").html('Update JB');
                         $("#create_jb_bottom").html('Update JB');
                         $("#advance_top").val(jb_details.advance).trigger('change');
@@ -1067,6 +1066,10 @@
                         let length = spare_parts_sale.length;
                         let index = 0;
                         text_danger_remove();
+                        if (spare_parts_sale.length > 0) {
+                            $('.print_bill').remove();
+                            $('#top_navbar').append(`<a href="{{route('bill.create_bill')}}" class="print_bill page-item page-link bg-secondary disable" id="print_bill">Print Bill</a>`)
+                        }
 
                         $('.part_id').each(function() {
                             _this = $(this).parent().parent();
@@ -1108,9 +1111,8 @@
                             $('#delivery_done_top, #delivery_done_bottom').removeClass('bg-dark disable');
                             $('#delivery_done_top, #delivery_done_bottom').addClass('bg-danger');
 
-                            // $('#create_jb_bottom, #create_jb_top').attr("disabled", true);
-                            // $('#create_jb_bottom, #create_jb_top').removeClass('bg-dark');
-                            // $('#create_jb_bottom, #create_jb_top').addClass('disable bg-secondary');
+                            $('#create_jb_bottom, #create_jb_top').removeClass('disable bg-secondary');
+                            $('#create_jb_bottom, #create_jb_top').addClass('bg-dark');
 
                             $('#pending_png').append('<img src="{{ asset("images/pending.png") }}" alt="pending" class="img-fluid p-1 pending">');
                         }
