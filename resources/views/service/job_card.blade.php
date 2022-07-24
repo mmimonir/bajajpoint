@@ -1066,9 +1066,14 @@
                         let length = spare_parts_sale.length;
                         let index = 0;
                         text_danger_remove();
-                        if (spare_parts_sale.length > 0) {
-                            $('.print_bill').remove();
-                            $('#top_navbar').append(`<a href="{{route('bill.create_bill')}}" class="print_bill page-item page-link bg-secondary disable" id="print_bill">Print Bill</a>`)
+                        let bill_id = spare_parts_sale[0].bill_id;
+                        const url = `http://bajajpoint.test/service/create_bill?id=${bill_id}`;
+                        console.log('bill id', bill_id);
+                        if (!spare_parts_sale.length == 0) {
+                            $('#top_navbar').find('.print_bill').remove();
+                            $('#top_navbar').append(`<a href="${url}" class="print_bill page-item page-link bg-secondary disable" id="print_bill">Print Bill</a>`)
+                        } else {
+                            $('#top_navbar').find('.print_bill').remove();
                         }
 
                         $('.part_id').each(function() {
