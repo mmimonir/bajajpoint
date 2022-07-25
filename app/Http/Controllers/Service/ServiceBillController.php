@@ -15,12 +15,12 @@ class ServiceBillController extends Controller
         return view('service.bill.create_bill');
     }
 
-    public function load_bill_list()
+    public function load_bill_list(Request $request)
     {
-        $bill_list = Bill::select('bill_no')
+        $bill_list = Bill::select('bill_no', 'client_name')
             ->where([
-                'bill_date' => Carbon::now()->toDateString(),
-                'request_from' => 'bill_page'
+                'bill_date' => $request->bill_date ?? Carbon::now()->toDateString(),
+                // 'request_from' => $request->request_from ?? 'bill_page'
             ])
             ->orderBy('bill_no', 'asc')
             ->get();
@@ -43,8 +43,8 @@ class ServiceBillController extends Controller
         $bill_details = Bill::select('*')
             ->where([
                 'bill_no' => $request->bill_no,
-                'bill_date' => Carbon::now()->toDateString(),
-                'request_from' => 'bill_page'
+                'bill_date' => $request->bill_date ?? Carbon::now()->toDateString(),
+                // 'request_from' => 'bill_page'
             ])
             ->first();
 
@@ -56,14 +56,25 @@ class ServiceBillController extends Controller
             )
             ->where([
                 'spare_parts_sales.bill_no' => $request->bill_no,
-                'spare_parts_sales.sale_date' => Carbon::now()->toDateString(),
-                'request_from' => 'bill_page'
+                'spare_parts_sales.sale_date' => $request->bill_date ?? Carbon::now()->toDateString(),
+                // 'request_from' => 'bill_page'
             ])
             ->get();
+        $jb_details = SparePartsSale::rightJoin('service_customers', 'service_customers.id', '=', 'spare_parts_sales.customer_id')
+            ->select(
+                'service_customers.*'
+            )
+            ->where([
+                'spare_parts_sales.bill_no' => $request->bill_no,
+                'spare_parts_sales.sale_date' => $request->bill_date ?? Carbon::now()->toDateString(),
+                // 'request_from' => 'bill_page'
+            ])
+            ->first();
 
         return response()->json([
             'bill_details' => $bill_details,
             'spare_parts_sale_details' => $spare_parts_sale_details,
+            'jb_details' => $jb_details
         ]);
     }
 }

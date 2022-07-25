@@ -951,12 +951,12 @@
             $("#job_card_list").empty();
             $("#job_card_list").append(`<option style="font-weight:bold;" value="">Job Card List</option>`);
             $('#job_card_create').trigger("reset");
-            assign_job_card_sl_no();
-            load_job_card_list();
             $('#delivered_png').empty();
             $('#pending_png').empty();
             $("#create_jb_top").html('Create JB');
             $("#create_jb_bottom").html('Create JB');
+            assign_job_card_sl_no();
+            load_job_card_list();
             text_danger_remove();
             $("#job_card_create :input").prop("disabled", false);
 

@@ -32,7 +32,7 @@
 
     .input_style {
         background-color: #F4F6F9;
-        height: 25px;
+        height: 18px;
     }
 
     table {
@@ -69,10 +69,13 @@
                 <div class="card-header no-print">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
-                            <h4 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px;">Bill Area</h4>
-                            <select name="bill_list" style="font-weight: bold;" id="bill_list">
-                                <option style="font-weight:bold;" value="">Bill List</option>
-                            </select>
+                            <div style="border:1px solid #000; border-radius:5px; padding:3px 5px;">
+                                <!-- <h5 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px;">Bill Area</h5> -->
+                                <label style="margin-right:10px;">Bill Area</label>
+                                <select name="bill_list" style="font-weight: bold; background:#F7F7F7; border-radius:5px;" id="bill_list">
+                                    <option style="font-weight:bold;" value="">Bill List</option>
+                                </select>
+                            </div>
                             <nav aria-label="Page navigation example" style="padding-left:15px;">
                                 <ul class="pagination justify-content-center">
                                     <li class="page-item active"><a class="page-link first_jb_record" href="#">First</a></li>
@@ -84,6 +87,13 @@
                                     <button class="page-item page-link bg-dark" type="submit" id="create_jb_top">Create Bill</button>
                                 </ul>
                             </nav>
+                            <div style="border:1px solid #000; border-radius:5px; padding:3px 5px; margin-left:15px;">
+                                <!-- <h5 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px; padding-left:15px;">All Bill</h5> -->
+                                <label>Bill Date</label><input type="date" name="bill_date_search" id="bill_date_search" style="margin-left:15px; background:#F7F7F7; width:100px;">
+                                <select name="bill_list" style="font-weight: bold; background:#F7F7F7; border-radius:5px;" id="bill_list">
+                                    <option style="font-weight:bold;" value="">Bill List</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -154,7 +164,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @for($i=0; $i<=20; $i++) <tr>
+                                        @for($i=0; $i<=22; $i++) <tr>
                                             <td>
                                                 <input type="text" name="sl" style="width:38px;" class="input_style text-center">
                                             </td>
@@ -510,7 +520,7 @@
                 }) {
                     if (bill_list) {
                         bill_list.forEach(function(item) {
-                            $("#bill_list").append(`<option style="font-weight:bold;" value="${item.bill_no}">Bill-${item.bill_no}</option>`);
+                            $("#bill_list").append(`<option style="font-weight:bold;" value="${item.bill_no}">Bill-${item.bill_no + ' ' + item.client_name}</option>`);
                         });
                     }
                 }
@@ -531,14 +541,24 @@
                 },
                 success: function({
                     bill_details,
-                    spare_parts_sale_details
+                    spare_parts_sale_details,
+                    jb_details
                 }) {
+                    console.log(jb_details);
                     if (bill_details) {
                         $('#bill_no').val(bill_details.bill_no);
                         $('#bill_date').val(bill_details.bill_date);
-                        $('#client_name').val(bill_details.client_name);
-                        $('#client_address').val(bill_details.client_address);
-                        $('#client_mobile').val(bill_details.client_mobile);
+                        if (jb_details === null) {
+                            $('#client_name').val(bill_details.client_name);
+                            $('#client_address').val(bill_details.client_address);
+                            $('#client_mobile').val(bill_details.client_mobile);
+                        } else {
+                            $('#client_name').val(jb_details.client_name);
+                            $('#client_address').val(jb_details.address);
+                            $('#client_mobile').val(jb_details.mobile);
+                        }
+
+
                         $('#update').val('false');
                         // populate spare parts sale data
                         let length = spare_parts_sale_details.length;
@@ -565,6 +585,24 @@
                     }
                 }
             });
+            $('#bill_date_search').on('change', function() {
+                let bill_date = $(this).val();
+                $.ajax({
+                    url: "{{ route('bill.bill_list') }}",
+                    method: 'get',
+                    dataType: 'json',
+                    success: function({
+                        bill_list
+                    }) {
+                        if (bill_list) {
+                            bill_list.forEach(function(item) {
+                                $("#bill_list").append(`<option style="font-weight:bold;" value="${item.bill_no}">Bill-${item.bill_no}</option>`);
+                            });
+                        }
+                    }
+                });
+
+            })
         })
         // After select job card end
     })
