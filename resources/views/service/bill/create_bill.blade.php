@@ -557,8 +557,6 @@
                             $('#client_address').val(jb_details.address);
                             $('#client_mobile').val(jb_details.mobile);
                         }
-
-
                         $('#update').val('false');
                         // populate spare parts sale data
                         let length = spare_parts_sale_details.length;
