@@ -70,7 +70,6 @@
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
                             <div style="border:1px solid #000; border-radius:5px; padding:3px 5px;">
-                                <!-- <h5 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px;">Bill Area</h5> -->
                                 <label style="margin-right:10px;">Bill Area</label>
                                 <select name="bill_list" style="font-weight: bold; background:#F7F7F7; border-radius:5px;" id="bill_list">
 
@@ -88,9 +87,9 @@
                                 </ul>
                             </nav>
                             <div style="border:1px solid #000; border-radius:5px; padding:3px 5px; margin-left:15px;">
-                                <!-- <h5 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px; padding-left:15px;">All Bill</h5> -->
-                                <label>Bill Date</label><input type="date" name="bill_date_search" id="bill_date_search" style="margin-left:15px; background:#F7F7F7; width:100px;">
-                                <select name="bill_list" style="font-weight: bold; background:#F7F7F7; border-radius:5px;" id="bill_list">
+                                <label>Bill Date</label>
+                                <input type="date" name="bill_date_search" id="bill_date_search" style="margin-left:15px; background:#F7F7F7; width:100px;">
+                                <select name="bill_list_search" style="font-weight: bold; background:#F7F7F7; border-radius:5px;" id="bill_list_search">
                                     <option style="font-weight:bold;" value="">Bill List</option>
                                 </select>
                             </div>
@@ -541,7 +540,7 @@
 
 
         // After select job card start
-        $('#bill_list').on('change', function() {
+        $('#bill_list, #bill_list_search').on('change', function() {
             let bill_no = $(this).val();
             $.ajax({
                 url: "{{ route('bill.load_single_bill') }}",
@@ -573,6 +572,7 @@
                             $('#client_address').val(jb_details.client_address);
                             $('#client_mobile').val(jb_details.client_mobile);
                             $("#create_bill :input").prop("readOnly", true);
+                            $("#bill_date_search").prop("readOnly", false);
                             $('#btn_create_bill').attr('disabled', true);
                             $('#btn_create_bill').removeClass('bg-dark');
                             $('#btn_create_bill').addClass('bg-secondary');
@@ -603,31 +603,41 @@
                     }
                 }
             });
-            $('#bill_date_search').on('change', function() {
-                let bill_date = $(this).val();
-                $.ajax({
-                    url: "{{ route('bill.bill_list') }}",
-                    method: 'get',
-                    dataType: 'json',
-                    success: function({
-                        bill_list
-                    }) {
-                        if (bill_list) {
-                            bill_list.forEach(function(item) {
-                                $("#bill_list").append(`<option style="font-weight:bold;" value="${item.bill_no}">Bill-${item.bill_no}</option>`);
-                            });
-                        }
-                    }
-                });
-
-            })
-            $('.new_bill_record').on('click', function() {
-                $('#create_bill').trigger('reset');
-                $('#btn_create_bill').text('Create Bill');
-
-            })
         })
         // After select job card end
+        $('.new_bill_record').on('click', function() {
+            $('#create_bill').trigger('reset');
+            $('#btn_create_bill').text('Create Bill');
+
+        })
+        $('#bill_date_search').on('change', function() {
+            let bill_date = $(this).val();
+            $.ajax({
+                url: "{{ route('bill.bill_list') }}",
+                method: 'get',
+                data: {
+                    bill_date
+                },
+                dataType: 'json',
+                success: function({
+                    bill_list
+                }) {
+                    console.log(bill_list);
+                    if (bill_list) {
+                        $('#bill_list_search').empty();
+                        $('#bill_list_search').append('<option style="font-weight:bold;" value="">Bill List</option>');
+                        bill_list.forEach(function(item) {
+                            $("#bill_list_search").append(
+                                `<option 
+                                style="font-weight:bold;" 
+                                value="${item.bill_no}">Bill- ${item.bill_no + ' ' + item.client_name}
+                                </option>`
+                            );
+                        });
+                    }
+                }
+            });
+        })
     })
 </script>
 @endsection
