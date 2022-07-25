@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Service;
 use Carbon\Carbon;
 use App\Models\Service\Bill;
 use Illuminate\Http\Request;
+use App\Models\Service\JobCard;
 use App\Http\Controllers\Controller;
 use App\Models\Service\SparePartsSale;
 
@@ -17,13 +18,18 @@ class ServiceBillController extends Controller
 
     public function load_bill_list(Request $request)
     {
-        $bill_list = Bill::select('bill_no', 'client_name')
+        $bill_list = Bill::select(
+            'bill_no',
+            'client_name',
+            'job_card_id',
+        )
             ->where([
                 'bill_date' => $request->bill_date ?? Carbon::now()->toDateString(),
                 // 'request_from' => $request->request_from ?? 'bill_page'
             ])
             ->orderBy('bill_no', 'asc')
             ->get();
+
         return response()->json(['bill_list' => $bill_list]);
     }
 

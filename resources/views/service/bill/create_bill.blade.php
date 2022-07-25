@@ -73,7 +73,7 @@
                                 <!-- <h5 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px;">Bill Area</h5> -->
                                 <label style="margin-right:10px;">Bill Area</label>
                                 <select name="bill_list" style="font-weight: bold; background:#F7F7F7; border-radius:5px;" id="bill_list">
-                                    <option style="font-weight:bold;" value="">Bill List</option>
+
                                 </select>
                             </div>
                             <nav aria-label="Page navigation example" style="padding-left:15px;">
@@ -82,9 +82,9 @@
                                     <li class="page-item"><a class="page-link previous_jb_record" href="#">Prev</a></li>
                                     <li class="page-item"><a class="page-link next_jb_record" href="#">Next</a></li>
                                     <li class="page-item"><a class="page-link last_jb_record" href="#">Last</a></li>
-                                    <li class="page-item"><a class="page-link new_jb_record bg-success" href="#">New</a></li>
+                                    <li class="page-item"><a class="page-link new_bill_record bg-success" href="#">New</a></li>
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
-                                    <button class="page-item page-link bg-dark" type="submit" id="create_jb_top">Create Bill</button>
+                                    <button class="page-item page-link bg-dark" type="submit" id="btn_create_bill">Create Bill</button>
                                 </ul>
                             </nav>
                             <div style="border:1px solid #000; border-radius:5px; padding:3px 5px; margin-left:15px;">
@@ -488,7 +488,9 @@
                             })
                             // $("#create_jb_top").html('Update JB');
                             // $("#create_jb_bottom").html('Update JB');
-                            // $('#pending_png').empty();
+                            $('#bill_list').empty();
+                            $('#bill_list').append('<option style="font-weight:bold;" value="">Bill List</option>');
+
                             // $('#pending_png').append('<img src="{{ asset("images/pending.png") }}" alt="pending" class="img-fluid p-1 pending">');
                             // $("#service_customer_id").val(response.service_customer_id);
                             // $("#job_card_list").empty();
@@ -518,9 +520,17 @@
                 success: function({
                     bill_list
                 }) {
+                    console.log(bill_list);
                     if (bill_list) {
+                        $('#bill_list').empty();
+                        $('#bill_list').append('<option style="font-weight:bold;" value="">Bill List</option>');
                         bill_list.forEach(function(item) {
-                            $("#bill_list").append(`<option style="font-weight:bold;" value="${item.bill_no}">Bill-${item.bill_no + ' ' + item.client_name}</option>`);
+                            $("#bill_list").append(
+                                `<option 
+                                style="font-weight:bold;" 
+                                value="${item.bill_no}">Bill- ${item.bill_no + ' ' + item.client_name}
+                                </option>`
+                            );
                         });
                     }
                 }
@@ -528,6 +538,7 @@
         }
         load_bill_list();
         // Load job card list on same day end
+
 
         // After select job card start
         $('#bill_list').on('change', function() {
@@ -552,10 +563,19 @@
                             $('#client_name').val(bill_details.client_name);
                             $('#client_address').val(bill_details.client_address);
                             $('#client_mobile').val(bill_details.client_mobile);
+                            $("#create_bill :input").prop("readOnly", false);
+                            $('#btn_create_bill').attr('disabled', false);
+                            $('#btn_create_bill').addClass('bg-dark');
+                            $('#btn_create_bill').removeClass('bg-secondary');
+                            $('#btn_create_bill').text('Update Bill');
                         } else {
                             $('#client_name').val(jb_details.client_name);
-                            $('#client_address').val(jb_details.address);
-                            $('#client_mobile').val(jb_details.mobile);
+                            $('#client_address').val(jb_details.client_address);
+                            $('#client_mobile').val(jb_details.client_mobile);
+                            $("#create_bill :input").prop("readOnly", true);
+                            $('#btn_create_bill').attr('disabled', true);
+                            $('#btn_create_bill').removeClass('bg-dark');
+                            $('#btn_create_bill').addClass('bg-secondary');
                         }
                         $('#update').val('false');
                         // populate spare parts sale data
@@ -599,6 +619,11 @@
                         }
                     }
                 });
+
+            })
+            $('.new_bill_record').on('click', function() {
+                $('#create_bill').trigger('reset');
+                $('#btn_create_bill').text('Create Bill');
 
             })
         })

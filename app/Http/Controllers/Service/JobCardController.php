@@ -181,9 +181,9 @@ class JobCardController extends Controller
         if ($request->service_customer_id == null) {
             $customer_data = ServiceCustomer::create([
                 'client_name' => $request->client_name,
-                'mobile' => $request->mobile,
-                'address' => $request->address,
-                'email' => $request->email,
+                'client_mobile' => $request->client_mobile,
+                'client_address' => $request->client_address,
+                'client_email' => $request->client_email,
             ]);
             $customer_id = $customer_data->id;
         } else {
@@ -191,9 +191,9 @@ class JobCardController extends Controller
                 'id' => $request->service_customer_id
             ], [
                 'client_name' => $request->client_name,
-                'mobile' => $request->mobile,
-                'address' => $request->address,
-                'email' => $request->email,
+                'client_mobile' => $request->client_mobile,
+                'client_address' => $request->client_address,
+                'client_email' => $request->client_email,
             ])->id;
             $customer_id = $id;
         }

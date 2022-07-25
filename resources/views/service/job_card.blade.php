@@ -220,9 +220,9 @@
                                 </p>
                             </div>
                             <div class="col-md-8 pl-0">
-                                <p class="pl-1 border_bottom border_top m-0 font-weight-bold">টেলিফোন নম্বর:<input name="mobile" id="mobile" class="ml-1 text-bold mobile required" style="width:81px; height:19px; border:0px;" type="text"></p>
-                                <p class="pl-1 border_bottom m-0 font-weight-bold">গ্রাহকের নাম:<input name="client_name" class="ml-1 text-bold client_name required" style="width:89%; height:19px; border:0px;" type="text"></p>
-                                <p class="pl-1 border_bottom m-0">ঠিকানা:<input name="address" class="ml-1 text-bold address" style="width:93%; height:19px; border:0px;" type="text"></p>
+                                <p class="pl-1 border_bottom border_top m-0 font-weight-bold">টেলিফোন নম্বর:<input name="client_mobile" id="mobile" class="ml-1 text-bold mobile required" style="width:81px; height:19px; border:0px;" type="text"></p>
+                                <p class="pl-1 border_bottom m-0 font-weight-bold">গ্রাহকের নাম:<input name="client_name" id="client_name" class="ml-1 text-bold client_name required" style="width:89%; height:19px; border:0px;" type="text"></p>
+                                <p class="pl-1 border_bottom m-0">ঠিকানা:<input name="client_address" class="ml-1 text-bold address" id="address" style="width:93%; height:19px; border:0px;" type="text"></p>
                                 <p class="pl-1 border_bottom m-0">-</p>
                                 <!-- <p class="pl-1 border_bottom m-0">টেলিফোন নম্বর:<input name="mobile" class="ml-1 mobile text-bold" style="width:30%; height:19px; border:0px;" type="text"></p> -->
                                 <p class="pl-1 border_bottom m-0 font-weight-bold">গাড়ি পর্যবেক্ষণের বিবরণ:</p>
@@ -816,6 +816,9 @@
             let service_customer_id = $('#service_customer_id').val();
             let bill_date = $('#job_card_date').val();
             let request_from = $('#request_from').val();
+            let client_name = $('#client_name').val();
+            let client_mobile = $('#mobile').val();
+            let client_address = $('#address').val();
 
             $("input[name='part_id[]']").each(function() {
                 if ($(this).val() !== '') {
@@ -846,6 +849,9 @@
                     service_customer_id,
                     bill_date,
                     request_from,
+                    client_name,
+                    client_mobile,
+                    client_address,
                     _token: "{{ csrf_token() }}"
                 },
                 dataType: 'json',
@@ -1041,9 +1047,9 @@
                         $('.job_card_date_bottom').val(jb_details.job_card_date);
                         $('#service_engineer_id').val(jb_details.service_engineer_id);
                         $('#mechanic_id').val(jb_details.mechanic_id);
-                        $('#mobile').val(service_customer.mobile);
+                        $('#mobile').val(service_customer.client_mobile);
                         $('.client_name').val(service_customer.client_name);
-                        $('.address').val(service_customer.address);
+                        $('.address').val(service_customer.client_address);
                         $('#any_scratch_in_tank').val(jb_details.any_scratch_in_tank);
                         $('#mileage').val(jb_details.mileage);
                         $('#indicator_is_broken').val(jb_details.indicator_is_broken);

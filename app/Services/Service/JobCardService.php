@@ -51,12 +51,12 @@ class JobCardService
                 'job_cards.rg_number',
                 'job_cards.mc_sale_date',
                 'service_customers.client_name',
-                'service_customers.mobile',
-                'service_customers.address',
+                'service_customers.client_mobile',
+                'service_customers.client_address',
                 'service_customers.id',
                 'vehicles.model',
             )
-            ->where('mobile', $request->mobile)
+            ->where('client_mobile', $request->mobile)
             ->first();
         return $service_customer_data;
     }
