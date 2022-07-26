@@ -625,8 +625,8 @@
                         // populate spare parts sale data end
                         calculate_sum();
                     }
-                    let paid_amount = +$('#paid_amount').val();
-                    let in_word = in_words(paid_amount);
+                    let bill_amount = +$('#bill_amount').val();
+                    let in_word = in_words(bill_amount);
                     $('#in_words').text(in_word);
                 }
             });
