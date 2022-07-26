@@ -36,5 +36,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
     Route::controller(App\Http\Controllers\Service\ServiceCallController::class)->group(function () {
         Route::get('/service_call',  'service_call_list_view')->name('service.service_call');
         Route::post('/get_call_result',  'get_call_result')->name('service.get_call_result');
+        Route::post('/save_service_note',  'save_service_note')->name('service.save_service_note');
     });
 });

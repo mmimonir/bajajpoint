@@ -184,7 +184,38 @@
         $(document).on("click", ".save_note", function(e) {
             var _this = $(this).parent().parent();
             var note = _this.find('input[name="note"]').val();
-            alert(note);
+
+            $.ajax({
+                url: '{{ route("service.save_service_note") }}',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    note,
+                    core_customer_id: _this.find('input[name="core_customer_id"]').val()
+                },
+                beforeSend: function() {
+                    $('#search_overlay').css('visibility', 'visible');
+                },
+                success: function(response) {
+                    $('#search_overlay').css('visibility', 'hidden');
+                    console.log(response);
+                    if (response.success) {
+                        Swal.fire({
+                            title: 'Success',
+                            text: 'Note Saved Successfully',
+                            type: 'success',
+                            confirmButtonText: 'OK'
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Something went wrong',
+                            type: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                }
+            });
         });
 
 
