@@ -96,7 +96,7 @@ class JobCardController extends Controller
 
     public function load_job_card_view()
     {
-        return view('service.job_card');
+        return view('dms.service.job_card.job_card');
     }
 
     public function create_bill_no()

@@ -24,8 +24,8 @@
                         <a href="{{route('bill.create_bill')}}" class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">
                             Create Bill/Invoice
                         </a>
-                        <a class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">
-                            Make Requisitions
+                        <a href="{{route('service.service_call')}}" class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">
+                            Service Call List
                         </a>
                         <a class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">
                             Add Mechanics

@@ -6,6 +6,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
     Route::controller(App\Http\Controllers\ServiceDashboardController::class)->group(function () {
         Route::get('/service_dashboard',  'index')->name('service.dashboard');
     });
+
     Route::controller(App\Http\Controllers\Service\JobCardController::class)->group(function () {
         Route::get('/job_card',  'load_job_card_view')->name('service.job_card');
         Route::post('/create_job_card',  'create_job_card')->name('job_card.create');
@@ -30,5 +31,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         Route::get('/load_bill_list',  'load_bill_list')->name('bill.bill_list');
         Route::post('/create_bill',  'store_bill')->name('bill.store_bill');
         Route::get('/load_single_bill',  'load_single_bill')->name('bill.load_single_bill');
+    });
+
+    Route::controller(App\Http\Controllers\Service\ServiceCallController::class)->group(function () {
+        Route::get('/service_call',  'service_call_list_view')->name('service.service_call');
     });
 });

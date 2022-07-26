@@ -13,7 +13,7 @@ class ServiceBillController extends Controller
 {
     public function create_bill()
     {
-        return view('service.bill.create_bill');
+        return view('dms.service.bill.create_bill');
     }
 
     public function load_bill_list(Request $request)
