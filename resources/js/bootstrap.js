@@ -1,4 +1,5 @@
 window._ = require("lodash");
+window.date_fns = require("date-fns");
 
 try {
     window.Popper = require("popper.js").default;
