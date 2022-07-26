@@ -192,7 +192,9 @@
                                     <tfoot>
                                         <tr>
                                             <td rowspan="7" colspan="4" style="vertical-align: top;">
-                                                <p><strong>In Words:</strong></p>
+                                                <p>
+                                                    <strong>In Words: <span id="in_words"></span></strong>
+                                                </p>
                                             </td>
                                             <td>Total Amount</td>
                                             <td><input readOnly type="text" name="grand_total" id="grand_total" class="input_style text-right grand_total"></td>
@@ -537,6 +539,27 @@
         }
         load_bill_list();
         // Load job card list on same day end
+        // in words start
+        function in_words(num) {
+            var a = ['', 'One ', 'Two ', 'Three ', 'Four ', 'Five ', 'Six ', 'Seven ', 'Eight ', 'Nine ', 'Ten ', 'Eleven ', 'Twelve ', 'Thirteen ', 'Fourteen ', 'Fifteen ', 'Sixteen ', 'Seventeen ', 'Eighteen ', 'Nineteen '];
+            var b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+            function inWords(num) {
+                if ((num = num.toString()).length > 9) return 'overflow';
+                n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+                if (!n) return;
+                var str = '';
+                str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'Crore ' : '';
+                str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'Lakh ' : '';
+                str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'Thousand ' : '';
+                str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'Hundred ' : '';
+                str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'Taka Only ' : '';
+                return str;
+            }
+
+            return inWords(num);
+        }
+        // in words end
 
 
         // After select job card start
@@ -554,7 +577,8 @@
                     spare_parts_sale_details,
                     jb_details
                 }) {
-                    console.log(jb_details);
+                    // console.log(jb_details);
+
                     if (bill_details) {
                         $('#bill_no').val(bill_details.bill_no);
                         $('#bill_date').val(bill_details.bill_date);
@@ -601,6 +625,9 @@
                         // populate spare parts sale data end
                         calculate_sum();
                     }
+                    let paid_amount = +$('#paid_amount').val();
+                    let in_word = in_words(paid_amount);
+                    $('#in_words').text(in_word);
                 }
             });
         })
@@ -608,7 +635,7 @@
         $('.new_bill_record').on('click', function() {
             $('#create_bill').trigger('reset');
             $('#btn_create_bill').text('Create Bill');
-
+            assign_bill_no();
         })
         $('#bill_date_search').on('change', function() {
             let bill_date = $(this).val();
@@ -638,6 +665,8 @@
                 }
             });
         })
+
+
     })
 </script>
 @endsection

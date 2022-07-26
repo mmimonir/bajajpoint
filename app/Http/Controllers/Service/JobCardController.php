@@ -14,11 +14,6 @@ class JobCardController extends Controller
 {
     public $job_card_no = 0;
 
-    public function __construct()
-    {
-        $this->job_card_service = new JobCardService;
-    }
-
     public function load_single_job_card(Request $request)
     {
         $single_jb_details = JobCard::select('*')
@@ -106,7 +101,7 @@ class JobCardController extends Controller
 
     public function create_bill_no()
     {
-        $bill_no = $this->job_card_service->create_bill_no();
+        $bill_no = JobCardService::create_bill_no();
 
         return $bill_no;
     }
@@ -122,10 +117,10 @@ class JobCardController extends Controller
 
     public function customer_name_already_exists(Request $request)
     {   // check if customer name already exists in service customer table with id
-        $service_customer_data = $this->job_card_service->service_customer_data($request);
+        $service_customer_data =  JobCardService::service_customer_data($request);
 
         // check if customer name already exists in showroom core table without id
-        $showroom_customer_data = $this->job_card_service->showroom_customer_data($request);
+        $showroom_customer_data =  JobCardService::showroom_customer_data($request);
         $exists_jb_no = $this->check_jb_is_exists(Carbon::now()->toDateString(), $service_customer_data->id ?? '');
 
         if ($service_customer_data) {
@@ -169,7 +164,7 @@ class JobCardController extends Controller
         }
 
         // check the customer is buy mc from our showroom or not, if yes our_customer set to yes.
-        $our_customer = $this->job_card_service->showroom_customer_data($request);
+        $our_customer =  JobCardService::showroom_customer_data($request);
         if ($our_customer) {
             $our_customer = 'yes';
         } else {
@@ -256,25 +251,25 @@ class JobCardController extends Controller
 
     public function load_basic_data()
     {
-        $all_vehicle = $this->job_card_service->load_basic_data();
+        $all_vehicle =  JobCardService::load_basic_data();
         return response()->json(['vehicle' => $all_vehicle]);
     }
 
     public function search_by_part_id(Request $request)
     {
-        $data = $this->job_card_service->search_by_part_id($request);
+        $data =  JobCardService::search_by_part_id($request);
         return response()->json($data);
     }
 
     public function search_by_full_part_id(Request $request)
     {
-        $data = $this->job_card_service->search_by_full_part_id($request);
+        $data =  JobCardService::search_by_full_part_id($request);
         return response()->json($data);
     }
 
     public function assign_job_card_sl_no()
     {
-        $last_job_caard_no = $this->job_card_service->assign_job_card_sl_no();
+        $last_job_caard_no =  JobCardService::assign_job_card_sl_no();
 
         $new_job_card_no = 0;
         if ($last_job_caard_no) {
@@ -288,13 +283,13 @@ class JobCardController extends Controller
     }
     public function assign_bill_no()
     {
-        $bill_no = $this->job_card_service->create_bill_no();
+        $bill_no =  JobCardService::create_bill_no();
         return response()->json($bill_no);
     }
 
     public function load_employee_data()
     {
-        $all_employee = $this->job_card_service->load_employee_data();
+        $all_employee =  JobCardService::load_employee_data();
         return response()->json(['employee' => $all_employee]);
     }
 
