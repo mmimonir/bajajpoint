@@ -143,7 +143,7 @@
                                     </thead>
                                     <tbody>`;
                         response.forEach(function(data, index) {
-                            var saleDate = new Intl.DateTimeFormat('en-IN').format(new Date(data.original_sale_date)).split("/").join("-")
+                            var saleDate = new Intl.DateTimeFormat('en-IN').format(new Date(data.sale_date)).split("/").join("-")
                             var sl = index + 1;
                             html +=
                                 `<tr>                                
@@ -155,7 +155,7 @@
                                 <td style="text-align:center;">${data.mobile ? data.mobile : ''}</td>
                                 <td style="text-align:center;">${data.rg_number ? data.rg_number : ''}</td>
                                 <td style="padding:0;">
-                                    <input style="width:100%; border:none;" type="text" name="note" placeholder"Note Here">
+                                    <input style="width:100%; border:none;" type="text" name="note" placeholder"Note Here" value="${data.note}">
                                     <input type="hidden" name="core_customer_id" value="${data.id}">
                                 </td>                                
                                 <td style="text-align:center;"><i class="fas fa-save save_note"></i></td>                                
@@ -175,6 +175,7 @@
                     `;
                     }
                     $("#show_search_result").html(html);
+                    console.log(response.error);
                 }
             });
         });
