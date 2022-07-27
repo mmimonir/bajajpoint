@@ -19,7 +19,7 @@ class ServiceCallController extends Controller
     {
         try {
             $call_result = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
-                ->rightJoin('service_calls', 'service_calls.core_customer_id', '=', 'cores.id')
+                ->leftJoin('service_calls', 'service_calls.core_customer_id', '=', 'cores.id')
                 ->select(
                     'cores.id',
                     'cores.customer_name',

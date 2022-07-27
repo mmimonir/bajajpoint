@@ -38,4 +38,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         Route::post('/get_call_result',  'get_call_result')->name('service.get_call_result');
         Route::post('/save_service_note',  'save_service_note')->name('service.save_service_note');
     });
+
+    // Mechanics Table
+    Route::controller(App\Http\Controllers\Service\MechanicsController::class)->group(function () {
+        Route::get('/mechanics_index',  'mechanics_index')->name('mechanics.index');
+        Route::post('/get_single_mechanic',  'get_single_mechanic')->name('mechanics.get_single_mechanic');
+        Route::get('/mechanics_get',  'mechanics_get')->name('mechanics.get');
+        Route::post('/mechanics_add',  'mechanics_add')->name('mechanics.add');
+        Route::post('/mechanics_update',  'mechanics_update')->name('mechanics.update');
+        Route::delete('/mechanics_delete',  'mechanics_delete')->name('mechanics.delete');
+    });
 });

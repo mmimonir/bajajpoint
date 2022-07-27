@@ -27,8 +27,8 @@
                         <a href="{{route('service.service_call')}}" class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">
                             Service Call List
                         </a>
-                        <a class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">
-                            Add Mechanics
+                        <a href="{{route('mechanics.index')}}" class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">
+                            Mechanics
                         </a>
                         <a href="{{route('service.job_card')}}" class="btn btn-inline bg-dark" style="width:150px; margin:0 5px;">
                             Create Job Card

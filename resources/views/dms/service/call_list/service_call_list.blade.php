@@ -155,7 +155,7 @@
                                 <td style="text-align:center;">${data.mobile ? data.mobile : ''}</td>
                                 <td style="text-align:center;">${data.rg_number ? data.rg_number : ''}</td>
                                 <td style="padding:0;">
-                                    <input style="width:100%; border:none;" type="text" name="note" placeholder"Note Here" value="${data.note}">
+                                    <input style="width:100%; border:none;" type="text" name="note" placeholder"Note Here" value="${data.note ? data.note : ''}">
                                     <input type="hidden" name="core_customer_id" value="${data.id}">
                                 </td>                                
                                 <td style="text-align:center;"><i class="fas fa-save save_note"></i></td>                                
@@ -202,6 +202,7 @@
                     if (response.success) {
                         Swal.fire({
                             title: 'Success',
+                            timer: 1000,
                             text: 'Note Saved Successfully',
                             type: 'success',
                             confirmButtonText: 'OK'
@@ -209,6 +210,7 @@
                     } else {
                         Swal.fire({
                             title: 'Error',
+                            timer: 1000,
                             text: 'Something went wrong',
                             type: 'error',
                             confirmButtonText: 'OK'
