@@ -5,11 +5,11 @@ function fiscal_year(new_date) {
 
     let fiscal_year;
 
-    month + 1 <= 6
+    month <= 6
         ? (fiscal_year = `${year - 1}-${year}`)
-        : (fiscal_year = year + "-" + (year + 1));
+        : (fiscal_year = `${year}-${year + 1}`);
 
     return fiscal_year;
 }
 
-console.log(fiscal_year("2022-01-01"));
+console.log(fiscal_year("2030-01-30"));
