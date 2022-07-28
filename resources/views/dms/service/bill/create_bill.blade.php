@@ -527,10 +527,7 @@
                         $('#bill_list').append('<option style="font-weight:bold;" value="">Bill List</option>');
                         bill_list.forEach(function(item) {
                             $("#bill_list").append(
-                                `<option 
-                                style="font-weight:bold;" 
-                                value="${item.bill_no}">Bill- ${item.bill_no + ' ' + item.client_name}
-                                </option>`
+                                `<option style="font-weight:bold;" value="${item.id}">Bill- ${item.bill_no + ' ' + item.client_name}</option>`
                             );
                         });
                     }
@@ -564,20 +561,23 @@
 
         // After select job card start
         $('#bill_list, #bill_list_search').on('change', function() {
-            let bill_no = $(this).val();
+            let id = $(this).val();
+            _this = $(this).parent();
+
             $.ajax({
                 url: "{{ route('bill.load_single_bill') }}",
                 method: 'get',
                 dataType: 'json',
                 data: {
-                    bill_no
+                    id
                 },
                 success: function({
                     bill_details,
                     spare_parts_sale_details,
                     jb_details
                 }) {
-                    // console.log(jb_details);
+                    $("#create_bill").trigger("reset");
+                    console.log(jb_details);
 
                     if (bill_details) {
                         $('#bill_no').val(bill_details.bill_no);
@@ -586,7 +586,7 @@
                             $('#client_name').val(bill_details.client_name);
                             $('#client_address').val(bill_details.client_address);
                             $('#client_mobile').val(bill_details.client_mobile);
-                            $("#create_bill :input").prop("readOnly", false);
+                            $("#create_bill :input").prop("disabled", false);
                             $('#btn_create_bill').attr('disabled', false);
                             $('#btn_create_bill').addClass('bg-dark');
                             $('#btn_create_bill').removeClass('bg-secondary');
@@ -595,8 +595,9 @@
                             $('#client_name').val(jb_details.client_name);
                             $('#client_address').val(jb_details.client_address);
                             $('#client_mobile').val(jb_details.client_mobile);
-                            $("#create_bill :input").prop("readOnly", true);
-                            $("#bill_date_search").prop("readOnly", false);
+                            $("#create_bill :input").prop("disabled", true);
+                            $("#bill_date_search").prop("disabled", false);
+                            $("#bill_list_search").prop("disabled", false);
                             $('#btn_create_bill').attr('disabled', true);
                             $('#btn_create_bill').removeClass('bg-dark');
                             $('#btn_create_bill').addClass('bg-secondary');
@@ -637,6 +638,7 @@
             $('#btn_create_bill').text('Create Bill');
             assign_bill_no();
         })
+
         $('#bill_date_search').on('change', function() {
             let bill_date = $(this).val();
             $.ajax({
@@ -655,17 +657,13 @@
                         $('#bill_list_search').append('<option style="font-weight:bold;" value="">Bill List</option>');
                         bill_list.forEach(function(item) {
                             $("#bill_list_search").append(
-                                `<option 
-                                style="font-weight:bold;" 
-                                value="${item.bill_no}">Bill- ${item.bill_no + ' ' + item.client_name}
-                                </option>`
+                                `<option style="font-weight:bold;" value="${item.id}">Bill- ${item.bill_no + ' ' + item.client_name}</option>`
                             );
                         });
                     }
                 }
             });
         })
-
 
     })
 </script>

@@ -18,11 +18,7 @@ class ServiceBillController extends Controller
 
     public function load_bill_list(Request $request)
     {
-        $bill_list = Bill::select(
-            'bill_no',
-            'client_name',
-            'job_card_id',
-        )
+        $bill_list = Bill::select('*')
             ->where([
                 'bill_date' => $request->bill_date ?? Carbon::now()->toDateString(),
                 // 'request_from' => $request->request_from ?? 'bill_page'
@@ -48,8 +44,9 @@ class ServiceBillController extends Controller
         // return response()->json($request->all());
         $bill_details = Bill::select('*')
             ->where([
-                'bill_no' => $request->bill_no,
-                'bill_date' => $request->bill_date ?? Carbon::now()->toDateString(),
+                'id' => $request->id,
+                // 'bill_no' => $request->bill_no,
+                // 'bill_date' => $request->bill_date ?? Carbon::now()->toDateString(),
                 // 'request_from' => 'bill_page'
             ])
             ->first();
@@ -61,8 +58,8 @@ class ServiceBillController extends Controller
                 'spare_parts_sales.*'
             )
             ->where([
-                'spare_parts_sales.bill_no' => $request->bill_no,
-                'spare_parts_sales.sale_date' => $request->bill_date ?? Carbon::now()->toDateString(),
+                'spare_parts_sales.bill_id' => $request->id,
+                // 'spare_parts_sales.sale_date' => $request->bill_date ?? Carbon::now()->toDateString(),
                 // 'request_from' => 'bill_page'
             ])
             ->get();
@@ -71,8 +68,8 @@ class ServiceBillController extends Controller
                 'service_customers.*'
             )
             ->where([
-                'spare_parts_sales.bill_no' => $request->bill_no,
-                'spare_parts_sales.sale_date' => $request->bill_date ?? Carbon::now()->toDateString(),
+                'spare_parts_sales.bill_id' => $request->id,
+                // 'spare_parts_sales.sale_date' => $request->bill_date ?? Carbon::now()->toDateString(),
                 // 'request_from' => 'bill_page'
             ])
             ->first();

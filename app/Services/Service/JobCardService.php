@@ -12,7 +12,7 @@ class JobCardService
     public static function create_bill_no()
     {
         $bill_no = Bill::select('bill_no')
-            ->where('bill_date', Carbon::now()->toDateString())
+            // ->where('bill_date', Carbon::now()->toDateString())
             ->orderBy('id', 'desc')
             ->first();
         if ($bill_no) {
