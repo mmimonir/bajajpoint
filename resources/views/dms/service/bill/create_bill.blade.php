@@ -487,15 +487,9 @@
                                 showConfirmButton: false,
                                 timer: 2000
                             })
-                            // $("#create_jb_top").html('Update JB');
-                            // $("#create_jb_bottom").html('Update JB');
                             $('#bill_list').empty();
                             $('#bill_list').append('<option style="font-weight:bold;" value="">Bill List</option>');
 
-                            // $('#pending_png').append('<img src="{{ asset("images/pending.png") }}" alt="pending" class="img-fluid p-1 pending">');
-                            // $("#service_customer_id").val(response.service_customer_id);
-                            // $("#job_card_list").empty();
-                            // $("#job_card_list").append(`<option style="font-weight:bold;" value="">Job Card List</option>`);
                             load_bill_list();
                         } else {
                             Swal.fire({
@@ -504,7 +498,6 @@
                                 text: response.message,
                                 footer: '<a href="">Why do I have this issue?</a>'
                             })
-
                         }
                     }
                 });
@@ -586,8 +579,11 @@
                             $('#client_name').val(bill_details.client_name);
                             $('#client_address').val(bill_details.client_address);
                             $('#client_mobile').val(bill_details.client_mobile);
-                            $("#create_bill :input").prop("disabled", false);
-                            $('#btn_create_bill').attr('disabled', false);
+                            $("#create_bill :input").prop("disabled", true);
+                            $('#btn_create_bill').attr('disabled', true);
+                            $('#bill_list').attr('disabled', false);
+                            $('#bill_list_search').attr('disabled', false);
+                            $('#bill_date_search').attr('disabled', false);
                             $('#btn_create_bill').addClass('bg-dark');
                             $('#btn_create_bill').removeClass('bg-secondary');
                             $('#btn_create_bill').text('Update Bill');
@@ -636,6 +632,8 @@
         $('.new_bill_record').on('click', function() {
             $('#create_bill').trigger('reset');
             $('#btn_create_bill').text('Create Bill');
+            $("#create_bill :input").prop("disabled", false);
+            $('#update').val('true');
             assign_bill_no();
         })
 
