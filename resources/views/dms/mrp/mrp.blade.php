@@ -31,6 +31,7 @@
 <!-- Mrp Modal Start -->
 @extends('dms.mrp.modals.mrp_modal')
 <!-- Mrp Modal End -->
+
 @endsection
 
 @section('datatable')
@@ -53,10 +54,12 @@
         $(document).on('click', '#add', function() {
             $("#addModal").modal('show');
             $("form#add_mrp_form").prop('id', 'add_mrp_form');
+            $("form#update_mrp_form").prop('id', 'add_mrp_form');
             $("#addModal :input").prop("readOnly", false);
             $("form").trigger("reset");
             $("#addModal").find('#title').text('Create MRP');
             $("#update_mrp").text('Create');
+            $("#mrp_id").val('');
         });
 
         function vat_calculate_add() {
@@ -84,6 +87,7 @@
         $(document).on('submit', "#add_mrp_form", function(e) {
             e.preventDefault();
             const FD = new FormData(this);
+
             $.ajax({
                 url: "{{ route('mrp.add') }}",
                 method: "post",

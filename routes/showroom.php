@@ -16,6 +16,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
     // Vehicle Route
     Route::controller(App\Http\Controllers\Showroom\VehicleController::class)->group(function () {
         Route::get('/vehicle_index',  'index')->name('vehicle.index');
+        Route::post('/get_single_vehicle',  'get_single_vehicle')->name('vehicle.get_single_vehicle');
         Route::get('/vehicle_get',  'vehicle_get')->name('vehicle.get');
         Route::post('/vehicle_add',  'vehicle_add')->name('vehicle.add');
         Route::post('/vehicle_update',  'vehicle_update')->name('vehicle.update');

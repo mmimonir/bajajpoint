@@ -8,358 +8,30 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-10">
-        <h3 class="bg-dark text-center p-2 text-white mt-2 rounded">Motorcycle Details</h3>
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <a class="m-r-15 text-muted edit float-right btn btn-dark text-white mb-1" id="add" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fas fa-plus"></i>
+        <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
+            <div class="card-header">
+                <h3 class="bg-dark text-center p-2 text-white mt-2 rounded">Motorcycle Details</h3>
+                <a class="m-r-15 text-muted edit float-right btn btn-dark text-white mb-1" id="add">
+                    <i class="fas fa-plus"></i>
                 </a>
-                <div id="show_all_vehicle">
-                    <h1 class="text-center text-secondary my-5">Loading...</h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div id="show_all_vehicle" class="container h-100 d-flex justify-content-center">
+                            <h1 class="text-center text-secondary my-5">Loading...</h1>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal Update-->
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-write">
-                <h4 class="modal-title p-1" id="title">Update</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                </button>
-            </div>
-            <form action="#" method="POST" class="form-horizontal" id="edit_vehicle_form">
-                @csrf
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Code</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_model_code" name="model_code" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Name</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_model_name" name="model_name" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Model</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_model" name="model" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Vehicle</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_model_make_of_vehicle" name="model_make_of_vehicle" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Class</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_class_of_vehicle" name="class_of_vehicle" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Cylinder</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_no_of_cylinder_with_cc" name="no_of_cylinder_with_cc" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Tyre</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_size_of_tyre" name="size_of_tyre" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Power</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_horse_power" name="horse_power" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">LW</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_ladan_weight" name="ladan_weight" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">UW</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_unladen_weight" name="unladen_weight" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Wheel</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_wheel_base" name="wheel_base" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">SC</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_seating_capacity" name="seating_capacity" class="form-control" value="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Makers</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_makers_name" name="makers_name" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Country</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_makers_country" name="makers_country" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">CC</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_cubic_capacity" name="cubic_capacity" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">TRA</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_the_reg_auth" name="the_reg_auth" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">BRTA</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_brta" name="brta" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">NOC</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_no_of_cylinder" name="no_of_cylinder" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Fuel</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_fuel_used" name="fuel_used" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">RPM</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_rpm" name="rpm" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">SID</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_seats_inc_driver" name="seats_inc_driver" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Description</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_description" name="description" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Status</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_status" name="status" class="form-control" value="" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
-                    <button type="submit" id="update_mrp" name="" class="btn btn-success btn-sm  waves-light">Update</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Modal Update End-->
+<!-- Vehicle Modal Start -->
+@extends('dms.vehicle.modals.vehicle_modal')
+<!-- Vehicle Modal End -->
 
-<!-- Modal Add-->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-write">
-                <h4 class="modal-title p-1" id="title">Add</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                </button>
-            </div>
-            <form action="#" method="POST" class="form-horizontal" id="add_vehicle_form">
-                @csrf
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Code</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_model_code" name="model_code" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Name</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_model_name" name="model_name" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Model</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_model" name="model" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Vehicle</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_model_make_of_vehicle" name="model_make_of_vehicle" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Class</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_class_of_vehicle" name="class_of_vehicle" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Cylinder</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_no_of_cylinder_with_cc" name="no_of_cylinder_with_cc" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Tyre</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_size_of_tyre" name="size_of_tyre" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Power</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_horse_power" name="horse_power" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">LW</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_ladan_weight" name="ladan_weight" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">UW</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_unladen_weight" name="unladen_weight" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Wheel</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_wheel_base" name="wheel_base" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">SC</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_seating_capacity" name="seating_capacity" class="form-control" value="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Makers</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_makers_name" name="makers_name" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Country</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_makers_country" name="makers_country" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">CC</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_cubic_capacity" name="cubic_capacity" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">TRA</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_the_reg_auth" name="the_reg_auth" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">BRTA</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_brta" name="brta" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">NOC</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_no_of_cylinder" name="no_of_cylinder" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Fuel</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_fuel_used" name="fuel_used" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">RPM</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_rpm" name="rpm" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">SID</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_seats_inc_driver" name="seats_inc_driver" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Description</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_description" name="description" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group-sm row">
-                                    <label class="col-sm-3 col-form-label">Status</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" id="e_status" name="status" class="form-control" value="" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
-                    <button type="submit" id="update_vehicle" name="" class="btn btn-success btn-sm  waves-light">Add</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Modal Add End-->
 @endsection
 
 @section('datatable')
@@ -376,39 +48,24 @@
 
 @section('script')
 <script>
-    $(function() {
-        $(document).on('click', '.editIcon', function() {
-            var _this = $(this).parents('tr');
-            $('#e_model_code').val(_this.find('.model_code').text());
-            $('#e_model_name').val(_this.find('.model_name').text());
-            $('#e_model').val(_this.find('.model').text());
-            $('#e_model_make_of_vehicle').val(_this.find('.model_make_of_vehicle').text());
-            $('#e_class_of_vehicle').val(_this.find('.class_of_vehicle').text());
-            $('#e_no_of_cylinder_with_cc').val(_this.find('.no_of_cylinder_with_cc').text());
-            $('#e_size_of_tyre').val(_this.find('.size_of_tyre').text());
-            $('#e_horse_power').val(_this.find('.horse_power').text());
-            $('#e_ladan_weight').val(_this.find('.ladan_weight').text());
-            $('#e_unladen_weight').val(_this.find('.unladen_weight').text());
-            $('#e_wheel_base').val(_this.find('.wheel_base').text());
-            $('#e_seating_capacity').val(_this.find('.seating_capacity').text());
-            $('#e_makers_name').val(_this.find('.makers_name').text());
-            $('#e_makers_country').val(_this.find('.makers_country').text());
-            $('#e_cubic_capacity').val(_this.find('.cubic_capacity').text());
-            $('#e_the_reg_auth').val(_this.find('.the_reg_auth').text());
-            $('#e_brta').val(_this.find('.brta').text());
-            $('#e_no_of_cylinder').val(_this.find('.no_of_cylinder').text());
-            $('#e_fuel_used').val(_this.find('.fuel_used').text());
-            $('#e_rpm').val(_this.find('.rpm').text());
-            $('#e_seats_inc_driver').val(_this.find('.seats_inc_driver').text());
-            $('#e_description').val(_this.find('.description').text());
-            $('#e_status').val(_this.find('.status').text());
+    $(document).ready(function() {
 
+        $(document).on('click', '#add', function() {
+            $("#addModal").modal('show');
+            $("form#add_vehicle_form").prop('id', 'add_vehicle_form');
+            $("form#edit_vehicle_form").prop('id', 'add_vehicle_form');
+            $("#addModal :input").prop("readOnly", false);
+            $("form").trigger("reset");
+            $("#addModal").find('#title').text('Create Vehicle Info');
+            $("#update_vehicle").text('Create');
+            $("#vehicle_id").val('');
         });
+
         // add new employee ajax request
-        $("#add_vehicle_form").submit(function(e) {
+        $(document).on('submit', "#add_vehicle_form", function(e) {
             e.preventDefault();
-            console.log('add_vehicle_form');
             const FD = new FormData(this);
+
             $.ajax({
                 url: "{{ route('vehicle.add') }}",
                 method: "post",
@@ -427,17 +84,118 @@
                             timer: 1500,
                         });
                         fetchAll();
+                    } else {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "Something went wrong",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
                     }
                     $("#addModal").modal("hide");
                 },
             });
         });
+
+        // view single vehicle start
+        $(document).on('click', '.viewIcon', function() {
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
+            $.ajax({
+                url: "{{ route('vehicle.get_single_vehicle') }}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id
+                },
+                success: function(data) {
+                    $("#addModal").modal('show');
+                    $("#addModal").find('#title').text('View Vehicle Info');
+                    $("#addModal").find('#model_code').val(data.model_code);
+                    $("#addModal").find('#model_name').val(data.model_name);
+                    $("#addModal").find('#model').val(data.model);
+                    $("#addModal").find('#model_make_of_vehicle').val(data.model_make_of_vehicle);
+                    $("#addModal").find('#class_of_vehicle').val(data.class_of_vehicle);
+                    $("#addModal").find('#no_of_cylinder_with_cc').val(data.no_of_cylinder_with_cc);
+                    $("#addModal").find('#size_of_tyre').val(data.size_of_tyre);
+                    $("#addModal").find('#horse_power').val(data.horse_power);
+                    $("#addModal").find('#ladan_weight').val(data.ladan_weight);
+                    $("#addModal").find('#unladen_weight').val(data.unladen_weight);
+                    $("#addModal").find('#wheel_base').val(data.wheel_base);
+                    $("#addModal").find('#seating_capacity').val(data.seating_capacity);
+                    $("#addModal").find('#makers_name').val(data.makers_name);
+                    $("#addModal").find('#makers_country').val(data.makers_country);
+                    $("#addModal").find('#cubic_capacity').val(data.cubic_capacity);
+                    $("#addModal").find('#the_reg_auth').val(data.the_reg_auth);
+                    $("#addModal").find('#brta').val(data.brta);
+                    $("#addModal").find('#no_of_cylinder').val(data.no_of_cylinder);
+                    $("#addModal").find('#fuel_used').val(data.fuel_used);
+                    $("#addModal").find('#rpm').val(data.rpm);
+                    $("#addModal").find('#seats_inc_driver').val(data.seats_inc_driver);
+                    $("#addModal").find('#description').val(data.description);
+                    $("#addModal").find('#status').val(data.status);
+                    $("#addModal :input").prop("readOnly", true);
+                }
+            });
+        });
+        // view single mrp end
+
+        // edit single vehicle start
+        $(document).on('click', '.editIcon', function() {
+            $("form").trigger("reset");
+            $("form#add_vehicle_form").prop('id', 'edit_vehicle_form');
+            $("#update_vehicle").text('Update');
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
+
+            $.ajax({
+                url: "{{ route('vehicle.get_single_vehicle') }}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id
+                },
+                success: function(data) {
+                    $("#addModal").modal('show');
+                    $("#addModal :input").prop("readOnly", false);
+                    $("#addModal").find('#title').text('Edit Vehicle Info');
+                    $("#addModal").find('#model_code').val(data.model_code);
+                    $("#addModal").find('#model_name').val(data.model_name);
+                    $("#addModal").find('#vehicle_id').val(data.id);
+                    $("#addModal").find('#model').val(data.model);
+                    $("#addModal").find('#model_make_of_vehicle').val(data.model_make_of_vehicle);
+                    $("#addModal").find('#class_of_vehicle').val(data.class_of_vehicle);
+                    $("#addModal").find('#no_of_cylinder_with_cc').val(data.no_of_cylinder_with_cc);
+                    $("#addModal").find('#size_of_tyre').val(data.size_of_tyre);
+                    $("#addModal").find('#horse_power').val(data.horse_power);
+                    $("#addModal").find('#ladan_weight').val(data.ladan_weight);
+                    $("#addModal").find('#unladen_weight').val(data.unladen_weight);
+                    $("#addModal").find('#wheel_base').val(data.wheel_base);
+                    $("#addModal").find('#seating_capacity').val(data.seating_capacity);
+                    $("#addModal").find('#makers_name').val(data.makers_name);
+                    $("#addModal").find('#makers_country').val(data.makers_country);
+                    $("#addModal").find('#cubic_capacity').val(data.cubic_capacity);
+                    $("#addModal").find('#the_reg_auth').val(data.the_reg_auth);
+                    $("#addModal").find('#brta').val(data.brta);
+                    $("#addModal").find('#no_of_cylinder').val(data.no_of_cylinder);
+                    $("#addModal").find('#fuel_used').val(data.fuel_used);
+                    $("#addModal").find('#rpm').val(data.rpm);
+                    $("#addModal").find('#seats_inc_driver').val(data.seats_inc_driver);
+                    $("#addModal").find('#description').val(data.description);
+                    $("#addModal").find('#status').val(data.status);
+
+                }
+            });
+        });
+        // edit single vehicle end
+
         // update employee ajax request
-        $("#edit_vehicle_form").submit(function(e) {
-            console.log('edit_vehicle_form');
+        $(document).on('submit', '#edit_vehicle_form', function(e) {
             e.preventDefault();
             const FD = new FormData(this);
             $("#update_vehicle").text('Updating...');
+
             $.ajax({
                 url: "{{ route('vehicle.update') }}",
                 method: 'post',
@@ -456,16 +214,26 @@
                             timer: 1500
                         })
                         fetchAll();
+                    } else {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Something went wrong',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     }
-                    $("#updateModal").modal('hide');
+                    $("#addModal").modal('hide');
                 }
             });
         });
         // delete employee ajax request
         $(document).on('click', '.deleteIcon', function(e) {
             e.preventDefault();
-            let model_code = $(this).attr('id');
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
             let csrf = '{{ csrf_token() }}';
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -480,18 +248,27 @@
                         url: "{{ route('vehicle.delete') }}",
                         method: 'delete',
                         data: {
-                            model_code: model_code,
+                            id,
                             _token: csrf
                         },
                         success: function(response) {
-                            // console.log(response);
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "Data Deleted Successfully",
-                                showConfirmButton: false,
-                                timer: 1500,
-                            })
+                            if (response.status == 200) {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Data Deleted Successfully",
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                })
+                            } else {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "error",
+                                    title: "Something went wrong",
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                })
+                            }
                             fetchAll();
                         }
                     });
@@ -513,66 +290,39 @@
                         var html = `<table id="vehicle" class="table table-hover table-responsive table-striped table-sm text-sm table-light table-bordered" style="width:100%;">
                         <thead>
                             <tr>
-                                <th class="align-middle">Code</th>                                
-                                <th class="align-middle">Model Name</th>
-                                <th class="align-middle">Model</th>
-                                <th class="align-middle">Vehicle</th>
-                                <th class="align-middle">Class</th>
-                                <th class="align-middle">Cylinder</th>
-                                <th class="align-middle">Tyre</th>
-                                <th class="align-middle">Power</th>
-                                <th class="align-middle">LW</th>
-                                <th class="align-middle">UW</th>
-                                <th class="align-middle">Wheel</th>
-                                <th class="align-middle">SC</th>
-                                <th class="align-middle">Makers</th>
+                                <th class="align-middle">Sl</th>                                
+                                <th class="align-middle">Model Name</th>                                                                                                                                
+                                <th class="align-middle">Horse Power</th>                                                                
+                                <th class="align-middle">Wheel Base</th>                                                                
                                 <th class="align-middle">Country</th>
-                                <th class="align-middle">CC</th>
-                                <th class="align-middle">TRA</th>
-                                <th class="align-middle">BRTA</th>
-                                <th class="align-middle">NOC</th>
-                                <th class="align-middle">Fuel</th>
-                                <th class="align-middle">RPM</th>
-                                <th class="align-middle">SID</th>
-                                <th class="align-middle">Description</th>
-                                <th class="align-middle">Status</th>
+                                <th class="align-middle">CC</th>                                
+                                <th class="align-middle">Fuel</th>                                
+                                <th class="align-middle">RPM</th>                                
                                 <th class="align-middle">Action</th>                                
                             </tr>
                         </thead>
                         <tbody>`;
                         response.forEach(function(data, index) {
                             html +=
-                                `<tr>                                
-                                <td class="model_code">${data.model_code}</td>                                
+                                `<tr style="height:30px;">                                
+                                <td class="model_code">${index + 1}</td>                                
                                 <td class="model_name">${data.model_name}</td>                                
-                                <td class="model">${data.model}</td>                                
-                                <td class="model_make_of_vehicle"><textarea readonly>${data.model_make_of_vehicle}</textarea></td>                                
-                                <td class="class_of_vehicle">${data.class_of_vehicle}</td>                                
-                                <td class="no_of_cylinder_with_cc">${data.no_of_cylinder_with_cc}</td>                                
-                                <td class="size_of_tyre"><textarea readonly>${data.size_of_tyre}</textarea></td>                                
-                                <td class="horse_power">${data.horse_power}</td>                                
-                                <td class="ladan_weight">${data.ladan_weight}</td>                                
-                                <td class="unladen_weight">${data.unladen_weight}</td>                                
-                                <td class="wheel_base">${data.wheel_base}</td>                                
-                                <td class="seating_capacity">${data.seating_capacity}</td>                                
-                                <td class="makers_name"><textarea readonly>${data.makers_name}</textarea></td>                                
+                                <td class="horse_power">${data.horse_power}</td>                                                                        
+                                <td class="wheel_base">${data.wheel_base}</td>                                                                
                                 <td class="makers_country">${data.makers_country}</td>                                
-                                <td class="cubic_capacity">${data.cubic_capacity}</td>                                
-                                <td class="the_reg_auth">${data.the_reg_auth}</td>                                
-                                <td class="brta"><textarea readonly>${data.brta}</textarea></td>                                
-                                <td class="no_of_cylinder">${data.no_of_cylinder}</td>                                
+                                <td class="cubic_capacity">${data.cubic_capacity}</td>                                                                    
                                 <td class="fuel_used">${data.fuel_used}</td>                                
-                                <td class="rpm">${data.rpm}</td>                                
-                                <td class="seats_inc_driver">${data.seats_inc_driver}</td>                                
-                                <td class="description"><textarea readonly>${data.description}</textarea></td>                                
-                                <td class="status">${data.status}</td>                                
+                                <td class="rpm">${data.rpm}</td>                                                                
                                 <td class="text-center">
-                                    <a href="#" class="m-r-15 text-muted editIcon" id="${data.model_code}" data-bs-toggle="modal" data-idUpdate="${data.model_code}" data-bs-target="#updateModal">
-                                        <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
+                                <input class="id" type="hidden" name="id" value="${data.id}">
+                                    <a href="#" class="m-r-15 text-muted viewIcon" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#updateModal">
+                                        <i class="fa fa-eye" style="color: #2196f3;font-size:16px;"></i>                                    
                                     </a>
-                                    <a href="#" class="deleteIcon" id="${data.model_code}">
-                                        <i class="fa fa-trash" aria-hidden="true" style="color: red;font-size:16px;">
-                                        </i>
+                                    <a href="#" class="m-r-15 text-muted editIcon" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#updateModal">
+                                        <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
+                                    </a>                                    
+                                    <a href="#" class="deleteIcon">
+                                        <i class="fa fa-trash" aria-hidden="true" style="color: red;font-size:16px;"></i>
                                     </a>
                                 </td>
                             </tr>`;

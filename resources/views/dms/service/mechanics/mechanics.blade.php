@@ -50,7 +50,13 @@
     $(document).ready(function() {
         // change form id when click add button
         $(document).on('click', '#add', function() {
+            $("#addModal").modal('show');
             $("form#add_mechanics_form").prop('id', 'add_mechanics_form');
+            $("form#update_mechanics_form").prop('id', 'add_mechanics_form');
+            $("#addModal :input").prop("readOnly", false);
+            $("#addModal").find('#title').text('Create Mechanic');
+            $("#update_mechanic").text('Create');
+            $("#mechanic_id").val('');
             $("form").trigger("reset");
         });
 

@@ -20,23 +20,36 @@ class VehicleController extends Controller
         return response()->json($vehicles);
     }
 
+    public function get_single_vehicle(Request $request)
+    {
+        $vehicle = Vehicle::find($request->id);
+        return response()->json($vehicle);
+    }
+
     public function vehicle_add(Request $request)
     {
         Vehicle::create($request->all());
         return response()->json([
             'status' => 200,
+            'message' => 'Vehicle added successfully.'
         ]);
     }
 
     public function vehicle_update(Request $request)
     {
-        Vehicle::whereModelCode($request->model_code)->update($request->all());
-        return response()->json(['status' => 200]);
+        Vehicle::whereId($request->id)->update($request->all());
+        return response()->json([
+            'status' => 200,
+            'message' => 'Vehicle updated successfully.'
+        ]);
     }
 
     public function vehicle_delete(Request $request)
     {
-        Vehicle::whereModelCode($request->model_code)->delete();
-        return response()->json(['status' => 200]);
+        Vehicle::whereId($request->id)->delete();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Vehicle deleted successfully.'
+        ]);
     }
 }
