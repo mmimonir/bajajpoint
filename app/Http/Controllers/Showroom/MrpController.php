@@ -20,24 +20,37 @@ class MrpController extends Controller
         return response()->json($Mrps);
     }
 
+    public function get_single_mrp(Request $request)
+    {
+        $mrp = Mrp::find($request->id);
+        return response()->json($mrp);
+    }
+
     public function mrp_add(Request $request)
     {
         Mrp::create($request->all());
         return response()->json([
             'status' => 200,
+            'message' => 'Mrp added successfully'
         ]);
     }
 
     public function mrp_update(Request $request)
     {
-        Mrp::whereModelCode($request->model_code)->update($request->all());
-        return response()->json(['status' => 200]);
+        Mrp::whereId($request->id)->update($request->all());
+        return response()->json([
+            'status' => 200,
+            'message' => 'Mrp updated successfully'
+        ]);
     }
 
     public function mrp_delete(Request $request)
     {
         // dd($request->model_code);
-        Mrp::whereModelCode($request->model_code)->delete();
-        return response()->json(['status' => 200]);
+        Mrp::whereId($request->id)->delete();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Mrp deleted successfully'
+        ]);
     }
 }

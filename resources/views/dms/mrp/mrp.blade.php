@@ -11,7 +11,8 @@
         <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
             <div class="card-header">
                 <h3 class="bg-dark text-center p-2 text-white mt-2 rounded">Product Price Details</h3>
-                <a class="m-r-15 text-muted edit float-right btn btn-dark text-white mb-1" id="add" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fas fa-plus"></i>
+                <a class="m-r-15 text-muted edit float-right btn btn-dark text-white mb-1" id="add">
+                    <i class="fas fa-plus"></i>
                 </a>
             </div>
             <div class="row justify-content-center">
@@ -27,199 +28,9 @@
     </div>
 </div>
 
-<!-- Modal Update-->
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-write">
-                <h4 class="modal-title p-1" id="title">Update</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                </button>
-            </div>
-            <form action="#" method="POST" class="form-horizontal" id="edit_mrp_form">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="e_model_code" name="model_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Model</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="e_model" name="model" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">VAT Pur MRP</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="e_vat_purchage_mrp" name="vat_purchage_mrp" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">MRP</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="e_mrp" name="mrp" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">VAT MRP</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="e_vat_mrp" name="vat_mrp" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Basic (VAT)</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="e_basic_vat" name="basic_vat" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Sale Vat</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="e_sale_vat" name="sale_vat" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Commission</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="e_commission" name="commission" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">TR</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="e_tr" name="tr" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Purchage Price</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="e_purchage_price" name="purchage_price" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Reabate Basic</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="e_rebate_basic" name="rebate_basic" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Reabate</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="e_rebate" name="rebate" class="form-control" value="" />
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
-                    <button type="submit" id="update_mrp" name="" class="btn btn-success btn-sm  waves-light">Update</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Modal Update End-->
-
-<!-- Modal Add-->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-write">
-                <h4 class="modal-title p-1" id="title">Add</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                </button>
-            </div>
-            <form action="#" method="POST" class="form-horizontal" id="add_mrp_form">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="a_model_code" name="model_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Model</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="a_model" name="model" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">VAT Pur MRP</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="a_vat_purchage_mrp" name="vat_purchage_mrp" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">MRP</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="a_mrp" name="mrp" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">VAT MRP</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="a_vat_mrp" name="vat_mrp" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Basic (VAT)</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="a_basic_vat" name="basic_vat" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Sale Vat</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="a_sale_vat" name="sale_vat" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Commission</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="a_commission" name="commission" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">TR</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="a_tr" name="tr" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Purchage Price</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="a_purchage_price" name="purchage_price" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Reabate Basic</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="a_rebate_basic" name="rebate_basic" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Reabate</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="a_rebate" name="rebate" class="form-control" value="" />
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
-                    <button type="submit" id="update_mrp" name="" class="btn btn-success btn-sm  waves-light">Add</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Modal Add End-->
+<!-- Mrp Modal Start -->
+@extends('dms.mrp.modals.mrp_modal')
+<!-- Mrp Modal End -->
 @endsection
 
 @section('datatable')
@@ -237,63 +48,41 @@
 
 @section('script')
 <script>
-    $(function() {
-        $("input").prop('required', true);
-        $(document).on('click', '.editIcon', function() {
-            var _this = $(this).parents('tr');
-            $('#e_model_code').val(_this.find('.model_code').text());
-            $('#e_model').val(_this.find('.model').text());
-            $('#e_vat_purchage_mrp').val(_this.find('.vat_purchage_mrp').text().replace(/,/g, ''));
-            $('#e_mrp').val(_this.find('.mrp').text().replace(/,/g, ''));
-            $('#e_vat_mrp').val(_this.find('.vat_mrp').text().replace(/,/g, ''));
-            $('#e_basic_vat').val(_this.find('.basic_vat').text().replace(/,/g, ''));
-            $('#e_sale_vat').val(_this.find('.sale_vat').text().replace(/,/g, ''));
-            $('#e_commission').val(_this.find('.commission').text().replace(/,/g, ''));
-            $('#e_tr').val(_this.find('.tr').text().replace(/,/g, ''));
-            $('#e_purchage_price').val(_this.find('.purchage_price').text().replace(/,/g, ''));
-            $('#e_rebate_basic').val(_this.find('.rebate_basic').text().replace(/,/g, ''));
-            $('#e_rebate').val(_this.find('.rebate').text().replace(/,/g, ''));
+    $(document).ready(function() {
+
+        $(document).on('click', '#add', function() {
+            $("#addModal").modal('show');
+            $("form#add_mrp_form").prop('id', 'add_mrp_form');
+            $("#addModal :input").prop("readOnly", false);
+            $("form").trigger("reset");
+            $("#addModal").find('#title').text('Create MRP');
+            $("#update_mrp").text('Create');
         });
 
         function vat_calculate_add() {
-            let mrp = $('#a_mrp').val();
-            let commission = $('#a_commission').val();
-            let tr = $('#a_tr').val();
+            let mrp = +$('#mrp').val();
+            let commission = +$('#commission').val();
+            let tr = +$('#tr').val();
             let purchage_price_tr = mrp - commission
             let purchage_price = purchage_price_tr - (commission * 0.15);
-            $('#a_basic_vat').val(Math.round((mrp * 100) / 115));
-            $('#a_sale_vat').val(Math.round((mrp * 15) / 115));
-            $('#a_tr').val(commission * 0.15);
-            $('#a_purchage_price').val(purchage_price);
-            $('#a_rebate_basic').val(Math.round((purchage_price * 100) / 115));
-            $('#a_rebate').val(Math.round((purchage_price * 15) / 115));
+            $('#basic_vat').val(Math.round((mrp * 100) / 115));
+            $('#sale_vat').val(Math.round((mrp * 15) / 115));
+            $('#tr').val(commission * 0.15);
+            $('#purchage_price').val(purchage_price);
+            $('#rebate_basic').val(Math.round((purchage_price * 100) / 115));
+            $('#rebate').val(Math.round((purchage_price * 15) / 115));
         }
 
-        function vat_calculate_edit() {
-            let mrp = $('#e_mrp').val();
-            let commission = $('#e_commission').val();
-            let tr = $('#e_tr').val();
-            let purchage_price_tr = mrp - commission
-            let purchage_price = purchage_price_tr - (commission * 0.15);
-            $('#e_basic_vat').val(Math.round((mrp * 100) / 115));
-            $('#e_sale_vat').val(Math.round((mrp * 15) / 115));
-            $('#e_tr').val(commission * 0.15);
-            $('#e_purchage_price').val(purchage_price);
-            $('#e_rebate_basic').val(Math.round((purchage_price * 100) / 115));
-            $('#e_rebate').val(Math.round((purchage_price * 15) / 115));
-        }
-        $("#add_mrp_form").on("input", function() {
-            console.log('input vat calculate called.');
+        $(document).on('input', "#add_mrp_form", function() {
             vat_calculate_add();
         });
-        $("#edit_mrp_form").on("input", function() {
-            vat_calculate_edit();
+        $(document).on('input', "#update_mrp_form", function() {
+            vat_calculate_add();
         });
 
         // add new employee ajax request
-        $("#add_mrp_form").submit(function(e) {
+        $(document).on('submit', "#add_mrp_form", function(e) {
             e.preventDefault();
-            console.log('add_mrp_form');
             const FD = new FormData(this);
             $.ajax({
                 url: "{{ route('mrp.add') }}",
@@ -313,18 +102,93 @@
                             timer: 1500,
                         });
                         fetchAllMrp();
+                    } else {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "Something went wrong",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
                     }
                     $("#addModal").modal("hide");
                 },
             });
         });
 
+        // view single mrp start
+        $(document).on('click', '.viewIcon', function() {
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
+            $.ajax({
+                url: "{{ route('mrp.get_single_mrp') }}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id
+                },
+                success: function(data) {
+                    $("#addModal").modal('show');
+                    $("#addModal").find('#title').text('View MRP');
+                    $("#addModal").find('#model_code').val(data.model_code);
+                    $("#addModal").find('#model_name').val(data.model_name);
+                    $("#addModal").find('#vat_purchage_mrp').val(data.vat_purchage_mrp);
+                    $("#addModal").find('#mrp').val(data.mrp);
+                    $("#addModal").find('#vat_mrp').val(data.vat_mrp);
+                    $("#addModal").find('#basic_vat').val(data.basic_vat);
+                    $("#addModal").find('#sale_vat').val(data.sale_vat);
+                    $("#addModal").find('#commission').val(data.commission);
+                    $("#addModal").find('#tr').val(data.tr);
+                    $("#addModal").find('#purchage_price').val(data.purchage_price);
+                    $("#addModal").find('#rebate_basic').val(data.rebate_basic);
+                    $("#addModal").find('#rebate').val(data.rebate);
+                    $("#addModal :input").prop("readOnly", true);
+                }
+            });
+        });
+        // view single mrp end
+
+        // edit single mrp start
+        $(document).on('click', '.editIcon', function() {
+            $("form").trigger("reset");
+            $("form#add_mrp_form").prop('id', 'update_mrp_form');
+            $("#update_mrp").text('Update MRP');
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
+            $.ajax({
+                url: "{{ route('mrp.get_single_mrp') }}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id
+                },
+                success: function(data) {
+                    $("#addModal").modal('show');
+                    $("#addModal :input").prop("readOnly", false);
+                    $("#addModal").find('#title').text('Update MRP');
+                    $("#addModal").find('#model_code').val(data.model_code);
+                    $("#addModal").find('#mrp_id').val(data.id);
+                    $("#addModal").find('#model_name').val(data.model_name);
+                    $("#addModal").find('#vat_purchage_mrp').val(data.vat_purchage_mrp);
+                    $("#addModal").find('#mrp').val(data.mrp);
+                    $("#addModal").find('#vat_mrp').val(data.vat_mrp);
+                    $("#addModal").find('#basic_vat').val(data.basic_vat);
+                    $("#addModal").find('#sale_vat').val(data.sale_vat);
+                    $("#addModal").find('#commission').val(data.commission);
+                    $("#addModal").find('#tr').val(data.tr);
+                    $("#addModal").find('#purchage_price').val(data.purchage_price);
+                    $("#addModal").find('#rebate_basic').val(data.rebate_basic);
+                    $("#addModal").find('#rebate').val(data.rebate);
+                    // $("#addModal :input").prop("readOnly", true);
+                }
+            });
+        });
+        // edit single mrp end
+
         // update employee ajax request
-        $("#edit_mrp_form").submit(function(e) {
-            console.log('edit_mrp_form');
+        $(document).on('submit', '#update_mrp_form', function(e) {
             e.preventDefault();
             const FD = new FormData(this);
-            $("#update_mrp").text('Updating...');
             $.ajax({
                 url: "{{ route('mrp.update') }}",
                 method: 'post',
@@ -335,6 +199,7 @@
                 dataType: 'json',
                 success: function(response) {
                     if (response.status == 200) {
+                        $("#addModal").modal('hide');
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
@@ -343,19 +208,28 @@
                             timer: 1500
                         })
                         fetchAllMrp();
+                    } else {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Something went wrong',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     }
-                    $("#updateModal").modal('hide');
+
                 }
             });
         });
-
         fetchAllMrp();
 
         // delete employee ajax request
         $(document).on('click', '.deleteIcon', function(e) {
             e.preventDefault();
-            let model_code = $(this).attr('id');
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
             let csrf = '{{ csrf_token() }}';
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -370,18 +244,27 @@
                         url: "{{ route('mrp.delete') }}",
                         method: 'delete',
                         data: {
-                            model_code: model_code,
+                            id,
                             _token: csrf
                         },
                         success: function(response) {
-                            // console.log(response);
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "Data Deleted Successfully",
-                                showConfirmButton: false,
-                                timer: 1500,
-                            })
+                            if (response.status == 200) {
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: response.success,
+                                    type: 'success',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                })
+                            } else {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: response.error,
+                                    type: 'error',
+                                    confirmButtonText: 'OK'
+                                })
+                            }
                             fetchAllMrp();
                         }
                     });
@@ -401,43 +284,38 @@
                         var html = `<table id="example" class="table table-hover table-responsive table-striped table-sm text-sm table-light table-bordered" style="width:100%;">
                         <thead>
                             <tr>
-                                <th class="align-middle">Code</th>
-                                <th class="align-middle">Model</th>
-                                <th class="align-middle">VAT Pur</th>
-                                <th class="align-middle">MRP</th>
-                                <th class="align-middle">VMRP</th>
+                                <th class="align-middle">Sl</th>
+                                <th class="align-middle">Model Name</th>                                
+                                <th class="align-middle">MRP</th>                                
                                 <th class="align-middle">Basic</th>
-                                <th class="align-middle">VAT</th>
-                                <th class="align-middle">Comm</th>
-                                <th class="align-middle">TR</th>
-                                <th class="align-middle">Buy</th>
-                                <th class="align-middle">Basic</th>
-                                <th class="align-middle">Reabate</th>
+                                <th class="align-middle">Sale VAT</th>
+                                <th class="align-middle">VAT MRP</th>
+                                <th class="align-middle">Commission</th>
+                                <th class="align-middle">Rebate</th>
                                 <th class="align-middle">Action</th>
                             </tr>
                         </thead>
                         <tbody>`;
                         response.forEach(function(data, index) {
-                            console.log(data);
                             html +=
-                                `<tr>                                
-                                <td class="model_code">${data.model_code}</td>
-                                <td class="model">${data.model_name}</td>
-                                <td class="vat_purchage_mrp text-right">${BDFormat.format(data.vat_purchage_mrp)}</td>
+                                `<tr style="height:30px;">                                
+                                <td class="sl text-center">${index + 1}</td>
+                                <td class="model_name">${data.model_name}</td>                                
                                 <td class="mrp text-right">${BDFormat.format(data.mrp)}</td>
-                                <td class="vat_mrp text-right">${BDFormat.format(data.vat_mrp)}</td>
-                                <td class="basic_vat">${BDFormat.format(data.basic_vat)}</td>
+                                <td class="basic_vat text-right">${BDFormat.format(data.basic_vat)}</td>
                                 <td class="sale_vat text-right">${BDFormat.format(data.sale_vat)}</td>
-                                <td class="commission text-right">${BDFormat.format(data.commission)}</td>
-                                <td class="tr text-right">${BDFormat.format(data.tr)}</td>
-                                <td class="purchage_price text-right">${BDFormat.format(data.purchage_price)}</td>
-                                <td class="rebate_basic text-right">${BDFormat.format(data.rebate_basic)}</td>
+                                <td class="vat_mrp text-right">${BDFormat.format(data.vat_mrp)}</td>
+                                <td class="commission text-right">${BDFormat.format(data.commission)}</td>                                
                                 <td class="rebate text-right">${BDFormat.format(data.rebate)}</td>
                                 <td class="text-center">
-                                    <a href="#" class="m-r-15 text-muted editIcon" id="${data.model_code}" data-bs-toggle="modal" data-idUpdate="${data.model_code}" data-bs-target="#updateModal">
-                                        <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
+                                <input class="id" type="hidden" name="id" value="${data.id}">
+                                <a href="#" class="m-r-15 text-muted viewIcon" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#updateModal">
+                                        <i class="fa fa-eye" style="color: #2196f3;font-size:16px;"></i>                                    
                                     </a>
-                                    <a href="#" class="deleteIcon" id="${data.model_code}">
+                                    <a href="#" class="m-r-15 text-muted editIcon" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#updateModal">
+                                        <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
+                                    </a>                                    
+                                    <a href="#" class="deleteIcon">
                                         <i class="fa fa-trash" aria-hidden="true" style="color: red;font-size:16px;">
                                         </i>
                                     </a>
@@ -448,7 +326,6 @@
                     } else {
                         html = `<h3 class="text-center">No MRP Found</h3>`;
                     }
-                    console.log(html);
                     $("#show_all_mrp").html(html);
                     $("#example").DataTable({
                         pageLength: 10,

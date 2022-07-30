@@ -12,4 +12,16 @@ function fiscal_year(new_date) {
     return fiscal_year;
 }
 
-console.log(fiscal_year("2030-01-30"));
+function getCurrentFinancialYear(sale_date) {
+    var financial_year = "";
+    var today = new Date(sale_date);
+    if (today.getMonth() + 1 <= 6) {
+        financial_year = today.getFullYear() - 1 + "-" + today.getFullYear();
+    } else {
+        financial_year = today.getFullYear() + "-" + (today.getFullYear() + 1);
+    }
+    return financial_year;
+}
+
+console.log(fiscal_year("2022-06-30"));
+console.log(getCurrentFinancialYear("2022-06-30"));

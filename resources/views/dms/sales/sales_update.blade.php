@@ -429,7 +429,7 @@
         function getCurrentFinancialYear(sale_date) {
             var financial_year = "";
             var today = new Date(sale_date);
-            if ((today.getMonth() + 1) <= 3) {
+            if ((today.getMonth() + 1) <= 6) {
                 financial_year = (today.getFullYear() - 1) + "-" + today.getFullYear()
             } else {
                 financial_year = today.getFullYear() + "-" + (today.getFullYear() + 1)

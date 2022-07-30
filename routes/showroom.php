@@ -6,6 +6,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
     // MRP Table
     Route::controller(App\Http\Controllers\Showroom\MrpController::class)->group(function () {
         Route::get('/mrp_index',  'index')->name('mrp.index');
+        Route::post('/get_single_mrp',  'get_single_mrp')->name('mrp.get_single_mrp');
         Route::get('/mrp_get',  'mrp_get')->name('mrp.get');
         Route::post('/mrp_add',  'mrp_add')->name('mrp.add');
         Route::post('/mrp_update',  'mrp_update')->name('mrp.update');
