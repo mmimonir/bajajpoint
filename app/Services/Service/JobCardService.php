@@ -11,20 +11,46 @@ class JobCardService
 {
     public static function create_bill_no()
     {
-        $bill_data = Bill::select('bill_no', 'bill_date')
-            // ->where('bill_date', Carbon::now()->toDateString())
-            ->orderBy('bill_no', 'desc')
-            ->first();
-        $bill_no = $bill_data->bill_no;
+        $bill_no = 0;
 
-        if ($bill_no) {
-            $bill_no = $bill_data->bill_no;
-            $bill_no++;
+        $today = Carbon::now()->toDateString();
+        $today_month = Carbon::now()->format('m');
+        $today_day = Carbon::now()->format('d');
+
+        if ($today_month == '07' && $today_day == '01') {
+            $bill_data = Bill::select('bill_no')
+                ->where('bill_date', $today)
+                ->orderBy('bill_no', 'desc')
+                ->first();
+            if ($bill_data) {
+                $bill_no = $bill_data->bill_no + 1;
+            } else {
+                $bill_no = 1;
+            }
         } else {
-            $bill_no = 1;
+            $bill_data = Bill::select('bill_no')
+                ->orderBy('created_at', 'desc')
+                ->first();
+            $bill_no = $bill_data->bill_no + 1;
         }
         return $bill_no;
     }
+    // don't delete this function
+    // public static function create_bill_no()
+    // {
+    //     $bill_data = Bill::select('bill_no', 'bill_date')
+    //         ->orderBy('bill_no', 'desc')
+    //         ->first();
+    //     $bill_no = $bill_data->bill_no;
+
+    //     if ($bill_no) {
+    //         $bill_no = $bill_data->bill_no;
+    //         $bill_no++;
+    //     } else {
+    //         $bill_no = 1;
+    //     }
+    //     return $bill_no;
+    // }
 
     public static function assign_job_card_sl_no()
     {

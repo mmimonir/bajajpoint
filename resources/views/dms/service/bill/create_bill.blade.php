@@ -265,6 +265,7 @@
                 processData: false,
                 dataType: 'json',
                 success: function(bill_no) {
+                    console.log(bill_no);
                     $('#bill_no').val(bill_no);
                 }
             });
