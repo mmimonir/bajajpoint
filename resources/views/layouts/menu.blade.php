@@ -91,6 +91,23 @@
                 </li>
             </ul>
         </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fa-solid fa-wrench"></i>
+                <p class="text-white">
+                    Utility
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: none;">
+                <li class="nav-item">
+                    <a href="{{ route('utility.delivery_challan') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-receipt"></i>
+                        <p class="text-white">Delivery Challan</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
 
         <li class="nav-item">
             <a href="{{route('print.print_dashboard')}}" class="nav-link">

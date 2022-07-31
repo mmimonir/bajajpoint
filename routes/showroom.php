@@ -148,6 +148,11 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
 
     Route::get('/filemanager', [App\Http\Controllers\FileManagerController::class, 'index'])->name('file.manager');
 
+    // Quotation
+    Route::controller(App\Http\Controllers\Showroom\UtilityPrintController::class)->group(function () {
+        Route::get('/delivery_challan',  'index')->name('utility.delivery_challan');
+    });
+
     //     Route::get('backup-run', function () {
     //         Artisan::call('backup:run --only-db');
     //         return back();
