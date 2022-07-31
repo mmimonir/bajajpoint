@@ -27,150 +27,9 @@
     </div>
 </div>
 
-<!-- Modal Update-->
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-write">
-                <h4 class="modal-title p-1" id="title">Update</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                </button>
-            </div>
-            <form action="#" method="POST" class="form-horizontal" id="edit_supplier_form">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Name</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="supplier_name" name="supplier_name" class="form-control" value="" />
-                            <input required hidden type="text" id="supplier_id" name="id" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="supplier_code" name="supplier_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Print Ref</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="print_ref" name="print_ref" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">YOM</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="year_of_manufacture" name="year_of_manufacture" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">VYP</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="vat_year_purchage" name="vat_year_purchage" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">VYS</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="vat_year_sale" name="vat_year_sale" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Dealer</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="dealer_name" name="dealer_name" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Status</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="status" name="status" class="form-control" value="" />
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
-                    <button type="submit" id="update_supplier" name="" class="btn btn-success btn-sm  waves-light">Update</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Modal Update End-->
 
 <!-- Modal Add-->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-write">
-                <h4 class="modal-title p-1" id="title">Add</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                </button>
-            </div>
-            <form action="#" method="POST" class="form-horizontal" id="add_supplier_form">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Name</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="supplier_name" name="supplier_name" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="supplier_code" name="supplier_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Print Ref</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="print_ref" name="print_ref" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">YOM</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="year_of_manufacture" name="year_of_manufacture" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">VYP</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="vat_year_purchage" name="vat_year_purchage" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">VYS</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="vat_year_sale" name="vat_year_sale" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Dealer</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="dealer_name" name="dealer_name" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Status</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="status" name="status" class="form-control" value="" />
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
-                    <button type="submit" id="add_supplier" name="" class="btn btn-success btn-sm  waves-light">Add</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+@extends('dms.supplier.modals.supplier_modal')
 <!-- Modal Add End-->
 @endsection
 
@@ -189,28 +48,24 @@
 
 @section('script')
 <script>
-    $(function() {
-        $("input").prop('required', true);
-        $(document).on('click', '.editIcon', function() {
-            $("#update_supplier").text('Update');
-            var _this = $(this).parents('tr');
-            $('#supplier_name').val(_this.find('.supplier_name').text());
-            $('#supplier_code').val(_this.find('.supplier_code').text());
-            $('#print_ref').val(_this.find('.print_ref').text());
-            $('#year_of_manufacture').val(_this.find('.year_of_manufacture').text());
-            $('#vat_year_purchage').val(_this.find('.vat_year_purchage').text());
-            $('#vat_year_sale').val(_this.find('.vat_year_sale').text());
-            $('#dealer_name').val(_this.find('.dealer_name').text());
-            $('#status').val(_this.find('.status').text().replace(/ /g, ''));
-            $('#supplier_id').val(_this.find('.supplier_id').text());
+    $(document).ready(function() {
+
+        $(document).on('click', '#add', function() {
+            $("#addModal").modal('show');
+            $("form#add_supplier_form").prop('id', 'add_supplier_form');
+            $("form#edit_supplier_form").prop('id', 'add_supplier_form');
+            $("#addModal :input").prop("readOnly", false);
+            $("form").trigger("reset");
+            $("#addModal").find('#title').text('Enlist New Supplier');
+            $("#add_supplier").text('Create');
+            $("#supplier_id").val('');
         });
 
         // add new employee ajax request
-        $("#add_supplier_form").submit(function(e) {
+        $(document).on('submit', "#add_supplier_form", function(e) {
             e.preventDefault();
-            console.log('add_supplier_form');
             const FD = new FormData(this);
-            $("#add_supplier").text('Adding...');
+
             $.ajax({
                 url: "{{ route('supplier.add') }}",
                 method: "post",
@@ -230,18 +85,84 @@
                         });
                         $("#add_supplier_form")[0].reset();
                         fetchAll();
+                    } else {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "Something went wrong",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
                     }
                     $("#addModal").modal("hide");
                 },
             });
         });
 
+        // view single supplier start
+        $(document).on('click', '.viewIcon', function() {
+
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
+
+            $.ajax({
+                url: "{{ route('supplier.get_single_supplier') }}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id
+                },
+                success: function(data) {
+
+                    Object.keys(data).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(data[key]);
+                    });
+
+                    $("#addModal").modal('show');
+                    $("#addModal").find('#title').text('View Supplier');
+                    $("#addModal :input").prop("readOnly", true);
+                }
+            });
+        });
+        // view single supplier end
+
+        // edit single mrp start
+        $(document).on('click', '.editIcon', function() {
+            $("form").trigger("reset");
+            $("form#add_supplier_form").prop('id', 'edit_supplier_form');
+            $("#add_supplier").text('Update');
+
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
+
+            $.ajax({
+                url: "{{ route('supplier.get_single_supplier') }}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id
+                },
+                success: function(data) {
+
+                    Object.keys(data).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(data[key]);
+                    });
+
+                    $("#addModal").modal('show');
+                    $("#supplier_id").val(data.id);
+                    $("#addModal :input").prop("readOnly", false);
+                    $("#addModal").find('#title').text('Update Supplier Info');
+                }
+            });
+        });
+        // edit single mrp end
+
         // update employee ajax request
-        $("#edit_supplier_form").submit(function(e) {
-            console.log('edit_supplier_form');
+        $(document).on('submit', '#edit_supplier_form', function(e) {
             e.preventDefault();
             const FD = new FormData(this);
-            $("#update_supplier").text('Updating...');
+
+            $("#add_supplier").text('Updating...');
             $.ajax({
                 url: "{{ route('supplier.update') }}",
                 method: 'post',
@@ -259,9 +180,18 @@
                             showConfirmButton: false,
                             timer: 1500
                         })
-                        fetchAll();
+
+                    } else {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Something went wrong',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     }
-                    $("#updateModal").modal('hide');
+                    fetchAll();
+                    $("#addModal").modal('hide');
                 }
             });
         });
@@ -271,8 +201,11 @@
         // delete employee ajax request
         $(document).on('click', '.deleteIcon', function(e) {
             e.preventDefault();
-            let id = $(this).attr('id');
+
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
             let csrf = '{{ csrf_token() }}';
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -287,18 +220,27 @@
                         url: "{{ route('supplier.delete') }}",
                         method: 'delete',
                         data: {
-                            id: id,
+                            id,
                             _token: csrf
                         },
                         success: function(response) {
-                            // console.log(response);
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "Data Deleted Successfully",
-                                showConfirmButton: false,
-                                timer: 1500,
-                            })
+                            if (response.status == 200) {
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: response.success,
+                                    type: 'success',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                })
+                            } else {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: response.error,
+                                    type: 'error',
+                                    confirmButtonText: 'OK'
+                                })
+                            }
                             fetchAll();
                         }
                     });
@@ -315,15 +257,12 @@
                         var html = `<table id="example" class="table table-hover table-responsive table-striped table-sm text-sm table-light table-bordered" style="width:100%;">
                         <thead>
                             <tr>
+                                <th class="align-middle">Sl</th>
                                 <th class="align-middle">Name</th>
                                 <th class="align-middle">Code</th>
-                                <th class="align-middle">Print Ref</th>
-                                <th class="align-middle">YOM</th>
-                                <th class="align-middle">VYP</th>
-                                <th class="align-middle">VYS</th>
+                                <th class="align-middle">Print Ref</th>                                
                                 <th class="align-middle">Dealer</th>
-                                <th class="align-middle">Status</th>                                
-                                <th hidden class="align-middle">Id</th>                                
+                                <th class="align-middle">Status</th>                                                                
                                 <th class="align-middle">Action</th>
                             </tr>
                         </thead>
@@ -331,23 +270,23 @@
                         response.forEach(function(data, index) {
                             console.log(data);
                             html +=
-                                `<tr>                                
+                                `<tr style="height:30px;">                                
+                                <td class="supplier_name">${index + 1}</td>
                                 <td class="supplier_name">${data.supplier_name}</td>
                                 <td class="supplier_code">${data.supplier_code}</td>
-                                <td class="print_ref">${data.print_ref}</td>
-                                <td class="year_of_manufacture">${data.year_of_manufacture}</td>
-                                <td class="vat_year_purchage">${data.vat_year_purchage}</td>
-                                <td class="vat_year_sale">${data.vat_year_sale}</td>
+                                <td class="print_ref">${data.print_ref}</td>                                
                                 <td class="dealer_name">${data.dealer_name}</td>
-                                <td class="status">${data.status}</td>                                
-                                <td hidden class="supplier_id">${data.id}</td>                                
+                                <td class="status">${data.status}</td>                                                                
                                 <td class="text-center">
-                                    <a href="#" class="m-r-15 text-muted editIcon status" id="${data.id}" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#updateModal">
-                                        <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
+                                <input class="id" type="hidden" name="id" value="${data.id}">
+                                    <a href="#" class="m-r-15 text-muted viewIcon" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#updateModal">
+                                        <i class="fa fa-eye" style="color: #2196f3;font-size:16px;"></i>                                    
                                     </a>
-                                    <a href="#" class="deleteIcon" id="${data.id}">
-                                        <i class="fa fa-trash" aria-hidden="true" style="color: red;font-size:16px;">
-                                        </i>
+                                    <a href="#" class="m-r-15 text-muted editIcon" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#updateModal">
+                                        <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
+                                    </a>                                    
+                                    <a href="#" class="deleteIcon">
+                                        <i class="fa fa-trash" aria-hidden="true" style="color: red;font-size:16px;"></i>
                                     </a>
                                 </td>
                             </tr>`;

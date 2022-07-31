@@ -110,31 +110,13 @@
                     id
                 },
                 success: function(data) {
+
+                    Object.keys(data).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(data[key]);
+                    });
+
                     $("#addModal").modal('show');
                     $("#addModal").find('#title').text('View Vehicle Info');
-                    $("#addModal").find('#model_code').val(data.model_code);
-                    $("#addModal").find('#model_name').val(data.model_name);
-                    $("#addModal").find('#model').val(data.model);
-                    $("#addModal").find('#model_make_of_vehicle').val(data.model_make_of_vehicle);
-                    $("#addModal").find('#class_of_vehicle').val(data.class_of_vehicle);
-                    $("#addModal").find('#no_of_cylinder_with_cc').val(data.no_of_cylinder_with_cc);
-                    $("#addModal").find('#size_of_tyre').val(data.size_of_tyre);
-                    $("#addModal").find('#horse_power').val(data.horse_power);
-                    $("#addModal").find('#ladan_weight').val(data.ladan_weight);
-                    $("#addModal").find('#unladen_weight').val(data.unladen_weight);
-                    $("#addModal").find('#wheel_base').val(data.wheel_base);
-                    $("#addModal").find('#seating_capacity').val(data.seating_capacity);
-                    $("#addModal").find('#makers_name').val(data.makers_name);
-                    $("#addModal").find('#makers_country').val(data.makers_country);
-                    $("#addModal").find('#cubic_capacity').val(data.cubic_capacity);
-                    $("#addModal").find('#the_reg_auth').val(data.the_reg_auth);
-                    $("#addModal").find('#brta').val(data.brta);
-                    $("#addModal").find('#no_of_cylinder').val(data.no_of_cylinder);
-                    $("#addModal").find('#fuel_used').val(data.fuel_used);
-                    $("#addModal").find('#rpm').val(data.rpm);
-                    $("#addModal").find('#seats_inc_driver').val(data.seats_inc_driver);
-                    $("#addModal").find('#description').val(data.description);
-                    $("#addModal").find('#status').val(data.status);
                     $("#addModal :input").prop("readOnly", true);
                 }
             });
@@ -157,34 +139,14 @@
                     id
                 },
                 success: function(data) {
+
+                    Object.keys(data).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(data[key]);
+                    });
+
                     $("#addModal").modal('show');
                     $("#addModal :input").prop("readOnly", false);
                     $("#addModal").find('#title').text('Edit Vehicle Info');
-                    $("#addModal").find('#model_code').val(data.model_code);
-                    $("#addModal").find('#model_name').val(data.model_name);
-                    $("#addModal").find('#vehicle_id').val(data.id);
-                    $("#addModal").find('#model').val(data.model);
-                    $("#addModal").find('#model_make_of_vehicle').val(data.model_make_of_vehicle);
-                    $("#addModal").find('#class_of_vehicle').val(data.class_of_vehicle);
-                    $("#addModal").find('#no_of_cylinder_with_cc').val(data.no_of_cylinder_with_cc);
-                    $("#addModal").find('#size_of_tyre').val(data.size_of_tyre);
-                    $("#addModal").find('#horse_power').val(data.horse_power);
-                    $("#addModal").find('#ladan_weight').val(data.ladan_weight);
-                    $("#addModal").find('#unladen_weight').val(data.unladen_weight);
-                    $("#addModal").find('#wheel_base').val(data.wheel_base);
-                    $("#addModal").find('#seating_capacity').val(data.seating_capacity);
-                    $("#addModal").find('#makers_name').val(data.makers_name);
-                    $("#addModal").find('#makers_country').val(data.makers_country);
-                    $("#addModal").find('#cubic_capacity').val(data.cubic_capacity);
-                    $("#addModal").find('#the_reg_auth').val(data.the_reg_auth);
-                    $("#addModal").find('#brta').val(data.brta);
-                    $("#addModal").find('#no_of_cylinder').val(data.no_of_cylinder);
-                    $("#addModal").find('#fuel_used').val(data.fuel_used);
-                    $("#addModal").find('#rpm').val(data.rpm);
-                    $("#addModal").find('#seats_inc_driver').val(data.seats_inc_driver);
-                    $("#addModal").find('#description').val(data.description);
-                    $("#addModal").find('#status').val(data.status);
-
                 }
             });
         });

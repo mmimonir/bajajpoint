@@ -27,262 +27,8 @@
     </div>
 </div>
 
-<!-- Modal Update-->
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-write">
-                <h4 class="modal-title p-1" id="title">Update</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                </button>
-            </div>
-            <form action="#" method="POST" class="form-horizontal" id="edit_pd_form">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Dealer</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="dealer_name" name="dealer_name" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="dealer_code" name="dealer_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">BIN No</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="bin_number" name="bin_number" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">BIN Address</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="bin_address" name="bin_address" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Model</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="model_name" name="model_name" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Model Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="model_code" name="model_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">HS Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="hs_code" name="hs_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Description</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="products_description" name="products_description" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Unit</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="unit_of_supply" name="unit_of_supply" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Buy Price</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="buy_price" name="buy_price" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Percentage</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="percentage" name="percentage" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Value Addition</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="value_addition_amount" name="value_addition_amount" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">MRP</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="vat_mrp" name="vat_mrp" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Submit Date</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="submit_date" name="submit_date" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Mushak No</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="purchage_mushak_no" name="purchage_mushak_no" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Date</label>
-                        <div class="col-sm-9">
-                            <input required type="date" id="mushak_date" name="mushak_date" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Status</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="status" name="status" class="form-control" value="" />
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
-                    <button type="submit" id="update_mrp" name="" class="btn btn-success btn-sm  waves-light">Update</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Modal Update End-->
-
 <!-- Modal Add-->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-write">
-                <h4 class="modal-title p-1" id="title">Add</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                </button>
-            </div>
-            <form action="#" method="POST" class="form-horizontal" id="add_pd_form">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Dealer</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="dealer_name" name="dealer_name" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="dealer_code" name="dealer_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">BIN No</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="bin_number" name="bin_number" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">BIN Address</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="a_mrp" name="mrp" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Model</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="model_name" name="model_name" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Model Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="model_code" name="model_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">HS Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="hs_code" name="hs_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Description</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="products_description" name="products_description" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">TR</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="a_tr" name="tr" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Unit</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="unit_of_supply" name="unit_of_supply" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Buy Price</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="buy_price" name="buy_price" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Percentage</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="percentage" name="percentage" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Value Addition</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="value_addition_amount" name="value_addition_amount" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">MRP</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="vat_mrp" name="vat_mrp" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Submit Date</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="submit_date" name="submit_date" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Mushak No</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="purchage_mushak_no" name="purchage_mushak_no" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Date</label>
-                        <div class="col-sm-9">
-                            <input required type="date" id="mushak_date" name="mushak_date" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Status</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="status" name="status" class="form-control" value="" />
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
-                    <button type="submit" id="add_pd" name="" class="btn btn-success btn-sm  waves-light">Add</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+@extends('dms.price_declare.modals.price_declare_modal')
 <!-- Modal Add End-->
 @endsection
 
@@ -301,34 +47,25 @@
 
 @section('script')
 <script>
-    $(function() {
-        $("input").prop('required', true);
-        $(document).on('click', '.editIcon', function() {
-            var _this = $(this).parents('tr');
-            $('#dealer_name').val(_this.find('.dealer_name').text());
-            $('#dealer_code').val(_this.find('.dealer_code').text());
-            $('#bin_number').val(_this.find('.bin_number').text());
-            $('#bin_address').val(_this.find('.bin_address').text());
-            $('#model_name').val(_this.find('.model_name').text());
-            $('#model_code').val(_this.find('.model_code').text());
-            $('#hs_code').val(_this.find('.hs_code').text());
-            $('#products_description').val(_this.find('.products_description').text());
-            $('#unit_of_supply').val(_this.find('.unit_of_supply').text());
-            $('#buy_price').val(_this.find('.buy_price').text());
-            $('#percentage').val(_this.find('.percentage').text());
-            $('#value_addition_amount').val(_this.find('.value_addition_amount').text());
-            $('#vat_mrp').val(_this.find('.vat_mrp').text());
-            $('#submit_date').val(_this.find('.submit_date').text());
-            $('#purchage_mushak_no').val(_this.find('.purchage_mushak_no').text());
-            $('#mushak_date').val(_this.find('.mushak_date').text());
-            $('#status').val(_this.find('.status').text());
+    $(document).ready(function() {
+
+        $(document).on('click', '#add', function() {
+            $("#addModal").modal('show');
+            $("form#add_pd_form").prop('id', 'add_pd_form');
+            $("form#edit_pd_form").prop('id', 'add_pd_form');
+            $("#addModal :input").prop("readOnly", false);
+            $("form").trigger("reset");
+            $("#addModal").find('#title').text('Create Price Declare File');
+            $("#add_pd").text('Create');
+            $("#pd_id").val('');
         });
 
+
         // add new employee ajax request
-        $("#add_pd_form").submit(function(e) {
+        $(document).on('submit', "#add_pd_form", function(e) {
             e.preventDefault();
-            console.log('add_pd_form');
             const FD = new FormData(this);
+
             $.ajax({
                 url: "{{ route('pd.add') }}",
                 method: "post",
@@ -347,18 +84,82 @@
                             timer: 1500,
                         });
                         fetchAllPd();
+                    } else {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "Something went wrong",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
                     }
                     $("#addModal").modal("hide");
                 },
             });
         });
 
+        // view single pd start
+        $(document).on('click', '.viewIcon', function() {
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
+
+            $.ajax({
+                url: "{{ route('pd.get_single_pd') }}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id
+                },
+
+                success: function(data) {
+                    Object.keys(data).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(data[key]);
+                    });
+                    $("#addModal").modal('show');
+                    $("#addModal").find('#title').text('View MRP');
+                    $("#addModal :input").prop("readOnly", true);
+                }
+            });
+        });
+        // view single pd end
+
+        // edit single mrp start
+        $(document).on('click', '.editIcon', function() {
+
+            $("form").trigger("reset");
+            $("form#add_pd_form").prop('id', 'edit_pd_form');
+            $("#add_pd").text('Update');
+
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
+
+            $.ajax({
+                url: "{{ route('pd.get_single_pd') }}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id
+                },
+                success: function(data) {
+                    Object.keys(data).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(data[key]);
+                    });
+
+                    $("#addModal").modal('show');
+                    $("#pd_id").val(data.id);
+                    $("#addModal :input").prop("readOnly", false);
+                    $("#addModal").find('#title').text('Update MRP');
+                }
+            });
+        });
+        // edit single mrp end
+
         // update employee ajax request
-        $("#edit_pd_form").submit(function(e) {
-            console.log('edit_pd_form');
+        $(document).on('submit', '#edit_pd_form', function(e) {
+
             e.preventDefault();
             const FD = new FormData(this);
-            $("#update_pd").text('Updating...');
+
             $.ajax({
                 url: "{{ route('pd.update') }}",
                 method: 'post',
@@ -377,8 +178,16 @@
                             timer: 1500
                         })
                         fetchAllPd();
+                    } else {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Something went wrong',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     }
-                    $("#updateModal").modal('hide');
+                    $("#addModal").modal('hide');
                 }
             });
         });
@@ -387,9 +196,12 @@
 
         // delete employee ajax request
         $(document).on('click', '.deleteIcon', function(e) {
+
             e.preventDefault();
-            let model_code = $(this).attr('id');
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
             let csrf = '{{ csrf_token() }}';
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -404,18 +216,27 @@
                         url: "{{ route('pd.delete') }}",
                         method: 'delete',
                         data: {
-                            model_code: model_code,
+                            id,
                             _token: csrf
                         },
                         success: function(response) {
-                            // console.log(response);
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "Data Deleted Successfully",
-                                showConfirmButton: false,
-                                timer: 1500,
-                            })
+                            if (response.status == 200) {
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: response.success,
+                                    type: 'success',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                })
+                            } else {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: response.error,
+                                    type: 'error',
+                                    confirmButtonText: 'OK'
+                                })
+                            }
                             fetchAllPd();
                         }
                     });
@@ -435,53 +256,39 @@
                         var html = `<table id="example" class="table table-hover table-responsive table-striped text-sm table-light table-bordered" style="width:100%;">
                         <thead>
                             <tr>
-                                <th class="align-middle">Dealer Name</th>
-                                <th class="align-middle">Code</th>
-                                <th class="align-middle">BIN</th>
-                                <th class="align-middle">BIN Address</th>
-                                <th class="align-middle">Model</th>
-                                <th class="align-middle">Model Code</th>
-                                <th class="align-middle">HS Code</th>
-                                <th class="align-middle">Description</th>
-                                <th class="align-middle">Unit</th>
-                                <th class="align-middle">Buy Price</th>
-                                <th class="align-middle">Percentage</th>
-                                <th class="align-middle">Addition</th>
-                                <th class="align-middle">MRP</th>
-                                <th class="align-middle">Submit Date</th>
-                                <th class="align-middle">Mushak No</th>
-                                <th class="align-middle">Mushak Date</th>
-                                <th class="align-middle">Status</th>
-                                <th class="align-middle">Action</th>
+                                <th class="text-center">Sl</th>
+                                <th class="text-center">Dealer Name</th>                                
+                                <th class="text-center">BIN</th>
+                                <th class="text-center">BIN Address</th>
+                                <th class="text-center">Model</th>                                
+                                <th class="text-center">Buy Price</th>                                                                
+                                <th class="text-center">MRP</th>
+                                <th class="text-center">Submit Date</th>                                                                
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>`;
                         response.forEach(function(data, index) {
                             console.log(data);
                             html +=
-                                `<tr>                                
-                                <td class="dealer_name">${data.dealer_name}</td>
-                                <td class="dealer_code">${data.dealer_code}</td>                                
+                                `<tr style="height:30px;">                                
+                                <td class="dealer_name text-center">${index + 1}</td>
+                                <td class="dealer_name">${data.dealer_name}</td>                                
                                 <td class="bin_number text-right">${data.bin_number}</td>
-                                <td class="bin_address text-right">${data.bin_address}</td>
+                                <td class="bin_address text-left">${data.bin_address}</td>
                                 <td class="model_name">${data.model_name}</td>
-                                <td class="model_code text-right">${data.model_code}</td>
-                                <td class="hs_code text-right">${data.hs_code}</td>
-                                <td class="products_description text-right">${data.products_description}</td>
-                                <td class="unit_of_supply text-right">${data.unit_of_supply}</td>
-                                <td class="buy_price text-right">${data.buy_price}</td>
-                                <td class="percentage text-right">${data.percentage}</td>
-                                <td class="value_addition_amount text-right">${data.value_addition_amount}</td>
-                                <td class="vat_mrp text-right">${data.vat_mrp}</td>
-                                <td class="submit_date text-right">${data.submit_date}</td>
-                                <td class="purchage_mushak_no text-right">${data.purchage_mushak_no}</td>
-                                <td class="mushak_date text-right">${data.mushak_date}</td>
-                                <td class="status text-right">${data.status}</td>
+                                <td class="buy_price text-right">${BDFormat.format(data.buy_price)}</td>
+                                <td class="vat_mrp text-right">${BDFormat.format(data.vat_mrp)}</td>
+                                <td class="submit_date text-center">${data.submit_date}</td>                                                                
                                 <td class="text-center">
-                                    <a href="#" class="m-r-15 text-muted editIcon" id="${data.model_code}" data-bs-toggle="modal" data-idUpdate="${data.model_code}" data-bs-target="#updateModal">
-                                        <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
+                                <input class="id" type="hidden" name="id" value="${data.id}">
+                                    <a href="#" class="m-r-15 text-muted viewIcon">
+                                        <i class="fa fa-eye" style="color: #2196f3;font-size:16px;"></i>                                    
                                     </a>
-                                    <a href="#" class="deleteIcon" id="${data.model_code}">
+                                    <a href="#" class="m-r-15 text-muted editIcon">
+                                        <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
+                                    </a>                                    
+                                    <a href="#" class="deleteIcon">
                                         <i class="fa fa-trash" aria-hidden="true" style="color: red;font-size:16px;">
                                         </i>
                                     </a>
@@ -492,7 +299,6 @@
                     } else {
                         html = `<h3 class="text-center">No MRP Found</h3>`;
                     }
-                    console.log(html);
                     $("#show_all_pd").html(html);
                     $("#example").DataTable({
                         pageLength: 10,

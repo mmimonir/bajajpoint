@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">VAT Pur MRP</label>
+                        <label class="col-sm-3 col-form-label">VAT Purchage MRP</label>
                         <div class="col-sm-9">
                             <input required type="text" id="vat_purchage_mrp" name="vat_purchage_mrp" class="form-control" value="" />
                         </div>

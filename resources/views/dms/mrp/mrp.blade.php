@@ -83,7 +83,7 @@
             vat_calculate_add();
         });
 
-        // add new employee ajax request
+        // add new mrp ajax request
         $(document).on('submit', "#add_mrp_form", function(e) {
             e.preventDefault();
             const FD = new FormData(this);
@@ -132,20 +132,11 @@
                     id
                 },
                 success: function(data) {
+                    Object.keys(data).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(data[key]);
+                    });
                     $("#addModal").modal('show');
                     $("#addModal").find('#title').text('View MRP');
-                    $("#addModal").find('#model_code').val(data.model_code);
-                    $("#addModal").find('#model_name').val(data.model_name);
-                    $("#addModal").find('#vat_purchage_mrp').val(data.vat_purchage_mrp);
-                    $("#addModal").find('#mrp').val(data.mrp);
-                    $("#addModal").find('#vat_mrp').val(data.vat_mrp);
-                    $("#addModal").find('#basic_vat').val(data.basic_vat);
-                    $("#addModal").find('#sale_vat').val(data.sale_vat);
-                    $("#addModal").find('#commission').val(data.commission);
-                    $("#addModal").find('#tr').val(data.tr);
-                    $("#addModal").find('#purchage_price').val(data.purchage_price);
-                    $("#addModal").find('#rebate_basic').val(data.rebate_basic);
-                    $("#addModal").find('#rebate').val(data.rebate);
                     $("#addModal :input").prop("readOnly", true);
                 }
             });
@@ -167,23 +158,14 @@
                     id
                 },
                 success: function(data) {
+                    Object.keys(data).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(data[key]);
+                    });
+
                     $("#addModal").modal('show');
+                    $("#mrp_id").val(data.id);
                     $("#addModal :input").prop("readOnly", false);
                     $("#addModal").find('#title').text('Update MRP');
-                    $("#addModal").find('#model_code').val(data.model_code);
-                    $("#addModal").find('#mrp_id').val(data.id);
-                    $("#addModal").find('#model_name').val(data.model_name);
-                    $("#addModal").find('#vat_purchage_mrp').val(data.vat_purchage_mrp);
-                    $("#addModal").find('#mrp').val(data.mrp);
-                    $("#addModal").find('#vat_mrp').val(data.vat_mrp);
-                    $("#addModal").find('#basic_vat').val(data.basic_vat);
-                    $("#addModal").find('#sale_vat').val(data.sale_vat);
-                    $("#addModal").find('#commission').val(data.commission);
-                    $("#addModal").find('#tr').val(data.tr);
-                    $("#addModal").find('#purchage_price').val(data.purchage_price);
-                    $("#addModal").find('#rebate_basic').val(data.rebate_basic);
-                    $("#addModal").find('#rebate').val(data.rebate);
-                    // $("#addModal :input").prop("readOnly", true);
                 }
             });
         });

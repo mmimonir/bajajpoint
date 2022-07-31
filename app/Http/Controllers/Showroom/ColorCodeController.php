@@ -19,11 +19,18 @@ class ColorCodeController extends Controller
         return response()->json($color_codes);
     }
 
+    public function get_single_color(Request $request)
+    {
+        $color_data = ColorCode::find($request->id);
+        return response()->json($color_data);
+    }
+
     public function color_code_add(Request $request)
     {
         ColorCode::create($request->all());
         return response()->json([
             'status' => 200,
+            'message' => 'Color Code Added Successfully'
         ]);
     }
 
@@ -31,12 +38,18 @@ class ColorCodeController extends Controller
     {
         // dd($request->all());
         ColorCode::whereId($request->id)->update($request->all());
-        return response()->json(['status' => 200]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Color Code Updated Successfully'
+        ]);
     }
 
     public function color_code_delete(Request $request)
     {
         ColorCode::whereId($request->id)->delete();
-        return response()->json(['status' => 200]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Color Code Deleted Successfully'
+        ]);
     }
 }

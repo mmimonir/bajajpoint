@@ -20,23 +20,36 @@ class PriceDeclareController extends Controller
         return response()->json($pd_data);
     }
 
+    public function get_single_pd(Request $request)
+    {
+        $pd_data = PriceDeclare::find($request->id);
+        return response()->json($pd_data);
+    }
+
     public function pd_add(Request $request)
     {
         PriceDeclare::create($request->all());
         return response()->json([
             'status' => 200,
+            'message' => 'Price Declare Added Successfully'
         ]);
     }
 
     public function pd_update(Request $request)
     {
-        PriceDeclare::whereModelCode($request->model_code)->update($request->all());
-        return response()->json(['status' => 200]);
+        PriceDeclare::whereId($request->id)->update($request->all());
+        return response()->json([
+            'status' => 200,
+            'message' => 'Price Declare Updated Successfully'
+        ]);
     }
 
     public function pd_delete(Request $request)
     {
-        PriceDeclare::whereModelCode($request->model_code)->delete();
-        return response()->json(['status' => 200]);
+        PriceDeclare::whereId($request->id)->delete();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Price Declare Deleted Successfully'
+        ]);
     }
 }

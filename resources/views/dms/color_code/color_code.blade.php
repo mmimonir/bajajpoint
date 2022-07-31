@@ -11,7 +11,7 @@
         <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
             <div class="card-header">
                 <h3 class="bg-dark text-center p-2 text-white mt-2 rounded">Color Code Details</h3>
-                <a class="m-r-15 text-muted edit float-right btn btn-dark text-white mb-1" id="add" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fas fa-plus"></i>
+                <a class="m-r-15 text-muted edit float-right btn btn-dark text-white mb-1" id="add"><i class="fas fa-plus"></i>
                 </a>
             </div>
             <div class="row justify-content-center">
@@ -27,126 +27,8 @@
     </div>
 </div>
 
-<!-- Modal Update-->
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="title">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-write">
-                <h4 class="modal-title p-1" id="title">Update</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                </button>
-            </div>
-            <form action="#" method="POST" class="form-horizontal" id="edit_color_code_form">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Combine</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="combine" name="combine" class="form-control" value="" />
-                            <input required hidden type="text" id="color_code_id" name="id" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Color Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="color_code" name="color_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Model Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="model_code" name="model_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Model Name</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="model_name" name="model_name" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Color</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="color" name="color" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Description</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="description" name="description" class="form-control" value="" />
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
-                    <button type="submit" id="update_color_code" name="" class="btn btn-success btn-sm  waves-light">Update</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Modal Update End-->
-
 <!-- Modal Add-->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-write">
-                <h4 class="modal-title p-1" id="title">Add</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                </button>
-            </div>
-            <form action="#" method="POST" class="form-horizontal" id="add_color_code_form">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Combine</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="combine" name="combine" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Color Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="color_code" name="color_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Model Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="model_code" name="model_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Model Name</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="model_name" name="model_name" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Color</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="color" name="color" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Description</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="description" name="description" class="form-control" value="" />
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
-                    <button type="submit" id="add_color_code" name="" class="btn btn-success btn-sm  waves-light">Add</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+@extends('dms.color_code.modals.color_code_modal')
 <!-- Modal Add End-->
 @endsection
 
@@ -165,26 +47,24 @@
 
 @section('script')
 <script>
-    $(function() {
-        $("input").prop('required', true);
-        $(document).on('click', '.editIcon', function() {
-            $("#update_color_code").text('Update');
-            var _this = $(this).parents('tr');
-            $('#combine').val(_this.find('.combine').text());
-            $('#color_code').val(_this.find('.color_code').text());
-            $('#model_code').val(_this.find('.model_code').text());
-            $('#model_name').val(_this.find('.model_name').text());
-            $('#color').val(_this.find('.color').text());
-            $('#description').val(_this.find('.description').text());
-            $('#color_code_id').val(_this.find('.color_code_id').text());
+    $(document).ready(function() {
+        $(document).on('click', '#add', function() {
+            $("#addModal").modal('show');
+            $("form#add_color_code_form").prop('id', 'add_color_code_form');
+            $("form#edit_color_code_form").prop('id', 'add_color_code_form');
+            $("#addModal :input").prop("readOnly", false);
+            $("form").trigger("reset");
+            $("#addModal").find('#title').text('Create Color Code Info');
+            $("#add_color_code").text('Create');
+            $("#color_code_id").val('');
         });
 
+
         // add new employee ajax request
-        $("#add_color_code_form").submit(function(e) {
+        $(document).on('submit', "#add_color_code_form", function(e) {
             e.preventDefault();
-            console.log('add_color_code_form');
             const FD = new FormData(this);
-            $("#add_color_code").text('Adding...');
+
             $.ajax({
                 url: "{{ route('color_code.add') }}",
                 method: "post",
@@ -202,20 +82,83 @@
                             showConfirmButton: false,
                             timer: 1500,
                         });
-                        $("#add_color_code_form")[0].reset();
                         fetchAll();
+                    } else {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "Your work has not been saved",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
                     }
                     $("#addModal").modal("hide");
                 },
             });
         });
 
+        // view single color start
+        $(document).on('click', '.viewIcon', function() {
+
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
+
+            $.ajax({
+                url: "{{ route('color_code.get_single_color') }}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id
+                },
+                success: function(data) {
+                    Object.keys(data).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(data[key]);
+                    });
+                    $("#addModal").modal('show');
+                    $("#addModal").find('#title').text('View Color Info');
+                    $("#addModal :input").prop("readOnly", true);
+                }
+            });
+        });
+        // view single color end
+
+        // edit single color start
+        $(document).on('click', '.editIcon', function() {
+            $("form").trigger("reset");
+            $("form#add_color_code_form").prop('id', 'edit_color_code_form');
+            $("#add_color_code").text('Update');
+
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
+
+            $.ajax({
+                url: "{{ route('color_code.get_single_color') }}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id
+                },
+                success: function(data) {
+                    Object.keys(data).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(data[key]);
+                    });
+
+                    $("#addModal").modal('show');
+                    $("#color_code_id").val(data.id);
+                    $("#addModal :input").prop("readOnly", false);
+                    $("#addModal").find('#title').text('Update Color Info');
+                }
+            });
+        });
+        // edit single color end
+
+
         // update employee ajax request
-        $("#edit_color_code_form").submit(function(e) {
-            console.log('edit_color_code_form');
+        $(document).on('submit', '#edit_color_code_form', function(e) {
+
             e.preventDefault();
             const FD = new FormData(this);
-            $("#update_color_code").text('Updating...');
+
             $.ajax({
                 url: "{{ route('color_code.update') }}",
                 method: 'post',
@@ -234,8 +177,16 @@
                             timer: 1500
                         })
                         fetchAll();
+                    } else {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Your work has not been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     }
-                    $("#updateModal").modal('hide');
+                    $("#addModal").modal('hide');
                 }
             });
         });
@@ -245,8 +196,10 @@
         // delete employee ajax request
         $(document).on('click', '.deleteIcon', function(e) {
             e.preventDefault();
-            let id = $(this).attr('id');
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
             let csrf = '{{ csrf_token() }}';
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -261,18 +214,27 @@
                         url: "{{ route('color_code.delete') }}",
                         method: 'delete',
                         data: {
-                            id: id,
+                            id,
                             _token: csrf
                         },
                         success: function(response) {
-                            // console.log(response);
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "Data Deleted Successfully",
-                                showConfirmButton: false,
-                                timer: 1500,
-                            })
+                            if (response.status == 200) {
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: response.success,
+                                    type: 'success',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                })
+                            } else {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: response.error,
+                                    type: 'error',
+                                    confirmButtonText: 'OK'
+                                })
+                            }
                             fetchAll();
                         }
                     });
@@ -289,13 +251,12 @@
                         var html = `<table id="example" class="table table-hover table-responsive table-striped table-sm text-sm table-light table-bordered" style="width:100%;">
                         <thead>
                             <tr>
-                                <th class="align-middle">Combine</th>
+                                <th class="align-middle">Sl</th>                                
                                 <th class="align-middle">Color Code</th>
                                 <th class="align-middle">Model Code</th>
                                 <th class="align-middle">Model Name</th>
                                 <th class="align-middle">Color</th>
-                                <th class="align-middle">Description</th>                                
-                                <th hidden class="align-middle">Id</th>                                
+                                <th class="align-middle">Description</th>                                                                
                                 <th class="align-middle">Action</th>
                             </tr>
                         </thead>
@@ -303,19 +264,22 @@
                         response.forEach(function(data, index) {
                             console.log(data);
                             html +=
-                                `<tr>                                
-                                <td class="combine">${data.combine}</td>
+                                `<tr style="height:30px;">                                
+                                <td class="sl">${index + 1}</td>                                
                                 <td class="color_code">${data.color_code}</td>
                                 <td class="model_code">${data.model_code}</td>
                                 <td class="model_name">${data.model_name}</td>
                                 <td class="color">${data.color}</td>
-                                <td class="description">${data.description}</td>                                
-                                <td hidden class="color_code_id">${data.id}</td>                                
+                                <td class="description">${data.description}</td>                                                                
                                 <td class="text-center">
-                                    <a href="#" class="m-r-15 text-muted editIcon status" id="${data.id}" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#updateModal">
-                                        <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
+                                <input class="id" type="hidden" name="id" value="${data.id}">
+                                    <a href="#" class="m-r-15 text-muted viewIcon">
+                                        <i class="fa fa-eye" style="color: #2196f3;font-size:16px;"></i>                                    
                                     </a>
-                                    <a href="#" class="deleteIcon" id="${data.id}">
+                                    <a href="#" class="m-r-15 text-muted editIcon">
+                                        <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
+                                    </a>                                    
+                                    <a href="#" class="deleteIcon">
                                         <i class="fa fa-trash" aria-hidden="true" style="color: red;font-size:16px;">
                                         </i>
                                     </a>
@@ -326,7 +290,6 @@
                     } else {
                         html = `<h3 class="text-center">No MRP Found</h3>`;
                     }
-                    console.log(html);
                     $("#show_all_color_code").html(html);
                     $("#example").DataTable({
                         pageLength: 10,

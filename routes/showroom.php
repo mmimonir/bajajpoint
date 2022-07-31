@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
     // Supplier Route
     Route::controller(App\Http\Controllers\Showroom\SupplierController::class)->group(function () {
         Route::get('/supplier_index',  'index')->name('supplier.index');
+        Route::post('/get_single_supplier',  'get_single_supplier')->name('supplier.get_single_supplier');
         Route::get('/supplier_get',  'supplier_get')->name('supplier.get');
         Route::post('/supplier_add',  'supplier_add')->name('supplier.add');
         Route::post('/supplier_update',  'supplier_update')->name('supplier.update');
@@ -35,10 +36,21 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
     // Color Code
     Route::controller(App\Http\Controllers\Showroom\ColorCodeController::class)->group(function () {
         Route::get('/color_code_index',  'index')->name('color_code.index');
+        Route::post('/get_single_color',  'get_single_color')->name('color_code.get_single_color');
         Route::get('/color_code_get',  'color_code_get')->name('color_code.get');
         Route::post('/color_code_add',  'color_code_add')->name('color_code.add');
         Route::post('/color_code_update',  'color_code_update')->name('color_code.update');
         Route::delete('/color_code_delete',  'color_code_delete')->name('color_code.delete');
+    });
+
+    // Price Declare
+    Route::controller(App\Http\Controllers\Showroom\PriceDeclareController::class)->group(function () {
+        Route::get('/pd_index',  'index')->name('pd.index');
+        Route::post('/get_single_pd',  'get_single_pd')->name('pd.get_single_pd');
+        Route::get('/pd_get',  'pd_get')->name('pd.get');
+        Route::post('/pd_add',  'pd_add')->name('pd.add');
+        Route::post('/pd_update',  'pd_update')->name('pd.update');
+        Route::delete('/pd_delete',  'pd_delete')->name('pd.delete');
     });
 
     // Purchage
@@ -132,14 +144,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
     // Customer Info
     Route::get('/customer_info/', [App\Http\Controllers\Showroom\CustomerController::class, 'customer_info'])->name('customer.customer_info');
 
-    // Price Declare
-    Route::controller(App\Http\Controllers\Showroom\PriceDeclareController::class)->group(function () {
-        Route::get('/pd_index',  'index')->name('pd.index');
-        Route::get('/pd_get',  'pd_get')->name('pd.get');
-        Route::post('/pd_add',  'pd_add')->name('pd.add');
-        Route::post('/pd_update',  'pd_update')->name('pd.update');
-        Route::delete('/pd_delete',  'pd_delete')->name('pd.delete');
-    });
+
 
     Route::get('/filemanager', [App\Http\Controllers\FileManagerController::class, 'index'])->name('file.manager');
 
