@@ -11,7 +11,7 @@ class QuotationController extends Controller
 {
     public function index()
     {
-        return view('dms.quotations.create_qt');
+        return view('dms.showroom.quotations.create_qt');
     }
 
     public function quotation_list()
@@ -27,7 +27,7 @@ class QuotationController extends Controller
             'discount',
             'validity',
         )->get();
-        return view('dms.quotations.quotation_list')->with('quotations', $quotations);
+        return view('dms.showroom.quotations.quotation_list')->with('quotations', $quotations);
     }
 
     public function store(Request $request)
@@ -92,7 +92,7 @@ class QuotationController extends Controller
 
         $quotation_items = QuotationItem::select('*')->where('quotation_id', $item_id)->get();
 
-        return view('dms.quotations.quotation_html')
+        return view('dms.showroom.quotations.quotation_html')
             ->with([
                 'quotations' => $quotations,
                 'quotation_items' => $quotation_items

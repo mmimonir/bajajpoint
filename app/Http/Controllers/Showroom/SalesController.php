@@ -45,7 +45,7 @@ class SalesController extends Controller
         $pd_data = PriceDeclare::select('id', 'vat_mrp', 'submit_date')->where(['model_code' => $model_code, 'status' => '1'])->first();
 
 
-        return view('dms.sales.sales_update', [
+        return view('dms.showroom.sales.sales_update', [
             'core_data' => $core_data,
             'print_ref' => $print_ref,
             'vehicle_data' => $vehicle_data,
@@ -146,6 +146,6 @@ class SalesController extends Controller
 
         // dd($sale_report);
 
-        return view('dms.sales.sales_report')->with(['sale_report' => $sale_report]);
+        return view('dms.showroom.sales.sales_report')->with(['sale_report' => $sale_report]);
     }
 }

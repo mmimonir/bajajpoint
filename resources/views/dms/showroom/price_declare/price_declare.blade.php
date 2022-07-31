@@ -28,7 +28,7 @@
 </div>
 
 <!-- Modal Add-->
-@extends('dms.price_declare.modals.price_declare_modal')
+@extends('dms.showroom.price_declare.modals.price_declare_modal')
 <!-- Modal Add End-->
 @endsection
 

@@ -31,7 +31,7 @@ class CKDController extends Controller
             ->where('cores.ckd_process', '=', 'PENDING')->get();
         // ->whereNull('cores.evl_invoice_no')->get();
 
-        return view('dms.ckd.ckd_pending')->with(['ckd_data' => $ckd_data]);
+        return view('dms.showroom.ckd.ckd_pending')->with(['ckd_data' => $ckd_data]);
     }
 
     public function ckd_update(Request $request)

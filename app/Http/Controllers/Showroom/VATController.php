@@ -248,7 +248,7 @@ class VATController extends Controller
             ->orderBy('cores.sale_mushak_no')
             ->get();
 
-        return view('dms.vat.sale_mushak_sl_gen')->with(['mushak_data' => $mushak_data]);
+        return view('dms.showroom.vat.sale_mushak_sl_gen')->with(['mushak_data' => $mushak_data]);
     }
     public function assign_sale_mushak_no_store(Request $request)
     {
@@ -291,7 +291,7 @@ class VATController extends Controller
             ->whereBetween('cores.purchage_date', [$start_date, $end_date])
             ->orderBy('cores.purchage_date')
             ->get();
-        return view('dms.vat.uml_mushak_update')
+        return view('dms.showroom.vat.uml_mushak_update')
             ->with([
                 'purchage_data' => $purchage_data
             ]);

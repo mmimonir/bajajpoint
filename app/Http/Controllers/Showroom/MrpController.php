@@ -11,7 +11,7 @@ class MrpController extends Controller
 {
     public function index()
     {
-        return view('dms.mrp.mrp');
+        return view('dms.showroom.mrp.mrp');
     }
 
     public function mrp_get()

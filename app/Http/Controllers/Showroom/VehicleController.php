@@ -11,7 +11,7 @@ class VehicleController extends Controller
 
     public function index()
     {
-        return view('dms.vehicle.vehicle');
+        return view('dms.showroom.vehicle.vehicle');
     }
 
     public function vehicle_get()

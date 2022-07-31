@@ -10,7 +10,7 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        return view('dms.supplier.supplier');
+        return view('dms.showroom.supplier.supplier');
     }
 
     public function supplier_get()

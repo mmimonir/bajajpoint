@@ -33,7 +33,7 @@ class TRController extends Controller
             ->where('cores.vat_process', '=', 'PENDING')->get();
 
 
-        return view('dms.tr.tr_pending')->with(['tr_data' => $tr_data]);
+        return view('dms.showroom.tr.tr_pending')->with(['tr_data' => $tr_data]);
     }
     public function tr_status()
     {
@@ -58,6 +58,6 @@ class TRController extends Controller
                 'cores.evl_invoice_no',
             )
             ->where('cores.tr_month_code', '!=', 'NOCODE')->get();
-        return view('dms.tr.tr_status')->with(['tr_data' => $tr_data]);
+        return view('dms.showroom.tr.tr_status')->with(['tr_data' => $tr_data]);
     }
 }

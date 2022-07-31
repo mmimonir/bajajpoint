@@ -45,7 +45,7 @@ class PrintController extends Controller
             ->orderBy('original_sale_date', 'asc')
             ->get();
 
-        return view('dms.uml.customer_data')->with(['customer_data' => $customer_data]);
+        return view('dms.showroom.uml.customer_data')->with(['customer_data' => $customer_data]);
     }
 
     public function file_print(Request $request)

@@ -17,7 +17,7 @@ class PurchageController extends Controller
         $dealer_names = Supplier::select('dealer_name', 'supplier_code')->whereNotNull('dealer_name')->get();
         $mrps = Mrp::select('model_name', 'model_code')->whereNotNull('vat_purchage_mrp')->get();
 
-        return view('dms.purchage.purchage_entry')->with(['suppliers' => $suppliers, 'mrps' => $mrps, 'dealer_names' => $dealer_names]);
+        return view('dms.showroom.purchage.purchage_entry')->with(['suppliers' => $suppliers, 'mrps' => $mrps, 'dealer_names' => $dealer_names]);
     }
     public function create(Request $request)
     {
@@ -85,7 +85,7 @@ class PurchageController extends Controller
     }
     public function purchage_list_index()
     {
-        return view('dms.purchage.purchage_list');
+        return view('dms.showroom.purchage.purchage_list');
     }
     public function purchage_list()
     {
@@ -126,7 +126,7 @@ class PurchageController extends Controller
             )
             ->where('cores.store_id', "=", $id)
             ->get();
-        return view('dms.purchage.purchage_details')
+        return view('dms.showroom.purchage.purchage_details')
             ->with([
                 'purchages' => $purchages,
                 'purchage_details' => $purchage_details,
@@ -166,7 +166,7 @@ class PurchageController extends Controller
             ->orderBy('purchage_date', 'asc')
             ->get();
 
-        return view('dms.purchage.purchage_by_date')->with(['purchage_data' => $purchage_data]);
+        return view('dms.showroom.purchage.purchage_by_date')->with(['purchage_data' => $purchage_data]);
     }
     public function purchage_by_month(Request $request)
     {
@@ -189,7 +189,7 @@ class PurchageController extends Controller
                 ->orderBy('purchage_date', 'asc')
                 ->get();
 
-            return view('dms.purchage.purchage_by_date')->with(['purchage_data' => $purchage_data]);
+            return view('dms.showroom.purchage.purchage_by_date')->with(['purchage_data' => $purchage_data]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
         }

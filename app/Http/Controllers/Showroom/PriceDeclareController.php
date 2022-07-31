@@ -11,7 +11,7 @@ class PriceDeclareController extends Controller
 {
     public function index()
     {
-        return view('dms.price_declare.price_declare');
+        return view('dms.showroom.price_declare.price_declare');
     }
 
     public function pd_get()

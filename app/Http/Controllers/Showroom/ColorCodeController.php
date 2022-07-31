@@ -10,7 +10,7 @@ class ColorCodeController extends Controller
 {
     public function index()
     {
-        return view('dms.color_code.color_code');
+        return view('dms.showroom.color_code.color_code');
     }
 
     public function color_code_get()
