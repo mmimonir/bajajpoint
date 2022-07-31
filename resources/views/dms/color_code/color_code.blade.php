@@ -262,7 +262,6 @@
                         </thead>
                         <tbody>`;
                         response.forEach(function(data, index) {
-                            console.log(data);
                             html +=
                                 `<tr style="height:30px;">                                
                                 <td class="sl">${index + 1}</td>                                

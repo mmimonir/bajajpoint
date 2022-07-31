@@ -122,9 +122,6 @@
                 }
             });
         }
-
-        // console.log($(this).text());
-        // console.log($(this).attr('cus_id'));
     });
     $("#example").DataTable({
         exportOptions: {

@@ -108,19 +108,13 @@
                     id
                 },
                 success: function(data) {
+
+                    Object.keys(data).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(data[key]);
+                    });
+
                     $("#addModal").modal('show');
                     $("#addModal").find('#title').text('View Mechanic');
-                    $("#addModal").find('#name').val(data.name);
-                    $("#addModal").find('#mobile').val(data.mobile);
-                    $("#addModal").find('#role').val(data.role);
-                    $("#addModal").find('#education').val(data.education);
-                    $("#addModal").find('#permanent_address').val(data.permanent_address);
-                    $("#addModal").find('#present_address').val(data.present_address);
-                    $("#addModal").find('#gardian_name').val(data.gardian_name);
-                    $("#addModal").find('#gardian_mobile').val(data.gardian_mobile);
-                    $("#addModal").find('#joining_date').val(data.joining_date);
-                    $("#addModal").find('#nid_no').val(data.nid_no);
-                    $("#addModal").find('#salary').val(data.salary);
                     $("#addModal :input").prop("readOnly", true);
                 }
             });
@@ -141,20 +135,12 @@
                     id
                 },
                 success: function(data) {
+                    Object.keys(data).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(data[key]);
+                    });
+
                     $("#addModal").modal('show');
                     $("#addModal").find('#title').text('Update Mechanic');
-                    $("#addModal").find('#name').val(data.name);
-                    $("#addModal").find('#mobile').val(data.mobile);
-                    $("#addModal").find('#role').val(data.role);
-                    $("#addModal").find('#education').val(data.education);
-                    $("#addModal").find('#permanent_address').val(data.permanent_address);
-                    $("#addModal").find('#present_address').val(data.present_address);
-                    $("#addModal").find('#gardian_name').val(data.gardian_name);
-                    $("#addModal").find('#gardian_mobile').val(data.gardian_mobile);
-                    $("#addModal").find('#joining_date').val(data.joining_date);
-                    $("#addModal").find('#nid_no').val(data.nid_no);
-                    $("#addModal").find('#salary').val(data.salary);
-                    $("#addModal").find('#mechanic_id').val(data.id);
                     $("#update_mechanic").text('Update');
                 }
             });
@@ -273,7 +259,6 @@
                         </thead>
                         <tbody>`;
                         response.forEach(function(data, index) {
-                            console.log(data);
                             html +=
                                 `<tr style="height:30px;">                                
                                 <td class="name">${data.name}</td>

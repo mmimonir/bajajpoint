@@ -118,7 +118,7 @@
                 },
                 success: function(response) {
                     $('#search_overlay').css('visibility', 'hidden');
-                    console.log(response);
+
                     if (response.length > 0) {
                         var html = `
                     <div class="card-header bg-dark d-flex justify-content-center">
@@ -175,7 +175,7 @@
                     `;
                     }
                     $("#show_search_result").html(html);
-                    console.log(response.error);
+
                 }
             });
         });
@@ -198,7 +198,7 @@
                 },
                 success: function(response) {
                     $('#search_overlay').css('visibility', 'hidden');
-                    console.log(response);
+
                     if (response.success) {
                         Swal.fire({
                             title: 'Success',

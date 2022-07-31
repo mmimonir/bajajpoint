@@ -470,15 +470,13 @@
                 },
                 success: function(response) {
                     if (response.job_card_no) {
-                        // console.log('JOB No' + response.job_card_no);
                         $('.job_card_no_top').val(response.job_card_no).trigger('change');
                         $('.job_card_no_bottom').val(response.job_card_no).trigger('change');
                         $('#create_jb_bottom').html('Update JB');
                         $('#create_jb_top').html('Update JB');
                     }
-                    console.log(response);
+
                     if (response.status === 'service') {
-                        console.log(response.service_data.client_name);
                         $('.client_name').val(response.service_data.client_name);
                         $('.mobile').val(response.service_data.mobile);
                         $('.address').val(response.service_data.address);
@@ -490,7 +488,7 @@
                         $('#mc_model_name').val(response.service_data.model_code).trigger('change');
                     }
                     if (response.status === 'showroom') {
-                        console.log(response.showroom_data.client_name);
+
                         $('.client_name').val(response.showroom_data.customer_name);
                         $('.mobile').val(response.showroom_data.mobile);
                         $('.address').val(response.showroom_data.address_two);
@@ -610,7 +608,6 @@
                 processData: false,
                 dataType: 'json',
                 success: function(new_job_card_no) {
-                    console.log(new_job_card_no);
                     $('.job_card_no_top').val(new_job_card_no);
                     $('.job_card_date_top').val(new Date().toISOString().substr(0, 10));
                     $('.job_card_date_bottom').val(new Date().toISOString().substr(0, 10));
@@ -713,9 +710,6 @@
                     },
                     success: function(data) {
                         _this.find('.id').val(data.id);
-                        console.log(data);
-                        // _this.find('.description').val(data.part_name)
-
                     }
                 });
             }
@@ -770,7 +764,6 @@
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        console.log(response);
                         if (response.status === 200) {
                             Swal.fire({
                                 icon: 'success',
@@ -907,7 +900,6 @@
                                 _this.find('.delete_parts_item').addClass('disabled');
                                 _this.find('.delete_icon').removeClass('text-danger');
                                 _this.find('.delete_icon').addClass('text-secondary');
-                                console.log(response.data);
                                 Swal.fire({
                                     icon: 'success',
                                     title: response.message,

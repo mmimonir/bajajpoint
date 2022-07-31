@@ -101,7 +101,6 @@
                     } else {
                         html = `<h3 class="text-center">No Purchage Found</h3>`;
                     }
-                    console.log(html);
                     $("#show_purchage_list").html(html);
                     $("#example").DataTable({
                         pageLength: 10,

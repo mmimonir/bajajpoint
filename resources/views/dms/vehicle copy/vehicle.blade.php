@@ -242,7 +242,7 @@
         // add new employee ajax request
         $("#add_vehicle_form").submit(function(e) {
             e.preventDefault();
-            console.log('add_vehicle_form');
+
             const FD = new FormData(this);
             $.ajax({
                 url: "{{ route('vehicle.add') }}",
@@ -269,7 +269,7 @@
         });
         // update employee ajax request
         $("#edit_vehicle_form").submit(function(e) {
-            console.log('edit_vehicle_form');
+
             e.preventDefault();
             const FD = new FormData(this);
             $("#update_vehicle").text('Updating...');
@@ -319,7 +319,7 @@
                             _token: csrf
                         },
                         success: function(response) {
-                            // console.log(response);
+
                             Swal.fire({
                                 position: "top-end",
                                 icon: "success",
@@ -416,7 +416,7 @@
                     } else {
                         html = `<h3 class="text-center">No MRP Found</h3>`;
                     }
-                    // console.log(html);
+
                     $("#show_all_vehicle").html(html);
                     $("#vehicle").DataTable({
                         pageLength: 10,

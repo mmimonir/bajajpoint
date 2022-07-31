@@ -244,7 +244,6 @@
         $("#sale_update_form").submit(function(e) {
             e.preventDefault();
             const FD = new FormData(this);
-            console.log(FD);
             $.ajax({
                 url: "{{ route('sale.sales_update_store') }}",
                 method: 'post',

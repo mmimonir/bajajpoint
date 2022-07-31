@@ -279,7 +279,6 @@
             type: 'GET',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
                 $('#ref').val(data.quotations.ref);
                 $('#qt_date').val(data.quotations.qt_date);
                 $('#to').val(data.quotations.to);

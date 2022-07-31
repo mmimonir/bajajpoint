@@ -354,7 +354,6 @@
                         },
                         success: function(data) {
                             if (data.stock_quantity > 0) {
-                                console.log('Stock available');
                                 _this.find('.part_name').val(data.part_name);
                                 _this.find('.quantity').val(1);
                                 _this.find('.sale_rate').val(data.rate);
@@ -403,7 +402,6 @@
                     },
                     success: function(data) {
                         _this.find('.id').val(data.id);
-                        console.log(data);
                     }
                 });
             }
@@ -437,7 +435,7 @@
                                 _this.find('.delete_parts_item').addClass('disabled');
                                 _this.find('.delete_icon').removeClass('text-danger');
                                 _this.find('.delete_icon').addClass('text-secondary');
-                                console.log(response.data);
+
                                 Swal.fire({
                                     icon: 'success',
                                     title: response.message,
@@ -478,7 +476,7 @@
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        console.log(response);
+
                         if (response.status === 200) {
                             $('#create_bill').trigger("reset");
                             Swal.fire({
@@ -514,7 +512,7 @@
                 success: function({
                     bill_list
                 }) {
-                    console.log(bill_list);
+
                     if (bill_list) {
                         $('#bill_list').empty();
                         $('#bill_list').append('<option style="font-weight:bold;" value="">Bill List</option>');
@@ -570,7 +568,7 @@
                     jb_details
                 }) {
                     $("#create_bill").trigger("reset");
-                    console.log(jb_details);
+
 
                     if (bill_details) {
                         $('#bill_no').val(bill_details.bill_no);
@@ -649,7 +647,7 @@
                 success: function({
                     bill_list
                 }) {
-                    console.log(bill_list);
+
                     if (bill_list) {
                         $('#bill_list_search').empty();
                         $('#bill_list_search').append('<option style="font-weight:bold;" value="">Bill List</option>');

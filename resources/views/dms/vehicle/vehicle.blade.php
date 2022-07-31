@@ -293,7 +293,7 @@
                     } else {
                         html = `<h3 class="text-center">No MRP Found</h3>`;
                     }
-                    // console.log(html);
+
                     $("#show_all_vehicle").html(html);
                     $("#vehicle").DataTable({
                         pageLength: 10,

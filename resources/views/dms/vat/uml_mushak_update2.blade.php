@@ -123,7 +123,7 @@
                 dataType: 'json',
                 success: function(response) {
                     if (response.status == 200) {
-                        console.log(response);
+
                         // $('#example').find("td[cus_id='" + response.id + "']").text('OK');
                     } else if (response.status == 502) {
                         Swal.fire({

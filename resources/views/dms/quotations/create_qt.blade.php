@@ -199,7 +199,6 @@
                 status,
                 last_data
             }) {
-                console.log(last_data);
                 if (status == 200) {
                     var html = `<table id="example" class="table table-hover table-sm table-bordered">
                         <thead class="text-center">

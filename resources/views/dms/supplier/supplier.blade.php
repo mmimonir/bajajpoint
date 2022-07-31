@@ -268,7 +268,7 @@
                         </thead>
                         <tbody>`;
                         response.forEach(function(data, index) {
-                            console.log(data);
+
                             html +=
                                 `<tr style="height:30px;">                                
                                 <td class="supplier_name">${index + 1}</td>
@@ -295,7 +295,7 @@
                     } else {
                         html = `<h3 class="text-center">No MRP Found</h3>`;
                     }
-                    console.log(html);
+
                     $("#show_all_supplier").html(html);
                     $("#example").DataTable({
                         pageLength: 10,
