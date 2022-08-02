@@ -229,9 +229,23 @@
     @endforeach
 </div>
 
+// info modal start
 <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="max-width: 1000px">
+        <div class="modal-content">
+            <div class="modal-header text-write" style="padding: 5px 21px">
+                <h4 class="modal-title" id="title">Customer Info</h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                </button>
+            </div>
+            <div class="container-fluid" id="info_modal_content">
 
+            </div>
+        </div>
+    </div>
 </div>
+// info modal end
 
 @include('dms.modals.modal_sales_update')
 
@@ -553,74 +567,61 @@
 
         function create_input_field(lbl_name, input_name, input_type) {
             var html = `
-                <div class="form-group row" style="margin-bottom:0px;">
-                  <label for="${input_name}" class="col-sm-3 col-form-label form-control-sm">${lbl_name}</label>
-                    <div class="col-sm-9" style="padding:0px;">
-                        <input readonly type="${input_type}" name="${input_name}" class="form-control form-control-sm" id="${input_name}">
-                    </div>
+            <div class="form-group row" style="margin-bottom:0px;">
+            <label for="${input_name}" class="col-sm-3 col-form-label form-control-sm">${lbl_name}</label>
+                <div class="col-sm-9" style="padding:0px;">
+                    <input readonly type="${input_type}" name="${input_name}" class="form-control form-control-sm" id="${input_name}">
                 </div>
+            </div>
             `;
             return html;
         }
 
         function append_info_modal() {
             var html =
-                `<div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="max-width: 1000px;">
-        <div class="modal-content">
-            <div class="modal-header text-write" style="padding:5px 21px;">
-                <h4 class="modal-title" id="title">Customer Info</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                </button>
-            </div>
-            <div class="container-fluid">
-                <div class="row" style="margin-bottom:15px;">
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            ${create_input_field('Vendor Name', 'vendor', 'text')}                            
-                            ${create_input_field('Challan No', 'factory_challan_no', 'text')}
-                            ${create_input_field('Purchage Date', 'purchage_date', 'date')}
-                            ${create_input_field('Model', 'model', 'text')}
-                            ${create_input_field('CKD', 'ckd_process', 'text')}
-                            ${create_input_field('Approval No', 'approval_no', 'text')}
-                            ${create_input_field('Invoice No', 'invoice_no', 'text')}
-                            ${create_input_field('Sale Price', 'sale_price', 'text')}
-                            ${create_input_field('UML Mushak No', 'uml_mushak_no', 'text')}
-                            ${create_input_field('Whos VAT', 'whos_vat', 'text')}
-                            ${create_input_field('Sale Mushak No', 'sale_mushak_no', 'text')}
-                            ${create_input_field('Gate Pass', 'gate_pass', 'text')}                                                        
-                            ${create_input_field('Chassis No', 'chassis_no', 'text')}                                                                                    
-                            ${create_input_field('Engine No', 'engine_no', 'text')}
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            ${create_input_field('Note', 'note', 'text')}
-                            ${create_input_field('Tyre Size', 'size_of_tyre', 'text')}
-                            ${create_input_field('Color', 'color', 'text')}
-                            ${create_input_field('Sale Date', 'original_sale_date', 'text')}
-                            ${create_input_field('Dealer', 'dealer', 'text')}
-                            ${create_input_field('RG Number', 'rg_number', 'text')}
-                            ${create_input_field('Customer Name', 'customer_name', 'text')}
-                            ${create_input_field('Father Name', 'father_name', 'text')}
-                            ${create_input_field('Mother Name', 'mother_name', 'text')}
-                            ${create_input_field('Mobile', 'mobile', 'text')}
-                            ${create_input_field('VAT Process', 'vat_process', 'text')}
-                            ${create_input_field('Full Address', 'address', 'text')}
-                            ${create_input_field('Stage', 'stage', 'text')}
-                            ${create_input_field('File Status', 'file_status', 'text')}                            
-                        </div>
+                `<div class="row" style="margin-bottom:15px;">
+                <div class="col-md-6">
+                    <div class="card-body">
+                        ${create_input_field("Vendor Name","vendor","text")}                            
+                        ${create_input_field("Challan No","factory_challan_no","text")}
+                        ${create_input_field("Purchage Date","purchage_date","date")}
+                        ${create_input_field("Model", "model", "text")}
+                        ${create_input_field("CKD", "ckd_process", "text")}
+                        ${create_input_field("Approval No", "approval_no", "text")}
+                        ${create_input_field("Invoice No", "invoice_no", "text")}
+                        ${create_input_field("Sale Price", "sale_price", "text")}
+                        ${create_input_field("UML Mushak No","uml_mushak_no","text")}
+                        ${create_input_field("Whos VAT", "whos_vat", "text")}
+                        ${create_input_field("Sale Mushak No","sale_mushak_no","text")}
+                        ${create_input_field("Gate Pass","gate_pass","text")}                                                        
+                        ${create_input_field("Chassis No","chassis_no","text")}                                                                                    
+                        ${create_input_field("Engine No", "engine_no", "text")}
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-            `;
-            $("#showModal").html(html);
+                <div class="col-md-6">
+                    <div class="card-body">
+                        ${create_input_field("Note", "note", "text")}
+                        ${create_input_field("Tyre Size", "size_of_tyre", "text")}
+                        ${create_input_field("Color", "color", "text")}
+                        ${create_input_field("Sale Date","original_sale_date","text")}
+                        ${create_input_field("Dealer", "dealer", "text")}
+                        ${create_input_field("RG Number", "rg_number", "text")}
+                        ${create_input_field("Customer Name","customer_name","text")}
+                        ${create_input_field("Father Name", "father_name", "text")}
+                        ${create_input_field("Mother Name", "mother_name", "text")}
+                        ${create_input_field("Mobile", "mobile", "text")}
+                        ${create_input_field("VAT Process", "vat_process", "text")}
+                        ${create_input_field("Full Address", "address", "text")}
+                        ${create_input_field("Stage", "stage", "text")}
+                        ${create_input_field("File Status","file_status","text")}                            
+                    </div>
+                    </div>
+                </div>
+            </div>`;
 
-
-        };
+            $("#info_modal_content").html(html);
+        }
         append_info_modal();
-    }); +
+    });
 </script>
 @endsection

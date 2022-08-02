@@ -404,7 +404,6 @@
                                 <button type="submit" class="btn btn-info" style="width:350px; color:white;">Update</button>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
