@@ -292,8 +292,9 @@
                     <td>
                         <p class="margin">No:</p>
                     </td>
-                    <td>
+                    <td style="display:flex; width:677px; justify-content: space-between;">
                         <p class="margin">{{$data->print_ref}}</p>
+                        <p class="margin">Mobile No: {{$data->mobile}}</p>
                     </td>
                 </tr>
                 <tr>
