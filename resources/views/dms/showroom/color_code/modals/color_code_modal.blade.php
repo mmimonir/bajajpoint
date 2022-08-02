@@ -47,7 +47,6 @@
                             <input required type="text" id="description" name="description" class="form-control" value="" />
                         </div>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
