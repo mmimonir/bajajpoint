@@ -227,8 +227,6 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js" integrity="sha512-tVYBzEItJit9HXaWTPo8vveXlkK62LbA+wez9IgzjTmFNLMBO1BEYladBw2wnM3YURZSMUyhayPCoLtjGh84NQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- <script src="https://cdn.datatables.net/plug-ins/1.11.4/dataRender/intl.js"></script> -->
-
     <script src="https://cdn.datatables.net/plug-ins/1.11.4/dataRender/intl.js"></script>
     <script>
         $(document).ready(function() {
