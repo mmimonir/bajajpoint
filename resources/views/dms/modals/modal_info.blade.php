@@ -1,5 +1,5 @@
 <!-- Modal Info-->
-<div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="showInfoModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="max-width: 1000px;">
         <div class="modal-content">
             <div class="modal-header text-write" style="padding:5px 21px;">

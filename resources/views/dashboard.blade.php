@@ -274,17 +274,17 @@
             });
         });
 
-        $("#sale_price2").change(function() {
-            var sale_price = +$('#sale_price2').val();
-            var purchage_price = +$('#purchage_price2').val();
+        $("#sale_price").change(function() {
+            var sale_price = +$('#sale_price').val();
+            var purchage_price = +$('#purchage_price').val();
             var sale_profit = sale_price - purchage_price;
-            $('#sale_profit2').val(sale_profit);
+            $('#sale_profit').val(sale_profit);
         });
 
         function getCurrentFinancialYear(sale_date) {
             var financial_year = "";
             var today = new Date(sale_date);
-            if ((today.getMonth() + 1) <= 3) {
+            if ((today.getMonth() + 1) <= 6) {
                 financial_year = (today.getFullYear() - 1) + "-" + today.getFullYear()
             } else {
                 financial_year = today.getFullYear() + "-" + (today.getFullYear() + 1)
@@ -309,29 +309,29 @@
             }
         }
 
-        $("#print_code2").change(function() {
-            var sale_date = $('#original_sale_date2').val();
+        $("#print_code").change(function() {
+            var sale_date = $('#original_sale_date').val();
             var year = getCurrentFinancialYear(sale_date)
 
-            var print_code = +$('#print_code2').val();
+            var print_code = +$('#print_code').val();
             print_ref(print_code, year);
         });
-        $("#original_sale_date2").on("change", function() {
-            var sale_date = $('#original_sale_date2').val();
-            $('#vat_sale_date2').val(sale_date);
-            $('#sale_date2').val(sale_date);
-            $('#print_date2').val(sale_date);
+        $("#original_sale_date").on("change", function() {
+            var sale_date = $('#original_sale_date').val();
+            $('#vat_sale_date').val(sale_date);
+            $('#sale_date').val(sale_date);
+            $('#print_date').val(sale_date);
             $('#in_stock').val('no');
 
             var year = getCurrentFinancialYear(sale_date)
-            var print_code = +$('#print_code2').val();
+            var print_code = +$('#print_code').val();
             print_ref(print_code, year);
 
             let csrf = '{{ csrf_token() }}';
-            var vat_code = +$('#vat_code2').val();
-            var model_code = $('#model_code2').val();
+            var vat_code = +$('#vat_code').val();
+            var model_code = $('#model_code').val();
 
-            const date = new Date($('#vat_sale_date2').val());
+            const date = new Date($('#vat_sale_date').val());
             const month = date.toLocaleString('default', {
                 month: 'short'
             }).toUpperCase();
@@ -348,28 +348,28 @@
                     vat_mrp
                 }) {
                     if (vat_code == 2000 || vat_code == 2011 || vat_code == 2030) {
-                        const vat_sale_date = $('#vat_sale_date2').val();
+                        const vat_sale_date = $('#vat_sale_date').val();
                         const vat_month_year = new Date(vat_sale_date).getFullYear();
                         const year = getCurrentFinancialYear(vat_sale_date);
 
-                        $('#vat_year_sale2').val(year.replace('-', ''));
-                        $('#vat_month_sale2').val(month + vat_month_year);
-                        $('#unit_price_vat2').val(vat_mrp[0].vat_mrp);
+                        $('#vat_year_sale').val(year.replace('-', ''));
+                        $('#vat_month_sale').val(month + vat_month_year);
+                        $('#unit_price_vat').val(vat_mrp[0].vat_mrp);
 
                         const unit_price_vat = +vat_mrp[0].vat_mrp;
                         const sale_vat = Math.round(unit_price_vat * 15 / 115);
                         const basic_price_vat = Math.round(unit_price_vat - sale_vat);
 
-                        $('#sale_vat2').val(sale_vat);
-                        $('#basic_price_vat2').val(basic_price_vat);
+                        $('#sale_vat').val(sale_vat);
+                        $('#basic_price_vat').val(basic_price_vat);
                     } else {
-                        $('#unit_price_vat2').val(vat_mrp[0].vat_mrp);
+                        $('#unit_price_vat').val(vat_mrp[0].vat_mrp);
                         const unit_price_vat = +vat_mrp[0].vat_mrp;
                         const sale_vat = Math.round(unit_price_vat * 15 / 115);
                         const basic_price_vat = Math.round(unit_price_vat - sale_vat);
 
-                        $('#sale_vat2').val(sale_vat);
-                        $('#basic_price_vat2').val(basic_price_vat);
+                        $('#sale_vat').val(sale_vat);
+                        $('#basic_price_vat').val(basic_price_vat);
                     }
                 },
             });
@@ -443,7 +443,7 @@
                                         <a href="showroom/brta_assessment_form/${data.id}" target="_blank" class="btn-sm bg-dark">
                                             Bank Slip
                                         </a>
-                                        <a href="#" class="btn-sm bg-dark cusInfo" id="${data.id}" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#showModal">
+                                        <a href="#" class="btn-sm bg-dark cusInfo" id="${data.id}" data-bs-toggle="modal" data-idUpdate="${data.id}" data-bs-target="#showInfoModal">
                                             Info
                                         </a>                                        
                                     </div>
@@ -492,34 +492,19 @@
                     model_data,
                     purchage_data
                 }) {
-                    $('#vendor').val(purchage_data ? purchage_data.vendor : core_data.vendor_name);
-                    $('#factory_challan_no').val(purchage_data ? purchage_data.factory_challan_no : core_data.challan_no);
-                    $('#purchage_date').val(purchage_data ? new Intl.DateTimeFormat('en-IN').format(new Date(purchage_data.purchage_date)).split("/").join("-") : new Intl.DateTimeFormat('en-IN').format(new Date(core_data.purchage_date)).split("/").join("-"));
-                    $('#model').val(model_data.model);
-                    $('#ckd_process').val(core_data.ckd_process);
-                    $('#approval_no').val(core_data.approval_no);
-                    $('#invoice_no').val(core_data.invoice_no);
-                    $('#sale_price').val(core_data.sale_price);
-                    $('#uml_mushak_no').val(core_data.uml_mushak_no);
-                    $('#whos_vat').val(core_data.whos_vat);
-                    $('#sale_mushak_no').val(core_data.sale_mushak_no);
-                    $('#gate_pass').val(core_data.gate_pass);
-                    $('#chassis_no').val((core_data.eight_chassis || '') + (core_data.one_chassis || '') + (core_data.three_chassis || '') + (core_data.five_chassis));
-                    $('#engine_no').val((core_data.six_engine || '') + (core_data.five_engine || ''));
-                    $('#note').val(core_data.note);
-                    $('#size_of_tyre').val(model_data.size_of_tyre);
-                    $('#color').val(color_data ? color_data.color : core_data.color);
-                    $('#original_sale_date').val(new Intl.DateTimeFormat('en-IN').format(new Date(core_data.original_sale_date)).split("/").join("-"));
-                    $('#dealer').val(core_data.dealer);
-                    $('#rg_number').val(core_data.rg_number);
-                    $('#customer_name').val(core_data.customer_name);
-                    $('#father_name').val(core_data.father_name);
-                    $('#mother_name').val(core_data.mother_name);
-                    $('#mobile').val(core_data.mobile);
-                    $('#vat_process').val(core_data.vat_process);
-                    $('#address').val((core_data.address_one || '') + (core_data.address_two || ''));
-                    $('#stage').val(core_data.stage);
-                    $('#file_status').val(core_data.file_status);
+                    Object.keys(core_data).forEach(function(key) {
+                        $("#showInfoModal").find(`#${key}`).val(core_data[key]);
+                    });
+                    $("#showInfoModal").find("#vendor").val(purchage_data ? purchage_data.vendor : core_data.vendor_name);
+                    $("#showInfoModal").find("#factory_challan_no").val(purchage_data ? purchage_data.factory_challan_no : core_data.challan_no);
+                    $("#showInfoModal").find("#purchage_date").val(purchage_data ? new Intl.DateTimeFormat('en-IN').format(new Date(purchage_data.purchage_date)).split("/").join("-") : new Intl.DateTimeFormat('en-IN').format(new Date(core_data.purchage_date)).split("/").join("-"));
+                    $("#showInfoModal").find("#model").val(model_data.model);
+                    $("#showInfoModal").find("#chassis_no").val((core_data.eight_chassis || '') + (core_data.one_chassis || '') + (core_data.three_chassis || '') + (core_data.five_chassis));
+                    $("#showInfoModal").find("#engine_no").val((core_data.six_engine || '') + (core_data.five_engine || ''));
+                    $("#showInfoModal").find("#size_of_tyre").val(model_data.size_of_tyre);
+                    $("#showInfoModal").find("#color").val(color_data ? color_data.color : core_data.color);
+                    $("#showInfoModal").find("#original_sale_date").val(new Intl.DateTimeFormat('en-IN').format(new Date(core_data.original_sale_date)).split("/").join("-"));
+                    $("#showInfoModal").find("#address").val((core_data.address_one || '') + (core_data.address_two || ''));
                 }
             });
         });
@@ -541,70 +526,21 @@
                     purchage_data,
                     vehicle_data
                 }) {
-                    $('#id2').val(core_data.id);
-                    $('#model_code2').val(core_data.model_code);
+
+                    Object.keys(core_data).forEach(function(key) {
+                        $("#salesUpdateModal").find(`#${key}`).val(core_data[key]);
+                    });
+
                     $('#model_name2').val(vehicle_data.model);
-                    $('#eight_chassis2').val(core_data.eight_chassis);
-                    $('#one_chassis2').val(core_data.one_chassis);
-                    $('#three_chassis2').val(core_data.three_chassis);
-                    $('#five_chassis2').val(core_data.five_chassis);
-                    $('#six_engine2').val(core_data.six_engine);
-                    $('#five_engine2').val(core_data.five_engine);
-                    $('#customer_name2').val(core_data.customer_name);
-                    $('#relation2').val(core_data.relation);
-                    $('#father_name2').val(core_data.father_name);
-                    $('#mother_name2').val(core_data.mother_name);
-                    $('#address_one2').val(core_data.address_one);
-                    $('#address_two2').val(core_data.address_two);
-                    $('#mobile2').val(core_data.mobile);
-                    $('#email2').val(core_data.email);
-                    $('#dob2').val(core_data.dob);
-                    $('#vat_code2').val(core_data.vat_code);
-                    $('#print_code2').val(core_data.print_code);
-                    $('#report_code2').val(core_data.report_code);
-                    $('#nid_no2').val(core_data.nid_no);
-                    $('#ckd_process2').val(core_data.ckd_process);
-                    $('#approval_no2').val(core_data.approval_no);
-                    $('#invoice_no2').val(core_data.invoice_no);
                     $('#vendor2').val(purchage_data ? purchage_data.vendor : core_data.vendor_name);
                     color_data.forEach(function(item) {
                         $(".color_code").append(`<option ${item.color_code === core_data.color_code ? 'selected' : ''} value="${item.color_code}">${item.color}</option>`);
                     });
-                    $('#original_sale_date2').val(core_data.original_sale_date);
-                    $('#vat_sale_date2').val(core_data.vat_sale_date);
-                    $('#sale_date2').val(core_data.sale_date);
-                    $('#print_date2').val(core_data.print_date);
-                    $('#purchage_price2').val(core_data.purchage_price);
-                    $('#stage2').val(core_data.stage);
-                    $('#basic_price_vat2').val(core_data.basic_price_vat);
-                    $('#tr_month_code2').val(core_data.tr_month_code);
-                    $('#vat_month_sale2').val(core_data.vat_month_sale);
-                    $('#vat_process2').val(core_data.vat_process);
-                    $('#rg_number2').val(core_data.rg_number);
-                    $('#mushak_date2').val(core_data.mushak_date);
-                    $('#print_ref2').val(core_data.print_ref);
-                    $('#evl_invoice_no2').val(core_data.evl_invoice_no);
                     $('#price_declare_id2').val((pd_data ? pd_data.id : '') + ', Date ' + (pd_data ? pd_data.submit_date : ''));
-                    $('#unit_price_vat2').val(core_data.unit_price_vat);
-                    $('#sale_vat2').val(core_data.sale_vat);
-                    $('#vat_year_sale2').val(core_data.vat_year_sale);
-                    $('#sale_price2').val(core_data.sale_price);
-                    $('#dealer2').val(core_data.dealer);
                     $('#purchage_date2').val(purchage_data ? purchage_data.purchage_date : core_data.purchage_date);
-                    $('#sale_mushak_no2').val(core_data.sale_mushak_no);
-                    $('#uml_mushak_no2').val(core_data.uml_mushak_no);
                     $('#factory_challan_no2').val(purchage_data ? purchage_data.factory_challan_no : core_data.challan_no);
-                    $('#whos_vat2').val(core_data.whos_vat);
-                    $('#sale_profit2').val(core_data.sale_profit);
-                    $('#note2').val(core_data.note);
-                    $('#file_status2').val(core_data.file_status);
-                    $('#updated_at2').val(core_data.updated_at);
                     $('#vat_mrp2').val(pd_data ? pd_data.vat_mrp : '');
-                    $('#fake_sale_date2').val(core_data.fake_sale_date);
-                    $('#in_stock').val(core_data.in_stock);
-                    $('#tr_number2').val(core_data.tr_number);
-                    $('#tr_dep_date2').val(core_data.tr_dep_date);
-                    $('#year_of_manufacture2').val(core_data.year_of_manufacture);
+
                 }
             });
         });
