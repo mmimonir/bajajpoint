@@ -54,7 +54,16 @@ class DashboardController extends Controller
 
     public function total_lifting($report_code)
     {
-        $first_day_of_year = Carbon::createFromFormat('Y-m-d H:s:i', date('Y') . '-07-01 00:00:00')->subYear()->toDateString();
+        $year = Carbon::now()->year;
+        $today_month = Carbon::now()->month;
+
+        if ($today_month > 6) {
+            $year = Carbon::now()->year;
+        } else {
+            $year = Carbon::now()->year - 1;
+        }
+
+        $first_day_of_year = Carbon::createFromFormat('Y-m-d', $year . '-07-01')->toDateString();
         $today = Carbon::now()->toDateString();
         $lifting = Core::select('model_code')
             ->whereBetween('purchage_date', [$first_day_of_year, $today])
