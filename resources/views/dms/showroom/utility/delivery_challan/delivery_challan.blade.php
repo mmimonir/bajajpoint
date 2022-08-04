@@ -33,10 +33,6 @@
         box-sizing: border-box;
     }
 
-    .input_style {
-        background-color: #F4F6F9;
-        height: 18px;
-    }
 
     table {
         border-collapse: collapse;
@@ -59,7 +55,7 @@
         border: 0px;
         border-radius: 0;
         font-weight: 700;
-        font-size: 16px;
+        font-size: 18px;
         border-style: dashed;
     }
 
@@ -70,7 +66,7 @@
         border-bottom: 1px solid black;
         border-radius: 0;
         font-weight: 700;
-        font-size: 16px;
+        font-size: 18px;
         border-style: dashed;
     }
 
@@ -79,7 +75,7 @@
     }
 
     .span_underline {
-        width: 280px;
+        width: 310px;
         border-bottom: 1px solid black;
         border-style: dashed;
     }
@@ -89,17 +85,15 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-12" style="margin:10px 0;">
-        <form action="#" method="POST" id="create_bill">
-            <input type="hidden" name="request_from" id="request_from" value="">
-            <input type="hidden" name="update" id="update" value="true">
+        <form id="create_challan">
             @csrf
             <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
                 <div class="card-header no-print">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
                             <div style="border:1px solid #000; border-radius:5px; padding:3px 5px;">
-                                <label style="margin-right:10px;">Bill Area</label>
-                                <select name="bill_list" style="font-weight: bold; background:#F7F7F7; border-radius:5px;" id="bill_list">
+                                <label style="margin-right:10px;">Challan Area</label>
+                                <select name="challan_list" style="font-weight: bold; background:#F7F7F7; border-radius:5px;" id="challan_list">
 
                                 </select>
                             </div>
@@ -115,10 +109,10 @@
                                 </ul>
                             </nav>
                             <div style="border:1px solid #000; border-radius:5px; padding:3px 5px; margin-left:15px;">
-                                <label>Bill Date</label>
-                                <input type="date" name="bill_date_search" id="bill_date_search" style="margin-left:15px; background:#F7F7F7; width:100px;">
-                                <select name="bill_list_search" style="font-weight: bold; background:#F7F7F7; border-radius:5px;" id="bill_list_search">
-                                    <option style="font-weight:bold;" value="">Bill List</option>
+                                <label>Challan Date</label>
+                                <input type="date" name="challan_date_search" id="challan_date_search" style="margin-left:15px; background:#F7F7F7; width:100px;">
+                                <select name="bill_list_search" style="font-weight: bold; background:#F7F7F7; border-radius:5px;" id="challan_list_search">
+                                    <option style="font-weight:bold;" value="">Challan List</option>
                                 </select>
                             </div>
                         </div>
@@ -138,80 +132,92 @@
                     <div class="bill_body">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="input-group mb-3" style="width: 160px;">
-                                    <span class="input-group-text span_style" style="height:25px; border-radius: 0;">Challan No:</span>
-                                    <input readonly type="text" name="bill_no" id="bill_no" class="form-control bill_no input_style" style="height:25px; border-radius: 0;">
+                                <div class="input-group mb-3" style="width: 180px;">
+                                    <span class="input-group-text span_style">Challan No:</span>
+                                    <input readonly type="text" name="delivery_challan_no" id="delivery_challan_no" class="form-control delivery_challan_no input_style" value="001">
                                 </div>
                             </div>
                             <div class="col-md-3 offset-md-3" style="padding-right: 11px;">
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text span_style" style="height:25px; border-radius: 0;">Date:</span>
-                                    <input type="date" name="bill_date" id="bill_date" class="form-control bill_date input_style" style="height:25px; border-radius: 0;">
+                                    <span class="input-group-text span_style">Date:</span>
+                                    <input type="date" name="sale_date" id="sale_date" class="form-control sale_date input_style" value="">
                                 </div>
                             </div>
                             <div class="col-md-3 offset-md-9" style="padding-right: 11px; margin-top:-12px;">
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text span_style" style="height:25px; border-radius: 0;">Mobile</span>
-                                    <input type="text" name="client_mobile" id="client_mobile" class="form-control client_mobile input_style" style="height:25px; border-radius: 0;">
+                                    <span class="input-group-text span_style">Mobile</span>
+                                    <input type="text" name="mobile" id="mobile" class="form-control mobile input_style" value="01974353555">
                                 </div>
                             </div>
                             <div class="col-md-12" style="margin-top:15px;">
                                 <div class="input-group mb-3 mt-10">
                                     <span class="input-group-text span_style">Name :</span>
-                                    <input type="text" name="client_name" id="client_name" class="form-control client_name input_style">
+                                    <input type="text" name="customer_name" id="customer_name" class="form-control customer_name input_style" value="MD MONIRUL ISLAM">
+                                    <input type="hidden" name="id" id="core_id" value="">
                                 </div>
                                 <div class="input-group mb-3 mt-10">
                                     <span class="input-group-text span_style">Father's Name :</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                    <input type="text" name="father_name" id="father_name" class="form-control father_name input_style" value="MD NURUL ISLAM">
                                 </div>
                                 <div class="input-group mb-3 mt-10">
                                     <span class="input-group-text span_style">Mother's Name :</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                    <input type="text" name="mother_name" id="mother_name" class="form-control mother_name input_style" value="FATEMA BEGUM">
                                 </div>
                                 <div class="input-group mb-3 mt-10">
                                     <span class="input-group-text span_style">NID No :</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                    <input type="text" name="nid_no" id="nid_no" class="form-control nid_no input_style" value="00000000000000000">
                                 </div>
                                 <div class="input-group mb-3 mt-10">
                                     <span class="input-group-text span_style">Address :</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                    <input type="text" name="address_one" id="address_one" class="form-control address_one input_style" value="400/B MALIBAGH CHOWDHURY PARA, DHAKA-1219">
+                                </div>
+                                <div class="input-group mb-3 mt-10">
+                                    <input type="text" name="address_two" id="address_two" class="form-control address_two input_style" value="400/B MALIBAGH CHOWDHURY PARA, DHAKA-1219">
                                 </div>
                                 <div style="margin-top:50px;"></div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">01. Chassis No</span><span class="span_style">:</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                    <input type="text" id="full_chassis" class="form-control full_chassis input_style" value="PSUA11CYXMTD99999">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">02. Engine No</span><span class="span_style">:</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                    <input type="text" id="full_engine" class="form-control full_engine input_style" value="DHXCMN66666">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">03. Make & Model of Vehicle</span><span class="span_style">:</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                    <select name="model_code" class="input_style" style="margin:auto; width:683px; padding-left:10px;">
+                                        <option>Select</option>
+                                        <option value="1000">BAJAJ PULSAR 150 TWIN DISC MATTE</option>
+                                        <option value="1001">BAJAJ PULSAR 150 TWIN DISC MATTE</option>
+                                    </select>
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">04. Year Of Manufacture</span><span class="span_style">:</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                    <input type="text" name="year_of_manufacture" id="year_of_manufacture" class="form-control year_of_manufacture input_style" value="2022">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">05. No. Of Cylinder With CC</span><span class="span_style">:</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                    <input type="text" id="no_of_cylinder_with_cc" class="form-control no_of_cylinder_with_cc input_style" value="SINGLE/150 CC">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">06. Seating Capacity</span><span class="span_style">:</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                    <input type="text" id="seating_capacity" class="form-control seating_capacity input_style" value="2 PERSON">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">07. Class Of Vehicle</span><span class="span_style">:</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                    <input type="text" id="class_of_vehicle" class="form-control class_of_vehicle input_style" value="MOTORCYCLE">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">08. Color Of Vehicle</span><span class="span_style">:</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                    <select name="color_code" class="input_style" style="margin:auto; width:683px; padding-left:10px;">
+                                        <option>Select</option>
+                                        <option value="500">BLACK/RED</option>
+                                        <option value="501">BLACK/BLUE</option>
+                                    </select>
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">09. Unladen Weight/Laden Weight</span><span class="span_style">:</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                    <input type="text" name="weight" id="weight" class="form-control weight input_style" value="144 KG/274 KG">
                                 </div>
                             </div>
                         </div>
@@ -246,8 +252,18 @@
 @section('script')
 <script>
     $(document).ready(function() {
+        let full_chassis = $('#full_chassis').val();
+        let full_engine = $('#full_engine').val();
 
+        let eight_chassis = full_chassis.substring(0, 8);
+        let one_chassis = full_chassis.substring(8, 9);
+        let three_chassis = full_chassis.substring(9, 12);
+        let five_chassis = full_chassis.substring(12, 17);
 
+        let six_engine = full_engine.substring(0, 6);
+        let five_engine = full_engine.substring(6, 11);
+
+        console.log(six_engine, five_engine);
     });
 </script>
 @endsection
