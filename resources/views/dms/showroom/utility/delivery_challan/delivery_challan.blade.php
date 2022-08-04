@@ -24,7 +24,7 @@
     }
 
     .bill_page {
-        height: 1430px;
+        height: 1470px;
         width: 1020px;
         border: 1px solid black;
         margin: auto;
@@ -51,6 +51,37 @@
     textarea,
     input {
         border: none;
+    }
+
+    .span_style {
+        background-color: #F4F6F9;
+        height: 25px;
+        border: 0px;
+        border-radius: 0;
+        font-weight: 700;
+        font-size: 16px;
+        border-style: dashed;
+    }
+
+    .input_style {
+        background-color: #F4F6F9;
+        height: 25px;
+        border: 0px;
+        border-bottom: 1px solid black;
+        border-radius: 0;
+        font-weight: 700;
+        font-size: 16px;
+        border-style: dashed;
+    }
+
+    .mt-10 {
+        margin-top: 10px;
+    }
+
+    .span_underline {
+        width: 280px;
+        border-bottom: 1px solid black;
+        border-style: dashed;
     }
 </style>
 @endpush
@@ -93,56 +124,101 @@
                         </div>
                     </div>
                 </div>
-                <div class="bill_page" style="margin-top:20px; margin-bottom:20px;">
+                <div class="bill_page">
                     <div class="bill_header">
                         <div class="header_image">
                             <div class="row d-flex align-items-center">
-                                <div class="col-md-5" style="padding-left:0px;">
-                                    <img src="{{asset('/images/authorized_dealer.png')}}" class="img-fluid p-1" style="width:80%;">
-                                </div>
-                                <div class="col-md-2">
-                                    <img src="{{asset('/images/bill.png')}}" class="img-fluid p-1" style="width:80%;">
-                                </div>
-                                <div class="col-md-5" style="padding-right:0px;">
-                                    <img src="{{asset('/images/bp_service_address.png')}}" class="img-fluid p-1 float-right" style="width:90%;">
+                                <div class="col-md-12">
+                                    <img src="{{asset('/images/delivery_challan_bp.png')}}" class="img-fluid p-1" style="width:100%;">
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div style="margin-top:50px;"></div>
                     <div class="bill_body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input-group mb-3" style="width: 160px;">
-                                    <span class="input-group-text" id="basic-addon1" style="height:25px; border-radius: 0;">Bill No:</span>
-                                    <input readonly type="text" name="bill_no" id="bill_no" class="form-control bill_no" style="height:25px; border-radius: 0;">
+                                    <span class="input-group-text span_style" style="height:25px; border-radius: 0;">Challan No:</span>
+                                    <input readonly type="text" name="bill_no" id="bill_no" class="form-control bill_no input_style" style="height:25px; border-radius: 0;">
                                 </div>
                             </div>
                             <div class="col-md-3 offset-md-3" style="padding-right: 11px;">
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1" style="height:25px; border-radius: 0;">Date:</span>
-                                    <input type="date" name="bill_date" id="bill_date" class="form-control bill_date" style="height:25px; border-radius: 0;">
+                                    <span class="input-group-text span_style" style="height:25px; border-radius: 0;">Date:</span>
+                                    <input type="date" name="bill_date" id="bill_date" class="form-control bill_date input_style" style="height:25px; border-radius: 0;">
                                 </div>
                             </div>
                             <div class="col-md-3 offset-md-9" style="padding-right: 11px; margin-top:-12px;">
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1" style="height:25px; border-radius: 0;">Mobile</span>
-                                    <input type="text" name="client_mobile" id="client_mobile" class="form-control client_mobile" style="height:25px; border-radius: 0;">
+                                    <span class="input-group-text span_style" style="height:25px; border-radius: 0;">Mobile</span>
+                                    <input type="text" name="client_mobile" id="client_mobile" class="form-control client_mobile input_style" style="height:25px; border-radius: 0;">
                                 </div>
                             </div>
                             <div class="col-md-12" style="margin-top:15px;">
-                                <div class="input-group mb-3" style="margin-top:-14px;">
-                                    <span class="input-group-text" id="basic-addon1" style="background-color:#F4F6F9; height:25px; border:0px; border-radius: 0;">Name :</span>
-                                    <input type="text" name="client_name" id="client_name" class="form-control client_name" style="background-color:#F4F6F9; height:25px; border:0px; border-bottom: 1px solid black; border-radius:0;">
+                                <div class="input-group mb-3 mt-10">
+                                    <span class="input-group-text span_style">Name :</span>
+                                    <input type="text" name="client_name" id="client_name" class="form-control client_name input_style">
                                 </div>
-                                <div class="input-group mb-3" style="margin-top:-10px;">
-                                    <span class="input-group-text" id="basic-addon1" style="background-color:#F4F6F9; height:25px; border:0px; border-radius: 0;">Address :</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address" style="background-color:#F4F6F9; height:25px; border:0px; border-bottom: 1px solid black; border-radius:0;">
+                                <div class="input-group mb-3 mt-10">
+                                    <span class="input-group-text span_style">Father's Name :</span>
+                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                </div>
+                                <div class="input-group mb-3 mt-10">
+                                    <span class="input-group-text span_style">Mother's Name :</span>
+                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                </div>
+                                <div class="input-group mb-3 mt-10">
+                                    <span class="input-group-text span_style">NID No :</span>
+                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                </div>
+                                <div class="input-group mb-3 mt-10">
+                                    <span class="input-group-text span_style">Address :</span>
+                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                </div>
+                                <div style="margin-top:50px;"></div>
+                                <div class="input-group mb-3 mt-10 fw-bold">
+                                    <span class="input-group-text span_style span_underline">01. Chassis No</span><span class="span_style">:</span>
+                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                </div>
+                                <div class="input-group mb-3 mt-10 fw-bold">
+                                    <span class="input-group-text span_style span_underline">02. Engine No</span><span class="span_style">:</span>
+                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                </div>
+                                <div class="input-group mb-3 mt-10 fw-bold">
+                                    <span class="input-group-text span_style span_underline">03. Make & Model of Vehicle</span><span class="span_style">:</span>
+                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                </div>
+                                <div class="input-group mb-3 mt-10 fw-bold">
+                                    <span class="input-group-text span_style span_underline">04. Year Of Manufacture</span><span class="span_style">:</span>
+                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                </div>
+                                <div class="input-group mb-3 mt-10 fw-bold">
+                                    <span class="input-group-text span_style span_underline">05. No. Of Cylinder With CC</span><span class="span_style">:</span>
+                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                </div>
+                                <div class="input-group mb-3 mt-10 fw-bold">
+                                    <span class="input-group-text span_style span_underline">06. Seating Capacity</span><span class="span_style">:</span>
+                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                </div>
+                                <div class="input-group mb-3 mt-10 fw-bold">
+                                    <span class="input-group-text span_style span_underline">07. Class Of Vehicle</span><span class="span_style">:</span>
+                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                </div>
+                                <div class="input-group mb-3 mt-10 fw-bold">
+                                    <span class="input-group-text span_style span_underline">08. Color Of Vehicle</span><span class="span_style">:</span>
+                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
+                                </div>
+                                <div class="input-group mb-3 mt-10 fw-bold">
+                                    <span class="input-group-text span_style span_underline">09. Unladen Weight/Laden Weight</span><span class="span_style">:</span>
+                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style">
                                 </div>
                             </div>
                         </div>
+                        <div style="margin-top:50px;"></div>
                         <div class="row d-flex align-items-center" style="margin-top: 20px;">
-                            <div class="col-md-12" style="padding-left:0px;">
-                                <img src="{{asset('/images/for_bajajpoint_two.png')}}" class="img-fluid p-1" style="width:100%;">
+                            <div class="col-md-12">
+                                <img src="{{asset('/images/delivery_challan_bottom.png')}}" class="img-fluid p-1" style="width:100%;">
                             </div>
                         </div>
                     </div>
