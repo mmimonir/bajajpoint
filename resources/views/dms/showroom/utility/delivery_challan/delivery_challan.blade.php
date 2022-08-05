@@ -275,7 +275,7 @@
                     stock,
                     status
                 }) {
-                    if (status == 200) {
+                    if (status === 200) {
                         $('#mc_stock_list').empty();
                         $('#mc_stock_list').append('<option style="font-weight:bold; font-size:18px;" value="">MC List</option>');
                         stock.forEach(function(item) {
@@ -292,7 +292,29 @@
 
         $(document).on('change', '#mc_stock_list', function() {
             let core_id = $(this).val();
-            console.log(core_id);
+            $.ajax({
+                url: "{{route('delivery_challan.get_stock_mc_details')}}",
+                type: "GET",
+                dataType: "json",
+                data: {
+                    core_id
+                },
+                success: function({
+                    stock,
+                    status
+                }) {
+                    if (status === 200) {
+                        $('#chassis_no').val(stock.chassis_no);
+                        $('#engine_no').val(stock.engine_no);
+                        $('#year_of_manufacture').val(stock.year_of_manufacture);
+                        $('#no_of_cylinder_with_cc').val(stock.no_of_cylinder_with_cc);
+                        $('#seating_capacity').val(stock.seating_capacity);
+                        $('#class_of_vehicle').val(stock.class_of_vehicle);
+                        $('#weight').val(stock.weight);
+                        $('#color_code').val(stock.color_code);
+                    }
+                }
+            });
         });
     });
 </script>

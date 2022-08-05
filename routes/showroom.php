@@ -148,14 +148,12 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
 
     Route::get('/filemanager', [App\Http\Controllers\FileManagerController::class, 'index'])->name('file.manager');
 
-    // Quotation
-    Route::controller(App\Http\Controllers\Showroom\UtilityPrintController::class)->group(function () {
-        Route::get('/delivery_challan',  'index')->name('utility.delivery_challan');
-    });
 
     // Delivery Challan
     Route::controller(App\Http\Controllers\Showroom\DeliveryChallanController::class)->group(function () {
+        Route::get('/delivery_challan',  'index')->name('utility.delivery_challan');
         Route::get('/get_stock_mc',  'get_stock_mc')->name('delivery_challan.get_stock_mc');
+        Route::get('/get_stock_mc_details',  'get_stock_mc_details')->name('delivery_challan.get_stock_mc_details');
     });
 
     //     Route::get('backup-run', function () {
