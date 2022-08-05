@@ -116,6 +116,14 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-4 d-flex mt-2" style="border:1px solid black; border-radius:5px;">
+                                <label for="mc_stock_list" class="col-form-label">Availability</label>
+                                <select name="mc_stock_list" id="mc_stock_list" class="selectpicker" data-live-search="true" required>
+
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="bill_page">
@@ -233,25 +241,18 @@
         </form>
     </div>
 </div>
-
-@endsection
-
-@section('datatable')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 @endsection
 
 @section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     $(document).ready(function() {
+        $('.selectpicker').selectpicker();
+
         let full_chassis = $('#full_chassis').val();
         let full_engine = $('#full_engine').val();
 
@@ -263,7 +264,36 @@
         let six_engine = full_engine.substring(0, 6);
         let five_engine = full_engine.substring(6, 11);
 
-        console.log(six_engine, five_engine);
+
+
+        function mc_stock_list() {
+            $.ajax({
+                url: "{{route('delivery_challan.get_stock_mc')}}",
+                type: "GET",
+                dataType: "json",
+                success: function({
+                    stock,
+                    status
+                }) {
+                    if (status == 200) {
+                        $('#mc_stock_list').empty();
+                        $('#mc_stock_list').append('<option style="font-weight:bold; font-size:18px;" value="">MC List</option>');
+                        stock.forEach(function(item) {
+                            $("#mc_stock_list").append(
+                                `<option style="font-weight:bold; font-size:18px;" value="${item.id}">${item.model} CH ${item.five_chassis} EN ${item.five_engine}</option>`
+                            );
+                        });
+                        $(".selectpicker").selectpicker("refresh");
+                    }
+                }
+            });
+        }
+        mc_stock_list();
+
+        $(document).on('change', '#mc_stock_list', function() {
+            let core_id = $(this).val();
+            console.log(core_id);
+        });
     });
 </script>
 @endsection

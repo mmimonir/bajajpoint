@@ -153,6 +153,11 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
         Route::get('/delivery_challan',  'index')->name('utility.delivery_challan');
     });
 
+    // Delivery Challan
+    Route::controller(App\Http\Controllers\Showroom\DeliveryChallanController::class)->group(function () {
+        Route::get('/get_stock_mc',  'get_stock_mc')->name('delivery_challan.get_stock_mc');
+    });
+
     //     Route::get('backup-run', function () {
     //         Artisan::call('backup:run --only-db');
     //         return back();
