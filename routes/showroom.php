@@ -102,7 +102,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
     });
 
     // VAT
-    Route::controller(App\Http\Controllers\Showroom\VatController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Showroom\VATController::class)->group(function () {
         Route::get('/vat_dashboard',  'index')->name('vat.dashboard');
         Route::get('/vat_index',  'vat_index')->name('vat.index');
         Route::post('/vat_sale',  'vat_sale')->name('vat.vat_sale');
