@@ -229,7 +229,7 @@
     @endforeach
 </div>
 
-// info modal start
+<!-- info modal start -->
 <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="max-width: 1000px">
         <div class="modal-content">
@@ -245,7 +245,7 @@
         </div>
     </div>
 </div>
-// info modal end
+<!-- info modal end -->
 
 @include('dms.modals.modal_sales_update')
 
