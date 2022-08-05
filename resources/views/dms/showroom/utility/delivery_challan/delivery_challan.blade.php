@@ -146,7 +146,7 @@
                             <div class="col-md-3 offset-md-9" style="padding-right: 11px; margin-top:-12px;">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text span_style">Mobile</span>
-                                    <input type="text" name="mobile" id="mobile" class="form-control mobile input_style" value="01974353555">
+                                    <input type="text" minlength="11" maxlength="11" pattern="[0-9]+" name="mobile" id="mobile" class="form-control mobile input_style" value="01974353555">
                                 </div>
                             </div>
                             <div class="col-md-12" style="margin-top:15px;">
@@ -177,11 +177,11 @@
                                 <div style="margin-top:50px;"></div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">01. Chassis No</span><span class="span_style">:</span>
-                                    <input type="text" id="full_chassis" class="form-control full_chassis input_style" value="PSUA11CYXMTD99999">
+                                    <input type="text" minlength="17" maxlength="17" pattern="[A-Z0-9]+" id="full_chassis" class="form-control full_chassis input_style" value="PSUA11CYXMTD99999">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">02. Engine No</span><span class="span_style">:</span>
-                                    <input type="text" id="full_engine" class="form-control full_engine input_style" value="DHXCMN66666">
+                                    <input type="text" minlength="11" maxlength="11" pattern="[A-Z0-9]+" id="full_engine" class="form-control full_engine input_style" value="DHXCMN66666">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">03. Make & Model of Vehicle</span><span class="span_style">:</span>
