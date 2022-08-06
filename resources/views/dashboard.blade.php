@@ -258,6 +258,15 @@
 @section('script')
 <script>
     $(document).ready(function() {
+        $(document).on('change', '#unit_price_vat', function() {
+            let unit_price_vat = +$(this).val();
+            let basic = Math.round((unit_price_vat * 100) / 115);
+            let sale_vat = unit_price_vat - basic;
+
+            $('#sale_vat').val(sale_vat);
+            $('#basic_price_vat').val(basic);
+        });
+
         $("#search_overlay").css("visibility", "hidden");
         $("#sale_update_form").submit(function(e) {
             e.preventDefault();
@@ -313,29 +322,29 @@
         function print_ref(print_code, year) {
             switch (print_code) {
                 case 2000:
-                    $('#print_ref2').val(`BAJAJ POINT/DHAKA/${year}`);
+                    $('#print_ref').val(`BAJAJ POINT/DHAKA/${year}`);
                     break;
                 case 2011:
-                    $('#print_ref2').val(`BAJAJ HEAVEN/DHAKA/${year}`);
+                    $('#print_ref').val(`BAJAJ HEAVEN/DHAKA/${year}`);
                     break;
                 case 2030:
-                    $('#print_ref2').val(`BAJAJ BLOOM/DHAKA/${year}`);
+                    $('#print_ref').val(`BAJAJ BLOOM/DHAKA/${year}`);
                     break;
                 default:
-                    $('#print_ref2').val('');
+                    $('#print_ref').val('');
                     break;
             }
         }
 
-        $("#print_code").change(function() {
-            var sale_date = $('#original_sale_date').val();
+        $(document).on('change', '#print_code', function() {
+            var sale_date = $('#sale_date').val();
             var year = getCurrentFinancialYear(sale_date)
-
-            var print_code = +$('#print_code').val();
+            var print_code = +$(this).val();
             print_ref(print_code, year);
         });
-        $("#original_sale_date").on("change", function() {
-            var sale_date = $('#original_sale_date').val();
+
+        $(document).on("change", "#original_sale_date", function() {
+            var sale_date = $(this).val();
             $('#vat_sale_date').val(sale_date);
             $('#sale_date').val(sale_date);
             $('#print_date').val(sale_date);
@@ -544,7 +553,8 @@
                     pd_data,
                     print_ref,
                     purchage_data,
-                    vehicle_data
+                    vehicle_data,
+                    mrp_data,
                 }) {
 
                     Object.keys(core_data).forEach(function(key) {
@@ -552,6 +562,7 @@
                     });
 
                     $('#model_name2').val(vehicle_data.model);
+                    // $('#purchage_price').val(mrp_data.purchage_price);
                     $('#vendor2').val(purchage_data ? purchage_data.vendor : core_data.vendor_name);
                     color_data.forEach(function(item) {
                         $(".color_code").append(`<option ${item.color_code === core_data.color_code ? 'selected' : ''} value="${item.color_code}">${item.color}</option>`);

@@ -154,6 +154,8 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
         Route::get('/delivery_challan',  'index')->name('utility.delivery_challan');
         Route::get('/get_stock_mc',  'get_stock_mc')->name('delivery_challan.get_stock_mc');
         Route::get('/get_stock_mc_details',  'get_stock_mc_details')->name('delivery_challan.get_stock_mc_details');
+        Route::get('/create_delivery_challan_no',  'create_delivery_challan_no')->name('delivery_challan.create_delivery_challan_no');
+        Route::post('/store_created_challan',  'store_created_challan')->name('delivery_challan.store_created_challan');
     });
 
     //     Route::get('backup-run', function () {

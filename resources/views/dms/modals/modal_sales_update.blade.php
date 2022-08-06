@@ -243,9 +243,9 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row" style="margin-bottom:0px;">
-                                                <label for="basic_price_vat" class="col-sm-6 col-form-label form-control-sm">VAT Basic</label>
+                                                <label for="vat_year_sale" class="col-sm-6 col-form-label form-control-sm">VAT Year Sale</label>
                                                 <div class="col-sm-6" style="padding:0px;">
-                                                    <input required type="text" name="basic_price_vat" class="form-control form-control-sm" id="basic_price_vat">
+                                                    <input type="text" name="vat_year_sale" class="form-control form-control-sm" id="vat_year_sale">
                                                 </div>
                                             </div>
                                             <div class="form-group row" style="margin-bottom:0px;">
@@ -305,9 +305,9 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row" style="margin-bottom:0px;">
-                                                <label for="vat_year_sale" class="col-sm-5 col-form-label form-control-sm">VAT Year Sale</label>
+                                                <label for="basic_price_vat" class="col-sm-5 col-form-label form-control-sm">VAT Basic</label>
                                                 <div class="col-sm-7" style="padding:0px;">
-                                                    <input type="text" name="vat_year_sale" class="form-control form-control-sm" id="vat_year_sale">
+                                                    <input required type="text" name="basic_price_vat" class="form-control form-control-sm" id="basic_price_vat">
                                                 </div>
                                             </div>
                                             <div class="form-group row" style="margin-bottom:0px;">

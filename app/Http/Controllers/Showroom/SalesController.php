@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\Showroom\{Core, Vehicle, Purchage, Supplier, ColorCode, PriceDeclare};
+use App\Models\Showroom\{Core, Vehicle, Purchage, Supplier, ColorCode, Mrp, PriceDeclare};
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Http\Controllers\Controller;
@@ -20,6 +20,7 @@ class SalesController extends Controller
         $purchage_data = Purchage::select('purchage_date', 'vendor', 'factory_challan_no')->where('id', $store_id)->first();
         $color_data = ColorCode::select('color_code', 'color')->where('model_code', $model_code)->get();
         $pd_data = PriceDeclare::select('id', 'vat_mrp', 'submit_date')->where(['model_code' => $model_code, 'status' => '1', 'dealer_code' => $core_data->vat_code])->first();
+        $mrp_data = Mrp::select('*')->where(['model_code' => $model_code])->first();
 
         return response()->json(
             [
@@ -28,7 +29,8 @@ class SalesController extends Controller
                 'purchage_data' => $purchage_data,
                 'color_data' => $color_data,
                 'pd_data' => $pd_data,
-                'print_ref' => $print_ref
+                'print_ref' => $print_ref,
+                'mrp_data' => $mrp_data,
             ]
         );
     }
