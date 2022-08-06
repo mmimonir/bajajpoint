@@ -116,6 +116,7 @@ class DeliveryChallanController extends Controller
 
     public function store_created_challan(Request $request)
     {
+        return response()->json($request->all());
         try {
             Core::where('id', $request->id)
                 ->first()

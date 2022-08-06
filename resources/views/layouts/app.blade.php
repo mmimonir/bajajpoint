@@ -12,6 +12,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
+    <link rel="shortcut icon" href="{{asset('/images/fav_icon.png')}}">
     <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
     <link href="http://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">

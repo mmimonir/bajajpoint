@@ -381,26 +381,38 @@
             let full_chassis = $('#full_chassis').val();
             let full_engine = $('#full_engine').val();
 
+
+            let eight_chassis = '';
+            let one_chassis = '';
+            let three_chassis = '';
+            let five_chassis = '';
+            let six_engine = '';
+            let five_engine = '';
             // split full chassis
-            let eight_chassis = full_chassis.substring(0, 8);
-            let one_chassis = full_chassis.substring(8, 9);
-            let three_chassis = full_chassis.substring(9, 12);
-            let five_chassis = full_chassis.substring(12, 17);
 
-            // split full engine
-            let six_engine = full_engine.substring(0, 6);
-            let five_engine = full_engine.substring(6, 11);
+            var FD = new FormData(this);
 
-            const FD = new FormData(this);
-            // append data to form data
-            FD.append('eight_chassis', eight_chassis);
-            FD.append('one_chassis', one_chassis);
-            FD.append('three_chassis', three_chassis);
-            FD.append('five_chassis', five_chassis);
-            FD.append('six_engine', six_engine);
-            FD.append('five_engine', five_engine);
+            if (full_chassis.length == 5 && full_engine.length == 5) {
+                five_chassis = full_chassis;
+                five_engine = full_engine;
+                FD.append('five_chassis', five_chassis);
+                FD.append('five_engine', five_engine);
+            } else if (full_chassis.length > 5 && full_engine.length > 5) {
+                eight_chassis = full_chassis.substring(0, 8);
+                three_chassis = full_chassis.substring(9, 12);
+                one_chassis = full_chassis.substring(8, 9);
+                five_chassis = full_chassis.substring(12, 17);
+                six_engine = full_engine.substring(0, 6);
+                five_engine = full_engine.substring(6, 11);
+
+                FD.append('eight_chassis', eight_chassis);
+                FD.append('one_chassis', one_chassis);
+                FD.append('three_chassis', three_chassis);
+                FD.append('five_chassis', five_chassis);
+                FD.append('six_engine', six_engine);
+                FD.append('five_engine', five_engine);
+            }
             FD.append('delivery_challan_no', delivery_challan_no);
-
 
             $.ajax({
                 url: "{{ route('delivery_challan.store_created_challan') }}",
