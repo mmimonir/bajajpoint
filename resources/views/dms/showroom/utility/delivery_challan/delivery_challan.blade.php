@@ -231,7 +231,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="margin-top:50px;"></div>
+                        <div style="margin-top:30px;"></div>
                         <div class="row d-flex align-items-center" style="margin-top: 20px;">
                             <div class="col-md-12">
                                 <img src="{{asset('/images/delivery_challan_bottom.png')}}" class="img-fluid p-1" style="width:100%;">
@@ -253,6 +253,7 @@
 
 <script>
     $(document).ready(function() {
+
         $(document).on('change', '#unit_price_vat', function() {
             let unit_price_vat = +$(this).val();
             let basic = Math.round((unit_price_vat * 100) / 115);
@@ -313,7 +314,6 @@
                     mrp_details
                 }) {
                     if (status === 200) {
-                        console.log(mc_details.five_chassis);
                         $('#full_chassis').val(mc_details.five_chassis);
                         $('#full_engine').val(mc_details.five_engine);
                         $('#model').val(mc_details.model_make_of_vehicle);
@@ -325,8 +325,9 @@
                         $('#core_id').val(mc_details.id);
                         $('#model_code').val(mc_details.model_code);
 
-                        $('#sale_vat').val(sale_vat);
-                        $('#basic_price_vat').val(basic);
+                        $('#sale_vat').val(mrp_details.sale_vat);
+                        $('#unit_price_vat').val(mrp_details.vat_mrp);
+                        $('#basic_price_vat').val(mrp_details.basic_vat);
 
                         $('#color_code').empty();
                         $('#color_code').append('<option style="font-weight:bold; font-size:14px;" value="">Select Color</option>');
