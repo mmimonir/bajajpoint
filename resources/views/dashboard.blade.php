@@ -319,29 +319,29 @@
             return financial_year;
         }
 
-        function print_ref(print_code, year) {
-            switch (print_code) {
-                case 2000:
-                    $('#print_ref').val(`BAJAJ POINT/DHAKA/${year}`);
-                    break;
-                case 2011:
-                    $('#print_ref').val(`BAJAJ HEAVEN/DHAKA/${year}`);
-                    break;
-                case 2030:
-                    $('#print_ref').val(`BAJAJ BLOOM/DHAKA/${year}`);
-                    break;
-                default:
-                    $('#print_ref').val('');
-                    break;
-            }
-        }
+        // function print_ref(print_code, year) {
+        //     switch (print_code) {
+        //         case 2000:
+        //             $('#print_ref').val(`BAJAJ POINT/DHAKA/${year}`);
+        //             break;
+        //         case 2011:
+        //             $('#print_ref').val(`BAJAJ HEAVEN/DHAKA/${year}`);
+        //             break;
+        //         case 2030:
+        //             $('#print_ref').val(`BAJAJ BLOOM/DHAKA/${year}`);
+        //             break;
+        //         default:
+        //             $('#print_ref').val('');
+        //             break;
+        //     }
+        // }
 
-        $(document).on('change', '#print_code', function() {
-            var sale_date = $('#sale_date').val();
-            var year = getCurrentFinancialYear(sale_date)
-            var print_code = +$(this).val();
-            print_ref(print_code, year);
-        });
+        // $(document).on('change', '#print_code', function() {
+        //     var sale_date = $('#sale_date').val();
+        //     var year = getCurrentFinancialYear(sale_date)
+        //     var print_code = +$(this).val();
+        //     print_ref(print_code, year);
+        // });
 
         $(document).on("change", "#original_sale_date", function() {
             var sale_date = $(this).val();
@@ -352,7 +352,7 @@
 
             var year = getCurrentFinancialYear(sale_date)
             var print_code = +$('#print_code').val();
-            print_ref(print_code, year);
+            // print_ref(print_code, year);
 
             let csrf = '{{ csrf_token() }}';
             var vat_code = +$('#vat_code').val();
@@ -551,7 +551,6 @@
                     color_data,
                     core_data,
                     pd_data,
-                    print_ref,
                     purchage_data,
                     vehicle_data,
                     mrp_data,

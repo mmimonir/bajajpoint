@@ -48,6 +48,37 @@ class PrintController extends Controller
         return view('dms.showroom.uml.customer_data')->with(['customer_data' => $customer_data]);
     }
 
+    public function create_print_ref($print_code, $date)
+    {
+        function fiscal_year($date)
+        {
+            $fiscal_year = '';
+            $year = date('Y', strtotime($date));
+            $month = date('m', strtotime($date));
+
+            $month <= 6 ? $fiscal_year = $year - 1 . '-' . $year : $fiscal_year = $year . '-' . ($year + 1);
+
+            return $fiscal_year;
+        }
+        $print_ref = '';
+
+        switch ($print_code) {
+            case 2000:
+                $print_ref = 'BAJAJ POINT/DHAKA/' . fiscal_year($date);
+                break;
+            case 2011:
+                $print_ref = 'BAJAJ HEAVEN/DHAKA/' . fiscal_year($date);
+                break;
+            case 2030:
+                $print_ref = 'BAJAJ BLOOM/DHAKA/' . fiscal_year($date);
+                break;
+            default:
+                $print_ref = 'BAJAJ POINT/DHAKA/' . fiscal_year($date);
+                break;
+        }
+        return $print_ref;
+    }
+
     public function file_print(Request $request)
     {
         $print_code = request('print_code');
@@ -77,8 +108,8 @@ class PrintController extends Controller
                 'cores.basic_price_vat',
                 'cores.sale_vat',
                 'cores.unit_price_vat',
-                'cores.print_ref',
                 'cores.color',
+                'cores.print_code',
                 'purchages.challan_no',
                 'purchages.purchage_date',
                 'vehicles.*'
@@ -87,8 +118,13 @@ class PrintController extends Controller
             ->whereBetween('cores.original_sale_date', [$start_date, $end_date])
             ->orderBy('sale_mushak_no', 'asc')
             ->get();
+        $print_ref = $this->create_print_ref($print_code, $start_date);
 
-        return view('dms.pdf.file.print_file_html')->with(['print_data' => $print_data]);
+        return view('dms.pdf.file.print_file_html')
+            ->with([
+                'print_data' => $print_data,
+                'print_ref' => $print_ref,
+            ]);
     }
 
     function print_list(Request $request)
@@ -182,7 +218,6 @@ class PrintController extends Controller
     }
     public function single_file_print(Request $request)
     {
-
         $print_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
             ->rightJoin('purchages', 'purchages.id', '=', 'cores.store_id')
             ->select(
@@ -195,6 +230,7 @@ class PrintController extends Controller
                 'cores.original_sale_date',
                 'cores.vat_sale_date',
                 'cores.mobile',
+                'cores.print_code',
                 'cores.uml_mushak_no',
                 'cores.approval_no',
                 'cores.invoice_no',
@@ -206,7 +242,6 @@ class PrintController extends Controller
                 'cores.basic_price_vat',
                 'cores.sale_vat',
                 'cores.unit_price_vat',
-                'cores.print_ref',
                 'cores.color',
                 'purchages.challan_no',
                 'purchages.purchage_date',
@@ -214,8 +249,13 @@ class PrintController extends Controller
             )
             ->where('cores.id', "=", $request->id)
             ->get();
+        $print_ref = $this->create_print_ref($print_data[0]->print_code, $print_data[0]->original_sale_date);
 
-        return view('dms.pdf.file.print_file_html')->with(['print_data' => $print_data]);
+        return view('dms.pdf.file.print_file_html')
+            ->with([
+                'print_data' => $print_data,
+                'print_ref' => $print_ref,
+            ]);
     }
     function print_list_dashboard(Request $request)
     {

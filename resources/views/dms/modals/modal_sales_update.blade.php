@@ -103,7 +103,7 @@
                                     <div class="form-group row" style="margin-bottom:0px;">
                                         <label for="print_ref" class="col-sm-3 col-form-label form-control-sm">Print Ref</label>
                                         <div class="col-sm-9" style="padding:0px;">
-                                            <input required type="text" name="print_ref" class="form-control form-control-sm" id="print_ref">
+                                            <input disabled required type="text" name="print_ref" class="form-control form-control-sm" id="print_ref">
                                         </div>
                                     </div>
                                     <div class="row">

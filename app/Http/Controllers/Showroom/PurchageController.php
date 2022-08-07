@@ -59,13 +59,18 @@ class PurchageController extends Controller
                         'purchage_price' => $request->purchage_price[$key],
                         'vat_rebate' => $vat_rebate,
                         'in_stock' => 'yes',
+                        'ckd_process' => 'PENDING',
+                        'vat_process' => 'PENDING',
                         'mc_location' => $request['mc_location'],
                     ];
                     if ($supplier_code == 2000 || $supplier_code == 2011 || $supplier_code == 2030) {
-                        $edited_array_one = Arr::add($save_record, 'vat_month_purchage', $request->vat_month_purchage[$key]);
-                        $edited_array_two = Arr::add($edited_array_one, 'vat_year_purchage', $request->vat_year_purchage[$key]);
+                        $save_record['vat_month_purchage'] = $request->vat_month_purchage[$key];
+                        $save_record['vat_year_purchage'] = $request->vat_year_purchage[$key];
+                        // $edited_array_one = Arr::add($save_record, 'vat_month_purchage', $request->vat_month_purchage[$key]);
+                        // $edited_array_two = Arr::add($edited_array_one, 'vat_year_purchage', $request->vat_year_purchage[$key]);
                         // $edited_array_two = Arr::collapse($save_record, ['vat_month_purchage' => $request->vat_month_purchage[$key], 'vat_year_purchage' => $request->vat_year_purchage[$key]]);
-                        Core::insert($edited_array_two);
+                        // Core::insert($edited_array_two);
+                        Core::insert($save_record);
                     } else {
                         Core::insert($save_record);
                     };

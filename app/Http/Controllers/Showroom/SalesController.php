@@ -15,7 +15,7 @@ class SalesController extends Controller
         $core_data = Core::select('*')->where('id', $id)->first();
         $model_code = $core_data->model_code;
         $store_id = $core_data->store_id;
-        $print_ref = Supplier::select('print_ref')->whereNotNull('dealer_name')->get();
+        // $print_ref = Supplier::select('print_ref')->whereNotNull('dealer_name')->get();
         $vehicle_data = Vehicle::select('model')->where('model_code', $model_code)->first();
         $purchage_data = Purchage::select('purchage_date', 'vendor', 'factory_challan_no')->where('id', $store_id)->first();
         $color_data = ColorCode::select('color_code', 'color')->where('model_code', $model_code)->get();
@@ -29,7 +29,7 @@ class SalesController extends Controller
                 'purchage_data' => $purchage_data,
                 'color_data' => $color_data,
                 'pd_data' => $pd_data,
-                'print_ref' => $print_ref,
+                // 'print_ref' => $print_ref,
                 'mrp_data' => $mrp_data,
             ]
         );
@@ -102,7 +102,7 @@ class SalesController extends Controller
                     'sale_price' => $request->sale_price,
                     'sale_profit' => $request->sale_profit,
                     'dealer' => $request->dealer,
-                    'print_ref' => $request->print_ref,
+                    // 'print_ref' => $request->print_ref,
                     'evl_invoice_no' => $request->evl_invoice_no,
                     'note' => $request->note,
                     'fake_sale_date' => $request->fake_sale_date,
