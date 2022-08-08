@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4af817974409065db52c0a7146928fcb",
+    "content-hash": "b3ce5c4d7f55633cad496e2ecac45407",
     "packages": [
         {
             "name": "alexusmai/laravel-file-manager",
@@ -2268,6 +2268,79 @@
             "time": "2022-04-17T13:12:02+00:00"
         },
         {
+            "name": "livewire/livewire",
+            "version": "v2.10.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire/livewire.git",
+                "reference": "fa0441bf82f1674beecb3a8ad8a4ae428736ed18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/fa0441bf82f1674beecb3a8ad8a4ae428736ed18",
+                "reference": "fa0441bf82f1674beecb3a8ad8a4ae428736ed18",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^7.0|^8.0|^9.0",
+                "illuminate/support": "^7.0|^8.0|^9.0",
+                "illuminate/validation": "^7.0|^8.0|^9.0",
+                "league/mime-type-detection": "^1.9",
+                "php": "^7.2.5|^8.0",
+                "symfony/http-kernel": "^5.0|^6.0"
+            },
+            "require-dev": {
+                "calebporzio/sushi": "^2.1",
+                "laravel/framework": "^7.0|^8.0|^9.0",
+                "mockery/mockery": "^1.3.1",
+                "orchestra/testbench": "^5.0|^6.0|^7.0",
+                "orchestra/testbench-dusk": "^5.2|^6.0|^7.0",
+                "phpunit/phpunit": "^8.4|^9.0",
+                "psy/psysh": "@stable"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Livewire\\LivewireServiceProvider"
+                    ],
+                    "aliases": {
+                        "Livewire": "Livewire\\Livewire"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Livewire\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "A front-end framework for Laravel.",
+            "support": {
+                "issues": "https://github.com/livewire/livewire/issues",
+                "source": "https://github.com/livewire/livewire/tree/v2.10.7"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/livewire",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-08-08T13:52:53+00:00"
+        },
+        {
             "name": "maatwebsite/excel",
             "version": "3.1.40",
             "source": {
@@ -3142,6 +3215,66 @@
                 "source": "https://github.com/opis/closure/tree/3.6.3"
             },
             "time": "2022-01-27T09:35:39+00:00"
+        },
+        {
+            "name": "pavel-mironchik/laravel-backup-panel",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pavel-mironchik/laravel-backup-panel.git",
+                "reference": "8efce5ac0fa4b828a904e313a163ce7ec281fe90"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pavel-mironchik/laravel-backup-panel/zipball/8efce5ac0fa4b828a904e313a163ce7ec281fe90",
+                "reference": "8efce5ac0fa4b828a904e313a163ce7ec281fe90",
+                "shasum": ""
+            },
+            "require": {
+                "livewire/livewire": "^2.3",
+                "php": "^8.0|^7.3",
+                "spatie/laravel-backup": "^6.11.12|^7.0|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PavelMironchik\\LaravelBackupPanel\\LaravelBackupPanelServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PavelMironchik\\LaravelBackupPanel\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Mironchik",
+                    "email": "mironchikpavel@gmail.com"
+                }
+            ],
+            "description": "An interface for Spatie Laravel Backup package",
+            "homepage": "https://github.com/pavel-mironchik/laravel-backup-panel",
+            "keywords": [
+                "backup",
+                "database",
+                "laravel-backup",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/pavel-mironchik/laravel-backup-panel/issues",
+                "source": "https://github.com/pavel-mironchik/laravel-backup-panel/tree/2.2.0"
+            },
+            "time": "2022-05-05T05:26:12+00:00"
         },
         {
             "name": "phenx/php-font-lib",
