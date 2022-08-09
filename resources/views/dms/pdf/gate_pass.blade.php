@@ -88,7 +88,7 @@
                         <th style="width:68px;">MATERIAL CODE</th>
                         <th style="width:2in;">MATERIAL DESCRIPTION</th>
                         <th style="width:29px;">QTY</th>
-                        <th style="width:1.5in;">CHASIS NO</th>
+                        <th style="width:1.5in;">CHASSIS NO</th>
                         <th style="width:96px;">ENGINE NO</th>
                         <th style="width:38px;">Battery No</th>
                     </tr>
