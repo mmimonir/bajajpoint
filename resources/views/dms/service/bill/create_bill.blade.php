@@ -69,12 +69,6 @@
                 <div class="card-header no-print">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
-                            <div style="border:1px solid #000; border-radius:5px; padding:3px 5px;">
-                                <label style="margin-right:10px;">Bill Area</label>
-                                <select name="bill_list" style="font-weight: bold; background:#F7F7F7; border-radius:5px;" id="bill_list">
-
-                                </select>
-                            </div>
                             <nav aria-label="Page navigation example" style="padding-left:15px;">
                                 <ul class="pagination justify-content-center">
                                     <li class="page-item active"><a class="page-link first_jb_record" href="#">First</a></li>
@@ -86,10 +80,22 @@
                                     <button class="page-item page-link bg-dark" type="submit" id="btn_create_bill">Create Bill</button>
                                 </ul>
                             </nav>
-                            <div style="border:1px solid #000; border-radius:5px; padding:3px 5px; margin-left:15px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header no-print">
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-center" style="height:22px; width:900px; margin:auto;">
+                            <div class="d-flex justify-content-center" style="align-items:baseline; margin-left:15px; width:450px;">
+                                <label style="margin-right:10px;">Bill Area</label>
+                                <select name="bill_list" style="font-weight: bold; background:#F7F7F7; border-radius:5px; width:238px;" id="bill_list">
+
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-center" style="align-items:baseline; margin-left:15px; width:450px;">
                                 <label>Bill Date</label>
-                                <input type="date" name="bill_date_search" id="bill_date_search" style="margin-left:15px; background:#F7F7F7; width:100px;">
-                                <select name="bill_list_search" style="font-weight: bold; background:#F7F7F7; border-radius:5px;" id="bill_list_search">
+                                <input type="date" name="bill_date_search" id="bill_date_search" style="margin-left:5px; margin-right:5px; background:#F7F7F7; width:100px;">
+                                <select name="bill_list_search" style="font-weight: bold; background:#F7F7F7; border-radius:5px; width:238px;" id="bill_list_search">
                                     <option style="font-weight:bold;" value="">Bill List</option>
                                 </select>
                             </div>

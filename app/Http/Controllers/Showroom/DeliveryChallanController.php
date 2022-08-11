@@ -15,6 +15,40 @@ class DeliveryChallanController extends Controller
     {
         return view('dms.showroom.utility.delivery_challan.delivery_challan');
     }
+    public function load_challan_list(Request $request)
+    {
+        $challan_list = Core::select('*')
+            ->where([
+                'sale_date' => $request->sale_date ?? Carbon::now()->toDateString(),
+            ])
+            ->orderBy('sale_date', 'asc')
+            ->get();
+
+        return response()->json(['challan_list' => $challan_list]);
+    }
+    public function load_single_challan(Request $request)
+    {
+        try {
+            $challan_details = Core::rightJoin('color_codes', 'color_codes.color_code', '=', 'cores.color_code')
+                ->rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+                ->select(
+                    'cores.*',
+                    'cores.id as core_id',
+                    'color_codes.*',
+                    'vehicles.*'
+                )
+                ->where([
+                    'cores.id' => $request->id,
+                ])
+                ->first();
+
+            return response()->json([
+                'challan_details' => $challan_details
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => false]);
+        }
+    }
 
     public static function create_delivery_challan_no()
     {
@@ -116,7 +150,6 @@ class DeliveryChallanController extends Controller
 
     public function store_created_challan(Request $request)
     {
-        return response()->json($request->all());
         try {
             Core::where('id', $request->id)
                 ->first()
@@ -140,6 +173,7 @@ class DeliveryChallanController extends Controller
                     'print_date' => $request->sale_date,
                     'vat_sale_date' => $request->sale_date,
                     'year_of_manufacture' => $request->year_of_manufacture,
+                    'in_stock' => 'no',
                 ]);
             return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
         } catch (\Exception $e) {

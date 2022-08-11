@@ -91,12 +91,6 @@
                 <div class="card-header no-print">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
-                            <div style="border:1px solid #000; border-radius:5px; padding:3px 5px;">
-                                <label style="margin-right:10px;">Challan Area</label>
-                                <select style="font-weight: bold; background:#F7F7F7; border-radius:5px;" id="challan_list">
-
-                                </select>
-                            </div>
                             <nav aria-label="Page navigation example" style="padding-left:15px;">
                                 <ul class="pagination justify-content-center">
                                     <li class="page-item active"><a class="page-link first_jb_record" href="#">First</a></li>
@@ -108,19 +102,35 @@
                                     <button class="page-item page-link bg-dark" type="submit" id="btn_create_challan">Create Challan</button>
                                 </ul>
                             </nav>
-                            <div style="border:1px solid #000; border-radius:5px; padding:3px 5px; margin-left:15px;">
-                                <label>Challan Date</label>
-                                <input type="date" id="challan_date_search" style="margin-left:15px; background:#F7F7F7; width:100px;">
-                                <select style="font-weight: bold; background:#F7F7F7; border-radius:5px;" id="challan_list_search">
-                                    <option style="font-weight:bold;" value="">Challan List</option>
-                                </select>
-                            </div>
                         </div>
-                        <div class="row justify-content-md-center">
-                            <div class="col-md-4 d-flex mt-2" style="border:1px solid black; border-radius:5px;">
+                    </div>
+                </div>
+                <div class="card-header no-print" style="padding:0; margin-top:-4px; height:50px;">
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-center" style="align-items:baseline; margin-left:15px;">
+                            <div class="col-md-4 d-flex mt-2" style="border:1px solid black; border-radius:5px; margin-left:15px;">
                                 <label for="mc_stock_list" class="col-form-label">Availability</label>
                                 <select id="mc_stock_list" class="selectpicker" data-live-search="true" required>
 
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header no-print">
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-center" style="height:22px; width:950px; margin:auto;">
+                            <div class="d-flex justify-content-center" style="align-items:baseline; margin-left:15px; width:475px;">
+                                <label style="margin-right:10px;">Challan Area</label>
+                                <select style="font-weight: bold; background:#F7F7F7; border-radius:5px; width:238px;" id="challan_list">
+
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-center" style="align-items:baseline; margin-left:15px; width:475px;">
+                                <label>Challan Date</label>
+                                <input type="date" id="challan_date_search" style="margin-left:5px; margin-right:5px; background:#F7F7F7; width:100px;">
+                                <select style="font-weight: bold; background:#F7F7F7; border-radius:5px; width:238px;" id="challan_list_search">
+                                    <option style="font-weight:bold;" value="">Challan List</option>
                                 </select>
                             </div>
                         </div>
@@ -423,20 +433,18 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    console.log(response);
-                    return;
                     if (response.status === 200) {
-                        $('#create_bill').trigger("reset");
+                        $('#create_challan').trigger("reset");
                         Swal.fire({
                             icon: 'success',
                             title: response.message,
                             showConfirmButton: false,
                             timer: 2000
                         })
-                        $('#bill_list').empty();
-                        $('#bill_list').append('<option style="font-weight:bold;" value="">Bill List</option>');
+                        $('#challan_list').empty();
+                        $('#challan_list').append('<option style="font-weight:bold;" value="">Challan List</option>');
 
-                        load_bill_list();
+                        load_challan_list();
                     } else {
                         Swal.fire({
                             icon: 'error',
@@ -449,6 +457,109 @@
             });
         });
         // when submit create_challan form end
+
+        // Load job card list on same day start
+        function load_challan_list() {
+            $.ajax({
+                url: "{{ route('delivery_challan.load_challan_list') }}",
+                method: 'get',
+                dataType: 'json',
+                success: function({
+                    challan_list
+                }) {
+                    if (challan_list) {
+                        $('#challan_list').empty();
+                        $('#challan_list').append('<option style="font-weight:bold;" value="">Challan List</option>');
+                        challan_list.forEach(function(item) {
+                            $("#challan_list").append(
+                                `<option style="font-weight:bold;" value="${item.id}">Chl- ${item.delivery_challan_no + ' ' + item.customer_name}</option>`
+                            );
+                        });
+                    }
+                }
+            });
+        }
+        load_challan_list();
+        // Load job card list on same day end
+
+        // After select job card start
+        $('#challan_list, #challan_list_search').on('change', function() {
+            let id = $(this).val();
+            _this = $(this).parent();
+
+            $.ajax({
+                url: "{{ route('delivery_challan.load_single_challan') }}",
+                method: 'get',
+                dataType: 'json',
+                data: {
+                    id
+                },
+                success: function({
+                    challan_details
+                }) {
+                    $("#create_challan").trigger("reset");
+
+                    if (challan_details) {
+                        console.log(challan_details);
+                        $('#delivery_challan_no').val(challan_details.delivery_challan_no);
+                        $('#sale_date').val(challan_details.sale_date);
+                        $('#mobile').val(challan_details.mobile);
+                        $('#customer_name').val(challan_details.customer_name);
+                        $('#father_name').val(challan_details.father_name);
+                        $('#mother_name').val(challan_details.mother_name);
+                        $('#nid_no').val(challan_details.nid_no);
+                        $('#address_one').val(challan_details.address_one);
+                        $('#address_two').val(challan_details.address_two);
+                        $('#full_chassis').val(challan_details.eight_chassis + challan_details.one_chassis + challan_details.three_chassis + challan_details.five_chassis);
+                        $('#full_engine').val(challan_details.six_engine + challan_details.five_engine);
+                        $('#model').val(challan_details.model_make_of_vehicle);
+                        $('#year_of_manufacture').val(challan_details.year_of_manufacture);
+                        $('#no_of_cylinder_with_cc').val(challan_details.no_of_cylinder_with_cc);
+                        $('#seating_capacity').val(challan_details.seating_capacity);
+                        $('#class_of_vehicle').val(challan_details.class_of_vehicle);
+                        $('#weight').val(`${challan_details.ladan_weight} / ${challan_details.unladen_weight}`);
+                        $('#unit_price_vat').val(challan_details.unit_price_vat);
+                        $("#color_code").append(`<option selected value="${challan_details.color_code}">${challan_details.color}</option>`);
+
+                        $("#create_challan :input").prop("disabled", true);
+                        $('#btn_create_challan').attr('disabled', true);
+                        $('#challan_list').attr('disabled', false);
+                        $('#challan_list_search').attr('disabled', false);
+                        $('#challan_date_search').attr('disabled', false);
+                        $('#btn_create_challan').addClass('bg-dark');
+                        $('#btn_create_challan').removeClass('bg-secondary');
+                        $('#btn_create_challan').text('Update Challan');
+                    }
+                }
+            });
+        })
+        // After select job card end        
+
+        $('#challan_date_search').on('change', function() {
+            let sale_date = $(this).val();
+            $.ajax({
+                url: "{{ route('delivery_challan.load_challan_list') }}",
+                method: 'get',
+                data: {
+                    sale_date
+                },
+                dataType: 'json',
+                success: function({
+                    challan_list
+                }) {
+
+                    if (challan_list) {
+                        $('#challan_list_search').empty();
+                        $('#challan_list_search').append('<option style="font-weight:bold;" value="">Challan List</option>');
+                        challan_list.forEach(function(item) {
+                            $("#challan_list_search").append(
+                                `<option style="font-weight:bold;" value="${item.id}">Chl- ${item.delivery_challan_no + ' ' + item.customer_name}</option>`
+                            );
+                        });
+                    }
+                }
+            });
+        })
 
     });
 </script>
