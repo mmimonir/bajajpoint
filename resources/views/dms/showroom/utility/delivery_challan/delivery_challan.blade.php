@@ -97,7 +97,8 @@
                                     <li class="page-item"><a class="page-link previous_jb_record" href="#">Prev</a></li>
                                     <li class="page-item"><a class="page-link next_jb_record" href="#">Next</a></li>
                                     <li class="page-item"><a class="page-link last_jb_record" href="#">Last</a></li>
-                                    <li class="page-item"><a class="page-link new_bill_record bg-success" href="#">New</a></li>
+                                    <li class="page-item"><a class="page-link new_challan_record bg-success" href="#">New</a></li>
+                                    <li class="page-item"><a class="page-link disabled" id="btn_edit" href="#">Edit</a></li>
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                     <button class="page-item page-link bg-dark" type="submit" id="btn_create_challan">Create Challan</button>
                                 </ul>
@@ -110,7 +111,7 @@
                         <div class="col-md-12 d-flex justify-content-center" style="align-items:baseline; margin-left:15px;">
                             <div class="col-md-4 d-flex mt-2" style="border:1px solid black; border-radius:5px; margin-left:15px;">
                                 <label for="mc_stock_list" class="col-form-label">Availability</label>
-                                <select id="mc_stock_list" class="selectpicker" data-live-search="true" required>
+                                <select id="mc_stock_list" class="selectpicker" data-live-search="true">
 
                                 </select>
                             </div>
@@ -173,7 +174,6 @@
                                     <input type="text" name="customer_name" id="customer_name" class="form-control customer_name input_style" value="">
                                     <input type="hidden" name="id" id="core_id" value="">
                                     <input type="hidden" name="model_code" id="model_code" value="">
-                                    <input type="hidden" name="purchage_price" id="purchage_price" value="">
                                 </div>
                                 <div class="input-group mb-3 mt-10">
                                     <span class="input-group-text span_style">Father's Name :</span>
@@ -263,6 +263,47 @@
 
 <script>
     $(document).ready(function() {
+
+        $(document).on('click', '#btn_edit', function(e) {
+            let model_code = $('#model_code').val();
+            let core_id = $('#core_id').val();
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Edit it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "{{route('delivery_challan.color_list')}}",
+                        type: "GET",
+                        data: {
+                            model_code,
+                            core_id
+                        },
+                        success: function({
+                            color_list,
+                            color_code
+                        }) {
+                            if (color_list) {
+                                $('#color_code').empty();
+                                $('#color_code').append(`<option value="">Select Color</option>`);
+                                color_list.forEach(function(item) {
+                                    $('#color_code').append(`<option ${color_code == item.color_code ? 'selected': ''} value="${item.color_code}">${item.color}</option>`);
+                                });
+                            }
+                        }
+                    });
+                    $("#create_challan :input").prop("disabled", false);
+                    $('#btn_create_challan').attr('disabled', false);
+                    $('#color_code').attr('disabled', false);
+                }
+            })
+        })
 
         $(document).on('change', '#unit_price_vat', function() {
             let unit_price_vat = +$(this).val();
@@ -374,7 +415,6 @@
                         } else {
                             $('#delivery_challan_no').val(`DCH-${challan_no}`);
                         }
-
                     }
                 }
             });
@@ -480,12 +520,19 @@
             });
         }
         load_challan_list();
+        $('.new_challan_record').on('click', function() {
+            $('#create_challan').trigger('reset');
+            $('#btn_create_challan').text('Create Challan');
+            $("#create_challan :input").prop("disabled", false);
+            $('#color_code').empty();
+            load_challan_list();
+            create_delivery_challan_no();
+        })
         // Load job card list on same day end
 
         // After select job card start
         $('#challan_list, #challan_list_search').on('change', function() {
             let id = $(this).val();
-            _this = $(this).parent();
 
             $.ajax({
                 url: "{{ route('delivery_challan.load_single_challan') }}",
@@ -497,10 +544,12 @@
                 success: function({
                     challan_details
                 }) {
+                    console.log(challan_details);
                     $("#create_challan").trigger("reset");
-
                     if (challan_details) {
-                        console.log(challan_details);
+                        $('#core_id').val(challan_details.core_id);
+                        $('#model_code').val(challan_details.model_code);
+                        $('#color_code').val(challan_details.color_code);
                         $('#delivery_challan_no').val(challan_details.delivery_challan_no);
                         $('#sale_date').val(challan_details.sale_date);
                         $('#mobile').val(challan_details.mobile);
@@ -519,6 +568,8 @@
                         $('#class_of_vehicle').val(challan_details.class_of_vehicle);
                         $('#weight').val(`${challan_details.ladan_weight} / ${challan_details.unladen_weight}`);
                         $('#unit_price_vat').val(challan_details.unit_price_vat);
+                        $('#basic_price_vat').val(challan_details.basic_price_vat);
+                        $('#sale_vat').val(challan_details.sale_vat);
                         $("#color_code").append(`<option selected value="${challan_details.color_code}">${challan_details.color}</option>`);
 
                         $("#create_challan :input").prop("disabled", true);
@@ -528,6 +579,7 @@
                         $('#challan_date_search').attr('disabled', false);
                         $('#btn_create_challan').addClass('bg-dark');
                         $('#btn_create_challan').removeClass('bg-secondary');
+                        $('#btn_edit').removeClass('disabled');
                         $('#btn_create_challan').text('Update Challan');
                     }
                 }

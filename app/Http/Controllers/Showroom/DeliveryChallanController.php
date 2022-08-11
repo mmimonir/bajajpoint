@@ -15,6 +15,16 @@ class DeliveryChallanController extends Controller
     {
         return view('dms.showroom.utility.delivery_challan.delivery_challan');
     }
+    public function color_list(Request $request)
+    {
+        $color_list = ColorCode::where('model_code', $request->model_code)->get();
+        $color_code = Core::select('color_code')->where('id', $request->core_id)->first();
+
+        return response()->json([
+            'color_list' => $color_list,
+            'color_code' => $color_code->color_code
+        ]);
+    }
     public function load_challan_list(Request $request)
     {
         $challan_list = Core::select('*')
@@ -28,26 +38,22 @@ class DeliveryChallanController extends Controller
     }
     public function load_single_challan(Request $request)
     {
-        try {
-            $challan_details = Core::rightJoin('color_codes', 'color_codes.color_code', '=', 'cores.color_code')
-                ->rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
-                ->select(
-                    'cores.*',
-                    'cores.id as core_id',
-                    'color_codes.*',
-                    'vehicles.*'
-                )
-                ->where([
-                    'cores.id' => $request->id,
-                ])
-                ->first();
+        $challan_details = Core::rightJoin('color_codes', 'color_codes.color_code', '=', 'cores.color_code')
+            ->rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+            ->select(
+                'cores.*',
+                'cores.id as core_id',
+                'color_codes.*',
+                'vehicles.*'
+            )
+            ->where([
+                'cores.id' => $request->id,
+            ])
+            ->first();
 
-            return response()->json([
-                'challan_details' => $challan_details
-            ]);
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage(), 'status' => false]);
-        }
+        return response()->json([
+            'challan_details' => $challan_details
+        ]);
     }
 
     public static function create_delivery_challan_no()
@@ -158,6 +164,8 @@ class DeliveryChallanController extends Controller
                     'address_two' => $request->address_two,
                     'color_code' => $request->color_code,
                     'customer_name' => $request->customer_name,
+                    'father_name' => $request->father_name,
+                    'mother_name' => $request->mother_name,
                     'delivery_challan_no' => $request->delivery_challan_no,
                     'eight_chassis' => $request->eight_chassis,
                     'one_chassis' => $request->one_chassis,
@@ -172,6 +180,9 @@ class DeliveryChallanController extends Controller
                     'original_sale_date' => $request->sale_date,
                     'print_date' => $request->sale_date,
                     'vat_sale_date' => $request->sale_date,
+                    'unit_price_vat' => $request->unit_price_vat,
+                    'sale_vat' => $request->sale_vat,
+                    'basic_price_vat' => $request->basic_price_vat,
                     'year_of_manufacture' => $request->year_of_manufacture,
                     'in_stock' => 'no',
                 ]);
