@@ -113,6 +113,7 @@ class SalesController extends Controller
                     'mushak_date' => $request->mushak_date,
                     'tr_number' => $request->tr_number,
                     'tr_dep_date' => $request->tr_dep_date,
+                    'in_stock' => 'no',
                     'year_of_manufacture' => $request->year_of_manufacture
                 ]);
             return response()->json(['status' => 200, 'message' => 'Successfully Updated']);

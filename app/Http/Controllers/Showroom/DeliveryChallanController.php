@@ -3,17 +3,41 @@
 namespace App\Http\Controllers\Showroom;
 
 use Carbon\Carbon;
+use App\Models\Showroom\Mrp;
 use Illuminate\Http\Request;
 use App\Models\Showroom\Core;
 use App\Models\Showroom\ColorCode;
 use App\Http\Controllers\Controller;
-use App\Models\Showroom\Mrp;
 
 class DeliveryChallanController extends Controller
 {
     public function index()
     {
         return view('dms.showroom.utility.delivery_challan.delivery_challan');
+    }
+    public function mc_return(Request $request)
+    {
+        try {
+            Core::where('id', $request->id)
+                ->first()
+                ->update([
+                    'address_one' => null,
+                    'address_two' => null,
+                    'customer_name' => null,
+                    'father_name' => null,
+                    'mother_name' => null,
+                    'mobile' => null,
+                    'nid_no' => null,
+                    'sale_date' => null,
+                    'original_sale_date' => null,
+                    'print_date' => null,
+                    'vat_sale_date' => null,
+                    'in_stock' => 'yes',
+                ]);
+            return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 502]);
+        }
     }
     public function color_list(Request $request)
     {
@@ -99,6 +123,7 @@ class DeliveryChallanController extends Controller
 
     public function get_stock_mc()
     {
+        $stock_word = 'yes';
         $stock = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
             ->select(
                 'cores.id',
@@ -107,7 +132,7 @@ class DeliveryChallanController extends Controller
                 'cores.five_engine',
                 'vehicles.model',
             )
-            ->where('cores.in_stock', 'YES')
+            ->where('cores.in_stock', 'yes')
             ->orderBy('vehicles.model', 'asc')
             ->get();
 

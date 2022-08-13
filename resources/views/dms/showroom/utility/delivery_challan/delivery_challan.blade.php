@@ -50,7 +50,8 @@
     }
 
     .span_style {
-        background-color: #F4F6F9;
+        /* background-color: #F4F6F9; */
+        background-color: white;
         height: 25px;
         border: 0px;
         border-radius: 0;
@@ -60,7 +61,8 @@
     }
 
     .input_style {
-        background-color: #F4F6F9;
+        /* background-color: #F4F6F9; */
+        background-color: white;
         height: 25px;
         border: 0px;
         border-bottom: 1px solid black;
@@ -93,13 +95,10 @@
                         <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
                             <nav aria-label="Page navigation example" style="padding-left:15px;">
                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item active"><a class="page-link first_jb_record" href="#">First</a></li>
-                                    <li class="page-item"><a class="page-link previous_jb_record" href="#">Prev</a></li>
-                                    <li class="page-item"><a class="page-link next_jb_record" href="#">Next</a></li>
-                                    <li class="page-item"><a class="page-link last_jb_record" href="#">Last</a></li>
                                     <li class="page-item"><a class="page-link new_challan_record bg-success" href="#">New</a></li>
                                     <li class="page-item"><a class="page-link disabled" id="btn_edit" href="#">Edit</a></li>
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
+                                    <li class="page-item mc_return" id="mc_return"><a class="page-link" href="#">MC Return</a></li>
                                     <button class="page-item page-link bg-dark" type="submit" id="btn_create_challan">Create Challan</button>
                                 </ul>
                             </nav>
@@ -153,7 +152,7 @@
                             <div class="col-md-6">
                                 <div class="input-group mb-3" style="width: 185px;">
                                     <span class="input-group-text span_style">Challan No:</span>
-                                    <input readonly type="text" id="delivery_challan_no" class="form-control delivery_challan_no input_style" value="">
+                                    <input style="background-color:white;" readonly type="text" id="delivery_challan_no" class="form-control delivery_challan_no input_style" value="">
                                 </div>
                             </div>
                             <div class="col-md-3 offset-md-3" style="padding-right: 11px;">
@@ -263,6 +262,36 @@
 
 <script>
     $(document).ready(function() {
+
+        $(document).on('click', '#mc_return', function(e) {
+            let id = $('#core_id').val();
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Edit it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "{{route('delivery_challan.mc_return')}}",
+                        type: "GET",
+                        data: {
+                            id
+                        },
+                        success: function(response) {
+                            if (response.status == 200) {
+                                new_challan_record();
+                            }
+                        }
+                    });
+                }
+            })
+        });
 
         $(document).on('click', '#btn_edit', function(e) {
             let model_code = $('#model_code').val();
@@ -520,13 +549,17 @@
             });
         }
         load_challan_list();
-        $('.new_challan_record').on('click', function() {
+
+        function new_challan_record() {
             $('#create_challan').trigger('reset');
             $('#btn_create_challan').text('Create Challan');
             $("#create_challan :input").prop("disabled", false);
             $('#color_code').empty();
             load_challan_list();
             create_delivery_challan_no();
+        }
+        $('.new_challan_record').on('click', function() {
+            new_challan_record();
         })
         // Load job card list on same day end
 

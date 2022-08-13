@@ -159,6 +159,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
         Route::get('/load_challan_list',  'load_challan_list')->name('delivery_challan.load_challan_list');
         Route::get('/load_single_challan',  'load_single_challan')->name('delivery_challan.load_single_challan');
         Route::get('/color_list',  'color_list')->name('delivery_challan.color_list');
+        Route::get('/mc_return',  'mc_return')->name('delivery_challan.mc_return');
     });
 
     //     Route::get('backup-run', function () {
