@@ -337,7 +337,7 @@ class JobCardController extends Controller
                     $total_bill = 0;
                     foreach ($request->part_id as $key => $value) {
                         if ($request->part_id[$key] != null) {
-                            $total_bill += $request->quantity[$key] * $request->sale_rate[$key];
+                            $total_bill += $request->quantity[$key] * $request->rate[$key];
                         }
                     }
                     // Calculate profit amount

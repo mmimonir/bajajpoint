@@ -31,7 +31,11 @@ class JobCardService
             $bill_data = Bill::select('bill_no')
                 ->orderBy('created_at', 'desc')
                 ->first();
-            $bill_no = $bill_data->bill_no + 1;
+            if ($bill_data) {
+                $bill_no = $bill_data->bill_no + 1;
+            } else {
+                $bill_no = 1;
+            }
         }
         return $bill_no;
     }

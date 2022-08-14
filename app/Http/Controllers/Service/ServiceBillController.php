@@ -15,9 +15,36 @@ class ServiceBillController extends Controller
     {
         return view('dms.service.bill.create_bill');
     }
-    public function html_bill()
+    public function html_bill(Request $request)
     {
-        return view('dms.html_print.html_bill');
+        $bill_data = Bill::rightJoin(
+            'service_customers',
+            'service_customers.id',
+            '=',
+            'bills.service_customer_id'
+        )->rightJoin(
+            'spare_parts_sales',
+            'spare_parts_sales.bill_id',
+            '=',
+            'bills.id'
+        )->rightJoin(
+            'spare_parts_stocks',
+            'spare_parts_stocks.part_id',
+            '=',
+            'spare_parts_sales.part_id'
+        )
+            ->select(
+                'bills.*',
+                'spare_parts_stocks.*',
+                'service_customers.*',
+                'spare_parts_sales.*'
+            )->where(
+                'bills.id',
+                $request->id
+            )->get();
+
+        return view('dms.html_print.html_bill')
+            ->with(['bill_data' => $bill_data]);
     }
 
     public function load_bill_list(Request $request)

@@ -297,6 +297,7 @@
                                         <span class="text-center border_bottom border_right print-ok" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right sale_rate" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
                                         <span class="text-center border_bottom delete_icon no-print" style="display:inline-block; width:41px;"><a href="#" class="disabled delete_parts_item"><i class="fa fa-trash delete_icon text-secondary"></i></a></span>
                                         <input type="hidden" name="id" class="id" value="">
+                                        <input type="hidden" name="rate[]" class="rate" value="">
                                 </div>
                                 @endfor
                             </div>
@@ -694,6 +695,7 @@
                             if (data.stock_quantity > 0) {
                                 _this.find('.description').val(data.part_name)
                                 _this.find('.quantity').val(1)
+                                _this.find('.rate').val(data.rate)
                                 _this.find('.sale_rate').val(data.rate).trigger("change")
                                 $('.paid_amount').val($('.total_payable').val()).trigger("change");
                                 _this.find('.delete_parts_item').removeClass('disabled');
@@ -834,6 +836,7 @@
             let part_id = [];
             let quantity = [];
             let sale_rate = [];
+            let rate = [];
             let job_card_id = $('#job_card_id').val();
             let discount = $('#discount').val();
             let paid_service_charge = $('#paid_service').val();
@@ -860,6 +863,11 @@
                     sale_rate.push($(this).val());
                 }
             });
+            $("input[name='rate[]']").each(function() {
+                if ($(this).val() !== '') {
+                    rate.push($(this).val());
+                }
+            });
             $.ajax({
                 url: "{{ route('job_card.delivery_done') }}",
                 method: 'post',
@@ -877,6 +885,7 @@
                     client_name,
                     client_mobile,
                     client_address,
+                    rate,
                     _token: "{{ csrf_token() }}"
                 },
                 dataType: 'json',
@@ -1007,6 +1016,8 @@
                     job_card_list
                 }) {
                     if (job_card_list) {
+                        $("#job_card_list").empty();
+                        $("#job_card_list").append(`<option style="font-weight:bold;" value="">Job Card List</option>`);
                         job_card_list.forEach(function(item) {
                             $("#job_card_list").append(`<option style="font-weight:bold;" value="${item.id}">JB-${item.job_card_no}</option>`);
                         });
