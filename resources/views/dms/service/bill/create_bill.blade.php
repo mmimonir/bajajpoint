@@ -31,7 +31,7 @@
     }
 
     .input_style {
-        background-color: #F4F6F9;
+        background-color: white;
         height: 18px;
     }
 
@@ -123,36 +123,36 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group mb-3" style="width: 160px;">
-                                        <span class="input-group-text" id="basic-addon1" style="height:25px; border-radius: 0;">Bill No:</span>
-                                        <input readonly type="text" name="bill_no" id="bill_no" class="form-control bill_no" style="height:25px; border-radius: 0;">
+                                        <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Bill No:</span>
+                                        <input readonly type="text" name="bill_no" id="bill_no" class="form-control bill_no input_style" style="height:25px;">
                                     </div>
                                 </div>
                                 <div class="col-md-3 offset-md-3" style="padding-right: 0px;">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1" style="height:25px; border-radius: 0;">Date:</span>
-                                        <input type="date" name="bill_date" id="bill_date" class="form-control bill_date" style="height:25px; border-radius: 0;">
+                                        <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Date:</span>
+                                        <input type="date" name="bill_date" id="bill_date" class="form-control bill_date input_style" style="height:25px;">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 offset-md-9" style="padding-right: 0px; margin-top:-12px;">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1" style="height:25px; border-radius: 0;">Mobile</span>
-                                        <input type="text" name="client_mobile" id="client_mobile" class="form-control client_mobile" style="height:25px; border-radius: 0;">
+                                        <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Mobile</span>
+                                        <input type="text" name="client_mobile" id="client_mobile" class="form-control client_mobile input_style" style="height:25px;">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="input-group mb-3" style="margin-top:-14px;">
-                                    <span class="input-group-text" id="basic-addon1" style="background-color:#F4F6F9; height:25px; border:0px; border-radius: 0;">Name :</span>
-                                    <input type="text" name="client_name" id="client_name" class="form-control client_name" style="background-color:#F4F6F9; height:25px; border:0px; border-bottom: 1px solid black; border-radius:0;">
+                                    <span class="input-group-text input_style" id="basic-addon1" style="height:25px; border:0px; border-radius: 0;">Name :</span>
+                                    <input type="text" name="client_name" id="client_name" class="form-control client_name input_style" style=" height:25px; border:0px; border-bottom: 1px solid black; border-radius:0;">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="input-group mb-3" style="margin-top:-10px;">
-                                    <span class="input-group-text" id="basic-addon1" style="background-color:#F4F6F9; height:25px; border:0px; border-radius: 0;">Address :</span>
-                                    <input type="text" name="client_address" id="client_address" class="form-control client_address" style="background-color:#F4F6F9; height:25px; border:0px; border-bottom: 1px solid black; border-radius:0;">
+                                    <span class="input-group-text input_style" id="basic-addon1" style="height:25px; border:0px; border-radius: 0;">Address :</span>
+                                    <input type="text" name="client_address" id="client_address" class="form-control client_address input_style" style="height:25px; border:0px; border-bottom: 1px solid black; border-radius:0;">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -165,7 +165,7 @@
                                             <th style="text-align:center;">Quantity</th>
                                             <th style="text-align:center;">Rate</th>
                                             <th style="text-align:center;">Amount</th>
-                                            <th style="text-align:center;">Action</th>
+                                            <th class="no-print" style="text-align:center;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -189,7 +189,7 @@
                                             <td>
                                                 <input type="text" name="total_amount[]" class="input_style text-right total_amount">
                                             </td>
-                                            <td class="text-center">
+                                            <td class="text-center no-print">
                                                 <a href="#" class="disabled delete_parts_item"><i class="fa fa-trash delete_icon text-secondary"></i></a>
                                             </td>
                                             </tr>
@@ -204,37 +204,37 @@
                                             </td>
                                             <td>Total Amount</td>
                                             <td><input readOnly type="text" name="grand_total" id="grand_total" class="input_style text-right grand_total"></td>
-                                            <td></td>
+                                            <td class="no-print"></td>
                                         </tr>
                                         <tr>
                                             <td>Discount</td>
                                             <td><input type="text" name="discount" id="discount" class="input_style text-right discount"></td>
-                                            <td></td>
+                                            <td class="no-print"></td>
                                         </tr>
                                         <tr>
                                             <td>Balance</td>
                                             <td><input readOnly type="text" name="balance" id="balance" class="input_style text-right balance"></td>
-                                            <td></td>
+                                            <td class="no-print"></td>
                                         </tr>
                                         <tr>
                                             <td>VAT</td>
                                             <td><input type="text" name="vat" id="vat" class="input_style text-right vat"></td>
-                                            <td></td>
+                                            <td class="no-print"></td>
                                         </tr>
                                         <tr>
                                             <td>Grand Total</td>
                                             <td><input readOnly type="text" name="bill_amount" id="bill_amount" class="input_style text-right bill_amount"></td>
-                                            <td></td>
+                                            <td class="no-print"></td>
                                         </tr>
                                         <tr>
                                             <td>Paid Amount</td>
                                             <td><input type="text" name="paid_amount" id="paid_amount" class="input_style text-right paid_amount"></td>
-                                            <td></td>
+                                            <td class="no-print"></td>
                                         </tr>
                                         <tr>
                                             <td>Due</td>
                                             <td><input readOnly type="text" name="due_amount" id="due_amount" class="input_style text-right due_amount"></td>
-                                            <td></td>
+                                            <td class="no-print"></td>
                                         </tr>
                                     </tfoot>
                                 </table>

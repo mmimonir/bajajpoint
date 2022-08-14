@@ -77,6 +77,17 @@
         .no-print * {
             display: none !important;
         }
+
+        .print-ok {
+            width: 148px !important;
+
+        }
+
+        .print-scale {
+            transform: scale(0.93);
+            transform-origin: top left;
+
+        }
     }
 
     .custom_dropdown {
@@ -112,9 +123,6 @@
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
                             <h4 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px;">জব কার্ড</h4>
-                            <!-- <select name="job_card_list" style="font-weight: bold;" id="job_card_list">
-                                <option style="font-weight:bold;" value="">Job Card List</option>
-                            </select> -->
                             <nav aria-label="Page navigation example" style="padding-left:15px;">
                                 <ul class="pagination justify-content-center" id="top_navbar">
                                     <li class="page-item active"><a class="page-link first_jb_record" href="#">First</a></li>
@@ -125,7 +133,6 @@
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                     <button class="page-item page-link bg-dark" type="submit" id="create_jb_top">Create JB</button>
                                     <a href="#" class="page-item page-link bg-secondary disable" id="delivery_done_top">Delivery Done</a>
-                                    <!-- <a href="#" class="print_bill page-item page-link bg-secondary disable" id="print_bill">Print Bill</a> -->
                                 </ul>
                             </nav>
                         </div>
@@ -151,7 +158,7 @@
                     </div>
                 </div>
 
-                <div id="print_area" class="card-body bangla_font bangla_font_light" style="width:11.5in; margin:auto; border:1px solid; padding:0; margin-top:22px; margin-bottom:22px;">
+                <div id="print_area" class="card-body bangla_font bangla_font_light print-scale" style="width:11.5in; margin:auto; border:1px solid; padding:0;">
                     <div id="pending_png">
 
                     </div>
@@ -277,8 +284,8 @@
                                     <span class="text-center border_right" style="display:inline-block; width:180px;">পার্টস আইডি</span>
                                     <span class="text-center border_right" style="display:inline-block; width:249px;">পার্টস এবং সেবার বিবরণ</span>
                                     <span class="text-center border_right" style="display:inline-block; width:74px;">পরিমাণ</span>
-                                    <span class="text-center border_right" style="display:inline-block; width:104px;">মূল্য (টাকা)</span>
-                                    <span‍ class="text-center" style="display:inline-block; width:41px;">Action</span>
+                                    <span class="text-center border_right print-ok" style="display:inline-block; width:104px;">মূল্য (টাকা)</span>
+                                    <span‍ class="text-center no-print" style="display:inline-block; width:41px;">Action</span>
                                 </div>
                                 <div id="spare_parts">
 
@@ -287,8 +294,8 @@
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:180px;"><input name="part_id[]" id="part_id" class="part_id" style="width:100%; height:19px;" type="text" value=""></span>
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:249px;"><input class="description" style="width:100%; height:19px;" type="text" value=""></span>
                                         <span class="text-center border_bottom border_right" style="display:inline-block; width:74px;"><input name="quantity[]" class="text-center quantity" style="width:100%; height:19px;" type="text" value=""></span>
-                                        <span class="text-center border_bottom border_right" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right sale_rate" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
-                                        <span class="text-center border_bottom delete_icon" style="display:inline-block; width:41px;"><a href="#" class="disabled delete_parts_item"><i class="fa fa-trash delete_icon text-secondary"></i></a></span>
+                                        <span class="text-center border_bottom border_right print-ok" style="display:inline-block; width:104px;"><input name="sale_rate[]" class="text-right total_right sum_right sale_rate" style="width:100%; height:19px; padding-right:3px;" type="text" value=""></span>
+                                        <span class="text-center border_bottom delete_icon no-print" style="display:inline-block; width:41px;"><a href="#" class="disabled delete_parts_item"><i class="fa fa-trash delete_icon text-secondary"></i></a></span>
                                         <input type="hidden" name="id" class="id" value="">
                                 </div>
                                 @endfor
@@ -338,110 +345,111 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div style="margin-top:20px;">
-                    <p class="m-0 font-weight-bold text-center border_top border_bottom">
-                        কাস্টমার ফিডব্যাক (সি এস আই ইনডেক্স) ফরম
-                    </p>
-                    <div class="m-0 border_bottom pl-1" style="border-top:0;">
-                        <span style="border-right:1px solid; display: inline-block; width: 330px;">1. আমাদের সার্ভিস স্টাফদের থেকে কেমন ব্যবহার পেলেন?</span>
-                        <div style="display:inline-block; width: 179px;" class="text-center border_right">
-                            <select class="custom_dropdown" name="stuff_behavior" style="width:72px; height:21px;" id="stuff_behavior">
-                                <option value="khub_valo">খুব ভাল</option>
-                                <option value="darun">দারুন</option>
-                                <option value="valo">ভাল</option>
-                                <option value="motamoti">মোটামুটি</option>
-                            </select>
-                        </div>
-                        <span style="border-right:1px solid; display: inline-block; width: 467px;">4. মোটর সাইকেলের সমস্যাগুলো সমাধান হয়েছে কি?</span>
-                        <div style="display:inline-block; width: 112px;" class="text-center">
-                            <select class="custom_dropdown" name="mc_problem_solved" style="width:37px; height:21px;" id="mc_problem_solved">
-                                <option value="yes">হ্যাঁ</option>
-                                <option value="no">না</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="m-0 border_bottom pl-1" style="border-top:0;">
-                        <span style="border-right:1px solid; display: inline-block; width: 330px;">2. সার্ভিস সেন্টারের পরিস্কার পরিচ্ছন্নতা কেমন দেখতে পেলেন?</span>
-                        <div style="display:inline-block; width: 179px;" class="text-center border_right">
-                            <select class="custom_dropdown" name="service_center_is_clean" style="width:72px; height:21px;" id="service_center_is_clean">
-                                <option value="khub_valo">খুব ভাল</option>
-                                <option value="darun">দারুন</option>
-                                <option value="valo">ভাল</option>
-                                <option value="motamoti">মোটামুটি</option>
-                            </select>
-                        </div>
-                        <span style="border-right:1px solid; display: inline-block; width: 467px;">5. সঠিক সময়ে গাড়িটি ডেলিভারী পেয়েছেন কি?</span>
-                        <div style="display:inline-block; width: 112px;" class="text-center">
-                            <select class="custom_dropdown" name="mc_delivery_done" style="width:37px; height:21px;" id="mc_delivery_done">
-                                <option value="yes">হ্যাঁ</option>
-                                <option value="no">না</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="m-0 border_bottom pl-1" style="border-top:0;">
-                        <span style="border-right:1px solid; display: inline-block; width: 330px;">3. গাড়ির সম্পাদিত কাজ সম্পর্কে আপনি অবহিত আছেন কি?</span>
-                        <div style="display:inline-block; width: 179px;" class="text-center border_right">
-                            <select class="custom_dropdown" name="garir_sompadito_kaj" style="width:72px; height:21px;" id="garir_sompadito_kaj">
-                                <option value="yes">হ্যাঁ</option>
-                                <option value="no">না</option>
-                            </select>
-                        </div>
-                        <span style="border-right:1px solid; display: inline-block; width: 467px;">6. আপনার বন্ধু/আত্নীয়কে আমাদের সার্ভিস সেন্টারে আসতে সুপারিশ করবেন কি?</span>
-                        <div style="display:inline-block; width: 112px;" class="text-center">
-                            <select class="custom_dropdown" name="recomend_our_service_center" style="width:37px; height:21px;" id="recomend_our_service_center">
-                                <option value="yes">হ্যাঁ</option>
-                                <option value="no">না</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="m-0 pl-1" style="border-top:0;">
-                        <span style="border-right:0; display: inline-block; height:19px;">7. আপনার মূল্যবান পরামর্শ/মন্তব্য থাকলে লিখুন।</span><textarea name="customer_suggestion" style="height:19px; width:840px; margin-bottom:-3px;"></textarea>
-                    </div>
-                    <div class="m-0 border_bottom" style="padding-left:375px; width:100%; padding-top:30px;">
-                        <span>তারিখ:</span>
-                        <span style="margin-left:400px;">গ্রাহকের স্বাক্ষর:</span>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-12 d-flex justify-content-center">
-                        <div class="d-flex align-items-center p-1 border_bottom" style="width:15%; border-right:1px solid;">
-                            <img src="{{URL('/images/uml_logo.png')}}" class="img-fluid p-1">
+                    <div style="margin-top:20px;">
+                        <p class="m-0 font-weight-bold text-center border_top border_bottom">
+                            কাস্টমার ফিডব্যাক (সি এস আই ইনডেক্স) ফরম
+                        </p>
+                        <div class="m-0 border_bottom pl-1" style="border-top:0;">
+                            <span style="border-right:1px solid; display: inline-block; width: 330px;">1. আমাদের সার্ভিস স্টাফদের থেকে কেমন ব্যবহার পেলেন?</span>
+                            <div style="display:inline-block; width: 179px;" class="text-center border_right">
+                                <select class="custom_dropdown" name="stuff_behavior" style="width:72px; height:21px;" id="stuff_behavior">
+                                    <option value="khub_valo">খুব ভাল</option>
+                                    <option value="darun">দারুন</option>
+                                    <option value="valo">ভাল</option>
+                                    <option value="motamoti">মোটামুটি</option>
+                                </select>
+                            </div>
+                            <span style="border-right:1px solid; display: inline-block; width: 467px;">4. মোটর সাইকেলের সমস্যাগুলো সমাধান হয়েছে কি?</span>
+                            <div style="display:inline-block; width: 112px;" class="text-center">
+                                <select class="custom_dropdown" name="mc_problem_solved" style="width:37px; height:21px;" id="mc_problem_solved">
+                                    <option value="yes">হ্যাঁ</option>
+                                    <option value="no">না</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="text-center p-1 border_bottom" style="width:50%; border-right:1px solid;">
-                            <p class="m-0 font-weight-bold h3 border_bottom"><span class="fs-4">ডিলারের নাম: </span>বাজাজ পয়েন্ট (বাজাজ সার্ভিস সেন্টার)</p>
-                            <p class="m-0 font-weight-bold">400/বি, মালিবাগ চৌধুরী পাড়া, ঢাকা-1219</p>
-                            <p class="m-0 font-weight-bold">মোবাইল: 01680 365 200, 01813 551 621</p>
+                        <div class="m-0 border_bottom pl-1" style="border-top:0;">
+                            <span style="border-right:1px solid; display: inline-block; width: 330px;">2. সার্ভিস সেন্টারের পরিস্কার পরিচ্ছন্নতা কেমন দেখতে পেলেন?</span>
+                            <div style="display:inline-block; width: 179px;" class="text-center border_right">
+                                <select class="custom_dropdown" name="service_center_is_clean" style="width:72px; height:21px;" id="service_center_is_clean">
+                                    <option value="khub_valo">খুব ভাল</option>
+                                    <option value="darun">দারুন</option>
+                                    <option value="valo">ভাল</option>
+                                    <option value="motamoti">মোটামুটি</option>
+                                </select>
+                            </div>
+                            <span style="border-right:1px solid; display: inline-block; width: 467px;">5. সঠিক সময়ে গাড়িটি ডেলিভারী পেয়েছেন কি?</span>
+                            <div style="display:inline-block; width: 112px;" class="text-center">
+                                <select class="custom_dropdown" name="mc_delivery_done" style="width:37px; height:21px;" id="mc_delivery_done">
+                                    <option value="yes">হ্যাঁ</option>
+                                    <option value="no">না</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="align-middle p-1 border_bottom" style="width:20%; border-right:1px solid;">
-                            <p class="m-0 font-weight-bold border_bottom" style="height:30px;">জব কার্ড নং:<input name="" class="job_card_no_bottom" name="" style="display:inline-block; height:24px; width:100px; font-weight:bold; font-size:16px; padding-left:8px;" type="text" /></p>
-                            <p class="m-0 font-weight-bold">জব কার্ড তারিখ:<input name="" class="pl-2 job_card_date_bottom font-weight-bold" style="display:inline-block; height:24px; width:100px;" type="date" /></p>
+                        <div class="m-0 border_bottom pl-1" style="border-top:0;">
+                            <span style="border-right:1px solid; display: inline-block; width: 330px;">3. গাড়ির সম্পাদিত কাজ সম্পর্কে আপনি অবহিত আছেন কি?</span>
+                            <div style="display:inline-block; width: 179px;" class="text-center border_right">
+                                <select class="custom_dropdown" name="garir_sompadito_kaj" style="width:72px; height:21px;" id="garir_sompadito_kaj">
+                                    <option value="yes">হ্যাঁ</option>
+                                    <option value="no">না</option>
+                                </select>
+                            </div>
+                            <span style="border-right:1px solid; display: inline-block; width: 467px;">6. আপনার বন্ধু/আত্নীয়কে আমাদের সার্ভিস সেন্টারে আসতে সুপারিশ করবেন কি?</span>
+                            <div style="display:inline-block; width: 112px;" class="text-center">
+                                <select class="custom_dropdown" name="recomend_our_service_center" style="width:37px; height:21px;" id="recomend_our_service_center">
+                                    <option value="yes">হ্যাঁ</option>
+                                    <option value="no">না</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="d-flex align-items-center p-1 border_bottom" style="width:15%;">
-                            <img src="{{URL('/images/bajaj_logo.png')}}" class="img-fluid p-1">
+                        <div class="m-0 pl-1" style="border-top:0;">
+                            <span style="border-right:0; display: inline-block; height:19px;">7. আপনার মূল্যবান পরামর্শ/মন্তব্য থাকলে লিখুন।</span><textarea name="customer_suggestion" style="height:19px; width:840px; margin-bottom:-3px;"></textarea>
+                        </div>
+                        <div class="m-0 border_bottom" style="padding-left:375px; width:100%; padding-top:30px;">
+                            <span>তারিখ:</span>
+                            <span style="margin-left:400px;">গ্রাহকের স্বাক্ষর:</span>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="m-0 border_bottom" style="padding-left:11px;">
-                            <span style="display:inline-block; width:375px;">গাড়ির রেজিঃ নং:<span style="margin-left:10px;" class="rg_number_bottom text-bold"></span></span>
-                            <span class="border_right" style="display:inline-block; width:327px;">গাড়ির মডেল: <span class="mc_model_bottom text-bold"></span></span>
-                            <span>অগ্রিম:<span class="advance_bottom text-bold"></span></span>
+
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-center">
+                            <div class="d-flex align-items-center p-1 border_bottom" style="width:15%; border-right:1px solid;">
+                                <img src="{{URL('/images/uml_logo.png')}}" class="img-fluid p-1">
+                            </div>
+                            <div class="text-center p-1 border_bottom" style="width:50%; border-right:1px solid;">
+                                <p class="m-0 font-weight-bold h3 border_bottom"><span class="fs-4">ডিলারের নাম: </span>বাজাজ পয়েন্ট (বাজাজ সার্ভিস সেন্টার)</p>
+                                <p class="m-0 font-weight-bold">400/বি, মালিবাগ চৌধুরী পাড়া, ঢাকা-1219</p>
+                                <p class="m-0 font-weight-bold">মোবাইল: 01680 365 200, 01813 551 621</p>
+                            </div>
+                            <div class="align-middle p-1 border_bottom" style="width:20%; border-right:1px solid;">
+                                <p class="m-0 font-weight-bold border_bottom" style="height:30px;">জব কার্ড নং:<input name="" class="job_card_no_bottom" name="" style="display:inline-block; height:24px; width:100px; font-weight:bold; font-size:16px; padding-left:8px;" type="text" /></p>
+                                <p class="m-0 font-weight-bold">জব কার্ড তারিখ:<input name="" class="pl-2 job_card_date_bottom font-weight-bold" style="display:inline-block; height:24px; width:100px;" type="date" /></p>
+                            </div>
+                            <div class="d-flex align-items-center p-1 border_bottom" style="width:15%;">
+                                <img src="{{URL('/images/bajaj_logo.png')}}" class="img-fluid p-1">
+                            </div>
                         </div>
-                        <div class="m-0" style="padding-left:11px;">
-                            <span style="display:inline-block; width:375px;">ইঞ্জিন নং:
-                                <span class="engine_no_bottom text-bold"></span>
-                            </span>
-                            <span class="border_right" style="display:inline-block; width:327px; height:40px;">চেসিস নং:
-                                <span class="chassis_no_bottom text-bold"></span>
-                            </span>
-                            <span class="border_bottom" style="display:inline-block; width:382px; height:40px;">ওয়ার্কশপ ইরচার্জ:</span>
-                        </div>
-                        <div class="m-0" style="padding-left:11px;">
-                            <span class="border_right" style="display:inline-block; width:705px; text-align:right; height:40px; padding-right:10px;">গাড়িটি ডেলিভারীর অনুমতি দেওয়া হল।</span>
-                            <span style="display:inline-block; width:382px; height:40px;">ক্যাশিয়ারের স্বাক্ষর:</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="m-0 border_bottom" style="padding-left:11px;">
+                                <span style="display:inline-block; width:375px;">গাড়ির রেজিঃ নং:<span style="margin-left:10px;" class="rg_number_bottom text-bold"></span></span>
+                                <span class="border_right" style="display:inline-block; width:327px;">গাড়ির মডেল: <span class="mc_model_bottom text-bold"></span></span>
+                                <span>অগ্রিম:<span class="advance_bottom text-bold"></span></span>
+                            </div>
+                            <div class="m-0" style="padding-left:11px;">
+                                <span style="display:inline-block; width:375px;">ইঞ্জিন নং:
+                                    <span class="engine_no_bottom text-bold"></span>
+                                </span>
+                                <span class="border_right" style="display:inline-block; width:327px; height:40px;">চেসিস নং:
+                                    <span class="chassis_no_bottom text-bold"></span>
+                                </span>
+                                <span class="border_bottom" style="display:inline-block; width:382px; height:40px;">ওয়ার্কশপ ইরচার্জ:</span>
+                            </div>
+                            <div class="m-0" style="padding-left:11px;">
+                                <span class="border_right" style="display:inline-block; width:705px; text-align:right; height:40px; padding-right:10px;">গাড়িটি ডেলিভারীর অনুমতি দেওয়া হল।</span>
+                                <span style="display:inline-block; width:382px; height:40px;">ক্যাশিয়ারের স্বাক্ষর:</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1130,8 +1138,10 @@
 
                             text_danger_remove();
                             disable_all_input();
+                            $("#job_card_create :input").prop("disabled", true);
                             $('#job_card_list').prop('disabled', false);
                             $('#delivered_png').append('<img src="{{ asset("images/delivered.png") }}" alt="pending" class="img-fluid p-1 delivered">');
+
                         } else {
                             $('#delivered_png').empty();
                             $('#pending_png').empty();
