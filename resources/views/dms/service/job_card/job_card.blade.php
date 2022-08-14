@@ -13,6 +13,11 @@
         pointer-events: none;
     }
 
+    a.disabled {
+        pointer-events: none;
+        cursor: default;
+    }
+
     .pending {
         position: absolute;
         top: 142px;
@@ -107,9 +112,9 @@
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
                             <h4 class="bangla_font" style="display:inline-block; width:94px; margin-top:5px;">জব কার্ড</h4>
-                            <select name="job_card_list" style="font-weight: bold;" id="job_card_list">
+                            <!-- <select name="job_card_list" style="font-weight: bold;" id="job_card_list">
                                 <option style="font-weight:bold;" value="">Job Card List</option>
-                            </select>
+                            </select> -->
                             <nav aria-label="Page navigation example" style="padding-left:15px;">
                                 <ul class="pagination justify-content-center" id="top_navbar">
                                     <li class="page-item active"><a class="page-link first_jb_record" href="#">First</a></li>
@@ -123,6 +128,25 @@
                                     <!-- <a href="#" class="print_bill page-item page-link bg-secondary disable" id="print_bill">Print Bill</a> -->
                                 </ul>
                             </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header no-print">
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-center" style="height:22px; width:950px; margin:auto;">
+                            <div class="d-flex justify-content-center" style="align-items:baseline; margin-left:15px; width:475px;">
+                                <label style="margin-right:10px;">Job Card List</label>
+                                <select name="job_card_list" style="font-weight: bold; background:#F7F7F7; border-radius:5px; width:238px;" id="job_card_list">
+
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-center" style="align-items:baseline; margin-left:15px; width:475px;">
+                                <label>Job Card Date</label>
+                                <input type="date" id="job_card_date_search" style="margin-left:5px; margin-right:5px; background:#F7F7F7; width:100px;">
+                                <select style="font-weight: bold; background:#F7F7F7; border-radius:5px; width:238px;" id="job_card_list_search">
+                                    <option style="font-weight:bold;" value="">Job Card List</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -976,7 +1000,7 @@
                 }) {
                     if (job_card_list) {
                         job_card_list.forEach(function(item) {
-                            $("#job_card_list").append(`<option style="font-weight:bold;" value="${item.job_card_no}">JB-${item.job_card_no}</option>`);
+                            $("#job_card_list").append(`<option style="font-weight:bold;" value="${item.id}">JB-${item.job_card_no}</option>`);
                         });
                     }
                 }
@@ -1001,14 +1025,14 @@
             $("#job_card_create :input").prop("readOnly", true);
         };
         // After select job card start
-        $('#job_card_list').on('change', function() {
-            let job_card_no = $(this).val();
+        $('#job_card_list, #job_card_list_search').on('change', function() {
+            let id = $(this).val();
             $.ajax({
                 url: "{{ route('job_card.load_single_job_card') }}",
                 method: 'get',
                 dataType: 'json',
                 data: {
-                    job_card_no
+                    id
                 },
                 success: function({
                     single_jb_details: jb_details,
@@ -1126,6 +1150,29 @@
             });
         })
         // After select job card end
+        $('#job_card_date_search').on('change', function() {
+            let jb_date = $(this).val();
+            $.ajax({
+                url: "{{ route('job_card.load_job_card_list') }}",
+                method: 'get',
+                data: {
+                    jb_date
+                },
+                dataType: 'json',
+                success: function({
+                    job_card_list
+                }) {
+                    console.log(job_card_list);
+                    if (job_card_list) {
+                        $('#job_card_list_search').empty();
+                        $('#job_card_list_search').append('<option style="font-weight:bold;" value="">Job Card List</option>');
+                        job_card_list.forEach(function(item) {
+                            $("#job_card_list_search").append(`<option style="font-weight:bold;" value="${item.id}">JB-${item.job_card_no}</option>`);
+                        });
+                    }
+                }
+            });
+        })
     });
 </script>
 @endsection

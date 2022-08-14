@@ -18,8 +18,7 @@ class JobCardController extends Controller
     {
         $single_jb_details = JobCard::select('*')
             ->where([
-                'job_card_no' => $request->job_card_no,
-                'job_card_date' => Carbon::now()->toDateString()
+                'id' => $request->id,
             ])
             ->first();
         // fetch service customer details based on job card customer id
@@ -28,14 +27,18 @@ class JobCardController extends Controller
             ->where('id', $service_customer_id)
             ->first();
         // fetch spare parts sale details based on job card no
-        $spare_parts_sale_details = SparePartsSale::rightJoin('spare_parts_stocks', 'spare_parts_stocks.part_id', '=', 'spare_parts_sales.part_id')
+        $spare_parts_sale_details = SparePartsSale::rightJoin(
+            'spare_parts_stocks',
+            'spare_parts_stocks.part_id',
+            '=',
+            'spare_parts_sales.part_id'
+        )
             ->select(
                 'spare_parts_stocks.*',
                 'spare_parts_sales.*'
             )
             ->where([
-                'spare_parts_sales.job_card_no' => $request->job_card_no,
-                'spare_parts_sales.sale_date' => Carbon::now()->toDateString()
+                'spare_parts_sales.job_card_id' => $request->id,
             ])
             ->get();
 
@@ -46,10 +49,10 @@ class JobCardController extends Controller
         ]);
     }
 
-    public function load_job_card_list(): \Illuminate\Http\JsonResponse
+    public function load_job_card_list(Request $request): \Illuminate\Http\JsonResponse
     {
-        $job_card_list = JobCard::select('job_card_no')
-            ->where('job_card_date', Carbon::now()->toDateString())
+        $job_card_list = JobCard::select('job_card_no', 'id')
+            ->where('job_card_date', $request->jb_date ?? Carbon::now()->toDateString())
             ->orderBy('job_card_no', 'asc')
             ->get();
         return response()->json(['job_card_list' => $job_card_list]);

@@ -98,7 +98,7 @@
                                     <li class="page-item"><a class="page-link new_challan_record bg-success" href="#">New</a></li>
                                     <li class="page-item"><a class="page-link disabled" id="btn_edit" href="#">Edit</a></li>
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
-                                    <li class="page-item mc_return" id="mc_return"><a class="page-link" href="#">MC Return</a></li>
+                                    <li class="page-item mc_return"><a class="page-link disabled" id="mc_return" href="#">Delivery Return</a></li>
                                     <button class="page-item page-link bg-dark" type="submit" id="btn_create_challan">Create Challan</button>
                                 </ul>
                             </nav>
@@ -613,6 +613,7 @@
                         $('#btn_create_challan').addClass('bg-dark');
                         $('#btn_create_challan').removeClass('bg-secondary');
                         $('#btn_edit').removeClass('disabled');
+                        $('#mc_return').removeClass('disabled');
                         $('#btn_create_challan').text('Update Challan');
                     }
                 }
