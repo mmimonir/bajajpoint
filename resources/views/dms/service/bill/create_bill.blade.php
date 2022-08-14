@@ -120,29 +120,24 @@
                     </div>
                     <div class="bill_body">
                         <div class="row">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group mb-3" style="width: 160px;">
-                                        <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Bill No:</span>
-                                        <input readonly type="text" name="bill_no" id="bill_no" class="form-control bill_no input_style" style="height:25px;">
-                                    </div>
-                                </div>
-                                <div class="col-md-3 offset-md-3" style="padding-right: 0px;">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Date:</span>
-                                        <input type="date" name="bill_date" id="bill_date" class="form-control bill_date input_style" style="height:25px;">
-                                    </div>
+                            <div class="col-md-6">
+                                <div class="input-group mb-3" style="width: 160px;">
+                                    <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Bill No:</span>
+                                    <input readonly type="text" name="bill_no" id="bill_no" class="form-control bill_no input_style" style="height:25px;">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-3 offset-md-9" style="padding-right: 0px; margin-top:-12px;">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Mobile</span>
-                                        <input type="text" name="client_mobile" id="client_mobile" class="form-control client_mobile input_style" style="height:25px;">
-                                    </div>
+                            <div class="col-md-3 offset-md-3">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Date:</span>
+                                    <input type="date" name="bill_date" id="bill_date" class="form-control bill_date input_style" style="height:25px;">
                                 </div>
                             </div>
-
+                            <div class="col-md-3 offset-md-9" style="margin-top:-12px;">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Mobile</span>
+                                    <input type="text" name="client_mobile" id="client_mobile" class="form-control client_mobile input_style" style="height:25px;">
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="input-group mb-3" style="margin-top:-14px;">
                                     <span class="input-group-text input_style" id="basic-addon1" style="height:25px; border:0px; border-radius: 0;">Name :</span>
@@ -239,10 +234,8 @@
                                     </tfoot>
                                 </table>
                             </div>
-                            <div class="row d-flex align-items-center" style="margin-top: 20px;">
-                                <div class="col-md-12" style="padding-left:0px;">
-                                    <img src="{{asset('/images/for_bajajpoint_two.png')}}" class="img-fluid p-1" style="width:100%;">
-                                </div>
+                            <div class="col-md-12 d-flex align-items-center" style="padding-left:0px; margin-top: 20px;">
+                                <img src="{{asset('/images/for_bajajpoint_two.png')}}" class="img-fluid p-1" style="width:100%;">
                             </div>
                         </div>
                     </div>
