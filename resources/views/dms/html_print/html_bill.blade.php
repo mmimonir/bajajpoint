@@ -35,10 +35,10 @@
             box-sizing: border-box;
         }
 
-        .input_style {
+        /* .input_style {
             background-color: white;
             height: 18px;
-        }
+        } */
 
         table {
             border-collapse: collapse;
@@ -53,6 +53,12 @@
         textarea,
         input {
             border: none;
+            padding: 0px;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 100%;
         }
     </style>
 </head>
@@ -107,7 +113,7 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <table align="center" style="width:100%;" id="tbl">
+                    <table align="center">
                         <thead>
                             <tr>
                                 <th style="text-align:center;">Sl</th>
@@ -125,19 +131,19 @@
                             @foreach ($bill_data as $key => $value)
                             <tr>
                                 <td>
-                                    <input value="{{$key + 1}}" type="text" name="sl" style="width:38px;" class="input_style text-center">
+                                    <input value="{{$key + 1}}" type="text" class="input_style text-center">
                                 </td>
                                 <td>
-                                    <input value="{{$value->part_name}}" type="text" style="width:250px;" class="input_style text-center">
+                                    <input value="{{$value->part_name}}" type="text" class="input_style text-center">
                                 </td>
                                 <td>
                                     <input value="{{$value->part_id}}" type="text" class="input_style text-center">
                                 </td>
                                 <td>
-                                    <input value="{{$value->quantity}}" type="text" style="width:78px;" class="input_style text-center">
+                                    <input value="{{$value->quantity}}" type="text" class="input_style text-center">
                                 </td>
                                 <td>
-                                    <input value="{{$value->rate}}" type="text" style="width:115px;" class="input_style text-right">
+                                    <input value="{{$value->rate}}" type="text" class="input_style text-right">
                                 </td>
                                 <td>
                                     <input value="{{$value->quantity * $value->rate}}" type="text" class="input_style text-right">
@@ -198,5 +204,3 @@
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

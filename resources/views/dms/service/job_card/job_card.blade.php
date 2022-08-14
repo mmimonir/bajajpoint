@@ -1110,7 +1110,7 @@
 
                         if (!spare_parts_sale.length == 0) {
                             let bill_id = spare_parts_sale[0].bill_id;
-                            const url = `http://bajajpoint.test/service/html_bill?id=${bill_id}`;
+                            const url = "{{ route('bill.html_bill') }}?id=" + bill_id;
 
                             $('#top_navbar').find('.print_bill').remove();
                             $('#top_navbar').append(`<a target="_blank" href="${url}" class="print_bill page-item page-link bg-secondary disable" id="print_bill">Print Bill</a>`)
