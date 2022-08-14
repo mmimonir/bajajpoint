@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Quotation</title>
+    <style>
+        @media print {
+
+            .no-print,
+            .no-print * {
+                display: none !important;
+            }
+        }
+
+        a.disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .img-width {
+            width: 33.33%;
+        }
+
+        .bill_page {
+            height: 76rem;
+            width: 59rem;
+            border: 1px solid black;
+            margin: auto;
+            position: relative;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .input_style {
+            background-color: white;
+            height: 18px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid;
+        }
+
+        textarea,
+        input {
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bill_page">
+        <div class="bill_header">
+            <div class="header_image">
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-5">
+                        <img src="{{asset('/images/authorized_dealer.png')}}" class="img-fluid p-1" style="width:80%;">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="{{asset('/images/bill.png')}}" class="img-fluid p-1" style="width:80%;">
+                    </div>
+                    <div class="col-md-5" style="padding-right:0px;">
+                        <img src="{{asset('/images/bp_service_address.png')}}" class="img-fluid p-1 float-right" style="width:90%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bill_body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group mb-3" style="width: 160px;">
+                        <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Bill No:</span>
+                        <input readonly type="text" name="bill_no" id="bill_no" class="form-control bill_no input_style" style="height:25px;">
+                    </div>
+                </div>
+                <div class="col-md-3 offset-md-3">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Date:</span>
+                        <input type="date" name="bill_date" id="bill_date" class="form-control bill_date input_style" style="height:25px;">
+                    </div>
+                </div>
+                <div class="col-md-3 offset-md-9" style="margin-top:-12px;">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Mobile</span>
+                        <input type="text" name="client_mobile" id="client_mobile" class="form-control client_mobile input_style" style="height:25px;">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="input-group mb-3" style="margin-top:-14px;">
+                        <span class="input-group-text input_style" id="basic-addon1" style="height:25px; border:0px; border-radius: 0;">Name :</span>
+                        <input type="text" name="client_name" id="client_name" class="form-control client_name input_style" style=" height:25px; border:0px; border-bottom: 1px solid black; border-radius:0;">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="input-group mb-3" style="margin-top:-10px;">
+                        <span class="input-group-text input_style" id="basic-addon1" style="height:25px; border:0px; border-radius: 0;">Address :</span>
+                        <input type="text" name="client_address" id="client_address" class="form-control client_address input_style" style="height:25px; border:0px; border-bottom: 1px solid black; border-radius:0;">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <table align="center" style="width:100%;" id="tbl">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">Sl</th>
+                                <th style="text-align:center;">Parts Name</th>
+                                <th style="text-align:center;">Parts No</th>
+                                <th style="text-align:center;">Quantity</th>
+                                <th style="text-align:center;">Rate</th>
+                                <th style="text-align:center;">Amount</th>
+                                <th class="no-print" style="text-align:center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for($i=0; $i<=22; $i++) <tr>
+                                <td>
+                                    <input type="text" name="sl" style="width:38px;" class="input_style text-center">
+                                </td>
+                                <td>
+                                    <input readOnly type="text" name="part_name[]" style="width:250px;" class="input_style text-center part_name">
+                                </td>
+                                <td>
+                                    <input type="text" name="part_id[]" class="input_style text-center part_id">
+                                    <input type="hidden" name="id" class="input_style text-center id">
+                                </td>
+                                <td>
+                                    <input type="text" name="quantity[]" style="width:78px;" class="input_style text-center quantity">
+                                </td>
+                                <td>
+                                    <input type="text" name="sale_rate[]" style="width:115px;" class="input_style text-right sale_rate">
+                                </td>
+                                <td>
+                                    <input type="text" name="total_amount[]" class="input_style text-right total_amount">
+                                </td>
+                                <td class="text-center no-print">
+                                    <a href="#" class="disabled delete_parts_item"><i class="fa fa-trash delete_icon text-secondary"></i></a>
+                                </td>
+                                </tr>
+                                @endfor
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td rowspan="7" colspan="4" style="vertical-align: top;">
+                                    <p>
+                                        <strong>In Words: <span id="in_words"></span></strong>
+                                    </p>
+                                </td>
+                                <td>Total Amount</td>
+                                <td><input readOnly type="text" name="grand_total" id="grand_total" class="input_style text-right grand_total"></td>
+                                <td class="no-print"></td>
+                            </tr>
+                            <tr>
+                                <td>Discount</td>
+                                <td><input type="text" name="discount" id="discount" class="input_style text-right discount"></td>
+                                <td class="no-print"></td>
+                            </tr>
+                            <tr>
+                                <td>Balance</td>
+                                <td><input readOnly type="text" name="balance" id="balance" class="input_style text-right balance"></td>
+                                <td class="no-print"></td>
+                            </tr>
+                            <tr>
+                                <td>VAT</td>
+                                <td><input type="text" name="vat" id="vat" class="input_style text-right vat"></td>
+                                <td class="no-print"></td>
+                            </tr>
+                            <tr>
+                                <td>Grand Total</td>
+                                <td><input readOnly type="text" name="bill_amount" id="bill_amount" class="input_style text-right bill_amount"></td>
+                                <td class="no-print"></td>
+                            </tr>
+                            <tr>
+                                <td>Paid Amount</td>
+                                <td><input type="text" name="paid_amount" id="paid_amount" class="input_style text-right paid_amount"></td>
+                                <td class="no-print"></td>
+                            </tr>
+                            <tr>
+                                <td>Due</td>
+                                <td><input readOnly type="text" name="due_amount" id="due_amount" class="input_style text-right due_amount"></td>
+                                <td class="no-print"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="row d-flex align-items-center" style="margin-top: 20px;">
+                    <div class="col-md-12" style="padding-left:0px;">
+                        <img src="{{asset('/images/for_bajajpoint_two.png')}}" class="img-fluid p-1" style="width:100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

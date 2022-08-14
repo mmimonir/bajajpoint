@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         Route::get('/load_bill_list',  'load_bill_list')->name('bill.bill_list');
         Route::post('/create_bill',  'store_bill')->name('bill.store_bill');
         Route::get('/load_single_bill',  'load_single_bill')->name('bill.load_single_bill');
+        Route::get('/html_bill',  'html_bill');
     });
 
     Route::controller(App\Http\Controllers\Service\ServiceCallController::class)->group(function () {

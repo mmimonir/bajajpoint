@@ -15,6 +15,10 @@ class ServiceBillController extends Controller
     {
         return view('dms.service.bill.create_bill');
     }
+    public function html_bill()
+    {
+        return view('dms.html_print.html_bill');
+    }
 
     public function load_bill_list(Request $request)
     {
