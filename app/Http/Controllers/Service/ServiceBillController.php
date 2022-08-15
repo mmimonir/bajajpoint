@@ -11,10 +11,20 @@ use App\Models\Service\SparePartsSale;
 
 class ServiceBillController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create_bill()
     {
         return view('dms.service.bill.create_bill');
     }
+    /**
+     * Display a listing of the resource.
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response     
+     */
     public function html_bill(Request $request)
     {
         $bill_data = Bill::rightJoin(
