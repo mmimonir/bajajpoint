@@ -1151,6 +1151,9 @@
                             disable_all_input();
                             $("#job_card_create :input").prop("disabled", true);
                             $('#job_card_list').prop('disabled', false);
+                            $('#job_card_list_search').prop('disabled', false);
+                            $('#job_card_date_search').removeAttr("readonly");
+                            $('#job_card_date_search').removeAttr("disabled");
                             $('#delivered_png').append('<img src="{{ asset("images/delivered.png") }}" alt="pending" class="img-fluid p-1 delivered">');
 
                         } else {

@@ -35,29 +35,26 @@
             box-sizing: border-box;
         }
 
-        /* .input_style {
+        .input_style {
             background-color: white;
             height: 18px;
-        } */
-
-        table {
-            border-collapse: collapse;
         }
 
         table,
         td,
         th {
             border: 1px solid;
+            border-collapse: collapse;
+            table-layout: fixed;
+            width: 100%;
+            padding: 2px;
+            height: 25px;
         }
 
         textarea,
         input {
             border: none;
             padding: 0px;
-        }
-
-        table {
-            table-layout: fixed;
             width: 100%;
         }
     </style>
@@ -116,42 +113,54 @@
                     <table align="center">
                         <thead>
                             <tr>
-                                <th style="text-align:center;">Sl</th>
-                                <th style="text-align:center;">Parts Name</th>
-                                <th style="text-align:center;">Parts No</th>
-                                <th style="text-align:center;">Quantity</th>
+                                <th style="text-align:center; width:36px;">Sl</th>
+                                <th style="text-align:center; width:360px;">Parts Name</th>
+                                <th style="text-align:center;">Part No</th>
+                                <th style="text-align:center; width:91px;">Quantity</th>
                                 <th style="text-align:center;">Rate</th>
                                 <th style="text-align:center;">Amount</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php
-                            $i = 1;
+                            $i = 22;
                             @endphp
                             @foreach ($bill_data as $key => $value)
                             <tr>
-                                <td>
-                                    <input value="{{$key + 1}}" type="text" class="input_style text-center">
+                                <td class="text-center">
+                                    {{$key + 1}}
                                 </td>
                                 <td>
-                                    <input value="{{$value->part_name}}" type="text" class="input_style text-center">
+                                    {{$value->part_name}}
                                 </td>
-                                <td>
-                                    <input value="{{$value->part_id}}" type="text" class="input_style text-center">
+                                <td class="text-center">
+                                    {{$value->part_id}}
                                 </td>
-                                <td>
-                                    <input value="{{$value->quantity}}" type="text" class="input_style text-center">
+                                <td class="text-center">
+                                    {{$value->quantity}}
                                 </td>
-                                <td>
-                                    <input value="{{$value->rate}}" type="text" class="input_style text-right">
+                                <td class="text-right">
+                                    {{$value->rate}}{{"/-"}}
                                 </td>
-                                <td>
-                                    <input value="{{$value->quantity * $value->rate}}" type="text" class="input_style text-right">
+                                <td class="text-right">
+                                    {{$value->quantity * $value->rate}}{{"/-"}}
                                 </td>
                             </tr>
+                            @php
+                            --$i;
+                            @endphp
                             @endforeach
+                            @for ($i; $i > 0; $i--)
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            @endfor
                         </tbody>
-
                         <tfoot>
                             <tr>
                                 @php
@@ -164,31 +173,31 @@
                                     </p>
                                 </td>
                                 <td>Total Amount</td>
-                                <td><input value="{{$bill_data[0]->bill_amount}}" type="text" class="input_style text-right"></td>
+                                <td><input value="{{$bill_data[0]->bill_amount}}{{"/-"}}" type="text" class="input_style text-right"></td>
                             </tr>
                             <tr>
                                 <td>Discount</td>
-                                <td><input value="{{$bill_data[0]->discount}}" type="text" class="input_style text-right"></td>
+                                <td><input value="{{$bill_data[0]->discount}}{{"/-"}}" type="text" class="input_style text-right"></td>
                             </tr>
                             <tr>
                                 <td>Balance</td>
-                                <td><input value="{{$bill_data[0]->bill_amount - $bill_data[0]->discount}}" type="text" class="input_style text-right"></td>
+                                <td><input value="{{$bill_data[0]->bill_amount - $bill_data[0]->discount}}{{"/-"}}" type="text" class="input_style text-right"></td>
                             </tr>
                             <tr>
                                 <td>VAT</td>
-                                <td><input value="{{$bill_data[0]->vat}}" type="text" class="input_style text-right"></td>
+                                <td><input value="{{$bill_data[0]->vat}}{{"/-"}}" type="text" class="input_style text-right"></td>
                             </tr>
                             <tr>
                                 <td>Grand Total</td>
-                                <td><input value="{{($bill_data[0]->bill_amount - $bill_data[0]->discount) + $bill_data[0]->vat}}" type="text" class="input_style text-right"></td>
+                                <td><input value="{{($bill_data[0]->bill_amount - $bill_data[0]->discount) + $bill_data[0]->vat}}{{"/-"}}" type="text" class="input_style text-right"></td>
                             </tr>
                             <tr>
                                 <td>Paid Amount</td>
-                                <td><input value="{{(($bill_data[0]->bill_amount - $bill_data[0]->discount) + $bill_data[0]->vat) - $bill_data[0]->due_amount}}" type="text" class="input_style text-right"></td>
+                                <td><input value="{{(($bill_data[0]->bill_amount - $bill_data[0]->discount) + $bill_data[0]->vat) - $bill_data[0]->due_amount}}{{"/-"}}" type="text" class="input_style text-right"></td>
                             </tr>
                             <tr>
                                 <td>Due</td>
-                                <td><input value="{{$bill_data[0]->due_amount}}" type="text" class="input_style text-right"></td>
+                                <td><input value="{{$bill_data[0]->due_amount}}{{"/-"}}" type="text" class="input_style text-right"></td>
                             </tr>
                         </tfoot>
                     </table>

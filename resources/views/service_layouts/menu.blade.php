@@ -5,15 +5,21 @@
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-motorcycle"></i>
                 <p class="text-white">
-                    Motorcycle
+                    Service
                     <i class="fas fa-angle-left right"></i>
                 </p>
             </a>
             <ul class="nav nav-treeview" style="display: none;">
                 <li class="nav-item">
-                    <a href="{{ route('mrp.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-dollar-sign"></i>
-                        <p class="text-white">Price</p>
+                    <a href="{{ route('bill.create_bill') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-money-bill-1"></i>
+                        <p class="text-white">Create Bill</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('service.job_card') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-id-card"></i>
+                        <p class="text-white">Create Job Card</p>
                     </a>
                 </li>
             </ul>
