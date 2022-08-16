@@ -106,6 +106,12 @@
                         <p class="text-white">Delivery Challan</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('receipt.money_receipt') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-receipt"></i>
+                        <p class="text-white">Money Receipt</p>
+                    </a>
+                </li>
             </ul>
         </li>
 

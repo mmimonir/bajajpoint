@@ -160,6 +160,12 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
         Route::get('/load_single_challan',  'load_single_challan')->name('delivery_challan.load_single_challan');
         Route::get('/color_list',  'color_list')->name('delivery_challan.color_list');
         Route::get('/mc_return',  'mc_return')->name('delivery_challan.mc_return');
+        Route::get('/money_receipt_html',  'money_receipt_html')->name('receipt.money_receipt_html');
+        Route::get('/money_receipt',  'money_receipt')->name('receipt.money_receipt');
+        Route::get('/create_receipt_no',  'create_receipt_no')->name('receipt.create_receipt_no');
+        Route::post('/store_created_receipt',  'store_created_receipt')->name('receipt.store_created_receipt');
+        Route::get('/load_receipt_list',  'load_receipt_list')->name('receipt.load_receipt_list');
+        Route::get('/load_single_receipt',  'load_single_receipt')->name('receipt.load_single_receipt');
     });
 
     //     Route::get('backup-run', function () {

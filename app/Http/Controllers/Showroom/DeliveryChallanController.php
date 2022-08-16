@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Showroom;
 
 use Carbon\Carbon;
-use App\Models\Showroom\Mrp;
+use App\Models\Showroom\{Mrp, Core, ColorCode, MoneyReceipt};
 use Illuminate\Http\Request;
-use App\Models\Showroom\Core;
-use App\Models\Showroom\ColorCode;
 use App\Http\Controllers\Controller;
 
 class DeliveryChallanController extends Controller
@@ -14,6 +12,98 @@ class DeliveryChallanController extends Controller
     public function index()
     {
         return view('dms.showroom.utility.delivery_challan.delivery_challan');
+    }
+    public function money_receipt_html()
+    {
+        return view('dms.html_print.html_money_receipt');
+    }
+    public function money_receipt()
+    {
+        return view('dms.showroom.utility.delivery_challan.money_receipt');
+    }
+    public function create_receipt_no()
+    {
+        $receipt_no = 0;
+
+        $today = Carbon::now()->toDateString();
+        $today_month = Carbon::now()->format('m');
+        $today_day = Carbon::now()->format('d');
+
+        if ($today_month == '07' && $today_day == '01') {
+            $receipt_data = MoneyReceipt::select('receipt_no')
+                ->where('receipt_date', $today)
+                ->orderBy('receipt_no', 'desc')
+                ->first();
+            if ($receipt_data) {
+                $receipt_no = $receipt_data->receipt_no + 1;
+            } else {
+                $receipt_no = 1;
+            }
+        } else {
+            $receipt_data = MoneyReceipt::select('receipt_no', 'receipt_date')
+                ->orderBy('receipt_date', 'desc')
+                ->first();
+
+            if ($receipt_data) {
+                $max_receipt_no = MoneyReceipt::select('receipt_no')
+                    ->where('receipt_date', $receipt_data->receipt_date)
+                    ->orderBy('receipt_no', 'desc')
+                    ->first();
+
+                $receipt_no = $max_receipt_no->receipt_no + 1;
+            } else {
+                $receipt_no = 1;
+            }
+        }
+
+        return response()->json([
+            'receipt_no' => $receipt_no,
+            'status' => 200,
+        ]);
+    }
+    public function store_created_receipt(Request $request)
+    {
+        try {
+            $data = MoneyReceipt::updateOrCreate([
+                'id' => $request->id,
+            ], [
+                'receipt_no' => $request->receipt_no,
+                'receipt_date' => $request->receipt_date,
+                'client_name' => $request->client_name,
+                'client_mobile' => $request->client_mobile,
+                'payment_method' => $request->payment_method,
+                'cheque_date' => $request->cheque_date,
+                'drawn_on' => $request->drawn_on,
+                'on_account_of' => $request->on_account_of,
+                'amount' => $request->amount,
+            ]);
+            return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 502]);
+        }
+    }
+    public function load_receipt_list(Request $request)
+    {
+        $receipt_list = MoneyReceipt::select('*')
+            ->where([
+                'receipt_date' => $request->receipt_date ?? Carbon::now()->toDateString(),
+            ])
+            ->orderBy('receipt_date', 'asc')
+            ->get();
+
+        return response()->json(['receipt_list' => $receipt_list]);
+    }
+    public function load_single_receipt(Request $request)
+    {
+        $receipt_details = MoneyReceipt::select('*')
+            ->where([
+                'id' => $request->id,
+            ])
+            ->first();
+
+        return response()->json([
+            'receipt_details' => $receipt_details
+        ]);
     }
     public function mc_return(Request $request)
     {
