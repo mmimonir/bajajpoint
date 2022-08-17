@@ -271,6 +271,7 @@ class DeliveryChallanController extends Controller
 
     public function store_created_challan(Request $request)
     {
+        // return response()->json($request->all());
         try {
             Core::where('id', $request->id)
                 ->first()
@@ -296,6 +297,7 @@ class DeliveryChallanController extends Controller
                     'print_date' => $request->sale_date,
                     'vat_sale_date' => $request->sale_date,
                     'unit_price_vat' => $request->unit_price_vat,
+                    'sale_price' => $request->sale_price,
                     'sale_vat' => $request->sale_vat,
                     'basic_price_vat' => $request->basic_price_vat,
                     'year_of_manufacture' => $request->year_of_manufacture,

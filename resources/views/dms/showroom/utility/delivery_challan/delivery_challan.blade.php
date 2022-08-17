@@ -12,6 +12,7 @@
         .no-print * {
             display: none !important;
         }
+
     }
 
     a.disabled {
@@ -24,13 +25,15 @@
     }
 
     .bill_page {
-        height: 1470px;
+        height: 1410px;
         width: 1020px;
-        border: 1px solid black;
+        /* border: 1px solid black; */
         margin: auto;
         position: relative;
         padding: 10px;
         box-sizing: border-box;
+        box-shadow: 0 0 25px 0 lightgrey;
+        margin: 15px auto;
     }
 
 
@@ -130,7 +133,7 @@
                                 <label>Challan Date</label>
                                 <input type="date" id="challan_date_search" style="margin-left:5px; margin-right:5px; background:#F7F7F7; width:100px;">
                                 <select style="font-weight: bold; background:#F7F7F7; border-radius:5px; width:238px;" id="challan_list_search">
-                                    <option style="font-weight:bold;" value="">Challan List</option>
+                                    <option style="font-weight:bold;">Challan List</option>
                                 </select>
                             </div>
                         </div>
@@ -152,75 +155,75 @@
                             <div class="col-md-6">
                                 <div class="input-group mb-3" style="width: 185px;">
                                     <span class="input-group-text span_style">Challan No:</span>
-                                    <input style="background-color:white;" readonly type="text" id="delivery_challan_no" class="form-control delivery_challan_no input_style" value="">
+                                    <input style="background-color:white;" readonly type="text" id="delivery_challan_no" class="form-control delivery_challan_no input_style">
                                 </div>
                             </div>
                             <div class="col-md-3 offset-md-3" style="padding-right: 11px;">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text span_style">Date:</span>
-                                    <input type="date" name="sale_date" id="sale_date" class="form-control sale_date input_style" value="">
+                                    <input type="date" name="sale_date" id="sale_date" class="form-control sale_date input_style">
                                 </div>
                             </div>
                             <div class="col-md-3 offset-md-9" style="padding-right: 11px; margin-top:-12px;">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text span_style">Mobile</span>
-                                    <input type="text" minlength="11" maxlength="11" pattern="[0-9]+" name="mobile" id="mobile" class="form-control mobile input_style" value="">
+                                    <input type="text" minlength="11" maxlength="11" pattern="[0-9]+" name="mobile" id="mobile" class="form-control mobile input_style">
                                 </div>
                             </div>
                             <div class="col-md-12" style="margin-top:15px;">
                                 <div class="input-group mb-3 mt-10">
                                     <span class="input-group-text span_style">Name :</span>
-                                    <input type="text" name="customer_name" id="customer_name" class="form-control customer_name input_style" value="">
-                                    <input type="hidden" name="id" id="core_id" value="">
-                                    <input type="hidden" name="model_code" id="model_code" value="">
+                                    <input type="text" name="customer_name" id="customer_name" class="form-control customer_name input_style">
+                                    <input type="hidden" name="id" id="core_id">
+                                    <input type="hidden" name="model_code" id="model_code">
                                 </div>
                                 <div class="input-group mb-3 mt-10">
                                     <span class="input-group-text span_style">Father's Name :</span>
-                                    <input type="text" name="father_name" id="father_name" class="form-control father_name input_style" value="">
+                                    <input type="text" name="father_name" id="father_name" class="form-control father_name input_style">
                                 </div>
                                 <div class="input-group mb-3 mt-10">
                                     <span class="input-group-text span_style">Mother's Name :</span>
-                                    <input type="text" name="mother_name" id="mother_name" class="form-control mother_name input_style" value="">
+                                    <input type="text" name="mother_name" id="mother_name" class="form-control mother_name input_style">
                                 </div>
                                 <div class="input-group mb-3 mt-10">
                                     <span class="input-group-text span_style">NID No :</span>
-                                    <input type="text" name="nid_no" id="nid_no" class="form-control nid_no input_style" value="">
+                                    <input type="text" name="nid_no" id="nid_no" class="form-control nid_no input_style">
                                 </div>
                                 <div class="input-group mb-3 mt-10">
                                     <span class="input-group-text span_style">Address :</span>
-                                    <input type="text" name="address_one" id="address_one" class="form-control address_one input_style" value="">
+                                    <input type="text" name="address_one" id="address_one" class="form-control address_one input_style">
                                 </div>
                                 <div class="input-group mb-3 mt-10">
-                                    <input type="text" name="address_two" id="address_two" class="form-control address_two input_style" value="">
+                                    <input type="text" name="address_two" id="address_two" class="form-control address_two input_style">
                                 </div>
                                 <div style="margin-top:50px;"></div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">01. Chassis No</span><span class="span_style">:</span>
-                                    <input type="text" minlength="17" maxlength="17" pattern="[A-Z0-9]+" id="full_chassis" class="form-control full_chassis input_style" value="">
+                                    <input type="text" minlength="17" maxlength="17" pattern="[A-Z0-9]+" id="full_chassis" class="form-control full_chassis input_style">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">02. Engine No</span><span class="span_style">:</span>
-                                    <input type="text" minlength="11" maxlength="11" pattern="[A-Z0-9]+" id="full_engine" class="form-control full_engine input_style" value="">
+                                    <input type="text" minlength="11" maxlength="11" pattern="[A-Z0-9]+" id="full_engine" class="form-control full_engine input_style">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">03. Make & Model of Vehicle</span><span class="span_style">:</span>
-                                    <input type="text" id="model" class="form-control model input_style" value="">
+                                    <input type="text" id="model" class="form-control model input_style">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">04. Year Of Manufacture</span><span class="span_style">:</span>
-                                    <input type="text" name="year_of_manufacture" id="year_of_manufacture" class="form-control year_of_manufacture input_style" value="">
+                                    <input type="text" name="year_of_manufacture" id="year_of_manufacture" class="form-control year_of_manufacture input_style">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">05. No. Of Cylinder With CC</span><span class="span_style">:</span>
-                                    <input type="text" id="no_of_cylinder_with_cc" class="form-control no_of_cylinder_with_cc input_style" value="">
+                                    <input type="text" id="no_of_cylinder_with_cc" class="form-control no_of_cylinder_with_cc input_style">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">06. Seating Capacity</span><span class="span_style">:</span>
-                                    <input type="text" id="seating_capacity" class="form-control seating_capacity input_style" value="">
+                                    <input type="text" id="seating_capacity" class="form-control seating_capacity input_style">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">07. Class Of Vehicle</span><span class="span_style">:</span>
-                                    <input type="text" id="class_of_vehicle" class="form-control class_of_vehicle input_style" value="">
+                                    <input type="text" id="class_of_vehicle" class="form-control class_of_vehicle input_style">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">08. Color Of Vehicle</span><span class="span_style">:</span>
@@ -230,13 +233,17 @@
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">09. Unladen Weight/Laden Weight</span><span class="span_style">:</span>
-                                    <input type="text" id="weight" class="form-control weight input_style" value="">
+                                    <input type="text" id="weight" class="form-control weight input_style">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">10. Vehicle MRP</span><span class="span_style">:</span>
-                                    <input type="text" name="unit_price_vat" id="unit_price_vat" class="form-control unit_price_vat input_style" value="">
-                                    <input type="hidden" name="sale_vat" id="sale_vat" value="">
-                                    <input type="hidden" name="basic_price_vat" id="basic_price_vat" value="">
+                                    <input type="text" id="unit_price_vat" class="unit_price_vat input_style" style="padding-left:12px;">
+
+                                    <span class=" input-group-text span_style span_underline" style="width:169px; padding:0; margin-left:9px;">11. Sale Price</span><span class="span_style">:</span>
+                                    <input type="text" id="sale_price" class="sale_price input_style" style="padding-left:12px;">
+
+                                    <input type="hidden" name="sale_vat" id="sale_vat">
+                                    <input type="hidden" name="basic_price_vat" id="basic_price_vat">
                                 </div>
                             </div>
                         </div>
@@ -262,6 +269,19 @@
 
 <script>
     $(document).ready(function() {
+        $('#full_chassis').change(function() {
+            let value = $(this).val();
+            if (value.length > 5) {
+                $("#sale_price").prop('required', true);
+            } else {
+                $("#sale_price").prop('required', false);
+            }
+        });
+
+        $('#unit_price_vat, #sale_price').change(function() {
+            let value = +$(this).val();
+            $(this).val(`${value.toLocaleString('en-IN')}/-`);
+        });
 
         $(document).on('click', '#mc_return', function(e) {
             let id = $('#core_id').val();
@@ -320,7 +340,7 @@
                         }) {
                             if (color_list) {
                                 $('#color_code').empty();
-                                $('#color_code').append(`<option value="">Select Color</option>`);
+                                $('#color_code').append(`<option >Select Color</option>`);
                                 color_list.forEach(function(item) {
                                     $('#color_code').append(`<option ${color_code == item.color_code ? 'selected': ''} value="${item.color_code}">${item.color}</option>`);
                                 });
@@ -335,7 +355,7 @@
         })
 
         $(document).on('change', '#unit_price_vat', function() {
-            let unit_price_vat = +$(this).val();
+            let unit_price_vat = +$(this).val().replace("/-", "").replace(/,/g, "");
             let basic = Math.round((unit_price_vat * 100) / 115);
             let sale_vat = unit_price_vat - basic;
 
@@ -363,7 +383,7 @@
                 }) {
                     if (status === 200) {
                         $('#mc_stock_list').empty();
-                        $('#mc_stock_list').append('<option style="font-weight:bold; font-size:14px;" value="">MC List</option>');
+                        $('#mc_stock_list').append('<option style="font-weight:bold; font-size:14px;" >MC List</option>');
                         stock.forEach(function(item) {
                             $("#mc_stock_list").append(
                                 `<option style="font-weight:bold; font-size:14px;" value="${item.id}">${item.model} CH ${item.five_chassis} EN ${item.five_engine}</option>`
@@ -405,12 +425,12 @@
                         $('#core_id').val(mc_details.id);
                         $('#model_code').val(mc_details.model_code);
 
-                        $('#sale_vat').val(mrp_details.sale_vat);
-                        $('#unit_price_vat').val(mrp_details.vat_mrp);
-                        $('#basic_price_vat').val(mrp_details.basic_vat);
+                        $('#sale_vat').val(Math.round(mrp_details.sale_vat));
+                        $('#unit_price_vat').val(`${mrp_details.vat_mrp.toLocaleString('en-IN')}/-`);
+                        $('#basic_price_vat').val(Math.round(mrp_details.basic_vat));
 
                         $('#color_code').empty();
-                        $('#color_code').append('<option style="font-weight:bold; font-size:14px;" value="">Select Color</option>');
+                        $('#color_code').append('<option style="font-weight:bold; font-size:14px;" >Select Color</option>');
                         color_details.forEach(function(item) {
                             $("#color_code").append(
                                 `<option style="font-weight:bold; font-size:14px;" value="${item.color_code}">${item.color}</option>`
@@ -455,6 +475,9 @@
         $(document).on('submit', '#create_challan', function(e) {
             e.preventDefault();
             let delivery_challan_no = +$('#delivery_challan_no').val();
+            let unit_price_vat = +$('#unit_price_vat').val().trim().replace("/-", "").replace(/,/g, "");
+            let sale_price = +$('#sale_price').val().trim().replace("/-", "").replace(/,/g, "") || '';
+
 
             // get full chassis and engine no
             let full_chassis = $('#full_chassis').val();
@@ -492,6 +515,8 @@
                 FD.append('five_engine', five_engine);
             }
             FD.append('delivery_challan_no', delivery_challan_no);
+            FD.append('unit_price_vat', unit_price_vat);
+            FD.append('sale_price', sale_price);
 
             $.ajax({
                 url: "{{ route('delivery_challan.store_created_challan') }}",
@@ -511,7 +536,7 @@
                             timer: 2000
                         })
                         $('#challan_list').empty();
-                        $('#challan_list').append('<option style="font-weight:bold;" value="">Challan List</option>');
+                        $('#challan_list').append('<option style="font-weight:bold;" >Challan List</option>');
 
                         load_challan_list();
                     } else {
@@ -538,7 +563,7 @@
                 }) {
                     if (challan_list) {
                         $('#challan_list').empty();
-                        $('#challan_list').append('<option style="font-weight:bold;" value="">Challan List</option>');
+                        $('#challan_list').append('<option style="font-weight:bold;" >Challan List</option>');
                         challan_list.forEach(function(item) {
                             $("#challan_list").append(
                                 `<option style="font-weight:bold;" value="${item.id}">Chl- ${item.delivery_challan_no + ' ' + item.customer_name}</option>`
@@ -601,8 +626,8 @@
                         $('#class_of_vehicle').val(challan_details.class_of_vehicle);
                         $('#weight').val(`${challan_details.ladan_weight} / ${challan_details.unladen_weight}`);
                         $('#unit_price_vat').val(challan_details.unit_price_vat);
-                        $('#basic_price_vat').val(challan_details.basic_price_vat);
-                        $('#sale_vat').val(challan_details.sale_vat);
+                        $('#basic_price_vat').val(Math.round(challan_details.basic_price_vat));
+                        $('#sale_vat').val(Math.round(challan_details.sale_vat));
                         $("#color_code").append(`<option selected value="${challan_details.color_code}">${challan_details.color}</option>`);
 
                         $("#create_challan :input").prop("disabled", true);
@@ -636,7 +661,7 @@
 
                     if (challan_list) {
                         $('#challan_list_search').empty();
-                        $('#challan_list_search').append('<option style="font-weight:bold;" value="">Challan List</option>');
+                        $('#challan_list_search').append('<option style="font-weight:bold;" >Challan List</option>');
                         challan_list.forEach(function(item) {
                             $("#challan_list_search").append(
                                 `<option style="font-weight:bold;" value="${item.id}">Chl- ${item.delivery_challan_no + ' ' + item.customer_name}</option>`

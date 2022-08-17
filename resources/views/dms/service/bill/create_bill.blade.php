@@ -569,7 +569,6 @@
                 }) {
                     $("#create_bill").trigger("reset");
 
-
                     if (bill_details) {
                         $('#bill_no').val(bill_details.bill_no);
                         $('#bill_date').val(bill_details.bill_date);
@@ -620,9 +619,10 @@
                         // populate spare parts sale data end
                         calculate_sum();
                     }
-                    let bill_amount = +$('#bill_amount').val();
-                    let in_word = in_words(bill_amount);
-                    $('#in_words').text(in_word);
+                    $('#in_words').text(in_words(+$('#bill_amount').val()));
+                    // let bill_amount = +$('#bill_amount').val();
+                    // let in_word = in_words(bill_amount);
+                    // $('#in_words').text(in_word);
                 }
             });
         })
