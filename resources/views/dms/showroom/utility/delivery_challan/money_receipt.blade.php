@@ -98,6 +98,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="bill_page font-weight-bold" id="money_receipt">
                     <div class="bill_header">
                         <div class="header_image">
@@ -113,25 +114,25 @@
                             <div class="col-md-6">
                                 <div class="input-group mb-3" style="width: 160px;">
                                     <span class="input-group-text span_style" id="basic-addon1" style="height:25px;">No:</span>
-                                    <input readonly type="text" name="receipt_no" id="receipt_no" class="form-control receipt_no input_style" style="height:25px;">
+                                    <input value="{{$receipt_data ? $receipt_data->receipt_no : ''}}" readonly type="text" name="receipt_no" id="receipt_no" class="form-control receipt_no input_style" style="height:25px;">
                                 </div>
                             </div>
                             <div class="col-md-3 offset-md-3">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text span_style" id="basic-addon1" style="height:25px;">Date:</span>
-                                    <input type="date" name="receipt_date" id="receipt_date" class="form-control receipt_date input_style" style="height:25px;">
+                                    <input value="{{$receipt_data ? $receipt_data->receipt_date : ''}}" type="date" name="receipt_date" id="receipt_date" class="form-control receipt_date input_style" style="height:25px;">
                                 </div>
                             </div>
                             <div class="col-md-3 offset-md-9" style="margin-top:-12px;">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text span_style" id="basic-addon1" style="height:25px;">Mobile</span>
-                                    <input type="text" name="client_mobile" id="client_mobile" class="form-control client_mobile input_style" style="height:25px;">
+                                    <input value="{{$receipt_data ? $receipt_data->client_mobile : ''}}" type="text" name="client_mobile" id="client_mobile" class="form-control client_mobile input_style" style="height:25px;">
                                 </div>
                             </div>
                             <div class="col-md-12" style="line-height:2;">
                                 <div class="input-group mb-1">
                                     <span>Reveived with thanks from Mr./Mrs./M/s.: </span>
-                                    <input type="text" name="client_name" id="client_name" class="form-control input_group_style">
+                                    <input value="{{$receipt_data ? $receipt_data->client_name : ''}}" type="text" name="client_name" id="client_name" class="form-control input_group_style">
                                 </div>
                                 <div class="input-group mb-1">
                                     <span>An amount of Taka: </span>
@@ -139,7 +140,7 @@
                                 </div>
                                 <div class="input-group mb-1">
                                     <span>In cash/by: </span>
-                                    <input type="text" name="payment_method" id="payment_method" class="form-control payment_method input_group_style" style="width:550px;">
+                                    <input value="{{$receipt_data ? 'Cash' : ''}}" type="text" name="payment_method" id="payment_method" class="form-control payment_method input_group_style" style="width:550px;">
                                     <span>Date: </span>
                                     <input type="date" name="cheque_date" id="cheque_date" class="form-control cheque_date input_group_style" style="font-size: 18px;">
                                 </div>
@@ -149,14 +150,14 @@
                                 </div>
                                 <div class="input-group mb-1">
                                     <span>On account of: </span>
-                                    <input type="text" name="on_account_of" id="on_account_of" class="form-control on_account_of input_group_style">
+                                    <input value="As payment for {{$model ? $model->model : ''}}" type="text" name="on_account_of" id="on_account_of" class="form-control on_account_of input_group_style">
                                 </div>
                             </div>
                             <div class="col-md-7 mt-5">
                                 <div class="input-group mb-1">
                                     <span class="pr-2">The sum of Tk: </span>
-                                    <input type="text" name="amount" id="amount" class="amount input_group_style" style="width:224px; border-radius:0;">
-                                    <input type="hidden" name="id" id="id" class="id">
+                                    <input value="{{$receipt_data ? $receipt_data->amount : ''}}" type="text" name="amount" id="amount" class="amount input_group_style" style="width:224px; border-radius:0;">
+                                    <input type="hidden" name="receipt_id" id="receipt_id" class="receipt_id">
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center mt-5">
@@ -200,6 +201,10 @@
 
             return inWords(num);
         }
+        setTimeout(function() {
+            $('#amount').trigger('change');
+        }, 1000);
+
         $('#amount').change(function() {
             var amount = +$(this).val();
             $('#in_words').val(in_words(amount));
@@ -243,16 +248,17 @@
                     status
                 }) {
                     if (status === 200) {
-                        if (receipt_no < 9) {
-                            $('#receipt_no').val(`000${receipt_no}`);
-                        } else if (receipt_no < 99) {
-                            $('#receipt_no').val(`000${receipt_no}`);
-                        } else if (receipt_no < 999) {
-                            $('#receipt_no').val(`00${receipt_no}`);
-                        } else if (receipt_no < 9999) {
-                            $('#receipt_no').val(`0${receipt_no}`);
-                        } else {
-                            $('#receipt_no').val(`DCH-${receipt_no}`);
+                        let receipt_no_default = +$('#receipt_no').val();
+                        if (!receipt_no_default > 0) {
+                            if (receipt_no < 9) {
+                                $('#receipt_no').val(`000${receipt_no}`);
+                            } else if (receipt_no < 99) {
+                                $('#receipt_no').val(`00${receipt_no}`);
+                            } else if (receipt_no < 999) {
+                                $('#receipt_no').val(`0${receipt_no}`);
+                            } else {
+                                $('#receipt_no').val('');
+                            }
                         }
                     }
                 }
@@ -338,14 +344,14 @@
 
         // After select job card start
         $('#receipt_list, #receipt_list_search').on('change', function() {
-            let id = $(this).val();
+            let receipt_id = $(this).val();
 
             $.ajax({
                 url: "{{ route('receipt.load_single_receipt') }}",
                 method: 'get',
                 dataType: 'json',
                 data: {
-                    id
+                    receipt_id
                 },
                 success: function({
                     receipt_details
@@ -356,7 +362,7 @@
                             $("#money_receipt").find(`#${key}`).val(receipt_details[key]);
                         });
                     }
-                    $('#id').val(receipt_details.id)
+                    $('#receipt_id').val(receipt_details.id)
                     $("#create_money_receipt :input").prop("disabled", true);
                     $("#btn_edit").removeClass("disabled");
                 }

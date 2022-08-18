@@ -97,7 +97,7 @@
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
                             <nav aria-label="Page navigation example" style="padding-left:15px;">
-                                <ul class="pagination justify-content-center">
+                                <ul class="pagination justify-content-center" id="top_menu">
                                     <li class="page-item"><a class="page-link new_challan_record bg-success" href="#">New</a></li>
                                     <li class="page-item"><a class="page-link disabled" id="btn_edit" href="#">Edit</a></li>
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
@@ -176,6 +176,8 @@
                                     <input type="text" name="customer_name" id="customer_name" class="form-control customer_name input_style">
                                     <input type="hidden" name="id" id="core_id">
                                     <input type="hidden" name="model_code" id="model_code">
+                                    <input type="hidden" id="receipt_id">
+                                    <input type="hidden" id="receipt_no">
                                 </div>
                                 <div class="input-group mb-3 mt-10">
                                     <span class="input-group-text span_style">Father's Name :</span>
@@ -243,6 +245,7 @@
                                     <input type="text" id="sale_price" class="sale_price input_style" style="padding-left:12px;">
 
                                     <input type="hidden" name="sale_vat" id="sale_vat">
+                                    <input type="hidden" name="basic_price_vat" id="basic_price_vat">
                                     <input type="hidden" name="basic_price_vat" id="basic_price_vat">
                                 </div>
                             </div>
@@ -424,6 +427,7 @@
                         $('#weight').val(`${mc_details.ladan_weight} /${mc_details.unladen_weight}`);
                         $('#core_id').val(mc_details.id);
                         $('#model_code').val(mc_details.model_code);
+                        $('#receipt_id').val(mc_details.receipt_id);
 
                         $('#sale_vat').val(Math.round(mrp_details.sale_vat));
                         $('#unit_price_vat').val(`${mrp_details.vat_mrp.toLocaleString('en-IN')}/-`);
@@ -456,13 +460,13 @@
                         if (challan_no < 9) {
                             $('#delivery_challan_no').val(`000${challan_no}`);
                         } else if (challan_no < 99) {
-                            $('#delivery_challan_no').val(`000${challan_no}`);
-                        } else if (challan_no < 999) {
                             $('#delivery_challan_no').val(`00${challan_no}`);
-                        } else if (challan_no < 9999) {
+                        } else if (challan_no < 999) {
                             $('#delivery_challan_no').val(`0${challan_no}`);
+                        } else if (challan_no < 9999) {
+                            $('#delivery_challan_no').val(challan_no);
                         } else {
-                            $('#delivery_challan_no').val(`DCH-${challan_no}`);
+                            $('#delivery_challan_no').val('');
                         }
                     }
                 }
@@ -475,6 +479,8 @@
         $(document).on('submit', '#create_challan', function(e) {
             e.preventDefault();
             let delivery_challan_no = +$('#delivery_challan_no').val();
+            let receipt_id = +$('#receipt_id').val() || '';
+            let receipt_no = +$('#receipt_no').val() || '';
             let unit_price_vat = +$('#unit_price_vat').val().trim().replace("/-", "").replace(/,/g, "");
             let sale_price = +$('#sale_price').val().trim().replace("/-", "").replace(/,/g, "") || '';
 
@@ -513,6 +519,8 @@
                 FD.append('five_chassis', five_chassis);
                 FD.append('six_engine', six_engine);
                 FD.append('five_engine', five_engine);
+                FD.append('receipt_id', receipt_id);
+                FD.append('receipt_no', receipt_no);
             }
             FD.append('delivery_challan_no', delivery_challan_no);
             FD.append('unit_price_vat', unit_price_vat);
@@ -527,7 +535,18 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
+                    console.log(response);
+                    // return;
                     if (response.status === 200) {
+                        if (response.receipt_id) {
+                            let receipt_id = response.receipt_id;
+                            let receipt_no = response.receipt_no;
+                            $('#receipt_id').val(receipt_id);
+                            $('#receipt_no').val(receipt_no);
+                            const url = "{{ route('receipt.money_receipt') }}?receipt_id=" + receipt_id;
+                            $('#top_menu').find('.print_receipt').remove();
+                            $('#top_menu').append(`<a target="_blank" href="${url}" class="print_receipt page-item page-link bg-secondary disable" id="print_receipt">Print Receipt</a>`)
+                        }
                         $('#create_challan').trigger("reset");
                         Swal.fire({
                             icon: 'success',
@@ -640,6 +659,15 @@
                         $('#btn_edit').removeClass('disabled');
                         $('#mc_return').removeClass('disabled');
                         $('#btn_create_challan').text('Update Challan');
+                    }
+                    if (challan_details.receipt_id) {
+                        let receipt_id = challan_details.receipt_id;
+                        let receipt_no = challan_details.receipt_no;
+                        $('#receipt_id').val(receipt_id);
+                        $('#receipt_no').val(receipt_no);
+                        const url = "{{ route('receipt.money_receipt') }}?receipt_id=" + receipt_id;
+                        $('#top_menu').find('.print_receipt').remove();
+                        $('#top_menu').append(`<a target="_blank" href="${url}" class="print_receipt page-item page-link bg-secondary disable" id="print_receipt">Print Receipt</a>`)
                     }
                 }
             });
