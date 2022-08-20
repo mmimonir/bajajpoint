@@ -20,18 +20,20 @@ class DeliveryChallanController extends Controller
     }
     public function money_receipt(Request $request)
     {
+        if ($request->receipt_id) {
+            $receipt_id = $request->receipt_id;
+            $receipt_data = MoneyReceipt::where('id', $receipt_id)->first();
+            $core_id = $receipt_data->core_id;
+            $model = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+                ->where('cores.id', $core_id)
+                ->select('vehicles.model')
+                ->first();
 
-        $receipt_id = $request->receipt_id;
-        $receipt_data = MoneyReceipt::where('id', $receipt_id)->first();
-        $core_id = $receipt_data->core_id;
-        $model = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
-            ->where('cores.id', $core_id)
-            ->select('vehicles.model')
-            ->first();
-
-        return view(
-            'dms.showroom.utility.delivery_challan.money_receipt'
-        )->with(['receipt_data' => $receipt_data, 'model' => $model]);
+            return view('dms.showroom.utility.delivery_challan.money_receipt')
+                ->with(['receipt_data' => $receipt_data, 'model' => $model]);
+        } else {
+            return view('dms.showroom.utility.delivery_challan.money_receipt')->with(['receipt_data' => null, 'model' => null]);
+        }
     }
     public function create_receipt_no($value = '')
     {

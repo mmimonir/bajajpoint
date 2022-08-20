@@ -70,7 +70,7 @@
                         <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
                             <nav aria-label="Page navigation example" style="padding-left:15px;">
                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item"><a id="new_receipt_record" class="page-link bg-success" href="#">New</a></li>
+                                    <li class="page-item" id="new_receipt_record"><a class="page-link bg-success" href="#">New</a></li>
                                     <li class="page-item"><a class="page-link disabled" id="btn_edit" href="#">Edit</a></li>
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                     <button class="page-item page-link bg-dark" type="submit" id="btn_create_receipt">Create Receipt</button>
@@ -132,7 +132,7 @@
                             <div class="col-md-12" style="line-height:2;">
                                 <div class="input-group mb-1">
                                     <span>Reveived with thanks from Mr./Mrs./M/s.: </span>
-                                    <input value="{{$receipt_data ? $receipt_data->client_name : ''}}" type="text" name="client_name" id="client_name" class="form-control input_group_style">
+                                    <input value="{{$receipt_data ? Str::upper($receipt_data->client_name) : ''}}" type="text" name="client_name" id="client_name" class="form-control input_group_style">
                                 </div>
                                 <div class="input-group mb-1">
                                     <span>An amount of Taka: </span>
@@ -140,7 +140,7 @@
                                 </div>
                                 <div class="input-group mb-1">
                                     <span>In cash/by: </span>
-                                    <input value="{{$receipt_data ? 'Cash' : ''}}" type="text" name="payment_method" id="payment_method" class="form-control payment_method input_group_style" style="width:550px;">
+                                    <input value="{{$receipt_data ? 'CASH' : ''}}" type="text" name="payment_method" id="payment_method" class="form-control payment_method input_group_style" style="width:550px;">
                                     <span>Date: </span>
                                     <input type="date" name="cheque_date" id="cheque_date" class="form-control cheque_date input_group_style" style="font-size: 18px;">
                                 </div>
@@ -150,14 +150,15 @@
                                 </div>
                                 <div class="input-group mb-1">
                                     <span>On account of: </span>
-                                    <input value="As payment for {{$model ? $model->model : ''}}" type="text" name="on_account_of" id="on_account_of" class="form-control on_account_of input_group_style">
+                                    <input value="AS PAYMENT FOR {{$model ? $model->model : ''}}" type="text" name="on_account_of" id="on_account_of" class="form-control on_account_of input_group_style">
                                 </div>
                             </div>
                             <div class="col-md-7 mt-5">
                                 <div class="input-group mb-1">
                                     <span class="pr-2">The sum of Tk: </span>
-                                    <input value="{{$receipt_data ? $receipt_data->amount : ''}}" type="text" name="amount" id="amount" class="amount input_group_style" style="width:224px; border-radius:0;">
-                                    <input type="hidden" name="receipt_id" id="receipt_id" class="receipt_id">
+                                    <input value="{{$receipt_data ? $receipt_data->amount : ''}}" type="text" id="amount" class="amount input_group_style" style="width:224px; border-radius:0;">
+                                    <input value="{{$receipt_data ? $receipt_data->id : ''}}" type="hidden" name="receipt_id" id="receipt_id" class="receipt_id">
+                                    <input value="{{$receipt_data ? $receipt_data->receipt_no : ''}}" type="hidden" name="receipt_no" id="receipt_no" class="receipt_no">
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center mt-5">
@@ -183,36 +184,41 @@
 <script>
     $(document).ready(function() {
         function in_words(num) {
-            var a = ['', 'One ', 'Two ', 'Three ', 'Four ', 'Five ', 'Six ', 'Seven ', 'Eight ', 'Nine ', 'Ten ', 'Eleven ', 'Twelve ', 'Thirteen ', 'Fourteen ', 'Fifteen ', 'Sixteen ', 'Seventeen ', 'Eighteen ', 'Nineteen '];
-            var b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+            var a = ['', 'ONE ', 'TWO ', 'THREE ', 'FOUR ', 'FIVE ', 'SIX ', 'SEVEN ', 'EIGHT ', 'NINE ', 'TEN ', 'ELEVEN ', 'TWELVE ', 'THIRTEEN ', 'FOURTEEN ', 'FIFTEEN ', 'SIXTEEN ', 'SEVENTEEN ', 'EIGHTEEN ', 'NINETEEN '];
+            var b = ['', '', 'TWENTY', 'THIRTY', 'FORTY', 'FIFTY', 'SIXTY', 'SEVENTY', 'EIGHTY', 'NINETY'];
 
             function inWords(num) {
                 if ((num = num.toString()).length > 9) return 'overflow';
                 n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
                 if (!n) return;
                 var str = '';
-                str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'Crore ' : '';
-                str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'Lakh ' : '';
-                str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'Thousand ' : '';
-                str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'Hundred ' : '';
-                str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'Taka Only ' : '';
+                str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'CRORE ' : '';
+                str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'LAKH ' : '';
+                str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'THOUSAND ' : '';
+                str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'HUNDRED ' : '';
+                str += (n[5] != 0) ? ((str != '') ? 'AND ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) : '';
                 return str;
             }
 
             return inWords(num);
         }
+
         setTimeout(function() {
-            $('#amount').trigger('change');
+            if (document.location.search.length) {
+                $('#amount').trigger('change');
+                $("#create_money_receipt :input").prop("disabled", true);
+                $("#receipt_list, #receipt_list_search, #receipt_date_search").prop("disabled", false);
+                $("#btn_edit").removeClass("disabled");
+            }
         }, 1000);
 
         $('#amount').change(function() {
             var amount = +$(this).val();
-            $('#in_words').val(in_words(amount));
+            $('#in_words').val(in_words(amount) + 'TAKA ONLY.');
             $('#amount').val(`${amount.toLocaleString('en-IN')}/-`);
         });
 
         $(document).on('click', '#btn_edit', function(e) {
-            alert('edit');
             e.preventDefault();
             Swal.fire({
                 title: 'Are you sure?',
@@ -270,8 +276,9 @@
         // when submit create_challan form start
         $(document).on('submit', '#create_money_receipt', function(e) {
             e.preventDefault();
-            let receipt_no = +$('#receipt_no').val();
+            let amount = +$('#amount').val().replace("/-", "").replace(/,/g, "");
             var FD = new FormData(this);
+            FD.append('amount', amount);
 
             $.ajax({
                 url: "{{ route('receipt.store_created_receipt') }}",
@@ -292,8 +299,6 @@
                         })
                         $('#receipt_list').empty();
                         $('#receipt_list').append('<option style="font-weight:bold;" value="">Receipt List</option>');
-
-                        load_receipt_list();
                     } else {
                         Swal.fire({
                             icon: 'error',
@@ -331,9 +336,12 @@
         load_receipt_list();
 
         function new_receipt_record() {
+            if (document.location.search.length) {
+                window.location.href = "{{ route('receipt.money_receipt') }}";
+            }
+            $("#create_money_receipt :input").prop("disabled", false);
             $('#create_money_receipt').trigger('reset');
             $('#btn_create_receipt').text('Create Receipt');
-            $("#create_money_receipt :input").prop("disabled", false);
             load_receipt_list();
             create_money_receipt_no();
         }
