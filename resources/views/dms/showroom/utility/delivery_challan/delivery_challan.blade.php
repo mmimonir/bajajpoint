@@ -178,6 +178,7 @@
                                     <input type="hidden" name="model_code" id="model_code">
                                     <input type="hidden" id="receipt_id">
                                     <input type="hidden" id="receipt_no">
+                                    <input type="hidden" name="receipt_status" id="receipt_status" value="no">
                                 </div>
                                 <div class="input-group mb-3 mt-10">
                                     <span class="input-group-text span_style">Father's Name :</span>
@@ -201,11 +202,11 @@
                                 <div style="margin-top:50px;"></div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">01. Chassis No</span><span class="span_style">:</span>
-                                    <input type="text" minlength="17" maxlength="17" pattern="[A-Z0-9]+" id="full_chassis" class="form-control full_chassis input_style">
+                                    <input type="text" name="full_chassis" minlength="17" maxlength="17" pattern="[A-Z0-9]+" id="full_chassis" class="form-control full_chassis input_style">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">02. Engine No</span><span class="span_style">:</span>
-                                    <input type="text" minlength="11" maxlength="11" pattern="[A-Z0-9]+" id="full_engine" class="form-control full_engine input_style">
+                                    <input type="text" name="full_engine" minlength="11" maxlength="11" pattern="[A-Z0-9]+" id="full_engine" class="form-control full_engine input_style">
                                 </div>
                                 <div class="input-group mb-3 mt-10 fw-bold">
                                     <span class="input-group-text span_style span_underline">03. Make & Model of Vehicle</span><span class="span_style">:</span>
@@ -245,7 +246,6 @@
                                     <input type="text" id="sale_price" class="sale_price input_style" style="padding-left:12px;">
 
                                     <input type="hidden" name="sale_vat" id="sale_vat">
-                                    <input type="hidden" name="basic_price_vat" id="basic_price_vat">
                                     <input type="hidden" name="basic_price_vat" id="basic_price_vat">
                                 </div>
                             </div>
@@ -417,6 +417,7 @@
                     mrp_details
                 }) {
                     if (status === 200) {
+                        $('#customer_name').val(mc_details.dealer);
                         $('#full_chassis').val(mc_details.five_chassis);
                         $('#full_engine').val(mc_details.five_engine);
                         $('#model').val(mc_details.model_make_of_vehicle);
@@ -428,6 +429,7 @@
                         $('#core_id').val(mc_details.id);
                         $('#model_code').val(mc_details.model_code);
                         $('#receipt_id').val(mc_details.receipt_id);
+                        $('#receipt_status').val('yes');
 
                         $('#sale_vat').val(Math.round(mrp_details.sale_vat));
                         $('#unit_price_vat').val(`${mrp_details.vat_mrp.toLocaleString('en-IN')}/-`);
@@ -547,7 +549,7 @@
                             $('#top_menu').find('.print_receipt').remove();
                             $('#top_menu').append(`<a target="_blank" href="${url}" class="print_receipt page-item page-link bg-secondary disable" id="print_receipt">Print Receipt</a>`)
                         }
-                        $('#create_challan').trigger("reset");
+                        // $('#create_challan').trigger("reset");
                         Swal.fire({
                             icon: 'success',
                             title: response.message,
@@ -598,9 +600,11 @@
             $('#create_challan').trigger('reset');
             $('#btn_create_challan').text('Create Challan');
             $("#create_challan :input").prop("disabled", false);
+            $('#receipt_status').val('no');
             $('#color_code').empty();
             load_challan_list();
             create_delivery_challan_no();
+            $(".selectpicker").selectpicker("refresh");
         }
         $('.new_challan_record').on('click', function() {
             new_challan_record();
@@ -610,7 +614,6 @@
         // After select job card start
         $('#challan_list, #challan_list_search').on('change', function() {
             let id = $(this).val();
-
             $.ajax({
                 url: "{{ route('delivery_challan.load_single_challan') }}",
                 method: 'get',
@@ -644,7 +647,7 @@
                         $('#seating_capacity').val(challan_details.seating_capacity);
                         $('#class_of_vehicle').val(challan_details.class_of_vehicle);
                         $('#weight').val(`${challan_details.ladan_weight} / ${challan_details.unladen_weight}`);
-                        $('#unit_price_vat').val(challan_details.unit_price_vat);
+                        $('#unit_price_vat').val(`${challan_details.unit_price_vat.toLocaleString('en-IN')}/-`);
                         $('#basic_price_vat').val(Math.round(challan_details.basic_price_vat));
                         $('#sale_vat').val(Math.round(challan_details.sale_vat));
                         $("#color_code").append(`<option selected value="${challan_details.color_code}">${challan_details.color}</option>`);
@@ -659,6 +662,7 @@
                         $('#btn_edit').removeClass('disabled');
                         $('#mc_return').removeClass('disabled');
                         $('#btn_create_challan').text('Update Challan');
+                        $('#receipt_status').val('no');
                     }
                     if (challan_details.receipt_id) {
                         let receipt_id = challan_details.receipt_id;

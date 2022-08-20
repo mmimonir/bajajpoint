@@ -99,69 +99,99 @@ class DeliveryChallanController extends Controller
     }
     public function store_created_challan(Request $request)
     {
-        // return response()->json($request->all());
-        Core::where('id', $request->id)
-            ->first()
-            ->update([
-                'address_one' => $request->address_one,
-                'address_two' => $request->address_two,
-                'color_code' => $request->color_code,
-                'customer_name' => $request->customer_name,
-                'father_name' => $request->father_name,
-                'mother_name' => $request->mother_name,
-                'delivery_challan_no' => $request->delivery_challan_no,
-                'eight_chassis' => $request->eight_chassis,
-                'one_chassis' => $request->one_chassis,
-                'three_chassis' => $request->three_chassis,
-                'five_chassis' => $request->five_chassis,
-                'six_engine' => $request->six_engine,
-                'five_engine' => $request->five_engine,
-                'mobile' => $request->mobile,
-                'model_code' => $request->model_code,
-                'nid_no' => $request->nid_no,
-                'sale_date' => $request->sale_date,
-                'original_sale_date' => $request->sale_date,
-                'print_date' => $request->sale_date,
-                'vat_sale_date' => $request->sale_date,
-                'unit_price_vat' => $request->unit_price_vat,
-                'sale_price' => $request->sale_price,
-                'sale_vat' => $request->sale_vat,
-                'basic_price_vat' => $request->basic_price_vat,
-                'year_of_manufacture' => $request->year_of_manufacture,
-                'in_stock' => 'no',
-            ]);
+        $ch_length = strlen($request->full_chassis);
+        $en_length = strlen($request->full_engine);
+        $receipt_status = $request->receipt_status;
 
-        $receipt_no = $this->create_receipt_no('this');
-        // return response()->json(['status' => 200, 'receipt_no' => $receipt_no]);
-        $data = MoneyReceipt::updateOrCreate([
-            'id' => $request->receipt_id,
-        ], [
-            'receipt_no' => $request->receipt_no ?? $receipt_no,
-            'receipt_date' => $request->sale_date,
-            'client_name' => $request->customer_name,
-            'client_mobile' => $request->mobile,
-            'payment_method' => null,
-            'cheque_date' => null,
-            'drawn_on' => null,
-            'on_account_of' => null,
-            'amount' => $request->unit_price_vat,
-            'core_id' => $request->id,
-        ]);
-        $receipt_id = $data->id;
-        $receipt_no = $data->receipt_no;
-        Core::where('id', $request->id)
-            ->first()
-            ->update([
-                'receipt_id' => $receipt_id,
+        if ($ch_length == 17 && $en_length == 11) {
+            Core::where('id', $request->id)
+                ->first()
+                ->update([
+                    'address_one' => $request->address_one,
+                    'address_two' => $request->address_two,
+                    'color_code' => $request->color_code,
+                    'customer_name' => $request->customer_name,
+                    'father_name' => $request->father_name,
+                    'mother_name' => $request->mother_name,
+                    'delivery_challan_no' => $request->delivery_challan_no,
+                    'eight_chassis' => $request->eight_chassis,
+                    'one_chassis' => $request->one_chassis,
+                    'three_chassis' => $request->three_chassis,
+                    'five_chassis' => $request->five_chassis,
+                    'six_engine' => $request->six_engine,
+                    'five_engine' => $request->five_engine,
+                    'mobile' => $request->mobile,
+                    'model_code' => $request->model_code,
+                    'nid_no' => $request->nid_no,
+                    'sale_date' => $request->sale_date,
+                    'original_sale_date' => $request->sale_date,
+                    'print_date' => $request->sale_date,
+                    'vat_sale_date' => $request->sale_date,
+                    'unit_price_vat' => $request->unit_price_vat,
+                    'sale_price' => $request->sale_price,
+                    'sale_vat' => $request->sale_vat,
+                    'basic_price_vat' => $request->basic_price_vat,
+                    'year_of_manufacture' => $request->year_of_manufacture,
+                    'in_stock' => 'no',
+                ]);
+        }
+
+        if ($ch_length == 5 && $en_length == 5) {
+            Core::where('id', $request->id)
+                ->first()
+                ->update([
+                    'color_code' => $request->color_code,
+                    'dealer' => $request->customer_name,
+                    'delivery_challan_no' => $request->delivery_challan_no,
+                    'five_chassis' => $request->five_chassis,
+                    'five_engine' => $request->five_engine,
+                    'model_code' => $request->model_code,
+                    'dealer_out_date' => $request->sale_date,
+                    'sale_date' => $request->sale_date,
+                ]);
+        }
+
+        if ($ch_length == 17 && $en_length == 11 && $receipt_status == 'yes') {
+            $receipt_no = $this->create_receipt_no('this');
+
+            $data = MoneyReceipt::updateOrCreate([
+                'id' => $request->receipt_id,
+            ], [
+                'receipt_no' => $request->receipt_no ?? $receipt_no,
+                'receipt_date' => $request->sale_date,
+                'client_name' => $request->customer_name,
+                'client_mobile' => $request->mobile,
+                'payment_method' => null,
+                'cheque_date' => null,
+                'drawn_on' => null,
+                'on_account_of' => null,
+                'amount' => $request->unit_price_vat,
+                'core_id' => $request->id,
             ]);
+            $receipt_id = $data->id;
+            $receipt_no = $data->receipt_no;
+            Core::where('id', $request->id)
+                ->first()
+                ->update([
+                    'receipt_id' => $receipt_id,
+                ]);
+
+            return response()->json(
+                [
+                    'status' => 200,
+                    'message' => 'Successfully Updated',
+                    'receipt_id' => $receipt_id,
+                    'core_id' => $request->id,
+                    'receipt_no' => $receipt_no,
+                ]
+            );
+        }
 
         return response()->json(
             [
                 'status' => 200,
                 'message' => 'Successfully Updated',
-                'receipt_id' => $receipt_id,
                 'core_id' => $request->id,
-                'receipt_no' => $receipt_no,
             ]
         );
     }
@@ -237,7 +267,7 @@ class DeliveryChallanController extends Controller
     {
         $challan_details = Core::rightJoin('color_codes', 'color_codes.color_code', '=', 'cores.color_code')
             ->rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
-            ->rightJoin('money_receipts', 'money_receipts.id', '=', 'cores.receipt_id')
+            ->leftJoin('money_receipts', 'money_receipts.id', '=', 'cores.receipt_id')
             ->select(
                 'cores.*',
                 'cores.id as core_id',
@@ -327,6 +357,8 @@ class DeliveryChallanController extends Controller
                 'cores.five_chassis',
                 'cores.five_engine',
                 'cores.model_code',
+                'cores.dealer',
+                'cores.dealer_out_date',
                 'vehicles.model',
                 'vehicles.no_of_cylinder_with_cc',
                 'vehicles.seating_capacity',
