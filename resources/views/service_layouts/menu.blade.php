@@ -22,6 +22,12 @@
                         <p class="text-white">Create Job Card</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('parts.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-id-card"></i>
+                        <p class="text-white">Parts Purchage</p>
+                    </a>
+                </li>
             </ul>
         </li>
         @if(Auth::user()->roles == 'admin')

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('service_layouts.app')
 @section('title', 'Mechanics List')
 @section('datatable_css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />

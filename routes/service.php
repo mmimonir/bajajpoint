@@ -49,4 +49,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         Route::post('/mechanics_update',  'mechanics_update')->name('mechanics.update');
         Route::delete('/mechanics_delete',  'mechanics_delete')->name('mechanics.delete');
     });
+    Route::controller(App\Http\Controllers\Service\SparePartsStockController::class)->group(function () {
+        Route::get('/index',  'index')->name('parts.index');
+    });
 });
