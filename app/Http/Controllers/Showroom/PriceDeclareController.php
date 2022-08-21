@@ -16,13 +16,39 @@ class PriceDeclareController extends Controller
 
     public function pd_get()
     {
-        $pd_data = PriceDeclare::all();
+        $pd_data = PriceDeclare::rightJoin(
+            'business_profiles',
+            'business_profiles.id',
+            '=',
+            'price_declares.business_profile_id'
+        )
+            ->select(
+                'price_declares.*',
+                'business_profiles.*',
+                'business_profiles.id as profile_id'
+            )
+            ->get();
+
         return response()->json($pd_data);
     }
 
     public function get_single_pd(Request $request)
     {
-        $pd_data = PriceDeclare::find($request->id);
+        $pd_data = PriceDeclare::leftJoin(
+            'business_profiles',
+            'business_profiles.id',
+            '=',
+            'price_declares.business_profile_id'
+        )
+            ->select(
+                'price_declares.*',
+                'business_profiles.*',
+                'business_profiles.id as profile_id'
+            )
+            ->where('price_declares.id', $request->id)
+            ->first();
+
+        // return response()->json($request->id);
         return response()->json($pd_data);
     }
 

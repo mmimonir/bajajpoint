@@ -18,24 +18,6 @@
                         </div>
                     </div>
                     <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="dealer_code" name="dealer_code" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">BIN No</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="bin_number" name="bin_number" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">BIN Address</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="bin_address" name="bin_address" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Model</label>
                         <div class="col-sm-9">
                             <input required type="text" id="model_name" name="model_name" class="form-control" value="" />

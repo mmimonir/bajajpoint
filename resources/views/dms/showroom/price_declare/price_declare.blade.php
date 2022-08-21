@@ -17,7 +17,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card-body">
-                        <div id="show_all_pd">
+                        <div id="show_all_pd" class="container h-100 d-flex justify-content-center">
                             <h1 class="text-center text-secondary my-5">Loading...</h1>
                         </div>
                     </div>
@@ -110,8 +110,8 @@
                     "_token": "{{ csrf_token() }}",
                     id
                 },
-
                 success: function(data) {
+
                     Object.keys(data).forEach(function(key) {
                         $("#addModal").find(`#${key}`).val(data[key]);
                     });
@@ -257,9 +257,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">Sl</th>
-                                <th class="text-center">Dealer Name</th>                                
-                                <th class="text-center">BIN</th>
-                                <th class="text-center">BIN Address</th>
+                                <th class="text-center">Dealer Name</th>                                                                
                                 <th class="text-center">Model</th>                                
                                 <th class="text-center">Buy Price</th>                                                                
                                 <th class="text-center">MRP</th>
@@ -272,9 +270,7 @@
                             html +=
                                 `<tr style="height:30px;">                                
                                 <td class="dealer_name text-center">${index + 1}</td>
-                                <td class="dealer_name">${data.dealer_name}</td>                                
-                                <td class="bin_number text-right">${data.bin_number}</td>
-                                <td class="bin_address text-left">${data.bin_address}</td>
+                                <td class="dealer_name">${data.name}</td>                                                                
                                 <td class="model_name">${data.model_name}</td>
                                 <td class="buy_price text-right">${BDFormat.format(data.buy_price)}</td>
                                 <td class="vat_mrp text-right">${BDFormat.format(data.vat_mrp)}</td>
@@ -296,7 +292,7 @@
                         });
                         html += `</tbody></table>`;
                     } else {
-                        html = `<h3 class="text-center">No MRP Found</h3>`;
+                        html = `<h3 class="text-center">No Data Found</h3>`;
                     }
                     $("#show_all_pd").html(html);
                     $("#example").DataTable({
