@@ -122,6 +122,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{route('profile.index')}}" class="nav-link">
+                <i class="nav-icon fas fa-user" aria-hidden="true"></i>
+                <p class="text-white">Business Profile</p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{route('excel.dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p class="text-white">Report Dashboard</p>
