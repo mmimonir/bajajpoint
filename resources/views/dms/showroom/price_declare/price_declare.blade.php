@@ -58,6 +58,31 @@
             $("#addModal").find('#title').text('Create Price Declare File');
             $("#add_pd").text('Create');
             $("#pd_id").val('');
+            $.ajax({
+                url: "{{ route('pd.get_business_profile') }}",
+                type: "get",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                },
+                success: function({
+                    profile_data
+                }) {
+                    if (profile_data) {
+                        $('#dealer_name').remove();
+                        var html = `
+                        <select class="form-control" id="business_profile_id" name="business_profile_id">
+                        <option value="">Select Dealer</option>
+                        `;
+                        profile_data.forEach(function(data, index) {
+                            html +=
+                                `<option value="${data.id}">${data.name}</option>`;
+                        });
+                        html += `</select>`;
+                    }
+                    $("#dealer_name_parent").html(html);
+                }
+            });
+
         });
 
 

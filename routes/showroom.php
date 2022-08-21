@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
         Route::post('/pd_add',  'pd_add')->name('pd.add');
         Route::post('/pd_update',  'pd_update')->name('pd.update');
         Route::delete('/pd_delete',  'pd_delete')->name('pd.delete');
+        Route::get('/get_business_profile',  'get_business_profile')->name('pd.get_business_profile');
     });
 
     // Purchage

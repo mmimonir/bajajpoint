@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Dealer</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-9" id="dealer_name_parent">
                             <input required type="text" id="dealer_name" name="dealer_name" class="form-control" value="" />
                             <input type="hidden" id="pd_id" name="id" class="form-control" value="" />
                         </div>

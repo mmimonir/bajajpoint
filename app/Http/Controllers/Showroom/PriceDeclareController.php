@@ -6,12 +6,18 @@ use App\Models\Showroom\Mrp;
 use App\Models\Showroom\PriceDeclare;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\BusinessProfile;
 
 class PriceDeclareController extends Controller
 {
     public function index()
     {
         return view('dms.showroom.price_declare.price_declare');
+    }
+    public function get_business_profile()
+    {
+        $profile_data = BusinessProfile::select('id', 'name')->get();
+        return response()->json(['profile_data' => $profile_data]);
     }
 
     public function pd_get()
