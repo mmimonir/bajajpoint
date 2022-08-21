@@ -65,21 +65,23 @@
                     "_token": "{{ csrf_token() }}",
                 },
                 success: function({
-                    profile_data
+                    profile_data,
+                    vehicles
                 }) {
                     if (profile_data) {
-                        $('#dealer_name').remove();
-                        var html = `
-                        <select class="form-control" id="business_profile_id" name="business_profile_id">
-                        <option value="">Select Dealer</option>
-                        `;
-                        profile_data.forEach(function(data, index) {
-                            html +=
-                                `<option value="${data.id}">${data.name}</option>`;
+                        $("#business_profile_id").empty();
+                        $("#business_profile_id").append('<option value="">Select Business Profile</option>');
+                        profile_data.forEach(function(data) {
+                            $("#business_profile_id").append(`<option value="${data.id}">${data.name}</option>`);
                         });
-                        html += `</select>`;
+                        $('#model_id').empty();
+                        $('#model_id').append('<option value="">Select Model</option>');
+                        vehicles.forEach(function(data) {
+                            $('#model_id').append(`<option value="${data.id}">${data.model}</option>`);
+                        });
+
                     }
-                    $("#dealer_name_parent").html(html);
+
                 }
             });
 
@@ -136,10 +138,18 @@
                     id
                 },
                 success: function(data) {
+                    console.log(data);
 
                     Object.keys(data).forEach(function(key) {
                         $("#addModal").find(`#${key}`).val(data[key]);
                     });
+
+                    $("#addModal").find("#business_profile_id").empty();
+                    $("#addModal").find("#business_profile_id").append(`<option value="">${data.name}</option>`);
+
+                    $("#addModal").find("#model_id").empty();
+                    $("#addModal").find("#model_id").append(`<option value="">${data.model_name}</option>`);
+
                     $("#addModal").modal('show');
                     $("#addModal").find('#title').text('View MRP');
                     $("#addModal :input").prop("readOnly", true);
@@ -301,7 +311,7 @@
                                 <td class="vat_mrp text-right">${BDFormat.format(data.vat_mrp)}</td>
                                 <td class="submit_date text-center">${data.submit_date}</td>                                                                
                                 <td class="text-center">
-                                <input class="id" type="hidden" name="id" value="${data.id}">
+                                <input class="id" type="hidden" name="id" value="${data.pd_id}">
                                     <a href="#" class="m-r-15 text-muted viewIcon">
                                         <i class="fa fa-eye" style="color: #2196f3;font-size:16px;"></i>                                    
                                     </a>

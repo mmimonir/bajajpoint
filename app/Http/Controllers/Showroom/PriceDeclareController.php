@@ -7,6 +7,7 @@ use App\Models\Showroom\PriceDeclare;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\BusinessProfile;
+use App\Models\Showroom\Vehicle;
 
 class PriceDeclareController extends Controller
 {
@@ -17,7 +18,12 @@ class PriceDeclareController extends Controller
     public function get_business_profile()
     {
         $profile_data = BusinessProfile::select('id', 'name')->get();
-        return response()->json(['profile_data' => $profile_data]);
+        $vehicles = Vehicle::select('id', 'model')->where('status', 'Active')->get();
+
+        return response()->json([
+            'profile_data' => $profile_data,
+            'vehicles' => $vehicles
+        ]);
     }
 
     public function pd_get()
@@ -30,6 +36,7 @@ class PriceDeclareController extends Controller
         )
             ->select(
                 'price_declares.*',
+                'price_declares.id as pd_id',
                 'business_profiles.*',
                 'business_profiles.id as profile_id'
             )

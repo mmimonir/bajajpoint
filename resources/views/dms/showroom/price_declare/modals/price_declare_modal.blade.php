@@ -9,24 +9,22 @@
             </div>
             <form action="#" method="POST" class="form-horizontal" id="add_pd_form">
                 @csrf
+                <input type="hidden" id="pd_id" name="id" class="form-control" value="" />
                 <div class="modal-body">
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Dealer</label>
-                        <div class="col-sm-9" id="dealer_name_parent">
-                            <input required type="text" id="dealer_name" name="dealer_name" class="form-control" value="" />
-                            <input type="hidden" id="pd_id" name="id" class="form-control" value="" />
+                        <div class="col-sm-9">
+                            <select class="form-control" id="business_profile_id" name="business_profile_id">
+
+                            </select>
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Model</label>
                         <div class="col-sm-9">
-                            <input required type="text" id="model_name" name="model_name" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group-sm row">
-                        <label class="col-sm-3 col-form-label">Model Code</label>
-                        <div class="col-sm-9">
-                            <input required type="text" id="model_code" name="model_code" class="form-control" value="" />
+                            <select class="form-control" id="model_id" name="model_id">
+
+                            </select>
                         </div>
                     </div>
                     <div class="form-group-sm row">
