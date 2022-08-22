@@ -9,7 +9,7 @@
             </div>
             <form action="#" method="POST" class="form-horizontal" id="add_pd_form">
                 @csrf
-                <input type="hidden" id="pd_id" name="id" class="form-control" value="" />
+                <input type="hidden" id="pd_id" name="id" value="" />
                 <div class="modal-body">
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Dealer</label>
@@ -22,7 +22,7 @@
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Model</label>
                         <div class="col-sm-9">
-                            <select class="form-control" id="model_id" name="model_id">
+                            <select class="form-control" id="model_code" name="model_code">
 
                             </select>
                         </div>
@@ -30,73 +30,73 @@
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">HS Code</label>
                         <div class="col-sm-9">
-                            <input required type="text" id="hs_code" name="hs_code" class="form-control" value="" />
+                            <input type="text" id="hs_code" name="hs_code" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Description</label>
                         <div class="col-sm-9">
-                            <input required type="text" id="products_description" name="products_description" class="form-control" value="" />
+                            <input type="text" id="products_description" name="products_description" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">TR</label>
                         <div class="col-sm-9">
-                            <input required type="text" id="tr" name="tr" class="form-control" value="" />
+                            <input type="text" id="tr" name="tr" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Unit</label>
                         <div class="col-sm-9">
-                            <input required type="text" id="unit_of_supply" name="unit_of_supply" class="form-control" value="" />
+                            <input type="text" id="unit_of_supply" name="unit_of_supply" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Buy Price</label>
                         <div class="col-sm-9">
-                            <input required type="text" id="buy_price" name="buy_price" class="form-control" value="" />
+                            <input type="text" id="buy_price" name="buy_price" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Percentage</label>
                         <div class="col-sm-9">
-                            <input required type="text" id="percentage" name="percentage" class="form-control" value="" />
+                            <input type="text" id="percentage" name="percentage" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Value Addition</label>
                         <div class="col-sm-9">
-                            <input required type="text" id="value_addition_amount" name="value_addition_amount" class="form-control" value="" />
+                            <input type="text" id="value_addition_amount" name="value_addition_amount" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">MRP</label>
                         <div class="col-sm-9">
-                            <input required type="text" id="vat_mrp" name="vat_mrp" class="form-control" value="" />
+                            <input type="text" id="vat_mrp" name="vat_mrp" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Submit Date</label>
                         <div class="col-sm-9">
-                            <input required type="date" id="submit_date" name="submit_date" class="form-control" value="" />
+                            <input type="date" id="submit_date" name="submit_date" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Mushak No</label>
                         <div class="col-sm-9">
-                            <input required type="text" id="purchage_mushak_no" name="purchage_mushak_no" class="form-control" value="" />
+                            <input type="text" id="purchage_mushak_no" name="purchage_mushak_no" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Mushak Date</label>
                         <div class="col-sm-9">
-                            <input required type="date" id="mushak_date" name="mushak_date" class="form-control" value="" />
+                            <input type="date" id="mushak_date" name="mushak_date" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Status</label>
                         <div class="col-sm-9">
-                            <input required type="text" id="status" name="status" class="form-control" value="" />
+                            <input type="text" id="status" name="status" class="form-control" value="" />
                         </div>
                     </div>
                 </div>

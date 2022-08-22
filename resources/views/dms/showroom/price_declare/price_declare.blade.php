@@ -74,10 +74,10 @@
                         profile_data.forEach(function(data) {
                             $("#business_profile_id").append(`<option value="${data.id}">${data.name}</option>`);
                         });
-                        $('#model_id').empty();
-                        $('#model_id').append('<option value="">Select Model</option>');
+                        $('#model_code').empty();
+                        $('#model_code').append('<option value="">Select Model</option>');
                         vehicles.forEach(function(data) {
-                            $('#model_id').append(`<option value="${data.id}">${data.model}</option>`);
+                            $('#model_code').append(`<option value="${data.model_code}">${data.model}</option>`);
                         });
 
                     }
@@ -102,6 +102,7 @@
                 processData: false,
                 dataType: "json",
                 success: function(response) {
+                    console.log(response);
                     if (response.status == 200) {
                         Swal.fire({
                             position: "top-end",
@@ -117,6 +118,7 @@
                             icon: "error",
                             title: "Something went wrong",
                             showConfirmButton: false,
+                            message: response.error,
                             timer: 1500,
                         });
                     }
@@ -138,17 +140,19 @@
                     id
                 },
                 success: function(data) {
-                    console.log(data);
 
-                    Object.keys(data).forEach(function(key) {
-                        $("#addModal").find(`#${key}`).val(data[key]);
+                    Object.keys(data.pd_data).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(data.pd_data[key]);
                     });
 
-                    $("#addModal").find("#business_profile_id").empty();
-                    $("#addModal").find("#business_profile_id").append(`<option value="">${data.name}</option>`);
 
-                    $("#addModal").find("#model_id").empty();
-                    $("#addModal").find("#model_id").append(`<option value="">${data.model_name}</option>`);
+                    $("#addModal").find("#business_profile_id").empty();
+                    $("#addModal").find("#business_profile_id").append(`<option value="">${data.pd_data.name}</option>`);
+
+                    $("#addModal").find("#model_code").empty();
+                    $("#addModal").find("#model_code").append(`<option value="">${data.pd_data.model}</option>`);
+
+                    $("#addModal").find("#pd_id").val(data.pd_data.pd_id);
 
                     $("#addModal").modal('show');
                     $("#addModal").find('#title').text('View MRP');
@@ -176,12 +180,26 @@
                     id
                 },
                 success: function(data) {
-                    Object.keys(data).forEach(function(key) {
-                        $("#addModal").find(`#${key}`).val(data[key]);
+                    console.log(data);
+                    Object.keys(data.pd_data).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(data.pd_data[key]);
                     });
 
+                    $("#addModal").find("#business_profile_id").empty();
+                    $("#addModal").find("#business_profile_id").append('<option value="">Select Business Profile</option>');
+                    data.profile_data.forEach(function(item) {
+                        $("#addModal").find("#business_profile_id").append(`<option ${item.profile_id == data.pd_data.profile_id ? 'selected' : ''} value="${item.profile_id}">${item.name}</option>`);
+                    });
+                    $("#addModal").find('#model_code').empty();
+                    $("#addModal").find('#model_code').append('<option value="">Select Model</option>');
+                    data.vehicle_data.forEach(function(item) {
+                        $("#addModal").find('#model_code').append(`<option ${item.model_code == data.pd_data.model_code ? 'selected' : ''} value="${item.model_code}">${item.model}</option>`);
+                    });
+
+                    $("#addModal").find("#pd_id").val(data.pd_data.pd_id);
+
                     $("#addModal").modal('show');
-                    $("#pd_id").val(data.id);
+                    // $("#pd_id").val(data.id);
                     $("#addModal :input").prop("readOnly", false);
                     $("#addModal").find('#title').text('Update MRP');
                 }
@@ -286,8 +304,11 @@
             $.ajax({
                 url: "{{ route('pd.get') }}",
                 method: 'get',
-                success: function(response) {
-                    if (response.length > 0) {
+                success: function({
+                    pd_data
+                }) {
+                    console.log(pd_data);
+                    if (pd_data.length > 0) {
                         var html = `<table id="example" class="table table-hover table-responsive table-striped text-sm table-light table-bordered" style="width:100%;">
                         <thead>
                             <tr>
@@ -297,19 +318,21 @@
                                 <th class="text-center">Buy Price</th>                                                                
                                 <th class="text-center">MRP</th>
                                 <th class="text-center">Submit Date</th>                                                                
+                                <th class="text-center">Status</th>                                                                
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>`;
-                        response.forEach(function(data, index) {
+                        pd_data.forEach(function(data, index) {
                             html +=
                                 `<tr style="height:30px;">                                
                                 <td class="dealer_name text-center">${index + 1}</td>
                                 <td class="dealer_name">${data.name}</td>                                                                
-                                <td class="model_name">${data.model_name}</td>
+                                <td class="model_name">${data.model}</td>
                                 <td class="buy_price text-right">${BDFormat.format(data.buy_price)}</td>
                                 <td class="vat_mrp text-right">${BDFormat.format(data.vat_mrp)}</td>
                                 <td class="submit_date text-center">${data.submit_date}</td>                                                                
+                                <td class="text-center">${data.status}</td>                                                                
                                 <td class="text-center">
                                 <input class="id" type="hidden" name="id" value="${data.pd_id}">
                                     <a href="#" class="m-r-15 text-muted viewIcon">
