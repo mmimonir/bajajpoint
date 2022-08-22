@@ -625,13 +625,27 @@
                     challan_details
                 }) {
                     console.log(challan_details);
+
                     $("#create_challan").trigger("reset");
                     if (challan_details) {
+                        let challan_no = challan_details.delivery_challan_no;
+                        if (challan_no < 9) {
+                            $('#delivery_challan_no').val(`000${challan_no}`);
+                        } else if (challan_no < 99) {
+                            $('#delivery_challan_no').val(`00${challan_no}`);
+                        } else if (challan_no < 999) {
+                            $('#delivery_challan_no').val(`0${challan_no}`);
+                        } else if (challan_no < 9999) {
+                            $('#delivery_challan_no').val(challan_no);
+                        } else {
+                            $('#delivery_challan_no').val(challan_no);
+                        }
                         $('#core_id').val(challan_details.core_id);
                         $('#model_code').val(challan_details.model_code);
                         $('#color_code').val(challan_details.color_code);
-                        $('#delivery_challan_no').val(challan_details.delivery_challan_no);
+                        // $('#delivery_challan_no').val(challan_details.delivery_challan_no);
                         $('#sale_date').val(challan_details.sale_date);
+                        $('#sale_price').val(`${challan_details.sale_price.toLocaleString('en-IN')}/-`);
                         $('#mobile').val(challan_details.mobile);
                         $('#customer_name').val(challan_details.customer_name);
                         $('#father_name').val(challan_details.father_name);
