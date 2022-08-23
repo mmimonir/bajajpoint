@@ -6,6 +6,7 @@ use App\Models\Showroom\{Core, Vehicle, Purchage, Supplier, ColorCode, Mrp, Pric
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Http\Controllers\Controller;
+use App\Models\BusinessProfile;
 
 class SalesController extends Controller
 {
@@ -15,11 +16,19 @@ class SalesController extends Controller
         $core_data = Core::select('*')->where('id', $id)->first();
         $model_code = $core_data->model_code;
         $store_id = $core_data->store_id;
+        $business_profile_id = BusinessProfile::select('id')->where(['business_code' => $core_data->vat_code])->first();
         // $print_ref = Supplier::select('print_ref')->whereNotNull('dealer_name')->get();
         $vehicle_data = Vehicle::select('model')->where('model_code', $model_code)->first();
         $purchage_data = Purchage::select('purchage_date', 'vendor', 'factory_challan_no')->where('id', $store_id)->first();
         $color_data = ColorCode::select('color_code', 'color')->where('model_code', $model_code)->get();
-        $pd_data = PriceDeclare::select('id', 'vat_mrp', 'submit_date')->where(['model_code' => $model_code, 'status' => '1', 'dealer_code' => $core_data->vat_code])->first();
+        $pd_data = PriceDeclare::select(
+            'id',
+            'vat_mrp',
+            'submit_date'
+        )->where(
+            // ['model_code' => $model_code, 'status' => 'active', 'business_profile_id' => $business_profile_id]
+            ['model_code' => $model_code, 'status' => 'active', 'business_profile_id' => $business_profile_id->id]
+        )->first();
         $mrp_data = Mrp::select('*')->where(['model_code' => $model_code])->first();
 
         return response()->json(
@@ -29,6 +38,7 @@ class SalesController extends Controller
                 'purchage_data' => $purchage_data,
                 'color_data' => $color_data,
                 'pd_data' => $pd_data,
+                // 'pd_data' => $pd_data,
                 // 'print_ref' => $print_ref,
                 'mrp_data' => $mrp_data,
             ]

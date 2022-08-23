@@ -555,6 +555,7 @@
                     vehicle_data,
                     mrp_data,
                 }) {
+                    console.log(pd_data);
 
                     Object.keys(core_data).forEach(function(key) {
                         $("#salesUpdateModal").find(`#${key}`).val(core_data[key]);
@@ -569,7 +570,7 @@
                     $('#price_declare_id2').val((pd_data ? pd_data.id : '') + ', Date ' + (pd_data ? pd_data.submit_date : ''));
                     $('#purchage_date2').val(purchage_data ? purchage_data.purchage_date : core_data.purchage_date);
                     $('#factory_challan_no2').val(purchage_data ? purchage_data.factory_challan_no : core_data.challan_no);
-                    $('#vat_mrp2').val(pd_data ? pd_data.vat_mrp : '');
+                    $('#vat_mrp').val(pd_data ? pd_data.vat_mrp : '');
 
                 }
             });
