@@ -1,318 +1,653 @@
 @extends('service_layouts.app')
-@section('title', 'Job Card')
+@section('title', 'Parts Purchage')
 
-@section('datatable_css')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" />
-@endsection
+@push('page_css')
+<style>
+    @media print {
 
+        .no-print,
+        .no-print * {
+            display: none !important;
+        }
+    }
+
+    a.disabled {
+        pointer-events: none;
+        cursor: default;
+    }
+
+    .img-width {
+        width: 33.33%;
+    }
+
+    .bill_page {
+        height: 76rem;
+        width: 59rem;
+        border: 1px solid black;
+        margin: auto;
+        position: relative;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .input_style {
+        background-color: white;
+        height: 18px;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    table,
+    td,
+    th {
+        border: 1px solid;
+    }
+
+    textarea,
+    input {
+        border: none;
+    }
+</style>
+@endpush
+@push('page_scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+@endpush
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-md-12">
-        <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h4>Purchage</h4>
+    <div class="col-md-12" style="margin:10px 0;">
+        <form id="spare_parts_purchage">
+            <input type="hidden" name="request_from" id="request_from" value="">
+            <input type="hidden" name="update" id="update" value="true">
+            @csrf
+            <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
+                <div class="card-header no-print">
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
+                            <nav aria-label="Page navigation example" style="padding-left:15px;">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item"><a class="page-link new_bill_record bg-success" href="#">New</a></li>
+                                    <li class="page-item print"><a class="page-link" href="#">Print</a></li>
+                                    <button class="page-item page-link bg-dark" type="submit" id="btn_create_bill">Purchage Done</button>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <a href="{{route('purchage.index')}}" class="m-r-15 edit float-right btn btn-dark mb-1">Purchage List</i>
-                        </a>
+                </div>
+                <div class="card-header no-print">
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-center" style="height:22px; width:950px; margin:auto;">
+                            <div class="d-flex justify-content-center" style="align-items:baseline; margin-left:15px; width:450px;">
+                                <label style="margin-right:10px;">Purchage Invoice</label>
+                                <select name="invoice_list" style="font-weight: bold; background:#F7F7F7; border-radius:5px; width:238px;" id="invoice_list">
+
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-center" style="align-items:baseline; margin-left:15px; width:490px;">
+                                <label>Invoice Date</label>
+                                <input type="date" name="bill_date_search" id="bill_date_search" style="margin-left:5px; margin-right:5px; background:#F7F7F7; width:100px;">
+                                <select name="bill_list_search" style="font-weight: bold; background:#F7F7F7; border-radius:5px; width:240px;" id="bill_list_search">
+                                    <option style="font-weight:bold;" value="">Invoice List</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bill_page" style="margin-top:20px; margin-bottom:20px;">
+                    <div class="bill_header">
+                        <div class="col-md-12 d-flex align-items-center">
+                            <img src="{{asset('/images/uml_logo.png')}}" class="img-fluid p-1" style="width:40%; margin:auto;">
+                        </div>
+                    </div>
+                    <div class="bill_body">
+                        <h2 class="text-center" style="border:1px solid black; width:150px; margin:auto; border-radius:7px; margin-top:10px;">Invoice</h2>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="input-group mb-3" style="width: 160px;">
+                                    <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Bill No:</span>
+                                    <input type="text" name="bill_no" id="bill_no" class="form-control bill_no input_style" style="height:25px;">
+                                </div>
+                            </div>
+                            <div class="col-md-3 offset-md-3">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Date:</span>
+                                    <input type="date" name="bill_date" id="bill_date" class="form-control bill_date input_style" style="height:25px;">
+                                </div>
+                            </div>
+
+                            <div class="form-row d-flex justify-content-center" style="margin-bottom:15px; font-size:16px;">
+                                <div class="col-md-4">
+                                    <div class="form-group mb-0 row">
+                                        <label for="vendor" class="col-sm-3 col-form-label" style="padding:3px;">Vendor</label>
+                                        <div class="col-sm-9">
+                                            <select name="vendor" class="browser-default custom-select" style="height:30px; padding:3px; font-size:14px; padding-left:6px;">
+                                                <option selected="">Open this select menu</option>
+                                                <option value="UML ESK">UML ESK</option>
+                                                <option value="UMCL BOGRA">UMCL BOGRA</option>
+                                                <option value="TRANS ASIA IND. LTD">TRANS ASIA IND. LTD</option>
+                                                <option value="SK. TRADERS">SK. TRADERS</option>
+                                                <option value="BH VIA MML">BH VIA MML</option>
+                                                <option value="BH VIA UML ESK">BH VIA UML ESK</option>
+                                                <option value="BH VIA UMCL BOGRA">BH VIA UMCL BOGRA</option>
+                                                <option value="BH VIA TAIL">BH VIA TAIL</option>
+                                                <option value="BAJAJ BLOOM VIA TAIL">BAJAJ BLOOM VIA TAIL</option>
+                                                <option value="BAJAJ BLOOM VIA UML ESK">BAJAJ BLOOM VIA UML ESK</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mb-0 row pl-2">
+                                        <label for="vendor" class="col-sm-3 col-form-label" style="padding:3px;">Dealer</label>
+                                        <div class="col-sm-9">
+                                            <select name="dealer_name" class="browser-default custom-select" style="height:30px; padding:3px; font-size:14px; padding-left:6px;">
+                                                <option selected="">Open this select menu</option>
+                                                <option value="BAJAJ PLUS">BAJAJ PLUS</option>
+                                                <option value="BAJAJ HEAVEN">BAJAJ HEAVEN</option>
+                                                <option value="BAJAJ BLOOM">BAJAJ BLOOM</option>
+                                                <option value="BAJAJ POINT">BAJAJ POINT</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <table align="center" style="width:100%;" id="tbl">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align:center;">Sl</th>
+                                            <th style="text-align:center;">Parts No</th>
+                                            <th style="text-align:center;">Parts Name</th>
+                                            <th style="text-align:center;">Quantity</th>
+                                            <th style="text-align:center;">Rate</th>
+                                            <th style="text-align:center;">Amount</th>
+                                            <th class="no-print" style="text-align:center;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for($i=0; $i<=32; $i++) <tr>
+                                            <td>
+                                                <input value="{{$i+1}}" type="text" name="sl" style="width:38px;" class="input_style text-center">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="part_id[]" class="input_style text-center part_id">
+                                                <input type="hidden" name="id" class="input_style text-center id">
+                                            </td>
+                                            <td>
+                                                <input readOnly type="text" name="part_name[]" style="width:250px;" class="input_style text-center part_name">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="quantity[]" style="width:78px;" class="input_style text-center quantity">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="sale_rate[]" style="width:115px;" class="input_style text-right sale_rate">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="total_amount[]" class="input_style text-right total_amount">
+                                            </td>
+                                            <td class="text-center no-print">
+                                                <a href="#" class="disabled delete_parts_item"><i class="fa fa-trash delete_icon text-secondary"></i></a>
+                                            </td>
+                                            </tr>
+                                            @endfor
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td rowspan="3" colspan="4" style="vertical-align: top;">
+                                                <p>
+                                                    <strong>In Words: <span id="in_words"></span></strong>
+                                                </p>
+                                            </td>
+                                            <td>Total Amount</td>
+                                            <td><input readOnly type="text" name="grand_total" id="grand_total" class="input_style text-right grand_total"></td>
+                                            <td class="no-print"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Discount</td>
+                                            <td><input type="text" name="discount" id="discount" class="input_style text-right discount"></td>
+                                            <td class="no-print"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Balance</td>
+                                            <td><input readOnly type="text" name="balance" id="balance" class="input_style text-right balance"></td>
+                                            <td class="no-print"></td>
+                                        </tr>
+
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                <form action="#" method="post" id="purchage_entry_form">
-                    @csrf
-                    <div class="form-row">
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="challan_no" class="col-sm-4 col-form-label">Challan No</label>
-                                <div class="col-sm-8">
-                                    <input required type="text" class="form-control" id="challan_no" name="challan_no" placeholder="Challan No">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="purchage_date" class="col-sm-4 col-form-label">Date</label>
-                                <div class="col-sm-8">
-                                    <input required type="date" class="form-control" id="purchage_date" name="purchage_date" placeholder="Purchage Date">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="vendor" class="col-sm-4 col-form-label">Vendor</label>
-                                <div class="col-sm-8">
-                                    <select name="vendor" class="browser-default custom-select">
-                                        <option selected>Open this select menu</option>
-                                        @foreach ($suppliers as $supplier)
-                                        <option value="{{$supplier->supplier_name}}">{{$supplier->supplier_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="vendor" class="col-sm-4 col-form-label">Dealer</label>
-                                <div class="col-sm-8">
-                                    <select name="dealer_name" class="browser-default custom-select">
-                                        <option selected>Open this select menu</option>
-                                        @foreach ($dealer_names as $dealer)
-                                        <option value="{{$dealer->dealer_name}}">{{$dealer->dealer_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="purchage_value" class="col-sm-4 col-form-label">Quantity</label>
-                                <div class="col-sm-8">
-                                    <input required type="text" class="form-control" id="quantity" name="quantity" placeholder="Quantity">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="purchage_value" class="col-sm-4 col-form-label">Value</label>
-                                <div class="col-sm-8">
-                                    <input required type="text" class="form-control" id="purchage_value" name="purchage_value" placeholder="Purchage Value">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-0 row">
-                                <label for="mc_location" class="col-sm-4 col-form-label">Location</label>
-                                <div class="col-sm-8">
-                                    <select name="mc_location" class="browser-default custom-select">
-                                        <option selected>Open this select menu</option>
-                                        <option value="BP">Bajaj Point</option>
-                                        <option value="BH">Bajaj Heaven</option>
-                                        <option value="BB">Bajaj Bloom</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-header"></div>
-                    <table align="center" style="width:100%;" id="tbl">
-                        <thead>
-                            <tr>
-                                <th style="text-align:center;">Sl</th>
-                                <th style="text-align:center;">Model</th>
-                                <th style="text-align:center;">Chassis</th>
-                                <th style="text-align:center;">Engine</th>
-                                <th style="text-align:center;">Color</th>
-                                <th style="text-align:center;">Unit Price</th>
-                                <th style="text-align:center;">Unit Price VAT</th>
-                                <th style="text-align:center;">VAT Pur MRP</th>
-                                <th style="text-align:center;">VAT Month</th>
-                                <th style="text-align:center;">VAT Year</th>
-                                <th style="text-align:center;">Purchage Price</th>
-                            </tr>
-                        </thead>
-                        <tbody class="add_more_model">
-                            <tr>
-                                <td>#</td>
-                                <td>
-                                    <!-- <select name="model_code[]" class="browser-default custom-select"> -->
-                                    <select name="model_code[]" class="form-control form-control-sm all_model" style="width:230px;">
-                                        <option selected>Open this select menu</option>
-                                        @foreach ($mrps as $mrp)
-                                        <option value="{{$mrp->model_code}}">{{$mrp->model_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td>
-                                    <input required type="text" class="form-control form-control-sm five_chassis text-center" id="five_chassis" name="five_chassis[]" placeholder="Chassis">
-                                </td>
-                                <td>
-                                    <input required type="text" class="form-control form-control-sm text-center five_engine" id="five_engine" name="five_engine[]" placeholder="Engine">
-                                </td>
-                                <td>
-                                    <select name="color_code[]" class="form-control form-control-sm color" style="width:100px;">
-                                        <option value="">None</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input required type="text" class="form-control form-control-sm unit_price text-right" id="unit_price" name="unit_price[]" placeholder="Unit Price">
-                                </td>
-                                <td>
-                                    <input required type="text" class="form-control form-control-sm unit_price_vat text-right" id="unit_price_vat" name="unit_price_vat[]" placeholder="UP Vat">
-                                </td>
-                                <td>
-                                    <input required type="text" class="form-control form-control-sm vat_purchage_mrp text-right" id="vat_purchage_mrp" name="vat_purchage_mrp[]" placeholder="Vat Pur MRP">
-                                </td>
-                                <td>
-                                    <input required type="text" class="form-control form-control-sm vat_month_purchage text-right" id="vat_month_purchage" name="vat_month_purchage[]" placeholder="VAT Month">
-                                </td>
-                                <td>
-                                    <input required type="text" class="form-control form-control-sm vat_year_purchage text-right" id="vat_year_purchage" name="vat_year_purchage[]" placeholder="Vat Year Purchage">
-                                </td>
-                                <td>
-                                    <input required type="text" class="form-control form-control-sm purchage_price text-right sum" id="purchage_price" name="purchage_price[]" placeholder="Purchage Price">
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="form-control form-control-sm text-center"><b>Total</b></td>
-                                <td><input required type="text" class="form-control form-control-sm grant_total text-right text-bold" id="grant_total"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <center style="padding:10px;">
-                        <button id="add" style="width:100px; margin-top:0px;" class="btn btn-success btn-sm">Add</button>
-                        <button id="remove" style="width:100px;" class="btn btn-danger btn-sm">Remove</button>
-                    </center>
-                    <center style="padding:10px;">
-                        <button class="btn btn-info btn-sm text-white" type="submit">Submit</button>
-                    </center>
-                </form>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 
-
 @endsection
-
 @section('script')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    $("#purchage_entry_form").submit(function(e) {
-        e.preventDefault();
-        const FD = new FormData(this);
-        $.ajax({
-            url: "{{ route('purchage.create') }}",
-            method: 'post',
-            data: FD,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: 'json',
-            success: function(response) {
-                if (response.status == 200) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: response.message,
-                        showConfirmButton: false,
-                        timer: 2000
-                    })
-                    $('#purchage_entry_form').trigger("reset");
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: response.message,
-                        footer: '<a href="">Why do I have this issue?</a>'
-                    })
-
+    $(document).ready(function() {
+        $('#request_from').val('bill_page');
+        $('.print').click(function() {
+            window.print();
+        });
+        // Assign Job Card Sl No Start
+        function assign_bill_no() {
+            $.ajax({
+                url: "{{ route('bill.assign_bill_no') }}",
+                method: 'get',
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function(bill_no) {
+                    console.log(bill_no);
+                    $('#bill_no').val(bill_no);
                 }
+            });
+        }
+        assign_bill_no();
+        // Assign Job Card Sl No End
+
+        function calculate_sum() {
+            let discount = +$('#discount').val();
+            let balance = +$('#balance').val();
+            let vat = +$('#vat').val();
+            let bill_amount = +$('#bill_amount').val();
+            let paid_amount = +$('#paid_amount').val();
+            let due_amount = +$('#due_amount').val();
+
+            let sum = 0;
+            $('.total_amount').each(function() {
+                if ($(this).val() != '') {
+                    sum += parseFloat($(this).val());
+                }
+            });
+            $('.grand_total').val((sum));
+            $('#balance').val((sum - discount));
+            $('#bill_amount').val((sum - discount) + vat);
+            $('#paid_amount').val($('#bill_amount').val());
+            $('#due_amount').val(0);
+        }
+
+        // change parts sale quantiry start
+        $('.quantity').on('focus', function() {
+            $(this).on('change', function() {
+                _this = $(this).parent().parent();
+                let quantity = _this.find('.quantity').val();
+                let sale_rate = _this.find('.sale_rate').val();
+                let total = quantity * sale_rate;
+                _this.find('.total_amount').val(total).trigger("change");
+            });
+        });
+
+        $('.sale_rate').on('focus', function() {
+            $(this).on('change', function() {
+                _this = $(this).parent().parent();
+                let quantity = _this.find('.quantity').val();
+                let sale_rate = _this.find('.sale_rate').val();
+                let total = quantity * sale_rate;
+                _this.find('.total_amount').val(total).trigger("change");
+            });
+        });
+
+        $('.total_amount, .quantity, .sale_rate, .discount, .vat').on('change', function() {
+            calculate_sum();
+        });
+        $('#paid_amount').on('change', function() {
+            $('#due_amount').val($('#bill_amount').val() - $('#paid_amount').val());
+        })
+
+        // Search by part id start
+        $('.part_id').on("focus", function() {
+            $(this).autocomplete({
+                minLength: 4,
+                source: function(request, response) {
+                    $.ajax({
+                        url: "{{ route('job_card.search_by_part_id') }}",
+                        type: 'GET',
+                        dataType: "json",
+                        data: {
+                            part_id: request.term
+                        },
+                        success: function(data) {
+                            response(data);
+                        }
+                    });
+                },
+                select: function(event, ui) {
+                    $(this).val(ui.item.label);
+                    return false;
+                },
+                change: function() {
+                    _this = $(this).parent().parent();
+                    var part_id = $(this).val();
+                    $.ajax({
+                        url: "{{ route('job_card.search_by_full_part_id') }}",
+                        type: 'GET',
+                        dataType: "json",
+                        data: {
+                            part_id: part_id
+                        },
+                        success: function(data) {
+                            if (data.stock_quantity > 0) {
+                                _this.find('.part_name').val(data.part_name);
+                                _this.find('.quantity').val(1);
+                                _this.find('.sale_rate').val(data.rate);
+                                _this.find('.delete_parts_item').removeClass('disabled');
+                                _this.find('.delete_icon').removeClass('text-secondary');
+                                _this.find('.delete_icon').addClass('text-danger');
+                                _this.find('.quantity').trigger("change");
+                                _this.find('.sale_rate').trigger("change");
+                                _this.find('.total_amount').trigger("change");
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Not enough stock, please update stock first',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
+                            }
+                        }
+                    });
+                }
+            });
+        });
+        // Search by part id end
+
+        // Update spare parts' table in front end start
+        $('.total_amount').on('change', function() {
+            _this = $(this).parent().parent();
+            var part_id = _this.find('.part_id').val();
+            var sale_date = $('.bill_date').val();
+            var quantity = _this.find('.quantity').val();
+            var sale_rate = _this.find('.sale_rate').val();
+            var bill_no = $('#bill_no').val();
+
+            if (part_id !== '' && sale_date !== '' && quantity !== '' && sale_rate !== '') {
+                $.ajax({
+                    url: "{{ route('job_card.create_or_update') }}",
+                    type: 'GET',
+                    dataType: "json",
+                    data: {
+                        part_id,
+                        job_card_date: sale_date,
+                        quantity,
+                        sale_rate,
+                        bill_no,
+                        request_from: 'bill_page'
+                    },
+                    success: function(data) {
+                        _this.find('.id').val(data.id);
+                    }
+                });
             }
         });
-    });
-    $('#add').on('click', function(e) {
-        e.preventDefault();
-        var $tableBody = $('#tbl').find("tbody"),
-            $trLast = $tableBody.find("tr:last"),
-            $trNew = $trLast.clone();
-        $trLast.after($trNew);
+        // Update spare parts' table in frontend end
 
-        if ($("#tbl tbody tr").length > 0) {
-            $('#remove').attr('disabled', false);
-        }
-    })
-    $('#remove').on('click', function(e) {
-        e.preventDefault();
-        $('#tbl tbody tr:last').remove();
-        ar_row_control();
-    })
-    ar_row_control();
+        // delete_parts_item_start
+        $('.delete_parts_item').on('click', function() {
+            var _this = $(this).parent().parent();
+            const id = _this.find('.id').val();
 
-    function ar_row_control() {
-        if ($("#tbl tbody tr").length == 1) {
-            $('#remove').attr('disabled', true);
-        }
-    }
-    $(document).on("keyup", ".five_chassis", function() {
-        var sum = 0;
-        var qty = 0
-        $(".sum").each(function() {
-            sum += +$(this).val();
-            qty++;
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "{{ route('job_card.delete_parts_item') }}",
+                        method: 'get',
+                        dataType: 'json',
+                        data: {
+                            id
+                        },
+                        success: function(response) {
+                            if (response.status === 200) {
+                                _this.find('.delete_parts_item').addClass('disabled');
+                                _this.find('.delete_icon').removeClass('text-danger');
+                                _this.find('.delete_icon').addClass('text-secondary');
+
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: response.message,
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                })
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: response.message,
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
+                            }
+                        }
+                    });
+                    _this = $(this).parent().parent();
+                    _this.find('.part_id').val('');
+                    _this.find('.quantity').val('');
+                    _this.find('.part_name').val('');
+                    _this.find('.sale_rate').val('');
+                    _this.find('.id').val('');
+                    _this.find('.total_amount').val('').trigger('change');
+                }
+            })
         });
-        $(".grant_total").val(sum);
-        $("#purchage_value").val(sum);
-        $("#quantity").val(qty);
-    });
+        // Submit Create Job Card Start
+        $("#create_bill").submit(function(e) {
+            e.preventDefault();
+            const FD = new FormData(this);
+            if ($("#create_bill").valid()) {
+                $.ajax({
+                    url: "{{ route('bill.store_bill') }}",
+                    method: 'post',
+                    data: FD,
+                    dataType: 'json',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
 
-    function getCurrentFinancialYear(date) {
-        var financial_year = "";
-        var today = new Date(date);
-        if ((today.getMonth() + 1) <= 3) {
-            financial_year = (today.getFullYear() - 1) + "-" + today.getFullYear()
-        } else {
-            financial_year = today.getFullYear() + "-" + (today.getFullYear() + 1)
-        }
-        return financial_year;
-    }
+                        if (response.status === 200) {
+                            $('#create_bill').trigger("reset");
+                            Swal.fire({
+                                icon: 'success',
+                                title: response.message,
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
+                            $('#bill_list').empty();
+                            $('#bill_list').append('<option style="font-weight:bold;" value="">Bill List</option>');
 
-    function get_vat_purchage_month(purchage_date) {
-        const date = new Date(purchage_date);
-        const month = date.toLocaleString('default', {
-            month: 'short'
-        }).toUpperCase();
-        const year = date.getFullYear();
-
-        return month + year;
-    }
-
-    $(".add_more_model").on("change", ".all_model", function() {
-        var purchage_date = $('#purchage_date').val();
-        var model_code = $(this).val();
-        let csrf = '{{ csrf_token() }}';
-        var tr = $(this).parent().parent();
-        $.ajax({
-            url: "{{ route('purchage.get_mrp') }}",
-            method: 'post',
-            data: {
-                model_code: model_code,
-                _token: csrf
-            },
-            success: function({
-                color,
-                mrp
-            }) {
-                tr.find(".unit_price").val(mrp[0].mrp);
-                tr.find(".unit_price_vat").val(mrp[0].vat_mrp);
-                tr.find(".vat_purchage_mrp").val(mrp[0].vat_purchage_mrp);
-                tr.find(".vat_year_purchage").val(getCurrentFinancialYear(purchage_date).replace('-', ''));
-                tr.find(".vat_month_purchage").val(get_vat_purchage_month(purchage_date));
-                tr.find(".purchage_price").val(mrp[0].purchage_price);
-                tr.find(".color").empty();
-                tr.find(".five_chassis").val('');
-                tr.find(".five_engine").val('');
-                tr.find(".color").append(`<option value="">None</option>`);
-                color.forEach(function(item) {
-                    tr.find(".color").append(`<option value="${item.color_code}">${item.color}</option>`);
+                            load_bill_list();
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: response.message,
+                                footer: '<a href="">Why do I have this issue?</a>'
+                            })
+                        }
+                    }
                 });
-            },
+            }
         });
-    });
+        // Submit Create Job Card End
+
+        // Load job card list on same day start
+        function load_bill_list() {
+            $.ajax({
+                url: "{{ route('bill.bill_list') }}",
+                method: 'get',
+                dataType: 'json',
+                success: function({
+                    bill_list
+                }) {
+
+                    if (bill_list) {
+                        $('#bill_list').empty();
+                        $('#bill_list').append('<option style="font-weight:bold;" value="">Bill List</option>');
+                        bill_list.forEach(function(item) {
+                            $("#bill_list").append(
+                                `<option style="font-weight:bold;" value="${item.id}">Bill- ${item.bill_no + ' ' + item.client_name}</option>`
+                            );
+                        });
+                    }
+                }
+            });
+        }
+        load_bill_list();
+        // Load job card list on same day end
+        // in words start
+        function in_words(num) {
+            var a = ['', 'One ', 'Two ', 'Three ', 'Four ', 'Five ', 'Six ', 'Seven ', 'Eight ', 'Nine ', 'Ten ', 'Eleven ', 'Twelve ', 'Thirteen ', 'Fourteen ', 'Fifteen ', 'Sixteen ', 'Seventeen ', 'Eighteen ', 'Nineteen '];
+            var b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+            function inWords(num) {
+                if ((num = num.toString()).length > 9) return 'overflow';
+                n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+                if (!n) return;
+                var str = '';
+                str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'Crore ' : '';
+                str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'Lakh ' : '';
+                str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'Thousand ' : '';
+                str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'Hundred ' : '';
+                str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'Taka Only ' : '';
+                return str;
+            }
+
+            return inWords(num);
+        }
+        // in words end
+
+
+        // After select job card start
+        $('#bill_list, #bill_list_search').on('change', function() {
+            let id = $(this).val();
+            _this = $(this).parent();
+
+            $.ajax({
+                url: "{{ route('bill.load_single_bill') }}",
+                method: 'get',
+                dataType: 'json',
+                data: {
+                    id
+                },
+                success: function({
+                    bill_details,
+                    spare_parts_sale_details,
+                    jb_details
+                }) {
+                    $("#create_bill").trigger("reset");
+
+                    if (bill_details) {
+                        $('#bill_no').val(bill_details.bill_no);
+                        $('#bill_date').val(bill_details.bill_date);
+                        if (jb_details === null) {
+                            $('#client_name').val(bill_details.client_name);
+                            $('#client_address').val(bill_details.client_address);
+                            $('#client_mobile').val(bill_details.client_mobile);
+                            $("#create_bill :input").prop("disabled", true);
+                            $('#btn_create_bill').attr('disabled', true);
+                            $('#bill_list').attr('disabled', false);
+                            $('#bill_list_search').attr('disabled', false);
+                            $('#bill_date_search').attr('disabled', false);
+                            $('#btn_create_bill').addClass('bg-dark');
+                            $('#btn_create_bill').removeClass('bg-secondary');
+                            $('#btn_create_bill').text('Update Bill');
+                        } else {
+                            $('#client_name').val(jb_details.client_name);
+                            $('#client_address').val(jb_details.client_address);
+                            $('#client_mobile').val(jb_details.client_mobile);
+                            $("#create_bill :input").prop("disabled", true);
+                            $("#bill_date_search").prop("disabled", false);
+                            $("#bill_list_search").prop("disabled", false);
+                            $('#btn_create_bill').attr('disabled', true);
+                            $('#btn_create_bill').removeClass('bg-dark');
+                            $('#btn_create_bill').addClass('bg-secondary');
+                        }
+                        $('#update').val('false');
+                        // populate spare parts sale data
+                        let length = spare_parts_sale_details.length;
+                        let index = 0;
+
+                        $('.part_id').each(function() {
+                            _this = $(this).parent().parent();
+                            if (index < length) {
+                                _this.find('.part_id').val(spare_parts_sale_details[index].part_id);
+                                _this.find('.part_name').val(spare_parts_sale_details[index].part_name);
+                                _this.find('.quantity').val(spare_parts_sale_details[index].quantity);
+                                _this.find('.sale_rate').val(spare_parts_sale_details[index].sale_rate);
+                                _this.find('.total_amount').val(spare_parts_sale_details[index].quantity * spare_parts_sale_details[index].sale_rate);
+                                _this.find('.id').val(spare_parts_sale_details[index].id);
+                                // _this.find('.delete_parts_item').removeClass('disabled');
+                                // _this.find('.delete_icon').addClass('text-danger');
+                            } else {
+                                return false;
+                            }
+                            index++;
+                        });
+                        // populate spare parts sale data end
+                        calculate_sum();
+                    }
+                    $('#in_words').text(in_words(+$('#bill_amount').val()));
+                    // let bill_amount = +$('#bill_amount').val();
+                    // let in_word = in_words(bill_amount);
+                    // $('#in_words').text(in_word);
+                }
+            });
+        })
+        // After select job card end
+        $('.new_bill_record').on('click', function() {
+            $('#create_bill').trigger('reset');
+            $('#btn_create_bill').text('Create Bill');
+            $("#create_bill :input").prop("disabled", false);
+            $('#update').val('true');
+            assign_bill_no();
+        })
+
+        $('#bill_date_search').on('change', function() {
+            let bill_date = $(this).val();
+            $.ajax({
+                url: "{{ route('bill.bill_list') }}",
+                method: 'get',
+                data: {
+                    bill_date
+                },
+                dataType: 'json',
+                success: function({
+                    bill_list
+                }) {
+
+                    if (bill_list) {
+                        $('#bill_list_search').empty();
+                        $('#bill_list_search').append('<option style="font-weight:bold;" value="">Bill List</option>');
+                        bill_list.forEach(function(item) {
+                            $("#bill_list_search").append(
+                                `<option style="font-weight:bold;" value="${item.id}">Bill- ${item.bill_no + ' ' + item.client_name}</option>`
+                            );
+                        });
+                    }
+                }
+            });
+        })
+
+    })
 </script>
 @endsection
