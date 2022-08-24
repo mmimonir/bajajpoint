@@ -49,7 +49,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         Route::post('/mechanics_update',  'mechanics_update')->name('mechanics.update');
         Route::delete('/mechanics_delete',  'mechanics_delete')->name('mechanics.delete');
     });
-    Route::controller(App\Http\Controllers\Service\SparePartsStockController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Service\SparePartsPurchageController::class)->group(function () {
         Route::get('/index',  'index')->name('parts.index');
+        Route::get('/load_invoice_list',  'load_invoice_list')->name('invoice.invoice_list');
+        Route::post('/store_invoice',  'store_invoice')->name('invoice.store_invoice');
+        Route::get('/load_single_invoice',  'load_single_invoice')->name('invoice.load_single_invoice');
+        Route::get('/purchage_create_or_update',  'purchage_create_or_update')->name('invoice.create_or_update');
     });
 });
