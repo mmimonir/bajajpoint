@@ -318,7 +318,7 @@
                                 _this.find('.delete_icon').addClass('text-danger');
                                 _this.find('.quantity').trigger("change");
                                 _this.find('.sale_rate').trigger("change");
-                                _this.find('.total_amount').trigger("change");
+                                _this.find('.total_amount').val(1 * data.rate).trigger("change");
                             } else {
                                 Swal.fire({
                                     icon: 'error',
