@@ -61,9 +61,7 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-12" style="margin:10px 0;">
-        <form id="spare_parts_purchage">
-            <input type="hidden" name="request_from" id="request_from" value="">
-            <input type="hidden" name="update" id="update" value="true">
+        <form id="create_purchage">
             @csrf
             <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
                 <div class="card-header no-print">
@@ -90,8 +88,8 @@
                             </div>
                             <div class="d-flex justify-content-center" style="align-items:baseline; margin-left:15px; width:490px;">
                                 <label>Invoice Date</label>
-                                <input type="date" name="bill_date_search" id="bill_date_search" style="margin-left:5px; margin-right:5px; background:#F7F7F7; width:100px;">
-                                <select name="bill_list_search" style="font-weight: bold; background:#F7F7F7; border-radius:5px; width:240px;" id="bill_list_search">
+                                <input type="date" name="invoice_date_search" id="invoice_date_search" style="margin-left:5px; margin-right:5px; background:#F7F7F7; width:100px;">
+                                <select name="invoice_list_search" style="font-weight: bold; background:#F7F7F7; border-radius:5px; width:240px;" id="invoice_list_search">
                                     <option style="font-weight:bold;" value="">Invoice List</option>
                                 </select>
                             </div>
@@ -107,37 +105,25 @@
                     <div class="bill_body">
                         <h2 class="text-center" style="border:1px solid black; width:150px; margin:auto; border-radius:7px; margin-top:10px;">Invoice</h2>
                         <div class="row">
-
                             <div class="col-md-6">
                                 <div class="input-group mb-3" style="width: 160px;">
                                     <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Bill No:</span>
-                                    <input type="text" name="bill_no" id="bill_no" class="form-control bill_no input_style" style="height:25px;">
+                                    <input type="text" name="purchage_bill_no" id="purchage_bill_no" class="form-control purchage_bill_no input_style" style="height:25px;">
                                 </div>
                             </div>
                             <div class="col-md-3 offset-md-3">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Date:</span>
-                                    <input type="date" name="bill_date" id="bill_date" class="form-control bill_date input_style" style="height:25px;">
+                                    <input type="date" name="purchage_date" id="purchage_date" class="form-control purchage_date input_style" style="height:25px;">
                                 </div>
                             </div>
-
                             <div class="form-row d-flex justify-content-center" style="margin-bottom:15px; font-size:16px;">
                                 <div class="col-md-4">
                                     <div class="form-group mb-0 row">
-                                        <label for="vendor" class="col-sm-3 col-form-label" style="padding:3px;">Vendor</label>
+                                        <label for="vendor" class="col-sm-3 col-form-label">Vendor</label>
                                         <div class="col-sm-9">
-                                            <select name="vendor" class="browser-default custom-select" style="height:30px; padding:3px; font-size:14px; padding-left:6px;">
-                                                <option selected="">Open this select menu</option>
-                                                <option value="UML ESK">UML ESK</option>
-                                                <option value="UMCL BOGRA">UMCL BOGRA</option>
-                                                <option value="TRANS ASIA IND. LTD">TRANS ASIA IND. LTD</option>
-                                                <option value="SK. TRADERS">SK. TRADERS</option>
-                                                <option value="BH VIA MML">BH VIA MML</option>
-                                                <option value="BH VIA UML ESK">BH VIA UML ESK</option>
-                                                <option value="BH VIA UMCL BOGRA">BH VIA UMCL BOGRA</option>
-                                                <option value="BH VIA TAIL">BH VIA TAIL</option>
-                                                <option value="BAJAJ BLOOM VIA TAIL">BAJAJ BLOOM VIA TAIL</option>
-                                                <option value="BAJAJ BLOOM VIA UML ESK">BAJAJ BLOOM VIA UML ESK</option>
+                                            <select name="supplier_id" class="browser-default custom-select" id="vendor_list" style="height:30px; padding:3px; font-size:14px; padding-left:6px;">
+
                                             </select>
                                         </div>
                                     </div>
@@ -151,14 +137,25 @@
                                                 <option value="BAJAJ PLUS">BAJAJ PLUS</option>
                                                 <option value="BAJAJ HEAVEN">BAJAJ HEAVEN</option>
                                                 <option value="BAJAJ BLOOM">BAJAJ BLOOM</option>
-                                                <option value="BAJAJ POINT">BAJAJ POINT</option>
+                                                <option selected value="BAJAJ POINT">BAJAJ POINT</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mb-0 row pl-2">
+                                        <label for="vendor" class="col-sm-3 col-form-label" style="padding:3px;">Location</label>
+                                        <div class="col-sm-9" style="padding-right: 0;">
+                                            <select name="location" class="browser-default custom-select" style="height:30px; padding:3px; font-size:14px; padding-left:6px;">
+                                                <option value="L1">L1</option>
+                                                <option value="L2">L2</option>
+                                                <option value="L3">L3</option>
+                                                <option selected value="L4">L4</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="col-md-12">
                                 <table align="center" style="width:100%;" id="tbl">
                                     <thead>
@@ -182,16 +179,16 @@
                                                 <input type="hidden" name="id" class="input_style text-center id">
                                             </td>
                                             <td>
-                                                <input readOnly type="text" name="part_name[]" style="width:250px;" class="input_style text-center part_name">
+                                                <input readOnly type="text" style="width:250px;" class="input_style text-center part_name">
                                             </td>
                                             <td>
                                                 <input type="text" name="quantity[]" style="width:78px;" class="input_style text-center quantity">
                                             </td>
                                             <td>
-                                                <input type="text" name="sale_rate[]" style="width:115px;" class="input_style text-right sale_rate">
+                                                <input type="text" name="rate[]" style="width:115px;" class="input_style text-right sale_rate">
                                             </td>
                                             <td>
-                                                <input type="text" name="total_amount[]" class="input_style text-right total_amount">
+                                                <input type="text" class="input_style text-right total_amount">
                                             </td>
                                             <td class="text-center no-print">
                                                 <a href="#" class="disabled delete_parts_item"><i class="fa fa-trash delete_icon text-secondary"></i></a>
@@ -206,7 +203,7 @@
                                                     <strong>In Words: <span id="in_words"></span></strong>
                                                 </p>
                                             </td>
-                                            <td>Total Amount</td>
+                                            <td>Grand Total</td>
                                             <td><input readOnly type="text" name="grand_total" id="grand_total" class="input_style text-right grand_total"></td>
                                             <td class="no-print"></td>
                                         </tr>
@@ -216,11 +213,10 @@
                                             <td class="no-print"></td>
                                         </tr>
                                         <tr>
-                                            <td>Balance</td>
-                                            <td><input readOnly type="text" name="balance" id="balance" class="input_style text-right balance"></td>
+                                            <td>Net Payble</td>
+                                            <td><input readOnly type="text" name="net_purchage_amount" id="net_purchage_amount" class="input_style text-right net_purchage_amount"></td>
                                             <td class="no-print"></td>
                                         </tr>
-
                                     </tfoot>
                                 </table>
                             </div>
@@ -231,41 +227,19 @@
         </form>
     </div>
 </div>
-
 @endsection
 @section('script')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function() {
-        $('#request_from').val('bill_page');
         $('.print').click(function() {
             window.print();
         });
-        // Assign Job Card Sl No Start
-        function assign_bill_no() {
-            $.ajax({
-                url: "{{ route('bill.assign_bill_no') }}",
-                method: 'get',
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: 'json',
-                success: function(bill_no) {
-                    console.log(bill_no);
-                    $('#bill_no').val(bill_no);
-                }
-            });
-        }
-        assign_bill_no();
-        // Assign Job Card Sl No End
 
         function calculate_sum() {
             let discount = +$('#discount').val();
-            let balance = +$('#balance').val();
-            let vat = +$('#vat').val();
-            let bill_amount = +$('#bill_amount').val();
-            let paid_amount = +$('#paid_amount').val();
-            let due_amount = +$('#due_amount').val();
+            let net_purchage_amount = +$('#net_purchage_amount').val();
+            let grand_total = +$('#grand_total').val();
 
             let sum = 0;
             $('.total_amount').each(function() {
@@ -274,10 +248,8 @@
                 }
             });
             $('.grand_total').val((sum));
-            $('#balance').val((sum - discount));
-            $('#bill_amount').val((sum - discount) + vat);
-            $('#paid_amount').val($('#bill_amount').val());
-            $('#due_amount').val(0);
+            $('#net_purchage_amount').val(sum - discount);
+
         }
 
         // change parts sale quantiry start
@@ -301,12 +273,9 @@
             });
         });
 
-        $('.total_amount, .quantity, .sale_rate, .discount, .vat').on('change', function() {
+        $('.total_amount, .quantity, .sale_rate, .discount').on('change', function() {
             calculate_sum();
         });
-        $('#paid_amount').on('change', function() {
-            $('#due_amount').val($('#bill_amount').val() - $('#paid_amount').val());
-        })
 
         // Search by part id start
         $('.part_id').on("focus", function() {
@@ -369,23 +338,22 @@
         $('.total_amount').on('change', function() {
             _this = $(this).parent().parent();
             var part_id = _this.find('.part_id').val();
-            var sale_date = $('.bill_date').val();
+            var purchage_date = $('.purchage_date').val();
             var quantity = _this.find('.quantity').val();
-            var sale_rate = _this.find('.sale_rate').val();
-            var bill_no = $('#bill_no').val();
+            var rate = _this.find('.sale_rate').val();
+            var purchage_bill_no = $('#purchage_bill_no').val();
 
-            if (part_id !== '' && sale_date !== '' && quantity !== '' && sale_rate !== '') {
+            if (part_id !== '' && purchage_date !== '' && quantity !== '' && sale_rate !== '') {
                 $.ajax({
-                    url: "{{ route('job_card.create_or_update') }}",
+                    url: "{{ route('invoice.create_or_update') }}",
                     type: 'GET',
                     dataType: "json",
                     data: {
                         part_id,
-                        job_card_date: sale_date,
+                        purchage_date,
                         quantity,
-                        sale_rate,
-                        bill_no,
-                        request_from: 'bill_page'
+                        rate,
+                        purchage_bill_no
                     },
                     success: function(data) {
                         _this.find('.id').val(data.id);
@@ -411,7 +379,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: "{{ route('job_card.delete_parts_item') }}",
+                        url: "{{ route('invoice.delete_parts_item') }}",
                         method: 'get',
                         dataType: 'json',
                         data: {
@@ -450,12 +418,12 @@
             })
         });
         // Submit Create Job Card Start
-        $("#create_bill").submit(function(e) {
+        $("#create_purchage").submit(function(e) {
             e.preventDefault();
             const FD = new FormData(this);
-            if ($("#create_bill").valid()) {
+            if ($("#create_purchage").valid()) {
                 $.ajax({
-                    url: "{{ route('bill.store_bill') }}",
+                    url: "{{ route('invoice.store_invoice') }}",
                     method: 'post',
                     data: FD,
                     dataType: 'json',
@@ -463,19 +431,18 @@
                     contentType: false,
                     processData: false,
                     success: function(response) {
-
                         if (response.status === 200) {
-                            $('#create_bill').trigger("reset");
+                            $('#create_purchage').trigger("reset");
                             Swal.fire({
                                 icon: 'success',
                                 title: response.message,
                                 showConfirmButton: false,
                                 timer: 2000
                             })
-                            $('#bill_list').empty();
-                            $('#bill_list').append('<option style="font-weight:bold;" value="">Bill List</option>');
+                            $('#invoice_list').empty();
+                            $('#invoice_list').append('<option style="font-weight:bold;" value="">Invoice List</option>');
 
-                            load_bill_list();
+                            load_invoice_list();
                         } else {
                             Swal.fire({
                                 icon: 'error',
@@ -491,28 +458,50 @@
         // Submit Create Job Card End
 
         // Load job card list on same day start
-        function load_bill_list() {
+        function load_invoice_list() {
             $.ajax({
-                url: "{{ route('bill.bill_list') }}",
+                url: "{{ route('invoice.invoice_list') }}",
                 method: 'get',
                 dataType: 'json',
                 success: function({
-                    bill_list
+                    invoice_list
                 }) {
-
-                    if (bill_list) {
-                        $('#bill_list').empty();
-                        $('#bill_list').append('<option style="font-weight:bold;" value="">Bill List</option>');
-                        bill_list.forEach(function(item) {
-                            $("#bill_list").append(
-                                `<option style="font-weight:bold;" value="${item.id}">Bill- ${item.bill_no + ' ' + item.client_name}</option>`
+                    if (invoice_list) {
+                        $('#invoice_list').empty();
+                        $('#invoice_list').append('<option style="font-weight:bold;" value="">Invoice List</option>');
+                        invoice_list.forEach(function(item) {
+                            $("#invoice_list").append(
+                                `<option style="font-weight:bold;" value="${item.id}">Invoice- ${item.purchage_bill_no}</option>`
                             );
                         });
                     }
                 }
             });
         }
-        load_bill_list();
+        load_invoice_list();
+        // Load job card list on same day end
+        // Load job card list on same day start
+        function load_vendor_list() {
+            $.ajax({
+                url: "{{ route('invoice.vendor_list') }}",
+                method: 'get',
+                dataType: 'json',
+                success: function({
+                    vendor_list
+                }) {
+                    if (vendor_list) {
+                        $('#vendor_list').empty();
+                        $('#vendor_list').append('<option style="font-weight:bold;" value="">Vendor List</option>');
+                        vendor_list.forEach(function(item) {
+                            $("#vendor_list").append(
+                                `<option style="font-weight:bold;" value="${item.id}">${item.name}</option>`
+                            );
+                        });
+                    }
+                }
+            });
+        }
+        load_vendor_list();
         // Load job card list on same day end
         // in words start
         function in_words(num) {
@@ -531,71 +520,55 @@
                 str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'Taka Only ' : '';
                 return str;
             }
-
             return inWords(num);
         }
         // in words end
 
 
         // After select job card start
-        $('#bill_list, #bill_list_search').on('change', function() {
+        $('#invoice_list, #invoice_list_search').on('change', function() {
             let id = $(this).val();
             _this = $(this).parent();
 
             $.ajax({
-                url: "{{ route('bill.load_single_bill') }}",
+                url: "{{ route('invoice.load_single_invoice') }}",
                 method: 'get',
                 dataType: 'json',
                 data: {
                     id
                 },
                 success: function({
-                    bill_details,
-                    spare_parts_sale_details,
-                    jb_details
+                    purchage_details,
+                    spare_parts_purchage_details
                 }) {
-                    $("#create_bill").trigger("reset");
+                    $("#create_purchage").trigger("reset");
+                    if (purchage_details) {
+                        $('#purchage_bill_no').val(purchage_details.purchage_bill_no);
+                        $('#purchage_date').val(purchage_details.purchage_date);
+                        $('#supplier_id').val(purchage_details.supplier_id);
+                        $('#dealer_name').val(purchage_details.dealer_name);
+                        $('#location').val(spare_parts_purchage_details.location);
 
-                    if (bill_details) {
-                        $('#bill_no').val(bill_details.bill_no);
-                        $('#bill_date').val(bill_details.bill_date);
-                        if (jb_details === null) {
-                            $('#client_name').val(bill_details.client_name);
-                            $('#client_address').val(bill_details.client_address);
-                            $('#client_mobile').val(bill_details.client_mobile);
-                            $("#create_bill :input").prop("disabled", true);
-                            $('#btn_create_bill').attr('disabled', true);
-                            $('#bill_list').attr('disabled', false);
-                            $('#bill_list_search').attr('disabled', false);
-                            $('#bill_date_search').attr('disabled', false);
-                            $('#btn_create_bill').addClass('bg-dark');
-                            $('#btn_create_bill').removeClass('bg-secondary');
-                            $('#btn_create_bill').text('Update Bill');
-                        } else {
-                            $('#client_name').val(jb_details.client_name);
-                            $('#client_address').val(jb_details.client_address);
-                            $('#client_mobile').val(jb_details.client_mobile);
-                            $("#create_bill :input").prop("disabled", true);
-                            $("#bill_date_search").prop("disabled", false);
-                            $("#bill_list_search").prop("disabled", false);
-                            $('#btn_create_bill').attr('disabled', true);
-                            $('#btn_create_bill').removeClass('bg-dark');
-                            $('#btn_create_bill').addClass('bg-secondary');
-                        }
-                        $('#update').val('false');
+                        $("#create_purchage :input").prop("disabled", true);
+                        $("#invoice_date_search").prop("disabled", false);
+                        $("#invoice_list_search").prop("disabled", false);
+                        $('#btn_create_bill').attr('disabled', true);
+                        $('#btn_create_bill').removeClass('bg-dark');
+                        $('#btn_create_bill').addClass('bg-secondary');
+
                         // populate spare parts sale data
-                        let length = spare_parts_sale_details.length;
+                        let length = spare_parts_purchage_details.length;
                         let index = 0;
 
                         $('.part_id').each(function() {
                             _this = $(this).parent().parent();
                             if (index < length) {
-                                _this.find('.part_id').val(spare_parts_sale_details[index].part_id);
-                                _this.find('.part_name').val(spare_parts_sale_details[index].part_name);
-                                _this.find('.quantity').val(spare_parts_sale_details[index].quantity);
-                                _this.find('.sale_rate').val(spare_parts_sale_details[index].sale_rate);
-                                _this.find('.total_amount').val(spare_parts_sale_details[index].quantity * spare_parts_sale_details[index].sale_rate);
-                                _this.find('.id').val(spare_parts_sale_details[index].id);
+                                _this.find('.part_id').val(spare_parts_purchage_details[index].part_id);
+                                _this.find('.part_name').val(spare_parts_purchage_details[index].part_name);
+                                _this.find('.quantity').val(spare_parts_purchage_details[index].quantity);
+                                _this.find('.sale_rate').val(spare_parts_purchage_details[index].sale_rate);
+                                _this.find('.total_amount').val(spare_parts_purchage_details[index].quantity * spare_parts_purchage_details[index].sale_rate);
+                                _this.find('.id').val(spare_parts_purchage_details[index].id);
                                 // _this.find('.delete_parts_item').removeClass('disabled');
                                 // _this.find('.delete_icon').addClass('text-danger');
                             } else {
@@ -606,7 +579,7 @@
                         // populate spare parts sale data end
                         calculate_sum();
                     }
-                    $('#in_words').text(in_words(+$('#bill_amount').val()));
+                    $('#in_words').text(in_words(+$('#net_purchage_amount').val()));
                     // let bill_amount = +$('#bill_amount').val();
                     // let in_word = in_words(bill_amount);
                     // $('#in_words').text(in_word);
@@ -615,32 +588,29 @@
         })
         // After select job card end
         $('.new_bill_record').on('click', function() {
-            $('#create_bill').trigger('reset');
-            $('#btn_create_bill').text('Create Bill');
-            $("#create_bill :input").prop("disabled", false);
-            $('#update').val('true');
-            assign_bill_no();
+            $('#create_purchage').trigger('reset');
+            $('#btn_create_bill').text('Purchage Done');
+            $("#create_purchage :input").prop("disabled", false);
         })
 
-        $('#bill_date_search').on('change', function() {
-            let bill_date = $(this).val();
+        $('#invoice_date_search').on('change', function() {
+            let purchage_date = $(this).val();
             $.ajax({
-                url: "{{ route('bill.bill_list') }}",
+                url: "{{ route('invoice.invoice_list') }}",
                 method: 'get',
                 data: {
-                    bill_date
+                    purchage_date
                 },
                 dataType: 'json',
                 success: function({
-                    bill_list
+                    invoice_list
                 }) {
-
-                    if (bill_list) {
-                        $('#bill_list_search').empty();
-                        $('#bill_list_search').append('<option style="font-weight:bold;" value="">Bill List</option>');
-                        bill_list.forEach(function(item) {
-                            $("#bill_list_search").append(
-                                `<option style="font-weight:bold;" value="${item.id}">Bill- ${item.bill_no + ' ' + item.client_name}</option>`
+                    if (invoice_list) {
+                        $('#invoice_list_search').empty();
+                        $('#invoice_list_search').append('<option style="font-weight:bold;" value="">Invoice List</option>');
+                        invoice_list.forEach(function(item) {
+                            $("#invoice_list_search").append(
+                                `<option style="font-weight:bold;" value="${item.id}">Invoice- ${item.purchage_bill_no}</option>`
                             );
                         });
                     }
