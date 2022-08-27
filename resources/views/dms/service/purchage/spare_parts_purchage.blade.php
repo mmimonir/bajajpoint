@@ -21,7 +21,7 @@
     }
 
     .bill_page {
-        height: 76rem;
+        /* height: 76rem; */
         width: 59rem;
         border: 1px solid black;
         margin: auto;
@@ -32,7 +32,7 @@
 
     .input_style {
         background-color: white;
-        height: 18px;
+        height: 16px;
     }
 
     table {
@@ -132,7 +132,7 @@
                                     <div class="form-group mb-0 row pl-2">
                                         <label for="vendor" class="col-sm-3 col-form-label" style="padding:3px;">Dealer</label>
                                         <div class="col-sm-9">
-                                            <select name="dealer_name" class="browser-default custom-select" style="height:30px; padding:3px; font-size:14px; padding-left:6px;">
+                                            <select name="dealer_name" id="dealer_name" class="browser-default custom-select" style="height:30px; padding:3px; font-size:14px; padding-left:6px;">
                                                 <option selected="">Open this select menu</option>
                                                 <option value="BAJAJ PLUS">BAJAJ PLUS</option>
                                                 <option value="BAJAJ HEAVEN">BAJAJ HEAVEN</option>
@@ -146,12 +146,7 @@
                                     <div class="form-group mb-0 row pl-2">
                                         <label for="vendor" class="col-sm-3 col-form-label" style="padding:3px;">Location</label>
                                         <div class="col-sm-9" style="padding-right: 0;">
-                                            <select name="location" class="browser-default custom-select" style="height:30px; padding:3px; font-size:14px; padding-left:6px;">
-                                                <option value="L1">L1</option>
-                                                <option value="L2">L2</option>
-                                                <option value="L3">L3</option>
-                                                <option selected value="L4">L4</option>
-                                            </select>
+                                            <input type="text" name="location" id="location" class="form-control location input_style" style="height:25px;">
                                         </div>
                                     </div>
                                 </div>
@@ -170,7 +165,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @for($i=0; $i<=32; $i++) <tr>
+                                        @for($i=0; $i<=50; $i++) <tr style="line-height:1;">
                                             <td>
                                                 <input value="{{$i+1}}" type="text" name="sl" style="width:38px;" class="input_style text-center">
                                             </td>
@@ -232,6 +227,29 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function() {
+        function check_input_value() {
+            var purchage_date = $('#purchage_date').val();
+            var purchage_bill_no = $('#purchage_bill_no').val();
+            var vendor_list = $('#vendor_list').val();
+            var dealer_name = $('#dealer_name').val();
+            var location = $('#location').val();
+            if (purchage_date == '' || purchage_bill_no == '' || vendor_list == '' || dealer_name == '' || location == '') {
+                $("#create_purchage :input").prop("disabled", true);
+                $("#purchage_date").prop("disabled", false);
+                $("#purchage_bill_no").prop("disabled", false);
+                $("#vendor_list").prop("disabled", false);
+                $("#dealer_name").prop("disabled", false);
+                $("#location").prop("disabled", false);
+            } else {
+                $("#create_purchage :input").prop("disabled", false);
+            }
+        }
+        $(document).on('change', '#purchage_date,#purchage_bill_no,#vendor_list,#dealer_name,#location', function() {
+            check_input_value();
+        });
+        check_input_value();
+
+
         $('.print').click(function() {
             window.print();
         });

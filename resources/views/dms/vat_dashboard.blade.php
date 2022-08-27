@@ -266,18 +266,11 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="{{ route('tr.tr_pending') }}" method="get" target="_blank">
-                                        @csrf
-                                        <div class="form-group row">
-                                            <div class="col-sm-12 text-center">
-
-                                                <button type="submit" class="btn btn-dark btn-block">
-                                                    View List
-                                                </button>
-
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <a href="{{route('tr.tr_pending_index')}}" target="_blank">
+                                        <button type="submit" class="btn btn-dark btn-block">
+                                            View List
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -291,14 +284,11 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="{{route('tr.tr_status')}}" method="get" target="_blank">
-                                        @csrf
-                                        <div class="form-group row">
-                                            <div class="col-sm-12 text-center d-flex justify-content-center">
-                                                <button type="submit" class="btn btn-dark btn-block">View</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <a href="{{route('tr.tr_index')}}" target="_blank">
+                                        <button type="submit" class="btn btn-dark btn-block">
+                                            View List
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -24,17 +24,6 @@
                                             route('excel.service_data')
                                         }}" method="post" target="_blank">
                                         @csrf
-                                        <!-- <div class="form-group row">
-                                            <label for="inputEmail3" class="col-sm-4 col-form-label">Dealer</label>
-                                            <div class="col-sm-8">
-                                                <select name="print_code" class="browser-default custom-select">
-                                                    <option selected>Select Dealer Name</option>
-                                                    @foreach ($dealer as $data)
-                                                    <option value="{{$data->supplier_code}}">{{$data->dealer_name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div> -->
                                         <div class="form-group row">
                                             <label for="start_date" class="col-sm-4 col-form-label">Start Date</label>
                                             <div class="col-sm-8">
@@ -192,18 +181,11 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="{{ route('ckd.ckd_pending') }}" method="get" target="_blank">
-                                        @csrf
-                                        <div class="form-group row">
-                                            <div class="col-sm-12 text-center">
-                                                <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-dark btn-block">
-                                                        View List
-                                                    </button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <a href="{{route('ckd.ckd_pending')}}" target="_blank">
+                                        <button type="submit" class="btn btn-dark btn-block">
+                                            View List
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -217,18 +199,11 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="{{route('tr.tr_status')}}" method="get" target="_blank">
-                                        @csrf
-                                        <div class="form-group row">
-                                            <div class="col-sm-12 text-center">
-                                                <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-dark btn-block">
-                                                        View List
-                                                    </button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <a href="{{route('tr.tr_index')}}" target="_blank">
+                                        <button type="submit" class="btn btn-dark btn-block">
+                                            View List
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -242,18 +217,11 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="{{route('quotation.create')}}" method="get" target="_blank">
-                                        @csrf
-                                        <div class="form-group row">
-                                            <div class="col-sm-12 text-center">
-                                                <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-dark btn-block">
-                                                        Create
-                                                    </button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <a href="{{route('quotation.create')}}" target="_blank">
+                                        <button type="submit" class="btn btn-dark btn-block">
+                                            View List
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -267,18 +235,11 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <form action="{{route('quotation.list')}}" method="get" target="_blank">
-                                        @csrf
-                                        <div class="form-group row">
-                                            <div class="col-sm-12 text-center">
-                                                <a href="" target="_blank">
-                                                    <button type="submit" class="btn btn-dark btn-block">
-                                                        List
-                                                    </button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <a href="{{route('quotation.list')}}" target="_blank">
+                                        <button type="submit" class="btn btn-dark btn-block">
+                                            View List
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

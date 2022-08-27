@@ -9,6 +9,14 @@ use App\Http\Controllers\Controller;
 
 class TRController extends Controller
 {
+    public function index()
+    {
+        return view('dms.showroom.tr.tr_status');
+    }
+    public function tr_pending_index()
+    {
+        return view('dms.showroom.tr.tr_pending');
+    }
     public function tr_pending()
     {
         $tr_data = Purchage::rightJoin('cores', 'cores.store_id', '=', 'purchages.id')
@@ -32,8 +40,10 @@ class TRController extends Controller
             )
             ->where('cores.vat_process', '=', 'PENDING')->get();
 
-
-        return view('dms.showroom.tr.tr_pending')->with(['tr_data' => $tr_data]);
+        return response()->json([
+            'status' => 2000,
+            'tr_data' => $tr_data,
+        ]);
     }
     public function tr_status()
     {
@@ -58,6 +68,10 @@ class TRController extends Controller
                 'cores.evl_invoice_no',
             )
             ->where('cores.tr_month_code', '!=', 'NOCODE')->get();
-        return view('dms.showroom.tr.tr_status')->with(['tr_data' => $tr_data]);
+
+        return response()->json([
+            'status' => 200,
+            'tr_data' => $tr_data
+        ]);
     }
 }

@@ -103,7 +103,7 @@
                                 <div class="row justify-content-center">
                                     <div class="col-md-12">
                                         <div class="card-body">
-                                            <a href="{{route('tr.tr_status')}}" target="_blank">
+                                            <a href="{{route('tr.tr_index')}}" target="_blank">
                                                 <button type="submit" class="btn btn-dark btn-block">
                                                     View List
                                                 </button>

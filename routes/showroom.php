@@ -123,8 +123,13 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
     Route::post('/ckd_update', [App\Http\Controllers\Showroom\CKDController::class, 'ckd_update'])->name('ckd.update');
 
     // CKD
-    Route::get('/tr_pending', [App\Http\Controllers\Showroom\TRController::class, 'tr_pending'])->name('tr.tr_pending');
-    Route::get('/tr_status', [App\Http\Controllers\Showroom\TRController::class, 'tr_status'])->name('tr.tr_status');
+    Route::controller(App\Http\Controllers\Showroom\TRController::class)->group(function () {
+        Route::get('/tr_pending_index',  'tr_pending_index')->name('tr.tr_pending_index');
+        Route::get('/tr_pending',  'tr_pending')->name('tr.tr_pending');
+        Route::get('/tr_status',  'tr_status')->name('tr.tr_status');
+        Route::get('/tr_index',  'index')->name('tr.tr_index');
+    });
+
     // Route::post('/ckd_update', [App\Http\Controllers\CKDController::class, 'ckd_update'])->name('ckd.update');
 
     // Utility
