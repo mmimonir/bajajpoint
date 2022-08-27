@@ -118,35 +118,27 @@
                                 </div>
                             </div>
                             <div class="form-row d-flex justify-content-center" style="margin-bottom:15px; font-size:16px;">
-                                <div class="col-md-4">
+                                <div class="col-md-5 mr-3">
                                     <div class="form-group mb-0 row">
-                                        <label for="vendor" class="col-sm-3 col-form-label">Vendor</label>
+                                        <label for="vendor" class="col-sm-3 col-form-label p-0 text-right" style="line-height:2;">Vendor</label>
                                         <div class="col-sm-9">
-                                            <select name="supplier_id" class="browser-default custom-select" id="vendor_list" style="height:30px; padding:3px; font-size:14px; padding-left:6px;">
+                                            <select name="supplier_id" class="browser-default custom-select" id="vendor_list" style="height:30px; font-size:14px; padding-left:6px; padding-top:4px; font-weight:bold;">
 
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group mb-0 row pl-2">
-                                        <label for="vendor" class="col-sm-3 col-form-label" style="padding:3px;">Dealer</label>
+                                <div class="col-md-5">
+                                    <div class="form-group mb-0 row">
+                                        <label for="vendor" class="col-sm-3 col-form-label p-0 text-right" style="line-height:2;">Dealer</label>
                                         <div class="col-sm-9">
-                                            <select name="dealer_name" id="dealer_name" class="browser-default custom-select" style="height:30px; padding:3px; font-size:14px; padding-left:6px;">
+                                            <select name="dealer_name" id="dealer_name" class="browser-default custom-select" style="height:30px; font-size:14px; padding-left:6px; padding-top:4px; font-weight:bold;">
                                                 <option selected="">Open this select menu</option>
                                                 <option value="BAJAJ PLUS">BAJAJ PLUS</option>
                                                 <option value="BAJAJ HEAVEN">BAJAJ HEAVEN</option>
                                                 <option value="BAJAJ BLOOM">BAJAJ BLOOM</option>
                                                 <option selected value="BAJAJ POINT">BAJAJ POINT</option>
                                             </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group mb-0 row pl-2">
-                                        <label for="vendor" class="col-sm-3 col-form-label" style="padding:3px;">Location</label>
-                                        <div class="col-sm-9" style="padding-right: 0;">
-                                            <input type="text" name="location" id="location" class="form-control location input_style" style="height:25px;">
                                         </div>
                                     </div>
                                 </div>
@@ -521,7 +513,6 @@
                 }) {
                     if (vendor_list) {
                         $('#vendor_list').empty();
-                        $('#vendor_list').append('<option style="font-weight:bold;" value="">Vendor List</option>');
                         vendor_list.forEach(function(item) {
                             $("#vendor_list").append(
                                 `<option style="font-weight:bold;" value="${item.id}">${item.name}</option>`
