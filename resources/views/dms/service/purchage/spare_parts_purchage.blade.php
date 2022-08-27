@@ -161,6 +161,7 @@
                                             <th style="text-align:center;">Quantity</th>
                                             <th style="text-align:center;">Rate</th>
                                             <th style="text-align:center;">Amount</th>
+                                            <th style="text-align:center;">Location</th>
                                             <th class="no-print" style="text-align:center;">Action</th>
                                         </tr>
                                     </thead>
@@ -170,20 +171,23 @@
                                                 <input value="{{$i+1}}" type="text" name="sl" style="width:38px;" class="input_style text-center">
                                             </td>
                                             <td>
-                                                <input type="text" name="part_id[]" class="input_style text-center part_id">
+                                                <input type="text" style="width:110px;" name="part_id[]" class="input_style text-center part_id">
                                                 <input type="hidden" name="id" class="input_style text-center id">
                                             </td>
                                             <td>
-                                                <input readOnly type="text" style="width:250px;" class="input_style text-center part_name">
+                                                <input readOnly type="text" style="width:225px;" class="input_style text-center part_name">
                                             </td>
                                             <td>
                                                 <input type="text" name="quantity[]" style="width:78px;" class="input_style text-center quantity">
                                             </td>
                                             <td>
-                                                <input type="text" name="rate[]" style="width:115px;" class="input_style text-right sale_rate">
+                                                <input type="text" name="rate[]" style="width:90px;" class="input_style text-right sale_rate">
                                             </td>
                                             <td>
                                                 <input type="text" class="input_style text-right total_amount">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="location[]" style="width:40px;" class="input_style text-right location">
                                             </td>
                                             <td class="text-center no-print">
                                                 <a href="#" class="disabled delete_parts_item"><i class="fa fa-trash delete_icon text-secondary"></i></a>
@@ -192,7 +196,7 @@
                                             @endfor
                                     </tbody>
                                     <tfoot>
-                                        <tr>
+                                        <tr style="line-height:1;">
                                             <td rowspan="3" colspan="4" style="vertical-align: top;">
                                                 <p>
                                                     <strong>In Words: <span id="in_words"></span></strong>
@@ -201,15 +205,18 @@
                                             <td>Grand Total</td>
                                             <td><input readOnly type="text" name="grand_total" id="grand_total" class="input_style text-right grand_total"></td>
                                             <td class="no-print"></td>
+                                            <td class="no-print"></td>
                                         </tr>
-                                        <tr>
+                                        <tr style="line-height:1;">
                                             <td>Discount</td>
                                             <td><input type="text" name="discount" id="discount" class="input_style text-right discount"></td>
                                             <td class="no-print"></td>
+                                            <td class="no-print"></td>
                                         </tr>
-                                        <tr>
+                                        <tr style="line-height:1;">
                                             <td>Net Payble</td>
                                             <td><input readOnly type="text" name="net_purchage_amount" id="net_purchage_amount" class="input_style text-right net_purchage_amount"></td>
+                                            <td class="no-print"></td>
                                             <td class="no-print"></td>
                                         </tr>
                                     </tfoot>
@@ -240,6 +247,9 @@
                 $("#vendor_list").prop("disabled", false);
                 $("#dealer_name").prop("disabled", false);
                 $("#location").prop("disabled", false);
+                $("#invoice_date_search").prop("disabled", false);
+                $("#invoice_list_search").prop("disabled", false);
+                $("#invoice_list").prop("disabled", false);
             } else {
                 $("#create_purchage :input").prop("disabled", false);
             }
@@ -356,12 +366,13 @@
         $('.total_amount').on('change', function() {
             _this = $(this).parent().parent();
             var part_id = _this.find('.part_id').val();
+            var id = _this.find('.id').val();
             var purchage_date = $('.purchage_date').val();
-            var quantity = _this.find('.quantity').val();
+            var stock_quantity = _this.find('.quantity').val();
             var rate = _this.find('.sale_rate').val();
             var purchage_bill_no = $('#purchage_bill_no').val();
 
-            if (part_id !== '' && purchage_date !== '' && quantity !== '' && sale_rate !== '') {
+            if (part_id !== '' && purchage_date !== '' && stock_quantity !== '' && rate !== '') {
                 $.ajax({
                     url: "{{ route('invoice.create_or_update') }}",
                     type: 'GET',
@@ -369,9 +380,10 @@
                     data: {
                         part_id,
                         purchage_date,
-                        quantity,
+                        stock_quantity,
                         rate,
-                        purchage_bill_no
+                        purchage_bill_no,
+                        id
                     },
                     success: function(data) {
                         _this.find('.id').val(data.id);
@@ -559,11 +571,12 @@
                     purchage_details,
                     spare_parts_purchage_details
                 }) {
+                    console.log(spare_parts_purchage_details);
                     $("#create_purchage").trigger("reset");
                     if (purchage_details) {
                         $('#purchage_bill_no').val(purchage_details.purchage_bill_no);
                         $('#purchage_date').val(purchage_details.purchage_date);
-                        $('#supplier_id').val(purchage_details.supplier_id);
+                        $('#vendor_list').val(purchage_details.supplier_id);
                         $('#dealer_name').val(purchage_details.dealer_name);
                         $('#location').val(spare_parts_purchage_details.location);
 
@@ -584,8 +597,8 @@
                                 _this.find('.part_id').val(spare_parts_purchage_details[index].part_id);
                                 _this.find('.part_name').val(spare_parts_purchage_details[index].part_name);
                                 _this.find('.quantity').val(spare_parts_purchage_details[index].quantity);
-                                _this.find('.sale_rate').val(spare_parts_purchage_details[index].sale_rate);
-                                _this.find('.total_amount').val(spare_parts_purchage_details[index].quantity * spare_parts_purchage_details[index].sale_rate);
+                                _this.find('.sale_rate').val(spare_parts_purchage_details[index].rate);
+                                _this.find('.total_amount').val(spare_parts_purchage_details[index].quantity * spare_parts_purchage_details[index].rate);
                                 _this.find('.id').val(spare_parts_purchage_details[index].id);
                                 // _this.find('.delete_parts_item').removeClass('disabled');
                                 // _this.find('.delete_icon').addClass('text-danger');

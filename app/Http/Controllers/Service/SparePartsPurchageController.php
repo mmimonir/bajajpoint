@@ -59,7 +59,7 @@ class SparePartsPurchageController extends Controller
             'part_id' => $request->part_id,
             'purchage_bill_no' => $request->purchage_bill_no,
             'purchage_date' => $request->purchage_date,
-            'quantity' => $request->quantity,
+            'quantity' => $request->stock_quantity,
             'rate' => $request->rate,
         ]);
 
@@ -108,9 +108,8 @@ class SparePartsPurchageController extends Controller
                         $request->part_id[$key]
                     )->first();
                     if ($current_stock) {
-                        $current_stock->quantity += $request->quantity[$key];
+                        $current_stock->stock_quantity += $request->quantity[$key];
                         $current_stock->rate = $request->rate[$key];
-                        $current_stock->location = $request->location[$key];
                         $current_stock->save();
                     }
                 }
@@ -132,15 +131,19 @@ class SparePartsPurchageController extends Controller
             ->first();
 
         // fetch spare parts sale details based on job card no
-        $spare_parts_purchage_details = SparePartsPurchage::rightJoin('spare_parts_stocks', 'spare_parts_stocks.part_id', '=', 'spare_parts_purchages.part_id')
-            ->rightJoin('spare_parts_stocks', 'spare_parts_stocks.part_id', '=', 'spare_parts_purchages.part_id')
+        $spare_parts_purchage_details = SparePartsPurchage::rightJoin(
+            'spare_parts_stocks',
+            'spare_parts_stocks.part_id',
+            '=',
+            'spare_parts_purchages.part_id'
+        )
             ->select(
-                'spare_parts_stocks.*',
                 'spare_parts_purchages.*',
-                'spare_parts_stocks.location'
+                'spare_parts_stocks.location',
+                'spare_parts_stocks.part_name'
             )
             ->where([
-                'spare_parts_purchages.parts_purchage_invoices_id' => $request->parts_purchage_invoices_id,
+                'spare_parts_purchages.parts_purchage_invoices_id' => $request->id,
             ])
             ->get();
 
