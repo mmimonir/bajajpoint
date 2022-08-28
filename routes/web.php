@@ -18,6 +18,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/delete_profile',  'delete_profile')->name('profile.delete');
         Route::get('/get_profile',  'get_profile')->name('profile.get');
     });
+    Route::controller(App\Http\Controllers\SMSController::class)->group(function () {
+        Route::get('/sms_index',  'index')->name('sms.index');
+    });
 });
 
 
