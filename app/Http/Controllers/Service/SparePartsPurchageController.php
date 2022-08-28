@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\BusinessProfile;
 use App\Models\Service\SparePartsStock;
 use App\Models\Service\SparePartsPurchage;
 use App\Models\Service\PartsPurchageInvoice;
@@ -65,7 +66,7 @@ class SparePartsPurchageController extends Controller
 
         return response()->json($id);
     }
-    public function delete_parts_item(Request $request)
+    public function delete_parts(Request $request)
     {
         SparePartsPurchage::where('id', $request->id)->delete();
 
@@ -77,49 +78,64 @@ class SparePartsPurchageController extends Controller
 
     public function store_invoice(Request $request)
     {
-        DB::transaction(function () use ($request) {
-            $invoice_id = PartsPurchageInvoice::updateOrCreate(
-                [
-                    'id' => $request->id,
-                ],
-                [
-                    'supplier_id' => $request->supplier_id,
-                    'purchage_bill_no' => $request->purchage_bill_no,
-                    'purchage_date' => $request->purchage_date,
-                    'discount' => $request->discount,
-                    'net_purchage_amount' => $request->net_purchage_amount,
-                    'dealer_name' => $request->dealer_name,
-                ]
-            )->id;
+        if ($request->update == 'true') {
+            PartsPurchageInvoice::where('id', $request->purchage_id)->update([
+                'purchage_bill_no' => $request->purchage_bill_no,
+                'purchage_date' => $request->purchage_date,
+                'supplier_id' => $request->supplier_id,
+                'net_purchage_amount' => $request->net_purchage_amount,
+                'discount' => $request->discount,
+                'dealer_id' => $request->dealer_name,
+                'grand_total' => $request->grand_total,
+            ]);
+            SparePartsPurchage::where('parts_purchage_invoices_id', $request->purchage_id)->update([
+                'purchage_bill_no' => $request->purchage_bill_no,
+                'purchage_date' => $request->purchage_date,
+            ]);
+        } else {
+            DB::transaction(function () use ($request) {
+                $data = new PartsPurchageInvoice();
+                $data->supplier_id = $request->supplier_id;
+                $data->purchage_bill_no = $request->purchage_bill_no;
+                $data->purchage_date = $request->purchage_date;
+                $data->discount = $request->discount;
+                $data->net_purchage_amount = $request->net_purchage_amount;
+                $data->dealer_id = $request->dealer_name;
+                $data->grand_total = $request->grand_total;
+                $data->save();
 
-            if ($invoice_id) {
-                SparePartsPurchage::where(
-                    [
-                        'purchage_bill_no' => $request->purchage_bill_no,
-                        'purchage_date' => $request->purchage_date
-                    ]
-                )->update(['parts_purchage_invoices_id' => $invoice_id]);
-            }
+                $invoice_id = $data->id;
 
-            foreach ($request->part_id as $key => $value) {
-                if ($request->part_id[$key] != null) {
-                    $current_stock = SparePartsStock::where(
-                        'part_id',
-                        $request->part_id[$key]
-                    )->first();
-                    if ($current_stock) {
-                        $current_stock->stock_quantity += $request->quantity[$key];
-                        $current_stock->rate = $request->rate[$key];
-                        $current_stock->save();
+                if ($invoice_id) {
+                    SparePartsPurchage::where(
+                        [
+                            'purchage_bill_no' => $request->purchage_bill_no,
+                            'purchage_date' => $request->purchage_date
+                        ]
+                    )->update(['parts_purchage_invoices_id' => $invoice_id]);
+                }
+
+                foreach ($request->part_id as $key => $value) {
+                    if ($request->part_id[$key] != null) {
+                        $current_stock = SparePartsStock::where(
+                            'part_id',
+                            $request->part_id[$key]
+                        )->first();
+                        if ($current_stock) {
+                            $current_stock->stock_quantity += $request->quantity[$key];
+                            $current_stock->rate = $request->rate[$key];
+                            $current_stock->location = $request->location[$key];
+                            $current_stock->save();
+                        }
                     }
                 }
-            }
+            });
+        }
 
-            return response()->json([
-                'status' => 200,
-                'message' => 'Invoice Created Successfully',
-            ]);
-        });
+        return response()->json([
+            'status' => 200,
+            'message' => 'Invoice Created Successfully',
+        ]);
     }
 
     public function load_single_invoice(Request $request)
@@ -151,6 +167,23 @@ class SparePartsPurchageController extends Controller
             'purchage_details' => $purchage_details,
             'spare_parts_purchage_details' => $spare_parts_purchage_details,
 
+        ]);
+    }
+    public function edit_invoice_purchage()
+    {
+        $supplier_list = SparePartsSupplier::select('id', 'name')->get();
+        $dealer_list = BusinessProfile::select('id', 'business_code', 'name')->get();
+
+        return response()->json([
+            'supplier_list' => $supplier_list,
+            'dealer_list' => $dealer_list,
+        ]);
+    }
+    public function dealer_list()
+    {
+        $dealer_list = BusinessProfile::select('id', 'business_code', 'name')->get();
+        return response()->json([
+            'dealer_list' => $dealer_list,
         ]);
     }
 }

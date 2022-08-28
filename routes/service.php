@@ -54,8 +54,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         Route::get('/load_invoice_list',  'load_invoice_list')->name('invoice.invoice_list');
         Route::post('/store_invoice',  'store_invoice')->name('invoice.store_invoice');
         Route::get('/load_single_invoice',  'load_single_invoice')->name('invoice.load_single_invoice');
-        Route::get('/delete_parts_item',  'delete_parts_item')->name('invoice.delete_parts_item');
+        Route::get('/delete_parts',  'delete_parts')->name('invoice.delete_parts');
         Route::get('/purchage_create_or_update',  'purchage_create_or_update')->name('invoice.create_or_update');
         Route::get('/vendor_list',  'vendor_list')->name('invoice.vendor_list');
+        Route::get('/edit_invoice_purchage',  'edit_invoice_purchage')->name('invoice.edit_invoice');
+        Route::get('/dealer_list',  'dealer_list')->name('invoice.dealer_list');
     });
 });

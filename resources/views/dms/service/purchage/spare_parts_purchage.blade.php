@@ -61,15 +61,16 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-12" style="margin:10px 0;">
-        <form id="create_purchage">
-            @csrf
-            <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
+        <div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
+            <form id="create_purchage">
+                @csrf
                 <div class="card-header no-print">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center" style="height:32px;">
                             <nav aria-label="Page navigation example" style="padding-left:15px;">
                                 <ul class="pagination justify-content-center">
                                     <li class="page-item"><a class="page-link new_bill_record bg-success" href="#">New</a></li>
+                                    <li class="page-item"><a class="page-link disabled" id="btn_edit" href="#">Edit</a></li>
                                     <li class="page-item print"><a class="page-link" href="#">Print</a></li>
                                     <button class="page-item page-link bg-dark" type="submit" id="btn_create_bill">Purchage Done</button>
                                 </ul>
@@ -108,13 +109,15 @@
                             <div class="col-md-6">
                                 <div class="input-group mb-3" style="width: 160px;">
                                     <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Bill No:</span>
-                                    <input type="text" name="purchage_bill_no" id="purchage_bill_no" class="form-control purchage_bill_no input_style" style="height:25px;">
+                                    <input required type="text" name="purchage_bill_no" id="purchage_bill_no" class="form-control purchage_bill_no input_style" style="height:25px;">
+                                    <input type="hidden" name="purchage_id" id="purchage_id" value="">
+                                    <input type="hidden" name="update" id="update" value="false">
                                 </div>
                             </div>
                             <div class="col-md-3 offset-md-3">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text input_style" id="basic-addon1" style="height:25px;">Date:</span>
-                                    <input type="date" name="purchage_date" id="purchage_date" class="form-control purchage_date input_style" style="height:25px;">
+                                    <input required type="date" name="purchage_date" id="purchage_date" class="form-control purchage_date input_style" style="height:25px;">
                                 </div>
                             </div>
                             <div class="form-row d-flex justify-content-center" style="margin-bottom:15px; font-size:16px;">
@@ -133,11 +136,7 @@
                                         <label for="vendor" class="col-sm-3 col-form-label p-0 text-right" style="line-height:2;">Dealer</label>
                                         <div class="col-sm-9">
                                             <select name="dealer_name" id="dealer_name" class="browser-default custom-select" style="height:30px; font-size:14px; padding-left:6px; padding-top:4px; font-weight:bold;">
-                                                <option selected="">Open this select menu</option>
-                                                <option value="BAJAJ PLUS">BAJAJ PLUS</option>
-                                                <option value="BAJAJ HEAVEN">BAJAJ HEAVEN</option>
-                                                <option value="BAJAJ BLOOM">BAJAJ BLOOM</option>
-                                                <option selected value="BAJAJ POINT">BAJAJ POINT</option>
+
                                             </select>
                                         </div>
                                     </div>
@@ -160,7 +159,7 @@
                                     <tbody>
                                         @for($i=0; $i<=50; $i++) <tr style="line-height:1;">
                                             <td>
-                                                <input value="{{$i+1}}" type="text" name="sl" style="width:38px;" class="input_style text-center">
+                                                <input value="{{$i+1}}" type="text" name="sl" style="width:38px;" class="sl input_style text-center">
                                             </td>
                                             <td>
                                                 <input type="text" style="width:110px;" name="part_id[]" class="input_style text-center part_id">
@@ -179,7 +178,7 @@
                                                 <input type="text" class="input_style text-right total_amount">
                                             </td>
                                             <td>
-                                                <input type="text" name="location[]" style="width:40px;" class="input_style text-right location">
+                                                <input type="text" name="location[]" style="width:60px;" class="input_style text-right location">
                                             </td>
                                             <td class="text-center no-print">
                                                 <a href="#" class="disabled delete_parts_item"><i class="fa fa-trash delete_icon text-secondary"></i></a>
@@ -213,12 +212,17 @@
                                         </tr>
                                     </tfoot>
                                 </table>
+
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+            <center style="padding:10px;">
+                <button id="add" style="width:100px; margin-top:0px;" class="btn btn-success btn-sm">Add</button>
+                <button id="remove" style="width:100px;" class="btn btn-danger btn-sm">Remove</button>
+            </center>
+        </div>
     </div>
 </div>
 @endsection
@@ -401,7 +405,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: "{{ route('invoice.delete_parts_item') }}",
+                        url: "{{ route('invoice.delete_parts') }}",
                         method: 'get',
                         dataType: 'json',
                         data: {
@@ -443,39 +447,36 @@
         $("#create_purchage").submit(function(e) {
             e.preventDefault();
             const FD = new FormData(this);
-            if ($("#create_purchage").valid()) {
-                $.ajax({
-                    url: "{{ route('invoice.store_invoice') }}",
-                    method: 'post',
-                    data: FD,
-                    dataType: 'json',
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        if (response.status === 200) {
-                            $('#create_purchage').trigger("reset");
-                            Swal.fire({
-                                icon: 'success',
-                                title: response.message,
-                                showConfirmButton: false,
-                                timer: 2000
-                            })
-                            $('#invoice_list').empty();
-                            $('#invoice_list').append('<option style="font-weight:bold;" value="">Invoice List</option>');
-
-                            load_invoice_list();
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: response.message,
-                                footer: '<a href="">Why do I have this issue?</a>'
-                            })
-                        }
+            $.ajax({
+                url: "{{ route('invoice.store_invoice') }}",
+                method: 'post',
+                data: FD,
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    if (response.status === 200) {
+                        $('#create_purchage').trigger("reset");
+                        new_record();
+                        Swal.fire({
+                            icon: 'success',
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                        $('#invoice_list').empty();
+                        $('#invoice_list').append('<option style="font-weight:bold;" value="">Invoice List</option>');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message,
+                            footer: '<a href="">Why do I have this issue?</a>'
+                        })
                     }
-                });
-            }
+                }
+            });
         });
         // Submit Create Job Card End
 
@@ -523,6 +524,27 @@
             });
         }
         load_vendor_list();
+
+        function load_dealer_list() {
+            $.ajax({
+                url: "{{ route('invoice.dealer_list') }}",
+                method: 'get',
+                dataType: 'json',
+                success: function({
+                    dealer_list
+                }) {
+                    if (dealer_list) {
+                        $('#dealer_name').empty();
+                        dealer_list.forEach(function(item) {
+                            $("#dealer_name").append(
+                                `<option style="font-weight:bold;" value="${item.id}">${item.name}</option>`
+                            );
+                        });
+                    }
+                }
+            });
+        }
+        load_dealer_list();
         // Load job card list on same day end
         // in words start
         function in_words(num) {
@@ -562,21 +584,29 @@
                     purchage_details,
                     spare_parts_purchage_details
                 }) {
-                    console.log(spare_parts_purchage_details);
-                    $("#create_purchage").trigger("reset");
+                    console.log(purchage_details);
                     if (purchage_details) {
+                        $("#create_purchage").trigger("reset");
                         $('#purchage_bill_no').val(purchage_details.purchage_bill_no);
+                        $('#purchage_id').val(purchage_details.id);
                         $('#purchage_date').val(purchage_details.purchage_date);
                         $('#vendor_list').val(purchage_details.supplier_id);
                         $('#dealer_name').val(purchage_details.dealer_name);
                         $('#location').val(spare_parts_purchage_details.location);
 
                         $("#create_purchage :input").prop("disabled", true);
+
                         $("#invoice_date_search").prop("disabled", false);
                         $("#invoice_list_search").prop("disabled", false);
                         $('#btn_create_bill').attr('disabled', true);
                         $('#btn_create_bill').removeClass('bg-dark');
+                        $('#btn_edit').removeClass('disabled');
                         $('#btn_create_bill').addClass('bg-secondary');
+
+                        $("#invoice_date_search").prop("disabled", false);
+                        $("#invoice_list_search").prop("disabled", false);
+                        $("#invoice_list").prop("disabled", false);
+
 
                         // populate spare parts sale data
                         let length = spare_parts_purchage_details.length;
@@ -610,11 +640,35 @@
         })
         // After select job card end
         $('.new_bill_record').on('click', function() {
-            $('#create_purchage').trigger('reset');
-            $('#btn_create_bill').text('Purchage Done');
-            $("#create_purchage :input").prop("disabled", false);
+            new_record();
         })
 
+        function text_danger_remove() {
+            let text_danger = $('.text-danger').length;
+            if (text_danger > 0) {
+                $('.text-danger').each(function() {
+                    let text_danger = $(this).parent().parent();
+                    text_danger.find('.delete_parts_item').addClass('disabled');
+                    text_danger.find('.delete_icon').removeClass('text-danger');
+                    text_danger.find('.delete_icon').addClass('text-secondary');
+                })
+                text_danger--;
+            };
+        };
+
+        function new_record() {
+            text_danger_remove();
+            load_invoice_list();
+            load_vendor_list();
+            $('#btn_edit').addClass('disabled');
+            $('#create_purchage').trigger('reset');
+            $('#btn_create_bill').text('Purchage Done');
+            $('#update').val('false');
+            $('#btn_create_bill').addClass('bg-dark');
+            $("#create_purchage :input").prop("disabled", false);
+            $('.id').val('');
+            $('#purchage_id').val('');
+        }
         $('#invoice_date_search').on('change', function() {
             let purchage_date = $(this).val();
             $.ajax({
@@ -639,7 +693,77 @@
                 }
             });
         })
+        $(document).on('click', '#btn_edit', function(e) {
+            let vendor_list = $('#vendor_list').val();
+            let dealer_name = $('#dealer_name').val();
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Edit it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "{{route('invoice.edit_invoice')}}",
+                        type: "GET",
+                        success: function({
+                            supplier_list,
+                            dealer_list
+                        }) {
+                            if (supplier_list) {
+                                $('#btn_create_bill').attr('disabled', false);
+                                $('#update').val('true');
+                                $('#btn_create_bill').text('Update');
+                                $('#purchage_bill_no').attr('disabled', false);
+                                $('#vendor_list').attr('disabled', false);
+                                $('#dealer_name').attr('disabled', false);
+                                $('#btn_create_bill').addClass('bg-dark');
+                                $('#vendor_list').empty();
+                                supplier_list.forEach(function(item) {
+                                    $('#vendor_list').append(`<option ${vendor_list == item.id ? 'selected': ''} value="${item.id}">${item.name}</option>`);
+                                });
+                                $('#dealer_name').empty();
+                                dealer_list.forEach(function(item) {
+                                    $('#dealer_name').append(`<option ${dealer_name == item.id ? 'selected': ''} value="${item.id}">${item.name}</option>`);
+                                });
+                            }
 
+                        }
+                    });
+
+                }
+            })
+        })
+
+        $('#add').on('click', function(e) {
+            e.preventDefault();
+            var $tableBody = $('#tbl').find("tbody"),
+                $trLast = $tableBody.find("tr:last"),
+                $trNew = $trLast.clone().find('input').val('').end();
+            $trNew.find('.sl').val(parseInt($trLast.find('.sl').val()) + 1);
+            $trLast.after($trNew);
+
+
+            if ($("#tbl tbody tr").length > 0) {
+                $('#remove').attr('disabled', false);
+            }
+        })
+        $('#remove').on('click', function(e) {
+            e.preventDefault();
+            $('#tbl tbody tr:last').remove();
+            ar_row_control();
+        })
+        ar_row_control();
+
+        function ar_row_control() {
+            if ($("#tbl tbody tr").length == 1) {
+                $('#remove').attr('disabled', true);
+            }
+        }
     })
 </script>
 @endsection
