@@ -101,7 +101,7 @@
         }
 
         .ui-autocomplete {
-            height: 200px !important;
+            height: 500px !important;
             overflow-y: hidden !important;
             overflow-x: hidden !important;
             margin: 0 !important;
