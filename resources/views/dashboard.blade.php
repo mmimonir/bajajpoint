@@ -512,6 +512,7 @@
                                             <th>Customer Name</th>
                                             <th>Mobile</th>
                                             <th>Dealer</th>
+                                            <th>TR Number</th>
                                             <th>RG Number</th>
                                             <th>Action</th>
                                         </tr>
@@ -532,6 +533,7 @@
                                 <td>${data.customer_name ? data.customer_name.length > 15 ? data.customer_name.substring(0,15) + '.' : data.customer_name : ''}</td>
                                 <td>${data.mobile ? data.mobile : ''}</td>
                                 <td class="text-center">${data.dealer ? data.dealer : ''}</td>
+                                <td class="text-center">${data.tr_number ? data.tr_number : ''}</td>
                                 <td>
                                     <input value="${data.rg_number ? data.rg_number : ''}" type="text" name="rg_number" class="rg_number text-center border-0" style="font-size:14px; font-weight:800;" />
                                     <input type="hidden" name="core_id" class="core_id" value="${data.id}" />
@@ -711,6 +713,36 @@
             if (!rg_number == '') {
                 $.ajax({
                     url: "{{ route('dashboard.rg_number_update') }}",
+                    method: 'post',
+                    data: {
+                        id,
+                        rg_number,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status == 200) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: response.message,
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
+                        }
+                    }
+                });
+            } else {
+                alert('Please enter RG Number');
+            }
+        })
+        $(document).on('click', '.send_sms', function() {
+            _this = $(this).parent().parent().parent();
+            let id = _this.find('.core_id').val();
+            let rg_number = _this.find('.rg_number').val();
+
+            if (!rg_number == '') {
+                $.ajax({
+                    url: "{{ route('sms.send_sms') }}",
                     method: 'post',
                     data: {
                         id,

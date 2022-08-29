@@ -282,6 +282,7 @@ class PrintController extends Controller
                 'cores.model',
                 'cores.rg_number',
                 'cores.dealer',
+                'cores.tr_number',
             )
                 ->where([
                     ['cores.five_chassis', '=', $term['five_chassis']],
@@ -304,6 +305,7 @@ class PrintController extends Controller
                 'cores.model',
                 'cores.rg_number',
                 'cores.dealer',
+                'cores.tr_number',
             )
                 ->where('cores.five_chassis', "=", $term['five_chassis'])
                 ->get();
@@ -323,6 +325,7 @@ class PrintController extends Controller
                 'cores.model',
                 'cores.rg_number',
                 'cores.dealer',
+                'cores.tr_number',
             )
                 ->where('cores.five_engine', "=", $term['five_engine'])
                 ->get();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Showroom\Core;
 use Illuminate\Support\Carbon;
 
 class SMSController extends Controller
@@ -63,8 +64,8 @@ class SMSController extends Controller
 
         $client = new \SoapClient("https://api2.onnorokomSMS.com/sendSMS.asmx?wsdl");
         $paramArray = array(
-            'userName' => "01644928171",
-            'userPassword' => "bp253236",
+            'userName' => env('SMS_USERNAME'),
+            'userPassword' => env('SMS_PASSWORD'),
             'mobileNumber' => "01974353555",
             'smsText' => $msg,
             'type' => "TEXT",
@@ -74,5 +75,29 @@ class SMSController extends Controller
         $value = $client->__call("OneToOne", array($paramArray));
 
         return response()->json($value->OneToOneResult);
+    }
+    public function send_sms(Request $request)
+    {
+        $sms_data = Core::where('id', $request->id)->first();
+        $msg = 'Dear Sir, Apnar Number ' . $request->rg_number . ' is ready for delivery. Please collect it from our showroom Thank you.';
+
+        $client = new \SoapClient("https://api2.onnorokomSMS.com/sendSMS.asmx?wsdl");
+        $paramArray = array(
+            'userName' => env('SMS_USERNAME'),
+            'userPassword' => env('SMS_PASSWORD'),
+            'mobileNumber' => $sms_data->mobile,
+            'smsText' => $msg,
+            'type' => "TEXT",
+            'maskName' => '',
+            'campaignName' => '',
+        );
+        $value = $client->__call("OneToOne", array($paramArray));
+
+        return response()->json(
+            [
+                'message' => $value->OneToOneResult,
+                'status' => 200
+            ]
+        );
     }
 }

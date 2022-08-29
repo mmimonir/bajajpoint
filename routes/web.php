@@ -20,6 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::controller(App\Http\Controllers\SMSController::class)->group(function () {
         Route::get('/sms_index',  'index')->name('sms.index');
+        Route::post('/send_sms',  'send_sms')->name('sms.send_sms');
     });
     Route::controller(App\Http\Controllers\DashboardController::class)->group(function () {
         Route::post('/rg_number_update',  'rg_number_update')->name('dashboard.rg_number_update');
