@@ -112,4 +112,15 @@ class DashboardController extends Controller
             ->sum('mrps.tr');
         return ['amount' => $tr_pending_amount, 'qty' => $tr_pending_qty];
     }
+    public function rg_number_update(Request $request)
+    {
+        Core::where('id', $request->id)->update(['rg_number' => $request->rg_number]);
+
+        return response()->json(
+            [
+                'message' => 'RG Number Updated Successfully',
+                'status' => 200
+            ]
+        );
+    }
 }

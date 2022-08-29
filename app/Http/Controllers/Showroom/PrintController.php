@@ -144,6 +144,8 @@ class PrintController extends Controller
                 'cores.customer_name',
                 'cores.mobile',
                 'cores.model',
+                'cores.rg_number',
+                'cores.dealer',
             )
                 ->where([
                     ['cores.five_chassis', '=', $term['five_chassis']],
@@ -165,6 +167,8 @@ class PrintController extends Controller
                 'cores.customer_name',
                 'cores.mobile',
                 'cores.model',
+                'cores.rg_number',
+                'cores.dealer',
             )
                 ->where('cores.five_chassis', "=", $term['five_chassis'])
                 ->get();
@@ -182,6 +186,8 @@ class PrintController extends Controller
                 'cores.customer_name',
                 'cores.mobile',
                 'cores.model',
+                'cores.rg_number',
+                'cores.dealer',
             )
                 ->where('cores.five_engine', "=", $term['five_engine'])
                 ->get();
@@ -274,6 +280,8 @@ class PrintController extends Controller
                 'cores.customer_name',
                 'cores.mobile',
                 'cores.model',
+                'cores.rg_number',
+                'cores.dealer',
             )
                 ->where([
                     ['cores.five_chassis', '=', $term['five_chassis']],
@@ -294,6 +302,8 @@ class PrintController extends Controller
                 'cores.customer_name',
                 'cores.mobile',
                 'cores.model',
+                'cores.rg_number',
+                'cores.dealer',
             )
                 ->where('cores.five_chassis', "=", $term['five_chassis'])
                 ->get();
@@ -311,6 +321,8 @@ class PrintController extends Controller
                 'cores.customer_name',
                 'cores.mobile',
                 'cores.model',
+                'cores.rg_number',
+                'cores.dealer',
             )
                 ->where('cores.five_engine', "=", $term['five_engine'])
                 ->get();

@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @section('title', 'Bajaj Point - 3S Dealer Of UttaraMotors Ltd')
+@push('page_css')
+<style>
+    td {
+        vertical-align: middle !important;
+    }
+</style>
+@endpush
 @section('content')
 <div class="container-fluid" style="margin-top:15px; padding:0;">
     <div class="row">
@@ -50,6 +57,11 @@
                     </div>
                     <div class="col-md-12" style="margin-top:-15px; padding:0px;">
                         <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey; margin-bottom:0px;" id="show_search_result">
+
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-top:-15px; padding:0px;">
+                        <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey; margin-bottom:0px;" id="rg_number_update">
 
                         </div>
                     </div>
@@ -254,10 +266,12 @@
 @section('datatable')
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
 @endsection
 @section('script')
 <script>
     $(document).ready(function() {
+        $('.rg_number').inputmask('99-9999');
         $(document).on('change', '#unit_price_vat', function() {
             let unit_price_vat = +$(this).val();
             let basic = Math.round((unit_price_vat * 100) / 115);
@@ -415,6 +429,7 @@
                 dataType: 'json',
                 success: function(response) {
                     if (response.length > 0) {
+                        console.log(response);
                         var html = `
                 <div class="card-header bg-dark">                
                     <h3 class="card-title">
@@ -478,6 +493,58 @@
                             </tr>`;
                         });
                         html += `</tbody></table></div>`;
+
+                        var rg_number = `
+                        <div class="card-header bg-dark">
+                                <h3 class="card-title">
+                                    Registration Number Update & SMS
+                                </h3>
+                            </div>
+                            <div>
+                                <table id="search_result" class="table table-bordered">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>Sl</th>
+                                            <th>Model</th>
+                                            <th>Sale Date</th>
+                                            <th>Chassis No</th>
+                                            <th>Engine No</th>
+                                            <th>Customer Name</th>
+                                            <th>Mobile</th>
+                                            <th>Dealer</th>
+                                            <th>RG Number</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>`;
+                        response.forEach(function(data, index) {
+                            var saleDate = new Intl.DateTimeFormat('en-IN').format(new Date(data.original_sale_date)).split("/").join("-")
+                            var sl = index + 1;
+                            var chassis = (data.eight_chassis || '') + (data.one_chassis || '') + (data.three_chassis || '') + (data.five_chassis || '');
+                            var engine = (data.six_engine || '') + (data.five_engine || '');
+                            rg_number +=
+                                `<tr>                                
+                                <td>${sl}</td>
+                                <td>${data.model ? data.model :''}</td>
+                                <td>${saleDate ? saleDate : ''}</td>
+                                <td>${chassis}</td>
+                                <td>${engine}</td>
+                                <td>${data.customer_name ? data.customer_name.length > 15 ? data.customer_name.substring(0,15) + '.' : data.customer_name : ''}</td>
+                                <td>${data.mobile ? data.mobile : ''}</td>
+                                <td class="text-center">${data.dealer ? data.dealer : ''}</td>
+                                <td>
+                                    <input value="${data.rg_number ? data.rg_number : ''}" type="text" name="rg_number" class="rg_number text-center border-0" style="font-size:14px; font-weight:800;" />
+                                    <input type="hidden" name="core_id" class="core_id" value="${data.id}" />
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center padd text-decoration btn-group">
+                                        <a href="#" class="btn bg-dark rg_save" style="padding:2px;">Save</a>
+                                        <a href="#" class="btn bg-dark send_sms" style="padding:2px;">Send SMS</a>                                     
+                                    </div>
+                                </td>
+                            </tr>`;
+                        });
+                        rg_number += `</tbody></table></div>`;
                     } else {
                         html = `
                     <div class="card-header bg-dark">
@@ -491,6 +558,8 @@
                     `;
                     }
                     $("#show_search_result").html(html);
+                    $("#rg_number_update").html(rg_number);
+                    $('.rg_number').inputmask('99-9999')
                     $("#search_overlay").css("visibility", "hidden");
                     $("#search_result").DataTable({
                         bPaginate: false,
@@ -633,6 +702,37 @@
             $("#info_modal_content").html(html);
         }
         append_info_modal();
+
+        $(document).on('click', '.rg_save', function() {
+            _this = $(this).parent().parent().parent();
+            let id = _this.find('.core_id').val();
+            let rg_number = _this.find('.rg_number').val();
+
+            if (!rg_number == '') {
+                $.ajax({
+                    url: "{{ route('dashboard.rg_number_update') }}",
+                    method: 'post',
+                    data: {
+                        id,
+                        rg_number,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status == 200) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: response.message,
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
+                        }
+                    }
+                });
+            } else {
+                alert('Please enter RG Number');
+            }
+        })
     });
 </script>
 @endsection
