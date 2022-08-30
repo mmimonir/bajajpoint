@@ -21,14 +21,18 @@ class SalesController extends Controller
         $vehicle_data = Vehicle::select('model')->where('model_code', $model_code)->first();
         $purchage_data = Purchage::select('purchage_date', 'vendor', 'factory_challan_no')->where('id', $store_id)->first();
         $color_data = ColorCode::select('color_code', 'color')->where('model_code', $model_code)->get();
-        $pd_data = PriceDeclare::select(
-            'id',
-            'vat_mrp',
-            'submit_date'
-        )->where(
-            // ['model_code' => $model_code, 'status' => 'active', 'business_profile_id' => $business_profile_id]
-            ['model_code' => $model_code, 'status' => 'active', 'business_profile_id' => $business_profile_id->id]
-        )->first();
+
+        if ($business_profile_id) {
+            $pd_data = PriceDeclare::select(
+                'id',
+                'vat_mrp',
+                'submit_date'
+            )->where(
+                // ['model_code' => $model_code, 'status' => 'active', 'business_profile_id' => $business_profile_id]
+                ['model_code' => $model_code, 'status' => 'active', 'business_profile_id' => $business_profile_id->id]
+            )->first();
+        }
+
         $mrp_data = Mrp::select('*')->where(['model_code' => $model_code])->first();
 
         return response()->json(
@@ -37,7 +41,7 @@ class SalesController extends Controller
                 'vehicle_data' => $vehicle_data,
                 'purchage_data' => $purchage_data,
                 'color_data' => $color_data,
-                'pd_data' => $pd_data,
+                'pd_data' => $pd_data ?? null,
                 // 'pd_data' => $pd_data,
                 // 'print_ref' => $print_ref,
                 'mrp_data' => $mrp_data,
