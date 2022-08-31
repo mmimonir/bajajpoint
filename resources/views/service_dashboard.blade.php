@@ -208,7 +208,7 @@
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center padd text-decoration btn-group">
-                                    <a href="#" class="btn bg-dark update_location" style="padding:2px;">Update Location</a>
+                                    <a href="#" class="btn bg-dark update_location" style="padding:2px; width:42px;">Update LC</a>
                                 </div>
                             </td>
                             </tr></tbody></table></div>`;
