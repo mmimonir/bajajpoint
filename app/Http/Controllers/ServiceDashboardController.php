@@ -24,9 +24,24 @@ class ServiceDashboardController extends Controller
             'part_name',
             'model_name',
             'rate',
-            'stock_quantity'
+            'stock_quantity',
+            'location',
         )->where(['part_id' => $part_id])->first();
 
         return response()->json(['search_data' => $search_data]);
+    }
+
+    public function update_parts_location(Request $request)
+    {
+        $id = $request->id;
+        $location = $request->location;
+
+        $update_data = SparePartsStock::where(['id' => $id])->update(['location' => $location]);
+
+        if ($update_data) {
+            return response()->json(['msg' => 'Location updated successfully']);
+        } else {
+            return response()->json(['msg' => 'Something went wrong']);
+        }
     }
 }
