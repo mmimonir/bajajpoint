@@ -125,10 +125,12 @@ class JobCardService
 
     public static function search_by_part_id($request)
     {
-        $part_id = $request->part_id;
-        $data = SparePartsStock::select('part_id as value', 'id')
-            ->where('part_id', 'LIKE', '%' . $part_id . '%')->get();
-        return $data;
+        if ($request->has('part_id')) {
+            $part_id = $request->part_id;
+            $data = SparePartsStock::select('part_id as value', 'id')
+                ->where('part_id', 'LIKE', '%' . $part_id . '%')->get();
+            return $data;
+        }
     }
 
     public static function search_by_full_part_id($request)

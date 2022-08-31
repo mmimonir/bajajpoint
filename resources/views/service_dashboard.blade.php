@@ -1,11 +1,24 @@
 @extends('service_layouts.app')
 @section('title', 'Bajaj Point - 3S Dealer Of UttaraMotors Ltd')
 @push('page_scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-@endpush
-@push('styles')
-<style>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
 
+@endpush
+@push('page_css')
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" /> -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<style>
+    .select2-container--default {
+        width: 304px !important;
+    }
+
+    .select2-selection__rendered {
+        margin-top: -6px !important;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 23px !important;
+    }
 </style>
 @endpush
 
@@ -81,27 +94,19 @@
                                 Spare Parts Search
                             </h3>
                         </div>
-                        <div class="card-body d-flex justify-content-center">
-                            <div class="form-inline">
-                                <div class="form-group mb-2">
-                                    <label for="part_id">Part ID</label>
-                                </div>
-                                <div class="form-group mx-sm-3 mb-2">
-                                    <input type="text" name="part_id" class="form-control part_id" id="part_id" placeholder="Part ID">
-                                </div>
-                                <button type="submit" class="btn btn-dark mb-2">
-                                    Search
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="margin-top:-15px; padding:0px;">
-                        <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey; margin-bottom:0px;" id="show_search_result">
+
+                        <div class="card-body d-flex justify-content-center" style="width:700px; margin:auto; align-items:center;">
+
+                            <label for="part_id" style="margin-right:10px; margin-bottom:0;">Part ID</label>
+
+                            <select class="custom-select" id="select2">
+
+                            </select>
 
                         </div>
                     </div>
-                    <div class="col-md-12" style="margin-top:-15px; padding:0px;">
-                        <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey; margin-bottom:0px;" id="rg_number_update">
+                    <div class="col-md-12" style="margin-top:-5px; padding:0px;">
+                        <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey; margin-bottom:0px;" id="show_search_result">
 
                         </div>
                     </div>
@@ -109,79 +114,177 @@
                 <div class="overlay" id="search_overlay">
                     <i class="fas fa-2x fa-sync-alt fa-spin"></i>
                 </div>
+
             </div>
         </div>
     </div>
+
 </div>
 @endsection
 
-@section('datatable')
+<!-- @section('datatable')
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-@endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+@endsection -->
 @section('script')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function() {
         $("#search_overlay").css("visibility", "hidden");
     });
 
-    // Search by part id start
-    $('.part_id').on("focus", function() {
-        $(this).autocomplete({
-            maxShowItems: 10,
-            minLength: 2,
-            // scroll: true,
-            source: function(request, response) {
-                $.ajax({
-                    url: "{{ route('job_card.search_by_part_id') }}",
-                    type: 'GET',
-                    dataType: "json",
-                    data: {
-                        part_id: request.term
-                    },
-                    success: function(data) {
-                        response(data);
-                    }
-                });
+
+    $('#select2').select2({
+        placeholder: 'Select movie',
+        ajax: {
+            url: "{{ route('job_card.search_by_part_id') }}",
+            dataType: 'json',
+            delay: 250,
+            type: "GET",
+            data: function(params) {
+                return {
+                    part_id: params.term,
+                };
             },
-            select: function(event, ui) {
-                $(this).val(ui.item.label);
-                return false;
-            },
-            change: function() {
-                _this = $(this).parent().parent();
-                var part_id = $(this).val();
-                $.ajax({
-                    url: "{{ route('job_card.search_by_full_part_id') }}",
-                    type: 'GET',
-                    dataType: "json",
-                    data: {
-                        part_id: part_id
-                    },
-                    success: function(data) {
-                        if (data.stock_quantity > 0) {
-                            _this.find('.part_name').val(data.part_name);
-                            _this.find('.quantity').val(1);
-                            _this.find('.sale_rate').val(data.rate);
-                            _this.find('.delete_parts_item').removeClass('disabled');
-                            _this.find('.delete_icon').removeClass('text-secondary');
-                            _this.find('.delete_icon').addClass('text-danger');
-                            _this.find('.quantity').trigger("change");
-                            _this.find('.sale_rate').trigger("change");
-                            _this.find('.total_amount').trigger("change");
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Not enough stock, please update stock first',
-                                footer: '<a href="">Why do I have this issue?</a>'
-                            })
+            processResults: function(data) {
+                console.log(data);
+                return {
+                    results: $.map(data, function(item) {
+                        return {
+                            text: item.value,
+                            id: item.value
                         }
-                    }
-                });
+                    })
+                };
+            },
+
+
+            cache: true
+        }
+    });
+    $(document).on('change', '#select2', function() {
+        let part_id = $(this).val();
+        console.log(part_id);
+        $.ajax({
+            url: "{{ route('service.part_id_search') }}",
+            type: "GET",
+            data: {
+                part_id
+            },
+            beforeSend: function() {
+                $("#search_overlay").css("visibility", "visible");
+            },
+            success: function({
+                search_data
+            }) {
+                console.log(search_data);
+                if (search_data) {
+                    $("#search_overlay").css("visibility", "hidden");
+                    var html = `
+                    <div class="card-header bg-dark">
+                                <h3 class="card-title">
+                                    Part ID Search Details
+                                </h3>
+                            </div>
+                            <div>
+                                <table id="search_result" class="table table-bordered">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>Sl</th>
+                                            <th>Part ID</th>
+                                            <th>Part Name</th>
+                                            <th>Model Name</th>
+                                            <th>Rate</th>
+                                            <th>Current Stock</th>
+                                            <th>Stock Value</th>
+                                            <th>Location</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody><tr>
+                            <td class="text-center">1</td>
+                            <td class="text-center">${search_data.part_id}</td>
+                            <td>${search_data.part_name}</td>
+                            <td>${search_data.model_name}</td>
+                            <td class="text-right">${search_data.rate}/-</td>
+                            <td class="text-center">${search_data.stock_quantity} Pcs</td>
+                            <td class="text-right">${search_data.rate * search_data.stock_quantity}/-</td>
+                            <td class="text-center">${search_data.location ? search_data.location : ''}</td>
+                            <td class="text-center">Action</td>
+                            </tr></tbody></table></div>`;
+
+                    $("#show_search_result").html(html);
+                } else {
+                    $("#search_overlay").css("visibility", "hidden");
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No Data Found!',
+                    })
+                }
             }
         });
-    });
+    })
+
+    // Search by part id start
+    // $('.part_id').on("focus", function() {
+    //     $(this).autocomplete({
+    //         maxShowItems: 10,
+    //         minLength: 2,
+    //         // scroll: true,
+    //         source: function(request, response) {
+    //             $.ajax({
+    //                 url: "{{ route('job_card.search_by_part_id') }}",
+    //                 type: 'GET',
+    //                 dataType: "json",
+    //                 data: {
+    //                     part_id: request.term
+    //                 },
+    //                 success: function(data) {
+    //                     response(data);
+    //                 }
+    //             });
+    //         },
+    //         select: function(event, ui) {
+    //             $(this).val(ui.item.label);
+    //             return false;
+    //         },
+    //         change: function() {
+    //             _this = $(this).parent().parent();
+    //             var part_id = $(this).val();
+    //             $.ajax({
+    //                 url: "{{ route('job_card.search_by_full_part_id') }}",
+    //                 type: 'GET',
+    //                 dataType: "json",
+    //                 data: {
+    //                     part_id: part_id
+    //                 },
+    //                 success: function(data) {
+    //                     if (data.stock_quantity > 0) {
+    //                         _this.find('.part_name').val(data.part_name);
+    //                         _this.find('.quantity').val(1);
+    //                         _this.find('.sale_rate').val(data.rate);
+    //                         _this.find('.delete_parts_item').removeClass('disabled');
+    //                         _this.find('.delete_icon').removeClass('text-secondary');
+    //                         _this.find('.delete_icon').addClass('text-danger');
+    //                         _this.find('.quantity').trigger("change");
+    //                         _this.find('.sale_rate').trigger("change");
+    //                         _this.find('.total_amount').trigger("change");
+    //                     } else {
+    //                         Swal.fire({
+    //                             icon: 'error',
+    //                             title: 'Oops...',
+    //                             text: 'Not enough stock, please update stock first',
+    //                             footer: '<a href="">Why do I have this issue?</a>'
+    //                         })
+    //                     }
+    //                 }
+    //             });
+    //         }
+    //     });
+    // });
     // Search by part id end
     // $('.amount').text(new Intl.NumberFormat('en-IN').format(+$('.amount').text()))
 </script>
