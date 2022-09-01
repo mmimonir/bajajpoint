@@ -2,12 +2,14 @@
 <html>
 
 <head>
+
     <title>Complete HForm</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            /* color: white; */
         }
 
         body {
@@ -51,10 +53,43 @@
             font-weight: 700;
             width: 100%;
             text-transform: uppercase;
+            /* color: black; */
         }
 
         tr {
             vertical-align: baseline;
+        }
+
+        .button-42 {
+            background-color: initial;
+            background-image: linear-gradient(-180deg, #FF7E31, #E62C03);
+            border-radius: 6px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-block;
+            font-family: Inter, -apple-system, system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
+            height: 40px;
+            line-height: 40px;
+            outline: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            pointer-events: auto;
+            position: relative;
+            text-align: center;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            vertical-align: top;
+            white-space: nowrap;
+            width: 100%;
+            z-index: 9;
+            border: 0;
+            transition: box-shadow .2s;
+        }
+
+        .button-42:hover {
+            box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
         }
 
         @media print {
@@ -62,11 +97,42 @@
                 display: block;
                 height: 900px;
             }
+
+            .no_print {
+                display: none;
+            }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin: auto;
+            margin-bottom: 10px;
+            width: 300px;
+        }
+
+        nav button {
+            margin-left: 5px;
+        }
+
+        .toggle_color {
+            color: white;
+        }
+
+        .toggle_input_color {
+            color: white;
         }
     </style>
 </head>
 
 <body>
+    <nav class="no_print">
+        <button id="hform" class="button-42">HForm</button>
+        <button id="data" class="button-42">Data</button>
+        <button id="both" class="button-42">Both</button>
+    </nav>
 
     <div class="hform_page_one">
         <div class="section_one">
@@ -479,6 +545,29 @@
         </div>
     </div>
     <!-- <div class="page-break"></div> -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#hform').click(function() {
+                $('.hform_page_one').removeClass('toggle_color');
+                $("input").css({
+                    "color": "#fff"
+                });
+            });
+            $('#data').click(function() {
+                $('.hform_page_one').addClass('toggle_color');
+                $("input").css({
+                    "color": "black"
+                });
+            });
+            $('#both').click(function() {
+                $('.hform_page_one').removeClass('toggle_color');
+                $("input").css({
+                    "color": "black"
+                });
+            });
+        })
+    </script>
 </body>
 
 </html>
