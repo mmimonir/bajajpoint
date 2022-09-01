@@ -112,6 +112,12 @@
                         <p class="text-white">Money Receipt</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('bank.index_page') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-receipt"></i>
+                        <p class="text-white">Bank Account</p>
+                    </a>
+                </li>
             </ul>
         </li>
 

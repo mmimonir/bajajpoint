@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::controller(App\Http\Controllers\BusinessProfileController::class)->group(function () {
         Route::get('/profile_index',  'index')->name('profile.index');
         Route::post('/add_new_profile',  'add_new_profile')->name('profile.add');
@@ -24,6 +24,14 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::controller(App\Http\Controllers\DashboardController::class)->group(function () {
         Route::post('/rg_number_update',  'rg_number_update')->name('dashboard.rg_number_update');
+    });
+    Route::controller(App\Http\Controllers\BankAccountController::class)->group(function () {
+        Route::get('/bank_index_page',  'bank_index_page')->name('bank.index_page');
+        Route::get('/get_bank_account',  'get_bank_account')->name('bank.get_bank_account');
+        Route::post('/get_single_bank_account',  'get_single_bank_account')->name('bank.get_single_bank_account');
+        Route::post('/store_bank_account',  'store_bank_account')->name('bank.store_bank_account');
+        Route::post('/update_bank_account',  'update_bank_account')->name('bank.update_bank_account');
+        Route::delete('/delete_bank_account',  'delete_bank_account')->name('bank.delete_bank_account');
     });
 });
 
