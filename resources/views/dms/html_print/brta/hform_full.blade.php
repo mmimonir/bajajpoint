@@ -79,7 +79,7 @@
             text-align: center;
             touch-action: manipulation;
             user-select: none;
-            -webkit-user-select: none;
+            /* -webkit-user-select: none; */
             vertical-align: top;
             white-space: nowrap;
             width: 100%;
