@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     });
     Route::controller(App\Http\Controllers\HTMLPrintController::class)->group(function () {
         Route::get('/full_hform',  'full_hform')->name('print.full_hform');
+        Route::get('/full_hform_get_data',  'full_hform_get_data')->name('print.get_data');
     });
 });
 
