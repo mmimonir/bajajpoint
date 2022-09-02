@@ -25,7 +25,7 @@
         }
 
         .hform_page_one {
-            height: 1500px;
+            height: 1546px;
             width: 1060px;
             /* border: 1px solid black; */
         }
@@ -95,7 +95,7 @@
         @media print {
             .page-break {
                 display: block;
-                height: 900px;
+                /* height: 900px; */
             }
 
             .no_print {
@@ -136,7 +136,7 @@
 
     <div class="hform_page_one">
         <div class="section_one">
-            <div class="content_part_one">
+            <div class="content_part_one" style="margin-top:15px;">
                 <p>FORM OF APPLICATION FOR THE REGISTRATION OF MOTOR VEHICLE</p>
                 <p>To be filled in by the office</p>
                 <p>Section-I</p>
@@ -509,7 +509,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>36. Dimentions(mm)</td>
+                        <td style="padding-top:20px;">36. Dimentions(mm)</td>
                         <td>:</td>
                         <td></td>
                         <td></td>
@@ -535,7 +535,7 @@
                         <td colspan="3"><span style="padding-left:233px;">c) Other</span></td>
                     </tr>
                     <tr>
-                        <td colspan="6">
+                        <td colspan="6" style="padding-top:50px;">
                             38. A copy of the drawing showing the vehicle dimension specifications of the body and of the seating
                             arrangements approved by ....................................................on...............................................................is attached herewith
                         </td>
@@ -544,97 +544,132 @@
             </div>
         </div>
     </div>
-    <!-- <div class="page-break"></div> -->
+    <div class="page-break"></div>
     <div class="hform_page_one">
         <div class="section_one">
-            <div class="content_part_one">
-                <p>FORM OF APPLICATION FOR THE REGISTRATION OF MOTOR VEHICLE</p>
-                <p>To be filled in by the office</p>
-                <p>Section-I</p>
+            <div class="content_part_one" style="margin-top:0; margin-bottom:10px;">
+                <p>Section V</p>
             </div>
             <div>
-                <table>
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <td style="width:0;">39.</td>
+                            <td colspan="7">Hire purchase/hypothecation information :</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td colspan="7">The vehicle is subject to hire purchase/hypothecation with :</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="width:170px;">a) Name</td>
+                            <td>:</td>
+                            <td colspan="5" style="text-align:right; padding-right:175px;">b) Date:</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>c) Address</td>
+                            <td colspan="6">:</td>
+                        </tr>
+                        <tr>
+                            <td>40.</td>
+                            <td colspan="7">Insurance information :</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>a) Policy no</td>
+                            <td>:</td>
+                            <td></td>
+                            <td style="text-align:right; padding-left:25px;">b) Type of policy</td>
+                            <td style="padding-left:25px;">:</td>
+                            <td></td>
+                            <td style="text-align:right; padding-right:65px;">c) Insurer's name & address :</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>d) Date of expiry</td>
+                            <td colspan="6">:</td>
+                        </tr>
+                        <tr>
+                            <td>41.</td>
+                            <td colspan="7">Joint owner information :</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>a) Name</td>
+                            <td>:</td>
+                            <td colspan="5" style="padding-left: 355px;">b) Name :</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Father/Husband</td>
+                            <td>:</td>
+                            <td colspan="5" style="padding-left: 355px;">Father/Husband :</td>
+                        </tr>
+                        <tr>
+                            <td colspan="8">
+                                <div class="content_part_one" style="margin-top:15px; margin-bottom:15px;">
+                                    <p>Section-VI</p>
+                                    <p>(Declaration, Certificates and documents)</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>42.</td>
+                            <td colspan="7">Declaration by owner :</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table width="100%;">
                     <tr>
-                        <td style="width:170px;">Regn No</td>
-                        <td>:</td>
-                        <td style="width:180px;"></td>
-                        <td>Date</td>
-                        <td style="width:180px;">:</td>
                         <td></td>
-                        <td>Prev. Regn No. (if any)</td>
-                        <td>:</td>
                         <td></td>
-                    </tr>
-                    <tr>
-                        <td>Issue No</td>
-                        <td>:</td>
                         <td></td>
-                        <td>Date</td>
-                        <td>:</td>
                         <td></td>
-                        <td>Issued By</td>
-                        <td>:</td>
                         <td></td>
-                    </tr>
-                    <tr>
-                        <td>Dairy No</td>
-                        <td>:</td>
                         <td></td>
-                        <td>Date</td>
-                        <td>:</td>
+                        <td>a)</td>
                         <td></td>
-                        <td>Received By</td>
-                        <td>:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Customer ID</td>
-                        <td>:</td>
-                        <td></td>
-                        <td>District</td>
-                        <td>:</td>
-                        <td></td>
-                        <td>Vehicle ID</td>
-                        <td>:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Veh. Description</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="Motorcycle" />
+                        <td style="text-align:justify;">I the undersigned do hereby declare that to the best of my knowledge and belief, the information given and the
+                            <span></span> documents enclosed (as per list attached) are true. I also declare that in case the papers/documents and information
+                            furnished are found to be incorrect at any later stage, I shall be liable for legal action.
                         </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>Call on date</td>
-                        <td>:</td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td>Refusal Date</td>
+                        <td style="padding-top:30px;">Date</td>
                         <td>:</td>
                         <td></td>
-                        <td>Refusal Code</td>
-                        <td>:</td>
                         <td></td>
-                        <td>Refused by</td>
-                        <td>:</td>
                         <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div style="text-align:center; padding-left:740px;">
+                                <p>Signature of owner</p>
+                                <p>Seal</p>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
-                        <td>P.O./Bank</td>
-                        <td>:</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>Index No</td>
-                        <td>:</td>
-                        <td></td>
+                        <td colspan="9">Encl : List of documents</td>
                     </tr>
                     <tr>
-                        <td>Remarks (if any)</td>
+                        <td colspan="9">43. Registered dealer's certificate :</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="8" style="text-align:justify;">I the undersigned do hereby certify that the vehicle in question has been sold by me/my firm and the ownership
+                            documents attached with the application for registration are true. The information/specifications pertaining to the vehicle
+                            are correct and the vehicle complies with all the requirements of the registration.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top:47px;">Date</td>
                         <td>:</td>
                         <td></td>
                         <td></td>
@@ -642,314 +677,92 @@
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td>
+                            <div style="text-align:center; padding-left:650px;">
+                                <p>Signature of registered dealer</p>
+                                <p>Seal</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="9">Encl : List of documents</td>
+                    </tr>
+                    <tr>
+                        <td colspan="9">44. Certificate by the Inspector of Motor Vehicles :</td>
+                    </tr>
+                    <tr>
                         <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="8" style="text-align:justify;">Certificate that the particulars pertaining to the owner and the vehicle (Chassis No.
+                            <input style="display:inline-block; width:60px; font-size:18px;" type="text" name="five_chassis" value="55226" /> Engine
+                            No <input style="display:inline-block; width:60px; font-size:18px;" type="text" name="five_chassis" value="55226" /> ) given in the application match with the ownership documents attached to this
+                            application. It is further certified that the vehicle complies with the registration requirements specified in the MV Act
+                            and the Rules and/or Regulations made thereunder and the vehicle is not mechanically defective. The necessary
+                            documents/papers are available as per list enclosed.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top:52px;">Date</td>
+                        <td>:</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div style="text-align:center; padding-left:540px;">
+                                <p>Signature of Inspector of Motor Vehicles</p>
+                                <p>Official Seal</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="9">Encl : List of documents</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top:22px;" colspan="9">45. Registration Status :</td>
                     </tr>
                 </table>
-            </div>
-            <div class="content_part_one">
-                <p>To be filled in by the owner</p>
-                <p>Section-II</p>
-                <p>(Owner Information)</p>
-            </div>
-            <div>
+                <table style="width:100%;">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Registration allowed/not allowed</td>
+                        <td>
+                            <div style="text-align:center; padding-left:350px;">
+                                <p>Signature of Registering Authority</p>
+                                <p>Seal</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top:20px;" colspan="6">46. Fees and Tax Accounts :</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="6" style="padding-left:45px; text-align:justify;">Necessary fees and taxes amounting to taka.............................................................................................has been paid to
+                            PO/Bank...................................................................vide vouchers and receipts enclosed.</td>
+                    </tr>
+                </table>
                 <table>
                     <tr>
-                        <td>1. Name of owner</td>
-                        <td>:</td>
-                        <td style="width:280px;">
-                            <input type="text" name="vahicle_description" value="MD MONIRUZZAM KHAN LITON" />
-                        </td>
-                        <td style="width:253px;">2. Date of birth</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="19.01.1987" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3. Father/Husband</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="LATE NURUL ISLAM FARUQI" />
-                        </td>
-                        <td>4. Nationality</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="BANGLADESHI" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5. Sex</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="MALE" />
-                        </td>
-                        <td>6. Guardian's Name</td>
-                        <td>:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td style="width:295px;">7. Owner's Address (One Only)</td>
-                        <td>:</td>
-                        <td colspan="4">
-                            <input type="text" name="vahicle_description" value="BAJAJ POINT, 67/B MALIBAGH CHOWDHURY PARA, DHAKA-1219" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>8. Phone No. (if any)</td>
-                        <td>:</td>
-                        <td><input type="text" name="vahicle_description" value="01974353555" />
-                        </td>
-                        <td>9. P.O./Bank</td>
-                        <td>:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>10. Joint owner</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="NO" />
-                        </td>
-                        <td>11. Owner type</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="PRIVATE" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>12. Hire</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="NO" />
-                        </td>
-                        <td>13. Hire purchage</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="NO" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="6">
-                            <div class="content_part_one">
-                                <p>Section-II</p>
-                                <p>(Vehicle Information)</p>
+                        <td style="padding-top:55px;" colspan="5">
+                            <div style="text-align:center;">
+                                <p>Signature of owner</p>
+                                <p>of his representative</p>
                             </div>
                         </td>
+                        <td colspan="5" style="padding-left:560px;">Signature of dealing assistant</td>
                     </tr>
                     <tr>
-                        <td>14. Vehicle or trailer</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="vehicle" />
-                        </td>
-                        <td>15. Prev. Regn. No. (if any)</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="NO" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>14 a. Class of vehicle</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="Motor cycle" />
-                        </td>
-                        <td>15 a. Makers name</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="bajaj auto ltd, india" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>16. Type of body</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="Motor cycle (large)" />
-                        </td>
-                        <td>17. Makers country</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="india" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>18. Colour (cabin/body)</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="black/red" />
-                        </td>
-                        <td>19. Year of manufacture</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="2021" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>20. Number of cylinders</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="1" />
-                        </td>
-                        <td>21. Chassis number</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="psua11cy2mtc96995" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>22. Engine number</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="dhxcmm10219" />
-                        </td>
-                        <td>23. Fuel used</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="petrol" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>24. Horse power</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="14" />
-                        </td>
-                        <td>25. RPM</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="8000" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>26. Cubic capacity</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="150" />
-                        </td>
-                        <td>27. Seats (incl. driver)</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="2" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>28. No. of Standee</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="" />
-                        </td>
-                        <td>29. Wheel Base</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="1345" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>30. Unladen Weight (Kgs)</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="146" />
-                        </td>
-                        <td>31. Maximum laden/<br>train weight (kgs)</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="286" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="6">
-                            <div class="content_part_one">
-                                <p>Section-IV</p>
-                                <p>(Additional information for transport vehicle)</p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>32. No. of tyres</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="2" />
-                        </td>
-                        <td>33. Tyres size</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="f90/90-17r120/80-17" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>34. No. of axle</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="1" />
-                        </td>
-                        <td style="font-size:19px;">35. Maximum axle weight (kgs)</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="vahicle_description" value="" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>a) Front Axle (1)</td>
-                        <td></td>
-                        <td>
-                            (2)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>b) Central Axle (1)</td>
-                        <td></td>
-                        <td>
-                            (2)
-                            <span style="padding-left:89px;">(3)</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>c) Rear Axle (1)</td>
-                        <td></td>
-                        <td>
-                            (2)
-                            <span style="padding-left:89px;">(3)</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>36. Dimentions(mm)</td>
-                        <td>:</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><span style="padding-left:40px;">a. Overall Length</span></td>
-                        <td style="text-align:right;">b) Overall Width</td>
-                        <td colspan="3" style="text-align:center;"><span style="padding-left:116px;">c) Overall Height</span></td>
-                    </tr>
-                    <tr>
-                        <td>37. Overhangs (%)</td>
-                        <td>:</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><span style="padding-left:40px;">a. Front</span></td>
-                        <td> <span style="margin-left:126px;">b) Rear</span> </td>
-                        <td colspan="3"><span style="padding-left:233px;">c) Other</span></td>
-                    </tr>
-                    <tr>
-                        <td colspan="6">
-                            38. A copy of the drawing showing the vehicle dimension specifications of the body and of the seating
-                            arrangements approved by ....................................................on...............................................................is attached herewith
-                        </td>
+                        <td colspan="10" style="text-align:center;">Counter signature by the registering authority</td>
                     </tr>
                 </table>
             </div>
