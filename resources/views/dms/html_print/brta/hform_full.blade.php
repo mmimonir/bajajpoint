@@ -73,7 +73,7 @@
             line-height: 40px;
             outline: 0;
             overflow: hidden;
-            padding: 0 20px;
+            padding: 0 10px;
             pointer-events: auto;
             position: relative;
             text-align: center;
@@ -124,6 +124,44 @@
         .toggle_input_color {
             color: white;
         }
+
+        .sign {
+            width: 350px;
+            height: 60px;
+            border: 1px solid black;
+            display: inline-block;
+        }
+
+        .element {
+            display: flex;
+        }
+
+        .specimen_signature {
+            display: flex;
+        }
+
+        .sl {
+            padding-right: 15px;
+        }
+
+        .photograph {
+            width: 130px;
+            height: 300px;
+            text-align: center;
+            position: absolute;
+            top: 100px;
+            right: 150px;
+        }
+
+        .top_text {
+            margin-bottom: 10px;
+        }
+
+        .stamp_size {
+            width: 130px;
+            height: 150px;
+            border: 1px solid black;
+        }
     </style>
 </head>
 
@@ -132,6 +170,7 @@
         <button id="hform" class="button-42">HForm</button>
         <button id="data" class="button-42">Data</button>
         <button id="both" class="button-42">Both</button>
+        <button id="print" class="button-42">Print</button>
     </nav>
 
     <div class="hform_page_one">
@@ -544,7 +583,7 @@
             </div>
         </div>
     </div>
-    <div class="page-break"></div>
+    <div style="page-break-before: always"></div>
     <div class="hform_page_one">
         <div class="section_one">
             <div class="content_part_one" style="margin-top:0; margin-bottom:10px;">
@@ -768,13 +807,136 @@
             </div>
         </div>
     </div>
+    <div style="page-break-before: always"></div>
+    <div class="hform_page_one" style="line-height:2.5; position:relative;">
+        <div class="section_one">
+            <div class="content_part_one" style="margin-top:0; margin-bottom:10px;">
+                <h2 style="margin-bottom:200px;">OWNER'S PARTICULARS/SPECIMEN SIGNATURE</h2>
+            </div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td style="width:40px;">1.</td>
+                        <td style="width:300px;">NAME</td>
+                        <td>:</td>
+                        <td><input type="text" name="" value="md. monirul islam monir" /></td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td style="line-height:1.2;">FATHER/<br>HUSBAND</td>
+                        <td>:</td>
+                        <td><input type="text" name="" value="md. monirul islam monir" /></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>ADDRESS</td>
+                        <td>:</td>
+                        <td><input type="text" name="" value="BAJAJ POINT, 67/B MALIBAGH CHOWDHURY PARA, DHAKA-1219" /></td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td>SEX</td>
+                        <td>:</td>
+                        <td><input type="text" name="" value="MALE" /></td>
+                    </tr>
+                    <tr>
+                        <td>5.</td>
+                        <td>PHONE NO</td>
+                        <td>:</td>
+                        <td><input type="text" name="" value="01974353555" /></td>
+                    </tr>
+                    <tr>
+                        <td>6.</td>
+                        <td>NATIONALITY</td>
+                        <td>:</td>
+                        <td><input type="text" name="" value="BANGLADESHI" /></td>
+                    </tr>
+                    <tr>
+                        <td>7.</td>
+                        <td>DATE OF BIRTH</td>
+                        <td>:</td>
+                        <td><input type="text" name="" value="BANGLADESHI" /></td>
+                    </tr>
+                    <tr>
+                        <td>8.</td>
+                        <td>GUARDIAN'S NAME</td>
+                        <td>:</td>
+                        <td><input type="text" name="" value="MD NURUL ISLAM" /></td>
+                    </tr>
+                    <tr>
+                        <td>9.</td>
+                        <td>CHASSIS NO</td>
+                        <td>:</td>
+                        <td><input type="text" name="" value="PSUA11CY2MTD55262" /></td>
+                    </tr>
+                    <tr>
+                        <td>10.</td>
+                        <td>ENGINE NO</td>
+                        <td>:</td>
+                        <td><input type="text" name="" value="DHYCMS25887" /></td>
+                    </tr>
+                    <tr>
+                        <td>11.</td>
+                        <td>YEAR OF MFG</td>
+                        <td>:</td>
+                        <td><input type="text" name="" value="2022" /></td>
+                    </tr>
+                    <tr>
+                        <td>12.</td>
+                        <td>PREV. REGN. NO. (IF ANY)</td>
+                        <td>:</td>
+                        <td><input type="text" name="" value="DHAKA METRO LA 55-1621" /></td>
+                    </tr>
+                    <tr>
+                        <td>13.</td>
+                        <td>P.O./BANK</td>
+                        <td>:</td>
+                        <td><input type="text" name="" value="N/A" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 style="margin-bottom:70px; margin-top:50px;">SPECIMEN SIGNATURE</h3>
+            <div class="specimen_signature_parent">
+                <div class="specimen_signature" style="margin-bottom:65px;">
+                    <div class="element" style="margin-right:120px;">
+                        <span class="sl">1.</span>
+                        <span class="sign"></span>
+                    </div>
+                    <div class="element">
+                        <span class="sl">2.</span>
+                        <span class="sign"></span>
+                    </div>
+                </div>
+                <div class="specimen_signature">
+                    <div class="element" style="margin-right:120px;">
+                        <span class="sl">3.</span>
+                        <span class="sign"></span>
+                    </div>
+                    <div class="element">
+                        <span class="sl">4.</span>
+                        <span class="sign"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="photograph" style="line-height:1.2;">
+                <div class="top_text">
+                    <p>3 Copies <br> Photograph</p>
+                </div>
+                <div class="stamp_size">
+                    <p>Stamp</p>
+                    <p>Size</p>
+                    <p>Color Pic</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#hform').click(function() {
                 $('.hform_page_one').removeClass('toggle_color');
                 $("input").css({
-                    "color": "#fff"
+                    "color": "#fff",
                 });
             });
             $('#data').click(function() {
@@ -782,12 +944,21 @@
                 $("input").css({
                     "color": "black"
                 });
+                $('.sign, .stamp_size').css({
+                    "borderColor": "#fff",
+                });
             });
             $('#both').click(function() {
                 $('.hform_page_one').removeClass('toggle_color');
                 $("input").css({
                     "color": "black"
                 });
+                $('.sign, .stamp_size').css({
+                    "borderColor": "#000",
+                });
+            });
+            $('#print').click(function() {
+                window.print();
             });
         })
     </script>
