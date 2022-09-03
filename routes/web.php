@@ -37,6 +37,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::get('/full_hform/{id}',  'full_hform')->name('print.full_hform');
         Route::get('/full_hform_get_data',  'full_hform_get_data')->name('print.get_data');
     });
+    Route::controller(App\Http\Controllers\ShowroomController::class)->group(function () {
+        Route::get('/current_stock_init',  'current_stock_init')->name('showroom.current_stock_init');
+        Route::get('/current_stock',  'current_stock')->name('showroom.current_stock');
+    });
 });
 
 
