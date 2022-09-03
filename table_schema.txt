@@ -1,0 +1,16 @@
+table employee_attendance
+
+CREATE TABLE `employee_attendance` (
+    `attendance_id` int(10),
+    `emp_id` varchar(255),    
+    `remarks` varchar(255),
+    `attendance_date` date,
+    `attendance_time` time,
+    `location` varchar(255),
+    `created_at` timestamp NULL DEFAULT NULL,
+    `updated_at` timestamp NULL DEFAULT NULL,
+    `deleted_at` timestamp NULL DEFAULT NULL,
+    `created_by` int(11) DEFAULT '0',
+    `updated_by` int(11) DEFAULT '0',
+    `deleted_by` int(11) DEFAULT '0'
+  );

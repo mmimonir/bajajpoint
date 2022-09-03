@@ -150,6 +150,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group-sm row">
+                                    <label class="col-sm-3 col-form-label">Type of Body</label>
+                                    <div class="col-sm-9">
+                                        <input required type="text" id="type_of_body" name="type_of_body" class="form-control" value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group-sm row">
                                     <label class="col-sm-3 col-form-label">Description</label>
                                     <div class="col-sm-9">
                                         <textarea style="height:125px;" type="text" id="description" name="description" class="form-control"></textarea>

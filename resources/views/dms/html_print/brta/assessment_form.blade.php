@@ -10,12 +10,12 @@
         html {
             display: table;
             margin: auto;
-            line-height: 1.3;
+            line-height: 1.2;
         }
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 14px;
+            font-size: 18px;
             font-weight: normal;
             margin: 2mm;
         }
@@ -32,8 +32,8 @@
         }
 
         .main_page {
-            height: 11.6in;
-            width: 8.1in;
+            height: 1546px;
+            width: 1060px;
             /* border: 1px solid black; */
         }
 
@@ -54,7 +54,7 @@
         }
 
         table {
-            width: 8in;
+            width: 100%;
         }
 
         .center {
@@ -77,7 +77,7 @@
 
 <body>
     <div class="main_page">
-        <div class="top_text" style="margin-top:20px; font-weight:bold;">
+        <div class="top_text" style="font-weight:bold;">
             <p>Government of the People's Republic of Bangladesh</p>
             <p>Bangladesh Road Transport Authority</p>
             <p>Allenbury, Tejgaon, Dhaka-1215</p>
@@ -87,8 +87,8 @@
             <tr class="text-center">
                 <td style="width:25%;">Name of Circle/Zone</td>
                 <td style="width:25%;"></td>
-                <td style="width:25%;">District</td>
-                <td style="width:25%;"></td>
+                <td style="width:30%;">District</td>
+                <td></td>
             </tr>
             <tr class="text-center">
                 <td>Branch Name</td>
@@ -119,8 +119,8 @@
             <tr>
                 <td style="width:25%;">Engine No</td>
                 <td style="width:25%; font-weight:bold;">{{$data->six_engine}}{{$data->five_engine}}</td>
-                <td style="width:25%;">Driving Licence Information</td>
-                <td style="width:25%;"></td>
+                <td style="width:30%;">Driving Licence Information</td>
+                <td></td>
             </tr>
             <tr>
                 <td style="width:25%;">Vehicle Type</td>
