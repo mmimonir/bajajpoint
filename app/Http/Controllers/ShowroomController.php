@@ -14,12 +14,19 @@ class ShowroomController extends Controller
     public function current_stock()
     {
         $stock = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+            ->leftJoin('color_codes', 'color_codes.color_code', '=', 'cores.color_code')
             ->select(
-                'cores.*',
-                'vehicles.model'
+                'cores.id',
+                'cores.five_chassis',
+                'cores.five_engine',
+                'cores.purchage_price',
+                'cores.mc_location',
+                'vehicles.model',
+                'color_codes.color'
             )
+            ->where('in_stock', '=', 'yes')
             ->get();
 
-        return view('dms.showroom.mc_stock.current_stock');
+        return response()->json(['stock' => $stock]);
     }
 }
