@@ -467,6 +467,9 @@
                                 <td>${data.mobile ? data.mobile : ''}</td>
                                 <td>
                                     <div class="d-flex justify-content-center padd text-decoration btn-group">
+                                        <a href="full_hform/${data.id}" target="_blank" class="btn-sm bg-dark">
+                                            Full Hform
+                                        </a>
                                         <a href="showroom/hform/${data.id}" target="_blank" class="btn-sm bg-dark">
                                             Hform
                                         </a>

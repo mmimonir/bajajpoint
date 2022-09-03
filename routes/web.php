@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::delete('/delete_bank_account',  'delete_bank_account')->name('bank.delete_bank_account');
     });
     Route::controller(App\Http\Controllers\HTMLPrintController::class)->group(function () {
-        Route::get('/full_hform',  'full_hform')->name('print.full_hform');
+        Route::get('/full_hform/{id}',  'full_hform')->name('print.full_hform');
         Route::get('/full_hform_get_data',  'full_hform_get_data')->name('print.get_data');
     });
 });

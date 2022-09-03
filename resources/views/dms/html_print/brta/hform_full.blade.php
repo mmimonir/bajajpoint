@@ -177,7 +177,7 @@
         <div class="section_one">
             <div class="content_part_one" style="margin-top:15px;">
                 <p>FORM OF APPLICATION FOR THE REGISTRATION OF MOTOR VEHICLE</p>
-                <p>To be filled in by the office</p>
+                <p style="margin-top:15px; text-decoration:underline;">To be filled in by the office</p>
                 <p>Section-I</p>
             </div>
             <div>
@@ -230,7 +230,7 @@
                         <td>Veh. Description</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="Motorcycle" />
+                            <input type="text" class="class_of_vehicle" value="" />
                         </td>
                         <td></td>
                         <td></td>
@@ -275,7 +275,7 @@
                 </table>
             </div>
             <div class="content_part_one">
-                <p>To be filled in by the owner</p>
+                <p style="text-decoration:underline;">To be filled in by the owner</p>
                 <p>Section-II</p>
                 <p>(Owner Information)</p>
             </div>
@@ -285,31 +285,31 @@
                         <td>1. Name of owner</td>
                         <td>:</td>
                         <td style="width:280px;">
-                            <input type="text" name="vahicle_description" value="MD MONIRUZZAM KHAN LITON" />
+                            <input type="text" class="customer_name" />
                         </td>
                         <td style="width:253px;">2. Date of birth</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="19.01.1987" />
+                            <input type="text" class="dob" />
                         </td>
                     </tr>
                     <tr>
                         <td>3. Father/Husband</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="LATE NURUL ISLAM FARUQI" />
+                            <input type="text" class="father_name" />
                         </td>
                         <td>4. Nationality</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="BANGLADESHI" />
+                            <input type="text" class="nationality" value="bangladeshi" />
                         </td>
                     </tr>
                     <tr>
                         <td>5. Sex</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="MALE" />
+                            <input type="text" class="sex" value="MALE" />
                         </td>
                         <td>6. Guardian's Name</td>
                         <td>:</td>
@@ -319,13 +319,13 @@
                         <td style="width:295px;">7. Owner's Address (One Only)</td>
                         <td>:</td>
                         <td colspan="4">
-                            <input type="text" name="vahicle_description" value="BAJAJ POINT, 67/B MALIBAGH CHOWDHURY PARA, DHAKA-1219" />
+                            <input type="text" class="full_address" />
                         </td>
                     </tr>
                     <tr>
                         <td>8. Phone No. (if any)</td>
                         <td>:</td>
-                        <td><input type="text" name="vahicle_description" value="01974353555" />
+                        <td><input type="text" class="mobile" />
                         </td>
                         <td>9. P.O./Bank</td>
                         <td>:</td>
@@ -335,24 +335,24 @@
                         <td>10. Joint owner</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="NO" />
+                            <input type="text" class="joint_owner" value="NO" />
                         </td>
                         <td>11. Owner type</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="PRIVATE" />
+                            <input type="text" class="owner_type" value="PRIVATE" />
                         </td>
                     </tr>
                     <tr>
                         <td>12. Hire</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="NO" />
+                            <input type="text" class="hire" value="NO" />
                         </td>
                         <td>13. Hire purchage</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="NO" />
+                            <input type="text" class="hire_purchage" value="NO" />
                         </td>
                     </tr>
                     <tr>
@@ -367,120 +367,120 @@
                         <td>14. Vehicle or trailer</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="vehicle" />
+                            <input type="text" class="vehicle_or_trailer" value="vehicle" />
                         </td>
                         <td>15. Prev. Regn. No. (if any)</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="NO" />
+                            <input type="text" class="prev_rg_no" value="NO" />
                         </td>
                     </tr>
                     <tr>
                         <td>14 a. Class of vehicle</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="Motor cycle" />
+                            <input type="text" class="class_of_vehicle" />
                         </td>
                         <td>15 a. Makers name</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="bajaj auto ltd, india" />
+                            <input type="text" class="makers_name" />
                         </td>
                     </tr>
                     <tr>
                         <td>16. Type of body</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="Motor cycle (large)" />
+                            <input type="text" class="type_of_body" />
                         </td>
                         <td>17. Makers country</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="india" />
+                            <input type="text" class="makers_country" />
                         </td>
                     </tr>
                     <tr>
                         <td>18. Colour (cabin/body)</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="black/red" />
+                            <input type="text" class="color" />
                         </td>
                         <td>19. Year of manufacture</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="2021" />
+                            <input type="text" class="year_of_manufacture" />
                         </td>
                     </tr>
                     <tr>
                         <td>20. Number of cylinders</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="1" />
+                            <input type="text" class="no_of_cylinder_with_cc" value="1" />
                         </td>
                         <td>21. Chassis number</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="psua11cy2mtc96995" />
+                            <input type="text" class="chassis_no" />
                         </td>
                     </tr>
                     <tr>
                         <td>22. Engine number</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="dhxcmm10219" />
+                            <input type="text" class="engine_no" />
                         </td>
                         <td>23. Fuel used</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="petrol" />
+                            <input type="text" class="fuel_used" />
                         </td>
                     </tr>
                     <tr>
                         <td>24. Horse power</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="14" />
+                            <input type="text" class="horse_power" />
                         </td>
                         <td>25. RPM</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="8000" />
+                            <input type="text" class="rpm" />
                         </td>
                     </tr>
                     <tr>
                         <td>26. Cubic capacity</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="150" />
+                            <input type="text" class="cubic_capacity" />
                         </td>
                         <td>27. Seats (incl. driver)</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="2" />
+                            <input type="text" class="seats_inc_driver" />
                         </td>
                     </tr>
                     <tr>
                         <td>28. No. of Standee</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="" />
+                            <input type="text" class="no_of_standee" />
                         </td>
                         <td>29. Wheel Base</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="1345" />
+                            <input type="text" class="wheel_base" />
                         </td>
                     </tr>
                     <tr>
                         <td>30. Unladen Weight (Kgs)</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="146" />
+                            <input type="text" class="unladen_weight" />
                         </td>
                         <td>31. Maximum laden/<br>train weight (kgs)</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="286" />
+                            <input type="text" class="ladan_weight" />
                         </td>
                     </tr>
                     <tr>
@@ -495,24 +495,24 @@
                         <td>32. No. of tyres</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="2" />
+                            <input type="text" class="no_of_tyres" value="2" />
                         </td>
                         <td>33. Tyres size</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="f90/90-17r120/80-17" />
+                            <input type="text" class="size_of_tyre" />
                         </td>
                     </tr>
                     <tr>
                         <td>34. No. of axle</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="1" />
+                            <input type="text" class="no_of_axle" value="1" />
                         </td>
                         <td style="font-size:19px;">35. Maximum axle weight (kgs)</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="vahicle_description" value="" />
+                            <input type="text" class="max_axle_weight" />
                         </td>
                     </tr>
                     <tr>
@@ -736,8 +736,8 @@
                         <td></td>
                         <td></td>
                         <td colspan="8" style="text-align:justify;">Certificate that the particulars pertaining to the owner and the vehicle (Chassis No.
-                            <input style="display:inline-block; width:60px; font-size:18px;" type="text" name="five_chassis" value="55226" /> Engine
-                            No <input style="display:inline-block; width:60px; font-size:18px;" type="text" name="five_chassis" value="55226" /> ) given in the application match with the ownership documents attached to this
+                            <input style="display:inline-block; width:60px; font-size:18px;" type="text" class="five_chassis" /> Engine
+                            No <input style="display:inline-block; width:60px; font-size:18px;" type="text" class="five_engine" /> ) given in the application match with the ownership documents attached to this
                             application. It is further certified that the vehicle complies with the registration requirements specified in the MV Act
                             and the Rules and/or Regulations made thereunder and the vehicle is not mechanically defective. The necessary
                             documents/papers are available as per list enclosed.
@@ -819,79 +819,79 @@
                         <td style="width:40px;">1.</td>
                         <td style="width:300px;">NAME</td>
                         <td>:</td>
-                        <td><input type="text" name="" value="md. monirul islam monir" /></td>
+                        <td><input type="text" class="customer_name" /></td>
                     </tr>
                     <tr>
                         <td>2.</td>
                         <td style="line-height:1.2;">FATHER/<br>HUSBAND</td>
                         <td>:</td>
-                        <td><input type="text" name="" value="md. monirul islam monir" /></td>
+                        <td><input type="text" class="father_name" /></td>
                     </tr>
                     <tr>
                         <td>3.</td>
                         <td>ADDRESS</td>
                         <td>:</td>
-                        <td><input type="text" name="" value="BAJAJ POINT, 67/B MALIBAGH CHOWDHURY PARA, DHAKA-1219" /></td>
+                        <td><input type="text" class="full_address" /></td>
                     </tr>
                     <tr>
                         <td>4.</td>
                         <td>SEX</td>
                         <td>:</td>
-                        <td><input type="text" name="" value="MALE" /></td>
+                        <td><input type="text" class="sex" value="MALE" /></td>
                     </tr>
                     <tr>
                         <td>5.</td>
                         <td>PHONE NO</td>
                         <td>:</td>
-                        <td><input type="text" name="" value="01974353555" /></td>
+                        <td><input type="text" class="mobile" /></td>
                     </tr>
                     <tr>
                         <td>6.</td>
                         <td>NATIONALITY</td>
                         <td>:</td>
-                        <td><input type="text" name="" value="BANGLADESHI" /></td>
+                        <td><input type="text" class="nationality" value="bangladeshi" /></td>
                     </tr>
                     <tr>
                         <td>7.</td>
                         <td>DATE OF BIRTH</td>
                         <td>:</td>
-                        <td><input type="text" name="" value="BANGLADESHI" /></td>
+                        <td><input type="text" class="dob" /></td>
                     </tr>
                     <tr>
                         <td>8.</td>
                         <td>GUARDIAN'S NAME</td>
                         <td>:</td>
-                        <td><input type="text" name="" value="MD NURUL ISLAM" /></td>
+                        <td><input type="text" class="guardian_name" /></td>
                     </tr>
                     <tr>
                         <td>9.</td>
                         <td>CHASSIS NO</td>
                         <td>:</td>
-                        <td><input type="text" name="" value="PSUA11CY2MTD55262" /></td>
+                        <td><input type="text" class="chassis_no" /></td>
                     </tr>
                     <tr>
                         <td>10.</td>
                         <td>ENGINE NO</td>
                         <td>:</td>
-                        <td><input type="text" name="" value="DHYCMS25887" /></td>
+                        <td><input type="text" class="engine_no" /></td>
                     </tr>
                     <tr>
                         <td>11.</td>
                         <td>YEAR OF MFG</td>
                         <td>:</td>
-                        <td><input type="text" name="" value="2022" /></td>
+                        <td><input type="text" class="year_of_manufacture" /></td>
                     </tr>
                     <tr>
                         <td>12.</td>
                         <td>PREV. REGN. NO. (IF ANY)</td>
                         <td>:</td>
-                        <td><input type="text" name="" value="DHAKA METRO LA 55-1621" /></td>
+                        <td><input type="text" class="prev_rg_no" /></td>
                     </tr>
                     <tr>
                         <td>13.</td>
                         <td>P.O./BANK</td>
                         <td>:</td>
-                        <td><input type="text" name="" value="N/A" /></td>
+                        <td><input type="text" class="po_bank" value="N/A" /></td>
                     </tr>
                 </tbody>
             </table>
@@ -933,6 +933,39 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
         $(document).ready(function() {
+            function get_url_param() {
+                var url = window.location.pathname;
+                var id = url.substring(url.lastIndexOf('/') + 1);
+                return id;
+            }
+
+            function fetchHformData() {
+                var id = get_url_param();
+
+                $.ajax({
+                    url: "{{ route('print.get_data') }}",
+                    type: "get",
+                    data: {
+                        id
+                    },
+                    success: function({
+                        hform_data
+                    }) {
+                        Object.keys(hform_data).forEach(function(key) {
+                            $(".hform_page_one").find(`.${key}`).val(hform_data[key]);
+                        });
+                        let chassis_no = `${hform_data.eight_chassis}${hform_data.one_chassis}${hform_data.three_chassis}${hform_data.five_chassis}`;
+                        let engine_no = `${hform_data.six_engine}${hform_data.five_engine}`;
+                        let full_address = `${hform_data.address_one} ${hform_data.address_two}`
+                        $(".hform_page_one").find(`.chassis_no`).val(chassis_no);
+                        $(".hform_page_one").find(`.engine_no`).val(engine_no);
+                        $(".hform_page_one").find(`.full_address`).val(full_address);
+                        $(".hform_page_one").find(`.nationality`).val('bangladeshi');
+                    }
+                });
+            }
+            fetchHformData();
+
             $('#hform').click(function() {
                 $('.hform_page_one').removeClass('toggle_color');
                 $("input").css({
