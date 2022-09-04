@@ -1,9 +1,8 @@
 table employee_attendance
 
-CREATE TABLE `employee_attendance` (
-    `attendance_id` int(10),
-    `emp_id` varchar(255),    
-    `remarks` varchar(255),
+CREATE TABLE `employee_attendances` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `emp_id` varchar(255),        
     `attendance_date` date,
     `attendance_time` time,
     `location` varchar(255),

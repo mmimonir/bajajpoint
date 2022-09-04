@@ -8,11 +8,5 @@ TODO:
     rg_duration, rg_amount, combine, combine_code, print_ref, chassis_convert, ckd_folder
     timestamp, is_rebate, name_change_details, change_date
 
-Pending Work Now:
-    Done! 1.  Showroom Current Stock- Sl, Model, Chassis, Engine, Color, Purchage Price, Location
-    Done! 2.  Service Center
-        a) Stock- Sl, Part Id, Part Name, Location, Stock Qty, Rate, Amount
-        b) Low Stock- below 5pcs. Sl, Part Id, Part Name, Location, Stock Qty, Rate, Amount  
-
 Pending Work Later:
     1. Attendence Sheet
