@@ -32,45 +32,90 @@ class QuotationController extends Controller
 
     public function store(Request $request)
     {
+        // return response()->json($request->all());
+        // try {
+        // DB::transaction(function () use ($request) {
+        $qt_id = Quotation::updateOrCreate(
+            ['id' => $request->qt_id],
+            [
+                'ref' => $request->ref,
+                'qt_date' => $request->qt_date,
+                'to' => $request->to,
+                'address_one' => $request->address_one,
+                'address_two' => $request->address_two,
+                'account' => $request->account,
+                'subject' => $request->subject,
+                'discount' => $request->discount,
+                'validity' => $request->validity,
+                'for' => $request->for,
+                'notes' => $request->notes,
+            ]
+        )->id;
 
-        try {
-            DB::transaction(function () use ($request) {
-                $quotation = new Quotation();
-                $quotation->ref = $request['ref'];
-                $quotation->qt_date = $request['qt_date'];
-                $quotation->to = $request['to'];
-                $quotation->address_one = $request['address_one'];
-                $quotation->address_two = $request['address_two'];
-                $quotation->account = $request['account'];
-                $quotation->subject = $request['subject'];
-                $quotation->validity = $request['validity'];
-                $quotation->for = $request['for'];
-                $quotation->discount = $request['discount'];
-                $quotation->notes = $request['notes'];
-                $quotation->save();
+        foreach ($request->tb_description as $key => $value) {
 
-                $qt_id = $quotation->id;
-
-                foreach ($request->tb_description as $key => $value) {
-                    $save_record = [
-                        'quotation_id' => $qt_id,
-                        'tb_description' => $request->tb_description[$key],
-                        'tb_unit' => $request->tb_unit[$key],
-                        'tb_unit_price' => $request->tb_unit_price[$key],
-                        'tb_grand_total' => $request->tb_grand_total[$key],
-                    ];
-                    QuotationItem::insert($save_record);
-                }
-            });
-            $last_data = Quotation::latest()->first();
-            return response()->json([
-                'status' => 200,
-                'last_data' => $last_data
-            ]);
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage(), 'status' => 502]);
+            QuotationItem::updateOrCreate(
+                ['id' => $request->item_id[$key] ?? null],
+                [
+                    'quotation_id' => $qt_id,
+                    'tb_description' => $request->tb_description[$key],
+                    'tb_unit' => $request->tb_unit[$key],
+                    'tb_unit_price' => $request->tb_unit_price[$key],
+                    'tb_grand_total' => $request->tb_grand_total[$key],
+                ]
+            );
         }
+        // });
+        $last_data = Quotation::latest()->first();
+        return response()->json([
+            'status' => 200,
+            'last_data' => $last_data
+        ]);
+        // } catch (\Exception $e) {
+        //     return response()->json(['message' => $e->getMessage(), 'status' => 502]);
+        // }
     }
+    // public function store(Request $request)
+    // {
+
+    //     try {
+    //         DB::transaction(function () use ($request) {
+    //             $quotation = new Quotation();
+    //             $quotation->ref = $request['ref'];
+    //             $quotation->qt_date = $request['qt_date'];
+    //             $quotation->to = $request['to'];
+    //             $quotation->address_one = $request['address_one'];
+    //             $quotation->address_two = $request['address_two'];
+    //             $quotation->account = $request['account'];
+    //             $quotation->subject = $request['subject'];
+    //             $quotation->validity = $request['validity'];
+    //             $quotation->for = $request['for'];
+    //             $quotation->discount = $request['discount'];
+    //             $quotation->notes = $request['notes'];
+    //             $quotation->save();
+
+    //             $qt_id = $quotation->id;
+
+    //             foreach ($request->tb_description as $key => $value) {
+    //                 $save_record = [
+    //                     'quotation_id' => $qt_id,
+    //                     'tb_description' => $request->tb_description[$key],
+    //                     'tb_unit' => $request->tb_unit[$key],
+    //                     'tb_unit_price' => $request->tb_unit_price[$key],
+    //                     'tb_grand_total' => $request->tb_grand_total[$key],
+    //                 ];
+    //                 QuotationItem::insert($save_record);
+    //             }
+    //         });
+    //         $last_data = Quotation::latest()->first();
+    //         return response()->json([
+    //             'status' => 200,
+    //             'last_data' => $last_data
+    //         ]);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['message' => $e->getMessage(), 'status' => 502]);
+    //     }
+    // }
     public function quotation_print_html($id)
     {
 
@@ -121,39 +166,39 @@ class QuotationController extends Controller
 
         return response()->json(['quotations' => $quotations, 'quotation_items' => $quotation_items]);
     }
-    public function quotation_update(Request $request)
-    {
-        // dd($request->all());
-        try {
-            DB::transaction(function () use ($request) {
-                Quotation::where('id', $request->qt_id)->update([
-                    'ref' => $request['ref'],
-                    'qt_date' => $request['qt_date'],
-                    'to' => $request['to'],
-                    'address_one' => $request['address_one'],
-                    'address_two' => $request['address_two'],
-                    'account' => $request['account'],
-                    'subject' => $request['subject'],
-                    'validity' => $request['validity'],
-                    'for' => $request['for'],
-                    'discount' => $request['discount'],
-                    'notes' => $request['notes'],
-                ]);
+    // public function quotation_update(Request $request)
+    // {
+    //     // dd($request->all());
+    //     try {
+    //         DB::transaction(function () use ($request) {
+    //             Quotation::where('id', $request->qt_id)->update([
+    //                 'ref' => $request['ref'],
+    //                 'qt_date' => $request['qt_date'],
+    //                 'to' => $request['to'],
+    //                 'address_one' => $request['address_one'],
+    //                 'address_two' => $request['address_two'],
+    //                 'account' => $request['account'],
+    //                 'subject' => $request['subject'],
+    //                 'validity' => $request['validity'],
+    //                 'for' => $request['for'],
+    //                 'discount' => $request['discount'],
+    //                 'notes' => $request['notes'],
+    //             ]);
 
-                foreach ($request->tb_description as $key => $value) {
-                    QuotationItem::where('id', $request->item_id[$key])->update([
-                        'tb_description' => $request->tb_description[$key],
-                        'tb_unit' => $request->tb_unit[$key],
-                        'tb_unit_price' => $request->tb_unit_price[$key],
-                        'tb_grand_total' => $request->tb_grand_total[$key],
-                    ]);
-                }
-            });
-            return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage(), 'status' => 502]);
-        }
-    }
+    //             foreach ($request->tb_description as $key => $value) {
+    //                 QuotationItem::where('id', $request->item_id[$key])->update([
+    //                     'tb_description' => $request->tb_description[$key],
+    //                     'tb_unit' => $request->tb_unit[$key],
+    //                     'tb_unit_price' => $request->tb_unit_price[$key],
+    //                     'tb_grand_total' => $request->tb_grand_total[$key],
+    //                 ]);
+    //             }
+    //         });
+    //         return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['message' => $e->getMessage(), 'status' => 502]);
+    //     }
+    // }
     public function quotation_delete(Request $request)
     {
         try {

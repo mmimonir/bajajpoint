@@ -33,8 +33,8 @@
                                 <th>Sl</th>
                                 <th>Name</th>
                                 <th>Address</th>
-                                <th>QT Date</th>
-                                <th>Validity</th>
+                                <th style="width:55px;">QT Date</th>
+                                <th style="width:55px;">Validity</th>
                                 <th>Action (Print)</th>
                             </tr>
                         </thead>
@@ -242,7 +242,7 @@
         e.preventDefault();
         var $tableBody = $('#tbl').find("tbody"),
             $trLast = $tableBody.find("tr:last"),
-            $trNew = $trLast.clone();
+            $trNew = $trLast.clone().find('input').val('').end();
         $trLast.after($trNew);
 
         if ($("#tbl tbody tr").length > 0) {
@@ -322,14 +322,17 @@
     $('#quotation_update_form').submit(function(e) {
         e.preventDefault();
         var formData = new FormData(this);
+        // console.log(formData);
         $.ajax({
-            url: "{{route('quotation.update')}}",
+            url: "{{route('quotation.store')}}",
             type: 'POST',
             data: formData,
             contentType: false,
             processData: false,
             dataType: 'json',
             success: function(data) {
+                // console.log(data);                
+                location.reload();
                 Swal.fire({
                     position: 'top-end',
                     type: 'success',

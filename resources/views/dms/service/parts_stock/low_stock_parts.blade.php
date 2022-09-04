@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('service_layouts.app')
 @section('title', 'Low Stock Below 6')
 
 @section('datatable_css')

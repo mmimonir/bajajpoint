@@ -144,7 +144,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
         Route::get('/quotation_print_html/{id}',  'quotation_print_html')->name('quotation.print');
         Route::get('/quotation_edit/{id}',  'quotation_edit')->name('quotation.edit');
         Route::delete('/quotation_delete',  'quotation_delete')->name('quotation.delete');
-        Route::post('/quotation_update',  'quotation_update')->name('quotation.update');
+        // Route::post('/quotation_update',  'quotation_update')->name('quotation.update');
     });
 
     // Customer Info
