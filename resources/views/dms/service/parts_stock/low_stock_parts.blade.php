@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Current Motorcycle Stock')
+@section('title', 'Low Stock Below 6')
 
 @section('datatable_css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div class="card card-info mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
                 <div class="card-header bg-dark" style="background-color:#343A40;">
-                    <h3 class="card-title">Current Stock</h3>
+                    <h3 class="card-title">Low Stock Below 6</h3>
                 </div>
                 <div class="card-body d-flex justify-content-center">
                     <div id="show_all_data" class="container h-100 d-flex justify-content-center">
@@ -46,7 +46,7 @@
                 maximumFractionDigits: 0
             });
             $.ajax({
-                url: "{{ route('showroom.current_stock') }}",
+                url: "{{ route('parts.low_stock') }}",
                 method: 'get',
                 success: function({
                     stock
@@ -56,13 +56,13 @@
                         <thead>
                             <tr>
                                 <th class="align-middle">Sl</th>
-                                <th class="align-middle">Model</th>
-                                <th class="align-middle">Quantity</th>
-                                <th class="align-middle">Chassis</th>
-                                <th class="align-middle">Engine</th>
-                                <th class="align-middle">Color</th>
+                                <th class="align-middle">Part ID</th>
+                                <th class="align-middle">Part Name</th>
+                                <th class="align-middle">model_name</th>
+                                <th class="align-middle">Rate</th>
+                                <th class="align-middle">Stock</th>
                                 <th class="align-middle">Location</th>
-                                <th class="align-middle">Stock Price</th>                                
+                                <th class="align-middle">Total</th>                                
                             </tr>
                         </thead>
                         <tbody>`;
@@ -70,13 +70,13 @@
                             html +=
                                 `<tr>
                                 <td class="text-center">${index + 1}</td>
-                                <td>${data.model}</td>                                
-                                <td class="text-center">1</td>                                
-                                <td>${data.five_chassis}</td>                                
-                                <td>${data.five_engine}</td>
-                                <td>${data.color ? data.color : ''}</td>
-                                <td class="text-center">${data.location ? data.location : ''}</td>
-                                <td class="text-right">${data.purchage_price}</td>                                
+                                <td>${data.part_id}</td>                                
+                                <td>${data.part_name}</td>                                
+                                <td>${data.model_name}</td>                                
+                                <td class="text-right">${data.rate}</td>
+                                <td class="text-center">${data.stock_quantity}</td>
+                                <td class="text-center">${data.location}</td>
+                                <td class="text-right">${data.stock_quantity * data.rate}</td>                                
                             </tr>`;
                         });
                         html += `<tfoot align="right" class="text-sm">
@@ -120,7 +120,7 @@
                             };
 
                             var count = api
-                                .column(2, {
+                                .column(5, {
                                     search: 'applied'
                                 })
                                 .data()
@@ -140,7 +140,7 @@
                             $(api.column(7, {
                                 filter: "applied"
                             }).footer()).html(tr_amount.toLocaleString('en-IN'));
-                            $(api.column(2, {
+                            $(api.column(5, {
                                 filter: "applied"
                             }).footer()).html(count);
                         },
@@ -149,7 +149,7 @@
                             render: $.fn.dataTable.render.intlNumber('en-IN')
                         }],
                         initComplete: function() {
-                            this.api().columns([1, 5]).every(function() {
+                            this.api().columns([2, 3, 6]).every(function() {
                                 var column = this;
                                 var select = $('<select><option value=""></option></select>')
                                     .appendTo($(column.footer()))

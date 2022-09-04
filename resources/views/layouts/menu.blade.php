@@ -31,6 +31,12 @@
             </a>
             <ul class="nav nav-treeview" style="display: none;">
                 <li class="nav-item">
+                    <a href="{{ route('showroom.current_stock_init') }}" class="nav-link">
+                        <i class="nav-icon fas fa-dollar-sign"></i>
+                        <p class="text-white">Current Stock</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('mrp.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-dollar-sign"></i>
                         <p class="text-white">Price</p>

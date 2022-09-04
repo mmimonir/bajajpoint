@@ -28,6 +28,18 @@
                         <p class="text-white">Parts Purchage</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('parts.stock_init') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-id-card"></i>
+                        <p class="text-white">Current Stock</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('parts.low_stock_init') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-id-card"></i>
+                        <p class="text-white">Low Stock</p>
+                    </a>
+                </li>
             </ul>
         </li>
         @if(Auth::user()->roles == 'admin')

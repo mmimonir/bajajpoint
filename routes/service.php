@@ -62,4 +62,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         Route::get('/edit_invoice_purchage',  'edit_invoice_purchage')->name('invoice.edit_invoice');
         Route::get('/dealer_list',  'dealer_list')->name('invoice.dealer_list');
     });
+    Route::controller(App\Http\Controllers\Service\SparePartsStockController::class)->group(function () {
+        Route::get('/parts_stock_init',  'current_stock_init')->name('parts.stock_init');
+        Route::get('/parts_current_stock',  'current_stock')->name('parts.current_stock');
+        Route::get('/parts_stock_low_init',  'parts_stock_low_init')->name('parts.low_stock_init');
+        Route::get('/parts_stock_low',  'parts_stock_low')->name('parts.low_stock');
+    });
 });
