@@ -11,6 +11,12 @@
             </a>
             <ul class="nav nav-treeview" style="display: none;">
                 <li class="nav-item">
+                    <a href="{{route('employee.attendance')}}" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p class="text-white">Attendance</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('bill.create_bill') }}" class="nav-link">
                         <i class="nav-icon fa-solid fa-money-bill-1"></i>
                         <p class="text-white">Create Bill</p>

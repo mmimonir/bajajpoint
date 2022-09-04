@@ -41,6 +41,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::get('/current_stock_init',  'current_stock_init')->name('showroom.current_stock_init');
         Route::get('/current_stock',  'current_stock')->name('showroom.current_stock');
     });
+    Route::controller(App\Http\Controllers\EmployeeAttendanceController::class)->group(function () {
+        Route::get('/attendance_init',  'attendance_init')->name('employee.attendance');
+    });
 });
 
 

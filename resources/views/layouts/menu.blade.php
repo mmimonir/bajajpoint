@@ -157,6 +157,12 @@
                 <p class="text-white">File Manager</p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{route('employee.attendance')}}" class="nav-link">
+                <i class="nav-icon fas fa-file"></i>
+                <p class="text-white">Attendance</p>
+            </a>
+        </li>
         <li class="nav-item bg-danger rounded">
             <a href="{{route('service.dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-user-cog text-white"></i>
