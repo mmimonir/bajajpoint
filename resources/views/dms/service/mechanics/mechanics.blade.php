@@ -1,5 +1,5 @@
 @extends('service_layouts.app')
-@section('title', 'Mechanics List')
+@section('title', 'Employee List')
 @section('datatable_css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" />
@@ -10,7 +10,7 @@
     <div class="col-md-10">
         <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
             <div class="card-header">
-                <h3 class="bg-dark text-center p-2 text-white mt-2 rounded">Mechanics Details</h3>
+                <h3 class="bg-dark text-center p-2 text-white mt-2 rounded">Employee Details</h3>
                 <a class="m-r-15 text-muted edit float-right btn btn-dark text-white mb-1" id="add" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fa-solid fa-plus"></i>
                 </a>
             </div>

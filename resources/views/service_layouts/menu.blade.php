@@ -46,6 +46,12 @@
                         <p class="text-white">Low Stock</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('mechanics.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p class="text-white">Employee</p>
+                    </a>
+                </li>
             </ul>
         </li>
         @if(Auth::user()->roles == 'admin')

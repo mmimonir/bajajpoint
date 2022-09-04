@@ -126,12 +126,57 @@
                 </li>
             </ul>
         </li>
-
         <li class="nav-item">
-            <a href="{{route('print.print_dashboard')}}" class="nav-link">
-                <i class="nav-icon fas fa-print"></i>
-                <p class="text-white">Dashboard</p>
+            <a href="#" class="nav-link">
+                <i class="nav-icon fa-solid fa-wrench"></i>
+                <p class="text-white">
+                    Dashboard
+                    <i class="right fas fa-angle-left"></i>
+                </p>
             </a>
+            <ul class="nav nav-treeview" style="display: none;">
+                <li class="nav-item">
+                    <a href="{{route('print.print_dashboard')}}" class="nav-link">
+                        <i class="nav-icon fas fa-print"></i>
+                        <p class="text-white">Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('excel.dashboard')}}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p class="text-white">Report Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('vat.dashboard')}}" class="nav-link">
+                        <i class="nav-icon fas fa-percent"></i>
+                        <p class="text-white">VAT Dashboard</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fa-solid fa-wrench"></i>
+                <p class="text-white">
+                    Employee
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: none;">
+                <li class="nav-item">
+                    <a href="{{route('mechanics.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p class="text-white">Employee</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('employee.attendance')}}" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p class="text-white">Attendance</p>
+                    </a>
+                </li>
+            </ul>
         </li>
         <li class="nav-item">
             <a href="{{route('profile.index')}}" class="nav-link">
@@ -140,27 +185,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('excel.dashboard')}}" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p class="text-white">Report Dashboard</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{route('vat.dashboard')}}" class="nav-link">
-                <i class="nav-icon fas fa-percent"></i>
-                <p class="text-white">VAT Dashboard</p>
-            </a>
-        </li>
-        <li class="nav-item">
             <a href="{{route('file.manager')}}" class="nav-link">
                 <i class="nav-icon fas fa-file"></i>
                 <p class="text-white">File Manager</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{route('employee.attendance')}}" class="nav-link">
-                <i class="nav-icon fas fa-file"></i>
-                <p class="text-white">Attendance</p>
             </a>
         </li>
         <li class="nav-item bg-danger rounded">
