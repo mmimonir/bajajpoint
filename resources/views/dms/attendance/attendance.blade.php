@@ -22,6 +22,12 @@
         border-radius: 5px;
 
     }
+
+    h4,
+    h3,
+    h5 {
+        font-weight: bold;
+    }
 </style>
 @endpush
 
@@ -29,12 +35,23 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card card-info mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
-                <div class="card-header bg-dark" style="background-color:#343A40;">
-                    <h3 class="card-title">Attendance</h3>
+            <div class="card card-success collapsed-card">
+                <div class="card-header bg-dark">
+                    <h3 class="card-title">Attendance Details</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="card-header">
-                    <div class="form-inline">
+                <div class="card-body">
+                    <div class="form-inline justify-content-center align-items-center">
                         <div class="form-group">
                             <label for="exampleSelect">Select an Employee</label>
                             <select name="employee_id" class="form-control" id="employee_id" style="width:200px;margin-left:15px;">
@@ -95,16 +112,28 @@
                         </div>
                         <div class="form-group" style="margin-left:15px;">
                             <button type="button" class="btn btn-dark">Load Attendance</button>
-
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top:-15px;">
+            <div class="card card-info mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
+                <div class="card-header bg-dark" style="background-color:#343A40;">
+                    <h3 class="card-title">Attendance</h3>
+                </div>
+                <div class="card-body">
+                    <div class="px-5 py-4 py-lg-0 border-right-lg justify-content-center d-flex flex-column">
+                        <h3 class="mb-0 text-center text-bold mb-2">Attendance Date/Time Picker</h3>
+                        <input class="text-bold p-2 w-25 m-auto" id="attendanc_picker" type="datetime-local" class="form-control" name="attendanc_picker">
                     </div>
                 </div>
                 <div class="card-body d-flex justify-content-center">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table mb-0">
+                        <table class="table  mb-0">
                             <thead>
                                 <tr>
-                                    <th>Employee</th>
+                                    <th>Employee List</th>
                                     @for ($i = 1; $i <= 31; $i++) <th style="padding:0; vertical-align: middle; text-align:center;">{{$i}}</th>
 
                                         @endfor
@@ -113,7 +142,11 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Albina Simonis</td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option value="1">Md Monirul Islam</option>
+                                        </select>
+                                    </td>
                                     @for ($i = 1; $i <= 31; $i++) <td style="padding:0; vertical-align: middle; text-align:center;">
                                         <input type="hidden" name="employee_id" />
                                         <input type="hidden" name="day" Value="{{$i}}" />
@@ -123,6 +156,7 @@
                                             <option value="P">P</option>
                                             <option value="L">L</option>
                                             <option value="H">H</option>
+                                            <option value="F">F</option>
                                         </select>
                                         </td>
                                         @endfor
@@ -131,7 +165,6 @@
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -141,27 +174,73 @@
                 <div class="card-body">
                     <div class="d-sm-flex justify-content-between align-items-center">
                         <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
-                            <h4 class="mb-0">Payroll</h4>
-                            <p class="mb-0">29 calender days</p>
-                        </div>
-                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
-                            <h5 class="mb-0 font-weight-normal text-muted">Total employees</h5>
-                            <div class="d-flex align-items-center">
-                                <h1 class=" mb-0 mr-2">130</h1>
-                                <h4 class="text-success font-weight-normal mb-0">+2</h4>
-                            </div>
-                        </div>
-                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
-                            <h5 class="mb-0 font-weight-normal text-muted">Working days</h5>
-                            <div class="d-flex align-items-center">
+                            <h4 class="mb-0 text-center">Working Days</h4>
+                            <div class="d-flex align-items-center justify-content-center">
                                 <h1 class=" mb-0 mr-2">24</h1>
                             </div>
                         </div>
-                        <div class="px-5 py-4 py-lg-0 w-100">
-                            <h5 class="mb-0 font-weight-normal text-muted">Payroll Processed</h5>
-                            <div class="d-flex align-items-center">
-                                <h1 class=" mb-0 mr-2">121</h1>
-                                <h4 class="font-weight-normal mb-0">/130</h4>
+                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                            <h4 class="mb-0 text-center">Absent Days</h4>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <h1 class=" mb-0 mr-2">2</h1>
+                            </div>
+                        </div>
+                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                            <h4 class="mb-0 text-center">Total Friday</h4>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <h1 class=" mb-0 mr-2">4</h1>
+                            </div>
+                        </div>
+                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                            <h4 class="mb-0 text-center">Govt Holiday</h4>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <h1 class=" mb-0 mr-2">4</h1>
+                            </div>
+                        </div>
+                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                            <h4 class="mb-0 text-center">Total Leave</h4>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <h1 class=" mb-0 mr-2">4</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 stretch-card grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-sm-flex justify-content-between align-items-center">
+                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                            <h5 class="mb-0 text-center">Gross Salary</h5>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <h5 class="mb-0 mr-2">10,000/-</h5>
+                            </div>
+                        </div>
+                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                            <h5 class="mb-0 text-center">Advance</h5>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <h5 class="mb-0 mr-2">2,000/-</h5>
+                            </div>
+                        </div>
+                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                            <h5 class="mb-0 text-center">Absent Deduction</h5>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <h5 class="mb-0 mr-2">1,000/-</h5>
+                            </div>
+                        </div>
+                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                            <h5 class="mb-0 text-center">Total Deduction</h5>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <h5 class="mb-0 mr-2">2,000/-</h5>
+                            </div>
+                        </div>
+                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                            <h5 class="mb-0 text-center">Total Payable</h5>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <h5 class="mb-0 mr-2">8,000/-</h5>
                             </div>
                         </div>
                     </div>
@@ -175,11 +254,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between flex-wrap mb-3">
                         <div>
-                            <div class="card-title mb-0">Logs &amp; Requests</div>
-                        </div>
-                        <div>
-                            <button class="btn btn-light btn-sm text-dark">Attendance Log</button>
-                            <button class="btn btn-light btn-sm text-dark">Attendance Requests</button>
+                            <div class="card-title mb-0">Attendance Logs.</div>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -246,83 +321,6 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12 stretch-card grid-margin">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-xl-flex justify-content-between mb-3">
-                        <div>
-                            <div class="card-title mb-0">Interviews <span class="text-small text-muted font-weight-normal ml-2">view all</span></div>
-                        </div>
-                        <div>
-                            <button class="btn btn-link btn-sm text-dark">Today</button>
-                            <button class="btn btn-link btn-sm text-muted">Comming</button>
-                            <button class="btn btn-link btn-sm text-muted">Completed</button>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th> Candidate </th>
-                                    <th> Interview Status </th>
-                                    <th> Interviewer </th>
-                                    <th> Schedule </th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Francisco Maia <span class="text-small">(Designer)</span> </td>
-                                    <td>
-                                        <div class="badge badge-primary badge-sm">active</div>
-                                    </td>
-                                    <td>
-                                        Phillips <span class="text-small"> (Creative Head)</span>
-                                    </td>
-                                    <td> Technical Aptitude</td>
-                                    <td> <button class="btn btn-info btn-sm">send reminder</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Fua Lamba <span class="text-small">(Designer)</span> </td>
-                                    <td>
-                                        <div class="badge badge-success badge-sm">final</div>
-                                    </td>
-                                    <td>
-                                        Jelanee <span class="text-small"> (Lead Dev)</span>
-                                    </td>
-                                    <td> Face- to- face interview</td>
-                                    <td> <button class="btn btn-info btn-sm">send reminder</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Lacara Jones <span class="text-small">(Designer)</span> </td>
-                                    <td>
-                                        <div class="badge badge-primary badge-sm">active</div>
-                                    </td>
-                                    <td>
-                                        Phillips <span class="text-small"> (Creative Head)</span>
-                                    </td>
-                                    <td> Telephonic interview</td>
-                                    <td> <button class="btn btn-info btn-sm">send reminder</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Langke Zambo <span class="text-small">(Designer)</span> </td>
-                                    <td>
-                                        <div class="badge badge-danger badge-sm">beginner</div>
-                                    </td>
-                                    <td>
-                                        Phillips <span class="text-small"> (Creative Head)</span>
-                                    </td>
-                                    <td> Discussion with CEO</td>
-                                    <td> <button class="btn btn-info btn-sm">send reminder</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 @endsection
 
@@ -338,16 +336,42 @@
 @endsection
 
 @section('script')
+
 <script>
     $(document).ready(function() {
+
+        function set_local_datetime() {
+            var now = new Date();
+            var utcString = now.toISOString().substring(0, 19);
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1;
+            var day = now.getDate();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            var localDatetime = year + "-" +
+                (month < 10 ? "0" + month.toString() : month) + "-" +
+                (day < 10 ? "0" + day.toString() : day) + "T" +
+                (hour < 10 ? "0" + hour.toString() : hour) + ":" +
+                (minute < 10 ? "0" + minute.toString() : minute) +
+                utcString.substring(16, 19);
+            return localDatetime;
+        }
+        $('#attendanc_picker').val(set_local_datetime());
+
         $(document).on('change', '.attendance', function() {
+
             _this = $(this);
             let parent_td = $(this).parent();
             let attendance_day = parent_td.find('input[name="day"]').val();
             let employee_id = parent_td.find('input[name="employee_id"]').val();
             let attendance = $(this).val();
-            let attendance_month = $('#attendance_month').val();
-            let attendance_year = $('#attendance_year').val();
+
+            let attendance_pick = $('#attendanc_picker').val();
+
+
+            // let attendance_month = $('#attendance_month').val();
+            // let attendance_year = $('#attendance_year').val();
 
             // console.log(attendance_day, employee_id, attendance, attendance_month, attendance_year);
 
@@ -359,6 +383,8 @@
                 _this.css('background-color', 'black').css('color', 'white').css('border', 'none');
             } else if (attendance == 'H') {
                 _this.css('background-color', 'purple').css('color', 'white').css('border', 'none');
+            } else if (attendance == 'F') {
+                _this.css('background-color', '#1E64AF').css('color', 'white').css('border', 'none');
             } else if (attendance == '') {
                 _this.css('background-color', '#E6E6E6').css('color', 'black').css('border', '1px solid green');
             }
