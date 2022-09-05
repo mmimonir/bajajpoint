@@ -176,34 +176,40 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-sm-flex justify-content-between align-items-center">
-                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                        <div class="py-lg-0 border-right-lg w-100">
+                            <h4 class="mb-0 text-center">Total Days</h4>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <h1 id="total_days" class=" mb-0 mr-2">24</h1>
+                            </div>
+                        </div>
+                        <div class="py-lg-0 border-right-lg w-100">
                             <h4 class="mb-0 text-center">Working Days</h4>
                             <div class="d-flex align-items-center justify-content-center">
-                                <h1 class=" mb-0 mr-2">24</h1>
+                                <h1 id="P" class=" mb-0 mr-2">24</h1>
                             </div>
                         </div>
-                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                        <div class="py-lg-0 border-right-lg w-100">
                             <h4 class="mb-0 text-center">Absent Days</h4>
                             <div class="d-flex align-items-center justify-content-center">
-                                <h1 class=" mb-0 mr-2">2</h1>
+                                <h1 id="A" class=" mb-0 mr-2">2</h1>
                             </div>
                         </div>
-                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                        <div class="py-lg-0 border-right-lg w-100">
                             <h4 class="mb-0 text-center">Total Friday</h4>
                             <div class="d-flex align-items-center justify-content-center">
-                                <h1 class=" mb-0 mr-2">4</h1>
+                                <h1 id="F" class=" mb-0 mr-2">4</h1>
                             </div>
                         </div>
-                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                        <div class="py-lg-0 border-right-lg w-100">
                             <h4 class="mb-0 text-center">Govt Holiday</h4>
                             <div class="d-flex align-items-center justify-content-center">
-                                <h1 class=" mb-0 mr-2">4</h1>
+                                <h1 id="H" class=" mb-0 mr-2">4</h1>
                             </div>
                         </div>
-                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                        <div class="py-lg-0 border-right-lg w-100">
                             <h4 class="mb-0 text-center">Total Leave</h4>
                             <div class="d-flex align-items-center justify-content-center">
-                                <h1 class=" mb-0 mr-2">4</h1>
+                                <h1 id="L" class=" mb-0 mr-2">4</h1>
                             </div>
                         </div>
                     </div>
@@ -360,15 +366,43 @@
                 success: function({
                     attendance_data
                 }) {
-                    var count = 0;
+                    let count = 0;
+                    let A = 0;
+                    let P = 0;
+                    let L = 0;
+                    let H = 0;
+                    let F = 0;
+
                     if (attendance_data !== null) {
                         $('.attendance').each(function() {
                             $(this).val(attendance_data[0][count]).trigger('change');
-                            count++;
+
                             if (attendance_data[0][count] == '') {
                                 return false;
                             }
+                            if (attendance_data[0][count] == 'A') {
+                                A++;
+                            }
+                            if (attendance_data[0][count] == 'P') {
+                                P++;
+                            }
+                            if (attendance_data[0][count] == 'L') {
+                                L++;
+                            }
+                            if (attendance_data[0][count] == 'H') {
+                                H++;
+                            }
+                            if (attendance_data[0][count] == 'F') {
+                                F++;
+                            }
+                            count++;
                         })
+                        $('#A').text(A);
+                        $('#P').text(P);
+                        $('#L').text(L);
+                        $('#H').text(H);
+                        $('#F').text(F);
+                        $('#total_days').text(A + P + L + H + F);
                     } else {
                         $('.attendance').each(function() {
                             $(this).val('').trigger('change');
