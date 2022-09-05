@@ -51,69 +51,72 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="form-inline justify-content-center align-items-center">
-                        <div class="form-group">
-                            <label for="exampleSelect">Select an Employee</label>
-                            <select name="employee_id" class="form-control" id="employee_id" style="width:200px;margin-left:15px;">
-                                <option value="1">Md Monirul Islam</option>
-                            </select>
+                    <form id="employee_search">
+                        @csrf
+                        <div class="form-inline justify-content-center align-items-center">
+                            <div class="form-group">
+                                <label for="exampleSelect">Select an Employee</label>
+                                <select class="form-control employee_list" style="width:200px;margin-left:15px;" id="emp_id_search">
+
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-left:15px;">
+                                <label for="exampleSelect">Select an Year</label>
+                                <select name="attendance_year" class="form-control" id="attendance_year" style="width:100px;margin-left:15px;">
+                                    <option selected>
+                                        Year
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-left:15px;">
+                                <label for="exampleSelect">Select an Month</label>
+                                <select name="attendance_month" class="form-control" id="attendance_month" style="width:100px;margin-left:15px;">
+                                    <option selected>
+                                        Month
+                                    </option>
+                                    <option value="1">
+                                        January
+                                    </option>
+                                    <option value="2">
+                                        February
+                                    </option>
+                                    <option value="3">
+                                        March
+                                    </option>
+                                    <option value="4">
+                                        April
+                                    </option>
+                                    <option value="5">
+                                        May
+                                    </option>
+                                    <option value="6">
+                                        June
+                                    </option>
+                                    <option value="7">
+                                        July
+                                    </option>
+                                    <option value="8">
+                                        August
+                                    </option>
+                                    <option value="9">
+                                        September
+                                    </option>
+                                    <option value="10">
+                                        October
+                                    </option>
+                                    <option value="11">
+                                        November
+                                    </option>
+                                    <option value="12">
+                                        December
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-left:15px;">
+                                <button type="submit" class="btn btn-dark">Load Attendance</button>
+                            </div>
                         </div>
-                        <div class="form-group" style="margin-left:15px;">
-                            <label for="exampleSelect">Select an Year</label>
-                            <select name="attendance_year" class="form-control" id="attendance_year" style="width:100px;margin-left:15px;">
-                                <option selected>
-                                    Year
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form-group" style="margin-left:15px;">
-                            <label for="exampleSelect">Select an Month</label>
-                            <select name="attendance_month" class="form-control" id="attendance_month" style="width:100px;margin-left:15px;">
-                                <option selected>
-                                    Month
-                                </option>
-                                <option value="1">
-                                    January
-                                </option>
-                                <option value="2">
-                                    February
-                                </option>
-                                <option value="3">
-                                    March
-                                </option>
-                                <option value="4">
-                                    April
-                                </option>
-                                <option value="5">
-                                    May
-                                </option>
-                                <option value="6">
-                                    June
-                                </option>
-                                <option value="7">
-                                    July
-                                </option>
-                                <option value="8">
-                                    August
-                                </option>
-                                <option value="9">
-                                    September
-                                </option>
-                                <option value="10">
-                                    October
-                                </option>
-                                <option value="11">
-                                    November
-                                </option>
-                                <option value="12">
-                                    December
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form-group" style="margin-left:15px;">
-                            <button type="button" class="btn btn-dark">Load Attendance</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -143,14 +146,14 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <select class="form-control">
-                                            <option value="1">Md Monirul Islam</option>
+                                        <select class="form-control employee_list" id="emp_id_attendance">
+
                                         </select>
                                     </td>
                                     @for ($i = 1; $i <= 31; $i++) <td style="padding:0; vertical-align: middle; text-align:center;">
                                         <input type="hidden" name="employee_id" />
-                                        <input type="hidden" name="day" Value="{{$i}}" />
-                                        <select class="select attendance" name="attendance[]">
+                                        <input type="hidden" name="day" value="{{$i}}" />
+                                        <select class="select attendance">
                                             <option></option>
                                             <option value="A">A</option>
                                             <option value="P">P</option>
@@ -339,28 +342,43 @@
 
 <script>
     $(document).ready(function() {
+        $(document).on('submit', '#employee_search', function(e) {
+            e.preventDefault();
+            let form_data = $(this).serialize();
+            console.log(form_data);
+        })
 
-        function set_local_datetime() {
-            var now = new Date();
-            var utcString = now.toISOString().substring(0, 19);
-            var year = now.getFullYear();
-            var month = now.getMonth() + 1;
-            var day = now.getDate();
-            var hour = now.getHours();
-            var minute = now.getMinutes();
-            var second = now.getSeconds();
-            var localDatetime = year + "-" +
-                (month < 10 ? "0" + month.toString() : month) + "-" +
-                (day < 10 ? "0" + day.toString() : day) + "T" +
-                (hour < 10 ? "0" + hour.toString() : hour) + ":" +
-                (minute < 10 ? "0" + minute.toString() : minute) +
-                utcString.substring(16, 19);
-            return localDatetime;
-        }
-        $('#attendanc_picker').val(set_local_datetime());
+        $(document).on('change', '#emp_id_attendance', function() {
+            let emp_id = $(this).val();
+            $.ajax({
+                url: "{{ route('attendance.attendance_by_id') }}",
+                type: "POST",
+                data: {
+                    emp_id: emp_id,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function({
+                    attendance_data
+                }) {
+                    var count = 0;
+                    if (attendance_data !== null) {
+                        $('.attendance').each(function() {
+                            $(this).val(attendance_data[0][count]).trigger('change');
+                            count++;
+                            if (attendance_data[0][count] == '') {
+                                return false;
+                            }
+                        })
+                    } else {
+                        $('.attendance').each(function() {
+                            $(this).val('').trigger('change');
+                        })
+                    }
+                }
+            })
+        })
 
         $(document).on('change', '.attendance', function() {
-
             _this = $(this);
             let parent_td = $(this).parent();
             let attendance_day = parent_td.find('input[name="day"]').val();
@@ -390,6 +408,44 @@
             }
 
         });
+
+        function load_employee_data() {
+            $.ajax({
+                url: "{{ route('employee.get') }}",
+                method: "GET",
+                success: function({
+                    employee
+                }) {
+                    $('.employee_list').empty();
+                    $('.employee_list').append(`<option></option>`);
+                    employee.forEach(item => {
+                        $('.employee_list').append(`<option value="${item.id}">${(item.name).toUpperCase()}</option>`);
+                    });
+                }
+            });
+        }
+        load_employee_data();
+
+        function set_local_datetime() {
+            var now = new Date();
+            var utcString = now.toISOString().substring(0, 19);
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1;
+            var day = now.getDate();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            var localDatetime = year + "-" +
+                (month < 10 ? "0" + month.toString() : month) + "-" +
+                (day < 10 ? "0" + day.toString() : day) + "T" +
+                (hour < 10 ? "0" + hour.toString() : hour) + ":" +
+                (minute < 10 ? "0" + minute.toString() : minute) +
+                utcString.substring(16, 19);
+            return localDatetime;
+        }
+        $('#attendanc_picker').val(set_local_datetime());
+
+
 
         function create_attendance_year() {
             let dateDropdown = document.getElementById("attendance_year");

@@ -57,6 +57,7 @@
                     roles
                 }) {
                     $('#role').empty();
+                    $('#role').append(`<option></option>`);
                     roles.forEach(role => {
                         $('#role').append(`<option value="${role.id}">${(role.roles_name).toUpperCase()}</option>`);
                     });

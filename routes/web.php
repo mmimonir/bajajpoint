@@ -47,6 +47,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::controller(App\Http\Controllers\RoleController::class)->group(function () {
         Route::get('/get_all_roles',  'get_all_roles')->name('role.get_all_roles');
     });
+    Route::controller(App\Http\Controllers\AttendanceController::class)->group(function () {
+        Route::post('/get_attendance_by_empid',  'get_attendance_by_empid')->name('attendance.attendance_by_id');
+    });
 });
 
 
