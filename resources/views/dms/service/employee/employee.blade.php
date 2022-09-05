@@ -17,7 +17,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card-body">
-                        <div id="show_all_mechanics" class="container h-100 d-flex justify-content-center">
+                        <div id="show_all_employee" class="container h-100 d-flex justify-content-center">
                             <h1 class="text-center text-secondary my-5">Loading...</h1>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
     </div>
 </div>
 <!-- Mechanics Add Modal Start -->
-@extends('dms.service.mechanics.modals.add')
+@extends('dms.service.employee.modals.add')
 <!-- Mechanics Add Modal End -->
 
 @endsection
@@ -50,22 +50,35 @@
     $(document).ready(function() {
         // change form id when click add button
         $(document).on('click', '#add', function() {
+            $.ajax({
+                url: "{{ route('role.get_all_roles') }}",
+                method: "GET",
+                success: function({
+                    roles
+                }) {
+                    $('#role').empty();
+                    roles.forEach(role => {
+                        $('#role').append(`<option value="${role.id}">${(role.roles_name).toUpperCase()}</option>`);
+                    });
+                }
+            });
+            $("#role").attr('disabled', false)
             $("#addModal").modal('show');
-            $("form#add_mechanics_form").prop('id', 'add_mechanics_form');
-            $("form#update_mechanics_form").prop('id', 'add_mechanics_form');
+            $("form#add_employee_form").prop('id', 'add_employee_form');
+            $("form#update_employee_form").prop('id', 'add_employee_form');
             $("#addModal :input").prop("readOnly", false);
-            $("#addModal").find('#title').text('Create Mechanic');
-            $("#update_mechanic").text('Create');
-            $("#mechanic_id").val('');
+            $("#addModal").find('#title').text('Create Employee');
+            $("#update_employee").text('Create');
+            $("#employee_id").val('');
             $("form").trigger("reset");
         });
 
         // submit form when click modal add button start
-        $(document).on('submit', '#add_mechanics_form', function(e) {
+        $(document).on('submit', '#add_employee_form', function(e) {
             e.preventDefault();
             var formData = new FormData(this);
             $.ajax({
-                url: "{{ route('mechanics.add') }}",
+                url: "{{ route('employee.add') }}",
                 type: "POST",
                 data: formData,
                 contentType: false,
@@ -101,21 +114,30 @@
             var _this = $(this).parent().parent();
             const id = _this.find('.id').val();
             $.ajax({
-                url: "{{ route('mechanics.get_single_mechanic') }}",
+                url: "{{ route('employee.get_single_employee') }}",
                 type: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}",
                     id
                 },
-                success: function(data) {
+                success: function({
+                    employee,
+                    roles
+                }) {
 
-                    Object.keys(data).forEach(function(key) {
-                        $("#addModal").find(`#${key}`).val(data[key]);
+                    Object.keys(employee).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(employee[key]);
+                    });
+
+                    $('#role').empty();
+                    roles.forEach(role => {
+                        $('#role').append(`<option ${employee.roles_id == role.id ? 'selected' : '' } value="${role.id}">${(role.roles_name).toUpperCase()}</option>`);
                     });
 
                     $("#addModal").modal('show');
-                    $("#addModal").find('#title').text('View Mechanic');
+                    $("#addModal").find('#title').text('View Employee');
                     $("#addModal :input").prop("readOnly", true);
+                    $("#role").attr('disabled', true)
                 }
             });
         });
@@ -124,36 +146,45 @@
         // edit single mechanic start
         $(document).on('click', '.editIcon', function() {
             $("#addModal :input").prop("readOnly", false);
-            $("form#add_mechanics_form").prop('id', 'update_mechanics_form');
+            $("form#add_employee_form").prop('id', 'update_employee_form');
+            $("#role").attr('disabled', false)
+
             var _this = $(this).parents('tr');
             let id = _this.find('.id').val();
             $.ajax({
-                url: "{{ route('mechanics.get_single_mechanic') }}",
+                url: "{{ route('employee.get_single_employee') }}",
                 type: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}",
                     id
                 },
-                success: function(data) {
-                    Object.keys(data).forEach(function(key) {
-                        $("#addModal").find(`#${key}`).val(data[key]);
+                success: function({
+                    employee,
+                    roles
+                }) {
+                    Object.keys(employee).forEach(function(key) {
+                        $("#addModal").find(`#${key}`).val(employee[key]);
                     });
-
+                    $('#role').empty();
+                    roles.forEach(role => {
+                        $('#role').append(`<option ${employee.roles_id == role.id ? 'selected' : '' } value="${role.id}">${(role.roles_name).toUpperCase()}</option>`);
+                    });
+                    $('#employee_id').val(employee.id);
                     $("#addModal").modal('show');
-                    $("#addModal").find('#title').text('Update Mechanic');
-                    $("#update_mechanic").text('Update');
+                    $("#addModal").find('#title').text('Update Employee');
+                    $("#update_employee").text('Update');
                 }
             });
         });
         // edit single mechanic end
 
         // update mechanic start
-        $(document).on('submit', '#update_mechanics_form', function(e) {
+        $(document).on('submit', '#update_employee_form', function(e) {
             e.preventDefault();
             var formData = new FormData(this);
 
             $.ajax({
-                url: "{{ route('mechanics.update') }}",
+                url: "{{ route('employee.update') }}",
                 type: "POST",
                 data: formData,
                 contentType: false,
@@ -170,7 +201,7 @@
                             timer: 2000
                         });
                         $('#addModal').modal('hide');
-                        fetchAllMechanics();
+                        fetchAllEmployee();
                     } else {
                         Swal.fire({
                             title: 'Error!',
@@ -184,7 +215,7 @@
         });
         // update mechanic end
 
-        fetchAllMechanics();
+        fetchAllEmployee();
 
         // delete single mechanic start
         $(document).on('click', '.deleteIcon', function(e) {
@@ -204,7 +235,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('mechanics.delete') }}",
+                        url: "{{ route('employee.delete') }}",
                         method: 'delete',
                         data: {
                             id,
@@ -221,7 +252,7 @@
                                     timer: 2000
                                 });
                                 $('#addModal').modal('hide');
-                                fetchAllMechanics();
+                                fetchAllEmployee();
                             } else {
                                 Swal.fire({
                                     title: 'Error!',
@@ -238,12 +269,15 @@
         // delete single mechanic end
 
         // fetch all mecanics start
-        function fetchAllMechanics() {
+        function fetchAllEmployee() {
             $.ajax({
-                url: "{{ route('mechanics.get') }}",
+                url: "{{ route('employee.get') }}",
                 method: 'get',
-                success: function(response) {
-                    if (response.length > 0) {
+                success: function({
+                    employee
+                }) {
+                    console.log(employee);
+                    if (employee.length > 0) {
                         var html = `<table id="example" class="table table-hover table-responsive table-striped table-sm text-sm table-light table-bordered" style="width:100%;">
                         <thead>
                             <tr>
@@ -258,14 +292,14 @@
                             </tr>
                         </thead>
                         <tbody>`;
-                        response.forEach(function(data, index) {
+                        employee.forEach(function(data, index) {
                             html +=
                                 `<tr style="height:30px;">                                
-                                <td class="name">${data.name}</td>
+                                <td class="name">${(data.name).toUpperCase()}</td>
                                 <td class="mobile">${data.mobile}</td>
-                                <td class="mobile">${data.role}</td>
+                                <td class="mobile">${(data.roles_name).toUpperCase()}</td>
                                 <td class="joining_date text-center">${data.joining_date}</td>                                
-                                <td class="joining_date text-center">${data.education}</td>                                
+                                <td class="joining_date text-center">${(data.education).toUpperCase()}</td>                                
                                 <td class="nid_no text-center">${data.nid_no}</td>
                                 <td class="salary text-right">${data.salary.toLocaleString('en-IN')}</td>                                
                                 <td class="text-center">
@@ -285,9 +319,9 @@
                         });
                         html += `</tbody></table>`;
                     } else {
-                        html = `<h3 class="text-center">No Mechanics Found</h3>`;
+                        html = `<h3 class="text-center">No Employee Found</h3>`;
                     }
-                    $("#show_all_mechanics").html(html);
+                    $("#show_all_employee").html(html);
                     $("#example").DataTable({
                         pageLength: 10,
                         responsive: true,

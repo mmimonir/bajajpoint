@@ -43,13 +43,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
     });
 
     // Mechanics Table
-    Route::controller(App\Http\Controllers\Service\MechanicsController::class)->group(function () {
-        Route::get('/mechanics_index',  'mechanics_index')->name('mechanics.index');
-        Route::post('/get_single_mechanic',  'get_single_mechanic')->name('mechanics.get_single_mechanic');
-        Route::get('/mechanics_get',  'mechanics_get')->name('mechanics.get');
-        Route::post('/mechanics_add',  'mechanics_add')->name('mechanics.add');
-        Route::post('/mechanics_update',  'mechanics_update')->name('mechanics.update');
-        Route::delete('/mechanics_delete',  'mechanics_delete')->name('mechanics.delete');
+    Route::controller(App\Http\Controllers\Service\EmployeeController::class)->group(function () {
+        Route::get('/employee_index',  'employee_index')->name('employee.index');
+        Route::post('/get_single_employee',  'get_single_employee')->name('employee.get_single_employee');
+        Route::get('/employee_get',  'employee_get')->name('employee.get');
+        Route::post('/employee_add',  'employee_add')->name('employee.add');
+        Route::post('/employee_update',  'employee_update')->name('employee.update');
+        Route::delete('/employee_delete',  'employee_delete')->name('employee.delete');
     });
     Route::controller(App\Http\Controllers\Service\SparePartsPurchageController::class)->group(function () {
         Route::get('/index',  'index')->name('parts.index');

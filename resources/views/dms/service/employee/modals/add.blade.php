@@ -8,7 +8,7 @@
                     <span aria-hidden="true"><i class="fa fa-close"></i></span>
                 </button>
             </div>
-            <form action="#" method="POST" class="form-horizontal" id="add_mechanics_form">
+            <form action="#" method="POST" class="form-horizontal" id="add_employee_form">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group-sm row">
@@ -26,8 +26,13 @@
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Position</label>
                         <div class="col-sm-9">
-                            <input type="text" id="role" name="role" class="form-control" value="" />
+                            <select class="form-control" name="role" id="role">
+
+                            </select>
                         </div>
+                        <!-- <div class="col-sm-9">
+                            <input type="text" id="role" name="role" class="form-control" value="" />
+                        </div> -->
                     </div>
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Education</label>
@@ -75,13 +80,13 @@
                         <label class="col-sm-3 col-form-label">Salary</label>
                         <div class="col-sm-9">
                             <input type="text" id="salary" name="salary" class="form-control" value="" />
-                            <input type="hidden" id="mechanic_id" name="id" class="form-control" value="" />
+                            <input type="hidden" id="employee_id" name="id" class="form-control" value="" />
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="icofont icofont-eye-alt"></i>Close</button>
-                    <button type="submit" id="update_mechanic" name="" class="btn btn-success btn-sm  waves-light">Add</button>
+                    <button type="submit" id="update_employee" name="" class="btn btn-success btn-sm  waves-light">Add</button>
                 </div>
             </form>
         </div>

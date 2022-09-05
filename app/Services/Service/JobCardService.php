@@ -4,6 +4,7 @@ namespace App\Services\Service;
 
 use Carbon\Carbon;
 use App\Models\Showroom\Core;
+use App\Models\Service\Employee;
 use App\Models\Showroom\Vehicle;
 use App\Models\Service\{Bill, JobCard, Mechanic, ServiceCustomer, SparePartsStock, SparePartsSale};
 
@@ -68,7 +69,7 @@ class JobCardService
 
     public static function load_employee_data()
     {
-        $all_employee = Mechanic::select('id', 'name')->get();
+        $all_employee = Employee::select('id', 'name')->get();
         return $all_employee;
     }
 

@@ -165,7 +165,7 @@
             </a>
             <ul class="nav nav-treeview" style="display: none;">
                 <li class="nav-item">
-                    <a href="{{route('mechanics.index')}}" class="nav-link">
+                    <a href="{{route('employee.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-file"></i>
                         <p class="text-white">Employee</p>
                     </a>
