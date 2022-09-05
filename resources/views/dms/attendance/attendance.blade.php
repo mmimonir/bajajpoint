@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('service_layouts.app')
 @section('title', 'Employee Attendance')
 
 @section('datatable_css')
@@ -127,7 +127,7 @@
                 </div>
                 <div class="card-body">
                     <div class="px-5 py-4 py-lg-0 border-right-lg justify-content-center d-flex flex-column">
-                        <h3 class="mb-0 text-center text-bold mb-2">Attendance Date/Time Picker</h3>
+                        <h3 class="text-center text-bold mb-2">Attendance Date/Time Picker</h3>
                         <input class="text-bold p-2 w-25 m-auto" id="attendanc_picker" type="datetime-local" class="form-control" name="attendanc_picker">
                     </div>
                 </div>
@@ -177,37 +177,37 @@
                 <div class="card-body">
                     <div class="d-sm-flex justify-content-between align-items-center">
                         <div class="py-lg-0 border-right-lg w-100">
-                            <h4 class="mb-0 text-center">Total Days</h4>
+                            <h4 class="mb-0 text-center btn-primary p-2 m-1" style="border-radius:5px;">Total Days</h4>
                             <div class="d-flex align-items-center justify-content-center">
                                 <h1 id="total_days" class=" mb-0 mr-2">24</h1>
                             </div>
                         </div>
                         <div class="py-lg-0 border-right-lg w-100">
-                            <h4 class="mb-0 text-center">Working Days</h4>
+                            <h4 class="mb-0 text-center btn-primary p-2 m-1" style="border-radius:5px;">Working Days</h4>
                             <div class="d-flex align-items-center justify-content-center">
                                 <h1 id="P" class=" mb-0 mr-2">24</h1>
                             </div>
                         </div>
                         <div class="py-lg-0 border-right-lg w-100">
-                            <h4 class="mb-0 text-center">Absent Days</h4>
+                            <h4 class="mb-0 text-center btn-primary p-2 m-1" style="border-radius:5px;">Absent Days</h4>
                             <div class="d-flex align-items-center justify-content-center">
                                 <h1 id="A" class=" mb-0 mr-2">2</h1>
                             </div>
                         </div>
                         <div class="py-lg-0 border-right-lg w-100">
-                            <h4 class="mb-0 text-center">Total Friday</h4>
+                            <h4 class="mb-0 text-center btn-primary p-2 m-1" style="border-radius:5px;">Total Friday</h4>
                             <div class="d-flex align-items-center justify-content-center">
                                 <h1 id="F" class=" mb-0 mr-2">4</h1>
                             </div>
                         </div>
                         <div class="py-lg-0 border-right-lg w-100">
-                            <h4 class="mb-0 text-center">Govt Holiday</h4>
+                            <h4 class="mb-0 text-center btn-primary p-2 m-1" style="border-radius:5px;">Govt Holiday</h4>
                             <div class="d-flex align-items-center justify-content-center">
                                 <h1 id="H" class=" mb-0 mr-2">4</h1>
                             </div>
                         </div>
                         <div class="py-lg-0 border-right-lg w-100">
-                            <h4 class="mb-0 text-center">Total Leave</h4>
+                            <h4 class="mb-0 text-center btn-primary p-2 m-1" style="border-radius:5px;">Total Leave</h4>
                             <div class="d-flex align-items-center justify-content-center">
                                 <h1 id="L" class=" mb-0 mr-2">4</h1>
                             </div>
@@ -223,33 +223,33 @@
                 <div class="card-body">
                     <div class="d-sm-flex justify-content-between align-items-center">
                         <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
-                            <h5 class="mb-0 text-center">Gross Salary</h5>
+                            <h5 class="text-center btn-primary p-1" style="border-radius:5px;">Gross Salary</h5>
                             <div class="d-flex align-items-center justify-content-center">
-                                <h5 class="mb-0 mr-2">10,000/-</h5>
+                                <input type="text" id="salary" class="form-control text-center" name="salary" style="font-weight:700; font-size:18px;" />
                             </div>
                         </div>
                         <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
-                            <h5 class="mb-0 text-center">Advance</h5>
+                            <h5 class="text-center btn-primary p-1" style="border-radius:5px;">Advance</h5>
                             <div class="d-flex align-items-center justify-content-center">
-                                <h5 class="mb-0 mr-2">2,000/-</h5>
+                                <input type="text" id="advance" class="form-control text-center" name="advance" style="font-weight:700; font-size:18px;" />
                             </div>
                         </div>
                         <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
-                            <h5 class="mb-0 text-center">Absent Deduction</h5>
+                            <h5 class="text-center btn-primary p-1" style="border-radius:5px;">Absent Deduction</h5>
                             <div class="d-flex align-items-center justify-content-center">
-                                <h5 class="mb-0 mr-2">1,000/-</h5>
+                                <input type="text" id="absent_deduction" class="form-control text-center" name="absent_deduction" style="font-weight:700; font-size:18px;" />
                             </div>
                         </div>
                         <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
-                            <h5 class="mb-0 text-center">Total Deduction</h5>
+                            <h5 class="text-center btn-primary p-1" style="border-radius:5px;">Total Deduction</h5>
                             <div class="d-flex align-items-center justify-content-center">
-                                <h5 class="mb-0 mr-2">2,000/-</h5>
+                                <input type="text" id="total_deduction" class="form-control text-center" name="total_deduction" style="font-weight:700; font-size:18px;" />
                             </div>
                         </div>
                         <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
-                            <h5 class="mb-0 text-center">Total Payable</h5>
+                            <h5 class="text-center btn-primary p-1" style="border-radius:5px;">Total Payable</h5>
                             <div class="d-flex align-items-center justify-content-center">
-                                <h5 class="mb-0 mr-2">8,000/-</h5>
+                                <input type="text" id="total_payable" class="form-control text-center" name="total_payable" style="font-weight:700; font-size:18px;" />
                             </div>
                         </div>
                     </div>
@@ -364,7 +364,8 @@
                     _token: "{{ csrf_token() }}"
                 },
                 success: function({
-                    attendance_data
+                    attendance_data,
+                    emp_data
                 }) {
                     let count = 0;
                     let A = 0;
@@ -403,6 +404,14 @@
                         $('#H').text(H);
                         $('#F').text(F);
                         $('#total_days').text(A + P + L + H + F);
+                        $('#salary').val(`${emp_data.salary.toLocaleString('en-IN')}/-`);
+                        $('#advance').val(`${(2000).toLocaleString('en-IN')}/-`);
+                        let salary = emp_data.salary;
+                        let advance = 2000;
+                        let absent_deduction = Math.round((salary / 31) * A);
+                        $('#absent_deduction').val(`${(absent_deduction).toLocaleString('en-IN')}/-`);
+                        $('#total_deduction').val(`${(advance + absent_deduction).toLocaleString('en-IN')}/-`);
+                        $('#total_payable').val(`${(salary - (advance + absent_deduction)).toLocaleString('en-IN')}/-`);
                     } else {
                         $('.attendance').each(function() {
                             $(this).val('').trigger('change');
