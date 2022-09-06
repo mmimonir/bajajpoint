@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     });
     Route::controller(App\Http\Controllers\AttendanceController::class)->group(function () {
         Route::post('/get_attendance_by_empid',  'get_attendance_by_empid')->name('attendance.attendance_by_id');
+        Route::post('/daily_attendance_store',  'daily_attendance_store')->name('attendance.daily_attendance_store');
+        Route::post('/salary_calculate',  'salary_calculate')->name('attendance.salary_calculate');
     });
 });
 

@@ -36,4 +36,47 @@ class AttendanceController extends Controller
         }
         // return response()->json(['attendance_data' => $attendance_data]);
     }
+
+    public function daily_attendance_store(Request $request)
+    {
+        try {
+            EmployeeAttendance::updateOrCreate(
+                [
+                    'id' => $request->id,
+                ],
+                [
+                    $request->attendance_day_column => $request->attendance_text,
+                    'emp_id' => $request->emp_id_attendance,
+                    'month' => $request->attendance_datetime,
+                    'advance' => $request->advance ?? 0,
+                    'absent_deduction' => $request->absent_deduction ?? 0,
+                    'total_payable' => $request->total_payable ?? 0,
+                ]
+            );
+
+            return response()->json([
+                'status' => 200,
+                'message' => 'Attendance updated successfully',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 500,
+                'message' => 'Something went wrong',
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
+    public function salary_calculate(Request $request)
+    {
+        EmployeeAttendance::find($request->id)->update([
+            'advance' => $request->advance,
+            'absent_deduction' => $request->absent_deduction,
+            'total_payable' => $request->total_payable,
+        ]);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Salary calculated successfully',
+        ]);
+    }
 }

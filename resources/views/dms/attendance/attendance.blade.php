@@ -137,7 +137,7 @@
                             <thead>
                                 <tr>
                                     <th>Employee List</th>
-                                    @for ($i = 1; $i <= 31; $i++) <th style="padding:0; vertical-align: middle; text-align:center;">{{$i}}</th>
+                                    @for ($i = 1; $i <= 31; $i++) <th class="attendance_column" style="padding:0; vertical-align: middle; text-align:center;">{{$i}}</th>
 
                                         @endfor
 
@@ -149,9 +149,9 @@
                                         <select class="form-control employee_list" id="emp_id_attendance">
 
                                         </select>
+                                        <input type="hidden" id="attendance_id" value="">
                                     </td>
                                     @for ($i = 1; $i <= 31; $i++) <td style="padding:0; vertical-align: middle; text-align:center;">
-                                        <input type="hidden" name="employee_id" />
                                         <input type="hidden" name="day" value="{{$i}}" />
                                         <select class="select attendance">
                                             <option></option>
@@ -222,31 +222,31 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-sm-flex justify-content-between align-items-center">
-                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                        <div class="px-2 py-4 py-lg-0 border-right-lg w-100">
                             <h5 class="text-center btn-primary p-1" style="border-radius:5px;">Gross Salary</h5>
                             <div class="d-flex align-items-center justify-content-center">
                                 <input type="text" id="salary" class="form-control text-center" name="salary" style="font-weight:700; font-size:18px;" />
                             </div>
                         </div>
-                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                        <div class="px-2 py-4 py-lg-0 border-right-lg w-100">
                             <h5 class="text-center btn-primary p-1" style="border-radius:5px;">Advance</h5>
                             <div class="d-flex align-items-center justify-content-center">
                                 <input type="text" id="advance" class="form-control text-center" name="advance" style="font-weight:700; font-size:18px;" />
                             </div>
                         </div>
-                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                        <div class="px-2 py-4 py-lg-0 border-right-lg w-100">
                             <h5 class="text-center btn-primary p-1" style="border-radius:5px;">Absent Deduction</h5>
                             <div class="d-flex align-items-center justify-content-center">
                                 <input type="text" id="absent_deduction" class="form-control text-center" name="absent_deduction" style="font-weight:700; font-size:18px;" />
                             </div>
                         </div>
-                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                        <div class="px-2 py-4 py-lg-0 border-right-lg w-100">
                             <h5 class="text-center btn-primary p-1" style="border-radius:5px;">Total Deduction</h5>
                             <div class="d-flex align-items-center justify-content-center">
                                 <input type="text" id="total_deduction" class="form-control text-center" name="total_deduction" style="font-weight:700; font-size:18px;" />
                             </div>
                         </div>
-                        <div class="px-5 py-4 py-lg-0 border-right-lg w-100">
+                        <div class="px-2 py-4 py-lg-0 border-right-lg w-100">
                             <h5 class="text-center btn-primary p-1" style="border-radius:5px;">Total Payable</h5>
                             <div class="d-flex align-items-center justify-content-center">
                                 <input type="text" id="total_payable" class="form-control text-center" name="total_payable" style="font-weight:700; font-size:18px;" />
@@ -257,7 +257,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-xl-12 stretch-card grid-margin">
             <div class="card">
                 <div class="card-body">
@@ -329,7 +329,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 @endsection
 
@@ -367,7 +367,14 @@
                     attendance_data,
                     emp_data
                 }) {
-                    let count = 0;
+                    let day = [
+                        'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
+                        'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen',
+                        'eighteen', 'nineteen', 'twenty', 'twentyone', 'twentytwo', 'twentythree',
+                        'twentyfour', 'twentyfive', 'twentysix', 'twentyseven', 'twentyeight', 'twentynine',
+                        'thirty', 'thirtyone'
+                    ];
+                    let index = 0;
                     let A = 0;
                     let P = 0;
                     let L = 0;
@@ -375,28 +382,30 @@
                     let F = 0;
 
                     if (attendance_data !== null) {
+                        $('#attendance_id').val(attendance_data[0].id);
+                        // console.log(attendance_data[0][day[index]]);
                         $('.attendance').each(function() {
-                            $(this).val(attendance_data[0][count]).trigger('change');
+                            $(this).val(attendance_data[0][day[index]]).trigger('blur');
 
-                            if (attendance_data[0][count] == '') {
+                            if (attendance_data[0][day[index]] == '') {
                                 return false;
                             }
-                            if (attendance_data[0][count] == 'A') {
+                            if (attendance_data[0][day[index]] == 'A') {
                                 A++;
                             }
-                            if (attendance_data[0][count] == 'P') {
+                            if (attendance_data[0][day[index]] == 'P') {
                                 P++;
                             }
-                            if (attendance_data[0][count] == 'L') {
+                            if (attendance_data[0][day[index]] == 'L') {
                                 L++;
                             }
-                            if (attendance_data[0][count] == 'H') {
+                            if (attendance_data[0][day[index]] == 'H') {
                                 H++;
                             }
-                            if (attendance_data[0][count] == 'F') {
+                            if (attendance_data[0][day[index]] == 'F') {
                                 F++;
                             }
-                            count++;
+                            index++;
                         })
                         $('#A').text(A);
                         $('#P').text(P);
@@ -405,50 +414,145 @@
                         $('#F').text(F);
                         $('#total_days').text(A + P + L + H + F);
                         $('#salary').val(`${emp_data.salary.toLocaleString('en-IN')}/-`);
-                        $('#advance').val(`${(2000).toLocaleString('en-IN')}/-`);
+                        $('#advance').val(attendance_data[0].advance ? `${(attendance_data[0].advance).toLocaleString('en-IN')}/-` : 0);
                         let salary = emp_data.salary;
-                        let advance = 2000;
+                        let advance = +$('#advance').val().replace(/,/g, '').replace('/-', '');
                         let absent_deduction = Math.round((salary / 31) * A);
-                        $('#absent_deduction').val(`${(absent_deduction).toLocaleString('en-IN')}/-`);
-                        $('#total_deduction').val(`${(advance + absent_deduction).toLocaleString('en-IN')}/-`);
-                        $('#total_payable').val(`${(salary - (advance + absent_deduction)).toLocaleString('en-IN')}/-`);
+                        $('#absent_deduction').val(attendance_data[0].absent_deduction ? `${(attendance_data[0].absent_deduction).toLocaleString('en-IN')}/-` : `${(absent_deduction).toLocaleString('en-IN')}/-`);
+                        $('#total_deduction').val(`${(attendance_data[0].advance + attendance_data[0].absent_deduction).toLocaleString('en-IN')}/-`);
+                        let absent_deduction_two = +$('#absent_deduction').val().replace(/,/g, '').replace('/-', '');
+                        $('#total_payable').val(`${(salary - (advance + absent_deduction_two)).toLocaleString('en-IN')}/-`);
+
                     } else {
                         $('.attendance').each(function() {
-                            $(this).val('').trigger('change');
+                            $(this).val('').trigger('blur');
+                            $('#total_days').text(0);
+                            $('#A').text(0);
+                            $('#P').text(0);
+                            $('#L').text(0);
+                            $('#H').text(0);
+                            $('#F').text(0);
+                            $('#salary').val('');
+                            $('#advance').val('');
+                            $('#absent_deduction').val('');
+                            $('#total_deduction').val('');
+                            $('#total_payable').val('');
                         })
                     }
                 }
             })
         })
 
-        $(document).on('change', '.attendance', function() {
+        function calculate_attendance() {
+            let salary = +$('#salary').val().replace(/,/g, '').replace('/-', '');
+            let advance = +$('#advance').val().replace(/,/g, '').replace('/-', '');
+            let total_days = +$('#total_days').text();
+            let working_days = +$('#P').val();
+            let absent_days = +$('#A').val();
+            let absent_deduction = +$('#absent_deduction').val().replace(/,/g, '').replace('/-', '');
+            let total_deduction = advance + absent_deduction;
+
+            $('#absent_deduction').val(`${(absent_deduction).toLocaleString('en-IN')}/-`);
+            $('#total_deduction').val(`${(total_deduction).toLocaleString('en-IN')}/-`);
+            $('#total_payable').val(`${(salary - total_deduction).toLocaleString('en-IN')}/-`);
+            $('#advance').val(`${(advance).toLocaleString('en-IN')}/-`);
+        }
+        $(document).on('change', '#advance, #absent_deduction', function() {
+            calculate_attendance();
+            $.ajax({
+                url: "{{ route('attendance.salary_calculate') }}",
+                type: "POST",
+                data: {
+                    id: $('#attendance_id').val(),
+                    advance: $('#advance').val().replace(/,/g, '').replace('/-', ''),
+                    absent_deduction: $('#absent_deduction').val().replace(/,/g, '').replace('/-', ''),
+                    total_payable: $('#total_payable').val().replace(/,/g, '').replace('/-', ''),
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(data) {
+                    if (data.status == 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: data.message,
+                        })
+                    }
+                }
+            })
+        })
+
+        $(document).on('blur', '.attendance', function() {
             _this = $(this);
-            let parent_td = $(this).parent();
-            let attendance_day = parent_td.find('input[name="day"]').val();
-            let employee_id = parent_td.find('input[name="employee_id"]').val();
-            let attendance = $(this).val();
+            let attendance_text = $(this).val();
 
-            let attendance_pick = $('#attendanc_picker').val();
-
-
-            // let attendance_month = $('#attendance_month').val();
-            // let attendance_year = $('#attendance_year').val();
-
-            // console.log(attendance_day, employee_id, attendance, attendance_month, attendance_year);
-
-            if (attendance == 'A') {
+            if (attendance_text == 'A') {
                 _this.css('background-color', 'red').css('color', 'white').css('border', 'none');
-            } else if (attendance == 'P') {
+            } else if (attendance_text == 'P') {
                 _this.css('background-color', 'green').css('color', 'white').css('border', 'none');
-            } else if (attendance == 'L') {
+            } else if (attendance_text == 'L') {
                 _this.css('background-color', 'black').css('color', 'white').css('border', 'none');
-            } else if (attendance == 'H') {
+            } else if (attendance_text == 'H') {
                 _this.css('background-color', 'purple').css('color', 'white').css('border', 'none');
-            } else if (attendance == 'F') {
+            } else if (attendance_text == 'F') {
                 _this.css('background-color', '#1E64AF').css('color', 'white').css('border', 'none');
-            } else if (attendance == '') {
+            } else if (attendance_text == '') {
                 _this.css('background-color', '#E6E6E6').css('color', 'black').css('border', '1px solid green');
             }
+        });
+
+        function in_words(num) {
+            var a = ['', 'one ', 'two ', 'three ', 'four ', 'five ', 'six ', 'seven ', 'eight ', 'nine ', 'ten ', 'eleven ', 'twelve ', 'thirteen ', 'fourteen ', 'fifteen ', 'sixteen ', 'seventeen ', 'eighteen ', 'nineteen '];
+            var b = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+
+            function inWords(num) {
+                if ((num = num.toString()).length > 9) return 'overflow';
+                n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+                if (!n) return;
+                var str = '';
+                str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + a[n[1][1]]) + 'crore ' : '';
+                str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + a[n[2][1]]) + 'lakh ' : '';
+                str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + a[n[3][1]]) + 'thousand ' : '';
+                str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + a[n[4][1]]) + 'hundred ' : '';
+                str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + a[n[5][1]]) : '';
+                return str;
+            }
+
+            return inWords(num);
+        }
+        $(document).on('change', '.attendance', function() {
+            _this = $(this);
+
+            let parent_td = $(this).parent();
+            let attendance_day_column = in_words(parent_td.find('input[name="day"]').val());
+            let emp_id_attendance = $('#emp_id_attendance').val();
+            let attendance_text = $(this).val();
+            let attendance_datetime = $('#attendanc_picker').val();
+            let id = $('#attendance_id').val();
+
+            $.ajax({
+                url: "{{ route('attendance.daily_attendance_store') }}",
+                type: "POST",
+                data: {
+                    attendance_day_column,
+                    emp_id_attendance,
+                    attendance_text,
+                    attendance_datetime,
+                    id,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(data) {
+                    console.log(data);
+                    if (data == 'success') {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Attendance Updated',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                }
+            })
 
         });
 
