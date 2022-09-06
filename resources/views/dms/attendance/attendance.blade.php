@@ -429,14 +429,18 @@
                             type: "POST",
                             data: {
                                 attendance_datetime: attendance_data[0].month,
+                                // attendance_day: new Date(attendance_data[0].month).getDate(),
                                 emp_attendance_id: attendance_data[0].id,
                                 _token: "{{ csrf_token() }}"
                             },
                             success: function({
-                                timestamp_data
+                                timestamp_id
                             }) {
-                                // console.log(timestamp_data);
-                                $('#attendance_timestamp').val(timestamp_data[0].emp_attendance_id ? timestamp_data[0].emp_attendance_id : '');
+                                if (timestamp_id !== null) {
+                                    $('#attendance_timestamp').val(timestamp_id.id);
+                                } else {
+                                    $('#attendance_timestamp').val('');
+                                }
                             }
                         })
 
@@ -622,7 +626,10 @@
                 utcString.substring(16, 19);
             return localDatetime;
         }
-        $('#attendanc_picker').val(set_local_datetime());
+        setInterval(function() {
+            $('#attendanc_picker').val(set_local_datetime());
+        }, 1000);
+        // $('#attendanc_picker').val(set_local_datetime());
 
 
 

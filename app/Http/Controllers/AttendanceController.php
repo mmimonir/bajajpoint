@@ -106,17 +106,19 @@ class AttendanceController extends Controller
     public function attendance_timestamp_get(Request $request)
     {
         $month = Carbon::parse($request->datetimestamp)->month;
-        $timestamp_data = EmployeeTimestamp::select('*')
+        $day = Carbon::parse($request->datetimestamp)->day;
+        $timestamp_id = EmployeeTimestamp::select('id')
             ->where('emp_attendance_id', $request->emp_attendance_id)
+            ->whereDay('attendance_datetime', $day)
             ->whereMonth('attendance_datetime', $month)
-            ->get();
+            ->first();
 
         // return response()->json($request->all());
 
         return response()->json([
             'status' => 200,
             'message' => 'Timestamp data found',
-            'timestamp_data' => $timestamp_data
+            'timestamp_id' => $timestamp_id
         ]);
     }
 }
