@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Service\Employee;
 use App\Models\EmployeeAttendance;
+use App\Models\EmployeeTimestamp;
 
 class AttendanceController extends Controller
 {
@@ -40,7 +41,7 @@ class AttendanceController extends Controller
     public function daily_attendance_store(Request $request)
     {
         try {
-            EmployeeAttendance::updateOrCreate(
+            $last_id = EmployeeAttendance::updateOrCreate(
                 [
                     'id' => $request->id,
                 ],
@@ -51,12 +52,16 @@ class AttendanceController extends Controller
                     'advance' => $request->advance ?? 0,
                     'absent_deduction' => $request->absent_deduction ?? 0,
                     'total_payable' => $request->total_payable ?? 0,
+                    'created_by' => $request->user()->id,
+                    'updated_by' => $request->user()->id,
+                    'deleted_by' => $request->user()->id,
                 ]
-            );
+            )->id;
 
             return response()->json([
                 'status' => 200,
                 'message' => 'Attendance updated successfully',
+                'last_id' => $last_id
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -77,6 +82,41 @@ class AttendanceController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'Salary calculated successfully',
+        ]);
+    }
+    public function timestamp_create_or_update(Request $request)
+    {
+        $timestamp_id = EmployeeTimestamp::updateOrCreate(
+            [
+                'id' => $request->id,
+            ],
+            [
+                'emp_attendance_id' => $request->emp_attendance_id,
+                'attendance_datetime' => $request->attendance_datetime,
+            ]
+        )->id;
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Timestamp updated successfully',
+            'timestamp_id' => $timestamp_id
+        ]);
+    }
+
+    public function attendance_timestamp_get(Request $request)
+    {
+        $month = Carbon::parse($request->datetimestamp)->month;
+        $timestamp_data = EmployeeTimestamp::select('*')
+            ->where('emp_attendance_id', $request->emp_attendance_id)
+            ->whereMonth('attendance_datetime', $month)
+            ->get();
+
+        // return response()->json($request->all());
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Timestamp data found',
+            'timestamp_data' => $timestamp_data
         ]);
     }
 }

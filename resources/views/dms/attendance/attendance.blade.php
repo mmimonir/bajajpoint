@@ -129,6 +129,7 @@
                     <div class="px-5 py-4 py-lg-0 border-right-lg justify-content-center d-flex flex-column">
                         <h3 class="text-center text-bold mb-2">Attendance Date/Time Picker</h3>
                         <input class="text-bold p-2 w-25 m-auto" id="attendanc_picker" type="datetime-local" class="form-control" name="attendanc_picker">
+                        <input id="attendance_timestamp" type="hidden">
                     </div>
                 </div>
                 <div class="card-body d-flex justify-content-center">
@@ -423,6 +424,22 @@
                         let absent_deduction_two = +$('#absent_deduction').val().replace(/,/g, '').replace('/-', '');
                         $('#total_payable').val(`${(salary - (advance + absent_deduction_two)).toLocaleString('en-IN')}/-`);
 
+                        $.ajax({
+                            url: "{{ route('attendance.timestamps_get') }}",
+                            type: "POST",
+                            data: {
+                                attendance_datetime: attendance_data[0].month,
+                                emp_attendance_id: attendance_data[0].id,
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function({
+                                timestamp_data
+                            }) {
+                                // console.log(timestamp_data);
+                                $('#attendance_timestamp').val(timestamp_data[0].emp_attendance_id ? timestamp_data[0].emp_attendance_id : '');
+                            }
+                        })
+
                     } else {
                         $('.attendance').each(function() {
                             $(this).val('').trigger('blur');
@@ -542,7 +559,7 @@
                 },
                 success: function(data) {
                     console.log(data);
-                    if (data == 'success') {
+                    if (data.status == 200) {
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
@@ -550,9 +567,24 @@
                             showConfirmButton: false,
                             timer: 1500
                         })
+                        $.ajax({
+                            url: "{{ route('attendance.timestamps') }}",
+                            type: "POST",
+                            data: {
+                                attendance_datetime,
+                                emp_attendance_id: data.last_id,
+                                id: $('#attendance_timestamp').val(),
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(data) {
+                                console.log(data);
+                                $('#attendance_timestamp').val(data.timestamp_id ? data.timestamp_id : '');
+                            }
+                        })
                     }
                 }
             })
+
 
         });
 
