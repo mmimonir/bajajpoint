@@ -258,7 +258,7 @@
             </div>
         </div>
     </div>
-    <!-- <div class="row">
+    <div class="row">
         <div class="col-xl-12 stretch-card grid-margin">
             <div class="card">
                 <div class="card-body">
@@ -271,66 +271,22 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th> Date </th>
-                                    <th> Leave </th>
-                                    <th> Effective Hours </th>
-                                    <th> Gross Hours </th>
-                                    <th>Arrival</th>
+                                    <th>Entry Date</th>
+                                    <th>Entry Time</th>
+                                    <th>Exit Time</th>
+                                    <th>Working Hours</th>
                                     <th>Log</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>12 Sep 2020 </td>
-                                    <td>
-                                        SunW-OFF
-                                    </td>
-                                    <td>
-                                        6:18 + hrs
-                                    </td>
-                                    <td> 6:18 + hrs</td>
-                                    <td> 0:42:37 late</td>
-                                    <td><i class="mdi mdi-check-circle mdi-18px text-success mr-2"></i>Present</td>
-                                </tr>
-                                <tr>
-                                    <td>14 Mar 2020 </td>
-                                    <td>Leave</td>
-                                    <td>8:18 hrs</td>
-                                    <td>8:18 hrs</td>
-                                    <td>0:06:25 late</td>
-                                    <td><i class="mdi mdi-check-circle mdi-18px text-success mr-2"></i>Present</td>
-                                </tr>
-                                <tr>
-                                    <td>26 Feb 2020</td>
-                                    <td>Unpaid Leave</td>
-                                    <td>7:09 hrs</td>
-                                    <td>7:09 hrs</td>
-                                    <td>0:38:13 late</td>
-                                    <td><i class="mdi mdi-check-circle mdi-18px text-success mr-2"></i>Present</td>
-                                </tr>
-                                <tr>
-                                    <td>22 Apr 2020</td>
-                                    <td> Unpaid Leave </td>
-                                    <td>6:42 hrs</td>
-                                    <td>6:42 hrs</td>
-                                    <td>0:12:27 late</td>
-                                    <td><i class="mdi mdi-information mdi-18px text-danger mr-2"></i>Out missing</td>
-                                </tr>
-                                <tr>
-                                    <td>26 Oct 2020</td>
-                                    <td>12 Sep 2020</td>
-                                    <td>8:09 hrs</td>
-                                    <td>8:09 hrs</td>
-                                    <td>0:49:23 late</td>
-                                    <td><i class="mdi mdi-check-circle mdi-18px text-success mr-2"></i>Present</td>
-                                </tr>
+                            <tbody id="attendance_timestamp_10_days">
+
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 </div>
 @endsection
 
@@ -366,8 +322,10 @@
                 },
                 success: function({
                     attendance_data,
-                    emp_data
+                    emp_data,
+                    attendance_timestamp
                 }) {
+                    console.log(attendance_timestamp);
                     let day = [
                         'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
                         'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen',
@@ -423,6 +381,22 @@
                         $('#total_deduction').val(`${(attendance_data[0].advance + attendance_data[0].absent_deduction).toLocaleString('en-IN')}/-`);
                         let absent_deduction_two = +$('#absent_deduction').val().replace(/,/g, '').replace('/-', '');
                         $('#total_payable').val(`${(salary - (advance + absent_deduction_two)).toLocaleString('en-IN')}/-`);
+
+
+                        attendance_timestamp.forEach(function(item) {
+                            console.log('10 days' + item);
+                            let date = new Date(item.attendance_datetime).toLocaleDateString();
+                            let time = new Date(item.attendance_datetime).toLocaleTimeString();
+                            let status = item.status;
+                            let html = `<tr>
+                                            <td>${date}</td>
+                                            <td>${time}</td>
+                                            <td>06.00</td>
+                                            <td>12 Hours</td>
+                                            <td>Present</td>
+                                        </tr>`;
+                            $('#attendance_timestamp_10_days').append(html);
+                        })
 
                         $.ajax({
                             url: "{{ route('attendance.timestamps_get') }}",
@@ -626,12 +600,9 @@
                 utcString.substring(16, 19);
             return localDatetime;
         }
-        setInterval(function() {
+        $(document).on('click', '#attendanc_picker', function() {
             $('#attendanc_picker').val(set_local_datetime());
-        }, 1000);
-        // $('#attendanc_picker').val(set_local_datetime());
-
-
+        });
 
         function create_attendance_year() {
             let dateDropdown = document.getElementById("attendance_year");

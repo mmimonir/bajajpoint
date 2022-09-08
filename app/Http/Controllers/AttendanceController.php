@@ -13,11 +13,23 @@ class AttendanceController extends Controller
     public function get_attendance_by_empid(Request $request)
     {
         $month = Carbon::now()->month;
+        $year = Carbon::now()->year;
         $attendance_data = EmployeeAttendance::select('*')
             ->where('emp_id', $request->emp_id)
+            ->whereYear('month', $year)
             ->whereMonth('month', $month)
             ->get();
         $emp_data = Employee::select('*')->where('id', $request->emp_id)->first();
+
+        $timestamptable_id = $attendance_data[0]->id;
+
+        $attendance_timestamp = EmployeeTimestamp::select('*')
+            ->where('emp_attendance_id', $timestamptable_id)
+            ->whereYear('attendance_datetime', $year)
+            ->whereMonth('attendance_datetime', $month)
+            ->orderBy('attendance_datetime', 'asc')
+            ->limit(10)
+            ->get();
 
 
         if ($attendance_data->count() > 0) {
@@ -25,14 +37,16 @@ class AttendanceController extends Controller
                 'status' => 200,
                 'message' => 'Attendance data found',
                 'attendance_data' => $attendance_data,
-                'emp_data' => $emp_data
+                'emp_data' => $emp_data,
+                'attendance_timestamp' => $attendance_timestamp
             ]);
         } else {
             return response()->json([
                 'status' => 404,
                 'message' => 'Attendance data not found',
                 'attendance_data' => null,
-                'emp_data' => null
+                'emp_data' => null,
+                'attendance_timestamp' => null
             ]);
         }
         // return response()->json(['attendance_data' => $attendance_data]);
@@ -121,4 +135,20 @@ class AttendanceController extends Controller
             'timestamp_id' => $timestamp_id
         ]);
     }
+    // public function get_attendance_log_last_10_days(Request $request)
+    // {
+    //     $month = Carbon::parse($request->datetimestamp)->month;
+
+    //     $attendance_data = EmployeeTimestamp::select('*')
+    //         ->whereMonth('attendance_datetime', $month)
+    //         ->where('emp_attendance_id', $request->emp_id)
+    //         ->orderBy('id', 'desc')
+    //         ->limit(10)
+    //         ->get();
+    //     return response()->json([
+    //         'status' => 200,
+    //         'message' => 'Attendance data found',
+    //         'attendance_data' => $attendance_data,
+    //     ]);
+    // }
 }
