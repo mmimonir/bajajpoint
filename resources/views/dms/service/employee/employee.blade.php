@@ -96,7 +96,7 @@
                             timer: 2000
                         });
                         $('#addModal').modal('hide');
-                        fetchAllMechanics();
+                        fetchAllEmployee();
                     } else {
                         Swal.fire({
                             title: 'Error!',

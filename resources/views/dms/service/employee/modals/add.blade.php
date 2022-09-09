@@ -26,7 +26,7 @@
                     <div class="form-group-sm row">
                         <label class="col-sm-3 col-form-label">Position</label>
                         <div class="col-sm-9">
-                            <select class="form-control" name="role" id="role">
+                            <select class="form-control" name="roles_id" id="role">
 
                             </select>
                         </div>

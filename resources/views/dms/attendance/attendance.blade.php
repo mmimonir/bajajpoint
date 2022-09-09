@@ -313,11 +313,13 @@
 
         $(document).on('change', '#emp_id_attendance', function() {
             let emp_id = $(this).val();
+            let attendance_timestamp = $('#attendanc_picker').val();
             $.ajax({
                 url: "{{ route('attendance.attendance_by_id') }}",
                 type: "POST",
                 data: {
                     emp_id: emp_id,
+                    attendance_timestamp,
                     _token: "{{ csrf_token() }}"
                 },
                 success: function({
@@ -383,20 +385,22 @@
                         $('#total_payable').val(`${(salary - (advance + absent_deduction_two)).toLocaleString('en-IN')}/-`);
 
 
-                        attendance_timestamp.forEach(function(item) {
-                            console.log('10 days' + item);
-                            let date = new Date(item.attendance_datetime).toLocaleDateString();
-                            let time = new Date(item.attendance_datetime).toLocaleTimeString();
-                            let status = item.status;
-                            let html = `<tr>
+                        if (attendance_timestamp !== null) {
+                            attendance_timestamp.forEach(function(item) {
+                                console.log('10 days' + item);
+                                let date = new Date(item.attendance_datetime).toLocaleDateString();
+                                let time = new Date(item.attendance_datetime).toLocaleTimeString();
+                                let status = item.status;
+                                let html = `<tr>
                                             <td>${date}</td>
                                             <td>${time}</td>
                                             <td>06.00</td>
                                             <td>12 Hours</td>
                                             <td>Present</td>
                                         </tr>`;
-                            $('#attendance_timestamp_10_days').append(html);
-                        })
+                                $('#attendance_timestamp_10_days').append(html);
+                            })
+                        }
 
                         $.ajax({
                             url: "{{ route('attendance.timestamps_get') }}",
@@ -410,7 +414,8 @@
                             success: function({
                                 timestamp_id
                             }) {
-                                if (timestamp_id !== null) {
+                                console.log(timestamp_id);
+                                if (timestamp_id) {
                                     $('#attendance_timestamp').val(timestamp_id.id);
                                 } else {
                                     $('#attendance_timestamp').val('');
@@ -419,6 +424,8 @@
                         })
 
                     } else {
+                        $('#attendance_id').val('');
+                        $('#attendance_timestamp').val('');
                         $('.attendance').each(function() {
                             $(this).val('').trigger('blur');
                             $('#total_days').text(0);
@@ -538,6 +545,7 @@
                 success: function(data) {
                     console.log(data);
                     if (data.status == 200) {
+                        $('#attendance_id').val(data.last_id);
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
@@ -556,7 +564,7 @@
                             },
                             success: function(data) {
                                 console.log(data);
-                                $('#attendance_timestamp').val(data.timestamp_id ? data.timestamp_id : '');
+                                // $('#attendance_timestamp').val(data.timestamp_id);
                             }
                         })
                     }
@@ -603,6 +611,7 @@
         $(document).on('click', '#attendanc_picker', function() {
             $('#attendanc_picker').val(set_local_datetime());
         });
+        $('#attendanc_picker').val(set_local_datetime());
 
         function create_attendance_year() {
             let dateDropdown = document.getElementById("attendance_year");

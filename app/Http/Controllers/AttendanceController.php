@@ -12,25 +12,28 @@ class AttendanceController extends Controller
 {
     public function get_attendance_by_empid(Request $request)
     {
-        $month = Carbon::now()->month;
-        $year = Carbon::now()->year;
+        $month = Carbon::parse($request->attendance_timestamp)->month ?? Carbon::now()->month;
+        $year = Carbon::parse($request->attendance_timestamp)->year ?? Carbon::now()->year;
+        // $day = Carbon::parse($request->attendance_timestamp)->day ?? Carbon::now()->day;
         $attendance_data = EmployeeAttendance::select('*')
             ->where('emp_id', $request->emp_id)
             ->whereYear('month', $year)
             ->whereMonth('month', $month)
+            // ->whereDay('month', $day)
             ->get();
         $emp_data = Employee::select('*')->where('id', $request->emp_id)->first();
 
-        $timestamptable_id = $attendance_data[0]->id;
+        if ($attendance_data->count() > 0) {
+            $timestamptable_id = $attendance_data[0]->id;
 
-        $attendance_timestamp = EmployeeTimestamp::select('*')
-            ->where('emp_attendance_id', $timestamptable_id)
-            ->whereYear('attendance_datetime', $year)
-            ->whereMonth('attendance_datetime', $month)
-            ->orderBy('attendance_datetime', 'asc')
-            ->limit(10)
-            ->get();
-
+            $attendance_timestamp = EmployeeTimestamp::select('*')
+                ->where('emp_attendance_id', $timestamptable_id)
+                ->whereYear('attendance_datetime', $year)
+                ->whereMonth('attendance_datetime', $month)
+                ->orderBy('attendance_datetime', 'asc')
+                ->limit(10)
+                ->get();
+        }
 
         if ($attendance_data->count() > 0) {
             return response()->json([
@@ -38,7 +41,7 @@ class AttendanceController extends Controller
                 'message' => 'Attendance data found',
                 'attendance_data' => $attendance_data,
                 'emp_data' => $emp_data,
-                'attendance_timestamp' => $attendance_timestamp
+                'attendance_timestamp' => $attendance_timestamp ?? null,
             ]);
         } else {
             return response()->json([
@@ -119,12 +122,12 @@ class AttendanceController extends Controller
 
     public function attendance_timestamp_get(Request $request)
     {
-        $month = Carbon::parse($request->datetimestamp)->month;
-        $day = Carbon::parse($request->datetimestamp)->day;
+        $month = Carbon::parse($request->attendance_datetime)->month;
+        $day = Carbon::parse($request->attendance_datetime)->day;
         $timestamp_id = EmployeeTimestamp::select('id')
             ->where('emp_attendance_id', $request->emp_attendance_id)
-            ->whereDay('attendance_datetime', $day)
             ->whereMonth('attendance_datetime', $month)
+            ->whereDay('attendance_datetime', $day)
             ->first();
 
         // return response()->json($request->all());
@@ -132,7 +135,7 @@ class AttendanceController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'Timestamp data found',
-            'timestamp_id' => $timestamp_id
+            'timestamp_id' => $timestamp_id ?? null,
         ]);
     }
     // public function get_attendance_log_last_10_days(Request $request)
