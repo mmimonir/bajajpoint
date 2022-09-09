@@ -129,7 +129,7 @@
                     <div class="px-5 py-4 py-lg-0 border-right-lg justify-content-center d-flex flex-column">
                         <h3 class="text-center text-bold mb-2">Attendance Date/Time Picker</h3>
                         <input class="text-bold p-2 w-25 m-auto" id="attendanc_picker" type="datetime-local" class="form-control" name="attendanc_picker">
-                        <input id="attendance_timestamp" type="hidden">
+
                     </div>
                 </div>
                 <div class="card-body d-flex justify-content-center">
@@ -154,6 +154,7 @@
                                     </td>
                                     @for ($i = 1; $i <= 31; $i++) <td style="padding:0; vertical-align: middle; text-align:center;">
                                         <input type="hidden" name="day" value="{{$i}}" />
+                                        <input class="attendance_timestamp_id" type="hidden">
                                         <select class="select attendance">
                                             <option></option>
                                             <option value="A">A</option>
@@ -314,6 +315,7 @@
         $(document).on('change', '#emp_id_attendance', function() {
             let emp_id = $(this).val();
             let attendance_timestamp = $('#attendanc_picker').val();
+
             $.ajax({
                 url: "{{ route('attendance.attendance_by_id') }}",
                 type: "POST",
@@ -325,9 +327,10 @@
                 success: function({
                     attendance_data,
                     emp_data,
-                    attendance_timestamp
+                    attendance_timestamp_data,
+
                 }) {
-                    console.log(attendance_timestamp);
+                    // console.log(attendance_timestamp_data[0].id);
                     let day = [
                         'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
                         'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen',
@@ -343,7 +346,7 @@
                     let F = 0;
 
                     if (attendance_data !== null) {
-                        $('#attendance_id').val(attendance_data[0].id);
+                        // $('#attendance_id').val(attendance_data[0].id);
                         // console.log(attendance_data[0][day[index]]);
                         $('.attendance').each(function() {
                             $(this).val(attendance_data[0][day[index]]).trigger('blur');
@@ -368,6 +371,19 @@
                             }
                             index++;
                         })
+                        let index_two = 0;
+                        $('.attendance_timestamp_id').each(function() {
+                            // console.log(attendance_timestamp_data);
+                            if (attendance_timestamp_data[index_two] !== undefined) {
+                                // console.log('id is' + attendance_timestamp_data[index_two].id);
+                                $(this).val(attendance_timestamp_data[index_two].id);
+                            } else {
+                                // $(this).val('');
+                                return false;
+                            }
+                            index_two++;
+                        })
+
                         $('#A').text(A);
                         $('#P').text(P);
                         $('#L').text(L);
@@ -385,47 +401,38 @@
                         $('#total_payable').val(`${(salary - (advance + absent_deduction_two)).toLocaleString('en-IN')}/-`);
 
 
-                        if (attendance_timestamp !== null) {
-                            attendance_timestamp.forEach(function(item) {
-                                console.log('10 days' + item);
-                                let date = new Date(item.attendance_datetime).toLocaleDateString();
-                                let time = new Date(item.attendance_datetime).toLocaleTimeString();
-                                let status = item.status;
-                                let html = `<tr>
+                        if (attendance_timestamp_data !== null) {
+                            $timer = 0;
+                            $('#attendance_timestamp_10_days').empty();
+                            attendance_timestamp_data.forEach(function(item) {
+                                if (timer < 11) {
+                                    let date = new Date(item.attendance_datetime).toLocaleDateString();
+                                    let time = new Date(item.attendance_datetime).toLocaleTimeString();
+                                    let status = item.status;
+                                    let html = `<tr>
                                             <td>${date}</td>
                                             <td>${time}</td>
                                             <td>06.00</td>
                                             <td>12 Hours</td>
                                             <td>Present</td>
                                         </tr>`;
-                                $('#attendance_timestamp_10_days').append(html);
+                                    $('#attendance_timestamp_10_days').append(html);
+                                }
+                                $timer++;
                             })
                         }
-
-                        $.ajax({
-                            url: "{{ route('attendance.timestamps_get') }}",
-                            type: "POST",
-                            data: {
-                                attendance_datetime: attendance_data[0].month,
-                                // attendance_day: new Date(attendance_data[0].month).getDate(),
-                                emp_attendance_id: attendance_data[0].id,
-                                _token: "{{ csrf_token() }}"
-                            },
-                            success: function({
-                                timestamp_id
-                            }) {
-                                console.log(timestamp_id);
-                                if (timestamp_id) {
-                                    $('#attendance_timestamp').val(timestamp_id.id);
-                                } else {
-                                    $('#attendance_timestamp').val('');
+                    } else {
+                        let index_two = 0;
+                        $('.attendance_timestamp_id').each(function() {
+                            if (!attendance_timestamp_data) {
+                                if ($(this).val()) {
+                                    $(this).val('');
                                 }
                             }
+                            index_two++;
                         })
-
-                    } else {
                         $('#attendance_id').val('');
-                        $('#attendance_timestamp').val('');
+
                         $('.attendance').each(function() {
                             $(this).val('').trigger('blur');
                             $('#total_days').text(0);
@@ -530,6 +537,7 @@
             let attendance_text = $(this).val();
             let attendance_datetime = $('#attendanc_picker').val();
             let id = $('#attendance_id').val();
+            let attendance_timestamp_id = parent_td.find('.attendance_timestamp_id').val();
 
             $.ajax({
                 url: "{{ route('attendance.daily_attendance_store') }}",
@@ -540,32 +548,20 @@
                     attendance_text,
                     attendance_datetime,
                     id,
+                    attendance_timestamp_id,
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(data) {
                     console.log(data);
                     if (data.status == 200) {
                         $('#attendance_id').val(data.last_id);
+                        parent_td.find('.attendance_timestamp_id').val(data.last_timestamp_id);
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
                             title: 'Attendance Updated',
                             showConfirmButton: false,
                             timer: 1500
-                        })
-                        $.ajax({
-                            url: "{{ route('attendance.timestamps') }}",
-                            type: "POST",
-                            data: {
-                                attendance_datetime,
-                                emp_attendance_id: data.last_id,
-                                id: $('#attendance_timestamp').val(),
-                                _token: "{{ csrf_token() }}"
-                            },
-                            success: function(data) {
-                                console.log(data);
-                                // $('#attendance_timestamp').val(data.timestamp_id);
-                            }
                         })
                     }
                 }

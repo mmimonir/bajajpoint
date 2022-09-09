@@ -15,10 +15,12 @@ class AttendanceController extends Controller
         $month = Carbon::parse($request->attendance_timestamp)->month ?? Carbon::now()->month;
         $year = Carbon::parse($request->attendance_timestamp)->year ?? Carbon::now()->year;
         // $day = Carbon::parse($request->attendance_timestamp)->day ?? Carbon::now()->day;
+
+
         $attendance_data = EmployeeAttendance::select('*')
             ->where('emp_id', $request->emp_id)
-            ->whereYear('month', $year)
             ->whereMonth('month', $month)
+            ->whereYear('month', $year)
             // ->whereDay('month', $day)
             ->get();
         $emp_data = Employee::select('*')->where('id', $request->emp_id)->first();
@@ -26,12 +28,12 @@ class AttendanceController extends Controller
         if ($attendance_data->count() > 0) {
             $timestamptable_id = $attendance_data[0]->id;
 
-            $attendance_timestamp = EmployeeTimestamp::select('*')
+            $attendance_timestamp_data = EmployeeTimestamp::select('*')
                 ->where('emp_attendance_id', $timestamptable_id)
                 ->whereYear('attendance_datetime', $year)
                 ->whereMonth('attendance_datetime', $month)
                 ->orderBy('attendance_datetime', 'asc')
-                ->limit(10)
+                // ->limit(10)
                 ->get();
         }
 
@@ -41,7 +43,7 @@ class AttendanceController extends Controller
                 'message' => 'Attendance data found',
                 'attendance_data' => $attendance_data,
                 'emp_data' => $emp_data,
-                'attendance_timestamp' => $attendance_timestamp ?? null,
+                'attendance_timestamp_data' => $attendance_timestamp_data ?? null,
             ]);
         } else {
             return response()->json([
@@ -49,14 +51,14 @@ class AttendanceController extends Controller
                 'message' => 'Attendance data not found',
                 'attendance_data' => null,
                 'emp_data' => null,
-                'attendance_timestamp' => null
+                'attendance_timestamp_data' => null
             ]);
         }
-        // return response()->json(['attendance_data' => $attendance_data]);
     }
 
     public function daily_attendance_store(Request $request)
     {
+
         try {
             $last_id = EmployeeAttendance::updateOrCreate(
                 [
@@ -75,10 +77,21 @@ class AttendanceController extends Controller
                 ]
             )->id;
 
+            $last_timestamp_id = EmployeeTimestamp::updateOrCreate(
+                [
+                    'id' => $request->attendance_timestamp_id,
+                ],
+                [
+                    'emp_attendance_id' => $last_id,
+                    'attendance_datetime' => $request->attendance_datetime,
+                ]
+            )->id;
+
             return response()->json([
                 'status' => 200,
                 'message' => 'Attendance updated successfully',
-                'last_id' => $last_id
+                'last_id' => $last_id,
+                'last_timestamp_id' => $last_timestamp_id,
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -130,28 +143,10 @@ class AttendanceController extends Controller
             ->whereDay('attendance_datetime', $day)
             ->first();
 
-        // return response()->json($request->all());
-
         return response()->json([
             'status' => 200,
             'message' => 'Timestamp data found',
             'timestamp_id' => $timestamp_id ?? null,
         ]);
     }
-    // public function get_attendance_log_last_10_days(Request $request)
-    // {
-    //     $month = Carbon::parse($request->datetimestamp)->month;
-
-    //     $attendance_data = EmployeeTimestamp::select('*')
-    //         ->whereMonth('attendance_datetime', $month)
-    //         ->where('emp_attendance_id', $request->emp_id)
-    //         ->orderBy('id', 'desc')
-    //         ->limit(10)
-    //         ->get();
-    //     return response()->json([
-    //         'status' => 200,
-    //         'message' => 'Attendance data found',
-    //         'attendance_data' => $attendance_data,
-    //     ]);
-    // }
 }
