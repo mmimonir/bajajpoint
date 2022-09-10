@@ -15,7 +15,7 @@ class AttendanceController extends Controller
         $month = Carbon::parse($request->attendance_timestamp)->month ?? Carbon::now()->month;
         $year = Carbon::parse($request->attendance_timestamp)->year ?? Carbon::now()->year;
         // $day = Carbon::parse($request->attendance_timestamp)->day ?? Carbon::now()->day;
-
+        // dd($request->attendance_timestamp);
 
         $attendance_data = EmployeeAttendance::select('*')
             ->where('emp_id', $request->emp_id)

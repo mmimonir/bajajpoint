@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" />
 @endsection
 @push('page_css')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <style>
     .select {
         margin: 0;
@@ -28,11 +29,38 @@
     h5 {
         font-weight: bold;
     }
+
+    .select2-container--default {
+        width: 100% !important;
+
+    }
+
+    #select2-emp_id_attendance-container {
+        line-height: 17px !important;
+    }
+
+    #select2-h6s3-container {
+        line-height: 17px !important;
+    }
+
+    table {
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: bold;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 17px !important;
+    }
 </style>
 @endpush
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid" id="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card card-success collapsed-card">
@@ -51,25 +79,16 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form id="employee_search">
-                        @csrf
-                        <div class="form-inline justify-content-center align-items-center">
-                            <div class="form-group">
-                                <label for="exampleSelect">Select an Employee</label>
-                                <select class="form-control employee_list" style="width:200px;margin-left:15px;" id="emp_id_search">
+                    <table>
+                        <tr>
+                            <td>Select an Employee</td>
+                            <td style="width: 250px;">
+                                <select class="form-control employee_list emp_id_search select2" style="margin-left:15px;">
 
                                 </select>
-                            </div>
-                            <div class="form-group" style="margin-left:15px;">
-                                <label for="exampleSelect">Select an Year</label>
-                                <select name="attendance_year" class="form-control" id="attendance_year" style="width:100px;margin-left:15px;">
-                                    <option selected>
-                                        Year
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="form-group" style="margin-left:15px;">
-                                <label for="exampleSelect">Select an Month</label>
+                            </td>
+                            <td>Select an Month</td>
+                            <td>
                                 <select name="attendance_month" class="form-control" id="attendance_month" style="width:100px;margin-left:15px;">
                                     <option selected>
                                         Month
@@ -111,12 +130,20 @@
                                         December
                                     </option>
                                 </select>
-                            </div>
-                            <div class="form-group" style="margin-left:15px;">
-                                <button type="submit" class="btn btn-dark">Load Attendance</button>
-                            </div>
-                        </div>
-                    </form>
+                            </td>
+                            <td>Select an Year</td>
+                            <td>
+                                <select name="attendance_year" class="form-control" id="attendance_year" style="width:100px;margin-left:15px;">
+                                    <option selected>
+                                        Year
+                                    </option>
+                                </select>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success" id="emp_id_search">Search</button>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -146,8 +173,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <select class="form-control employee_list" id="emp_id_attendance">
+                                    <td style="width:250px;">
+                                        <select class="form-control employee_list emp_id_attendance select2" id="emp_id_attendance">
 
                                         </select>
                                         <input type="hidden" id="attendance_id" value="">
@@ -292,30 +319,45 @@
 @endsection
 
 @section('datatable')
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 @endsection
 
 @section('script')
 
 <script>
     $(document).ready(function() {
-        $(document).on('submit', '#employee_search', function(e) {
-            e.preventDefault();
-            let form_data = $(this).serialize();
-            console.log(form_data);
-        })
+        $('.select2').select2();
 
         $(document).on('change', '#emp_id_attendance', function() {
             let emp_id = $(this).val();
             let attendance_timestamp = $('#attendanc_picker').val();
+            $("#container-fluid :input").prop("disabled", false);
+            attendance_emp_id_change(emp_id, attendance_timestamp);
+        })
 
+        $(document).on('click', '#emp_id_search', function() {
+            _this = $(this).parent().parent();
+            let day = new Date().getDate();
+            let month = $('#attendance_month').val();
+            let year = $('#attendance_year').val();
+
+            let emp_id = _this.find('.emp_id_search').val();
+            let attendance_timestamp = new Date(year + '-' + month + '-' + day).toISOString().slice(0, 10);
+            // alert(month);
+            // return;            
+
+            attendance_emp_id_change(emp_id, attendance_timestamp, function() {
+                $("#container-fluid :input").prop("disabled", true);
+                $("#emp_id_attendance").prop("disabled", false);
+                $('#attendance_month').prop("disabled", false);
+                $('#attendance_year').prop("disabled", false);
+                $('.emp_id_search').prop("disabled", false);
+                $('#emp_id_search').prop("disabled", false);
+            });
+        })
+
+        function attendance_emp_id_change(emp_id, attendance_timestamp, cb) {
             $.ajax({
                 url: "{{ route('attendance.attendance_by_id') }}",
                 type: "POST",
@@ -330,6 +372,8 @@
                     attendance_timestamp_data,
 
                 }) {
+                    // console.log(attendance_data);
+
                     // console.log(attendance_timestamp_data[0].id);
                     let day = [
                         'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
@@ -346,6 +390,9 @@
                     let F = 0;
 
                     if (attendance_data !== null) {
+                        cb();
+                        // $(".select2").select2().select2('val', emp_id).trigger('focus');
+                        // $('#emp_id_attendance').val(emp_id);
                         // $('#attendance_id').val(attendance_data[0].id);
                         // console.log(attendance_data[0][day[index]]);
                         $('.attendance').each(function() {
@@ -400,9 +447,13 @@
                         let absent_deduction_two = +$('#absent_deduction').val().replace(/,/g, '').replace('/-', '');
                         $('#total_payable').val(`${(salary - (advance + absent_deduction_two)).toLocaleString('en-IN')}/-`);
 
+                        let {
+                            format,
+                            parseISO
+                        } = date_fns;
 
                         if (attendance_timestamp_data !== null) {
-                            $timer = 0;
+                            let timer = 0;
                             $('#attendance_timestamp_10_days').empty();
                             attendance_timestamp_data.forEach(function(item) {
                                 if (timer < 11) {
@@ -410,7 +461,7 @@
                                     let time = new Date(item.attendance_datetime).toLocaleTimeString();
                                     let status = item.status;
                                     let html = `<tr>
-                                            <td>${date}</td>
+                                            <td>${format(parseISO(item.attendance_datetime), "dd-MM-yyyy")}</td>
                                             <td>${time}</td>
                                             <td>06.00</td>
                                             <td>12 Hours</td>
@@ -418,10 +469,11 @@
                                         </tr>`;
                                     $('#attendance_timestamp_10_days').append(html);
                                 }
-                                $timer++;
+                                timer++;
                             })
                         }
                     } else {
+                        $('#attendance_timestamp_10_days').empty();
                         let index_two = 0;
                         $('.attendance_timestamp_id').each(function() {
                             if (!attendance_timestamp_data) {
@@ -450,7 +502,10 @@
                     }
                 }
             })
-        })
+
+        }
+
+
 
         function calculate_attendance() {
             let salary = +$('#salary').val().replace(/,/g, '').replace('/-', '');
