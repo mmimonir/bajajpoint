@@ -1,12 +1,25 @@
 1 inch = 136px
 
 TODO:
-* cores table column added- 1. owner_type, 2. hire_purchage
+* cores table column added for Hform- 1. owner_type, 2. hire_purchage
 
 * cores table column will removed- 
     model, commission, tr_amount, chassis_no, engine_no, color, coupon, full_address,
     rg_duration, rg_amount, combine, combine_code, print_ref, chassis_convert, ckd_folder
     timestamp, is_rebate, name_change_details, change_date
 
-Pending Work Later:
-    1. Attendence Sheet
+PENDING:
+A. Accounts Section
+    a. Accounts
+    b. Daily Expensess
+
+B. Expensess Table - expensess
+    -> id, exp_date, exp_amount, exp_category_id, exp_note, expense_by, created_at, updated_at
+C. Expensess Category - expensess_heads
+    -> id, fuel_cost, salary, rent, electricity_card, telephone_bill, internet_bill, conveyance
+    sale_vat, commission, profit_share, printing, stationary, parts_damage, banner, advertisement, 
+    showroom_decoration, capital_expensess, transport, painting, others        
+
+D. Ladger Transaction- transaction_ladger
+    -> id, trans_date, opening_balance, trans_reference, description, debit, credit, balance
+    
