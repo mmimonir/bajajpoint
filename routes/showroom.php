@@ -133,8 +133,12 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
     // Route::post('/ckd_update', [App\Http\Controllers\CKDController::class, 'ckd_update'])->name('ckd.update');
 
     // Utility
-    Route::post('/assessment_year', [App\Http\Controllers\Showroom\UtilityController::class, 'assessment_year'])->name('utility.assessment_year');
-    Route::get('/download', [App\Http\Controllers\Showroom\UtilityController::class, 'download'])->name('utility.download');
+    Route::controller(App\Http\Controllers\Showroom\UtilityController::class)->group(function () {
+        Route::post('/assessment_year', 'assessment_year')->name('utility.assessment_year');
+        Route::get('/download', 'download')->name('utility.download');
+        Route::get('/ladger', 'ladger')->name('utility.ladger');
+    });
+
 
     // Quotation
     Route::controller(App\Http\Controllers\Showroom\QuotationController::class)->group(function () {

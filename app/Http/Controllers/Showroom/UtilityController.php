@@ -32,4 +32,8 @@ class UtilityController extends Controller
         }
         return response()->download($latest_filename);
     }
+    public function ladger()
+    {
+        return view('dms.ladger.ladger');
+    }
 }

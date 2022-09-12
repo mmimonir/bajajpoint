@@ -390,7 +390,6 @@
                     let F = 0;
 
                     if (attendance_data !== null) {
-                        cb();
                         // $(".select2").select2().select2('val', emp_id).trigger('focus');
                         // $('#emp_id_attendance').val(emp_id);
                         // $('#attendance_id').val(attendance_data[0].id);
@@ -472,6 +471,7 @@
                                 timer++;
                             })
                         }
+                        cb();
                     } else {
                         $('#attendance_timestamp_10_days').empty();
                         let index_two = 0;
