@@ -137,6 +137,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
         Route::post('/assessment_year', 'assessment_year')->name('utility.assessment_year');
         Route::get('/download', 'download')->name('utility.download');
         Route::get('/ladger', 'ladger')->name('utility.ladger');
+        Route::get('/get_trans_data', 'get_trans_data')->name('utility.get_trans_data');
     });
 
 
