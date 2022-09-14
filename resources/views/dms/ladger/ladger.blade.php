@@ -22,8 +22,8 @@
                                     <th class="align-middle">Sl</th>
                                     <th class="align-middle">Date</th>
                                     <th class="align-middle">Description</th>
-                                    <th class="align-middle">Credit</th>
                                     <th class="align-middle">Debit</th>
+                                    <th class="align-middle">Credit</th>
                                     <th class="align-middle">Balance</th>
                                 </tr>
                             </thead>
@@ -53,24 +53,46 @@
 @section('script')
 <script>
     $(document).ready(function() {
-        var html = `<tr>
-                        <td class="text-center">01</td>
-                        <td>01.01.2022</td>
-                        <td>Cash Withdrawal</td>
-                        <td>0</td>
-                        <td>1000</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">02</td>
-                        <td>01.01.2022</td>
-                        <td>Cash Withdrawal</td>
-                        <td>0</td>
-                        <td>1000</td>
-                        <td>0</td>
-                    </tr>
-                    `;
-        $('#tbody').append(html);
+        function load_trans_data() {
+            $.ajax({
+                url: "{{ route('utility.get_trans_data') }}",
+                method: "get",
+                success: function({
+                    trans_data
+                }) {
+                    if (trans_data) {
+                        var html = '';
+                        let balance = 0;
+                        trans_data.forEach(function(data, index) {
+                            if (data.trans_type == 'credit') {
+                                balance += data.trans_amount;
+                            } else {
+                                balance -= data.trans_amount;
+                            }
+                            html += `<tr>
+                                        <td class="text-center">${index + 1}</td>
+                                        <td>${data.trans_date}</td>
+                                        <td>${data.trans_description}</td>
+                                        <td class="text-right">${data.trans_type == 'debit' ? '-' + data.trans_amount.toLocaleString("en-IN") : 0}</td>
+                                        <td class="text-right">${data.trans_type == 'credit' ? data.trans_amount.toLocaleString("en-IN") : 0}</td>
+                                        <td class="text-right">${balance.toLocaleString("en-IN")}</td>
+                                    </tr>`;
+                        })
+                        $('#tbody').append(html);
+                        $("#example").DataTable({
+                            pageLength: 10,
+                            responsive: true,
+                            lengthChange: true,
+                            dom: '<"html5buttons"B>lTfgitp',
+                            buttons: [
+                                'copy', 'csv', 'excel', 'pdf', 'print'
+                            ]
+                        });
+                    }
+                },
+            });
+        }
+        load_trans_data();
     });
 </script>
 @endsection

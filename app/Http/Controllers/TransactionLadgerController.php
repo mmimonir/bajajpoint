@@ -11,6 +11,7 @@ class TransactionLadgerController extends Controller
     {
         $trans_data = TransactionLadger::select('*')
             ->where('client_id', 1)
+            ->whereBetween('trans_date', ["2021-01-01", "2021-01-04"])
             ->get();
 
         return response()->json(
