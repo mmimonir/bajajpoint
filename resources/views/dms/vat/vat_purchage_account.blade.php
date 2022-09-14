@@ -22,7 +22,8 @@
             border-collapse: collapse;
         }
 
-        td {
+        td,
+        th {
             padding: 5px;
         }
 
@@ -152,7 +153,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>01</td>
+                    <td class="text_center">01</td>
                     <td class="text_center">25.07.2022</td>
                     <td class="text_center">4</td>
                     <td class="text_right">5,72,200/-</td>
