@@ -196,6 +196,12 @@
                 <p class="text-white">Ladger</p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{route('vat.vat_purchage_homepage')}}" class="nav-link" target="_blank">
+                <i class="nav-icon fas fa-file"></i>
+                <p class="text-white">Mushak 6.1</p>
+            </a>
+        </li>
         <li class="nav-item bg-danger rounded">
             <a href="{{route('service.dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-user-cog text-white"></i>

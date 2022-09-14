@@ -54,6 +54,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::post('/timestamp_create_or_update',  'timestamp_create_or_update')->name('attendance.timestamps');
         Route::post('/attendance_timestamp_get',  'attendance_timestamp_get')->name('attendance.timestamps_get');
     });
+    Route::controller(App\Http\Controllers\VATPurchageAccountController::class)->group(function () {
+        Route::get('/vat_purchage_homepage',  'vat_purchage_homepage')->name('vat.vat_purchage_homepage');
+    });
 });
 
 
