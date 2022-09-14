@@ -1,8 +1,13 @@
 1 inch = 136px
 
+Localhost
 mysqldump -h localhost -u root -p bajajpoint  > bajajpoint.sql
 mysql -h localhost -u root -p bajajpoint < bajajpoint.sql
+
+Server
 mysql -u mmimoni2_mmimonir -pAliflammim7 -h 23.106.120.170 -P 3306 mmimoni2_bajajpoint < bajajpoint.sql
+mysqldump -u mmimoni2_mmimonir -pAliflammim7 -h 23.106.120.170 -P 3306 mmimoni2_bajajpoint > bajajpoint.sql
+
 
 TODO:
 * cores table column added for Hform- 1. owner_type, 2. hire_purchage
