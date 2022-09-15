@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\VAT;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Showroom\Core;
 use Illuminate\Support\Facades\DB;
 
 class VATPurchageAccountController extends Controller
 {
-    public function vat_purchage_homepage()
+    public function vat_purchage_homepage(Request $request)
     {
         $vat_data = $this->vat_sale_by_model();
         // return response()->json($vat_data);
