@@ -72,18 +72,7 @@
 </head>
 
 <body>
-    @foreach ($vat_data as $models => $model)
-    <p>{{$models}}</p>
-    @foreach ($model as $months => $mushaks)
-    <p>{{$months}}</p>
-    @foreach ($mushaks as $mushaks => $mushak_no)
-    <p>{{$mushaks}}</p>
-    @foreach ($mushak_no as $item => $data)
-    <p>{{$data->customer_name}}</p>
-    @endforeach
-    @endforeach
-    @endforeach
-    @endforeach
+
 
     <div class="vat_purchage_container">
         <div class="header_content">
@@ -121,9 +110,9 @@
                     <th rowspan="2" class="align-middle">পরিমান একক</th>
                     <th rowspan="2" class="align-middle">মূল্য (সকল প্রকার কর ব্যতীত)</th>
                     <th rowspan="2" class="align-middle">চালান পত্র/বিল অব এন্ট্রি নং</th>
-                    <th rowspan="2" class="align-middle">তারিখ</th>
+                    <th style="width:105px;" rowspan="2" class="align-middle">তারিখ</th>
                     <th colspan="3" class="align-middle">বিক্রেতা/সরবরাহকারী</th>
-                    <th style="width:250px;" rowspan="2" class="align-middle">বিবরণ</th>
+                    <th style="width:280px;" rowspan="2" class="align-middle">বিবরণ</th>
                     <th rowspan="2" class="align-middle">পরিমাণ</th>
                     <th rowspan="2" class="align-middle">মূল্য (সকল প্রকার কর ব্যতীত)</th>
                     <th rowspan="2" class="align-middle">সম্পূরক শুল্ক (যদি থাকে)</th>
@@ -165,29 +154,47 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($vat_data as $models => $model)
+                <!-- <p>{{$models}}</p> -->
+                @foreach ($model as $months => $mushaks)
+                <!-- <p>{{$months}}</p> -->
+                @foreach ($mushaks as $mushaks => $mushak_no)
                 <tr>
-                    <td class="text_center">01</td>
-                    <td class="text_center">25.07.2022</td>
-                    <td class="text_center">4</td>
-                    <td class="text_right">5,72,200/-</td>
-                    <td class="text_center">141</td>
-                    <td class="text_center">26.07.2022</td>
+                    <td class="text_center"></td>
+                    <td class="text_center"></td>
+                    <td class="text_center"></td>
+                    <td class="text_right"></td>
+                    <td class="text_center">{{$mushaks}}</td>
+                    <td class="text_center">{{date('d-m-Y', strtotime($mushak_no[0]->mushak_date))}}</td>
                     <td class="">UTTARA MOTORS LTD</td>
                     <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
                     <td class="text_center">000406452-0203</td>
-                    <td class="">DISCOVER 125 DISC</td>
-                    <td class="text_center">9</td>
-                    <td class="text_right">10,57,891/-</td>
-                    <td class="text_right">0</td>
-                    <td class="text_right">1,58,684/-</td>
-                    <td class="text_center">13</td>
-                    <td class="text_right">15,27,270/-</td>
-                    <td class="text_center">2</td>
-                    <td class="text_right">2,53,560/-</td>
-                    <td class="text_center">11</td>
-                    <td class="text_right">9,52,150/-</td>
+                    <td class="">{{$models}}</td>
+                    <td class="text_center"></td>
+                    <td class="text_right"></td>
+                    <td class="text_right"></td>
+                    <td class="text_right"></td>
+                    <td class="text_center"></td>
+                    <td class="text_right"></td>
+                    <td class="text_center"></td>
+                    <td class="text_right"></td>
+                    <td class="text_center"></td>
+                    <td class="text_right"></td>
                     <td></td>
                 </tr>
+                @foreach ($mushak_no as $item => $data)
+                <!-- <p>{{$data->customer_name}}</p> -->
+                @endforeach
+
+                @endforeach
+                <tr>
+                    <td colspan="21"></td>
+                </tr>
+                @endforeach
+                <tr>
+                    <td colspan="21"></td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
