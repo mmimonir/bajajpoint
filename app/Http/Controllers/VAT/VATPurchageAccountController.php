@@ -26,6 +26,7 @@ class VATPurchageAccountController extends Controller
 
         $data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
             ->select(
+                'cores.id',
                 'cores.customer_name',
                 'cores.model_code',
                 'cores.full_address',
@@ -39,12 +40,14 @@ class VATPurchageAccountController extends Controller
                 'cores.unit_price_vat',
                 'vehicles.model',
                 'cores.uml_mushak_no',
+                'cores.uml_mushak_no',
                 'cores.mushak_date',
                 DB::raw('MONTH(cores.mushak_date) as month'),
-
+                DB::raw('1 as quantity')
             )
             ->where('cores.vat_code', "=", $vat_code)
             ->whereBetween('cores.mushak_date', [$start_date, $end_date])
+            // ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
             ->orderBy('cores.uml_mushak_no', 'asc')
             ->get()
             ->groupBy(['model', 'month', 'uml_mushak_no']);

@@ -154,9 +154,11 @@
                 </tr>
             </thead>
             <tbody>
+
                 @foreach ($vat_data as $models => $model)
                 <!-- <p>{{$models}}</p> -->
                 @foreach ($model as $months => $mushaks)
+
                 <!-- <p>{{$months}}</p> -->
                 @foreach ($mushaks as $mushaks => $mushak_no)
                 <tr>
@@ -170,7 +172,15 @@
                     <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
                     <td class="text_center">000406452-0203</td>
                     <td class="">{{$models}}</td>
-                    <td class="text_center"></td>
+                    <td class="text_center">
+                        @php
+                        $total_quantity = 0;
+                        foreach ($mushak_no as $mushak) {
+                        $total_quantity += $mushak->quantity;
+                        }
+                        @endphp
+                        {{$total_quantity}}
+                    </td>
                     <td class="text_right"></td>
                     <td class="text_right"></td>
                     <td class="text_right"></td>
@@ -183,7 +193,7 @@
                     <td></td>
                 </tr>
                 @foreach ($mushak_no as $item => $data)
-                <!-- <p>{{$data->customer_name}}</p> -->
+                <!-- <p>{{$data->quantity}}</p> -->
                 @endforeach
 
                 @endforeach
