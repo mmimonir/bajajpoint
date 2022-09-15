@@ -71,6 +71,19 @@
 </head>
 
 <body>
+    @foreach ($vat_data as $models => $model)
+    <p>{{$models}}</p>
+    @foreach ($model as $months => $mushaks)
+    <p>{{$months}}</p>
+    @foreach ($mushaks as $mushaks => $mushak_no)
+    <p>{{$mushaks}}</p>
+    @foreach ($mushak_no as $item => $data)
+    <p>{{$data->customer_name}}</p>
+    @endforeach
+    @endforeach
+    @endforeach
+    @endforeach
+
     <div class="vat_purchage_container">
         <div class="header_content">
             <div class="left_content">
