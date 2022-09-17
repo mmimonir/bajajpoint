@@ -154,30 +154,57 @@
                 </tr>
             </thead>
             <tbody>
-
+                @php
+                $purchage_quantity = 0;
+                $sl = 1;
+                @endphp
+                @foreach ($purchage_data as $models => $model)
+                @foreach ($model as $months => $mushaks)
+                @foreach ($mushaks as $mushaks => $mushak_no)
                 <tr>
-                    <td class="text_center"></td>
-                    <td class="text_center"></td>
+                    <td class="text_center">{{$sl}}</td>
+                    <td class="text_center">{{date('d-m-Y', strtotime($mushak_no[0]->mushak_date))}}</td>
                     <td class="text_center"></td>
                     <td class="text_right"></td>
-                    <td class="text_center"></td>
-                    <td class="text_center"></td>
+                    <!-- <td class="text_center">{{$mushaks}}</td> -->
+                    <td class="text_center">{{$mushak_no[0]->uml_mushak_no}}</td>
+                    <td class="text_center">{{date('d-m-Y', strtotime($mushak_no[0]->mushak_date))}}</td>
                     <td class="">UTTARA MOTORS LTD</td>
                     <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
                     <td class="text_center">000406452-0203</td>
-                    <td class=""></td>
-                    <td class="text_center"></td>
+                    <td class="">{{$models}}</td>
+                    <td class="text_center">
+                        @php
+                        $total_quantity = 0;
+                        $sl++;
+
+                        foreach ($mushak_no as $mushak) {
+                        $total_quantity += $mushak->quantity;
+                        $purchage_quantity += $mushak->quantity;
+                        }
+                        @endphp
+                        {{$total_quantity}}
+                    </td>
                     <td class="text_right"></td>
                     <td class="text_right"></td>
                     <td class="text_right"></td>
                     <td class="text_center"></td>
                     <td class="text_right"></td>
-                    <td class="text_center"></td>
+                    <td class="text_center">
+                        @php
+                        echo $sales_data['PULSAR 150 TWIN DISC GLOSSY'];
+                        @endphp
+                    </td>
                     <td class="text_right"></td>
                     <td class="text_center"></td>
                     <td class="text_right"></td>
                     <td></td>
                 </tr>
+                @foreach ($mushak_no as $item => $data)
+                <!-- <p>{{$data->quantity}}</p> -->
+                @endforeach
+
+                @endforeach
                 <tr>
                     <td></td>
                     <td></td>
@@ -190,6 +217,10 @@
                     <td></td>
                     <td></td>
                     <td style="text-align:center; font-weight:bold;">
+                        {{$purchage_quantity}}
+                        @php
+                        $purchage_quantity = 0;
+                        @endphp
                     </td>
                     <td></td>
                     <td></td>
@@ -202,6 +233,11 @@
                     <td></td>
                     <td></td>
                 </tr>
+                @endforeach
+                <!-- <tr>
+                    <td colspan="21"></td>
+                </tr> -->
+                @endforeach
             </tbody>
         </table>
     </div>

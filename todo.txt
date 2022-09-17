@@ -1,5 +1,39 @@
 1 inch = 136px
 
+<table class="table table-bordered">
+<thead>
+    <tr>
+        <td>Date</td>
+        <td>Description</td> 
+        <td>Debit</td>
+        <td>Credit</td>
+        <td>Balance</td>
+    </tr>
+</thead>
+<tbody>
+    @php
+        $balance = 0;
+    @endphp 
+    @foreach($data as $row)
+    @php
+        if($row['type'] == 'credit' ){
+            $balance += $row['amount'];
+        }
+        else{
+            $balance -= $row['amount'];
+        }
+    @endphp 
+        <tr>
+            <td>{{ $row['date'] }}</td>
+            <td>{{ $row['description'] }}</td>
+            <td>{{ $row['type'] == 'debit' ? $row['amount'] : 0 }}</td>
+            <td>{{ $row['type'] == 'credit' ? $row['amount'] : 0 }}</td>
+            <td>{{ $balance }}</td>
+        </tr>
+    @endforeach
+</tbody>
+</table>
+
 Localhost
 mysqldump -h localhost -u root -p bajajpoint  > bajajpoint.sql
 mysql -h localhost -u root -p bajajpoint < bajajpoint.sql
