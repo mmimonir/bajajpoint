@@ -11,11 +11,18 @@ class VATPurchageAccountController extends Controller
 {
     public function vat_purchage_homepage(Request $request)
     {
-        $vat_data = $this->vat_sale_by_model();
-        // return response()->json($vat_data);
-        return view('dms.vat.vat_purchage_account')->with('vat_data', $vat_data);
+        $purchage_data = $this->get_vat_purchage_data($request);
+        $sales_data = $this->get_vat_sale_data($request);
+
+        return response()->json($sales_data);
+
+        return view('dms.vat.vat_purchage_account')
+            ->with([
+                'purchage_data' => $purchage_data,
+                'sales_data' => $sales_data
+            ]);
     }
-    public function vat_sale_by_model()
+    public function get_vat_purchage_data($request)
     {
         // $vat_code = $request->vat_code;
         // $start_date = $request->start_date;
@@ -24,7 +31,7 @@ class VATPurchageAccountController extends Controller
         $start_date = '2022-05-01';
         $end_date = '2022-06-30';
 
-        $data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+        $purchage_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
             ->select(
                 'cores.id',
                 'cores.customer_name',
@@ -40,23 +47,49 @@ class VATPurchageAccountController extends Controller
                 'cores.unit_price_vat',
                 'vehicles.model',
                 'cores.uml_mushak_no',
-                'cores.uml_mushak_no',
                 'cores.mushak_date',
                 DB::raw('MONTH(cores.mushak_date) as month'),
                 DB::raw('1 as quantity')
             )
             ->where('cores.vat_code', "=", $vat_code)
             ->whereBetween('cores.mushak_date', [$start_date, $end_date])
-            // ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
             ->orderBy('cores.uml_mushak_no', 'asc')
             ->get()
             ->groupBy(['model', 'month', 'uml_mushak_no']);
 
+        // dd($data);
+        return $purchage_data;
+    }
+    public function get_vat_sale_data($request)
+    {
+        // $vat_code = $request->vat_code;
+        // $start_date = $request->start_date;
+        // $end_date = $request->end_date;
+        $vat_code = '2000';
+        $start_date = '2022-05-01';
+        $end_date = '2022-06-30';
 
+        $sale_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+            ->select(
+                'cores.id',
+                'cores.model_code',
+                'cores.vat_code',
+                'cores.vat_sale_date',
+                'cores.sale_mushak_no',
+                'cores.basic_price_vat',
+                'cores.sale_vat',
+                'cores.unit_price_vat',
+                'vehicles.model',
+                DB::raw('MONTH(cores.vat_sale_date) as month'),
+                DB::raw('1 as quantity')
+            )
+            ->where('cores.vat_code', "=", $vat_code)
+            ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
+            ->orderBy('cores.sale_mushak_no', 'asc')
+            ->get()
+            ->groupBy(['model', 'month']);
 
         // dd($data);
-        return $data;
-
-        return view('dms.html_print.vat.vat_sale_by_model')->with(['vat_data' => $data, 'vat_code' => $vat_code]);
+        return $sale_data;
     }
 }

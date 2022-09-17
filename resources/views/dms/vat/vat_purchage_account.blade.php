@@ -154,8 +154,7 @@
                 </tr>
             </thead>
             <tbody>
-
-                @foreach ($vat_data as $models => $model)
+                @foreach ($purchage_data as $models => $model)
                 <!-- <p>{{$models}}</p> -->
                 @foreach ($model as $months => $mushaks)
 
