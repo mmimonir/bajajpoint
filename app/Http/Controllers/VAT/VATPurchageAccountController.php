@@ -14,7 +14,8 @@ class VATPurchageAccountController extends Controller
         $purchage_data = $this->get_vat_purchage_data($request);
         $sales_data = $this->get_vat_sale_data($request);
 
-        return response()->json($sales_data);
+        // return response()->json($sales_data);
+        // return response()->json($purchage_data);
 
         return view('dms.vat.vat_purchage_account')
             ->with([
@@ -55,7 +56,8 @@ class VATPurchageAccountController extends Controller
             ->whereBetween('cores.mushak_date', [$start_date, $end_date])
             ->orderBy('cores.uml_mushak_no', 'asc')
             ->get()
-            ->groupBy(['model', 'month', 'uml_mushak_no']);
+            // ->groupBy(['model', 'month', 'mushak_date']);
+            ->groupBy(['model', 'month', 'mushak_date']);
 
         // dd($data);
         return $purchage_data;
@@ -87,7 +89,7 @@ class VATPurchageAccountController extends Controller
             ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
             ->orderBy('cores.sale_mushak_no', 'asc')
             ->get()
-            ->groupBy(['model', 'month']);
+            ->groupBy(['model', 'month', 'vat_sale_date']);
 
         // dd($data);
         return $sale_data;

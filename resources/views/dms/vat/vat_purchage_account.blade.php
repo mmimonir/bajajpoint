@@ -98,7 +98,7 @@
                 </tr>
                 <tr>
                     <th rowspan="3">ক্রমিক সংখ্যা</th>
-                    <th rowspan="3">তারিখ</th>
+                    <th rowspan="3" style="width:105px;">তারিখ</th>
                     <th colspan="2" class="align-middle">মজুদ উপকরণের প্রারম্ভিক জের</th>
                     <th colspan="10" class="align-middle">ক্রয়কৃত উপকরণ</th>
                     <th colspan="2" class="align-middle">মোট উপকরণের পরিমাণ</th>
@@ -162,10 +162,11 @@
                 @foreach ($mushaks as $mushaks => $mushak_no)
                 <tr>
                     <td class="text_center"></td>
-                    <td class="text_center"></td>
+                    <td class="text_center">{{date('d-m-Y', strtotime($mushak_no[0]->mushak_date))}}</td>
                     <td class="text_center"></td>
                     <td class="text_right"></td>
-                    <td class="text_center">{{$mushaks}}</td>
+                    <!-- <td class="text_center">{{$mushaks}}</td> -->
+                    <td class="text_center">{{$mushak_no[0]->uml_mushak_no}}</td>
                     <td class="text_center">{{date('d-m-Y', strtotime($mushak_no[0]->mushak_date))}}</td>
                     <td class="">UTTARA MOTORS LTD</td>
                     <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
