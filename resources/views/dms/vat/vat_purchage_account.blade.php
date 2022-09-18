@@ -153,6 +153,7 @@
                     <th>21</th>
                 </tr>
             </thead>
+            
             @php
             $day = strtotime($date_range['from']);
             $end = strtotime($date_range['to']);
@@ -165,12 +166,13 @@
 
             @php             
             $day=strtotime("+1 day", $day); 
-            @endphp 
+            @endphp            
             
             @endwhile 
             <tbody>
                 @foreach ($closing_quantity as $models => $model)
-                @if($model['closing_quantity']>0)
+                @if($model['closing_quantity']>0)                
+                <p>{{$model['model']}} = <span>{{$model['closing_quantity']}}</span></p>
                 <tr>
                     <td class="text_center"></td>
                     <td class="text_center"></td>
@@ -181,7 +183,11 @@
                     <td class="">UTTARA MOTORS LTD</td>
                     <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
                     <td class="text_center">000406452-0203</td>
-                    <td class=""></td>
+                    <td class="">
+                        @isset($purchage_data[$models])
+                        {{$models}}
+                        @endisset
+                    </td>
                     <td class="text_center"></td>
                     <td class="text_right"></td>
                     <td class="text_right"></td>
