@@ -154,25 +154,17 @@
                 </tr>
             </thead>
             
+            
+            <tbody>
             @php
             $day = strtotime($date_range['from']);
             $end = strtotime($date_range['to']);
             @endphp
 
-            @while($day <= $end) 
-            @if($day == strtotime('2022-07-05'))
-            <p>{{date('Y-m-d', $day)}}</p>
-            @endif
+            @while($day <= $end)            
 
-            @php             
-            $day=strtotime("+1 day", $day); 
-            @endphp            
-            
-            @endwhile 
-            <tbody>
                 @foreach ($closing_quantity as $models => $model)
                 @if($model['closing_quantity']>0)                
-                <p>{{$model['model']}} = <span>{{$model['closing_quantity']}}</span></p>
                 <tr>
                     <td class="text_center"></td>
                     <td class="text_center"></td>
@@ -202,6 +194,10 @@
                 </tr>
                 @endif
                 @endforeach
+                @php             
+            $day=strtotime("+1 day", $day); 
+            @endphp                        
+            @endwhile
                 <tr>
                     <td></td>
                     <td></td>
