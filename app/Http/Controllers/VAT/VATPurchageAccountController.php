@@ -16,7 +16,7 @@ class VATPurchageAccountController extends Controller
         $sales_data = $this->get_vat_sale_data($request);
         $closing_quantity = $this->vat_purchage_closing_quantity($request);
 
-        return response()->json($closing_quantity);
+        // return response()->json($closing_quantity);
         // return response()->json($purchage_data);
 
         return view('dms.vat.vat_purchage_account')
@@ -24,6 +24,10 @@ class VATPurchageAccountController extends Controller
                 'purchage_data' => $purchage_data,
                 'sales_data' => $sales_data,
                 'closing_quantity' => $closing_quantity,
+                'date_range' => [
+                    'from' => '2022-07-01',
+                    'to' => '2022-08-31',
+                ],
             ]);
     }
     public function vat_purchage_closing_quantity(Request $request)

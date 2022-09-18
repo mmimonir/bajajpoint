@@ -153,12 +153,16 @@
                     <th>21</th>
                 </tr>
             </thead>
-            <tbody>
-
+            @php
+            $start = $month = strtotime($date_range['from']);
+            $end = strtotime($date_range['to']);
+            while($month < $end) { echo date('d-m-Y', $month), PHP_EOL; $month=strtotime("+1 day", $month); } @endphp <tbody>
+                @foreach ($closing_quantity as $models => $model)
+                @if($model['closing_quantity']>0)
                 <tr>
                     <td class="text_center"></td>
                     <td class="text_center"></td>
-                    <td class="text_center"></td>
+                    <td class="text_center">{{$model['closing_quantity']}}</td>
                     <td class="text_right"></td>
                     <td class="text_center"></td>
                     <td class="text_center"></td>
@@ -178,6 +182,8 @@
                     <td class="text_right"></td>
                     <td></td>
                 </tr>
+                @endif
+                @endforeach
                 <tr>
                     <td></td>
                     <td></td>
@@ -202,7 +208,7 @@
                     <td></td>
                     <td></td>
                 </tr>
-            </tbody>
+                </tbody>
         </table>
     </div>
 </body>
