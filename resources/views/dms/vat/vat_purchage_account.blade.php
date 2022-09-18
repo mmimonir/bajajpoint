@@ -159,13 +159,17 @@
                 $end = strtotime($date_range['to']);
                 @endphp
 
-                @while($day <= $end) 
-                @php $day=strtotime("+1 day", $day); 
-                @endphp 
-                @endwhile 
+                
+                 
+                
                 
                 @foreach ($closing_quantity as $models=> $model)
                     @if($model['closing_quantity']>0)
+
+                    @php 
+                    $day=strtotime("+1 day", $day); 
+                    @endphp
+
                     <tr>
                         <td class="text_center"></td>
                         <td class="text_center"></td>
