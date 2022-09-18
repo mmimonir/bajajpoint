@@ -153,76 +153,75 @@
                     <th>21</th>
                 </tr>
             </thead>
-            
-            
             <tbody>
-            @php
-            $day = strtotime($date_range['from']);
-            $end = strtotime($date_range['to']);
-            @endphp
+                @php
+                $day = strtotime($date_range['from']);
+                $end = strtotime($date_range['to']);
+                @endphp
 
-            @while($day <= $end)            
+                @while($day <= $end) 
+                @php $day=strtotime("+1 day", $day); 
+                @endphp 
+                @endwhile 
+                
+                @foreach ($closing_quantity as $models=> $model)
+                    @if($model['closing_quantity']>0)
+                    <tr>
+                        <td class="text_center"></td>
+                        <td class="text_center"></td>
+                        <td class="text_center">{{$model['closing_quantity']}}</td>
+                        <td class="text_right"></td>
+                        <td class="text_center"></td>
+                        <td class="text_center"></td>
+                        <td class="">UTTARA MOTORS LTD</td>
+                        <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
+                        <td class="text_center">000406452-0203</td>
+                        <td class="">
+                            @isset($purchage_data[$models])
+                            {{$models}}
+                            @endisset
+                        </td>
+                        <td class="text_center"></td>
+                        <td class="text_right"></td>
+                        <td class="text_right"></td>
+                        <td class="text_right"></td>
+                        <td class="text_center"></td>
+                        <td class="text_right"></td>
+                        <td class="text_center"></td>
+                        <td class="text_right"></td>
+                        <td class="text_center"></td>
+                        <td class="text_right"></td>
+                        <td></td>
+                    </tr>
+                    @endif
+                    @endforeach
 
-                @foreach ($closing_quantity as $models => $model)
-                @if($model['closing_quantity']>0)                
-                <tr>
-                    <td class="text_center"></td>
-                    <td class="text_center"></td>
-                    <td class="text_center">{{$model['closing_quantity']}}</td>
-                    <td class="text_right"></td>
-                    <td class="text_center"></td>
-                    <td class="text_center"></td>
-                    <td class="">UTTARA MOTORS LTD</td>
-                    <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
-                    <td class="text_center">000406452-0203</td>
-                    <td class="">
-                        @isset($purchage_data[$models])
-                        {{$models}}
-                        @endisset
-                    </td>
-                    <td class="text_center"></td>
-                    <td class="text_right"></td>
-                    <td class="text_right"></td>
-                    <td class="text_right"></td>
-                    <td class="text_center"></td>
-                    <td class="text_right"></td>
-                    <td class="text_center"></td>
-                    <td class="text_right"></td>
-                    <td class="text_center"></td>
-                    <td class="text_right"></td>
-                    <td></td>
-                </tr>
-                @endif
-                @endforeach
-                @php             
-            $day=strtotime("+1 day", $day); 
-            @endphp                        
-            @endwhile
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td style="text-align:center; font-weight:bold;">
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align:center; font-weight:bold;">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+            </tbody>
         </table>
     </div>
 </body>

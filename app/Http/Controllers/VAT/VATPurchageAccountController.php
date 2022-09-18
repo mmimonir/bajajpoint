@@ -14,10 +14,13 @@ class VATPurchageAccountController extends Controller
     {
         $purchage_data = $this->get_vat_purchage_data($request);
         $sales_data = $this->get_vat_sale_data($request);
-        $closing_quantity = $this->vat_purchage_closing_quantity($request);
+        $closing_quantity = $this->vat_purchage_closing_quantity($request);        
+        
 
         // return response()->json($closing_quantity);
         // return response()->json($purchage_data);
+        
+        // dd($all_purchage_date);
 
         return view('dms.vat.vat_purchage_account')
             ->with([
@@ -119,6 +122,8 @@ class VATPurchageAccountController extends Controller
             ->orderBy('cores.uml_mushak_no', 'asc')
             ->get()
             ->groupBy(['model', 'month', 'mushak_date', 'uml_mushak_no']);
+
+            
 
         // dd($data);
         return $purchage_data;
