@@ -154,9 +154,21 @@
                 </tr>
             </thead>
             @php
-            $start = $month = strtotime($date_range['from']);
+            $day = strtotime($date_range['from']);
             $end = strtotime($date_range['to']);
-            while($month < $end) { echo date('d-m-Y', $month), PHP_EOL; $month=strtotime("+1 day", $month); } @endphp <tbody>
+            @endphp
+
+            @while($day <= $end) 
+            @if($day == strtotime('2022-07-05'))
+            <p>{{date('Y-m-d', $day)}}</p>
+            @endif
+
+            @php             
+            $day=strtotime("+1 day", $day); 
+            @endphp 
+            
+            @endwhile 
+            <tbody>
                 @foreach ($closing_quantity as $models => $model)
                 @if($model['closing_quantity']>0)
                 <tr>
