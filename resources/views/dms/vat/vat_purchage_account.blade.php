@@ -159,6 +159,7 @@
             <tbody>
                 @php
                 $gross_total = 0;                
+                $gross_total_rebate = 0;                
                 @endphp
                 
                 @foreach ($purchage_data as $models => $model)                
@@ -187,15 +188,16 @@
                                 $grand_total += $mushak->quantity;
                                 $gross_total += $mushak->quantity;
                                 $rebate_grand += $mushak->vat_rebate;
+                                $gross_total_rebate += $mushak->vat_rebate;
                                 }
                                 @endphp
                                 {{$total_quantity}}
                             </td>
                             <td class="text_right">
-                                {{number_format($total_quantity * $mushak->vat_rebate, 0)}}
+                            {{number_format($total_quantity * ($mushak->vat_rebate*100)/15, 0)}}
                             </td>
                             <td class="text_right"></td>
-                            <td class="text_right"></td>
+                            <td class="text_right">{{number_format($total_quantity * $mushak->vat_rebate, 0)}}</td>
                             <td class="text_center"></td>
                             <td class="text_right"></td>
                             <td class="text_center"></td>
@@ -217,9 +219,9 @@
                         <td></td>
                         <td></td>
                         <td class="text_center text_bold">{{$grand_total}}</td>
+                        <td class="text_right text_bold">{{number_format(($rebate_grand*100)/15, 0)}}</td>
+                        <td></td>
                         <td class="text_right text_bold">{{number_format($rebate_grand, 0)}}</td>
-                        <td></td>
-                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -242,9 +244,9 @@
                     <td></td>
                     <td></td>
                     <td class="text_center text_bold">{{$gross_total}}</td>
+                    <td class="text_right text_bold">{{number_format(($gross_total_rebate*100)/15,0)}}</td>
                     <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="text_right text_bold">{{number_format($gross_total_rebate,0)}}</td>
                     <td></td>
                     <td></td>
                     <td></td>

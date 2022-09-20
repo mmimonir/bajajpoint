@@ -14,12 +14,7 @@ class VATPurchageAccountController extends Controller
     {
         $purchage_data = $this->get_vat_purchage_data($request);
         $sales_data = $this->get_vat_sale_data($request);
-        $closing_quantity = $this->vat_purchage_closing_quantity($request);               
-
-        // return response()->json($closing_quantity);
-        // return response()->json($purchage_data);      
-        
-        
+        $closing_quantity = $this->vat_purchage_closing_quantity($request);
 
         return view('dms.vat.vat_purchage_account')
             ->with([
@@ -92,14 +87,13 @@ class VATPurchageAccountController extends Controller
         // $start_date = $request->start_date;
         // $end_date = $request->end_date;
         $vat_code = '2000';
-        $start_date = '2022-07-01';
+        $start_date = '2021-07-01';
         $end_date = '2022-08-31';
 
         $purchage_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
             ->select(
                 'cores.id',                
-                'cores.model_code',
-                'cores.full_address',
+                'cores.model_code',                
                 'cores.vat_code',                
                 'vehicles.model',
                 'cores.uml_mushak_no',
@@ -110,7 +104,7 @@ class VATPurchageAccountController extends Controller
             )
             ->where('cores.vat_code', "=", $vat_code)
             ->whereBetween('cores.mushak_date', [$start_date, $end_date])
-            ->orderBy('cores.uml_mushak_no', 'asc')            
+            ->orderBy('cores.mushak_date', 'asc')            
             ->get()
             ->groupBy(['model', 'month', 'uml_mushak_no']);            
             
