@@ -157,33 +157,40 @@
                 @php
                 $day = strtotime($date_range['from']);
                 $end = strtotime($date_range['to']);
-                @endphp
 
+                $purchage_model = '';
+                $purchage_quantity = 0;
                 
-                 
-                
+                @endphp                
                 
                 @foreach ($closing_quantity as $models=> $model)
                     @if($model['closing_quantity']>0)
-
-                    @php 
-                    $day=strtotime("+1 day", $day); 
-                    @endphp
-
                     <tr>
                         <td class="text_center"></td>
                         <td class="text_center"></td>
                         <td class="text_center">{{$model['closing_quantity']}}</td>
                         <td class="text_right"></td>
-                        <td class="text_center"></td>
-                        <td class="text_center"></td>
+                        <td class="text_center">
+                        
+                        </td>
+                        <td class="text_center">
+                        
+                        </td>
                         <td class="">UTTARA MOTORS LTD</td>
                         <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
                         <td class="text_center">000406452-0203</td>
-                        <td class="">
-                            @isset($purchage_data[$models])
-                            {{$models}}
-                            @endisset
+                        <td class="">                            
+                            @foreach($purchage_data as $purchage)
+                                @if($purchage->model_code == $model['model_code'])
+                                
+                                    @php
+                                    $purchage_model = $purchage->model;    
+                                    $purchage_quantity = $purchage_quantity+$purchage->quantity;
+                                    @endphp
+                                
+                                @endif
+                            @endforeach
+                            {{$purchage_model}}                            
                         </td>
                         <td class="text_center"></td>
                         <td class="text_right"></td>
@@ -198,9 +205,10 @@
                         <td></td>
                     </tr>
                     @endif
+                    @php 
+                    $day=strtotime("+1 day", $day); 
+                    @endphp
                     @endforeach
-
-
                     <tr>
                         <td></td>
                         <td></td>
