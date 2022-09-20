@@ -97,22 +97,14 @@ class VATPurchageAccountController extends Controller
 
         $purchage_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
             ->select(
-                'cores.id',
-                'cores.customer_name',
-                'cores.nid_no',
+                'cores.id',                
                 'cores.model_code',
                 'cores.full_address',
-                'cores.vat_code',
-                'cores.five_chassis',
-                'cores.five_engine',
-                'cores.vat_sale_date',
-                'cores.sale_mushak_no',
-                'cores.basic_price_vat',
-                'cores.sale_vat',
-                'cores.unit_price_vat',
+                'cores.vat_code',                
                 'vehicles.model',
                 'cores.uml_mushak_no',
                 'cores.mushak_date',
+                'cores.vat_rebate',
                 DB::raw('MONTH(cores.mushak_date) as month'),
                 DB::raw('1 as quantity')
             )

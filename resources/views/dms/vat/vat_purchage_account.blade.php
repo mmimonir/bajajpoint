@@ -1,5 +1,3 @@
-
-text/x-generic vat_purchage_account.blade.php ( HTML document, UTF-8 Unicode text )
 <!DOCTYPE html>
 <html lang="en">
 
@@ -160,73 +158,77 @@ text/x-generic vat_purchage_account.blade.php ( HTML document, UTF-8 Unicode tex
             </thead>
             <tbody>
                 @php
-                $gross_total = 0;
+                $gross_total = 0;                
                 @endphp
                 
                 @foreach ($purchage_data as $models => $model)                
-                @foreach ($model as $months => $mushaks)
-                    @php
-                    $grand_total = 0;
-                    @endphp
-                @foreach ($mushaks as $mushaks => $mushak_no)
-                <tr>
-                    <td class="text_center"></td>
-                    <td class="text_center"></td>
-                    <td class="text_center"></td>
-                    <td class="text_right"></td>
-                    <td class="text_center">{{$mushaks}}</td>
-                    <td class="text_center">{{date('d-m-Y', strtotime($mushak_no[0]->mushak_date))}}</td>
-                    <td class="">UTTARA MOTORS LTD</td>
-                    <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
-                    <td class="text_center">000406452-0203</td>
-                    <td class="">{{$models}}</td>
-                    <td class="text_center">
+                    @foreach ($model as $months => $mushaks)
                         @php
-                        $total_quantity = 0;
-                        foreach ($mushak_no as $mushak) {
-                        $total_quantity += $mushak->quantity;
-                        $grand_total += $mushak->quantity;
-                        $gross_total += $mushak->quantity;
-                        }
+                        $grand_total = 0;
+                        $rebate_grand = 0;
                         @endphp
-                        {{$total_quantity}}
-                    </td>
-                    <td class="text_right"></td>
-                    <td class="text_right"></td>
-                    <td class="text_right"></td>
-                    <td class="text_center"></td>
-                    <td class="text_right"></td>
-                    <td class="text_center"></td>
-                    <td class="text_right"></td>
-                    <td class="text_center"></td>
-                    <td class="text_right"></td>
-                    <td></td>
-                </tr>                
-                @endforeach
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text_center text_bold">{{$grand_total}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                @endforeach                
+                        @foreach ($mushaks as $mushaks => $mushak_no)
+                        <tr>
+                            <td class="text_center"></td>
+                            <td class="text_center"></td>
+                            <td class="text_center"></td>
+                            <td class="text_right"></td>
+                            <td class="text_center">{{$mushaks}}</td>
+                            <td class="text_center">{{date('d-m-Y', strtotime($mushak_no[0]->mushak_date))}}</td>
+                            <td class="">UTTARA MOTORS LTD</td>
+                            <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
+                            <td class="text_center">000406452-0203</td>
+                            <td class="">{{$models}}</td>
+                            <td class="text_center">
+                                @php
+                                $total_quantity = 0;
+                                foreach ($mushak_no as $mushak) {
+                                $total_quantity += $mushak->quantity;
+                                $grand_total += $mushak->quantity;
+                                $gross_total += $mushak->quantity;
+                                $rebate_grand += $mushak->vat_rebate;
+                                }
+                                @endphp
+                                {{$total_quantity}}
+                            </td>
+                            <td class="text_right">
+                                {{number_format($total_quantity * $mushak->vat_rebate, 0)}}
+                            </td>
+                            <td class="text_right"></td>
+                            <td class="text_right"></td>
+                            <td class="text_center"></td>
+                            <td class="text_right"></td>
+                            <td class="text_center"></td>
+                            <td class="text_right"></td>
+                            <td class="text_center"></td>
+                            <td class="text_right"></td>
+                            <td></td>
+                        </tr>                
+                        @endforeach
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text_center text_bold">{{$grand_total}}</td>
+                        <td class="text_right text_bold">{{number_format($rebate_grand, 0)}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    @endforeach                
                 @endforeach
                 <tr>
                     <td></td>
