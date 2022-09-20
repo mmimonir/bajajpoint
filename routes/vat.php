@@ -9,6 +9,6 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::group(['middleware' => ['web']], function () {
     Route::controller(App\Http\Controllers\VAT\VATPurchageAccountController::class)->group(function () {
-        Route::get('/vat_purchage_homepage',  'vat_purchage_homepage')->name('vat.vat_purchage_homepage');
+        Route::post('/vat_purchage_homepage',  'vat_purchage_homepage')->name('vat.vat_purchage_homepage');
     });
 });

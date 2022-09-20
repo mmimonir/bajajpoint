@@ -83,12 +83,12 @@ class VATPurchageAccountController extends Controller
     }
     public function get_vat_purchage_data($request)
     {
-        // $vat_code = $request->vat_code;
-        // $start_date = $request->start_date;
-        // $end_date = $request->end_date;
-        $vat_code = '2000';
-        $start_date = '2021-07-01';
-        $end_date = '2022-08-31';
+        $vat_code = $request->vat_code;
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+        // $vat_code = '2000';
+        // $start_date = '2021-07-01';
+        // $end_date = '2022-08-31';
 
         $purchage_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
             ->select(
