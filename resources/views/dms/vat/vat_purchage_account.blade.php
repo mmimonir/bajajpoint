@@ -155,44 +155,47 @@
             </thead>
             <tbody>
                 @php
-                $day = strtotime($date_range['from']);
-                $end = strtotime($date_range['to']);                
-                @endphp                
-                   
-                @foreach($purchage_data as $key => $purchage)                
-                    @foreach($purchage as $key2 => $item)
-                    
-                            <tr>
-                                <td class="text_center"></td>
-                                <td class="text_center"></td>
-                                <td class="text_center">C/B</td>
-                                <td class="text_right"></td>
-                                <td class="text_center">
-                                {{$item[0]->mushak_date}}
-                                </td>
-                                <td class="text_center">
-                                
-                                </td>
-                                <td class="">UTTARA MOTORS LTD</td>
-                                <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
-                                <td class="text_center">000406452-0203</td>
-                                <td class="">                            
-                                {{$item[0]->model}}
-                                </td>
-                                <td class="text_center"></td>
-                                <td class="text_right"></td>
-                                <td class="text_right"></td>
-                                <td class="text_right"></td>
-                                <td class="text_center"></td>
-                                <td class="text_right"></td>
-                                <td class="text_center"></td>
-                                <td class="text_right"></td>
-                                <td class="text_center"></td>
-                                <td class="text_right"></td>
-                                <td></td>
-                            </tr>                            
-                    @endforeach
+                $purchage_quantity = 0;
+                $sl = 1;
+                @endphp
+                @foreach ($purchage_data as $models => $model)
+                @foreach ($model as $months => $mushaks)
+                @foreach ($mushaks as $mushak => $mushak_no)
+                <tr>
+                    <td class="text_center">{{$sl}}</td>
+                    <td class="text_center"></td>
+                    <td class="text_center"></td>
+                    <td class="text_right"></td>                    
+                    <td class="text_center"></td>
+                    <td class="text_center"></td>
+                    <td class="">UTTARA MOTORS LTD</td>
+                    <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
+                    <td class="text_center">000406452-0203</td>
+                    <td class="">{{$models}}</td>
+                    <td class="text_center">                        
+                        @foreach ($mushak_no as $key => $value)
+                        @php
+                        $purchage_quantity += $value[0]->quantity;
+                        @endphp
+                        @endforeach
+                        {{$purchage_quantity}}                        
+                    </td>
+                    <td class="text_right"></td>
+                    <td class="text_right"></td>
+                    <td class="text_right"></td>
+                    <td class="text_center"></td>
+                    <td class="text_right"></td>
+                    <td class="text_center">
+                        
+                    </td>
+                    <td class="text_right"></td>
+                    <td class="text_center"></td>
+                    <td class="text_right"></td>
+                    <td></td>
+                </tr>
+                @endforeach                
                 @endforeach               
+                @endforeach
             </tbody>
         </table>
     </div>
