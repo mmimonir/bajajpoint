@@ -156,83 +156,43 @@
             <tbody>
                 @php
                 $day = strtotime($date_range['from']);
-                $end = strtotime($date_range['to']);
-
-                $purchage_model = '';
-                $purchage_quantity = 0;
-                
+                $end = strtotime($date_range['to']);                
                 @endphp                
-                
-                @foreach ($closing_quantity as $models=> $model)
-                    @if($model['closing_quantity']>0)
-                    <tr>
-                        <td class="text_center"></td>
-                        <td class="text_center"></td>
-                        <td class="text_center">{{$model['closing_quantity']}}</td>
-                        <td class="text_right"></td>
-                        <td class="text_center">
-                        
-                        </td>
-                        <td class="text_center">
-                        
-                        </td>
-                        <td class="">UTTARA MOTORS LTD</td>
-                        <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
-                        <td class="text_center">000406452-0203</td>
-                        <td class="">                            
-                            @foreach($purchage_data as $purchage)
-                                @if($purchage->model_code == $model['model_code'])
+                   
+                @foreach($purchage_data as $key => $purchage)                
+                    @foreach($purchage as $key2 => $item)
+                    
+                            <tr>
+                                <td class="text_center"></td>
+                                <td class="text_center"></td>
+                                <td class="text_center">C/B</td>
+                                <td class="text_right"></td>
+                                <td class="text_center">
+                                {{$item[0]->mushak_date}}
+                                </td>
+                                <td class="text_center">
                                 
-                                    @php
-                                    $purchage_model = $purchage->model;    
-                                    $purchage_quantity = $purchage_quantity+$purchage->quantity;
-                                    @endphp
-                                
-                                @endif
-                            @endforeach
-                            {{$purchage_model}}                            
-                        </td>
-                        <td class="text_center"></td>
-                        <td class="text_right"></td>
-                        <td class="text_right"></td>
-                        <td class="text_right"></td>
-                        <td class="text_center"></td>
-                        <td class="text_right"></td>
-                        <td class="text_center"></td>
-                        <td class="text_right"></td>
-                        <td class="text_center"></td>
-                        <td class="text_right"></td>
-                        <td></td>
-                    </tr>
-                    @endif
-                    @php 
-                    $day=strtotime("+1 day", $day); 
-                    @endphp
+                                </td>
+                                <td class="">UTTARA MOTORS LTD</td>
+                                <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
+                                <td class="text_center">000406452-0203</td>
+                                <td class="">                            
+                                {{$item[0]->model}}
+                                </td>
+                                <td class="text_center"></td>
+                                <td class="text_right"></td>
+                                <td class="text_right"></td>
+                                <td class="text_right"></td>
+                                <td class="text_center"></td>
+                                <td class="text_right"></td>
+                                <td class="text_center"></td>
+                                <td class="text_right"></td>
+                                <td class="text_center"></td>
+                                <td class="text_right"></td>
+                                <td></td>
+                            </tr>                            
                     @endforeach
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td style="text-align:center; font-weight:bold;">
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                @endforeach               
             </tbody>
         </table>
     </div>
