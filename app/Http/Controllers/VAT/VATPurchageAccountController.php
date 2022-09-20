@@ -120,7 +120,7 @@ class VATPurchageAccountController extends Controller
             ->whereBetween('cores.mushak_date', [$start_date, $end_date])
             ->orderBy('cores.uml_mushak_no', 'asc')            
             ->get()
-            ->groupBy(['model', 'month', 'mushak_date', 'uml_mushak_no']);            
+            ->groupBy(['model', 'month', 'uml_mushak_no']);            
             
 
         // dd($data);
