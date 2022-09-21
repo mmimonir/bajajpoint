@@ -52,17 +52,18 @@ TODO:
     timestamp, is_rebate, name_change_details, change_date
 
 PENDING:
-A. Accounts Section
+*. Accounts Section
     a. Accounts
     b. Daily Expensess
 
-B. Expensess Table - expensess
-    -> id, exp_date, exp_amount, exp_category_id, exp_note, expense_by, created_at, updated_at
-C. Expensess Category - expensess_heads
+*. Expensess Table - expensess
+    -> id, exp_date, exp_amount, entity_name[showroom, service], exp_category_id, exp_note, expense_by, created_at, updated_at
+*. Expensess Category - expensess_heads
     -> id, fuel_cost, salary, rent, electricity_card, telephone_bill, internet_bill, conveyance
     sale_vat, commission, profit_share, printing, stationary, parts_damage, banner, advertisement, 
     showroom_decoration, capital_expensess, transport, painting, others        
 
-D. Ladger Transaction- transaction_ladger
+*. Ladger Transaction- transaction_ladger
     -> id, trans_date, customer_id, trans_description, trans_type, trans_amount
-    
+
+*. Add New Spare Parts Item - CRUD
