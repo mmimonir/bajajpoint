@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\VAT\VATPurchageAccountController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
+Route::get('/test_route', [App\Http\Controllers\VAT\VATPurchageAccountController::class, 'combine_query']);
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::controller(App\Http\Controllers\BusinessProfileController::class)->group(function () {
