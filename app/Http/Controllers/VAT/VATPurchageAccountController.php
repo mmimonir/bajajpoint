@@ -66,10 +66,13 @@ class VATPurchageAccountController extends Controller
             ->get()
             ->groupBy(['model', 'day', 'purchage', 'sales']);
 
-        // return response()->json($combine_data);
+            $all_model = $combine_data->keys();
+
+        // return response()->json($all_model);
         return view('dms.vat.vat_purchage_account_test')
             ->with([
                 'combine_data' => $combine_data,
+                'all_model' => $all_model,
                 'date_range' => [
                     'from' => '2022-07-01',
                     'to' => '2022-08-31',
