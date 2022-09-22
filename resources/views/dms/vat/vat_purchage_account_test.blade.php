@@ -158,6 +158,33 @@
                 </tr>
             </thead>
             <tbody>
+            @php
+                $day = strtotime($date_range['from']);
+                $end = strtotime($date_range['to']);
+                $model =[];
+            @endphp
+            @while($day <= $end)
+                @foreach($combine_data as $model_key => $model_data)
+                    @foreach($model_data as $date_key => $date_data)
+                        @if($day === strtotime($date_key))                            
+                            @foreach($date_data as $purchage_key => $purchage_data)
+                                @if($purchage_key === 'purchage')
+                                    @foreach($purchage_data[''] as $key => $value)                                    
+                                        @php
+                                        
+                                        @endphp
+                                        
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        @endif                        
+                    @endforeach
+                @endforeach                
+                @php
+                $day = strtotime("+1 day", $day);
+                @endphp
+            @endwhile
+
                 <tr>
                     <td class="text_center"></td>
                     <td class="text_center"></td>

@@ -64,9 +64,9 @@ class VATPurchageAccountController extends Controller
             ->union($sale_data)
             ->orderBy('day', 'asc')
             ->get()
-            ->groupBy(['model', 'day', 'purchage', 'sales', 'uml_mushak_no']);
+            ->groupBy(['model', 'day', 'purchage', 'sales']);
 
-        // return response()->json($purchage_data);
+        // return response()->json($combine_data);
         return view('dms.vat.vat_purchage_account_test')
             ->with([
                 'combine_data' => $combine_data,
