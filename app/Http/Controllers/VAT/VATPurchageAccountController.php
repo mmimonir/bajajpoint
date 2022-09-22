@@ -13,7 +13,7 @@ class VATPurchageAccountController extends Controller
     public function combine_query()
     {
         $vat_code = '2000';
-        $start_date = '2022-07-01';
+        $start_date = '2022-08-01';
         $end_date = '2022-08-31';
 
         $sale_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
@@ -24,8 +24,6 @@ class VATPurchageAccountController extends Controller
                 'cores.model_code',
                 'cores.full_address',
                 'cores.vat_code',
-                'cores.five_chassis',
-                'cores.five_engine',
                 'cores.vat_sale_date',
                 'cores.sale_mushak_no',
                 'cores.basic_price_vat',
@@ -34,7 +32,8 @@ class VATPurchageAccountController extends Controller
                 'vehicles.model',
                 'cores.uml_mushak_no',
                 'cores.mushak_date',
-                DB::raw('MONTH(cores.vat_sale_date) as month'),
+                DB::raw('DATE(cores.vat_sale_date) as day'),
+                DB::raw("'sale' as sale"),
                 DB::raw('1 as quantity')
             )
             ->where('cores.vat_code', "=", $vat_code)
@@ -48,8 +47,6 @@ class VATPurchageAccountController extends Controller
                 'cores.model_code',
                 'cores.full_address',
                 'cores.vat_code',
-                'cores.five_chassis',
-                'cores.five_engine',
                 'cores.vat_sale_date',
                 'cores.sale_mushak_no',
                 'cores.basic_price_vat',
@@ -58,14 +55,16 @@ class VATPurchageAccountController extends Controller
                 'vehicles.model',
                 'cores.uml_mushak_no',
                 'cores.mushak_date',
-                DB::raw('MONTH(cores.vat_sale_date) as month'),
+                DB::raw('DATE(cores.mushak_date) as day'),
+                DB::raw("'purchage' as purchage"),
                 DB::raw('1 as quantity')
             )
             ->where('cores.vat_code', "=", $vat_code)
             ->whereBetween('cores.mushak_date', [$start_date, $end_date])
             ->union($sale_data)
+            ->orderBy('day', 'asc')
             ->get()
-            ->groupBy(['model', 'uml_mushak_no']);
+            ->groupBy(['model', 'day', 'purchage', 'sales']);
 
         return response()->json($purchage_data);
     }
