@@ -161,19 +161,19 @@
             @php
                 $day = strtotime($date_range['from']);
                 $end = strtotime($date_range['to']);
-                $model =[];
+                $all_model = [];                 
             @endphp
             @while($day <= $end)
-                @foreach($combine_data as $model_key => $model_data)
+                @foreach($combine_data as $model_key => $model_data)                    
                     @foreach($model_data as $date_key => $date_data)
-                        @if($day === strtotime($date_key))                            
+                        @if($day === strtotime($date_key))                  
                             @foreach($date_data as $purchage_key => $purchage_data)
                                 @if($purchage_key === 'purchage')
-                                    @foreach($purchage_data[''] as $key => $value)                                    
-                                        @php
-                                        
-                                        @endphp
-                                        
+                                @php
+                                    
+                                @endphp
+                                    @foreach($purchage_data[''] as $key => $value)
+                                        <p>{{$all_model}}</p>
                                     @endforeach
                                 @endif
                             @endforeach
