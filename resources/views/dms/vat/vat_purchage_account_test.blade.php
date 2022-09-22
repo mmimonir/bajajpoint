@@ -67,6 +67,10 @@
         .text_right {
             text-align: right;
         }
+
+        .text_bold {
+            font-weight: bold;
+        }
     </style>
     <link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet">
 </head>
@@ -98,7 +102,7 @@
                 </tr>
                 <tr>
                     <th rowspan="3">ক্রমিক সংখ্যা</th>
-                    <th rowspan="3" style="width:105px;">তারিখ</th>
+                    <th rowspan="3">তারিখ</th>
                     <th colspan="2" class="align-middle">মজুদ উপকরণের প্রারম্ভিক জের</th>
                     <th colspan="10" class="align-middle">ক্রয়কৃত উপকরণ</th>
                     <th colspan="2" class="align-middle">মোট উপকরণের পরিমাণ</th>
@@ -154,45 +158,33 @@
                 </tr>
             </thead>
             <tbody>
-                @php
-                $day = strtotime($date_range['from']);
-                $end = strtotime($date_range['to']);                
-                @endphp                
-                   
-                @foreach($purchage_data as $key => $purchage)                
-                    @foreach($purchage as $key2 => $item)
-                    
-                            <tr>
-                                <td class="text_center"></td>
-                                <td class="text_center"></td>
-                                <td class="text_center">C/B</td>
-                                <td class="text_right"></td>
-                                <td class="text_center">
-                                {{$item[0]->mushak_date}}
-                                </td>
-                                <td class="text_center">
-                                
-                                </td>
-                                <td class="">UTTARA MOTORS LTD</td>
-                                <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
-                                <td class="text_center">000406452-0203</td>
-                                <td class="">                            
-                                {{$item[0]->model}}
-                                </td>
-                                <td class="text_center"></td>
-                                <td class="text_right"></td>
-                                <td class="text_right"></td>
-                                <td class="text_right"></td>
-                                <td class="text_center"></td>
-                                <td class="text_right"></td>
-                                <td class="text_center"></td>
-                                <td class="text_right"></td>
-                                <td class="text_center"></td>
-                                <td class="text_right"></td>
-                                <td></td>
-                            </tr>                            
-                    @endforeach
-                @endforeach               
+                <tr>
+                    <td class="text_center"></td>
+                    <td class="text_center"></td>
+                    <td class="text_center"></td>
+                    <td class="text_right"></td>
+                    <td class="text_center"></td>
+                    <td class="text_center"></td>
+                    <td class="">UTTARA MOTORS LTD</td>
+                    <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
+                    <td class="text_center">000406452-0203</td>
+                    <td class=""></td>
+                    <td class="text_center">
+
+                    </td>
+                    <td class="text_right">
+
+                    </td>
+                    <td class="text_right"></td>
+                    <td class="text_right"></td>
+                    <td class="text_center"></td>
+                    <td class="text_right"></td>
+                    <td class="text_center"></td>
+                    <td class="text_right"></td>
+                    <td class="text_center"></td>
+                    <td class="text_right"></td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
     </div>

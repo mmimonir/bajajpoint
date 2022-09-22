@@ -39,7 +39,7 @@ class VATPurchageAccountController extends Controller
             ->where('cores.vat_code', "=", $vat_code)
             ->whereBetween('cores.vat_sale_date', [$start_date, $end_date]);
 
-        $purchage_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+        $combine_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
             ->select(
                 'cores.id',
                 'cores.customer_name',
@@ -64,9 +64,17 @@ class VATPurchageAccountController extends Controller
             ->union($sale_data)
             ->orderBy('day', 'asc')
             ->get()
-            ->groupBy(['model', 'day', 'purchage', 'sales']);
+            ->groupBy(['model', 'day', 'purchage', 'sales', 'uml_mushak_no']);
 
-        return response()->json($purchage_data);
+        // return response()->json($purchage_data);
+        return view('dms.vat.vat_purchage_account_test')
+            ->with([
+                'combine_data' => $combine_data,
+                'date_range' => [
+                    'from' => '2022-07-01',
+                    'to' => '2022-08-31',
+                ],
+            ]);
     }
     public function vat_purchage_homepage(Request $request)
     {
