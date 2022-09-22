@@ -10,6 +10,65 @@ use App\Http\Controllers\Controller;
 
 class VATPurchageAccountController extends Controller
 {
+    public function combine_query()
+    {
+        $vat_code = '2000';
+        $start_date = '2022-07-01';
+        $end_date = '2022-08-31';
+
+        $sale_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+            ->select(
+                'cores.id',
+                'cores.customer_name',
+                'cores.nid_no',
+                'cores.model_code',
+                'cores.full_address',
+                'cores.vat_code',
+                'cores.five_chassis',
+                'cores.five_engine',
+                'cores.vat_sale_date',
+                'cores.sale_mushak_no',
+                'cores.basic_price_vat',
+                'cores.sale_vat',
+                'cores.unit_price_vat',
+                'vehicles.model',
+                'cores.uml_mushak_no',
+                'cores.mushak_date',
+                DB::raw('MONTH(cores.vat_sale_date) as month'),
+                DB::raw('1 as quantity')
+            )
+            ->where('cores.vat_code', "=", $vat_code)
+            ->whereBetween('cores.vat_sale_date', [$start_date, $end_date]);
+
+        $purchage_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
+            ->select(
+                'cores.id',
+                'cores.customer_name',
+                'cores.nid_no',
+                'cores.model_code',
+                'cores.full_address',
+                'cores.vat_code',
+                'cores.five_chassis',
+                'cores.five_engine',
+                'cores.vat_sale_date',
+                'cores.sale_mushak_no',
+                'cores.basic_price_vat',
+                'cores.sale_vat',
+                'cores.unit_price_vat',
+                'vehicles.model',
+                'cores.uml_mushak_no',
+                'cores.mushak_date',
+                DB::raw('MONTH(cores.vat_sale_date) as month'),
+                DB::raw('1 as quantity')
+            )
+            ->where('cores.vat_code', "=", $vat_code)
+            ->whereBetween('cores.mushak_date', [$start_date, $end_date])
+            ->union($sale_data)
+            ->get()
+            ->groupBy(['model', 'uml_mushak_no']);
+
+        return response()->json($purchage_data);
+    }
     public function vat_purchage_homepage(Request $request)
     {
         $purchage_data = $this->get_vat_purchage_data($request);
@@ -18,8 +77,8 @@ class VATPurchageAccountController extends Controller
 
         return view('dms.vat.vat_purchage_account')
             ->with([
-                'purchage_data' => $purchage_data,                
-                'sales_data' => $sales_data,                
+                'purchage_data' => $purchage_data,
+                'sales_data' => $sales_data,
                 'closing_quantity' => $closing_quantity,
                 'date_range' => [
                     'from' => '2022-07-01',
@@ -92,9 +151,9 @@ class VATPurchageAccountController extends Controller
 
         $purchage_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
             ->select(
-                'cores.id',                
-                'cores.model_code',                
-                'cores.vat_code',                
+                'cores.id',
+                'cores.model_code',
+                'cores.vat_code',
                 'vehicles.model',
                 'cores.uml_mushak_no',
                 'cores.mushak_date',
@@ -104,10 +163,10 @@ class VATPurchageAccountController extends Controller
             )
             ->where('cores.vat_code', "=", $vat_code)
             ->whereBetween('cores.mushak_date', [$start_date, $end_date])
-            ->orderBy('cores.mushak_date', 'asc')            
+            ->orderBy('cores.mushak_date', 'asc')
             ->get()
-            ->groupBy(['model', 'month', 'uml_mushak_no']);            
-            
+            ->groupBy(['model', 'month', 'uml_mushak_no']);
+
 
         // dd($data);
         return $purchage_data;
