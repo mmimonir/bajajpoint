@@ -160,27 +160,32 @@
             <tbody>
             @php
                 $day = strtotime($date_range['from']);
-                $end = strtotime($date_range['to']);
-                $i = 0;                  
+                $end = strtotime($date_range['to']);                
             @endphp
-            @while($day <= $end)
-                @foreach($combine_data as $model_key => $model_data)                    
-                    @foreach($model_data as $date_key => $date_data)
-                        @if($day === strtotime($date_key))
-                                @foreach($date_data as $purchage_key => $purchage_data)
-                                    @if($purchage_key === 'purchage')                                        
-                                            @foreach($purchage_data[''] as $key => $value)
-                                               <p>{{$all_model[$i]}}</p>
-                                            @endforeach                                        
-                                    @endif
+            
+            @foreach($all_model as $model)
+                <!-- <p>{{$model}}</p> -->
+                @while($day <= $end)                
+                    @foreach($combine_data as $model_key => $model_value)
+                        @foreach($model_value as $date_key => $date_value)
+                            @if($day === strtotime($date_key))
+                                @foreach($date_value as $key => $data)
+                                    @if($data->model === $model)
+                                        <!-- <p>{{$data->model}}</p> -->
+                                    @endif                                    
                                 @endforeach
-                        @endif                        
+                            @endif                            
+                        @endforeach
                     @endforeach
-                @endforeach                
-                @php
-                $day = strtotime("+1 day", $day);                
-                @endphp
-            @endwhile            
+                    
+                    @php
+                    $day = strtotime("+1 day", $day);                
+                    @endphp
+                @endwhile                
+            @endforeach
+
+            
+                
 
                 <tr>
                     <td class="text_center"></td>
