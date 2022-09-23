@@ -160,29 +160,33 @@
             <tbody>
             @php
                 $day = strtotime($date_range['from']);
-                $end = strtotime($date_range['to']);                
+                $end = strtotime($date_range['to']);
+                $item = 0;   
             @endphp
             
             @foreach($all_model as $model)
-                <!-- <p>{{$model}}</p> -->
-                @while($day <= $end)                
+                @while($day <= $end)          
                     @foreach($combine_data as $model_key => $model_value)
                         @foreach($model_value as $date_key => $date_value)
-                            @if($day === strtotime($date_key))
+                            @if($day === strtotime($date_key))                
                                 @foreach($date_value as $key => $data)
-                                    @if($data->model === $model)
-                                        <!-- <p>{{$data->model}}</p> -->
-                                    @endif                                    
+                                    @if($data->model == $model)
+                                        <p>{{$data->model}}</p>
+                                    @endif
                                 @endforeach
-                            @endif                            
+                            @endif
                         @endforeach
                     @endforeach
                     
                     @php
                     $day = strtotime("+1 day", $day);                
                     @endphp
-                @endwhile                
+                @endwhile
+                @php
+                $item++;
+                @endphp                      
             @endforeach
+            <p>{{$item-1}}</p>
 
             
                 

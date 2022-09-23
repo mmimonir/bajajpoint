@@ -68,6 +68,7 @@ class VATPurchageAccountController extends Controller
             ->groupBy(['model', 'day']);
 
             $all_model = $combine_data->keys()->sort();
+            
 
         // return response()->json($combine_data);
         return view('dms.vat.vat_purchage_account_test')
@@ -75,7 +76,7 @@ class VATPurchageAccountController extends Controller
                 'combine_data' => $combine_data,
                 'all_model' => $all_model,
                 'date_range' => [
-                    'from' => '2022-07-01',
+                    'from' => '2022-08-01',
                     'to' => '2022-08-31',
                 ],
             ]);
