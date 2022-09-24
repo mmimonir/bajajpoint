@@ -184,11 +184,11 @@
                                 @php
                                 $total_quantity = 0;
                                 foreach ($mushak_no as $mushak) {
-                                $total_quantity += $mushak->quantity;
-                                $grand_total += $mushak->quantity;
-                                $gross_total += $mushak->quantity;
-                                $rebate_grand += $mushak->vat_rebate;
-                                $gross_total_rebate += $mushak->vat_rebate;
+                                    $total_quantity += $mushak->quantity;
+                                    $grand_total += $mushak->quantity;
+                                    $gross_total += $mushak->quantity;
+                                    $rebate_grand += $mushak->vat_rebate;
+                                    $gross_total_rebate += $mushak->vat_rebate;
                                 }
                                 @endphp
                                 {{$total_quantity}}

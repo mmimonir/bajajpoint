@@ -102,7 +102,7 @@
                 </tr>
                 <tr>
                     <th rowspan="3">ক্রমিক সংখ্যা</th>
-                    <th rowspan="3">তারিখ</th>
+                    <th rowspan="3" style="width:102px;">তারিখ</th>
                     <th colspan="2" class="align-middle">মজুদ উপকরণের প্রারম্ভিক জের</th>
                     <th colspan="10" class="align-middle">ক্রয়কৃত উপকরণ</th>
                     <th colspan="2" class="align-middle">মোট উপকরণের পরিমাণ</th>
@@ -157,67 +157,75 @@
                     <th>21</th>
                 </tr>
             </thead>
-            <tbody>
-            @php
-                $day = strtotime($date_range['from']);
-                $end = strtotime($date_range['to']);
-                $item = 0;   
-            @endphp
-            
-            @foreach($all_model as $model)
-                @while($day <= $end)          
-                    @foreach($combine_data as $model_key => $model_value)
-                        @foreach($model_value as $date_key => $date_value)
-                            @if($day === strtotime($date_key))                
-                                @foreach($date_value as $key => $data)
-                                    @if($data->model == $model)
-                                        <p>{{$data->model}}</p>
-                                    @endif
-                                @endforeach
-                            @endif
-                        @endforeach
-                    @endforeach
-                    
+            <tbody>            
+                @foreach($combine_data as $model_key => $model_data)
                     @php
-                    $day = strtotime("+1 day", $day);                
+                        $sl = 0;
                     @endphp
-                @endwhile
-                @php
-                $item++;
-                @endphp                      
-            @endforeach
-            <p>{{$item-1}}</p>
-
-            
-                
-
-                <tr>
-                    <td class="text_center"></td>
-                    <td class="text_center"></td>
-                    <td class="text_center"></td>
-                    <td class="text_right"></td>
-                    <td class="text_center"></td>
-                    <td class="text_center"></td>
-                    <td class="">UTTARA MOTORS LTD</td>
-                    <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
-                    <td class="text_center">000406452-0203</td>
-                    <td class=""></td>
-                    <td class="text_center">
-
-                    </td>
-                    <td class="text_right">
-
-                    </td>
-                    <td class="text_right"></td>
-                    <td class="text_right"></td>
-                    <td class="text_center"></td>
-                    <td class="text_right"></td>
-                    <td class="text_center"></td>
-                    <td class="text_right"></td>
-                    <td class="text_center"></td>
-                    <td class="text_right"></td>
-                    <td></td>
-                </tr>
+                    @foreach($model_data as $key => $value)                    
+                        <tr>
+                            <td class="text_center">{{$sl+1}}</td>
+                            <td class="text_center">
+                            @if($value->type === 'sale')
+                                    {{$value->vat_sale_date}}
+                            @elseif($value->type === 'purchage')
+                                    {{$value->mushak_date}}
+                            @endif                            
+                            </td>
+                            <td class="text_center"></td>
+                            <td class="text_right"></td>
+                            <td class="text_center">
+                            @if($value->type === 'purchage')
+                                {{$value->uml_mushak_no}}
+                            @endif
+                            </td>
+                            <td class="text_center">
+                            @if($value->type === 'purchage')
+                                {{$value->mushak_date}}
+                            @endif
+                            </td>
+                            <td class="">UTTARA MOTORS LTD</td>
+                            <td class="">23/KA NEW ESKATON ROAD, DHAKA</td>
+                            <td class="text_center">000406452-0203</td>
+                            <td class="">
+                                @if($value->type === 'purchage')
+                                    {{$value->model}}
+                                @else                                
+                                    {{$value->model}}
+                                @endif
+                            </td>
+                            <td class="text_center">
+                            @if($value->type === 'purchage')
+                                    {{$value->quantity}}                            
+                            @endif
+                            </td>
+                            <td class="text_right">
+                            
+                            </td>
+                            <td class="text_right"></td>
+                            <td class="text_right">
+                            
+                            </td>
+                            <td class="text_center"></td>
+                            <td class="text_right"></td>
+                            <td class="text_center">
+                            @if($value->type === 'sale')
+                                {{$value->quantity}}                                
+                            @endif
+                            </td>
+                            <td class="text_right"></td>
+                            <td class="text_center"></td>
+                            <td class="text_right"></td>
+                            <td></td>
+                        </tr>
+                        @php
+                            $sl++;
+                        @endphp
+                    @endforeach
+                    @php
+                        $sl=0;
+                    @endphp
+                @endforeach                                                                                            
             </tbody>
         </table>
     </div>

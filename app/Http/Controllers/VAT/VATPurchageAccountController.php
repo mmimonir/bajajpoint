@@ -32,6 +32,7 @@ class VATPurchageAccountController extends Controller
                 'vehicles.model',
                 'cores.uml_mushak_no',
                 'cores.mushak_date',
+                'cores.vat_rebate',
                 DB::raw('DATE(cores.vat_sale_date) as day'),
                 DB::raw("'sale' as type"),
                 DB::raw('1 as quantity')
@@ -55,19 +56,19 @@ class VATPurchageAccountController extends Controller
                 'vehicles.model',
                 'cores.uml_mushak_no',
                 'cores.mushak_date',
+                'cores.vat_rebate',
                 DB::raw('DATE(cores.mushak_date) as day'),
                 DB::raw("'purchage' as type"),
-                DB::raw('1 as quantity')
+                DB::raw('1 as quantity')                
             )
             ->where('cores.vat_code', "=", $vat_code)
             ->whereBetween('cores.mushak_date', [$start_date, $end_date])
             ->union($sale_data)
             ->orderBy('day', 'asc')
             ->get()
-            // ->groupBy(['model', 'day', 'purchage', 'sales']);
-            ->groupBy(['model', 'day']);
+            ->groupBy(['model']);            
 
-            $all_model = $combine_data->keys()->sort();
+            $all_model = $combine_data->keys();
             
 
         // return response()->json($combine_data);
