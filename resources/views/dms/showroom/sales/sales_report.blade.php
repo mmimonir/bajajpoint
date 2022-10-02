@@ -37,7 +37,7 @@
                             @foreach($sale_report as $data)
                             <tr>
                                 <td class="">{{$loop->iteration}}</td>
-                                <td class="">{{$data->dealer}}</td>
+                                <td class="text-center">{{$data->dealer ? $data->dealer : 'BP'}}</td>
                                 <td class="">{{$data->vendor}}</td>
                                 <td class="">{{$data->original_sale_date}}</td>
                                 <td class="">{{$data->model}}</td>
@@ -66,6 +66,8 @@
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:center; padding:2px 8px;"></th>
+                                <th style="text-align:right; padding:2px 8px;"></th>
+                                <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                                 <th style="text-align:right; padding:2px 8px;"></th>
                             </tr>
@@ -163,7 +165,6 @@
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val()
                         );
-
                         column
                             .search(val ? '^' + val + '$' : '', true, false)
                             .draw();

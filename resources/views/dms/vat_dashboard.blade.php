@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="content-header">
+            <!-- <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
@@ -16,7 +16,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-md-3">
                     <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey">
@@ -225,7 +225,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="content-header">
+            <!-- <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
@@ -233,7 +233,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-md-6">
                     <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
