@@ -79,9 +79,14 @@
                 <th>MRP</th>
             </tr>
             @php
+            $master_total_basic = 0;
+            $master_total_vat = 0;
+            $master_total_mrp = 0;
+
             $total_basic = 0;
             $total_vat = 0;
             $total_mrp = 0;
+
             $sl=1;
             @endphp
             @foreach ($vat_data as $key=> $data)
@@ -94,7 +99,7 @@
             @endphp
             <tr>
                 <td colspan="11" style="font-weight:bold; text-align:center;">
-                    {{date('F', mktime(0, 0, 0, $key, 10))}}
+                    {{date('F Y', mktime(0, 0, 0, $key, 10))}}
                 </td>
             </tr>
             @foreach ($item as $itm)
@@ -116,9 +121,15 @@
             $count++;
             $basic += $itm->basic_price_vat;
             $vat += $itm->sale_vat;
-            $mrp += $itm->unit_price_vat;
+            $mrp += $itm->unit_price_vat;            
             @endphp
             @endforeach
+            @php
+            $total_basic += $basic;
+            $total_vat += $vat;
+            $total_mrp += $mrp;
+            @endphp
+            
             <tr>
                 <td style="text-align:center; font-weight:bold;">Total</td>
                 <td style="text-align:center; font-weight:bold;">{{$count}}</td>
@@ -132,12 +143,8 @@
                 <td class="right bd_taka bold">{{$vat}}</td>
                 <td class="right bd_taka bold">{{$mrp}}</td>
             </tr>
-            @php
-            $total_basic += $basic;
-            $total_vat += $vat;
-            $total_mrp += $mrp;
-            @endphp
-            @endforeach
+            
+            @endforeach                        
             <tr>
                 <td colspan="8" style="font-weight:bold; text-align:center;">
                     Grand Total
@@ -146,7 +153,25 @@
                 <td class="right bd_taka bold">{{$total_vat}}</td>
                 <td class="right bd_taka bold">{{$total_mrp}}</td>
             </tr>
-            @endforeach
+            @php
+            $master_total_basic += $total_basic;
+            $master_total_vat += $total_vat;
+            $master_total_mrp += $total_mrp;
+
+            $total_basic = 0;
+            $total_vat = 0;
+            $total_mrp = 0;
+            @endphp
+            @endforeach            
+            <tr>
+                <td colspan="8" style="font-weight:bold; text-align:center;">
+                    Master Total
+                </td>
+                <td class="right bd_taka bold">{{$master_total_basic}}</td>
+                <td class="right bd_taka bold">{{$master_total_vat}}</td>
+                <td class="right bd_taka bold">{{$master_total_mrp}}</td>
+            </tr>
+            
         </table>
     </div>
 </body>
