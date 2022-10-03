@@ -1,4 +1,4 @@
-@extends('layouts.app') @section('title', 'Excel Dashboard') @section('content')
+@extends('layouts.app') @section('title', 'Report Dashboard') @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">

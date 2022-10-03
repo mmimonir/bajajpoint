@@ -138,11 +138,11 @@
                 <li class="nav-item">
                     <a href="{{route('print.print_dashboard')}}" class="nav-link">
                         <i class="nav-icon fas fa-print"></i>
-                        <p class="text-white">Dashboard</p>
+                        <p class="text-white">Print Dashboard</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('excel.dashboard')}}" class="nav-link">
+                    <a href="{{route('report.dashboard')}}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p class="text-white">Report Dashboard</p>
                     </a>

@@ -83,7 +83,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'showroom'], functi
     // Print & Excel Dashboard
     Route::controller(App\Http\Controllers\Showroom\PrintController::class)->group(function () {
         Route::get('print_dashboard',  'print_dashboard')->name('print.print_dashboard');
-        Route::get('excel_dashboard',  'excel_dashboard')->name('excel.dashboard');
+        Route::get('report_dashboard',  'report_dashboard')->name('report.dashboard');
         Route::post('customer_data',  'customer_data')->name('excel.customer_data');
         Route::post('file_print',  'file_print')->name('print.file_print');
         Route::get('single_file_print/{id}',  'single_file_print')->name('print.single_file_print');

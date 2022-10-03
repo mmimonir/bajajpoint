@@ -16,10 +16,10 @@ class PrintController extends Controller
         $dealer = Supplier::select('dealer_name', 'supplier_code')->whereNotNull('dealer_name')->get();
         return view('dms.print_dashboard')->with(['dealer' => $dealer]);
     }
-    public function excel_dashboard()
+    public function report_dashboard()
     {
         $dealer = Supplier::select('dealer_name', 'supplier_code')->whereNotNull('dealer_name')->get();
-        return view('dms.excel_dashboard')->with(['dealer' => $dealer]);
+        return view('dms.report_dashboard')->with(['dealer' => $dealer]);
     }
     public function customer_data(Request $request)
     {
