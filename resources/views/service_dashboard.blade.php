@@ -72,7 +72,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <div class="card card-success collapsed-card">
+            <div class="card card-success">
                 <div class="card-header bg-dark">
                     <h3 class="card-title">Search Parts</h3>
                     <div class="card-tools">
@@ -88,15 +88,13 @@
                     </div>
                 </div>
                 <div class="card-body" style="display: block; padding:0px;">
-                    <div class="card mt-1" style="box-shadow: 0 0 5px 0 lightgrey">
-                        <div class="card-body d-flex justify-content-center" style="width:700px; margin:auto; align-items:center;">
-                            <label for="part_id" style="margin-right:10px; margin-bottom:0;">Part ID</label>
-                            <select class="custom-select" id="select2">
-                            </select>
-                        </div>
+                    <div class="d-flex justify-content-center" style="width:700px; margin:auto; align-items:center; height:50px;">
+                        <label for="part_id" style="margin-right:10px; margin-bottom:0;">Part ID</label>
+                        <select class="custom-select" id="select2">
+                        </select>
                     </div>
                     <div class="col-md-12" style="margin-top:-5px; padding:0px;">
-                        <div class="card mt-2" style="box-shadow: 0 0 25px 0 lightgrey; margin-bottom:0px;" id="show_search_result">
+                        <div class="mt-2" style="box-shadow: 0 0 25px 0 lightgrey; margin-bottom:0px;" id="show_search_result">
 
                         </div>
                     </div>
@@ -106,8 +104,20 @@
                 </div>
             </div>
         </div>
+        <div class="row justify-content-center">
+            <div class="col-md-2">
+                <button class="btn btn-lg btn-block bg-dark" id="add_parts">Add Parts</button>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-lg btn-block bg-dark" id="add_mobil">Add Engine Oil</button>
+            </div>
+        </div>
     </div>
 </div>
+<!-- Add New Item Modal Start -->
+@extends('service_dashboard_modals.add_parts')
+@extends('service_dashboard_modals.add_mobil')
+<!-- Add New Item Modal End -->
 @endsection
 
 <!-- @section('datatable')
@@ -121,6 +131,97 @@
 <script>
     $(document).ready(function() {
         $("#search_overlay").css("visibility", "hidden");
+
+        $(document).on('click', '#add_parts', function() {
+            $("#addParts").modal('show');
+            $("form#add_parts_form").prop('id', 'add_parts_form');
+            $("form#update_parts_form").prop('id', 'add_parts_form');
+            $("#add_parts_form :input").prop("readOnly", false);
+            $("#addParts").find('#title').text('Add New Item');
+            $("#add_parts").text('Add');
+            $("#addParts").find('#id').val('');
+            // $('#add_parts_form').trigger('reset');
+        });
+
+        $(document).on('click', '#add_mobil', function() {
+            $("#addMobil").modal('show');
+            $("form#add_mobil_form").prop('id', 'add_mobil_form');
+            $("form#update_mobil_form").prop('id', 'add_mobil_form');
+            $("#add_mobil_form :input").prop("readOnly", false);
+            // $('#add_mobil_form').trigger('reset');
+            $("#addMobil").find('#title').text('Add New Item');
+            $("#add_mobil").text('Add');
+            $('#addMobil').find('#id').val('');
+        });
+
+        $(document).on('submit', "#add_parts_form", function(e) {
+            e.preventDefault();
+            const FD = new FormData(this);
+
+            $.ajax({
+                url: "{{route('parts.add_new_parts')}}",
+                method: "post",
+                data: FD,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(data) {
+                    if (data.status == 200) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: data.msg,
+                        });
+                        $("#add_parts_form").trigger("reset");
+                        $("#addParts").modal('hide');
+                        $("#addParts").find('#title').text('Add New Item');
+                        $("#add_parts").text('Add');
+                        $(this).find('#id').val('');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Something went wrong!',
+                        });
+                    }
+                }
+            });
+        });
+        $(document).on('submit', "#add_mobil_form", function(e) {
+            e.preventDefault();
+            const FD = new FormData(this);
+
+            $.ajax({
+                url: "{{route('parts.add_new_mobil')}}",
+                method: "post",
+                data: FD,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(data) {
+                    if (data.status == 200) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: data.msg,
+                        });
+                        $("#add_mobil_form").trigger("reset");
+                        $("#addMobil").modal('hide');
+                        $("#addMobil").find('#title').text('Add New Item');
+                        $("#add_mobil").text('Add');
+                        $(this).find('#id').val('');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Something went wrong!',
+                        });
+                    }
+                }
+            });
+        });
 
         $('#select2').select2({
             placeholder: 'Select an ID',
@@ -262,7 +363,6 @@
                     text: 'Please Enter Location!',
                 })
             }
-
         });
     });
 </script>

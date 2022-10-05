@@ -57,7 +57,8 @@ PENDING:
     b. Daily Expensess
 
 *. Expensess Table - expensess
-    -> id, exp_date, exp_amount, entity_name[showroom, service], exp_category_id, exp_note, expense_by, created_at, updated_at
+    -> id, exp_date, exp_amount, department[showroom, service], exp_category_id, exp_note, expense_by, created_at, 
+    updated_at
 *. Expensess Category - expensess_heads
     -> id, fuel_cost, salary, rent, electricity_card, telephone_bill, internet_bill, conveyance
     sale_vat, commission, profit_share, printing, stationary, parts_damage, banner, advertisement, 

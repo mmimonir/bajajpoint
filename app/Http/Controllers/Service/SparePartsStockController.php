@@ -16,6 +16,7 @@ class SparePartsStockController extends Controller
     {
         $stock = SparePartsStock::select('*')
             ->where('stock_quantity', '>', 0)
+            ->where('category', 'spare_parts')
             ->get();
 
         return response()->json(['stock' => $stock]);
@@ -29,6 +30,7 @@ class SparePartsStockController extends Controller
         $stock = SparePartsStock::select('*')
             ->where('stock_quantity', '>', 0)
             ->where('stock_quantity', '<', 6)
+            ->where('category', 'spare_parts')
             ->get();
 
         return response()->json(['stock' => $stock]);
