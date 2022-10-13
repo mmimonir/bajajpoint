@@ -68,4 +68,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'service'], function () {
         Route::get('/parts_stock_low_init',  'parts_stock_low_init')->name('parts.low_stock_init');
         Route::get('/parts_stock_low',  'parts_stock_low')->name('parts.low_stock');
     });
+    Route::controller(App\Http\Controllers\Service\SparePartsController::class)->group(function () {
+        Route::post('/add_new_parts',  'add_new_parts')->name('parts.add_new_parts');
+        Route::post('/add_new_mobil',  'add_new_mobil')->name('parts.add_new_mobil');
+    });
 });
