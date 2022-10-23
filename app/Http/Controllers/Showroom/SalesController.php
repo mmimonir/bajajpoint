@@ -128,7 +128,8 @@ class SalesController extends Controller
                     'tr_number' => $request->tr_number,
                     'tr_dep_date' => $request->tr_dep_date,
                     'in_stock' => 'no',
-                    'year_of_manufacture' => $request->year_of_manufacture
+                    'year_of_manufacture' => $request->year_of_manufacture,
+                    'price_declare_id' => $request->price_declare_id
                 ]);
             return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
         } catch (\Exception $e) {

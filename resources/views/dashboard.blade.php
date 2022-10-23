@@ -641,7 +641,8 @@
                     color_data.forEach(function(item) {
                         $(".color_code").append(`<option ${item.color_code === core_data.color_code ? 'selected' : ''} value="${item.color_code}">${item.color}</option>`);
                     });
-                    $('#price_declare_id2').val((pd_data ? pd_data.id : '') + ', Date ' + (pd_data ? pd_data.submit_date : ''));
+                    $('#price_declare_id').val((pd_data ? pd_data.id : ''));
+                    $('#price_declare_date').val((pd_data ? pd_data.submit_date : ''));
                     $('#purchage_date2').val(purchage_data ? purchage_data.purchage_date : core_data.purchage_date);
                     $('#factory_challan_no2').val(purchage_data ? purchage_data.factory_challan_no : core_data.challan_no);
                     $('#vat_mrp').val(pd_data ? pd_data.vat_mrp : '');

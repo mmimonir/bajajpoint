@@ -285,9 +285,10 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row" style="margin-bottom:0px;">
-                                                <label for="price_declare_id" class="col-sm-6 col-form-label form-control-sm">Price Dec Id</label>
+                                                <label for="price_declare_id" class="col-sm-6 col-form-label form-control-sm">Price Dec Date</label>
                                                 <div class="col-sm-6" style="padding:0px;">
-                                                    <input readonly type="text" name="price_declare_id" class="form-control form-control-sm" id="price_declare_id2">
+                                                    <input readonly type="date" class="form-control form-control-sm" id="price_declare_date">
+                                                    <input type="hidden" name="price_declare_id" id="price_declare_id">
                                                 </div>
                                             </div>
                                         </div>
@@ -325,7 +326,7 @@
                                             <div class="form-group row" style="margin-bottom:0px;">
                                                 <label for="purchage_date" class="col-sm-5 col-form-label form-control-sm">Purchage Date</label>
                                                 <div class="col-sm-7" style="padding:0px;">
-                                                    <input readonly type="date" name="purchage_date" class="form-control form-control-sm" id="purchage_date2">
+                                                    <input readonly type="date" name="purchage_date" class="form-control form-control-sm" id="purchage_date">
                                                 </div>
                                             </div>
                                             <div class="form-group row" style="margin-bottom:0px;">
