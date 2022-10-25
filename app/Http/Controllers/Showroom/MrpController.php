@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use DB;
 use App\Models\Showroom\Mrp;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -17,30 +16,34 @@ class MrpController extends Controller
     public function mrp_get()
     {
         $Mrps = Mrp::all();
+
         return response()->json($Mrps);
     }
 
     public function get_single_mrp(Request $request)
     {
         $mrp = Mrp::find($request->id);
+
         return response()->json($mrp);
     }
 
     public function mrp_add(Request $request)
     {
         Mrp::create($request->all());
+
         return response()->json([
             'status' => 200,
-            'message' => 'Mrp added successfully'
+            'message' => 'Mrp added successfully',
         ]);
     }
 
     public function mrp_update(Request $request)
     {
         Mrp::whereId($request->id)->update($request->all());
+
         return response()->json([
             'status' => 200,
-            'message' => 'Mrp updated successfully'
+            'message' => 'Mrp updated successfully',
         ]);
     }
 
@@ -48,9 +51,10 @@ class MrpController extends Controller
     {
         // dd($request->model_code);
         Mrp::whereId($request->id)->delete();
+
         return response()->json([
             'status' => 200,
-            'message' => 'Mrp deleted successfully'
+            'message' => 'Mrp deleted successfully',
         ]);
     }
 }

@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use DB;
-use PDF;
+use App\Http\Controllers\Controller;
 use App\Models\Showroom\Core;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use PDF;
 
 class PDFController extends Controller
 {
-
     public function pdf_file_print()
     {
         $data = [
             'title' => 'Welcome to Tutsmake.com',
-            'date' => date('m/d/Y')
+            'date' => date('m/d/Y'),
         ];
 
         $pdf = PDF::loadView('dms.pdf.pdf', compact('data'));
@@ -23,6 +21,7 @@ class PDFController extends Controller
 
         return $pdf->stream('bajaj_point.pdf');
     }
+
     public function file_print(Request $request)
     {
         $print_code = 2000;
@@ -58,7 +57,7 @@ class PDFController extends Controller
                 'purchages.purchage_date',
                 'vehicles.*'
             )
-            ->where('cores.print_code', "=", $print_code)
+            ->where('cores.print_code', '=', $print_code)
             ->whereBetween('cores.original_sale_date', [$start_date, $end_date])
             ->get();
         $pdf = PDF::loadView('dms.pdf.pdf', ['print_data' => $print_data]);
@@ -66,6 +65,7 @@ class PDFController extends Controller
 
         return $pdf->stream('bajaj_point.pdf');
     }
+
     public function hform()
     {
         $pdf = PDF::loadView('dms.pdf.brta.hform');
@@ -73,6 +73,7 @@ class PDFController extends Controller
 
         return $pdf->stream('dms.pdf.brta.hform');
     }
+
     public function vat_sale()
     {
         $print_code = 2000;
@@ -92,13 +93,12 @@ class PDFController extends Controller
                 'cores.unit_price_vat',
                 'vehicles.model',
             )
-            ->where('cores.vat_code', "=", $print_code)
+            ->where('cores.vat_code', '=', $print_code)
             ->whereNotNull('cores.sale_mushak_no')
             ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
             ->orderBy('sale_mushak_no')
             ->get()
             ->groupBy('vat_sale_date');
-
 
         // return response()->json($data);
         // return view('dms.pdf.vat.vat_sale_bp')->with(['date_data' => $data]);
@@ -108,6 +108,7 @@ class PDFController extends Controller
 
         return $pdf->stream('vat_sale_bp');
     }
+
     public function vat_sale_bp()
     {
         $print_code = 2000;
@@ -127,7 +128,7 @@ class PDFController extends Controller
                 'cores.unit_price_vat',
                 'vehicles.model',
             )
-            ->where('cores.vat_code', "=", $print_code)
+            ->where('cores.vat_code', '=', $print_code)
             ->whereNotNull('cores.sale_mushak_no')
             ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
             ->orderBy('sale_mushak_no')
@@ -136,6 +137,7 @@ class PDFController extends Controller
 
         return response()->json($data);
     }
+
     public function gate_pass(Request $request)
     {
         $print_data = Core::rightJoin('purchages', 'purchages.id', '=', 'cores.store_id')
@@ -150,8 +152,9 @@ class PDFController extends Controller
                 'color_codes.description',
                 'purchages.purchage_date'
             )
-            ->where('cores.id', "=", $request->id)
+            ->where('cores.id', '=', $request->id)
             ->get();
+
         return view('dms.pdf.gate_pass', ['print_data' => $print_data]);
     }
 }

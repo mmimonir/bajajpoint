@@ -20,6 +20,7 @@ class Moderator
         if ($request->user() && $request->user()->roles == 'moderator') {
             return $next($request);
         }
+
         return new Response(view('unauthorized')->with('role', 'Moderator'));
     }
 }

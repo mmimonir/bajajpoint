@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Showroom;
 
+use App\Http\Controllers\Controller;
 use App\Models\Showroom\Core;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class CKDController extends Controller
 {
@@ -42,6 +42,7 @@ class CKDController extends Controller
             $ckd_data->approval_no = $request->approval_no;
             $ckd_data->invoice_no = $request->invoice_no;
             $ckd_data->save();
+
             return response()->json(['success' => 'Data is successfully updated', 'status' => 200, 'id' => $request->id]);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);

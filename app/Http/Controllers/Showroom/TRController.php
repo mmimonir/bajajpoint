@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\Showroom\Showroom\Core;
-use App\Models\Showroom\Purchage;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Showroom\Purchage;
 
 class TRController extends Controller
 {
@@ -13,10 +11,12 @@ class TRController extends Controller
     {
         return view('dms.showroom.tr.tr_status');
     }
+
     public function tr_pending_index()
     {
         return view('dms.showroom.tr.tr_pending');
     }
+
     public function tr_pending()
     {
         $tr_data = Purchage::rightJoin('cores', 'cores.store_id', '=', 'purchages.id')
@@ -45,6 +45,7 @@ class TRController extends Controller
             'tr_data' => $tr_data,
         ]);
     }
+
     public function tr_status()
     {
         $tr_data = Purchage::rightJoin('cores', 'cores.store_id', '=', 'purchages.id')
@@ -71,7 +72,7 @@ class TRController extends Controller
 
         return response()->json([
             'status' => 200,
-            'tr_data' => $tr_data
+            'tr_data' => $tr_data,
         ]);
     }
 }

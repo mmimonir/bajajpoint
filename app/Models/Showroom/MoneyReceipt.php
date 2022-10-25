@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class MoneyReceipt extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 }

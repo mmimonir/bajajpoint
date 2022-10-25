@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\Showroom\Mrp;
-use Illuminate\Http\Request;
-use App\Models\TransactionLadger;
 use App\Http\Controllers\Controller;
 use App\Models\Showroom\AssessmentYear;
+use App\Models\Showroom\Mrp;
+use App\Models\TransactionLadger;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
 class UtilityController extends Controller
@@ -18,6 +18,7 @@ class UtilityController extends Controller
 
         return response()->json(['assessment' => $assessment, 'vat_mrp' => $vat_mrp]);
     }
+
     public function download()
     {
         Artisan::call('backup:run --only-db');
@@ -31,22 +32,25 @@ class UtilityController extends Controller
                 $latest_filename = $file;
             }
         }
+
         return response()->download($latest_filename);
     }
+
     public function ladger()
     {
         return view('dms.ladger.ladger');
     }
+
     public function get_trans_data(Request $request)
     {
         $trans_data = TransactionLadger::select('*')
             ->where('client_id', 1)
-            ->whereBetween('trans_date', ["2021-01-01", "2021-01-05"])
+            ->whereBetween('trans_date', ['2021-01-01', '2021-01-05'])
             ->get();
 
         return response()->json(
             [
-                'trans_data' => $trans_data
+                'trans_data' => $trans_data,
             ]
         );
     }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\Showroom\Core;
-use App\Models\Showroom\Vehicle;
-use App\Models\Showroom\Purchage;
-use App\Models\Showroom\ColorCode;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Showroom\ColorCode;
+use App\Models\Showroom\Core;
+use App\Models\Showroom\Purchage;
+use App\Models\Showroom\Vehicle;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -29,7 +29,7 @@ class CustomerController extends Controller
                     'core_data' => $core_data,
                     'purchage_data' => $purchage_data,
                     'model_data' => $model_data,
-                    'color_data' => $color_data
+                    'color_data' => $color_data,
                 ]
             );
 

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Service;
 
+use App\Http\Controllers\Controller;
+use App\Models\BusinessProfile;
+use App\Models\Service\PartsPurchageInvoice;
+use App\Models\Service\SparePartsPurchage;
+use App\Models\Service\SparePartsStock;
+use App\Models\Service\SparePartsSupplier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use App\Models\BusinessProfile;
-use App\Models\Service\SparePartsStock;
-use App\Models\Service\SparePartsPurchage;
-use App\Models\Service\PartsPurchageInvoice;
-use App\Models\Service\SparePartsSupplier;
 
 class SparePartsPurchageController extends Controller
 {
@@ -24,7 +24,7 @@ class SparePartsPurchageController extends Controller
         $vendor_list = SparePartsSupplier::select('*')->get();
 
         return response()->json([
-            'vendor_list' => $vendor_list
+            'vendor_list' => $vendor_list,
         ]);
     }
 
@@ -66,6 +66,7 @@ class SparePartsPurchageController extends Controller
 
         return response()->json($id);
     }
+
     public function delete_parts(Request $request)
     {
         SparePartsPurchage::where('id', $request->id)->delete();
@@ -110,7 +111,7 @@ class SparePartsPurchageController extends Controller
                     SparePartsPurchage::where(
                         [
                             'purchage_bill_no' => $request->purchage_bill_no,
-                            'purchage_date' => $request->purchage_date
+                            'purchage_date' => $request->purchage_date,
                         ]
                     )->update(['parts_purchage_invoices_id' => $invoice_id]);
                 }
@@ -169,6 +170,7 @@ class SparePartsPurchageController extends Controller
 
         ]);
     }
+
     public function edit_invoice_purchage()
     {
         $supplier_list = SparePartsSupplier::select('id', 'name')->get();
@@ -179,9 +181,11 @@ class SparePartsPurchageController extends Controller
             'dealer_list' => $dealer_list,
         ]);
     }
+
     public function dealer_list()
     {
         $dealer_list = BusinessProfile::select('id', 'business_code', 'name')->get();
+
         return response()->json([
             'dealer_list' => $dealer_list,
         ]);

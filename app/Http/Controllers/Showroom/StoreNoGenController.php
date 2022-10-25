@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Showroom;
 
+use App\Http\Controllers\Controller;
 use App\Models\Showroom\StoreNoGen;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class StoreNoGenController extends Controller
 {

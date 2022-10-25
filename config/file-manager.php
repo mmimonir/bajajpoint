@@ -1,7 +1,7 @@
 <?php
 
-use Alexusmai\LaravelFileManager\Services\ConfigService\DefaultConfigRepository;
 use Alexusmai\LaravelFileManager\Services\ACLService\ConfigACLRepository;
+use Alexusmai\LaravelFileManager\Services\ConfigService\DefaultConfigRepository;
 
 return [
 
@@ -136,7 +136,6 @@ return [
     'aclRulesCache' => null,
 
     //********* Default configuration for DefaultConfigRepository END **********
-
 
     /***************************************************************************
      * ACL rules list - used for default ACL repository (ConfigACLRepository)

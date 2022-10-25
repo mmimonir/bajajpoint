@@ -2,8 +2,9 @@
 
 namespace App\Services\Service;
 
+use App\Models\Service\Bill;
+use App\Models\Service\JobCard;
 use Carbon\Carbon;
-use App\Models\Service\{Bill, JobCard, Mechanic, ServiceCustomer, SparePartsStock, SparePartsSale};
 
 class JobCardService
 {
@@ -16,8 +17,10 @@ class JobCardService
         } else {
             $bill_no = 1;
         }
+
         return $bill_no;
     }
+
     public function assign_job_card_sl_no()
     {
         $last_job_caard_no = JobCard::select('job_card_no')

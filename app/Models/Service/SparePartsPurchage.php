@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SparePartsPurchage extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 }

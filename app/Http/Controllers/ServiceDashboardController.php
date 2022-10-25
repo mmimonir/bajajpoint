@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Service\SparePartsStock;
+use Illuminate\Http\Request;
 
 class ServiceDashboardController extends Controller
 {
@@ -11,10 +11,12 @@ class ServiceDashboardController extends Controller
     {
         return view('service_dashboard');
     }
+
     public function load_job_card_view()
     {
         return view('service.job_card');
     }
+
     public static function part_id_search(Request $request)
     {
         $part_id = $request->part_id;

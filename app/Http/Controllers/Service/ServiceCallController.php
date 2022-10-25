@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Service;
 use App\Http\Controllers\Controller;
 use App\Models\Service\ServiceCall;
 use App\Models\Showroom\Core;
-use App\Models\Showroom\Vehicle;
 use Illuminate\Http\Request;
 
 class ServiceCallController extends Controller

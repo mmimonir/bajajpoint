@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Models\Showroom\Core;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -17,8 +17,8 @@ class DashboardController extends Controller
 
     public function index()
     {
-        define("SERVICE", "service");
-        define("SHOWROOM", "showroom");
+        define('SERVICE', 'service');
+        define('SHOWROOM', 'showroom');
 
         $user_details = User::find(Auth::user()->id);
         $section = explode(',', $user_details['section']);
@@ -44,8 +44,8 @@ class DashboardController extends Controller
                             'lifting_previous_month' => $this->lifting_previous_month(2030),
                             'lifting_this_month' => $this->lifting_this_month(2030),
                             'tr_pending_data' => $this->tr_pending_data(2030),
-                        ]
-                    ]
+                        ],
+                    ],
                 ]);
         } elseif (in_array(SERVICE, $section)) {
             return view('service_dashboard');
@@ -63,7 +63,7 @@ class DashboardController extends Controller
             $year = Carbon::now()->year - 1;
         }
 
-        $first_day_of_year = Carbon::createFromFormat('Y-m-d', $year . '-07-01')->toDateString();
+        $first_day_of_year = Carbon::createFromFormat('Y-m-d', $year.'-07-01')->toDateString();
         $today = Carbon::now()->toDateString();
         $lifting = Core::select('model_code')
             ->whereBetween('purchage_date', [$first_day_of_year, $today])
@@ -73,6 +73,7 @@ class DashboardController extends Controller
 
         return $total_lifting;
     }
+
     public function lifting_previous_month($report_code)
     {
         $first_day = Carbon::now()->startOfMonth()->subMonthsNoOverflow()->toDateString();
@@ -86,6 +87,7 @@ class DashboardController extends Controller
 
         return $lifting_prev_month;
     }
+
     public function lifting_this_month($report_code)
     {
         $first_day = Carbon::now()->startOfMonth()->toDateString();
@@ -99,6 +101,7 @@ class DashboardController extends Controller
 
         return $lifting_this_month;
     }
+
     public function tr_pending_data($report_code)
     {
         $tr_pending_qty = count(Core::select('model_code')
@@ -110,8 +113,10 @@ class DashboardController extends Controller
             ->where('cores.vat_process', 'PENDING')
             ->where('cores.report_code', $report_code)
             ->sum('mrps.tr');
+
         return ['amount' => $tr_pending_amount, 'qty' => $tr_pending_qty];
     }
+
     public function rg_number_update(Request $request)
     {
         Core::where('id', $request->id)->update(['rg_number' => $request->rg_number]);
@@ -119,7 +124,7 @@ class DashboardController extends Controller
         return response()->json(
             [
                 'message' => 'RG Number Updated Successfully',
-                'status' => 200
+                'status' => 200,
             ]
         );
     }

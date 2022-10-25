@@ -16,7 +16,6 @@ class BankAccountController extends Controller
     {
         $all_bank_data = BankAccount::select('*')->get();
 
-
         return response()->json(['all_bank_data' => $all_bank_data]);
     }
 
@@ -27,7 +26,7 @@ class BankAccountController extends Controller
             ->first();
 
         return response()->json([
-            'single_bank_data' => $single_bank_data
+            'single_bank_data' => $single_bank_data,
         ]);
     }
 
@@ -35,13 +34,14 @@ class BankAccountController extends Controller
     {
         try {
             BankAccount::create($request->all());
+
             return response()->json([
                 'status' => 200,
-                'message' => 'Bank Account Added Successfully'
+                'message' => 'Bank Account Added Successfully',
             ]);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ]);
         }
     }
@@ -49,18 +49,20 @@ class BankAccountController extends Controller
     public function update_bank_account(Request $request)
     {
         BankAccount::whereId($request->id)->update($request->all());
+
         return response()->json([
             'status' => 200,
-            'message' => 'Bank Account Updated Successfully'
+            'message' => 'Bank Account Updated Successfully',
         ]);
     }
 
     public function delete_bank_account(Request $request)
     {
         BankAccount::whereId($request->id)->delete();
+
         return response()->json([
             'status' => 200,
-            'message' => 'Bank Account Deleted Successfully'
+            'message' => 'Bank Account Deleted Successfully',
         ]);
     }
 }

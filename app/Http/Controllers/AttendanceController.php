@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use App\Models\Service\Employee;
 use App\Models\EmployeeAttendance;
 use App\Models\EmployeeTimestamp;
+use App\Models\Service\Employee;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
 {
@@ -51,14 +51,13 @@ class AttendanceController extends Controller
                 'message' => 'Attendance data not found',
                 'attendance_data' => null,
                 'emp_data' => null,
-                'attendance_timestamp_data' => null
+                'attendance_timestamp_data' => null,
             ]);
         }
     }
 
     public function daily_attendance_store(Request $request)
     {
-
         try {
             $last_id = EmployeeAttendance::updateOrCreate(
                 [
@@ -97,10 +96,11 @@ class AttendanceController extends Controller
             return response()->json([
                 'status' => 500,
                 'message' => 'Something went wrong',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ]);
         }
     }
+
     public function salary_calculate(Request $request)
     {
         EmployeeAttendance::find($request->id)->update([
@@ -114,6 +114,7 @@ class AttendanceController extends Controller
             'message' => 'Salary calculated successfully',
         ]);
     }
+
     public function timestamp_create_or_update(Request $request)
     {
         $timestamp_id = EmployeeTimestamp::updateOrCreate(
@@ -129,7 +130,7 @@ class AttendanceController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'Timestamp updated successfully',
-            'timestamp_id' => $timestamp_id
+            'timestamp_id' => $timestamp_id,
         ]);
     }
 

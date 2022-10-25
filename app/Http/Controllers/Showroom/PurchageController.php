@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use Carbon\Carbon;
-use App\Models\Showroom\{Mrp, Core, Helper, Purchage, Supplier, ColorCode};
-use Illuminate\Support\Arr;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Showroom\ColorCode;
+use App\Models\Showroom\Core;
+use App\Models\Showroom\Helper;
+use App\Models\Showroom\Mrp;
+use App\Models\Showroom\Purchage;
+use App\Models\Showroom\Supplier;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class PurchageController extends Controller
 {
@@ -19,6 +24,7 @@ class PurchageController extends Controller
 
         return view('dms.showroom.purchage.purchage_entry')->with(['suppliers' => $suppliers, 'mrps' => $mrps, 'dealer_names' => $dealer_names]);
     }
+
     public function create(Request $request)
     {
         try {
@@ -73,14 +79,16 @@ class PurchageController extends Controller
                         Core::insert($save_record);
                     } else {
                         Core::insert($save_record);
-                    };
+                    }
                 }
             });
+
             return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
     }
+
     public function get_mrp(Request $request)
     {
         $color = ColorCode::select('model_name', 'color', 'color_code')->where('model_code', $request->model_code)->get();
@@ -88,10 +96,12 @@ class PurchageController extends Controller
 
         return response()->json(['mrp' => $mrp, 'color' => $color]);
     }
+
     public function purchage_list_index()
     {
         return view('dms.showroom.purchage.purchage_list');
     }
+
     public function purchage_list()
     {
         $purchages = Purchage::select(
@@ -103,8 +113,10 @@ class PurchageController extends Controller
             'dealer_name',
             'quantity'
         )->whereYear('purchage_date', '>', '2020')->orderBy('id', 'desc')->get();
+
         return response()->json($purchages);
     }
+
     public function purchage_details($id)
     {
         $uml_data = Core::select('uml_mushak_no', 'mushak_date', 'print_code')->where('store_id', $id)->first();
@@ -129,15 +141,17 @@ class PurchageController extends Controller
                 'cores.mushak_date',
                 'vehicles.model'
             )
-            ->where('cores.store_id', "=", $id)
+            ->where('cores.store_id', '=', $id)
             ->get();
+
         return view('dms.showroom.purchage.purchage_details')
             ->with([
                 'purchages' => $purchages,
                 'purchage_details' => $purchage_details,
-                'uml_data' => $uml_data
+                'uml_data' => $uml_data,
             ]);
     }
+
     public function purchage_detail_update(Request $request)
     {
         try {
@@ -157,6 +171,7 @@ class PurchageController extends Controller
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
     }
+
     public function purchage_by_date(Request $request)
     {
         $dealer_code = $request->print_code;
@@ -166,13 +181,14 @@ class PurchageController extends Controller
         $purchage_data = Purchage::select(
             '*'
         )
-            ->where('dealer_code', "=", $dealer_code)
+            ->where('dealer_code', '=', $dealer_code)
             ->whereBetween('purchage_date', [$start_date, $end_date])
             ->orderBy('purchage_date', 'asc')
             ->get();
 
         return view('dms.showroom.purchage.purchage_by_date')->with(['purchage_data' => $purchage_data]);
     }
+
     public function purchage_by_month(Request $request)
     {
         try {
@@ -189,7 +205,7 @@ class PurchageController extends Controller
             $purchage_data = Purchage::select(
                 '*'
             )
-                ->where('dealer_code', "=", $dealer_code)
+                ->where('dealer_code', '=', $dealer_code)
                 ->whereBetween('purchage_date', [$start_date, $end_date])
                 ->orderBy('purchage_date', 'asc')
                 ->get();
@@ -199,21 +215,25 @@ class PurchageController extends Controller
             return response()->json(['error' => $e->getMessage()]);
         }
     }
+
     public function uml_mushak_bulk_update(Request $request)
     {
         Core::where('store_id', $request->id)
             ->update([
                 'uml_mushak_no' => $request->uml_mushak_no,
-                'mushak_date' => $request->mushak_date
+                'mushak_date' => $request->mushak_date,
             ]);
+
         return redirect()->back()->with('success', 'Print Code Updated');
     }
+
     public function print_code_update(Request $request)
     {
         Core::where('store_id', $request->id)
             ->update([
-                'print_code' => $request->print_code
+                'print_code' => $request->print_code,
             ]);
+
         return redirect()->back()->with('success', 'Print Code Updated');
     }
 }

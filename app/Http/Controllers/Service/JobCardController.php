@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Service;
 
+use App\Http\Controllers\Controller;
+use App\Models\Service\Bill;
+use App\Models\Service\JobCard;
+use App\Models\Service\ServiceCustomer;
+use App\Models\Service\SparePartsSale;
+use App\Models\Service\SparePartsStock;
+use App\Services\Service\JobCardService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use App\Services\Service\JobCardService;
-use App\Models\Service\{Bill, JobCard, ServiceCustomer, SparePartsSale, SparePartsStock};
-use Maatwebsite\Excel\Transactions\TransactionHandler;
 
 class JobCardController extends Controller
 {
@@ -55,6 +58,7 @@ class JobCardController extends Controller
             ->where('job_card_date', $request->jb_date ?? Carbon::now()->toDateString())
             ->orderBy('job_card_no', 'asc')
             ->get();
+
         return response()->json(['job_card_list' => $job_card_list]);
     }
 
@@ -108,6 +112,7 @@ class JobCardController extends Controller
 
         return $bill_no;
     }
+
     public function check_jb_is_exists($jb_date, $customer_id)
     {
         $jb_data = JobCard::where(['job_card_date' => $jb_date, 'customer_id' => $customer_id])->first();
@@ -120,10 +125,10 @@ class JobCardController extends Controller
 
     public function customer_name_already_exists(Request $request)
     {   // check if customer name already exists in service customer table with id
-        $service_customer_data =  JobCardService::service_customer_data($request);
+        $service_customer_data = JobCardService::service_customer_data($request);
 
         // check if customer name already exists in showroom core table without id
-        $showroom_customer_data =  JobCardService::showroom_customer_data($request);
+        $showroom_customer_data = JobCardService::showroom_customer_data($request);
         $exists_jb_no = $this->check_jb_is_exists(Carbon::now()->toDateString(), $service_customer_data->id ?? '');
 
         if ($service_customer_data) {
@@ -152,7 +157,7 @@ class JobCardController extends Controller
                     ->json(
                         [
                             'message' => 'Customer does not exists.',
-                            'status' => 404
+                            'status' => 404,
                         ]
                     );
             }
@@ -167,7 +172,7 @@ class JobCardController extends Controller
         }
 
         // check the customer is buy mc from our showroom or not, if yes our_customer set to yes.
-        $our_customer =  JobCardService::showroom_customer_data($request);
+        $our_customer = JobCardService::showroom_customer_data($request);
         if ($our_customer) {
             $our_customer = 'yes';
         } else {
@@ -186,7 +191,7 @@ class JobCardController extends Controller
             $customer_id = $customer_data->id;
         } else {
             $id = ServiceCustomer::updateOrCreate([
-                'id' => $request->service_customer_id
+                'id' => $request->service_customer_id,
             ], [
                 'client_name' => $request->client_name,
                 'client_mobile' => $request->client_mobile,
@@ -239,6 +244,7 @@ class JobCardController extends Controller
 
         // Update service customer table for last completed service
         ServiceCustomer::where('id', $customer_id)->update(['completed_last_service_type' => $request->service_type]);
+
         return response()->json([
             'message' => 'Job card created successfully.',
             'status' => 200,
@@ -254,25 +260,28 @@ class JobCardController extends Controller
 
     public function load_basic_data()
     {
-        $all_vehicle =  JobCardService::load_basic_data();
+        $all_vehicle = JobCardService::load_basic_data();
+
         return response()->json(['vehicle' => $all_vehicle]);
     }
 
     public function search_by_part_id(Request $request)
     {
-        $data =  JobCardService::search_by_part_id($request);
+        $data = JobCardService::search_by_part_id($request);
+
         return response()->json($data);
     }
 
     public function search_by_full_part_id(Request $request)
     {
-        $data =  JobCardService::search_by_full_part_id($request);
+        $data = JobCardService::search_by_full_part_id($request);
+
         return response()->json($data);
     }
 
     public function assign_job_card_sl_no()
     {
-        $last_job_caard_no =  JobCardService::assign_job_card_sl_no();
+        $last_job_caard_no = JobCardService::assign_job_card_sl_no();
 
         $new_job_card_no = 0;
         if ($last_job_caard_no) {
@@ -282,17 +291,21 @@ class JobCardController extends Controller
         }
 
         $this->job_card_no = $new_job_card_no;
+
         return response()->json($new_job_card_no);
     }
+
     public function assign_bill_no()
     {
-        $bill_no =  JobCardService::create_bill_no();
+        $bill_no = JobCardService::create_bill_no();
+
         return response()->json($bill_no);
     }
 
     public function load_employee_data()
     {
-        $all_employee =  JobCardService::load_employee_data();
+        $all_employee = JobCardService::load_employee_data();
+
         return response()->json(['employee' => $all_employee]);
     }
 
@@ -315,7 +328,7 @@ class JobCardController extends Controller
                 // Update JobCard Table when request from Create Job Card Page
                 if ($request->job_card_id) {
                     JobCard::where('id', $request->job_card_id)->update(['mc_delivery_done' => 'yes']);
-                };
+                }
 
                 // Update SparePartsStock Table when request from Create Job Card, Create Bill Page.
                 if ($request->part_id && $request->request_from == 'job_card_page') {
@@ -348,7 +361,7 @@ class JobCardController extends Controller
                     $bill_id = Bill::updateOrCreate(
                         [
                             'bill_no' => $request->bill_no,
-                            'bill_date' => $request->bill_date
+                            'bill_date' => $request->bill_date,
                         ],
                         [
                             'bill_no' => $bill_no,
@@ -384,6 +397,7 @@ class JobCardController extends Controller
                     }
                 }
             });
+
             return response()->json([
                 'message' => 'Operation completed successfully.',
                 'status' => 200,

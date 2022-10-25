@@ -2,18 +2,14 @@
 
 namespace App\Models\Showroom;
 
-use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-
+use Illuminate\Database\Eloquent\Model;
 
 class Core extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
-
-
 
     // public function vehicles()
     // {

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\Showroom\{Quotation, QuotationItem};
+use App\Http\Controllers\Controller;
+use App\Models\Showroom\Quotation;
+use App\Models\Showroom\QuotationItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 
 class QuotationController extends Controller
 {
@@ -27,6 +28,7 @@ class QuotationController extends Controller
             'discount',
             'validity',
         )->get();
+
         return view('dms.showroom.quotations.quotation_list')->with('quotations', $quotations);
     }
 
@@ -53,7 +55,6 @@ class QuotationController extends Controller
         )->id;
 
         foreach ($request->tb_description as $key => $value) {
-
             QuotationItem::updateOrCreate(
                 ['id' => $request->item_id[$key] ?? null],
                 [
@@ -67,9 +68,10 @@ class QuotationController extends Controller
         }
         // });
         $last_data = Quotation::latest()->first();
+
         return response()->json([
             'status' => 200,
-            'last_data' => $last_data
+            'last_data' => $last_data,
         ]);
         // } catch (\Exception $e) {
         //     return response()->json(['message' => $e->getMessage(), 'status' => 502]);
@@ -118,7 +120,6 @@ class QuotationController extends Controller
     // }
     public function quotation_print_html($id)
     {
-
         $quotations = Quotation::select(
             'id',
             'ref',
@@ -140,7 +141,7 @@ class QuotationController extends Controller
         return view('dms.showroom.quotations.quotation_html')
             ->with([
                 'quotations' => $quotations,
-                'quotation_items' => $quotation_items
+                'quotation_items' => $quotation_items,
             ]);
     }
 
@@ -206,6 +207,7 @@ class QuotationController extends Controller
                 Quotation::where('id', $request->id)->delete();
                 QuotationItem::where('quotation_id', $request->id)->delete();
             });
+
             return response()->json(['status' => 200, 'message' => 'Successfully Deleted']);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);

@@ -3,17 +3,16 @@
 namespace App\Exports;
 
 use App\Models\Showroom\Core;
-use Carbon\Carbon;
-use Maatwebsite\Excel\Concerns\FromQuery;
-use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use DB;
-
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class CoreExport implements FromQuery, WithHeadings, ShouldAutoSize
 {
     use Exportable;
+
     public function __construct(string $start_date, string $end_date)
     {
         $this->start_date = $start_date;

@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\Showroom\{Core, Vehicle, Purchage, Supplier, ColorCode, Mrp, PriceDeclare};
-use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\TryCatch;
 use App\Http\Controllers\Controller;
 use App\Models\BusinessProfile;
+use App\Models\Showroom\ColorCode;
+use App\Models\Showroom\Core;
+use App\Models\Showroom\Mrp;
+use App\Models\Showroom\PriceDeclare;
+use App\Models\Showroom\Purchage;
+use App\Models\Showroom\Supplier;
+use App\Models\Showroom\Vehicle;
+use Illuminate\Http\Request;
 
 class SalesController extends Controller
 {
@@ -59,7 +64,6 @@ class SalesController extends Controller
         $purchage_data = Purchage::select('purchage_date', 'vendor', 'factory_challan_no')->where('id', $store_id)->first();
         $color_data = ColorCode::select('color_code', 'color')->where('model_code', $model_code)->get();
         $pd_data = PriceDeclare::select('id', 'vat_mrp', 'submit_date')->where(['model_code' => $model_code, 'status' => '1'])->first();
-
 
         return view('dms.showroom.sales.sales_update', [
             'core_data' => $core_data,
@@ -129,13 +133,15 @@ class SalesController extends Controller
                     'tr_dep_date' => $request->tr_dep_date,
                     'in_stock' => 'no',
                     'year_of_manufacture' => $request->year_of_manufacture,
-                    'price_declare_id' => $request->price_declare_id
+                    'price_declare_id' => $request->price_declare_id,
                 ]);
+
             return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
     }
+
     public function sales_report(Request $request)
     {
         $start_date = $request->start_date;

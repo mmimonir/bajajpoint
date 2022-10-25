@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Showroom;
 
-
-use App\Models\Showroom\{Core, Helper, Purchage, Supplier};
+use App\Http\Controllers\Controller;
+use App\Models\Showroom\Core;
+use App\Models\Showroom\Helper;
+use App\Models\Showroom\Purchage;
+use App\Models\Showroom\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-
 
 class VATController extends Controller
 {
@@ -51,6 +52,7 @@ class VATController extends Controller
                 ]
             );
     }
+
     public function vat_index()
     {
         $start_date = '2022-01-01';
@@ -76,11 +78,13 @@ class VATController extends Controller
                 Core::where('id', $value->id)->update($update_record);
                 $this->final_value++;
             }
+
             return redirect()->back()->with('success', 'VAT Sale Challan No Generated Successfully');
         } else {
             return 'No Data Found';
         }
     }
+
     public function vat_sale(Request $request)
     {
         $vat_code = $request->vat_code;
@@ -101,7 +105,7 @@ class VATController extends Controller
                 'cores.unit_price_vat',
                 'vehicles.model'
             )
-            ->where('cores.vat_code', "=", $vat_code)
+            ->where('cores.vat_code', '=', $vat_code)
             ->whereNotNull('cores.sale_mushak_no')
             ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
             ->orderBy('sale_mushak_no')
@@ -110,6 +114,7 @@ class VATController extends Controller
 
         return view('dms.html_print.vat.vat_sale')->with(['vat_data' => $data, 'vat_code' => $vat_code]);
     }
+
     public function vat_sale_by_model(Request $request)
     {
         $vat_code = $request->vat_code;
@@ -132,7 +137,7 @@ class VATController extends Controller
                 'vehicles.model',
                 DB::raw('MONTH(cores.vat_sale_date) as month')
             )
-            ->where('cores.vat_code', "=", $vat_code)
+            ->where('cores.vat_code', '=', $vat_code)
             ->whereNotNull('cores.sale_mushak_no')
             ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
             ->orderBy('cores.sale_mushak_no')
@@ -141,6 +146,7 @@ class VATController extends Controller
 
         return view('dms.html_print.vat.vat_sale_by_model')->with(['vat_data' => $data, 'vat_code' => $vat_code]);
     }
+
     public function assign_tr_number(Request $request)
     {
         try {
@@ -159,16 +165,16 @@ class VATController extends Controller
                     Core::where([
                         'whos_vat' => $whos_vat,
                         'tr_month_code' => $tr_month_code,
-                        'model_code' => $value
+                        'model_code' => $value,
                     ])->update($update_record);
                 }
             }
+
             return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
     }
-
 
     public function assign_tr_code(Request $request)
     {
@@ -187,6 +193,7 @@ class VATController extends Controller
                     )->update(['whos_vat' => $whos_vat_code]);
                 }
             });
+
             return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);
@@ -199,7 +206,7 @@ class VATController extends Controller
             Core::where(['tr_month_code' => $request->tr_code])
                 ->update([
                     'vat_process' => 'VAT OK',
-                    'tr_dep_date' => $request->tr_dep_date
+                    'tr_dep_date' => $request->tr_dep_date,
                 ]);
 
             return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
@@ -207,6 +214,7 @@ class VATController extends Controller
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
     }
+
     public function tr_changer_update(Request $request)
     {
         try {
@@ -215,7 +223,7 @@ class VATController extends Controller
                 ->update([
                     'vat_process' => 'VAT OK',
                     'whos_vat' => $tr_changer,
-                    'tr_dep_date' => $request->tr_dep_date
+                    'tr_dep_date' => $request->tr_dep_date,
                 ]);
 
             return redirect()->back()->with('success', 'TR Status Updated Successfully');
@@ -223,6 +231,7 @@ class VATController extends Controller
             return redirect()->back()->with('error', 'Something Went Wrong');
         }
     }
+
     public function assign_sale_mushak_no(Request $request)
     {
         $vat_code = $request->vat_code;
@@ -243,13 +252,14 @@ class VATController extends Controller
                 'cores.original_sale_date',
                 'vehicles.model',
                 'purchages.purchage_date',
-            )->where('cores.vat_code', "=", $vat_code)
+            )->where('cores.vat_code', '=', $vat_code)
             ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
             ->orderBy('cores.sale_mushak_no')
             ->get();
 
         return view('dms.showroom.vat.sale_mushak_sl_gen')->with(['mushak_data' => $mushak_data]);
     }
+
     public function assign_sale_mushak_no_store(Request $request)
     {
         // $vat_sale_date = Carbon::parse($request->vat_sale_date);
@@ -258,6 +268,7 @@ class VATController extends Controller
             $mushak_data->sale_mushak_no = $request->sale_mushak_no;
             $mushak_data->vat_sale_date = $request->vat_sale_date;
             $mushak_data->save();
+
             return response()->json(['success' => 'Data is successfully updated', 'status' => 200, 'id' => $request->id]);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);
@@ -291,11 +302,13 @@ class VATController extends Controller
             ->whereBetween('cores.purchage_date', [$start_date, $end_date])
             ->orderBy('cores.purchage_date')
             ->get();
+
         return view('dms.showroom.vat.uml_mushak_update')
             ->with([
-                'purchage_data' => $purchage_data
+                'purchage_data' => $purchage_data,
             ]);
     }
+
     public function uml_mushak_update_store(Request $request)
     {
         try {
@@ -303,6 +316,7 @@ class VATController extends Controller
             $mushak_data->uml_mushak_no = $request->uml_mushak_no;
             $mushak_data->mushak_date = $request->mushak_date;
             $mushak_data->save();
+
             return response()->json(['success' => 'Data is successfully updated', 'status' => 200, 'id' => $request->id]);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);

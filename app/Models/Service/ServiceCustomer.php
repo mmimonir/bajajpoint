@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ServiceCustomer extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 }

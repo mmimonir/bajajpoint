@@ -2,11 +2,14 @@
 
 namespace App\Services\Service;
 
-use Carbon\Carbon;
-use App\Models\Showroom\Core;
+use App\Models\Service\Bill;
 use App\Models\Service\Employee;
+use App\Models\Service\JobCard;
+use App\Models\Service\ServiceCustomer;
+use App\Models\Service\SparePartsStock;
+use App\Models\Showroom\Core;
 use App\Models\Showroom\Vehicle;
-use App\Models\Service\{Bill, JobCard, Mechanic, ServiceCustomer, SparePartsStock, SparePartsSale};
+use Carbon\Carbon;
 
 class JobCardService
 {
@@ -38,6 +41,7 @@ class JobCardService
                 $bill_no = 1;
             }
         }
+
         return $bill_no;
     }
     // don't delete this function
@@ -70,6 +74,7 @@ class JobCardService
     public static function load_employee_data()
     {
         $all_employee = Employee::select('id', 'name')->get();
+
         return $all_employee;
     }
 
@@ -91,6 +96,7 @@ class JobCardService
             )
             ->where('client_mobile', $request->mobile)
             ->first();
+
         return $service_customer_data;
     }
 
@@ -113,14 +119,16 @@ class JobCardService
                 'vehicles.model',
                 'vehicles.model_code'
             )
-            ->where('cores.mobile', "=", $request->mobile)
+            ->where('cores.mobile', '=', $request->mobile)
             ->first();
+
         return $showroom_customer_data;
     }
 
     public static function load_basic_data()
     {
         $all_vehicle = Vehicle::select('model', 'model_code')->get();
+
         return $all_vehicle;
     }
 
@@ -129,7 +137,8 @@ class JobCardService
         if ($request->has('part_id')) {
             $part_id = $request->part_id;
             $data = SparePartsStock::select('part_id as value', 'id')
-                ->where('part_id', 'LIKE', '%' . $part_id . '%')->get();
+                ->where('part_id', 'LIKE', '%'.$part_id.'%')->get();
+
             return $data;
         }
     }
@@ -144,6 +153,7 @@ class JobCardService
             'rate',
             'stock_quantity'
         )->where(['part_id' => $part_id])->first();
+
         return $data;
     }
 }

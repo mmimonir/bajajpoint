@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Showroom;
 
-use App\Models\Showroom\Mrp;
-use App\Models\Showroom\PriceDeclare;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\BusinessProfile;
+use App\Models\Showroom\PriceDeclare;
 use App\Models\Showroom\Vehicle;
+use Illuminate\Http\Request;
 
 class PriceDeclareController extends Controller
 {
@@ -15,6 +14,7 @@ class PriceDeclareController extends Controller
     {
         return view('dms.showroom.price_declare.price_declare');
     }
+
     public function get_business_profile()
     {
         $profile_data = BusinessProfile::select('id', 'name')->get();
@@ -22,7 +22,7 @@ class PriceDeclareController extends Controller
 
         return response()->json([
             'profile_data' => $profile_data,
-            'vehicles' => $vehicles
+            'vehicles' => $vehicles,
         ]);
     }
 
@@ -81,7 +81,7 @@ class PriceDeclareController extends Controller
         return response()->json([
             'pd_data' => $pd_data,
             'vehicle_data' => $vehicle_data,
-            'profile_data' => $profile_data
+            'profile_data' => $profile_data,
         ]);
     }
 
@@ -89,13 +89,14 @@ class PriceDeclareController extends Controller
     {
         try {
             PriceDeclare::create($request->all());
+
             return response()->json([
                 'status' => 200,
-                'message' => 'Price Declare Added Successfully'
+                'message' => 'Price Declare Added Successfully',
             ]);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ]);
         }
     }
@@ -103,18 +104,20 @@ class PriceDeclareController extends Controller
     public function pd_update(Request $request)
     {
         PriceDeclare::whereId($request->id)->update($request->all());
+
         return response()->json([
             'status' => 200,
-            'message' => 'Price Declare Updated Successfully'
+            'message' => 'Price Declare Updated Successfully',
         ]);
     }
 
     public function pd_delete(Request $request)
     {
         PriceDeclare::whereId($request->id)->delete();
+
         return response()->json([
             'status' => 200,
-            'message' => 'Price Declare Deleted Successfully'
+            'message' => 'Price Declare Deleted Successfully',
         ]);
     }
 }

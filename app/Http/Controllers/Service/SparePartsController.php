@@ -22,6 +22,7 @@ class SparePartsController extends Controller
                 'category' => 'spare_parts',
             ]
         );
+
         return response()->json(
             [
                 'msg' => 'Spare Parts Stock Saved Successfully.',
@@ -29,6 +30,7 @@ class SparePartsController extends Controller
             ]
         );
     }
+
     public function add_new_mobil(Request $request)
     {
         SparePartsStock::updateOrCreate(
@@ -43,6 +45,7 @@ class SparePartsController extends Controller
                 'category' => 'mobil',
             ]
         );
+
         return response()->json(
             [
                 'msg' => 'Spare Parts Stock Saved Successfully.',

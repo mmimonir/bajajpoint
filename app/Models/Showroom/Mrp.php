@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Mrp extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 }

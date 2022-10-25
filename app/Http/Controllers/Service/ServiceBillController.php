@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Service;
 
-use Carbon\Carbon;
-use App\Models\Service\Bill;
-use Illuminate\Http\Request;
-use App\Models\Service\JobCard;
 use App\Http\Controllers\Controller;
+use App\Models\Service\Bill;
 use App\Models\Service\SparePartsSale;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class ServiceBillController extends Controller
 {
@@ -20,10 +19,12 @@ class ServiceBillController extends Controller
     {
         return view('dms.service.bill.create_bill');
     }
+
     /**
      * Display a listing of the resource.
+     *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response     
+     * @return \Illuminate\Http\Response
      */
     public function html_bill(Request $request)
     {
@@ -72,11 +73,12 @@ class ServiceBillController extends Controller
 
     public function store_bill(Request $request)
     {
-        $store_bill  = JobCardController::delivery_done($request);
+        $store_bill = JobCardController::delivery_done($request);
+
         return response()->json([
             'store_bill' => $store_bill->original,
             'message' => 'Bill created successfully.',
-            'status' => 200
+            'status' => 200,
         ]);
     }
 
@@ -118,7 +120,7 @@ class ServiceBillController extends Controller
         return response()->json([
             'bill_details' => $bill_details,
             'spare_parts_sale_details' => $spare_parts_sale_details,
-            'jb_details' => $jb_details
+            'jb_details' => $jb_details,
         ]);
     }
 }

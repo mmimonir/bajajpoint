@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\VAT;
 
+use App\Http\Controllers\Controller;
+use App\Models\Showroom\Core;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Models\Showroom\Core;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 
 class VATPurchageAccountController extends Controller
 {
@@ -37,7 +37,7 @@ class VATPurchageAccountController extends Controller
                 DB::raw("'sale' as type"),
                 DB::raw('1 as quantity')
             )
-            ->where('cores.vat_code', "=", $vat_code)
+            ->where('cores.vat_code', '=', $vat_code)
             ->whereBetween('cores.vat_sale_date', [$start_date, $end_date]);
 
         $combine_data = Core::rightJoin('vehicles', 'vehicles.model_code', '=', 'cores.model_code')
@@ -59,17 +59,16 @@ class VATPurchageAccountController extends Controller
                 'cores.vat_rebate',
                 DB::raw('DATE(cores.mushak_date) as day'),
                 DB::raw("'purchage' as type"),
-                DB::raw('1 as quantity')                
+                DB::raw('1 as quantity')
             )
-            ->where('cores.vat_code', "=", $vat_code)
+            ->where('cores.vat_code', '=', $vat_code)
             ->whereBetween('cores.mushak_date', [$start_date, $end_date])
             ->union($sale_data)
             ->orderBy('day', 'asc')
             ->get()
-            ->groupBy(['model']);            
+            ->groupBy(['model']);
 
-            $all_model = $combine_data->keys();
-            
+        $all_model = $combine_data->keys();
 
         // return response()->json($combine_data);
         return view('dms.vat.vat_purchage_account_test')
@@ -82,6 +81,7 @@ class VATPurchageAccountController extends Controller
                 ],
             ]);
     }
+
     public function vat_purchage_homepage(Request $request)
     {
         $purchage_data = $this->get_vat_purchage_data($request);
@@ -99,6 +99,7 @@ class VATPurchageAccountController extends Controller
                 ],
             ]);
     }
+
     public function vat_purchage_closing_quantity(Request $request)
     {
         $vat_code = $request->vat_code ?? 2000;
@@ -112,7 +113,7 @@ class VATPurchageAccountController extends Controller
                 'vehicles.model',
                 DB::raw('1 as quantity')
             )
-            ->where('cores.vat_code', "=", $vat_code)
+            ->where('cores.vat_code', '=', $vat_code)
             ->whereBetween('cores.mushak_date', [$start_date, $end_date])
             ->orderBy('vehicles.model', 'asc')
             ->get()
@@ -131,7 +132,7 @@ class VATPurchageAccountController extends Controller
                 'vehicles.model',
                 DB::raw('1 as quantity')
             )
-            ->where('cores.vat_code', "=", $vat_code)
+            ->where('cores.vat_code', '=', $vat_code)
             ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
             ->orderBy('cores.vat_sale_date', 'asc')
             ->get()
@@ -148,11 +149,13 @@ class VATPurchageAccountController extends Controller
             $item['closing_quantity'] = $item['quantity'] - $total_sale[$item['model']]['quantity'];
             $item['purchage_quantity'] = $item['quantity'];
             $item['sale_quantity'] = $total_sale[$item['model']]['quantity'];
+
             return $item;
         });
 
         return $closing_balance;
     }
+
     public function get_vat_purchage_data($request)
     {
         $vat_code = $request->vat_code;
@@ -174,16 +177,16 @@ class VATPurchageAccountController extends Controller
                 DB::raw('MONTH(cores.mushak_date) as month'),
                 DB::raw('1 as quantity')
             )
-            ->where('cores.vat_code', "=", $vat_code)
+            ->where('cores.vat_code', '=', $vat_code)
             ->whereBetween('cores.mushak_date', [$start_date, $end_date])
             ->orderBy('cores.mushak_date', 'asc')
             ->get()
             ->groupBy(['model', 'month', 'uml_mushak_no']);
 
-
         // dd($data);
         return $purchage_data;
     }
+
     public function get_vat_sale_data($request)
     {
         // $vat_code = $request->vat_code;
@@ -214,7 +217,7 @@ class VATPurchageAccountController extends Controller
                 DB::raw('MONTH(cores.vat_sale_date) as month'),
                 DB::raw('1 as quantity')
             )
-            ->where('cores.vat_code', "=", $vat_code)
+            ->where('cores.vat_code', '=', $vat_code)
             ->whereBetween('cores.vat_sale_date', [$start_date, $end_date])
             ->orderBy('cores.sale_mushak_no', 'asc')
             ->get()

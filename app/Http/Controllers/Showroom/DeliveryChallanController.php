@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Showroom;
 
+use App\Http\Controllers\Controller;
+use App\Models\Showroom\ColorCode;
+use App\Models\Showroom\Core;
+use App\Models\Showroom\MoneyReceipt;
+use App\Models\Showroom\Mrp;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use App\Models\Showroom\{Mrp, Core, ColorCode, MoneyReceipt};
 
 class DeliveryChallanController extends Controller
 {
@@ -14,10 +16,12 @@ class DeliveryChallanController extends Controller
     {
         return view('dms.showroom.utility.delivery_challan.delivery_challan');
     }
+
     public function money_receipt_html()
     {
         return view('dms.html_print.html_money_receipt');
     }
+
     public function money_receipt(Request $request)
     {
         if ($request->receipt_id) {
@@ -35,6 +39,7 @@ class DeliveryChallanController extends Controller
             return view('dms.showroom.utility.delivery_challan.money_receipt')->with(['receipt_data' => null, 'model' => null]);
         }
     }
+
     public function create_receipt_no($value = '')
     {
         $receipt_no = 0;
@@ -78,6 +83,7 @@ class DeliveryChallanController extends Controller
             'status' => 200,
         ]);
     }
+
     public function store_created_receipt(Request $request)
     {
         try {
@@ -94,11 +100,13 @@ class DeliveryChallanController extends Controller
                 'on_account_of' => $request->on_account_of,
                 'amount' => $request->amount,
             ]);
+
             return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
     }
+
     public function store_created_challan(Request $request)
     {
         $ch_length = strlen($request->full_chassis);
@@ -197,6 +205,7 @@ class DeliveryChallanController extends Controller
             ]
         );
     }
+
     public function load_receipt_list(Request $request)
     {
         $receipt_list = MoneyReceipt::select('*')
@@ -208,6 +217,7 @@ class DeliveryChallanController extends Controller
 
         return response()->json(['receipt_list' => $receipt_list]);
     }
+
     public function load_single_receipt(Request $request)
     {
         $receipt_details = MoneyReceipt::select('*')
@@ -217,9 +227,10 @@ class DeliveryChallanController extends Controller
             ->first();
 
         return response()->json([
-            'receipt_details' => $receipt_details
+            'receipt_details' => $receipt_details,
         ]);
     }
+
     public function mc_return(Request $request)
     {
         try {
@@ -239,11 +250,13 @@ class DeliveryChallanController extends Controller
                     'vat_sale_date' => null,
                     'in_stock' => 'yes',
                 ]);
+
             return response()->json(['status' => 200, 'message' => 'Successfully Updated']);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 502]);
         }
     }
+
     public function color_list(Request $request)
     {
         $color_list = ColorCode::where('model_code', $request->model_code)->get();
@@ -251,9 +264,10 @@ class DeliveryChallanController extends Controller
 
         return response()->json([
             'color_list' => $color_list,
-            'color_code' => $color_code->color_code
+            'color_code' => $color_code->color_code,
         ]);
     }
+
     public function load_challan_list(Request $request)
     {
         $challan_list = Core::select('*')
@@ -265,6 +279,7 @@ class DeliveryChallanController extends Controller
 
         return response()->json(['challan_list' => $challan_list]);
     }
+
     public function load_single_challan(Request $request)
     {
         $challan_details = Core::rightJoin('color_codes', 'color_codes.color_code', '=', 'cores.color_code')
@@ -284,7 +299,7 @@ class DeliveryChallanController extends Controller
             ->first();
 
         return response()->json([
-            'challan_details' => $challan_details
+            'challan_details' => $challan_details,
         ]);
     }
 
