@@ -33,15 +33,15 @@
                                 <th>Sl</th>
                                 <th>Name</th>
                                 <th>Address</th>
-                                <th style="width:55px;">QT Date</th>
-                                <th style="width:55px;">Validity</th>
+                                <th>QT Date</th>
+                                <th>Validity</th>
                                 <th>Action (Print)</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($quotations as $data)
                             <tr>
-                                <td>{{$loop->iteration}}</td>
+                                <td class="text-center">{{$loop->iteration}}</td>
                                 <td>{{$data->to}}</td>
                                 <td>{{$data->address_one}}</td>
                                 <td>

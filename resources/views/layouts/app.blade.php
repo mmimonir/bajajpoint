@@ -14,7 +14,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
     <link rel="shortcut icon" href="{{asset('/images/fav_icon.png')}}">
     <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
-    <link href="http://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet" />
+    <!-- <link href="http://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet" /> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
 
@@ -26,8 +28,9 @@
     <style>
         html,
         body {
-            font-family: "Helvetica 25 UltraLight", sans-serif;
-            font-size: .93rem;
+            /* font-family: "Helvetica 25 UltraLight", sans-serif; */
+            font-family: "Open Sans", sans-serif;
+            font-size: 14px;
 
             /* font-weight: 400; */
         }
@@ -43,7 +46,7 @@
         table.dataTable tbody th,
         table.dataTable tbody td {
             padding: 0px 10px;
-            font-size: 12px;
+            font-size: 14px;
             vertical-align: middle;
         }
 
