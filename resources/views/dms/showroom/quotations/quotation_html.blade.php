@@ -6,13 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quotation</title>
+    <link href="http://fonts.cdnfonts.com/css/public-sans" rel="stylesheet">
     <style>
         html,
         body {
             display: table;
             margin: auto;
             line-height: 1.2;
-            font-size: 20px;
+            font-size: 18px;
+            font-family: "Public Sans", sans-serif;
+            /* font-size: 14px; */
+            font-weight: 400;
 
         }
 

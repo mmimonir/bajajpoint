@@ -16,7 +16,9 @@
     <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
     <!-- <link href="http://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet" /> -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap" rel="stylesheet"> -->
+    <link href="http://fonts.cdnfonts.com/css/public-sans" rel="stylesheet">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
 
@@ -29,8 +31,9 @@
         html,
         body {
             /* font-family: "Helvetica 25 UltraLight", sans-serif; */
-            font-family: "Open Sans", sans-serif;
+            font-family: "Public Sans", sans-serif;
             font-size: 14px;
+            font-weight: 400;
 
             /* font-weight: 400; */
         }
@@ -247,9 +250,18 @@
                 .prev("a")
                 .addClass("active");
             // admin lte add active class to current link start
+
         });
     </script>
     @yield('third_party_scripts') @yield('script') @stack('page_scripts')
+    <script>
+        setTimeout(function() {
+            const user_role = "{{ Auth::user()->roles }}";
+            if (user_role !== "admin") {
+                $('.deleteIcon').remove();
+            }
+        }, 1000);
+    </script>
 </body>
 
 </html>
