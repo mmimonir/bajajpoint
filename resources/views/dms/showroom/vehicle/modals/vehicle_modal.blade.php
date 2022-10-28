@@ -1,5 +1,5 @@
 <!-- Modal Add-->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true" style="left:-13%;" style="display:none;">
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true" style="left:-13%; display:none;">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="width:149%;">
             <div class="modal-header text-write">
