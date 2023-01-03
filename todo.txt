@@ -1,3 +1,5 @@
+*	*	*	*	*	/usr/local/bin/php /home/mmimoni1/public_html/artisan schedule:run >> /dev/null 2>&1
+
 1 inch = 136px
 
 <table class="table table-bordered">
