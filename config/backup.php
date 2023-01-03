@@ -8,7 +8,9 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => env('APP_NAME', 'laravel-backup'),
+        // 'name' => env('APP_NAME', 'laravel-backup'),
+        // 'name' => '1siHKr98zC7FErH-Ahk-zTZLpUJzaRkIH',
+        'name' => '',
 
         'source' => [
 
@@ -116,7 +118,8 @@ return [
              * The disk names on which the backups will be stored.
              */
             'disks' => [
-                'local',
+                'google',
+                // 'local',
             ],
         ],
 
@@ -149,54 +152,54 @@ return [
      * the `Spatie\Backup\Notifications\Notifications` classes.
      */
 
-    //  'notifications' => [
+    'notifications' => [
 
-    //     'notifications' => [
-    //         \Spatie\Backup\Notifications\Notifications\BackupHasFailedNotification::class => ['mail'],
-    //         \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFoundNotification::class => ['mail'],
-    //         \Spatie\Backup\Notifications\Notifications\CleanupHasFailedNotification::class => ['mail'],
-    //         \Spatie\Backup\Notifications\Notifications\BackupWasSuccessfulNotification::class => ['mail'],
-    //         \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFoundNotification::class => ['mail'],
-    //         \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessfulNotification::class => ['mail'],
-    //     ],
+        'notifications' => [
+            \Spatie\Backup\Notifications\Notifications\BackupHasFailedNotification::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFoundNotification::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\CleanupHasFailedNotification::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\BackupWasSuccessfulNotification::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFoundNotification::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessfulNotification::class => ['mail'],
+        ],
 
-    //     /*
-    //      * Here you can specify the notifiable to which the notifications should be sent. The default
-    //      * notifiable will use the variables specified in this config file.
-    //      */
-    //     'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
+        //     /*
+        //      * Here you can specify the notifiable to which the notifications should be sent. The default
+        //      * notifiable will use the variables specified in this config file.
+        //      */
+        'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
 
-    //     'mail' => [
-    //         'to' => 'mmimonir.ctg@gmail.com',
+        'mail' => [
+            'to' => ['bajajpoint.dhk@gmail.com', 'mmimonir.ctg@gmail.com'],
 
-    //         'from' => [
-    //             'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-    //             'name' => env('MAIL_FROM_NAME', 'Example'),
-    //         ],
-    //     ],
+            'from' => [
+                'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+                'name' => env('MAIL_FROM_NAME', 'Example'),
+            ],
+        ],
 
-    //     'slack' => [
-    //         'webhook_url' => '',
+        //     'slack' => [
+        //         'webhook_url' => '',
 
-    //         /*
-    //          * If this is set to null the default channel of the webhook will be used.
-    //          */
-    //         'channel' => null,
+        //         /*
+        //          * If this is set to null the default channel of the webhook will be used.
+        //          */
+        //         'channel' => null,
 
-    //         'username' => null,
+        //         'username' => null,
 
-    //         'icon' => null,
+        //         'icon' => null,
 
-    //     ],
+        //     ],
 
-    //     'discord' => [
-    //         'webhook_url' => '',
+        //     'discord' => [
+        //         'webhook_url' => '',
 
-    //         'username' => null,
+        //         'username' => null,
 
-    //         'avatar_url' => null,
-    //     ],
-    // ],
+        //         'avatar_url' => null,
+        //     ],
+    ],
 
     /*
      * Here you can specify which backups should be monitored.
