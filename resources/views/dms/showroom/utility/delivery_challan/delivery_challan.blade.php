@@ -645,7 +645,7 @@
                         $('#color_code').val(challan_details.color_code);
                         // $('#delivery_challan_no').val(challan_details.delivery_challan_no);
                         $('#sale_date').val(challan_details.sale_date);
-                        $('#sale_price').val(`${challan_details.sale_price.toLocaleString('en-IN')}/-`);
+                        $('#sale_price').val(challan_details.sale_price ? `${challan_details.sale_price.toLocaleString('en-IN')}/-` : '');
                         $('#mobile').val(challan_details.mobile);
                         $('#customer_name').val(challan_details.customer_name);
                         $('#father_name').val(challan_details.father_name);
