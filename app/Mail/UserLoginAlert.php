@@ -13,7 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UserLoginAlert extends Mailable
 {
-    use Queueable, SerializesModels, ShouldQueue;
+    use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
@@ -50,6 +50,9 @@ class UserLoginAlert extends Mailable
     {
         return new Content(
             markdown: 'emails.user_login_alert',
+            with: [
+                'user' => $this->user,
+            ],
         );
     }
 
