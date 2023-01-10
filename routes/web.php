@@ -51,6 +51,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::post('/timestamp_create_or_update', 'timestamp_create_or_update')->name('attendance.timestamps');
         Route::post('/attendance_timestamp_get', 'attendance_timestamp_get')->name('attendance.timestamps_get');
     });
+    Route::controller(App\Http\Controllers\UsersController::class)->group(function () {
+        Route::get('/load_user_profile', 'load_user_profile')->name('user.profile');
+    });
 });
 
 Auth::routes(['register' => false]);
