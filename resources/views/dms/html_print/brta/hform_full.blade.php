@@ -574,7 +574,7 @@
                         <td colspan="3"><span style="padding-left:233px;">c) Other</span></td>
                     </tr>
                     <tr>
-                        <td colspan="6" style="padding-top:50px;">
+                        <td colspan="6" style="padding-top:38px;">
                             38. A copy of the drawing showing the vehicle dimension specifications of the body and of the seating
                             arrangements approved by ....................................................on...............................................................is attached herewith
                         </td>
