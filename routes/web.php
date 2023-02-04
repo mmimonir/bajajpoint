@@ -54,6 +54,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::controller(App\Http\Controllers\UsersController::class)->group(function () {
         Route::get('/load_user_profile', 'load_user_profile')->name('user.profile');
     });
+    Route::controller(App\Http\Controllers\VAT\TRChallanController::class)->group(function () {
+        Route::get('/tr_challan', 'tr_challan')->name('vat.tr_challan');
+    });
 });
 
 Auth::routes(['register' => false]);

@@ -10,12 +10,219 @@
 
     </style>
     <link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'SolaimanLipi', Arial, sans-serif !important;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid #595959;
+            border-collapse: collapse;
+            padding: 10px;
+            text-align: center;
+            vertical-align: baseline;
+        }
+
+        .tr_page {
+            /* height: 1410px; */
+            /* width: 1020px; */
+            height: 1020px;
+            width: 1410px;
+            border: 1px solid black;
+            margin: auto;
+            position: relative;
+            padding: 10px;
+            /* box-sizing: border-box; */
+            box-shadow: 0 0 25px 0 lightgrey;
+            margin: 15px auto;
+        }
+
+        .left_chassis,
+        .right_chassis {
+            display: block;
+            width: 244.8px;
+            text-align: justify;
+        }
+
+        .sl {
+            width: 40.850px;
+            display: inline-block;
+            /* border: 1px solid #595959; */
+        }
+
+        .chassis,
+        .engine {
+            width: 70px;
+            display: inline-block;
+            /* border: 1px solid #595959; */
+        }
+
+        .left_aligh {
+            text-align: left;
+        }
+
+        .text_center {
+            text-align: center;
+        }
+
+        .code_box {
+            width: 68px;
+            height: 41px;
+            border: 1px solid #595959;
+            display: inline-block;
+            padding: 9px;
+        }
+
+        .box_margin_left {
+            margin-left: 50px;
+        }
+
+        .code_no {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .vertical_align_middle {
+            vertical-align: middle;
+        }
+
+        .vertical_align_bottom {
+            vertical-align: bottom;
+            padding-top: 30px;
+            padding-bottom: 5px;
+        }
+    </style>
 </head>
 
 <body>
-
-
-
+    <div class="tr_page">
+        <div class="text_center header_content">
+            <h2>চালান ফরম</h2>
+            <p>টি, আর ফরম নং 6 (এস.আর 37 দ্রষ্টব্য)</p>
+            <p>বাংলাদেশ ব্যাংক/সোনালী ব্যাংক লিমিটেডের <span>DHAKA</span> জেলার <span>KHILGAON</span> শাখায় টাকা জমা দেওয়ার চালান</p>
+            <p class="code_no">কোড নং
+                <span class="code_box">1</span>
+                <span class="code_box box_margin_left">1</span>
+                <span class="code_box">1</span>
+                <span class="code_box">3</span>
+                <span class="code_box">3</span>
+                <span class="code_box box_margin_left">0</span>
+                <span class="code_box">0</span>
+                <span class="code_box">1</span>
+                <span class="code_box">0</span>
+                <span class="code_box box_margin_left">0</span>
+                <span class="code_box">3</span>
+                <span class="code_box">1</span>
+                <span class="code_box">1</span>
+            </p>
+        </div>
+        <table>
+            <tbody>
+                <tr>
+                    <td colspan="5">জমা প্রদানকারী কর্তৃক পূরণ করিতে হইবে</td>
+                    <td colspan="2">টাকার অংক</td>
+                    <td rowspan="2" class="vertical_align_middle">বিভাগের নাম এবং চালানের পৃষ্ঠাংকনকারী কর্মকর্তার নাম, পদবী ও দপ্তর।*</td>
+                </tr>
+                <tr>
+                    <td>যাহার মারফত প্রদত্ত হইল তাহার নাম ও ঠিকানা</td>
+                    <td>যে ব্যক্তির/প্রতিষ্ঠানের পক্ষ হইতে টাকা প্রদত্ত হইল তাহার নাম, পদবী ও ঠিকানা</td>
+                    <td colspan="2" class="vertical_align_middle">কি বাবদ জমা দেওয়া হইল তাহার বিবরণ</td>
+                    <td>মুদ্রা ও নোটের বিবরণ/ড্রাফট, পে-অর্ডার ও চেকের বিবরণ</td>
+                    <td class="vertical_align_middle">টাকা</td>
+                    <td class="vertical_align_middle">পয়সা</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Monir</p>
+                        <p>01644-928171</p>
+                    </td>
+                    <td>
+                        <p>BAJAJ POINT</p>
+                        <p>400/B-A</p>
+                        <p>MALIBAGH</p>
+                        <p>CHOWDHURY</p>
+                        <p>PARA, MALIBAGH,</p>
+                        <p>DHAKA. BIN NO.</p>
+                        <p>0018831110202</p>
+                    </td>
+                    <td>
+                        <div class="left_chassis">
+                            <div>
+                                <p><span class="sl">SL</span><span class="chassis">Chassis</span><span class="engine">Engine</span></p>
+                            </div>
+                            <div>
+                                <p>BAJAJ AVENGER 160 ABS</p>
+                            </div>
+                            <div>
+                                <p><span class="sl">1</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="right_chassis">
+                            <div>
+                                <p><span class="sl">SL</span><span class="chassis">Chassis</span><span class="engine">Engine</span></p>
+                            </div>
+                            <div>
+                                <p>BAJAJ AVENGER 160 ABS</p>
+                            </div>
+                            <div>
+                                <p><span class="sl">1</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                            </div>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="left_aligh">টাকা (কথায়)</td>
+                    <td>28,725</td>
+                    <td>00</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="left_aligh">টাকা পাওয়া গেল</td>
+                    <td colspan="3" class="vertical_align_bottom">ম্যানেজার</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="left_aligh" class="">তারিখ</td>
+                    <td colspan="3" class="vertical_align_bottom">বাংলাদেশ ব্যাংক/সোনালী ব্যাংক লিমিটেড</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="footer_content">
+            <p>নোট: <span>1। সংশ্লিষ্ট দপ্তরের সহিত যোগাযোগ করিয়া সঠিক কোড নম্বর জানিয়া লইবেন।</span></p>
+            <p><span>2। * যে সকল ক্ষেত্রে কর্মকর্তা কর্তৃক পৃষ্ঠাংকন প্রয়োজন সে সকল ক্ষেত্রে প্রযোজ্য হইবে।</span></p>
+        </div>
+    </div>
 </body>
 
 </html>
