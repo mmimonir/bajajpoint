@@ -34,11 +34,11 @@
         .tr_page {
             /* height: 1410px; */
             /* width: 1020px; */
-            height: 965px;
+            height: 976px;
             /* 7.3 inch (132px); */
             width: 1425px;
             /* 10.8 inch (132px); */
-            border: 1px solid black;
+            /* border: 1px solid black; */
             margin: auto;
             position: relative;
             /* padding: 10px; */
@@ -194,32 +194,30 @@
                                 <p><span class="sl">SL</span><span class="chassis">Chassis</span><span class="engine">Engine</span></p>
                             </div>
                             <div>
-                                <p>BAJAJ AVENGER 160 ABS</p>
-                                <p><span class="sl">1</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">3</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">4</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">5</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">6</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">7</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">8</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">9</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">10</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">11</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p>BAJAJ AVENGER 160 ABS</p>
-                                <p><span class="sl">13</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">14</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">15</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">16</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">17</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">18</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">19</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">20</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">21</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">22</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">23</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">24</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">25</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+                                <p>BAJAJ PULSAR 150 SD GLOSSY</p>
+                                <p><span class="sl">1</span><span class="chassis">00094</span><span class="engine">41551</span></p>
+                                <p><span class="sl">2</span><span class="chassis">00183</span><span class="engine">41632</span></p>
+                                <p><span class="sl">3</span><span class="chassis">00189</span><span class="engine">41341</span></p>
+                                <p>BAJAJ PULSAR 150 TD ABS</p>
+                                <p><span class="sl">4</span><span class="chassis">94270</span><span class="engine">01150</span></p>
+                                <p><span class="sl">5</span><span class="chassis">95220</span><span class="engine">02920</span></p>
+                                <p><span class="sl">6</span><span class="chassis">95356</span><span class="engine">02863</span></p>
+                                <p><span class="sl">7</span><span class="chassis">97212</span><span class="engine">01754</span></p>
+                                <p><span class="sl">8</span><span class="chassis">97264</span><span class="engine">01759</span></p>
+                                <p>BAJAJ PULSAR 150 TD GLOSSY</p>
+                                <p><span class="sl">9</span><span class="chassis">98551</span><span class="engine">06838</span></p>
+                                <p>BAJAJ PULSAR 160 NS FI</p>
+                                <p><span class="sl">10</span><span class="chassis">96988</span><span class="engine">45112</span></p>
+                                <p>BAJAJ PULSAR N160 FI ABS</p>
+                                <p><span class="sl">11</span><span class="chassis">00016</span><span class="engine">97253</span></p>
+                                <p><span class="sl">12</span><span class="chassis">00114</span><span class="engine">97278</span></p>
+                                <p><span class="sl">13</span><span class="chassis">82412</span><span class="engine">79412</span></p>
+                                <p><span class="sl">14</span><span class="chassis">82573</span><span class="engine">79260</span></p>
+                                <p><span class="sl">15</span><span class="chassis">82724</span><span class="engine">72797</span></p>
+                                <p><span class="sl">16</span><span class="chassis">82904</span><span class="engine">74959</span></p>
+                                <p><span class="sl">17</span><span class="chassis">83049</span><span class="engine">74651</span></p>
+                                <p><span class="sl">18</span><span class="chassis">83052</span><span class="engine">74649</span></p>
+                                <p><span class="sl">19</span><span class="chassis">83146</span><span class="engine">80379</span></p>
                             </div>
                         </div>
                     </td>
@@ -229,9 +227,7 @@
                                 <p><span class="sl">SL</span><span class="chassis">Chassis</span><span class="engine">Engine</span></p>
                             </div>
                             <div>
-                                <p>BAJAJ AVENGER 160 ABS</p>
-                                <p><span class="sl">1</span><span class="chassis">84540</span><span class="engine">39971</span></p>
-                                <p><span class="sl">2</span><span class="chassis">84540</span><span class="engine">39971</span></p>
+
                             </div>
                         </div>
                     </td>
@@ -241,14 +237,14 @@
                         <p>1200 x 1</p>
                         <p>1050 x 6</p>
                         <p>975 x 3</p>
-                        <p>= 22,575</p>
+                        <p style="text-align: right;">= 22,575</p>
                     </td>
                     <td class="border_top_style"></td>
                     <td class="border_top_style"></td>
                 </tr>
                 <tr>
-                    <td colspan="5" class="left_aligh">টাকা (কথায়)</td>
-                    <td>28,725</td>
+                    <td colspan="5" class="left_aligh">টাকা (কথায়) <span class="f-bold">Taka Twenty Two Thousand Five Hundred Seventy Five Only.</span></td>
+                    <td style="text-align: right;">28,725</td>
                     <td>00</td>
                     <td></td>
                 </tr>
@@ -258,7 +254,7 @@
                 </tr>
                 <tr>
                     <td colspan="5" class="left_aligh" style="vertical-align: middle;">তারিখ</td>
-                    <td colspan="3" class="" style="border-top-style: hidden;">
+                    <td colspan="3" class="" style="border-top-style: hidden; padding-top:12px;">
                         <p>ম্যানেজার</p>
                         <p>বাংলাদেশ ব্যাংক/সোনালী ব্যাংক লিমিটেড</p>
                     </td>
@@ -266,8 +262,8 @@
             </tbody>
         </table>
         <div class="footer_content" style="padding-left:10px;">
-            <p>নোট: <span>1। সংশ্লিষ্ট দপ্তরের সহিত যোগাযোগ করিয়া সঠিক কোড নম্বর জানিয়া লইবেন।</span></p>
-            <p><span>2। * যে সকল ক্ষেত্রে কর্মকর্তা কর্তৃক পৃষ্ঠাংকন প্রয়োজন সে সকল ক্ষেত্রে প্রযোজ্য হইবে।</span></p>
+            <p>নোট: <span style="margin-left:15px">1। সংশ্লিষ্ট দপ্তরের সহিত যোগাযোগ করিয়া সঠিক কোড নম্বর জানিয়া লইবেন।</span></p>
+            <p><span style="margin-left:50px">2। * যে সকল ক্ষেত্রে কর্মকর্তা কর্তৃক পৃষ্ঠাংকন প্রয়োজন সে সকল ক্ষেত্রে প্রযোজ্য হইবে।</span></p>
         </div>
     </div>
 </body>
