@@ -218,6 +218,8 @@
                                 <p><span class="sl">17</span><span class="chassis">83049</span><span class="engine">74651</span></p>
                                 <p><span class="sl">18</span><span class="chassis">83052</span><span class="engine">74649</span></p>
                                 <p><span class="sl">19</span><span class="chassis">83146</span><span class="engine">80379</span></p>
+                                <p><span class="sl">19</span><span class="chassis">83146</span><span class="engine">80379</span></p>
+                                <p><span class="sl">19</span><span class="chassis">83146</span><span class="engine">80379</span></p>
                             </div>
                         </div>
                     </td>
@@ -261,7 +263,7 @@
                 </tr>
             </tbody>
         </table>
-        <div class="footer_content" style="padding-left:10px;">
+        <div class="footer_content" style="padding-left:10px; margin-top:8px;">
             <p>নোট: <span style="margin-left:15px">1। সংশ্লিষ্ট দপ্তরের সহিত যোগাযোগ করিয়া সঠিক কোড নম্বর জানিয়া লইবেন।</span></p>
             <p><span style="margin-left:50px">2। * যে সকল ক্ষেত্রে কর্মকর্তা কর্তৃক পৃষ্ঠাংকন প্রয়োজন সে সকল ক্ষেত্রে প্রযোজ্য হইবে।</span></p>
         </div>
