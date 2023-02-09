@@ -130,8 +130,7 @@
                                                                 Select Dealer
                                                                 Name
                                                             </option>
-                                                            @foreach ($dealer as
-                                                            $data)
+                                                            @foreach ($dealer as $data)
                                                             <option value="{{$data->supplier_code}}">
                                                                 {{$data->dealer_name}}
                                                             </option>
