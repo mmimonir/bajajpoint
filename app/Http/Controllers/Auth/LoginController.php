@@ -42,6 +42,6 @@ class LoginController extends Controller
     }
     protected function authenticated(Request $request, $user)
     {
-        Mail::to('bajajpoint.dhk@gmail.com')->send(new UserLoginAlert($user));
+        // Mail::to('bajajpoint.dhk@gmail.com')->send(new UserLoginAlert($user));
     }
 }
