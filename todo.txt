@@ -70,3 +70,5 @@ PENDING:
     -> id, trans_date, customer_id, trans_description, trans_type, trans_amount
 
 *. Add New Spare Parts Item - CRUD
+
+composer install --ignore-platform-reqs
