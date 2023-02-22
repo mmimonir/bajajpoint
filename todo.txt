@@ -70,4 +70,9 @@ PENDING:
     -> id, trans_date, customer_id, trans_description, trans_type, trans_amount
 
 *. Add New Spare Parts Item - CRUD
+<<<<<<< HEAD
 chmod -R 777 /var/www/html/wp-content
+=======
+
+composer install --ignore-platform-reqs
+>>>>>>> 0f0acf608bc3f29ae3d5f10f3ce3c41bf1f49423
