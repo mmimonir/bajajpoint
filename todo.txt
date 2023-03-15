@@ -71,4 +71,4 @@ PENDING:
 
 *. Add New Spare Parts Item - CRUD
 
-composer install --ignore-platform-reqs
+chmod -R 777 /var/www/html/wp-content
