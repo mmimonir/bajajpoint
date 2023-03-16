@@ -10,7 +10,8 @@
     "require": {
         "php": "^8.1",
         "alexusmai/laravel-file-manager": "^3.0.5",
-        "barryvdh/laravel-dompdf": "^2.0.1",        
+        "backpack/crud": "^5.5",
+        "barryvdh/laravel-dompdf": "^2.0.1",
         "guzzlehttp/guzzle": "^7.2",
         "infyomlabs/routes-explorer": "^1.0",
         "laravel/framework": "^10.0",
@@ -25,6 +26,7 @@
         "spatie/laravel-backup": "^8.0"
     },
     "require-dev": {
+        "backpack/generators": "^3.3",
         "barryvdh/laravel-debugbar": "^3.6",
         "barryvdh/laravel-ide-helper": "^2.12",
         "fakerphp/faker": "^1.9.1",
