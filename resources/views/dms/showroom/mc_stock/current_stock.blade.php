@@ -79,7 +79,7 @@
                                 <td class="text-right">${data.purchage_price}</td>                                
                             </tr>`;
                         });
-                        html += `<tfoot align="right" class="text-sm">
+                        html += `<tfoot align="right" class="">
                             <tr>
                                 <th style="text-align:center; padding:2px 8px;"></th>
                                 <th style="text-align:center; padding:2px 8px;"></th>
