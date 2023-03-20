@@ -208,6 +208,11 @@
                 <p class="text-white">Service Dashboard</p>
             </a>
         </li>
-
+        <li class="nav-item bg-primary rounded">
+            <a href="{{route('blog.dashboard')}}" class="nav-link">
+                <i class="nav-icon fas fa-user-cog text-white"></i>
+                <p class="text-white">Blog Dashboard</p>
+            </a>
+        </li>
     </ul>
 </nav>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('blog.admin.layouts.app')
 @section('title', 'Bajaj Point - 3S Dealer Of UttaraMotors Ltd')
 @push('page_css')
 
