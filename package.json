@@ -25,6 +25,7 @@
         "admin-lte": "^3.2.0",
         "date-fns": "^2.29.1",
         "jquery": "^3.6.0",
+        "laravel-mix-purgecss": "^6.0.0",
         "moment": "^2.29.4"
     }
 }
