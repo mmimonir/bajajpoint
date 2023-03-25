@@ -14,14 +14,12 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Multiple</label>
-                    <select name="tags[]" class="select2 select2-hidden-accessible" multiple="" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option data-select2-id="46">Alabama</option>
-                        <option data-select2-id="47">Alaska</option>
-                        <option data-select2-id="48">California</option>
-                        <option data-select2-id="49">Delaware</option>
-                        <option data-select2-id="50">Tennessee</option>
-                        <option data-select2-id="51">Texas</option>
-                        <option data-select2-id="52">Washington</option>
+                    <select class="select2 form-control" name="states[]" multiple="multiple">
+                        <option value="AL">Alabama</option>
+                        <option value="WY">Wyoming</option>
+                        <option value="WY">Wyomind</option>
+                        <option value="WY">Wyominf</option>
+                        <option value="WY">Wyominh</option>
                     </select>
                 </div>
             </div>
@@ -31,9 +29,7 @@
 @endsection
 
 @section('third_party_scripts')
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 @endsection
 @section('script')
@@ -41,7 +37,7 @@
     $(document).ready(function() {
         let tags = [];
         $(".select2").select2({
-            theme: 'bootstrap4',
+            theme: 'classic',
             // width: 'style',
         });
     });
