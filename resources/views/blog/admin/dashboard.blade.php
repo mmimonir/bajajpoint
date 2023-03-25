@@ -14,7 +14,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Multiple</label>
-                    <select class="select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                    <select name="tags[]" class="select2 select2-hidden-accessible" multiple="" style="width: 100%;" tabindex="-1" aria-hidden="true">
                         <option data-select2-id="46">Alabama</option>
                         <option data-select2-id="47">Alaska</option>
                         <option data-select2-id="48">California</option>
@@ -39,6 +39,7 @@
 @section('script')
 <script>
     $(document).ready(function() {
+        let tags = [];
         $(".select2").select2({
             theme: 'bootstrap4',
             // width: 'style',
