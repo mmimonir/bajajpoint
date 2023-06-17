@@ -28,6 +28,7 @@
         "barryvdh/laravel-debugbar": "^3.6",
         "barryvdh/laravel-ide-helper": "^2.12",
         "fakerphp/faker": "^1.9.1",
+        "kitloong/laravel-migrations-generator": "^6.10",
         "laravel/pint": "^1.2",
         "laravel/sail": "^1.15",
         "mockery/mockery": "^1.4.4",
