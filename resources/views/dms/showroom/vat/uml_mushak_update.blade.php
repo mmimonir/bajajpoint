@@ -19,7 +19,9 @@
             </div>
             <div class="card-body d-flex justify-content-center">
                 <div id="purchage_details_list">
-                    <table id="example" class="table table-hover table-responsive table-striped table-bordered table-uml-mushak" style="width:100%;">
+                    <table id="example"
+                        class="table table-hover table-responsive table-striped table-bordered table-uml-mushak"
+                        style="width:100%;">
                         <thead class="text-sm">
                             <tr style="font-size:11px;">
                                 <th style="text-align:center;">Sl</th>
@@ -62,11 +64,14 @@
                                 <td style="text-align: center;">{{$data->factory_challan_no}}</td>
                                 <td style="text-align: left;">{{$data->vendor}}</td>
                                 <td style="text-align: center;">{{$data->purchage_date}}</td>
-                                <td style="text-align: left;">{{strlen($data->model) > 20 ? substr($data->model,0,20): $data->model; }}</td>
+                                <td style="text-align: left;">{{strlen($data->model) > 20 ? substr($data->model,0,20):
+                                    $data->model; }}</td>
                                 <td style="text-align: center;">{{$data->five_chassis}}</td>
                                 <td style="text-align: center;">{{$data->five_engine}}</td>
-                                <td class="uml_mushak_no" cus_id="{{$data->id}}" style="text-align: center;" contenteditable="true">{{$data->uml_mushak_no}}</td>
-                                <td class="mushak_date" style="text-align: center;" contenteditable="true">{{date('d-m-Y', strtotime($data->mushak_date))}}</td>
+                                <td class="uml_mushak_no" cus_id="{{$data->id}}" style="text-align: center;"
+                                    contenteditable="true">{{$data->uml_mushak_no}}</td>
+                                <td class="mushak_date" style="text-align: center;" contenteditable="true">
+                                    {{date('d-m-Y', strtotime($data->mushak_date))}}</td>
                                 <td style="text-align: right;">{{$data->vat_purchage_mrp}}</td>
                                 <td style="text-align: right;">{{$data->vat_rebate}}</td>
                                 <td style="text-align: right;">{{$data->vat_year_purchage}}</td>
@@ -116,7 +121,7 @@
 
 @section('script')
 <script>
-    $(".mushak_date").on("blur", function(e) {
+    $(".mushak_date").on("blur", function (e) {
         let csrf = '{{ csrf_token() }}';
         var _this = $(this).parents('tr');
 
@@ -139,7 +144,7 @@
                 contentType: false,
                 processData: false,
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     if (response.status == 200) {
 
                         // $('#example').find("td[cus_id='" + response.id + "']").text('OK');
@@ -155,13 +160,13 @@
             });
         }
     });
-    $.fn.dataTable.Api.register('column().searchable()', function() {
+    $.fn.dataTable.Api.register('column().searchable()', function () {
         var ctx = this.context[0];
         return ctx.aoColumns[this[0]].bSearchable;
     });
 
     function createDropdowns(api) {
-        api.columns([1, 2, 4, 5, 8]).every(function() {
+        api.columns([1, 2, 4, 5, 8]).every(function () {
             if (this.searchable()) {
                 var that = this;
                 var col = this.index();
@@ -175,7 +180,7 @@
                         .empty();
                     var select = $('<select><option value=""></option></select>')
                         .appendTo($('thead tr:eq(1) td').eq(col))
-                        .on('change', function() {
+                        .on('change', function () {
                             that.search($(this).val()).draw();
                             createDropdowns(api);
                         });
@@ -187,27 +192,27 @@
                         .data()
                         .sort()
                         .unique()
-                        .each(function(d) {
+                        .each(function (d) {
                             select.append($('<option>' + d + '</option>'));
                         });
                 }
             }
         });
     }
-    $(document).ready(function() {
+    $(document).ready(function () {
         var table = $("#example").DataTable({
 
-            footerCallback: function(row, data, start, end, display) {
+            footerCallback: function (row, data, start, end, display) {
                 var api = this.api(),
                     data;
 
                 // converting to interger to find total
-                var intVal = function(i) {
+                var intVal = function (i) {
                     return typeof i === "string" ?
                         i.replace(/[\$,]/g, "") * 1 :
                         typeof i === "number" ?
-                        i :
-                        0;
+                            i :
+                            0;
                 };
 
                 var vat_mrp = api
@@ -215,7 +220,7 @@
                         search: 'applied'
                     })
                     .data()
-                    .reduce(function(a, b) {
+                    .reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
 
@@ -224,7 +229,7 @@
                         search: 'applied'
                     })
                     .data()
-                    .reduce(function(a, b) {
+                    .reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
                 var count = api
@@ -232,7 +237,7 @@
                         search: 'applied'
                     })
                     .data()
-                    .reduce(function(a, b) {
+                    .reduce(function (a, b) {
                         return ++a;
                     }, 0);
 
@@ -261,7 +266,7 @@
             //     searchable: false,
             //     targets: [0, 3, 5, 6, 7, 10, 11, 12, 13]
             // }],
-            initComplete: function() {
+            initComplete: function () {
                 createDropdowns(this.api());
             }
         });
