@@ -15,7 +15,9 @@
                     <h3 class="card-title">Pending Sale Mushak</h3>
                 </div>
                 <div class="card-body container h-100 d-flex justify-content-center">
-                    <table id="example" class="table table-hover table-responsive table-striped table-sm text-sm table-light table-bordered" style="width:100%;">
+                    <table id="example"
+                        class="table table-hover table-responsive table-striped table-sm text-sm table-light table-bordered"
+                        style="width:100%;">
                         <thead>
                             <tr>
                                 <th class="align-middle">Sl</th>
@@ -37,13 +39,19 @@
                                 <td style="text-align:center;" class="">{{$loop->iteration}}</td>
                                 <td style="text-align:center;" class="">{{$data->vat_code}}</td>
                                 <td class="">{{$data->model}}</td>
-                                <td style="text-align:center;" class="five_chassis" cus_id="{{$data->id}}">{{$data->five_chassis}}</td>
+                                <td style="text-align:center;" class="five_chassis" cus_id="{{$data->id}}">
+                                    {{$data->five_chassis}}</td>
                                 <td style="text-align:center;" class="">{{$data->five_engine}}</td>
-                                <td style="text-align:center;" class="sale_mushak_no" contenteditable="true">{{$data->sale_mushak_no}}</td>
-                                <td style="text-align:center;" class="">{{date('d-m-Y', strtotime($data->original_sale_date))}}</td>
-                                <td style="text-align:center;" class="vat_sale_date" contenteditable="true">{{date('d-m-Y', strtotime($data->vat_sale_date))}}</td>
-                                <td style="text-align:center;" class="">{{date('d-m-Y', strtotime($data->mushak_date))}}</td>
-                                <td style="text-align:center;" class="">{{date('d-m-Y', strtotime($data->purchage_date))}}</td>
+                                <td style="text-align:center;" class="sale_mushak_no" contenteditable="true">
+                                    {{$data->sale_mushak_no}}</td>
+                                <td style="text-align:center;" class="">{{date('d-m-Y',
+                                    strtotime($data->original_sale_date))}}</td>
+                                <td style="text-align:center;" class="vat_sale_date" contenteditable="true">
+                                    {{date('d-m-Y', strtotime($data->vat_sale_date))}}</td>
+                                <td style="text-align:center;" class="">{{date('d-m-Y', strtotime($data->mushak_date))}}
+                                </td>
+                                <td style="text-align:center;" class="">{{date('d-m-Y',
+                                    strtotime($data->purchage_date))}}</td>
                                 <td style="text-align:center;" class="">{{$data->vat_process}}</td>
                                 @endforeach
                             </tr>
@@ -85,7 +93,7 @@
 @section('script')
 
 <script>
-    $(".sale_mushak_no, .vat_sale_date").on("blur", function(e) {
+    $(".sale_mushak_no, .vat_sale_date").on("blur", function (e) {
         let csrf = '{{ csrf_token() }}';
         var _this = $(this).parents('tr');
         var cus_id = _this.find('.five_chassis').attr('cus_id');
@@ -109,7 +117,7 @@
             contentType: false,
             processData: false,
             dataType: 'json',
-            success: function(response) {
+            success: function (response) {
                 if (response.status == 200) {
 
                     // $('#example').find("td[cus_id='" + response.id + "']").text('OK');
@@ -129,16 +137,16 @@
         exportOptions: {
             rows: ':visible'
         },
-        footerCallback: function(row, data, start, end, display) {
+        footerCallback: function (row, data, start, end, display) {
             var api = this.api(),
                 data;
             // converting to interger to find total
-            var intVal = function(i) {
+            var intVal = function (i) {
                 return typeof i === "string" ?
                     i.replace(/[\$,]/g, "") * 1 :
                     typeof i === "number" ?
-                    i :
-                    0;
+                        i :
+                        0;
             };
 
             var count = api
@@ -146,7 +154,7 @@
                     search: 'applied'
                 })
                 .data()
-                .reduce(function(a, b) {
+                .reduce(function (a, b) {
                     return ++a;
                 }, 0);
             // Update footer by showing the total with the reference of the column index
@@ -157,12 +165,12 @@
 
 
         },
-        initComplete: function() {
-            this.api().columns([1]).every(function() {
+        initComplete: function () {
+            this.api().columns([1]).every(function () {
                 var column = this;
                 var select = $('<select><option value=""></option></select>')
                     .appendTo($(column.footer()))
-                    .on('change', function() {
+                    .on('change', function () {
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val()
                         );
@@ -172,7 +180,7 @@
                             .draw();
                     });
 
-                column.data().unique().sort().each(function(d, j) {
+                column.data().unique().sort().each(function (d, j) {
                     select.append('<option value="' + d + '">' + d + '</option>')
                 });
             });
