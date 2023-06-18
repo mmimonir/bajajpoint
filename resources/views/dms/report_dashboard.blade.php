@@ -261,5 +261,6 @@
         dateDropdown.add(dateOption);
         currentYear -= 1;
     }
+
 </script>
 @endsection
