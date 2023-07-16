@@ -11,7 +11,8 @@
         <div class="card mt-2" style="box-shadow:0 0 25px 0 lightgrey;">
             <div class="card-header">
                 <h3 class="bg-dark text-center p-2 text-white mt-2 rounded">Price Declare (VAT)</h3>
-                <a class="m-r-15 text-muted edit float-right btn btn-dark text-white mb-1" id="add" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fas fa-plus"></i>
+                <a class="m-r-15 text-muted edit float-right btn btn-dark text-white mb-1" id="add"
+                    data-bs-toggle="modal" data-bs-target="#addModal"><i class="fas fa-plus"></i>
                 </a>
             </div>
             <div class="row justify-content-center">
@@ -313,34 +314,35 @@
                         <thead>
                             <tr>
                                 <th class="text-center">Sl</th>
-                                <th class="text-center">Dealer Name</th>                                                                
-                                <th class="text-center">Model</th>                                
-                                <th class="text-center">Buy Price</th>                                                                
+                                <th class="text-center">Dealer Name</th>
+                                <th class="text-center">Model</th>
+                                <th class="text-center">Buy Price</th>
                                 <th class="text-center">MRP</th>
-                                <th class="text-center">Submit Date</th>                                                                
-                                <th class="text-center">Status</th>                                                                
+                                <th class="text-center">Submit Date</th>
+                                <th class="text-center">Status</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>`;
                         pd_data.forEach(function(data, index) {
+                            // console.log(data.status);
                             html +=
-                                `<tr style="height:30px;">                                
+                                `<tr style="height:30px;">
                                 <td class="dealer_name text-center">${index + 1}</td>
-                                <td class="dealer_name">${data.name}</td>                                                                
+                                <td class="dealer_name">${data.name}</td>
                                 <td class="model_name">${data.model}</td>
                                 <td class="buy_price text-right">${BDFormat.format(data.buy_price)}</td>
                                 <td class="vat_mrp text-right">${BDFormat.format(data.vat_mrp)}</td>
-                                <td class="submit_date text-center">${data.submit_date}</td>                                                                
-                                <td class="text-center">${data.status}</td>                                                                
+                                <td class="submit_date text-center">${data.submit_date}</td>
+                                <td class="text-center">${data.status === '1' ? 'Active' : 'Inactive'}</td>
                                 <td class="text-center">
                                 <input class="id" type="hidden" name="id" value="${data.pd_id}">
                                     <a href="#" class="m-r-15 text-muted viewIcon">
-                                        <i class="fa fa-eye" style="color: #2196f3;font-size:16px;"></i>                                    
+                                        <i class="fa fa-eye" style="color: #2196f3;font-size:16px;"></i>
                                     </a>
                                     <a href="#" class="m-r-15 text-muted editIcon">
                                         <i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i>
-                                    </a>                                    
+                                    </a>
                                     <a href="#" class="deleteIcon">
                                         <i class="fa fa-trash" aria-hidden="true" style="color: red;font-size:16px;">
                                         </i>
