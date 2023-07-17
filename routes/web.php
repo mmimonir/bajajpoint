@@ -1,7 +1,15 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+// Route::get('/roles', function () {
+//     $user = User::with('roles')->first();
+//     $user->roles()->attach([1, 2, 3, 12, 13, 14]);
+//     $user = User::with('roles')->first();
+//     return dd($user->toArray());
+// });
 
 Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
