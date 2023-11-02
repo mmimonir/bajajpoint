@@ -558,7 +558,8 @@
                     <tr>
                         <td colspan="2"><span style="padding-left:40px;">a. Overall Length</span></td>
                         <td style="text-align:right;">b) Overall Width</td>
-                        <td colspan="3" style="text-align:center;"><span style="padding-left:116px;">c) Overall Height</span></td>
+                        <td colspan="3" style="text-align:center;"><span style="padding-left:116px;">c) Overall
+                                Height</span></td>
                     </tr>
                     <tr>
                         <td>37. Overhangs (%)</td>
@@ -575,8 +576,11 @@
                     </tr>
                     <tr>
                         <td colspan="6" style="padding-top:38px;">
-                            38. A copy of the drawing showing the vehicle dimension specifications of the body and of the seating
-                            arrangements approved by ....................................................on...............................................................is attached herewith
+                            38. A copy of the drawing showing the vehicle dimension specifications of the body and of
+                            the seating
+                            arrangements approved by
+                            ....................................................on...............................................................is
+                            attached herewith
                         </td>
                     </tr>
                 </table>
@@ -670,8 +674,10 @@
                         <td></td>
                         <td>a)</td>
                         <td></td>
-                        <td style="text-align:justify;">I the undersigned do hereby declare that to the best of my knowledge and belief, the information given and the
-                            <span></span> documents enclosed (as per list attached) are true. I also declare that in case the papers/documents and information
+                        <td style="text-align:justify;">I the undersigned do hereby declare that to the best of my
+                            knowledge and belief, the information given and the
+                            <span></span> documents enclosed (as per list attached) are true. I also declare that in
+                            case the papers/documents and information
                             furnished are found to be incorrect at any later stage, I shall be liable for legal action.
                         </td>
                     </tr>
@@ -703,8 +709,10 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td colspan="8" style="text-align:justify;">I the undersigned do hereby certify that the vehicle in question has been sold by me/my firm and the ownership
-                            documents attached with the application for registration are true. The information/specifications pertaining to the vehicle
+                        <td colspan="8" style="text-align:justify;">I the undersigned do hereby certify that the vehicle
+                            in question has been sold by me/my firm and the ownership
+                            documents attached with the application for registration are true. The
+                            information/specifications pertaining to the vehicle
                             are correct and the vehicle complies with all the requirements of the registration.</td>
                     </tr>
                     <tr>
@@ -735,11 +743,17 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td colspan="8" style="text-align:justify;">Certificate that the particulars pertaining to the owner and the vehicle (Chassis No.
-                            <input style="display:inline-block; width:60px; font-size:18px;" type="text" class="five_chassis" /> Engine
-                            No <input style="display:inline-block; width:60px; font-size:18px;" type="text" class="five_engine" /> ) given in the application match with the ownership documents attached to this
-                            application. It is further certified that the vehicle complies with the registration requirements specified in the MV Act
-                            and the Rules and/or Regulations made thereunder and the vehicle is not mechanically defective. The necessary
+                        <td colspan="8" style="text-align:justify;">Certificate that the particulars pertaining to the
+                            owner and the vehicle (Chassis No.
+                            <input style="display:inline-block; width:60px; font-size:18px;" type="text"
+                                class="five_chassis" /> Engine
+                            No <input style="display:inline-block; width:60px; font-size:18px;" type="text"
+                                class="five_engine" /> ) given in the application match with the ownership documents
+                            attached to this
+                            application. It is further certified that the vehicle complies with the registration
+                            requirements specified in the MV Act
+                            and the Rules and/or Regulations made thereunder and the vehicle is not mechanically
+                            defective. The necessary
                             documents/papers are available as per list enclosed.
                         </td>
                     </tr>
@@ -786,8 +800,12 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td colspan="6" style="padding-left:45px; text-align:justify;">Necessary fees and taxes amounting to taka.............................................................................................has been paid to
-                            PO/Bank...................................................................vide vouchers and receipts enclosed.</td>
+                        <td colspan="6" style="padding-left:45px; text-align:justify;">Necessary fees and taxes
+                            amounting to
+                            taka.............................................................................................has
+                            been paid to
+                            PO/Bank...................................................................vide vouchers and
+                            receipts enclosed.</td>
                     </tr>
                 </table>
                 <table>
@@ -951,6 +969,7 @@
                     success: function({
                         hform_data
                     }) {
+                        // console.log(hform_data);
                         Object.keys(hform_data).forEach(function(key) {
                             $(".hform_page_one").find(`.${key}`).val(hform_data[key]);
                         });
