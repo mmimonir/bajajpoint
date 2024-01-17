@@ -6,7 +6,7 @@
 <thead>
     <tr>
         <td>Date</td>
-        <td>Description</td> 
+        <td>Description</td>
         <td>Debit</td>
         <td>Credit</td>
         <td>Balance</td>
@@ -15,7 +15,7 @@
 <tbody>
     @php
         $balance = 0;
-    @endphp 
+    @endphp
     @foreach($data as $row)
     @php
         if($row['type'] == 'credit' ){
@@ -24,7 +24,7 @@
         else{
             $balance -= $row['amount'];
         }
-    @endphp 
+    @endphp
         <tr>
             <td>{{ $row['date'] }}</td>
             <td>{{ $row['description'] }}</td>
@@ -48,7 +48,7 @@ mysqldump -u xxxxxxxxxxxxx -pxxxxxxxxxxx -h xx.xxx.xxx.xxx -P 3306 mmimoni2_baja
 TODO:
 * cores table column added for Hform- 1. owner_type, 2. hire_purchage
 
-* cores table column will removed- 
+* cores table column will removed-
     model, commission, tr_amount, chassis_no, engine_no, color, coupon, full_address,
     rg_duration, rg_amount, combine, combine_code, print_ref, chassis_convert, ckd_folder
     timestamp, is_rebate, name_change_details, change_date
@@ -59,12 +59,12 @@ PENDING:
     b. Daily Expensess
 
 *. Expensess Table - expensess
-    -> id, exp_date, exp_amount, department[showroom, service], exp_category_id, exp_note, expense_by, created_at, 
+    -> id, exp_date, exp_amount, department[showroom, service], exp_category_id, exp_note, expense_by, created_at,
     updated_at
 *. Expensess Category - expensess_heads
     -> id, fuel_cost, salary, rent, electricity_card, telephone_bill, internet_bill, conveyance
-    sale_vat, commission, profit_share, printing, stationary, parts_damage, banner, advertisement, 
-    showroom_decoration, capital_expensess, transport, painting, others        
+    sale_vat, commission, profit_share, printing, stationary, parts_damage, banner, advertisement,
+    showroom_decoration, capital_expensess, transport, painting, others
 
 *. Ladger Transaction- transaction_ladger
     -> id, trans_date, customer_id, trans_description, trans_type, trans_amount
@@ -72,3 +72,6 @@ PENDING:
 *. Add New Spare Parts Item - CRUD
 
 chmod -R 777 /var/www/html/wp-content
+
+sudo su
+chmod -Rf 777 .
