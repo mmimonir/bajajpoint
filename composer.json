@@ -8,18 +8,17 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "alexusmai/laravel-file-manager": "^3.0.5",
-        "barryvdh/laravel-dompdf": "^2.0.1",
+        "barryvdh/laravel-dompdf": "^3.1.1",
         "guzzlehttp/guzzle": "^7.2",
         "infyomlabs/routes-explorer": "^1.0",
-        "laravel/framework": "^11.0",
+        "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.2.0",
-        "maatwebsite/excel": "^3.1",
-        "phpoffice/phpspreadsheet": "^1.21",
-        "spatie/laravel-backup": "^8.0"
+        "maatwebsite/excel": "^3.1.64",
+        "spatie/laravel-backup": "^9.2.9"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
@@ -28,7 +27,7 @@
         "laravel/sail": "^1.15",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^8.1",
-        "phpunit/phpunit": "^10.0",
+        "phpunit/phpunit": "^11.0",
         "spatie/laravel-ignition": "^2.0",
         "spatie/laravel-web-tinker": "^1.8"
     },
