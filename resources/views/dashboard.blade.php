@@ -629,9 +629,10 @@
                     vehicle_data,
                     mrp_data,
                 }) {
-                    console.log(pd_data);
+                    // console.log(pd_data);
 
                     Object.keys(core_data).forEach(function(key) {
+                        // console.log('Key ' +key, core_data[key]);
                         $("#salesUpdateModal").find(`#${key}`).val(core_data[key]);
                     });
 

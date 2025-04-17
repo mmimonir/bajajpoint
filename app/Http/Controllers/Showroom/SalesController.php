@@ -18,6 +18,7 @@ class SalesController extends Controller
     public function sales_update_modal(Request $request)
     {
         $id = $request->id;
+        // dd($id);
         $core_data = Core::select('*')->where('id', $id)->first();
         $model_code = $core_data->model_code;
         $store_id = $core_data->store_id;
