@@ -59,7 +59,7 @@ class PrintController extends Controller
             $year = date('Y', strtotime($date));
             $month = date('m', strtotime($date));
 
-            $month <= 6 ? $fiscal_year = $year - 1 .'-'.$year : $fiscal_year = $year.'-'.($year + 1);
+            $month <= 6 ? $fiscal_year = $year - 1 . '-' . $year : $fiscal_year = $year . '-' . ($year + 1);
 
             return $fiscal_year;
         }
@@ -67,16 +67,16 @@ class PrintController extends Controller
 
         switch ($print_code) {
             case 2000:
-                $print_ref = 'BAJAJ POINT/DHAKA/'.fiscal_year($date);
+                $print_ref = 'BAJAJ POINT/DHAKA/' . fiscal_year($date);
                 break;
             case 2011:
-                $print_ref = 'BAJAJ HEAVEN/DHAKA/'.fiscal_year($date);
+                $print_ref = 'BAJAJ HEAVEN/DHAKA/' . fiscal_year($date);
                 break;
             case 2030:
-                $print_ref = 'BAJAJ BLOOM/DHAKA/'.fiscal_year($date);
+                $print_ref = 'BAJAJ BLOOM/DHAKA/' . fiscal_year($date);
                 break;
             default:
-                $print_ref = 'BAJAJ POINT/DHAKA/'.fiscal_year($date);
+                $print_ref = 'BAJAJ POINT/DHAKA/' . fiscal_year($date);
                 break;
         }
 
@@ -270,11 +270,92 @@ class PrintController extends Controller
             ]);
     }
 
+    // public function print_list_dashboard(Request $request)
+    // {
+    //     $term = $request;
+    //     $builder = [];
+    //     if (! empty($term['five_chassis']) || ! empty($term['five_engine'])) {
+    //         $builder = Core::select(
+    //             'cores.id',
+    //             'cores.original_sale_date',
+    //             'cores.eight_chassis',
+    //             'cores.one_chassis',
+    //             'cores.three_chassis',
+    //             'cores.five_chassis',
+    //             'cores.six_engine',
+    //             'cores.five_engine',
+    //             'cores.customer_name',
+    //             'cores.mobile',
+    //             'cores.model',
+    //             'cores.rg_number',
+    //             'cores.dealer',
+    //             'cores.tr_number',
+    //             'cores.chassis_no',
+    //             'cores.engine_no',
+    //         )
+    //             ->where([
+    //                 ['cores.five_chassis', '=', $term['five_chassis']],
+    //                 // ['cores.chassis_no', 'LIKE', $term['five_chassis']],
+    //                 ['cores.five_engine', '=', $term['five_engine']],
+    //                 // ['cores.engine_no', 'LIKE', $term['five_engine']],
+    //             ])
+    //             ->get();
+    //     }
+    //     if (! empty($term['five_chassis'])) {
+    //         $builder = Core::select(
+    //             'cores.id',
+    //             'cores.original_sale_date',
+    //             'cores.eight_chassis',
+    //             'cores.one_chassis',
+    //             'cores.three_chassis',
+    //             'cores.five_chassis',
+    //             'cores.six_engine',
+    //             'cores.five_engine',
+    //             'cores.customer_name',
+    //             'cores.mobile',
+    //             'cores.model',
+    //             'cores.rg_number',
+    //             'cores.dealer',
+    //             'cores.tr_number',
+    //         )
+    //             // ->where('cores.five_chassis', '=', $term['five_chassis'])
+    //             ->where('cores.chassis_no', 'LIKE', '%' . $term['five_chassis'] . '%')
+    //             ->get();
+    //     }
+    //     if (! empty($term['five_engine'])) {
+    //         $builder = Core::select(
+    //             'cores.id',
+    //             'cores.original_sale_date',
+    //             'cores.eight_chassis',
+    //             'cores.one_chassis',
+    //             'cores.three_chassis',
+    //             'cores.five_chassis',
+    //             'cores.six_engine',
+    //             'cores.five_engine',
+    //             'cores.customer_name',
+    //             'cores.mobile',
+    //             'cores.model',
+    //             'cores.rg_number',
+    //             'cores.dealer',
+    //             'cores.tr_number',
+    //         )
+    //             ->where('cores.five_engine', '=', $term['five_engine'])
+    //             ->get();
+    //     }
+
+    //     return response()->json($builder);
+    // }
+
     public function print_list_dashboard(Request $request)
     {
         $term = $request;
+
         $builder = [];
-        if (! empty($term['five_chassis']) || ! empty($term['five_engine'])) {
+
+        if (!empty($term['five_chassis']) || !empty($term['five_engine'])) {
+            $fiveChassis = strtolower(trim($term['five_chassis']));
+            $fiveEngine = strtolower(trim($term['five_engine']));
+
             $builder = Core::select(
                 'cores.id',
                 'cores.original_sale_date',
@@ -290,56 +371,21 @@ class PrintController extends Controller
                 'cores.rg_number',
                 'cores.dealer',
                 'cores.tr_number',
+                'cores.chassis_no',
+                'cores.engine_no'
             )
-                ->where([
-                    ['cores.five_chassis', '=', $term['five_chassis']],
-                    ['cores.five_engine', '=', $term['five_engine']],
-                ])
-                ->get();
-        }
-        if (! empty($term['five_chassis'])) {
-            $builder = Core::select(
-                'cores.id',
-                'cores.original_sale_date',
-                'cores.eight_chassis',
-                'cores.one_chassis',
-                'cores.three_chassis',
-                'cores.five_chassis',
-                'cores.six_engine',
-                'cores.five_engine',
-                'cores.customer_name',
-                'cores.mobile',
-                'cores.model',
-                'cores.rg_number',
-                'cores.dealer',
-                'cores.tr_number',
-            )
-                ->where('cores.five_chassis', '=', $term['five_chassis'])
-                ->get();
-        }
-        if (! empty($term['five_engine'])) {
-            $builder = Core::select(
-                'cores.id',
-                'cores.original_sale_date',
-                'cores.eight_chassis',
-                'cores.one_chassis',
-                'cores.three_chassis',
-                'cores.five_chassis',
-                'cores.six_engine',
-                'cores.five_engine',
-                'cores.customer_name',
-                'cores.mobile',
-                'cores.model',
-                'cores.rg_number',
-                'cores.dealer',
-                'cores.tr_number',
-            )
-                ->where('cores.five_engine', '=', $term['five_engine'])
+                ->when(!empty($fiveChassis), function ($query) use ($fiveChassis) {
+                    $query->whereRaw('LOWER(cores.chassis_no) LIKE ?', ['%' . $fiveChassis . '%']);
+                })
+                ->when(!empty($fiveEngine), function ($query) use ($fiveEngine) {
+                    $query->whereRaw('LOWER(cores.engine_no) LIKE ?', ['%' . $fiveEngine . '%']);
+                })
                 ->get();
         }
 
         return response()->json($builder);
     }
+
 
     public function brta_assessment_form($id)
     {
