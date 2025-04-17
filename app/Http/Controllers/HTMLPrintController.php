@@ -49,9 +49,11 @@ class HTMLPrintController extends Controller
                 )
                 ->where('cores.id', $request->id)
                 ->first();
+            // dd($hform_data);
 
             return response()->json(['hform_data' => $hform_data]);
         } catch (\Exception $e) {
+            // dd($e->getMessage());
             return response()->json(['error' => $e->getMessage()]);
         }
     }

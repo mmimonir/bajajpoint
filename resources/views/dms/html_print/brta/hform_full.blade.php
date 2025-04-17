@@ -969,7 +969,7 @@
                     success: function({
                         hform_data
                     }) {
-                        // console.log(hform_data);
+                        console.log(hform_data);
                         Object.keys(hform_data).forEach(function(key) {
                             $(".hform_page_one").find(`.${key}`).val(hform_data[key]);
                         });
