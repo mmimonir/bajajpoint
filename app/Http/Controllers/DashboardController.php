@@ -17,7 +17,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        // 1. Use constants or config instead of define() inside a method
+        // 1. Use constants or config instead of define() inside a method using strings directly
         $sections = explode(',', Auth::user()->section);
 
         if (in_array('showroom', $sections)) {
