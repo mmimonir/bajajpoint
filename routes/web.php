@@ -67,5 +67,5 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     });
 });
 
-Auth::routes(['register' => false]);
+// Auth::routes(['register' => false]);
 Auth::routes();
