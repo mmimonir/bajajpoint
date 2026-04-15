@@ -75,3 +75,66 @@ chmod -R 777 /var/www/html/wp-content
 
 sudo su
 chmod -Rf 777 .
+
+{
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 19,
+  "files.autoSave": "onFocusChange",
+  "explorer.confirmDelete": false,
+  "workbench.startupEditor": "newUntitledFile",
+
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+
+  "[blade]": {
+    "editor.defaultFormatter": "shufo.vscode-blade-formatter",
+  },
+
+  "files.associations": {
+    "*.blade.php": "blade",
+  },
+
+  "bladeFormatter.format.sortTailwindcssClasses": true,
+  "bladeFormatter.format.wrapLineLength": 120,
+
+  "tailwindCSS.includeLanguages": {
+    "blade": "html",
+  },
+
+  "emmet.includeLanguages": {
+    "blade": "html",
+  },
+
+  "editor.quickSuggestions": {
+    "strings": true,
+  },
+}
