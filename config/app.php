@@ -137,6 +137,7 @@ return [
     */
 
     'providers' => [
+        App\EnvKit\EnvKitDebugServiceProvider::class,
 
         /*
          * Laravel Framework Service Providers...
